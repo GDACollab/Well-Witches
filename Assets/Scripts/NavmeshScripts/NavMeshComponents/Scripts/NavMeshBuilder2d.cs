@@ -153,7 +153,7 @@ namespace NavMeshPlus.Extensions
             {
                 CollectSources(it, sources, builder);
             }
-            if (!builder.hideEditorLogs) Debug.Log("Sources " + sources.Count);
+            //if (!builder.hideEditorLogs) Debug.Log("Sources " + sources.Count);
         }
 
         public static void CollectSources(GameObject root, List<NavMeshBuildSource> sources, NavMeshBuilder2dState builder)
