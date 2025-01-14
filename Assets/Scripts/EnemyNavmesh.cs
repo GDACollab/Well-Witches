@@ -18,6 +18,7 @@ public class EnemyNavmesh : MonoBehaviour
         agent.updateUpAxis = false;
     }
 
+    // sets the enemy's destination to the given target transform (player)
     private void Update()
     {
         agent.SetDestination(target.position);
