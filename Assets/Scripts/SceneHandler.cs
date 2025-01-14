@@ -1,12 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class SceneHandler : MonoBehaviour
 {
     public static SceneHandler Instance { get; private set; }
-
+        
     [SerializeField]
     private int MainMenuSceneIndex = 0;
     [SerializeField]
@@ -30,7 +32,25 @@ public class SceneHandler : MonoBehaviour
         Instance = null;
     }
 
-    public void ToMainMenu(){
+    // FOR TESTING PURPOSES ONLY DO NOT UNCOMMENT
+    /*
+    public void Update(){
+        if(Input.GetKeyDown(KeyCode.A)){
+            ToMainMenuScene();
+        }
+        if(Input.GetKeyDown(KeyCode.S)){
+            ToHubScene();
+        }
+        if(Input.GetKeyDown(KeyCode.D)){
+            ToGameplayScene();
+        }
+        if(Input.GetKeyDown(KeyCode.F)){
+            ToPauseScene();
+        }
+    }
+    */
+
+    public void ToMainMenuScene(){
         Scene currentScene = SceneManager.GetActiveScene();
         int index = currentScene.buildIndex;
         // From Main Menu
@@ -57,7 +77,7 @@ public class SceneHandler : MonoBehaviour
         }
         SceneManager.LoadScene(MainMenuSceneIndex);
     }
-    public void ToHub(){
+    public void ToHubScene(){
         Scene currentScene = SceneManager.GetActiveScene();
         int index = currentScene.buildIndex;
         // From Main Menu
