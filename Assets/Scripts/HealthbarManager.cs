@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class HealthbarManager : MonoBehaviour
@@ -15,13 +16,16 @@ public class HealthbarManager : MonoBehaviour
     /*
     void Update(){
         if(Input.GetKeyDown(KeyCode.A)){
-            DecreaseHealth(1);
+            DecreaseCurrentHealth(1);
         }
         if(Input.GetKeyDown(KeyCode.D)){
-            IncreaseHealth(1);
+            IncreaseCurrentHealth(1);
         }
         if(Input.GetKeyDown(KeyCode.S)){
-            SetHealth(50);
+            SetCurrentHealth(50);
+        }
+        if(Input.GetKeyDown(KeyCode.F)){
+            SetMaxHealth(300);
         }
     }
     */
@@ -30,19 +34,29 @@ public class HealthbarManager : MonoBehaviour
         return currentHealth;
     }
 
-    public void IncreaseHealth(int amount){
+    public void IncreaseCurrentHealth(int amount){
         currentHealth = Math.Min(currentHealth+amount, maxHealth);
         UpdateHealthbar();
     }
 
-    public void DecreaseHealth(int amount){
+    public void DecreaseCurrentHealth(int amount){
         currentHealth = Math.Max(currentHealth-amount, 0);
         UpdateHealthbar();
     }
 
-    public void SetHealth(int newHealth){
+    public void SetCurrentHealth(int newHealth){
         newHealth = Mathf.Clamp(newHealth, 0, maxHealth);
         currentHealth = newHealth;
+        UpdateHealthbar();
+    }
+
+    public void SetMaxHealth(int newMaxHealth){
+        if(newMaxHealth < 1){
+            Debug.Log("Attempted to set max health to 0 or a negative number");
+            return;
+        }
+        maxHealth = newMaxHealth;
+        HealthSlider.maxValue = newMaxHealth;
         UpdateHealthbar();
     }
 
