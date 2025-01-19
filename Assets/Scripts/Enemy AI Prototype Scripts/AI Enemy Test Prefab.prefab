@@ -11,6 +11,11 @@ GameObject:
   - component: {fileID: 1320132218985174871}
   - component: {fileID: -1880998870069494288}
   - component: {fileID: -4381114607637155355}
+  - component: {fileID: 6239223539036651569}
+  - component: {fileID: 8959681763099254264}
+  - component: {fileID: -7130680508629212793}
+  - component: {fileID: 6156781225325899583}
+  - component: {fileID: -4728571333171127860}
   m_Layer: 0
   m_Name: AI Enemy Test Prefab
   m_TagString: Untagged
@@ -112,3 +117,65 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6239223539036651569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915960747198511803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f167c977c6d3949458177dc3fead5571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8959681763099254264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915960747198511803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bfbdd0b530ca1348837608b24632757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!114 &-7130680508629212793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915960747198511803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9744f35fdf6edd341bd720bb3bd26df4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6156781225325899583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915960747198511803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fe660fd068c3264fa20861b37ee39d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4728571333171127860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915960747198511803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2e76618940f28a4ca8063a56a971433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 0

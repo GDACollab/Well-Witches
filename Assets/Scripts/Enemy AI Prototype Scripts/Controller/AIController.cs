@@ -5,7 +5,6 @@ public class AIController : MonoBehaviour
 {
     private StateMachine stateMachine;
     public GameObject player;   // Assign this in the Inspector or dynamically
-    public GameObject enemy;    // Reference to the enemy
 
     void Start()
     {
@@ -15,13 +14,13 @@ public class AIController : MonoBehaviour
 
     void Update()
     {
-        // Check if the state has been set before initializing the patrol state
-        if (stateMachine.currentState == null)
-        {
-            // Set the initial state (PatrolState), passing the player
-            PatrolState patrolState = new PatrolState(stateMachine, enemy, player);
-            stateMachine.SetState(patrolState);
-        }
+        //// Check if the state has been set before initializing the patrol state
+        //if (stateMachine.currentState == null)
+        //{
+        //    // Set the initial state (PatrolState), passing the player
+        //    PatrolState patrolState = new PatrolState(stateMachine, enemy, player);
+        //    stateMachine.SetState(patrolState);
+        //}
 
         stateMachine.Update();  // Make sure to update the state machine each frame
     }
