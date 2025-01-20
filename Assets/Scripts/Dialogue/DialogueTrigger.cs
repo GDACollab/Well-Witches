@@ -23,7 +23,6 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (playerInRange && !DialogueManager.GetInstance().dialogueActive)
         {
-            Debug.Log(DialogueManager.GetInstance().dialogueActive);
             visualCue.SetActive(true);
             if (Input.GetKeyUp(KeyCode.E)) //TODO: CHANGE THIS TO THE PLAYER INTERACT BUTTON 
             {
