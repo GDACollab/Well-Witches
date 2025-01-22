@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: 1478523422}
   - component: {fileID: 1478523421}
   - component: {fileID: 1478523426}
+  - component: {fileID: 1478523427}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -384,6 +385,23 @@ MonoBehaviour:
   cameraToControl: {fileID: 1692952634}
   smoothSpeed: 0.125
   offset: {x: 0, y: 0, z: -10}
+--- !u!114 &1478523427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478523420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77caf8656fc7a4c298d235253499f361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
+  states:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1692952632
 GameObject:
   m_ObjectHideFlags: 0
