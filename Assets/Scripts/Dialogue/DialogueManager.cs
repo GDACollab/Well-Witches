@@ -7,24 +7,18 @@ using System;
 
 public class DialogueManager : MonoBehaviour
 {
-
     [Header("Dialogue UI")]
-
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
 
-    private Story currentStory;
-
-    private static DialogueManager instance;
-
     [Header("Choices UI")]
-
     [SerializeField] private GameObject[] choices; 
-
     private TextMeshProUGUI[] choicesText;
 
-
+    private Story currentStory;
+    private static DialogueManager instance;
     public Boolean dialogueActive { get; private set; } //variable is read-only to outside scripts
+    private SpriteManager currentCharacter;
 
     private void Awake()
     {
@@ -67,17 +61,20 @@ public class DialogueManager : MonoBehaviour
         //BUG: Currently can just press E to completely skip the choice
         //if we change this to a system where you have to use arrow keys and enter/interact to do choices than we can fix this in favor of a system-
         //-where we have a choice already selected and the player can navigate up or down to select another one before pressing enter
-        if (currentStory.currentChoices.Count == 0 && Input.GetKeyUp(KeyCode.E)) { 
+        if (currentStory.currentChoices.Count == 0 && Input.GetKeyUp(KeyCode.E)) 
+        { 
             ContinueStory();
         }
     }
 
-    public void StartDialogueMode(TextAsset JSON)
+    public void StartDialogueMode(TextAsset JSON, SpriteManager currChara)
     {
         currentStory = new Story(JSON.text);
         dialogueActive = true;
         dialoguePanel.SetActive(true);
+        currentCharacter = currChara;
 
+        currentCharacter.DisplaySprite();
         ContinueStory();
     }
 
@@ -88,6 +85,7 @@ public class DialogueManager : MonoBehaviour
         dialogueActive = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+        currentCharacter.HideSprite();
     }
 
     private void ContinueStory()
@@ -124,16 +122,15 @@ public class DialogueManager : MonoBehaviour
         }
 
         //there might be left over choice buttons that are not being used, this disables them
-        for (int i = index; i < choices.Length; i++){
+        for (int i = index; i < choices.Length; i++) 
+        {
             choices[i].gameObject.SetActive(false);
         }
     }
-
    
     public void MakeChoice(int choiceIndex)
     {
         currentStory.ChooseChoiceIndex(choiceIndex);
         ContinueStory();
     }
-
 }
