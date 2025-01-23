@@ -17,12 +17,6 @@ public class SpriteManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-        
-    }
-
     public void DisplaySprite()
     {
         sprites[0].SetActive(true);
@@ -31,5 +25,29 @@ public class SpriteManager : MonoBehaviour
     public void HideSprite()
     {
         sprites[0].SetActive(false);
+    }
+
+    public void ChangeSprite(string newSprite)
+    {
+        foreach(GameObject sprite in sprites)
+        {
+            sprite.SetActive(false);
+        }
+        switch (newSprite) 
+        {
+            case "neutral":
+                sprites[(int)Sprites.NEUTRAL].SetActive(true);
+                break;
+            case "happy":
+                sprites[(int)Sprites.HAPPY].SetActive(true);
+                break;
+            case "sad":
+                sprites[(int)Sprites.SAD].SetActive(true);
+                break;
+            default:
+                Debug.LogWarning("Sprite not found.");
+                sprites[(int)Sprites.NEUTRAL].SetActive(true);
+                break;
+        }
     }
 }

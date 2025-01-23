@@ -10,6 +10,7 @@ public class DialogueManager : MonoBehaviour
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private TextMeshProUGUI speakerText;
 
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices; 
@@ -19,6 +20,9 @@ public class DialogueManager : MonoBehaviour
     private static DialogueManager instance;
     public Boolean dialogueActive { get; private set; } //variable is read-only to outside scripts
     private SpriteManager currentCharacter;
+
+    private const string SPEAKER_TAG = "speaker";
+    private const string SPRITE_TAG = "sprite";
 
     private void Awake()
     {
@@ -72,9 +76,14 @@ public class DialogueManager : MonoBehaviour
         currentStory = new Story(JSON.text);
         dialogueActive = true;
         dialoguePanel.SetActive(true);
-        currentCharacter = currChara;
 
+        // reset speaker
+        speakerText.text = "???"; 
+
+        // logic handled by the SpriteManager script
+        currentCharacter = currChara;
         currentCharacter.DisplaySprite();
+
         ContinueStory();
     }
 
@@ -95,10 +104,41 @@ public class DialogueManager : MonoBehaviour
         {
             dialogueText.text = currentStory.Continue();
             DisplayChoices();
+            HandleTags(currentStory.currentTags);
         }
         else
         {
             StartCoroutine(EndDialogueMode());
+        }
+    }
+
+     private void HandleTags(List<string> currentTags)
+    {
+        // loop through each tag and handle it accordingly
+        foreach (string tag in currentTags) 
+        {
+            // parse the tag
+            string[] splitTag = tag.Split(':');
+            if (splitTag.Length != 2) 
+            {
+                Debug.LogError("Tag could not be appropriately parsed: " + tag);
+            }
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
+            
+            // handle the tag
+            switch (tagKey) 
+            {
+                case SPEAKER_TAG:
+                    speakerText.text = tagValue;
+                    break;
+                case SPRITE_TAG:
+                    currentCharacter.ChangeSprite(tagValue);
+                    break;
+                default:
+                    Debug.LogWarning("Tag came in but is not currently being handled: " + tag);
+                    break;
+            }
         }
     }
 
