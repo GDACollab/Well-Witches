@@ -13,6 +13,7 @@ public class AnnouncementManager : MonoBehaviour
     [SerializeField]
     private Image Backdrop;
     private Queue<String> AnnouncementQueue = new Queue<String>();
+    private bool playingAnnouncement = false;
 
     private void Awake(){
         if(Instance != null && Instance != this){
@@ -44,19 +45,29 @@ public class AnnouncementManager : MonoBehaviour
 
     IEnumerator TimerRoutine ()
     {
+        AnnouncementTextBox.text = AnnouncementQueue.Peek();
+        AnnouncementTextBox.alpha = 255;
+        Backdrop.gameObject.SetActive(true);
+        playingAnnouncement = true;
         WaitForSeconds delay = new WaitForSeconds(1);
         yield return delay;
         AnnouncementQueue.Dequeue();
-        AnnouncementTextBox.alpha = 0;
-        Backdrop.gameObject.SetActive(false);
-        AnnouncementTextBox.text = "";
+        if(AnnouncementQueue.Count > 0){
+            AnnouncementTextBox.text = AnnouncementQueue.Peek();
+            StartCoroutine(TimerRoutine());
+        }
+        else{
+            AnnouncementTextBox.alpha = 0;
+            Backdrop.gameObject.SetActive(false);
+            AnnouncementTextBox.text = "";
+            playingAnnouncement = false;
+        }
     }
 
     public void AddAnnouncementToQueue(String announcement){
         AnnouncementQueue.Enqueue(announcement);
-        AnnouncementTextBox.alpha = 255;
-        Backdrop.gameObject.SetActive(true);
-        AnnouncementTextBox.text = AnnouncementQueue.Peek();
-        StartCoroutine(TimerRoutine());
+        if(!playingAnnouncement){
+            StartCoroutine(TimerRoutine());
+        }
     }
 }
