@@ -32,15 +32,16 @@ public class AnnouncementManager : MonoBehaviour
         Backdrop.gameObject.SetActive(false);
     }
 
-    // FOR TESTING PURPOSES ONLY
-    
+    // FOR TESTING PURPOSES ONLY, DO NOT UNCOMMENT
+    /*
     void Update()
     {
         Debug.Log(AnnouncementQueue.Count);
         if(Input.GetKeyDown(KeyCode.Space)){
-            AddAnnouncementToQueue("hi");
+            AddAnnouncementToQueue(Time.deltaTime.ToString());
         }
     }
+    */
     
 
     IEnumerator TimerRoutine ()
