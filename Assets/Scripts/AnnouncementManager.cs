@@ -12,6 +12,8 @@ public class AnnouncementManager : MonoBehaviour
     private TextMeshProUGUI AnnouncementTextBox;
     [SerializeField]
     private Image Backdrop;
+    [SerializeField]
+    private float AnnouncementTime = 1;
     private Queue<String> AnnouncementQueue = new Queue<String>();
     private bool playingAnnouncement = false;
 
@@ -50,7 +52,7 @@ public class AnnouncementManager : MonoBehaviour
         AnnouncementTextBox.alpha = 255;
         Backdrop.gameObject.SetActive(true);
         playingAnnouncement = true;
-        WaitForSeconds delay = new WaitForSeconds(1);
+        WaitForSeconds delay = new WaitForSeconds(AnnouncementTime);
         yield return delay;
         AnnouncementQueue.Dequeue();
         if(AnnouncementQueue.Count > 0){
