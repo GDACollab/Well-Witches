@@ -7,11 +7,23 @@ using System.Linq;
 using UnityEngine.UI;
 public class AnnouncementManager : MonoBehaviour
 {
+    public static AnnouncementManager Instance {get; private set;}
     [SerializeField]
     private TextMeshProUGUI AnnouncementTextBox;
     [SerializeField]
     private Image Backdrop;
     private Queue<String> AnnouncementQueue = new Queue<String>();
+
+    private void Awake(){
+        if(Instance != null && Instance != this){
+            Destroy(this);
+        }
+        else{
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
+
     void Start()
     {
         AnnouncementTextBox.text = "";
@@ -20,14 +32,15 @@ public class AnnouncementManager : MonoBehaviour
     }
 
     // FOR TESTING PURPOSES ONLY
-    /*
+    
     void Update()
     {
+        Debug.Log(AnnouncementQueue.Count);
         if(Input.GetKeyDown(KeyCode.Space)){
             AddAnnouncementToQueue("hi");
         }
     }
-    */
+    
 
     IEnumerator TimerRoutine ()
     {

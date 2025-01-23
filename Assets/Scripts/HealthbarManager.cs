@@ -7,10 +7,21 @@ using UnityEngine.UI;
 
 public class HealthbarManager : MonoBehaviour
 {
+    public static HealthbarManager Instance { get; private set;}
     [SerializeField]
     private Slider HealthSlider;
     private int maxHealth = 100;
     private int currentHealth = 100;
+
+    public void Awake(){
+        if(Instance != null && Instance != this){
+            Destroy(this);
+        }
+        else{
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
 
     // FOR TESTING PURPOSES ONLY
     /*
