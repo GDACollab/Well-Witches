@@ -18,7 +18,8 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         //SpawnCreature(goofyBoy, Vector3.zero);
-        SpawnSurrounded(goofyBoy, 5, 2);
+        SpawnSurrounded(goofyBoy, 3, 2);
+        SpawnSurrounded(goofyBoy, 8, 5);
     }
 
     // Update is called once per frame
