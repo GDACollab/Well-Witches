@@ -26,18 +26,22 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
 	void Update()
 	{
-		if (Input.GetKeyDown("space"))
+		if (Input.GetKeyDown("1"))
 		{
 			SpawnSingle(goofyBoy, 3);
 		}
-		if (Input.GetKeyDown("a"))
+		if (Input.GetKeyDown("2"))
 		{
 			SpawnSingle(goofyBoy);
 		}
-		if (Input.GetKeyDown("s"))
+		if (Input.GetKeyDown("3"))
 		{
 			float radius = UnityEngine.Random.Range(3f, 8f);
 			SpawnSurrounded(goofyBoy, 3, radius);
+		}
+		if (Input.GetKeyDown("4"))
+		{
+			SpawnSingleFormation(4f);
 		}
 	}
 
@@ -54,6 +58,8 @@ public class EnemySpawner : MonoBehaviour
 
 	void SpawnFormation(Vector3 spawnPosition)
 	{
+		// TODO: Rotation
+		
 		GameObject formationObject = formationPrefabs[UnityEngine.Random.Range(0, formationPrefabs.Count)];
 
 		// Get the CreatureFormation component from the instantiated prefab
@@ -107,6 +113,16 @@ public class EnemySpawner : MonoBehaviour
 		float y = radius * math.sin(dir) + referencePoint.position.y;
 
 		SpawnCreature(creature, new Vector3(x, y, 0));	// Place new enemy
+	}
+
+	void SpawnSingleFormation(float radius)
+	{
+		float dir = UnityEngine.Random.Range(0f, 2 * math.PI);		// Generate direction from 0 to 360 degrees
+
+		float x = radius * math.cos(dir) + referencePoint.position.x;
+		float y = radius * math.sin(dir) + referencePoint.position.y;
+
+		SpawnFormation(new Vector3(x, y, 0));	// Place new enemy
 	}
 
 	void SpawnSingle(GameObject creature)
