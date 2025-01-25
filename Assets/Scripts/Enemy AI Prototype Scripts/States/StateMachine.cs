@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
-    private State currentState;
+    public State currentState;
 
     public void SetState(State newState)
     {
@@ -13,9 +13,12 @@ public class StateMachine : MonoBehaviour
 
         currentState = newState;
 
+        Debug.Log("Entering New State: " + currentState.ToString());
+
         if (currentState != null)
         {
             currentState.OnEnter();
+            
         }
     }
 

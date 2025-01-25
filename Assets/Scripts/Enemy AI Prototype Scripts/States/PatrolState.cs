@@ -4,68 +4,42 @@ using UnityEngine;
 
 public class PatrolState : State
 {
-    private NavMeshAgent agent;
-    private Vector3 patrolTarget;
-    private float idleDuration = 5f;
-    private float idleTimer = 0f;
-    private bool isIdling = false;
+    private Rigidbody2D rb;
+    [SerializeField] private float patrolSpeed = 2f;
+    private Vector2 direction;
+    private StateMachine stateMachine;
 
-    [Header("Patrol Settings")]
-    public float patrolRadius = 10f;
-    public float patrolSpeed = 2f;
+    public PatrolState(GameObject owner) : base(owner) { }
 
-    public PatrolState(GameObject owner) : base(owner)
+    public void Initialize(StateMachine stateMachine, GameObject owner)
     {
-        agent = owner.GetComponent<NavMeshAgent>();
+        this.stateMachine = stateMachine;
+        this.owner = owner;
+        rb = owner.GetComponent<Rigidbody2D>();
     }
 
     public override void OnEnter()
     {
-        Debug.Log("Entering Patrol State");
-        agent.speed = patrolSpeed;
-        SetRandomPatrolTarget();
+        direction = Vector2.right; // Move in a straight line to the right
+
     }
 
     public override void OnUpdate()
     {
-        if (isIdling)
-        {
-            idleTimer += Time.deltaTime;
-            if (idleTimer >= idleDuration)
-            {
-                isIdling = false;
-                SetRandomPatrolTarget();
-            }
-        }
-        else if (agent.remainingDistance <= agent.stoppingDistance)
-        {
-            Debug.Log("Reached patrol destination, idling...");
-            isIdling = true;
-            idleTimer = 0f;
-        }
+
+        rb.MovePosition(rb.position + direction * patrolSpeed * Time.deltaTime);
     }
 
     public override void OnExit()
     {
         Debug.Log("Exiting Patrol State");
-        isIdling = false;
-        idleTimer = 0f;
     }
 
     public override List<Transition> GetTransitions()
     {
-        return new List<Transition>();
-    }
-
-    private void SetRandomPatrolTarget()
-    {
-        Vector3 randomDirection = Random.insideUnitSphere * patrolRadius;
-        randomDirection += owner.transform.position;
-
-        if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, patrolRadius, NavMesh.AllAreas))
+        return new List<Transition>
         {
-            patrolTarget = hit.position;
-            agent.SetDestination(patrolTarget);
-        }
+            new PatrolToIdleMouseClickTransition(stateMachine, owner)
+        };
     }
 }

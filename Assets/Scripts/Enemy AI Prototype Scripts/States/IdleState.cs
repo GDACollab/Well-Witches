@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class IdleState : State
 {
-    public IdleState(GameObject owner) : base(owner) { }
+    private StateMachine stateMachine;
+    public IdleState(GameObject owner) : base(owner) {}
+    public void Initialize(StateMachine stateMachine, GameObject owner)
+    {
+        this.stateMachine = stateMachine;
+        this.owner = owner;
+    }
 
     public override void OnEnter()
     {
@@ -23,6 +29,9 @@ public class IdleState : State
 
     public override List<Transition> GetTransitions()
     {
-        return new List<Transition>();
+        return new List<Transition>
+        {
+            new IdleToPatrolMouseClickTransition(stateMachine, owner)
+        };
     }
 }

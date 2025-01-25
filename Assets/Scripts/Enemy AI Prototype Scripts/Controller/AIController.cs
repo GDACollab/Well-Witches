@@ -4,24 +4,22 @@ using System.Collections.Generic;
 public class AIController : MonoBehaviour
 {
     private StateMachine stateMachine;
-    public GameObject player;   // Assign this in the Inspector or dynamically
 
     void Start()
     {
         // Initialize the state machine
-        stateMachine = new StateMachine();
+        stateMachine = gameObject.GetComponent<StateMachine>();
+        // Check if the state has been set before initializing the patrol state
+
+        // Set the initial state (PatrolState), passing the player
+        PatrolState patrolState = gameObject.GetComponent<PatrolState>();
+        patrolState.Initialize(stateMachine, gameObject);
+        stateMachine.SetState(patrolState);
+
     }
 
     void Update()
     {
-        //// Check if the state has been set before initializing the patrol state
-        //if (stateMachine.currentState == null)
-        //{
-        //    // Set the initial state (PatrolState), passing the player
-        //    PatrolState patrolState = new PatrolState(stateMachine, enemy, player);
-        //    stateMachine.SetState(patrolState);
-        //}
-
-        stateMachine.Update();  // Make sure to update the state machine each frame
+        stateMachine.Update();  // Update the state machine each frame
     }
 }
