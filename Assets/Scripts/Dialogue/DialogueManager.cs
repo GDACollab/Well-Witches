@@ -167,7 +167,9 @@ public class DialogueManager : MonoBehaviour
                             playerSpriteManager.ChangeGathererSprite(tagValue);
                         }
                     }
-                    currentCharacter.ChangeSprite(tagValue);
+                    else{
+                        currentCharacter.ChangeSprite(tagValue);
+                    }
                     break;
                 default:
                     Debug.LogWarning("Tag came in but is not currently being handled: " + tag);
