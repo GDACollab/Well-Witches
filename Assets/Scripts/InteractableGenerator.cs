@@ -10,7 +10,7 @@ public class InteractableGenerator : MonoBehaviour
     //offset moves the interactables so that they're centered around (0,0) when spawned, rather than having 0,0 be the bottom left corner
     [SerializeField] Vector2 offset = new Vector2(-50, -50);
     //queue structure tracking the 3 most recent spots
-    Vector2Int[] recentValues = { new Vector2Int(-10, -10), new Vector2Int(-10, -10), new Vector2Int(-10, -10) };
+    [SerializeField] Vector2Int[] recentValues = { new Vector2Int(-10, -10), new Vector2Int(-10, -10), new Vector2Int(-10, -10) };
     //min distance from recent values nessecary for a new interactable to be spawned
     int recentRange = 3;
 
