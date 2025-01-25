@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using Ink.Runtime;
 using System;
+using System.Linq;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -138,7 +139,35 @@ public class DialogueManager : MonoBehaviour
             // handle the tag
             switch (tagKey) 
             {
+                case SPEAKER_TAG:
+                    if (speakerName == "Player")
+                    {
+                        if (tagValue == "warden")
+                        {
+                            activePlayer = PlayerState.WARDEN;
+                            playerSpriteManager.SwitchToWarden();
+                            speakerText.text = char.ToUpper(tagValue.First()) + tagValue.Substring(1);
+                        }
+                        else if (tagValue == "gatherer")
+                        {
+                            activePlayer = PlayerState.GATHERER;
+                            playerSpriteManager.SwitchToGatherer();
+                            speakerText.text = char.ToUpper(tagValue.First()) + tagValue.Substring(1);
+                        }
+                    }
+                    break;
                 case SPRITE_TAG:
+                    if (speakerName == "Player")
+                    {
+                        if (activePlayer == PlayerState.WARDEN)
+                        {
+                            playerSpriteManager.ChangeWardenSprite(tagValue);
+                        }
+                        else if (activePlayer == PlayerState.GATHERER)
+                        {
+                            playerSpriteManager.ChangeGathererSprite(tagValue);
+                        }
+                    }
                     currentCharacter.ChangeSprite(tagValue);
                     break;
                 default:
@@ -179,6 +208,19 @@ public class DialogueManager : MonoBehaviour
             switch (tagKey) 
             {
                 case SPEAKER_TAG:
+                if (speakerName == "Warden")
+                {
+                    activePlayer = PlayerState.WARDEN;
+                    playerSpriteManager.SwitchToWarden();
+                    speakerText.text = "Warden";
+                }
+                else if (speakerName == "Gatherer")
+                {
+                    Debug.Log("accessed gatherer section");
+                    activePlayer = PlayerState.GATHERER;
+                    playerSpriteManager.SwitchToGatherer();
+                    speakerText.text = "Gatherer";
+                }
                     break;
                 case SPRITE_TAG:
                     if (activePlayer == PlayerState.WARDEN)
@@ -225,10 +267,9 @@ public class DialogueManager : MonoBehaviour
    
     public void MakeChoice(int choiceIndex)
     {
-        Debug.Log("run makechoice");
         List<String> choiceTags = currentStory.currentChoices[choiceIndex].tags;
         currentStory.ChooseChoiceIndex(choiceIndex);
-        HandleTagsPlayer((string)currentStory.variablesState["currentSpeaker"], choiceTags);
+        // HandleTagsPlayer((string)currentStory.variablesState["currentSpeaker"], choiceTags);
         ContinueStory();
     }
 }
