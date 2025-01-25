@@ -349,6 +349,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7130680508629212793, guid: 098bc5b70e8ae994889f19317af6dfb9, type: 3}
+      propertyPath: patrolSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -7130680508629212793, guid: 098bc5b70e8ae994889f19317af6dfb9, type: 3}
+      propertyPath: patrolRadius
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -4728571333171127860, guid: 098bc5b70e8ae994889f19317af6dfb9, type: 3}
+      propertyPath: movementSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -1880998870069494288, guid: 098bc5b70e8ae994889f19317af6dfb9, type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1880998870069494288, guid: 098bc5b70e8ae994889f19317af6dfb9, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 915960747198511803, guid: 098bc5b70e8ae994889f19317af6dfb9, type: 3}
       propertyPath: m_Name
       value: AI Enemy Test Prefab
@@ -393,31 +413,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8959681763099254264, guid: 098bc5b70e8ae994889f19317af6dfb9, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 2132528062}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 915960747198511803, guid: 098bc5b70e8ae994889f19317af6dfb9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2132528063}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 098bc5b70e8ae994889f19317af6dfb9, type: 3}
 --- !u!1 &2132528062 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 915960747198511803, guid: 098bc5b70e8ae994889f19317af6dfb9, type: 3}
   m_PrefabInstance: {fileID: 2132528061}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2132528063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2132528062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f167c977c6d3949458177dc3fead5571, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
