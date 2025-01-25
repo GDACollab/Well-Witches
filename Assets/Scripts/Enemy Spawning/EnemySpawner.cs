@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
     {
         //SpawnSurrounded(goofyBoy, 3, 2);
         //SpawnSurrounded(goofyBoy, 8, 5);
-		SpawnFormation(referencePoint.position);
+		//SpawnFormation(referencePoint.position, 45);
     }
 
     // Update is called once per frame
@@ -56,20 +56,27 @@ public class EnemySpawner : MonoBehaviour
 		Instantiate(creature, position, Quaternion.identity);
 	}
 
-	void SpawnFormation(Vector3 spawnPosition)
+	void SpawnFormation(Vector3 spawnPosition, float rotation = 0)
 	{
-		// TODO: Rotation
-		
+		// Get the formation prefab to spawn
 		GameObject formationObject = formationPrefabs[UnityEngine.Random.Range(0, formationPrefabs.Count)];
 
 		// Get the CreatureFormation component from the instantiated prefab
 		EnemyFormation formation = formationObject.GetComponent<EnemyFormation>();
 
-		// Spawn all creatures in the formation with their relative positions
+		// Create a rotation quaternion from the rotation angle
+		Quaternion rotationQuaternion = Quaternion.Euler(0, 0, rotation);
+
+		// Spawn all creatures in the formation with their rotated relative positions
 		foreach (var creatureInfo in formation.creaturesInFormation)
 		{
-			// Instantiate each creature at its relative position
-			Vector3 spawnLocation = spawnPosition + creatureInfo.relativePosition;
+			// Apply the rotation to the relative position of each creature
+			Vector3 rotatedPosition = rotationQuaternion * creatureInfo.relativePosition;
+
+			// Calculate the spawn location by adding the rotated position to the spawn position
+			Vector3 spawnLocation = spawnPosition + rotatedPosition;
+
+			// Spawn the creature
 			SpawnCreature(creatureInfo.gameObject, spawnLocation);
 		}
 	}
@@ -122,7 +129,12 @@ public class EnemySpawner : MonoBehaviour
 		float x = radius * math.cos(dir) + referencePoint.position.x;
 		float y = radius * math.sin(dir) + referencePoint.position.y;
 
-		SpawnFormation(new Vector3(x, y, 0));	// Place new enemy
+		// Logic for rotating the formation towards the ref point (player)
+		Vector3 spawnPosition = new Vector3(x, y, 0);
+		Vector3 directionToReference = referencePoint.position - spawnPosition;
+		float angleToReference = Mathf.Atan2(directionToReference.y, directionToReference.x) * Mathf.Rad2Deg;
+
+		SpawnFormation(spawnPosition, angleToReference);	// Place new enemy
 	}
 
 	void SpawnSingle(GameObject creature)
