@@ -26,11 +26,11 @@ public class GoodEvent : MonoBehaviour
          {
             case Buffs.healthUp:
                warden.health += buffAmount;
-               Debug.Log(warden.health);
+               Debug.Log("Health Buffed by: " + warden.health);
                break;
             case Buffs.attackUp:
                warden.attackPower += buffAmount;
-               Debug.Log(warden.attackPower);
+               Debug.Log("Attack Buffed by: " + warden.attackPower);
                break;
             default:
                break;
