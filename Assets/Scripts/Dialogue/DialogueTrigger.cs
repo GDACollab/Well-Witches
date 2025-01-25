@@ -26,7 +26,7 @@ public class DialogueTrigger : MonoBehaviour
             visualCue.SetActive(true);
             if (Input.GetKeyUp(KeyCode.E)) //TODO: CHANGE THIS TO THE PLAYER INTERACT BUTTON 
             {
-                DialogueManager.GetInstance().StartDialogueMode(JSON);
+                DialogueManager.GetInstance().StartDialogueMode(JSON, GetComponentInParent<SpriteManager>());
             }
         }
         else

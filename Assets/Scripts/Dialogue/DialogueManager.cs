@@ -7,24 +7,26 @@ using System;
 
 public class DialogueManager : MonoBehaviour
 {
-
     [Header("Dialogue UI")]
-
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
-
-    private Story currentStory;
-
-    private static DialogueManager instance;
+    [SerializeField] private TextMeshProUGUI speakerText;
 
     [Header("Choices UI")]
-
     [SerializeField] private GameObject[] choices; 
-
     private TextMeshProUGUI[] choicesText;
 
-
+    private Story currentStory;
+    private static DialogueManager instance;
     public Boolean dialogueActive { get; private set; } //variable is read-only to outside scripts
+
+    private SpriteManager currentCharacter;
+    private PlayerSpriteManager playerSpriteManager;
+    private enum PlayerState {WARDEN, GATHERER};
+    private PlayerState activePlayer = PlayerState.WARDEN;
+
+    private const string SPRITE_TAG = "sprite";
+    private const string SPEAKER_TAG = "speaker";
 
     private void Awake()
     {
@@ -52,6 +54,7 @@ public class DialogueManager : MonoBehaviour
             index++;
         }
 
+        playerSpriteManager = gameObject.GetComponent<PlayerSpriteManager>();
     }
 
     private void Update()
@@ -67,16 +70,25 @@ public class DialogueManager : MonoBehaviour
         //BUG: Currently can just press E to completely skip the choice
         //if we change this to a system where you have to use arrow keys and enter/interact to do choices than we can fix this in favor of a system-
         //-where we have a choice already selected and the player can navigate up or down to select another one before pressing enter
-        if (Input.GetKeyUp(KeyCode.E)) { 
+        if (currentStory.currentChoices.Count == 0 && Input.GetKeyUp(KeyCode.E)) 
+        { 
             ContinueStory();
         }
     }
 
-    public void StartDialogueMode(TextAsset JSON)
+    public void StartDialogueMode(TextAsset JSON, SpriteManager currChara)
     {
         currentStory = new Story(JSON.text);
         dialogueActive = true;
         dialoguePanel.SetActive(true);
+
+        // reset speaker
+        speakerText.text = "???"; 
+
+        // logic handled by the SpriteManager script
+        currentCharacter = currChara;
+        currentCharacter.DisplaySprite();
+        playerSpriteManager.DisplayPlayerSprite();
 
         ContinueStory();
     }
@@ -88,6 +100,8 @@ public class DialogueManager : MonoBehaviour
         dialogueActive = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+        currentCharacter.HideSprite();
+        playerSpriteManager.HidePlayerSprite();
     }
 
     private void ContinueStory()
@@ -97,10 +111,89 @@ public class DialogueManager : MonoBehaviour
         {
             dialogueText.text = currentStory.Continue();
             DisplayChoices();
+            HandleTagsNPC((string)currentStory.variablesState["currentSpeaker"], currentStory.currentTags);
         }
         else
         {
             StartCoroutine(EndDialogueMode());
+        }
+    }
+
+     private void HandleTagsNPC(string speakerName, List<string> currentTags)
+    {
+        Debug.Log("run handletags for NPC: " + speakerName);
+        speakerText.text = speakerName;
+        // loop through each tag and handle it accordingly
+        foreach (string tag in currentTags) 
+        {
+            // parse the tag
+            string[] splitTag = tag.Split(':');
+            if (splitTag.Length != 2) 
+            {
+                Debug.LogError("Tag could not be appropriately parsed: " + tag);
+            }
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
+            
+            // handle the tag
+            switch (tagKey) 
+            {
+                case SPRITE_TAG:
+                    currentCharacter.ChangeSprite(tagValue);
+                    break;
+                default:
+                    Debug.LogWarning("Tag came in but is not currently being handled: " + tag);
+                    break;
+            }
+        }
+    }
+
+    private void HandleTagsPlayer(string speakerName, List<string> choiceTags)
+    {
+        Debug.Log("run handletags for player" + speakerName);
+        if (speakerName == "Warden")
+        {
+            activePlayer = PlayerState.WARDEN;
+            playerSpriteManager.SwitchToWarden();
+            speakerText.text = "Warden";
+        }
+        else if (speakerName == "Gatherer")
+        {
+            Debug.Log("accessed gatherer section");
+            activePlayer = PlayerState.GATHERER;
+            playerSpriteManager.SwitchToGatherer();
+            speakerText.text = "Gatherer";
+        }
+        foreach (string tag in choiceTags) 
+        {
+            // parse the tag
+            string[] splitTag = tag.Split(':');
+            if (splitTag.Length != 2) 
+            {
+                Debug.LogError("Tag could not be appropriately parsed: " + tag);
+            }
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
+            
+            // handle the tag
+            switch (tagKey) 
+            {
+                case SPEAKER_TAG:
+                    break;
+                case SPRITE_TAG:
+                    if (activePlayer == PlayerState.WARDEN)
+                    {
+                        playerSpriteManager.ChangeWardenSprite(tagValue);
+                    }
+                    else if (activePlayer == PlayerState.GATHERER)
+                    {
+                        playerSpriteManager.ChangeGathererSprite(tagValue);
+                    }
+                    break;
+                default:
+                    Debug.LogWarning("Tag came in but is not currently being handled: " + tag);
+                    break;
+            }
         }
     }
 
@@ -124,16 +217,18 @@ public class DialogueManager : MonoBehaviour
         }
 
         //there might be left over choice buttons that are not being used, this disables them
-        for (int i = index; i < choices.Length; i++){
+        for (int i = index; i < choices.Length; i++) 
+        {
             choices[i].gameObject.SetActive(false);
         }
     }
-
    
     public void MakeChoice(int choiceIndex)
     {
+        Debug.Log("run makechoice");
+        List<String> choiceTags = currentStory.currentChoices[choiceIndex].tags;
         currentStory.ChooseChoiceIndex(choiceIndex);
+        HandleTagsPlayer((string)currentStory.variablesState["currentSpeaker"], choiceTags);
         ContinueStory();
     }
-
 }
