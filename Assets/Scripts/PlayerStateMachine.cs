@@ -34,8 +34,8 @@ public class PlayerStateMachine : MonoBehaviour
     {
         if (requestedState != currentState) {
             currentState = requestedState;
-            states[currentState].InitState();
+            states[(int)currentState].InitState();
         }
-        states[currentState].UpdateState();
+        states[(int)currentState].UpdateState();
     }
 }
