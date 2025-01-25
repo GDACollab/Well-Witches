@@ -122,7 +122,6 @@ public class DialogueManager : MonoBehaviour
 
      private void HandleTagsNPC(string speakerName, List<string> currentTags)
     {
-        Debug.Log("run handletags for NPC: " + speakerName);
         speakerText.text = speakerName;
         // loop through each tag and handle it accordingly
         foreach (string tag in currentTags) 
@@ -168,68 +167,8 @@ public class DialogueManager : MonoBehaviour
                             playerSpriteManager.ChangeGathererSprite(tagValue);
                         }
                     }
-                    currentCharacter.ChangeSprite(tagValue);
-                    break;
-                default:
-                    Debug.LogWarning("Tag came in but is not currently being handled: " + tag);
-                    break;
-            }
-        }
-    }
-
-    private void HandleTagsPlayer(string speakerName, List<string> choiceTags)
-    {
-        Debug.Log("run handletags for player" + speakerName);
-        if (speakerName == "Warden")
-        {
-            activePlayer = PlayerState.WARDEN;
-            playerSpriteManager.SwitchToWarden();
-            speakerText.text = "Warden";
-        }
-        else if (speakerName == "Gatherer")
-        {
-            Debug.Log("accessed gatherer section");
-            activePlayer = PlayerState.GATHERER;
-            playerSpriteManager.SwitchToGatherer();
-            speakerText.text = "Gatherer";
-        }
-        foreach (string tag in choiceTags) 
-        {
-            // parse the tag
-            string[] splitTag = tag.Split(':');
-            if (splitTag.Length != 2) 
-            {
-                Debug.LogError("Tag could not be appropriately parsed: " + tag);
-            }
-            string tagKey = splitTag[0].Trim();
-            string tagValue = splitTag[1].Trim();
-            
-            // handle the tag
-            switch (tagKey) 
-            {
-                case SPEAKER_TAG:
-                if (speakerName == "Warden")
-                {
-                    activePlayer = PlayerState.WARDEN;
-                    playerSpriteManager.SwitchToWarden();
-                    speakerText.text = "Warden";
-                }
-                else if (speakerName == "Gatherer")
-                {
-                    Debug.Log("accessed gatherer section");
-                    activePlayer = PlayerState.GATHERER;
-                    playerSpriteManager.SwitchToGatherer();
-                    speakerText.text = "Gatherer";
-                }
-                    break;
-                case SPRITE_TAG:
-                    if (activePlayer == PlayerState.WARDEN)
-                    {
-                        playerSpriteManager.ChangeWardenSprite(tagValue);
-                    }
-                    else if (activePlayer == PlayerState.GATHERER)
-                    {
-                        playerSpriteManager.ChangeGathererSprite(tagValue);
+                    else{
+                        currentCharacter.ChangeSprite(tagValue);
                     }
                     break;
                 default:
@@ -269,7 +208,6 @@ public class DialogueManager : MonoBehaviour
     {
         List<String> choiceTags = currentStory.currentChoices[choiceIndex].tags;
         currentStory.ChooseChoiceIndex(choiceIndex);
-        // HandleTagsPlayer((string)currentStory.variablesState["currentSpeaker"], choiceTags);
         ContinueStory();
     }
 }
