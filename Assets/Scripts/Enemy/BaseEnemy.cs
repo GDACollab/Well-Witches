@@ -32,7 +32,7 @@ public class BaseEnemyClass : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
+        //Move();
     }
 
     /*
