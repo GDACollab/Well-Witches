@@ -18,7 +18,7 @@ public class BaseEnemyClass : MonoBehaviour
     public int moveSpeed;
 
     // used for Move()
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
     Vector3 click;
     Vector2 target;
     Vector2 pos;
@@ -32,7 +32,7 @@ public class BaseEnemyClass : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Move();
+        Move();
     }
 
     /*
