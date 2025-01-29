@@ -10,7 +10,8 @@ public class AOE : MonoBehaviour
     {
         circleCollider2D = GetComponent<CircleCollider2D>();
     }
-
+    
+    // deactivates AOE after lifetime
     public void DespawnAOE(float lifetime)
     {
         _lifetime = lifetime;

@@ -37,6 +37,8 @@ public class Projectile : MonoBehaviour
         StartCoroutine(Despawn());
     }
 
+    // on hitting a Tag that isn't enemy
+    // instatiates(from pool) the AOE prefab and deactivates the projectile
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Enemy"))
@@ -54,8 +56,9 @@ public class Projectile : MonoBehaviour
         }
     }
 
- 
 
+    // on hitting a Tag that isn't enemy
+    // instatiates(from pool) the AOE prefab and deactivates the projectile
     IEnumerator Despawn()
     {
         yield return new WaitForSeconds(_lifetime);
