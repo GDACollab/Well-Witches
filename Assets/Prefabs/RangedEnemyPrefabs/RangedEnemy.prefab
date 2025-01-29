@@ -103,18 +103,20 @@ MonoBehaviour:
   moveSpeed: 12
   rb: {fileID: 0}
   range: 5
+  acceleration: 3
   fireRate: 1
   projectileCount: 3
   projectileSpread: 10
   projectileSpeed: 4
+  projectileSize: 1
   projectileLifetime: 2
   AOESize: 0.5
   AOELifetime: 0.2
   projectilePrefab: {fileID: 7876635664264266826, guid: 269f7fd0cedf31e4b973f44bf939cb42, type: 3}
-  player1: {fileID: 2070973911960051920, guid: 4fdc9170b6bc23443969c0c5028ba4e3, type: 3}
-  player2: {fileID: 2057225434226052616, guid: b5164c27bd524a94badc10503728675b, type: 3}
-  distance: 0
+  distanceToPlayer1: 0
+  distanceToPlayer2: 0
   timeToFire: 0
+  players: []
   currentTarget: {fileID: 0}
 --- !u!50 &6673968106200130034
 Rigidbody2D:

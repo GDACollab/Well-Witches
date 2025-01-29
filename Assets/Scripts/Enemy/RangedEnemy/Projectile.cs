@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro.EditorUtilities;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Projectile : MonoBehaviour
 {
@@ -40,17 +41,32 @@ public class Projectile : MonoBehaviour
     {
         if (!collision.CompareTag("Enemy"))
         {
-            Instantiate(AOEPrefab, transform.position, Quaternion.identity).GetComponent<AOE>().InitializeAOE(_AOESize, _AOElifetime);
-            Destroy(gameObject);
+            GameObject AOE = AOEPooling.SharedInstance.GetAOEObject();
+            if (AOE != null) 
+            {
+                AOE.transform.position = transform.position;
+                AOE.transform.localScale = Vector3.one * _AOESize;
+                AOE.SetActive(true);
+                AOE.GetComponent<AOE>().DespawnAOE(_AOElifetime);
+            }
+            
+            gameObject.SetActive(false);    
         }
     }
 
-    // TODO: use pooling instead
+ 
+
     IEnumerator Despawn()
     {
         yield return new WaitForSeconds(_lifetime);
-        Instantiate(AOEPrefab, transform.position, Quaternion.identity).GetComponent<AOE>().InitializeAOE(_AOESize, _AOElifetime);
-        Destroy(gameObject);
+        GameObject AOE = AOEPooling.SharedInstance.GetAOEObject();
+        if (AOE != null)
+        {
+            AOE.transform.position = transform.position;
+            AOE.transform.localScale = Vector3.one * _AOESize;
+            AOE.SetActive(true);
+            AOE.GetComponent<AOE>().DespawnAOE(_AOElifetime);
+        }
+        gameObject.SetActive(false);
     }
-
 }

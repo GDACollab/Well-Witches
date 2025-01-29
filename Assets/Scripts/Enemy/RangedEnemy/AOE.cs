@@ -4,17 +4,23 @@ using UnityEngine;
 public class AOE : MonoBehaviour
 {
     private CircleCollider2D circleCollider2D;
-    private float lifetime;
+    private float _lifetime;
 
     private void Awake()
     {
         circleCollider2D = GetComponent<CircleCollider2D>();
     }
-    public void InitializeAOE(float radius, float AOElifetime)
+
+    public void DespawnAOE(float lifetime)
     {
-        lifetime = AOElifetime;
-        circleCollider2D.radius = radius;
-        transform.localScale *= radius;
-        Destroy(gameObject, lifetime);
+        _lifetime = lifetime;
+        StartCoroutine(DeactivateAOE());
     }
+
+    IEnumerator DeactivateAOE()
+    {
+        yield return new WaitForSeconds(_lifetime);
+        gameObject.SetActive(false);
+    }
+    
 }
