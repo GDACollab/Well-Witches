@@ -12,25 +12,35 @@ public class RangedEnemy : BaseEnemyClass
     public float fireRate;
     [Tooltip("Amount of projectiles to fire out")]
     public float projectileCount;
-    [Tooltip("Angle of the projectile's spread")]
+    [Tooltip("Angle of the projectile's spread, the larger the wider the spread")]
     [Range(0, 90)]
     public float projectileSpread;
     [Tooltip("Speed of the projectile")]
     public float projectileSpeed;
+    [Tooltip("Time in seconds before the projectile explodes")]
+    public float projectileLifetime;
+
+    [Header("AOE")]
+    [Tooltip("Size of the AOE when projectile lands")]
+    public float AOESize;
+    [Tooltip("How long the AOE lasts in seconds")]
+    public float AOELifetime;
 
     [Header("Initialize")]
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private Transform player1;
-    [SerializeField] private Transform player2;
+
 
     [Header("DEBUG")]
-    public float distance;
+    public float distanceToPlayer1;
+    public float distanceToPlayer2;
     public float timeToFire;
+    [SerializeField] private GameObject[] players;
     public Transform currentTarget;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        players = GameObject.FindGameObjectsWithTag("Player");
     }
 
     private void Update()
@@ -64,7 +74,8 @@ public class RangedEnemy : BaseEnemyClass
                 // offset of the projectile based on count and spread
                 // used in InitializeProjectile() to calculate proper direction and projectile rotation
                 float offset = (i - (projectileCount / 2)) * projectileSpread;
-                Instantiate(projectilePrefab, transform.position, Quaternion.identity).GetComponent<Projectile>().InitializeProjectile(currentTarget.transform.position, offset, projectileSpeed);
+                Instantiate(projectilePrefab, transform.position, Quaternion.identity).GetComponent<Projectile>().
+                    InitializeProjectile(currentTarget.transform.position, offset, projectileSpeed, projectileLifetime, AOESize, AOELifetime);
             }
             timeToFire = fireRate;
         } else
@@ -76,14 +87,15 @@ public class RangedEnemy : BaseEnemyClass
     // targets the closest player to the enemy
     private void TargetClosestPlayer()
     {
-        float distanceToPlayer1 = Vector2.Distance(player1.transform.position, transform.position);
-        float distanceToPlayer2 = Vector2.Distance(player2.transform.position, transform.position);
+        Debug.Log("Player 1 position" + players[0].transform.position);
+        distanceToPlayer1 = Vector2.Distance(players[0].transform.position, transform.position);
+        distanceToPlayer2 = Vector2.Distance(players[1].transform.position, transform.position);
         if (distanceToPlayer1 < distanceToPlayer2) 
         {
-            currentTarget = player1.transform;
+            currentTarget = players[0].transform;
         } else
         {
-            currentTarget = player2.transform;
+            currentTarget = players[1].transform;
         }
     }
 
