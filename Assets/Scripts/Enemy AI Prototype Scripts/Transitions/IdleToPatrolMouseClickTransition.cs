@@ -6,12 +6,12 @@ public class IdleToPatrolMouseClickTransition : Transition
 {
     private GameObject owner;
     private StateMachine stateMachine;
-    private PatrolState patrolState;
+    private AggroState AggroState;
 
     public IdleToPatrolMouseClickTransition(StateMachine stateMachine, GameObject owner) : base(owner)
     {
         this.stateMachine = stateMachine;
-        this.patrolState = owner.GetComponent<PatrolState>();
+        this.AggroState = owner.GetComponent<AggroState>();
         this.owner = owner;
     }
 
@@ -24,7 +24,7 @@ public class IdleToPatrolMouseClickTransition : Transition
     {
         // Transition to the PatrolState and pass both owner and player
         Debug.Log("IdleToPatrolMouseClickTransition");
-        patrolState.Initialize(stateMachine, owner);
-        return patrolState;
+        AggroState.Initialize(stateMachine, owner);
+        return AggroState;
     }
 }

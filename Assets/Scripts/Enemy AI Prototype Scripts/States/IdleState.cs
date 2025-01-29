@@ -31,7 +31,7 @@ public class IdleState : State
     {
         return new List<Transition>
         {
-            new IdleToPatrolMouseClickTransition(stateMachine, owner)
+            //new IdleToPatrolMouseClickTransition(stateMachine, owner)
         };
     }
 }

@@ -4,49 +4,43 @@ using UnityEngine;
 
 public class AttackState : State
 {
-    private NavMeshAgent agent;
-    private Transform player;
+    private GameObject target;
 
     [Header("Attack Settings")]
-    public float movementSpeed = 3.5f;
     public float attackRange = 5f;
+    public float attackRate = 2f;
     private int attackCount = 0;
+    private float lastAttackTime;
+    private StateMachine stateMachine;
+    public bool isAttacking;
 
-    public AttackState(GameObject owner, GameObject player) : base(owner)
+
+
+
+    public AttackState(GameObject owner, GameObject player) : base(owner) { }
+    public void Initialize(StateMachine stateMachine, GameObject owner, GameObject target)
     {
-        agent = owner.GetComponent<NavMeshAgent>();
-        this.player = player.transform;
+        this.stateMachine = stateMachine;
+        this.owner = owner;
+        this.target = target;
     }
 
     public override void OnEnter()
     {
         Debug.Log("Entering Attack State");
-        agent.speed = movementSpeed;
+        lastAttackTime = Time.time - attackRate;
+        isAttacking = false;
+
     }
 
     public override void OnUpdate()
     {
-        if (player == null) return;
+        if (target == null) return;
 
-        float distanceToPlayer = Vector3.Distance(owner.transform.position, player.position);
-
-        if (distanceToPlayer > attackRange)
+        if (Time.time >= lastAttackTime + attackRate && !isAttacking)
         {
-            agent.SetDestination(player.position);
-        }
-        else
-        {
-            agent.ResetPath();
-            if (attackCount < 2)
-            {
-                PerformAttack();
-            }
-            else
-            {
-                PerformSpecialAttack();
-                attackCount = -1; // Reset count
-            }
-            attackCount++;
+            PerformAttack();
+            lastAttackTime = Time.time;
         }
     }
 
@@ -58,16 +52,18 @@ public class AttackState : State
 
     public override List<Transition> GetTransitions()
     {
-        return new List<Transition>();
+        return new List<Transition>
+        {
+            new OutotRangeTransition(stateMachine, owner),
+        };
     }
 
     private void PerformAttack()
     {
-        Debug.Log("Performing regular attack");
-    }
+        isAttacking = true;
 
-    private void PerformSpecialAttack()
-    {
-        Debug.Log("Performing special attack");
+        Debug.Log("Performing regular attack");
+
+        isAttacking = false;
     }
 }
