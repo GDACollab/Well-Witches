@@ -1,7 +1,5 @@
 using System.Collections;
-using TMPro.EditorUtilities;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Projectile : MonoBehaviour
 {
@@ -43,6 +41,7 @@ public class Projectile : MonoBehaviour
     {
         if (!collision.CompareTag("Enemy"))
         {
+            // spawns the AOE prefab
             GameObject AOE = AOEPooling.SharedInstance.GetAOEObject();
             if (AOE != null) 
             {
@@ -52,6 +51,8 @@ public class Projectile : MonoBehaviour
                 AOE.GetComponent<AOE>().DespawnAOE(_AOElifetime);
             }
             
+            // TODO: DAMAGE
+
             gameObject.SetActive(false);    
         }
     }

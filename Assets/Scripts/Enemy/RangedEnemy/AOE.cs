@@ -23,5 +23,13 @@ public class AOE : MonoBehaviour
         yield return new WaitForSeconds(_lifetime);
         gameObject.SetActive(false);
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            //TODO: DAMAGE
+        }
+    }
+
 }

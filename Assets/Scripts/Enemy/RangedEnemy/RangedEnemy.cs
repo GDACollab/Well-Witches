@@ -30,6 +30,7 @@ public class RangedEnemy : BaseEnemyClass
     public float AOESize;
     [Tooltip("How long the AOE lasts in seconds")]
     public float AOELifetime;
+    public float AOEDamage;
 
     [Header("Initialize")]
     [SerializeField] private GameObject projectilePrefab;
