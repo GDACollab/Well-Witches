@@ -18,7 +18,7 @@ public class BaseEnemyClass : MonoBehaviour
     public int moveSpeed;
 
     // used for Move()
-    public Rigidbody2D rb;
+    Rigidbody2D rb;
     Vector3 click;
     Vector2 target;
     Vector2 pos;

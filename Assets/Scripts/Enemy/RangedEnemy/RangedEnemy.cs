@@ -1,4 +1,3 @@
-using UnityEditor.SearchService;
 using UnityEngine;
 
 
@@ -7,8 +6,8 @@ public class RangedEnemy : BaseEnemyClass
     [Range(0, 20)]
     [Tooltip("How far away the enemy stops before attacking")]
     public float range;
-    [Tooltip("How fast the enemy slows down/speeds up when moving towards player")]
-    public float acceleration;
+    [Tooltip("If enabled, enemy's speed will scale with distance from player with Move Speed being considered max speed.")]
+    public bool PrototypeAdvancedMovement;
 
     [Header("Projectile")]
     [Tooltip("The lower the value the faster the enemy fires projectiles")]
@@ -24,6 +23,7 @@ public class RangedEnemy : BaseEnemyClass
     public float projectileSize;
     [Tooltip("Time in seconds before the projectile explodes")]
     public float projectileLifetime;
+    public float projectileDamage;
      
     [Header("AOE")]
     [Tooltip("Size of the AOE when projectile lands")]
@@ -38,25 +38,29 @@ public class RangedEnemy : BaseEnemyClass
     [Header("DEBUG")]
     public float distanceToPlayer1;
     public float distanceToPlayer2;
+    public float distanceToTarget;
     public float timeToFire;
     [SerializeField] private GameObject[] players;
     public Transform currentTarget;
 
+    private Rigidbody2D rb2d;
+
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb2d = GetComponent<Rigidbody2D>();
         players = GameObject.FindGameObjectsWithTag("Player");
     }
+
 
     private void Update()
     {
         TargetClosestPlayer();
-        if (Vector2.Distance(transform.position, currentTarget.position) > range)
+        if (distanceToTarget > range)
         {
             MoveRanged();
         } else
         {
-            rb.velocity = Vector2.zero;
+            rb2d.velocity = Vector2.zero;
             Attack();
         }
     }
@@ -66,7 +70,22 @@ public class RangedEnemy : BaseEnemyClass
     public void MoveRanged()
     {
         Vector3 direction = currentTarget.position - transform.position;
-        rb.velocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
+        if (PrototypeAdvancedMovement)
+        {
+            float distanceToTarget = Vector2.Distance(players[0].transform.position, transform.position);
+            if (distanceToTarget < moveSpeed)
+            {
+                rb2d.velocity = new Vector2(direction.x, direction.y).normalized * (distanceToTarget - (range - 1));
+            }
+            else
+            {
+                rb2d.velocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
+            }
+        } else
+        {
+            rb2d.velocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
+        }
+        
     }
 
     // fires projectiles in a cone shape depending on the spread and projectile count
@@ -104,9 +123,11 @@ public class RangedEnemy : BaseEnemyClass
         if (distanceToPlayer1 < distanceToPlayer2) 
         {
             currentTarget = players[0].transform;
+            distanceToTarget = distanceToPlayer1;
         } else
         {
             currentTarget = players[1].transform;
+            distanceToTarget = distanceToPlayer2;
         }
     }
 
