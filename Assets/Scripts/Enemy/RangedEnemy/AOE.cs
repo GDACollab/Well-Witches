@@ -3,18 +3,14 @@ using UnityEngine;
 
 public class AOE : MonoBehaviour
 {
-    private CircleCollider2D circleCollider2D;
     private float _lifetime;
-
-    private void Awake()
-    {
-        circleCollider2D = GetComponent<CircleCollider2D>();
-    }
+    private float _damage;
     
     // deactivates AOE after lifetime
-    public void DespawnAOE(float lifetime)
+    public void DespawnAOE(float lifetime, float damage)
     {
         _lifetime = lifetime;
+        _damage = damage;
         StartCoroutine(DeactivateAOE());
     }
 
@@ -29,6 +25,7 @@ public class AOE : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             //TODO: DAMAGE
+            //use _damage variable
         }
     }
 

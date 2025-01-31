@@ -66,8 +66,25 @@ public class RangedEnemy : BaseEnemyClass
         }
     }
 
+    // calculates and set target to the closest player to the enemy
+    private void TargetClosestPlayer()
+    {
+        distanceToPlayer1 = Vector2.Distance(players[0].transform.position, transform.position);
+        distanceToPlayer2 = Vector2.Distance(players[1].transform.position, transform.position);
+        if (distanceToPlayer1 < distanceToPlayer2)
+        {
+            currentTarget = players[0].transform;
+            distanceToTarget = distanceToPlayer1;
+        }
+        else
+        {
+            currentTarget = players[1].transform;
+            distanceToTarget = distanceToPlayer2;
+        }
+    }
+
     // moves target towards player (pls let me override base class Move()
-    // TODO: slow down when near player, maybe add variation too?
+    // TODO: improve prototype movement to make it look more natural
     public void MoveRanged()
     {
         Vector3 direction = currentTarget.position - transform.position;
@@ -76,6 +93,8 @@ public class RangedEnemy : BaseEnemyClass
             float distanceToTarget = Vector2.Distance(players[0].transform.position, transform.position);
             if (distanceToTarget < moveSpeed)
             {
+                // speed starts to scale from distance to the target once the distance becomes less than the max move speed
+                // likely needs more fine tuning
                 rb2d.velocity = new Vector2(direction.x, direction.y).normalized * (distanceToTarget - (range - 1));
             }
             else
@@ -98,6 +117,7 @@ public class RangedEnemy : BaseEnemyClass
             {
                 // offset of the projectile based on count and spread
                 // used in InitializeProjectile() to calculate proper direction and projectile rotation
+                // spawns the projectile
                 GameObject projectile = ProjectilePooling.SharedInstance.GetProjectileObject();
                 if (projectile != null)
                 {
@@ -106,7 +126,7 @@ public class RangedEnemy : BaseEnemyClass
                     projectile.transform.localScale = Vector3.one * projectileSize;
                     projectile.SetActive(true);
                     projectile.GetComponent<Projectile>().
-                        InitializeProjectile(currentTarget.transform.position, offset, projectileSpeed, projectileLifetime, AOESize, AOELifetime);
+                        InitializeProjectile(currentTarget.transform.position, offset, projectileSpeed, projectileLifetime, projectileDamage, AOESize, AOELifetime, AOEDamage);
                 }
             }
             timeToFire = fireRate;
@@ -115,23 +135,4 @@ public class RangedEnemy : BaseEnemyClass
             timeToFire -= Time.deltaTime;
         }
     }
-
-    // targets the closest player to the enemy
-    private void TargetClosestPlayer()
-    {
-        distanceToPlayer1 = Vector2.Distance(players[0].transform.position, transform.position);
-        distanceToPlayer2 = Vector2.Distance(players[1].transform.position, transform.position);
-        if (distanceToPlayer1 < distanceToPlayer2) 
-        {
-            currentTarget = players[0].transform;
-            distanceToTarget = distanceToPlayer1;
-        } else
-        {
-            currentTarget = players[1].transform;
-            distanceToTarget = distanceToPlayer2;
-        }
-    }
-
-
-
 }

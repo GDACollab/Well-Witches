@@ -7,10 +7,10 @@ public class Projectile : MonoBehaviour
     private float _AOESize;
     private float _lifetime;
     private float _AOElifetime;
+    private float _damage;
+    private float _AOEdamage;
     [SerializeField] private GameObject AOEPrefab;
     
-
-
     // Start is called before the first frame update
     private void Awake()
     {
@@ -19,11 +19,13 @@ public class Projectile : MonoBehaviour
 
     // buncha math and stuff to make the projectile move towards the target and angled correctly
     // I'll explain it if needed but eugh - Jim Lee
-    public void InitializeProjectile(Vector3 targetPosition, float offset, float projectileSpeed, float lifetime, float AOESize, float AOElifetime)
+    public void InitializeProjectile(Vector3 targetPosition, float offset, float projectileSpeed, float lifetime, float damage, float AOESize, float AOElifetime, float AOEDamage)
     {
-        _AOESize = AOESize;
         _lifetime = lifetime;
+        _damage = damage;
+        _AOESize = AOESize;
         _AOElifetime = AOElifetime;
+        _AOEdamage = AOEDamage;
         Vector3 direction = targetPosition - transform.position;
         direction = Quaternion.Euler(0, 0, offset) * direction;
 
@@ -48,20 +50,20 @@ public class Projectile : MonoBehaviour
                 AOE.transform.position = transform.position;
                 AOE.transform.localScale = Vector3.one * _AOESize;
                 AOE.SetActive(true);
-                AOE.GetComponent<AOE>().DespawnAOE(_AOElifetime);
+                AOE.GetComponent<AOE>().DespawnAOE(_AOElifetime, _AOEdamage);
             }
             
             // TODO: DAMAGE
+            // use _damage variable
 
             gameObject.SetActive(false);    
         }
     }
 
-
-    // on hitting a Tag that isn't enemy
-    // instatiates(from pool) the AOE prefab and deactivates the projectile
+    // used to expire the projectile if it doesn't hit anything
     IEnumerator Despawn()
     {
+        // spawns AOE prefab AFTER the main projectile expires
         yield return new WaitForSeconds(_lifetime);
         GameObject AOE = AOEPooling.SharedInstance.GetAOEObject();
         if (AOE != null)
@@ -69,7 +71,7 @@ public class Projectile : MonoBehaviour
             AOE.transform.position = transform.position;
             AOE.transform.localScale = Vector3.one * _AOESize;
             AOE.SetActive(true);
-            AOE.GetComponent<AOE>().DespawnAOE(_AOElifetime);
+            AOE.GetComponent<AOE>().DespawnAOE(_AOElifetime, _AOEdamage);
         }
         gameObject.SetActive(false);
     }
