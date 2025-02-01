@@ -9,8 +9,10 @@ public class Projectile : MonoBehaviour
     private float _AOElifetime;
     private float _damage;
     private float _AOEdamage;
+    [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private GameObject AOEPrefab;
-    
+
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -21,6 +23,8 @@ public class Projectile : MonoBehaviour
     // I'll explain it if needed but eugh - Jim Lee
     public void InitializeProjectile(Vector3 targetPosition, float offset, float projectileSpeed, float lifetime, float damage, float AOESize, float AOElifetime, float AOEDamage)
     {
+        projectilePrefab.SetActive(true);
+        AOEPrefab.SetActive(false);
         _lifetime = lifetime;
         _damage = damage;
         _AOESize = AOESize;
@@ -34,7 +38,7 @@ public class Projectile : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, rot + 90 + offset);
 
         rb.velocity = new Vector2(direction.x, direction.y).normalized * projectileSpeed;
-        StartCoroutine(Despawn());
+        StartCoroutine(DespawnProjectile());
     }
 
     // on hitting a Tag that isn't enemy
@@ -43,36 +47,32 @@ public class Projectile : MonoBehaviour
     {
         if (!collision.CompareTag("Enemy"))
         {
-            // spawns the AOE prefab
-            GameObject AOE = AOEPooling.SharedInstance.GetAOEObject();
-            if (AOE != null) 
-            {
-                AOE.transform.position = transform.position;
-                AOE.transform.localScale = Vector3.one * _AOESize;
-                AOE.SetActive(true);
-                AOE.GetComponent<AOE>().DespawnAOE(_AOElifetime, _AOEdamage);
-            }
-            
-            // TODO: DAMAGE
-            // use _damage variable
-
-            gameObject.SetActive(false);    
+            AOEPrefab.SetActive(true);
+            AOEPrefab.transform.localScale = Vector3.one * _AOESize;
+            rb.velocity = Vector3.zero;
+            projectilePrefab.SetActive(false);
+            StartCoroutine(DespawnAOE());
         }
     }
 
     // used to expire the projectile if it doesn't hit anything
-    IEnumerator Despawn()
+    IEnumerator DespawnProjectile()
     {
         // spawns AOE prefab AFTER the main projectile expires
         yield return new WaitForSeconds(_lifetime);
-        GameObject AOE = AOEPooling.SharedInstance.GetAOEObject();
-        if (AOE != null)
-        {
-            AOE.transform.position = transform.position;
-            AOE.transform.localScale = Vector3.one * _AOESize;
-            AOE.SetActive(true);
-            AOE.GetComponent<AOE>().DespawnAOE(_AOElifetime, _AOEdamage);
-        }
+        AOEPrefab.SetActive(true);
+        AOEPrefab.transform.localScale = Vector3.one * _AOESize;
+        rb.velocity = Vector3.zero;
+        projectilePrefab.SetActive(false);
+        StartCoroutine(DespawnAOE());
+    }
+
+    IEnumerator DespawnAOE()
+    {
+        yield return new WaitForSeconds(_AOElifetime);
+        AOEPrefab.SetActive(false);
         gameObject.SetActive(false);
     }
+
+    
 }

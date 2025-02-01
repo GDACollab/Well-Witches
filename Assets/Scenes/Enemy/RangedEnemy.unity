@@ -935,7 +935,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1673304577}
   - component: {fileID: 1673304576}
-  - component: {fileID: 1673304575}
   m_Layer: 0
   m_Name: PoolController
   m_TagString: Untagged
@@ -943,21 +942,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1673304575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1673304574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93c582747516d80438ebf330a032e619, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pooledObjects: []
-  AOEPrefab: {fileID: 8547127269129713749, guid: 5218e3d4091270543a0441f2459d9037, type: 3}
-  amountToPool: 50
 --- !u!114 &1673304576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -972,7 +956,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObjects: []
   projectilePrefab: {fileID: 7876635664264266826, guid: 269f7fd0cedf31e4b973f44bf939cb42, type: 3}
-  amountToPool: 50
+  amountToPool: 100
 --- !u!4 &1673304577
 Transform:
   m_ObjectHideFlags: 0
