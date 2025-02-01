@@ -15,20 +15,9 @@ DIRECTIONS:
 
 public class wfc : MonoBehaviour
 {
-    [SerializeField] TileBase grassTile;
-    [SerializeField] TileBase grassFlowerTile;
-    [SerializeField] TileBase waterTile;
-    [SerializeField] TileBase sandTile;
-    [SerializeField] TileBase grassSandSouthTile;
-    [SerializeField] TileBase grassSandEastTile;
-    [SerializeField] TileBase grassSandNorthTile;
-    [SerializeField] TileBase grassSandWestTile;
-    [SerializeField] TileBase grassSandSouthEastTile;
-    [SerializeField] TileBase grassSandSouthWestTile;
-    [SerializeField] TileBase grassSandNorthEastTile;
-    [SerializeField] TileBase grassSandNorthWestTile;
-
     [SerializeField] Tilemap groundTilemap;
+
+    [SerializeField] private tileScriptableObject[] tileScriptableObjects;
 
     private static int sizeX = 25;
     private static int sizeY = 25;
@@ -41,20 +30,11 @@ public class wfc : MonoBehaviour
     {
         //Make tile rules, probably have a better way for designers to change this later
 
-        tileRules.Add("grass", new List<string>{"grass", "grass", "grass", "grass" });
-        tileRules.Add("grass_flower", new List<string>{ "grass", "grass", "grass", "grass" });
-        tileRules.Add("sand", new List<string>{ "sand", "sand", "sand", "sand" });
-        tileRules.Add("water", new List<string>{ "water", "water", "water", "water" });
-        
-        tileRules.Add("grass_sand_south", new List<string> { "grass", "sand", "grass_sand", "grass_sand" });
-        tileRules.Add("grass_sand_east", new List<string> { "grass_sand", "grass_sand", "sand", "grass" });
-        tileRules.Add("grass_sand_north", new List<string> { "sand", "grass", "sand_grass", "sand_grass" });
-        tileRules.Add("grass_sand_west", new List<string> { "sand_grass", "sand_grass", "grass", "sand" });
-
-        tileRules.Add("grass_sand_south_east", new List<string> { "grass", "grass_sand", "grass_sand", "grass" });
-        tileRules.Add("grass_sand_south_west", new List<string> { "grass", "sand_grass", "grass", "grass_sand" });
-        tileRules.Add("grass_sand_north_east", new List<string> { "grass_sand", "grass", "sand_grass", "grass" });
-        tileRules.Add("grass_sand_north_west", new List<string> { "sand_grass", "grass", "grass", "sand_grass" });
+        for (int i = 0; i < tileScriptableObjects.Length; i++)
+        {
+            tileScriptableObject temp = tileScriptableObjects[i];
+            tileRules.Add(temp.tileID, new List<string> { temp.edgeNorthLeft + "_" + temp.edgeNorthRight, temp.edgeSouthLeft + "_" + temp.edgeSouthRight, temp.edgeEastUp + "_" + temp.edgeEastDown, temp.edgeWestUp + "_" + temp.edgeWestDown });
+        }
 
         //Initialize tile array
         for (int x = 0; x < sizeX; x++)
@@ -133,53 +113,13 @@ public class wfc : MonoBehaviour
                 TileBase tileToPlace = null;
                 if (tiles[x, y].GetPossibilities().Count == 1)
                 {
-                    if (tiles[x, y].GetPossibilities()[0] == "grass")
+                    for (int i = 0; i < tileScriptableObjects.Length; i++)
                     {
-                        tileToPlace = grassTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "grass_flower")
-                    {
-                        tileToPlace = grassFlowerTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "water")
-                    {
-                        tileToPlace = waterTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "sand")
-                    {
-                        tileToPlace = sandTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "grass_sand_south")
-                    {
-                        tileToPlace = grassSandSouthTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "grass_sand_east")
-                    {
-                        tileToPlace = grassSandEastTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "grass_sand_north")
-                    {
-                        tileToPlace = grassSandNorthTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "grass_sand_west")
-                    {
-                        tileToPlace = grassSandWestTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "grass_sand_south_east")
-                    {
-                        tileToPlace = grassSandSouthEastTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "grass_sand_south_west")
-                    {
-                        tileToPlace = grassSandSouthWestTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "grass_sand_north_east")
-                    {
-                        tileToPlace = grassSandNorthEastTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "grass_sand_north_west")
-                    {
-                        tileToPlace = grassSandNorthWestTile;
+                        if (tiles[x, y].GetPossibilities()[0] == tileScriptableObjects[i].tileID)
+                        {
+                            tileToPlace = tileScriptableObjects[i].tile;
+                            break;
+                        }
                     }
                 }
 
