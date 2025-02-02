@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuButtonManager : MonoBehaviour
 {
-    //TODO: hide ToHubButton when pausing from hub; only show it when pausing from gameplay
-
     [SerializeField] public GameObject pausePanel;
 
     public void OnPauseMenuHubButtonPress()
