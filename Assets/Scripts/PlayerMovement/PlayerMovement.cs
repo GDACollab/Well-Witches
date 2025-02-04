@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f; // Speed of the player
+    //public float moveSpeed = 5f; // Speed of the player
 
     private Vector2 movement; // Stores the player's movement direction
     private Rigidbody2D rb; // Rigidbody component for physics-based movement
@@ -35,7 +35,8 @@ public class PlayerMovement : MonoBehaviour
         // Move the player using Rigidbody2D
         if (rb != null)
         {
-            rb.velocity = movement * moveSpeed;
+            rb.velocity = movement * StatsManager.Instance.speed; //
+            
         }
     }
 }

@@ -11,6 +11,7 @@ public class Powerup : MonoBehaviour //monobehavior attact to game object
       //add check for player only later
       Destroy(gameObject);
       powerupEffect.Apply(collision.gameObject);
+      
    }
 }
 

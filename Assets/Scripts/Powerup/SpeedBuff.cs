@@ -6,12 +6,12 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Powerups/SpeedBuff")]
 public class SpeedBuff : PowerupEffect
 {
-   public float amount;
+   public int amount;
    public override void Apply(GameObject target)
    {
 
-      target.GetComponent<PlayerMovement>().moveSpeed += amount;
-      Debug.Log("Player zooming at: " + target.GetComponent<PlayerMovement>().moveSpeed.ToString());
+      StatsManager.Instance.speed += amount;
+      Debug.Log("Player zooming at: " + StatsManager.Instance.speed.ToString());
 
    }
 }
