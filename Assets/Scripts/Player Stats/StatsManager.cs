@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class StatsManager : MonoBehaviour
 {
-    public static StatsManager Instance;
-    //gatherer first?
+    public static StatsManager Instance; //singleton for both character stats
 
-    [Header("Gatherer Combat stats")]
-    public int healthTransferAmount;
+/*
+With the StatsManager gameObject 
+it contains the stats in a nice and neat way
+ */
+
+    [Header("Gatherer Combat stats")] 
+    public float healthTransferAmount; //current health transfer amount put in stats for now
 
     [Header("Gatherer Movement stats")]
     public int speed;
@@ -17,8 +21,8 @@ public class StatsManager : MonoBehaviour
 
     [Header("Gatherer Health stats")]
 
-    public int GathererMaxHealth;
-    public int GathererCurrentHealth;
+    public float GathererMaxHealth;
+    public float GathererCurrentHealth;
 
     
 
@@ -27,8 +31,8 @@ public class StatsManager : MonoBehaviour
 
     [Header("Wanderer Health stats")]
 
-    public int wandererHealth;
-    public int wandererMaxHealth;
+    public float wandererHealth;
+    public float wandererMaxHealth;
 
 
 private void Awake() {
