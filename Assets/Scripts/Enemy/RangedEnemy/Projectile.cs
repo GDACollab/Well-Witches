@@ -1,22 +1,23 @@
 using System.Collections;
 using UnityEngine;
 
+// Jim Lee <-- who to ask and blame if something here doesn't work
+
 public class Projectile : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private float _AOESize;
     private float _lifetime;
-    private float _AOElifetime;
     private float _damage;
-    private float _AOEdamage;
+    private float _AOESize;
+    private float _AOElifetime;
+    [HideInInspector] public float _AOEdamage;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private GameObject AOEPrefab;
-
 
     // Start is called before the first frame update
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();   
     }
 
     // buncha math and stuff to make the projectile move towards the target and angled correctly
@@ -50,6 +51,10 @@ public class Projectile : MonoBehaviour
             AOEPrefab.SetActive(true);
             AOEPrefab.transform.localScale = Vector3.one * _AOESize;
             rb.velocity = Vector3.zero;
+            if (collision.CompareTag("Player"))
+            {
+                // TODO: DEAL DAMAGE TO PLAYER
+            }
             projectilePrefab.SetActive(false);
             StartCoroutine(DespawnAOE());
         }
@@ -73,6 +78,4 @@ public class Projectile : MonoBehaviour
         AOEPrefab.SetActive(false);
         gameObject.SetActive(false);
     }
-
-    
 }

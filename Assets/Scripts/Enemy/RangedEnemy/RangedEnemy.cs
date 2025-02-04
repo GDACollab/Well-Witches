@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Jim Lee <-- who to ask and blame if something here doesn't work
 
 public class RangedEnemy : BaseEnemyClass
 {
@@ -51,7 +52,6 @@ public class RangedEnemy : BaseEnemyClass
         rb2d = GetComponent<Rigidbody2D>();
         players = GameObject.FindGameObjectsWithTag("Player");
     }
-
 
     private void Update()
     {

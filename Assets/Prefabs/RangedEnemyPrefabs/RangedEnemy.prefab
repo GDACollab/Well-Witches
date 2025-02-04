@@ -106,20 +106,22 @@ MonoBehaviour:
   health: 15
   damage: 25
   moveSpeed: 12
-  rb: {fileID: 0}
   range: 5
-  acceleration: 3
+  PrototypeAdvancedMovement: 1
   fireRate: 1
   projectileCount: 3
   projectileSpread: 10
   projectileSpeed: 4
   projectileSize: 1
   projectileLifetime: 2
+  projectileDamage: 0
   AOESize: 0.5
   AOELifetime: 0.2
+  AOEDamage: 0
   projectilePrefab: {fileID: 7876635664264266826, guid: 269f7fd0cedf31e4b973f44bf939cb42, type: 3}
   distanceToPlayer1: 0
   distanceToPlayer2: 0
+  distanceToTarget: 0
   timeToFire: 0
   players: []
   currentTarget: {fileID: 0}
@@ -187,7 +189,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9744f35fdf6edd341bd720bb3bd26df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!114 &1617731613382952628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,8 +201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e76618940f28a4ca8063a56a971433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 0
-  attackRate: 0
   isAttacking: 0
 --- !u!114 &-7702012812884302270
 MonoBehaviour:
