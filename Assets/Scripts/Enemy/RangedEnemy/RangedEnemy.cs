@@ -55,19 +55,11 @@ public class RangedEnemy : BaseEnemyClass
 
     private void Update()
     {
-        TargetClosestPlayer();
-        if (distanceToTarget > range)
-        {
-            MoveRanged();
-        } else
-        {
-            rb2d.velocity = Vector2.zero;
-            Attack();
-        }
+        
     }
 
     // calculates and set target to the closest player to the enemy
-    private void TargetClosestPlayer()
+    public void TargetClosestPlayer()
     {
         distanceToPlayer1 = Vector2.Distance(players[0].transform.position, transform.position);
         distanceToPlayer2 = Vector2.Distance(players[1].transform.position, transform.position);
@@ -109,30 +101,25 @@ public class RangedEnemy : BaseEnemyClass
     }
 
     // fires projectiles in a cone shape depending on the spread and projectile count
-    private void Attack()
+    public void Attack()
     {
-        if (timeToFire <= 0) 
+
+        for (int i = 0; i < projectileCount; i++)
         {
-            for (int i = 0; i < projectileCount; i++)
+            // offset of the projectile based on count and spread
+            // used in InitializeProjectile() to calculate proper direction and projectile rotation
+            // spawns the projectile
+            GameObject projectile = ProjectilePooling.SharedInstance.GetProjectileObject();
+            if (projectile != null)
             {
-                // offset of the projectile based on count and spread
-                // used in InitializeProjectile() to calculate proper direction and projectile rotation
-                // spawns the projectile
-                GameObject projectile = ProjectilePooling.SharedInstance.GetProjectileObject();
-                if (projectile != null)
-                {
-                    float offset = (i - (projectileCount / 2)) * projectileSpread;
-                    projectile.transform.position = transform.position;
-                    projectile.transform.localScale = Vector3.one * projectileSize;
-                    projectile.SetActive(true);
-                    projectile.GetComponent<Projectile>().
-                        InitializeProjectile(currentTarget.transform.position, offset, projectileSpeed, projectileLifetime, projectileDamage, AOESize, AOELifetime, AOEDamage);
-                }
+                float offset = (i - (projectileCount / 2)) * projectileSpread;
+                projectile.transform.position = transform.position;
+                projectile.transform.localScale = Vector3.one * projectileSize;
+                projectile.SetActive(true);
+                projectile.GetComponent<Projectile>().
+                    InitializeProjectile(currentTarget.transform.position, offset, projectileSpeed, projectileLifetime, projectileDamage, AOESize, AOELifetime, AOEDamage);
             }
-            timeToFire = fireRate;
-        } else
-        {
-            timeToFire -= Time.deltaTime;
         }
+
     }
 }
