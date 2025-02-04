@@ -4,50 +4,69 @@ using UnityEngine;
 
 public class AttackState : State
 {
-    private GameObject target;
 
     [Header("Attack Settings")]
-    public float attackRange = 5f;
-    public float attackRate = 2f;
-    private int attackCount = 0;
     private float lastAttackTime;
     private StateMachine stateMachine;
     public bool isAttacking;
-
-
+    private MeleeEnemy meleeEnemy;
+    private RangedEnemy rangedEnemy;
+    private Rigidbody2D rb2d;
 
 
     public AttackState(GameObject owner, GameObject player) : base(owner) { }
-    public void Initialize(StateMachine stateMachine, GameObject owner, GameObject target)
+    public void Initialize(StateMachine stateMachine, GameObject owner, Transform target)
     {
         this.stateMachine = stateMachine;
         this.owner = owner;
-        this.target = target;
+        meleeEnemy = owner.GetComponent<MeleeEnemy>();
+        rangedEnemy = owner.GetComponent<RangedEnemy>();
+        rb2d = owner.GetComponent<Rigidbody2D>();
+
     }
 
     public override void OnEnter()
     {
         Debug.Log("Entering Attack State");
-        lastAttackTime = Time.time - attackRate;
+        lastAttackTime = Time.time - (meleeEnemy != null ? meleeEnemy.AttackRate : rangedEnemy.fireRate);
         isAttacking = false;
+        // Disable gravity to keep the enemy still
 
+        if (rb2d != null)
+        {
+            rb2d.gravityScale = 0;
+            rb2d.velocity = Vector2.zero; // Stop any existing movement
+        }
     }
 
     public override void OnUpdate()
     {
-        if (target == null) return;
-
-        if (Time.time >= lastAttackTime + attackRate && !isAttacking)
+        if (meleeEnemy != null)
         {
-            PerformAttack();
-            lastAttackTime = Time.time;
+            if (Time.time >= lastAttackTime + meleeEnemy.AttackRate && !isAttacking)
+            {
+                meleeEnemy.Attack();
+                lastAttackTime = Time.time;
+            }
+        }
+        else if (rangedEnemy != null)
+        {
+            if (Time.time >= lastAttackTime + rangedEnemy.fireRate && !isAttacking)
+            {
+                rangedEnemy.Attack();
+                lastAttackTime = Time.time;
+            }
         }
     }
 
     public override void OnExit()
     {
         Debug.Log("Exiting Attack State");
-        attackCount = 0;
+        // Re-enable gravity when exiting the attack state
+        if (rb2d != null)
+        {
+            rb2d.gravityScale = 1;
+        }
     }
 
     public override List<Transition> GetTransitions()
@@ -56,14 +75,5 @@ public class AttackState : State
         {
             new OutotRangeTransition(stateMachine, owner),
         };
-    }
-
-    private void PerformAttack()
-    {
-        isAttacking = true;
-
-        Debug.Log("Performing regular attack");
-
-        isAttacking = false;
     }
 }

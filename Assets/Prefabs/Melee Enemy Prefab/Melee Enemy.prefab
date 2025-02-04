@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 8959681763099254264}
   - component: {fileID: 6156781225325899583}
   - component: {fileID: -4728571333171127860}
-  - component: {fileID: 3377287443013977915}
   - component: {fileID: -8848896627020699532}
+  - component: {fileID: 8256683475305594694}
   m_Layer: 0
   m_Name: Melee Enemy
   m_TagString: Untagged
@@ -167,23 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e76618940f28a4ca8063a56a971433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 0
   attackRange: 0
---- !u!114 &3377287443013977915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915960747198511803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7f207dbd02e556468f60a213d4304df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 50
-  damage: 10
-  moveSpeed: 10
+  attackRate: 0
+  isAttacking: 0
 --- !u!114 &-8848896627020699532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,4 +182,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9744f35fdf6edd341bd720bb3bd26df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolSpeed: 0
+  target: {fileID: 0}
+--- !u!114 &8256683475305594694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915960747198511803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d92c664eff7691c48901c65c88d605ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
