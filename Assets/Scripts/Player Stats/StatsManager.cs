@@ -8,7 +8,7 @@ public class StatsManager : MonoBehaviour
     //gatherer first?
 
     [Header("Gatherer Combat stats")]
-    public float healthTransferAmount;
+    public int healthTransferAmount;
 
     [Header("Gatherer Movement stats")]
     public int speed;

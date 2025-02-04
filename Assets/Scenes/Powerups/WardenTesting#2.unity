@@ -122,6 +122,56 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &554139106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 554139108}
+  - component: {fileID: 554139107}
+  m_Layer: 0
+  m_Name: StatsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &554139107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554139106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5764d25406c0d48a2a0bcec40eaee778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthTransferAmount: 25
+  speed: 5
+  GathererMaxHealth: 10
+  GathererCurrentHealth: 10
+  wandererHealth: 10
+  wandererMaxHealth: 10
+--- !u!4 &554139108
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554139106}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.06891997, y: -1.8088697, z: 0.0022517834}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &585077588
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +366,7 @@ GameObject:
   - component: {fileID: 989721095}
   - component: {fileID: 989721094}
   - component: {fileID: 989721096}
+  - component: {fileID: 989721097}
   m_Layer: 0
   m_Name: Llarden_
   m_TagString: Untagged
@@ -335,7 +386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7719b3a76d6901545882dab854907b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
 --- !u!212 &989721092
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -480,6 +530,18 @@ MonoBehaviour:
   cameraToControl: {fileID: 1692952634}
   smoothSpeed: 0.125
   offset: {x: 0, y: 0, z: -10}
+--- !u!114 &989721097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989721090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5019f1ea1d9842d5b8c2f221fb64466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1196954140
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,3 +1055,4 @@ SceneRoots:
   - {fileID: 1478695985}
   - {fileID: 585077592}
   - {fileID: 989721093}
+  - {fileID: 554139108}
