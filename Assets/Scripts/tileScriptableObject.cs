@@ -10,6 +10,10 @@ public class tileScriptableObject : ScriptableObject
     [Tooltip("A tile asset, will be placed in a tilemap")]
     public TileBase tile;
 
+    [Space(10), Header("Tile Weight")]
+    [Tooltip("Float, high values means its more common")]
+    public float weight;
+
     [Space(10), Header("Edge definitions:")]
     [Tooltip("String, the edge on the left portion of the north edge")]
     public string edgeNorthLeft;
