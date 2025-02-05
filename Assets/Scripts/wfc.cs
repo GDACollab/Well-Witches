@@ -19,8 +19,8 @@ public class wfc : MonoBehaviour
 
     [SerializeField] private tileScriptableObject[] tileScriptableObjects;
 
-    private static int sizeX = 25;
-    private static int sizeY = 25;
+    private static int sizeX = 35;
+    private static int sizeY = 35;
 
     private static Dictionary<string, List<string>> tileRules = new Dictionary<string, List<string>>();
 

@@ -24,7 +24,7 @@ public class tileScriptableObjectEditor : Editor
 
         Texture2D sprite = AssetPreview.GetAssetPreview(tileSO.tileImage);
 
-        GUILayout.Label("", GUILayout.Height(240), GUILayout.Width(240));
+        GUILayout.Label("", GUILayout.Height(360), GUILayout.Width(360));
 
         GUI.DrawTexture(GUILayoutUtility.GetLastRect(), sprite);
     }
