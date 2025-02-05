@@ -14,7 +14,7 @@ it contains the stats in a nice and neat way
     [Header("Gatherer Combat stats")] 
     public float healthTransferAmount; //current health transfer amount put in stats for now
 
-    [Header("Gatherer Movement stats")]
+   [Header("Gatherer Movement stats")]
     public int speed;
 
 
