@@ -24,11 +24,11 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     ""name"": ""Controls"",
     ""maps"": [
         {
-            ""name"": ""Gameplay"",
+            ""name"": ""Gameplay_Gatherer"",
             ""id"": ""d4902dec-a812-4723-b645-cf4f4840c02c"",
             ""actions"": [
                 {
-                    ""name"": ""Gatherer_Move"",
+                    ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""1048bd76-5a7f-48dc-8848-2e9d1ada3a51"",
                     ""expectedControlType"": ""Vector2"",
@@ -37,7 +37,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Gatherer_ActiveAbility"",
+                    ""name"": ""Active Ability"",
                     ""type"": ""Button"",
                     ""id"": ""4b63c30e-5073-4ad7-8b2e-c84a644724e0"",
                     ""expectedControlType"": """",
@@ -46,7 +46,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Gatherer_PullWarden"",
+                    ""name"": ""Pull Warden"",
                     ""type"": ""Button"",
                     ""id"": ""f0a2f88e-6b67-4639-a7e4-04a08146c32c"",
                     ""expectedControlType"": """",
@@ -55,36 +55,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Gatherer_PickUp"",
+                    ""name"": ""Pick Up Item"",
                     ""type"": ""Button"",
                     ""id"": ""822e5f86-0676-4fec-8086-d8ef0b446200"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Warden_Move"",
-                    ""type"": ""Value"",
-                    ""id"": ""5493fa43-790c-4277-be7a-aac6ae8e7986"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Warden_Shoot"",
-                    ""type"": ""Button"",
-                    ""id"": ""4b249056-b9e0-4ceb-ae1d-90ed68f09168"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Warden_ActiveAbility"",
-                    ""type"": ""Button"",
-                    ""id"": ""c1877104-ca6d-4173-98bf-5296691c394f"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -99,7 +72,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Gatherer_Move"",
+                    ""action"": ""Move"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -110,7 +83,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mouse and Keyboard"",
-                    ""action"": ""Gatherer_Move"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -121,7 +94,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mouse and Keyboard"",
-                    ""action"": ""Gatherer_Move"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -132,7 +105,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mouse and Keyboard"",
-                    ""action"": ""Gatherer_Move"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -143,62 +116,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mouse and Keyboard"",
-                    ""action"": ""Gatherer_Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Arrow Keys"",
-                    ""id"": ""9b228058-1b31-404b-a3d5-f4db4af415e3"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Warden_Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""1204e23d-27a7-4a2f-8e9e-e2cafec3ed08"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Mouse and Keyboard"",
-                    ""action"": ""Warden_Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""81518ea1-2aa1-4553-97df-19f0004bb0cf"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Mouse and Keyboard"",
-                    ""action"": ""Warden_Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""cadf1162-7c24-45bc-90e0-f8d6c0c65793"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Mouse and Keyboard"",
-                    ""action"": ""Warden_Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""dfe73931-6e0b-48e9-972a-0784e9ebe7f8"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Mouse and Keyboard"",
-                    ""action"": ""Warden_Move"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -209,7 +127,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mouse and Keyboard"",
-                    ""action"": ""Gatherer_PickUp"",
+                    ""action"": ""Pick Up Item"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -220,7 +138,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mouse and Keyboard"",
-                    ""action"": ""Gatherer_ActiveAbility"",
+                    ""action"": ""Active Ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -231,29 +149,119 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mouse and Keyboard"",
-                    ""action"": ""Gatherer_PullWarden"",
+                    ""action"": ""Pull Warden"",
                     ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Gameplay_Warden"",
+            ""id"": ""c2febb73-cde2-459a-aec3-e6b1df85bee2"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""82e371d4-d483-416e-b7d9-e17103124c7c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""b20cf932-e2b0-4ce9-b0f4-fb897aeb29b1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Active Ability"",
+                    ""type"": ""Button"",
+                    ""id"": ""f40a84ae-37d5-4e57-9d39-dc2cb2e5c0fb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""Arrow Keys"",
+                    ""id"": ""0849cf3d-82d8-42c3-ae98-9a55eab3098d"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": ""up"",
+                    ""id"": ""9ee52889-6070-4d69-847e-20cdd0ff4b34"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mouse and Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""5ec953d7-1d7d-4a45-8781-239a14a91be5"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mouse and Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""289a61cd-dc65-4243-9141-bb004b461db8"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mouse and Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""c8333361-5e55-4c80-94da-3e52939b959c"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mouse and Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
-                    ""id"": ""c628fdc0-4b40-4e2d-b3b9-649074bcdd54"",
+                    ""id"": ""34c537c0-fb22-4e0f-a1f2-bd93ab9ae5af"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mouse and Keyboard"",
-                    ""action"": ""Warden_Shoot"",
+                    ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d3e037ab-54cc-45a6-b934-937d9fd63e6b"",
+                    ""id"": ""70de6b86-11fb-4a7c-af5c-f222db8fe4ff"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mouse and Keyboard"",
-                    ""action"": ""Warden_ActiveAbility"",
+                    ""action"": ""Active Ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -279,20 +287,23 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // Gameplay
-        m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
-        m_Gameplay_Gatherer_Move = m_Gameplay.FindAction("Gatherer_Move", throwIfNotFound: true);
-        m_Gameplay_Gatherer_ActiveAbility = m_Gameplay.FindAction("Gatherer_ActiveAbility", throwIfNotFound: true);
-        m_Gameplay_Gatherer_PullWarden = m_Gameplay.FindAction("Gatherer_PullWarden", throwIfNotFound: true);
-        m_Gameplay_Gatherer_PickUp = m_Gameplay.FindAction("Gatherer_PickUp", throwIfNotFound: true);
-        m_Gameplay_Warden_Move = m_Gameplay.FindAction("Warden_Move", throwIfNotFound: true);
-        m_Gameplay_Warden_Shoot = m_Gameplay.FindAction("Warden_Shoot", throwIfNotFound: true);
-        m_Gameplay_Warden_ActiveAbility = m_Gameplay.FindAction("Warden_ActiveAbility", throwIfNotFound: true);
+        // Gameplay_Gatherer
+        m_Gameplay_Gatherer = asset.FindActionMap("Gameplay_Gatherer", throwIfNotFound: true);
+        m_Gameplay_Gatherer_Move = m_Gameplay_Gatherer.FindAction("Move", throwIfNotFound: true);
+        m_Gameplay_Gatherer_ActiveAbility = m_Gameplay_Gatherer.FindAction("Active Ability", throwIfNotFound: true);
+        m_Gameplay_Gatherer_PullWarden = m_Gameplay_Gatherer.FindAction("Pull Warden", throwIfNotFound: true);
+        m_Gameplay_Gatherer_PickUpItem = m_Gameplay_Gatherer.FindAction("Pick Up Item", throwIfNotFound: true);
+        // Gameplay_Warden
+        m_Gameplay_Warden = asset.FindActionMap("Gameplay_Warden", throwIfNotFound: true);
+        m_Gameplay_Warden_Move = m_Gameplay_Warden.FindAction("Move", throwIfNotFound: true);
+        m_Gameplay_Warden_Shoot = m_Gameplay_Warden.FindAction("Shoot", throwIfNotFound: true);
+        m_Gameplay_Warden_ActiveAbility = m_Gameplay_Warden.FindAction("Active Ability", throwIfNotFound: true);
     }
 
     ~@Controls()
     {
-        UnityEngine.Debug.Assert(!m_Gameplay.enabled, "This will cause a leak and performance issues, Controls.Gameplay.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Gameplay_Gatherer.enabled, "This will cause a leak and performance issues, Controls.Gameplay_Gatherer.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Gameplay_Warden.enabled, "This will cause a leak and performance issues, Controls.Gameplay_Warden.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -351,99 +362,137 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Gameplay
-    private readonly InputActionMap m_Gameplay;
-    private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
+    // Gameplay_Gatherer
+    private readonly InputActionMap m_Gameplay_Gatherer;
+    private List<IGameplay_GathererActions> m_Gameplay_GathererActionsCallbackInterfaces = new List<IGameplay_GathererActions>();
     private readonly InputAction m_Gameplay_Gatherer_Move;
     private readonly InputAction m_Gameplay_Gatherer_ActiveAbility;
     private readonly InputAction m_Gameplay_Gatherer_PullWarden;
-    private readonly InputAction m_Gameplay_Gatherer_PickUp;
-    private readonly InputAction m_Gameplay_Warden_Move;
-    private readonly InputAction m_Gameplay_Warden_Shoot;
-    private readonly InputAction m_Gameplay_Warden_ActiveAbility;
-    public struct GameplayActions
+    private readonly InputAction m_Gameplay_Gatherer_PickUpItem;
+    public struct Gameplay_GathererActions
     {
         private @Controls m_Wrapper;
-        public GameplayActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Gatherer_Move => m_Wrapper.m_Gameplay_Gatherer_Move;
-        public InputAction @Gatherer_ActiveAbility => m_Wrapper.m_Gameplay_Gatherer_ActiveAbility;
-        public InputAction @Gatherer_PullWarden => m_Wrapper.m_Gameplay_Gatherer_PullWarden;
-        public InputAction @Gatherer_PickUp => m_Wrapper.m_Gameplay_Gatherer_PickUp;
-        public InputAction @Warden_Move => m_Wrapper.m_Gameplay_Warden_Move;
-        public InputAction @Warden_Shoot => m_Wrapper.m_Gameplay_Warden_Shoot;
-        public InputAction @Warden_ActiveAbility => m_Wrapper.m_Gameplay_Warden_ActiveAbility;
-        public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
+        public Gameplay_GathererActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Gameplay_Gatherer_Move;
+        public InputAction @ActiveAbility => m_Wrapper.m_Gameplay_Gatherer_ActiveAbility;
+        public InputAction @PullWarden => m_Wrapper.m_Gameplay_Gatherer_PullWarden;
+        public InputAction @PickUpItem => m_Wrapper.m_Gameplay_Gatherer_PickUpItem;
+        public InputActionMap Get() { return m_Wrapper.m_Gameplay_Gatherer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(GameplayActions set) { return set.Get(); }
-        public void AddCallbacks(IGameplayActions instance)
+        public static implicit operator InputActionMap(Gameplay_GathererActions set) { return set.Get(); }
+        public void AddCallbacks(IGameplay_GathererActions instance)
         {
-            if (instance == null || m_Wrapper.m_GameplayActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_GameplayActionsCallbackInterfaces.Add(instance);
-            @Gatherer_Move.started += instance.OnGatherer_Move;
-            @Gatherer_Move.performed += instance.OnGatherer_Move;
-            @Gatherer_Move.canceled += instance.OnGatherer_Move;
-            @Gatherer_ActiveAbility.started += instance.OnGatherer_ActiveAbility;
-            @Gatherer_ActiveAbility.performed += instance.OnGatherer_ActiveAbility;
-            @Gatherer_ActiveAbility.canceled += instance.OnGatherer_ActiveAbility;
-            @Gatherer_PullWarden.started += instance.OnGatherer_PullWarden;
-            @Gatherer_PullWarden.performed += instance.OnGatherer_PullWarden;
-            @Gatherer_PullWarden.canceled += instance.OnGatherer_PullWarden;
-            @Gatherer_PickUp.started += instance.OnGatherer_PickUp;
-            @Gatherer_PickUp.performed += instance.OnGatherer_PickUp;
-            @Gatherer_PickUp.canceled += instance.OnGatherer_PickUp;
-            @Warden_Move.started += instance.OnWarden_Move;
-            @Warden_Move.performed += instance.OnWarden_Move;
-            @Warden_Move.canceled += instance.OnWarden_Move;
-            @Warden_Shoot.started += instance.OnWarden_Shoot;
-            @Warden_Shoot.performed += instance.OnWarden_Shoot;
-            @Warden_Shoot.canceled += instance.OnWarden_Shoot;
-            @Warden_ActiveAbility.started += instance.OnWarden_ActiveAbility;
-            @Warden_ActiveAbility.performed += instance.OnWarden_ActiveAbility;
-            @Warden_ActiveAbility.canceled += instance.OnWarden_ActiveAbility;
+            if (instance == null || m_Wrapper.m_Gameplay_GathererActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_Gameplay_GathererActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @ActiveAbility.started += instance.OnActiveAbility;
+            @ActiveAbility.performed += instance.OnActiveAbility;
+            @ActiveAbility.canceled += instance.OnActiveAbility;
+            @PullWarden.started += instance.OnPullWarden;
+            @PullWarden.performed += instance.OnPullWarden;
+            @PullWarden.canceled += instance.OnPullWarden;
+            @PickUpItem.started += instance.OnPickUpItem;
+            @PickUpItem.performed += instance.OnPickUpItem;
+            @PickUpItem.canceled += instance.OnPickUpItem;
         }
 
-        private void UnregisterCallbacks(IGameplayActions instance)
+        private void UnregisterCallbacks(IGameplay_GathererActions instance)
         {
-            @Gatherer_Move.started -= instance.OnGatherer_Move;
-            @Gatherer_Move.performed -= instance.OnGatherer_Move;
-            @Gatherer_Move.canceled -= instance.OnGatherer_Move;
-            @Gatherer_ActiveAbility.started -= instance.OnGatherer_ActiveAbility;
-            @Gatherer_ActiveAbility.performed -= instance.OnGatherer_ActiveAbility;
-            @Gatherer_ActiveAbility.canceled -= instance.OnGatherer_ActiveAbility;
-            @Gatherer_PullWarden.started -= instance.OnGatherer_PullWarden;
-            @Gatherer_PullWarden.performed -= instance.OnGatherer_PullWarden;
-            @Gatherer_PullWarden.canceled -= instance.OnGatherer_PullWarden;
-            @Gatherer_PickUp.started -= instance.OnGatherer_PickUp;
-            @Gatherer_PickUp.performed -= instance.OnGatherer_PickUp;
-            @Gatherer_PickUp.canceled -= instance.OnGatherer_PickUp;
-            @Warden_Move.started -= instance.OnWarden_Move;
-            @Warden_Move.performed -= instance.OnWarden_Move;
-            @Warden_Move.canceled -= instance.OnWarden_Move;
-            @Warden_Shoot.started -= instance.OnWarden_Shoot;
-            @Warden_Shoot.performed -= instance.OnWarden_Shoot;
-            @Warden_Shoot.canceled -= instance.OnWarden_Shoot;
-            @Warden_ActiveAbility.started -= instance.OnWarden_ActiveAbility;
-            @Warden_ActiveAbility.performed -= instance.OnWarden_ActiveAbility;
-            @Warden_ActiveAbility.canceled -= instance.OnWarden_ActiveAbility;
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @ActiveAbility.started -= instance.OnActiveAbility;
+            @ActiveAbility.performed -= instance.OnActiveAbility;
+            @ActiveAbility.canceled -= instance.OnActiveAbility;
+            @PullWarden.started -= instance.OnPullWarden;
+            @PullWarden.performed -= instance.OnPullWarden;
+            @PullWarden.canceled -= instance.OnPullWarden;
+            @PickUpItem.started -= instance.OnPickUpItem;
+            @PickUpItem.performed -= instance.OnPickUpItem;
+            @PickUpItem.canceled -= instance.OnPickUpItem;
         }
 
-        public void RemoveCallbacks(IGameplayActions instance)
+        public void RemoveCallbacks(IGameplay_GathererActions instance)
         {
-            if (m_Wrapper.m_GameplayActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_Gameplay_GathererActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IGameplayActions instance)
+        public void SetCallbacks(IGameplay_GathererActions instance)
         {
-            foreach (var item in m_Wrapper.m_GameplayActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_Gameplay_GathererActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_GameplayActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_Gameplay_GathererActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public GameplayActions @Gameplay => new GameplayActions(this);
+    public Gameplay_GathererActions @Gameplay_Gatherer => new Gameplay_GathererActions(this);
+
+    // Gameplay_Warden
+    private readonly InputActionMap m_Gameplay_Warden;
+    private List<IGameplay_WardenActions> m_Gameplay_WardenActionsCallbackInterfaces = new List<IGameplay_WardenActions>();
+    private readonly InputAction m_Gameplay_Warden_Move;
+    private readonly InputAction m_Gameplay_Warden_Shoot;
+    private readonly InputAction m_Gameplay_Warden_ActiveAbility;
+    public struct Gameplay_WardenActions
+    {
+        private @Controls m_Wrapper;
+        public Gameplay_WardenActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Gameplay_Warden_Move;
+        public InputAction @Shoot => m_Wrapper.m_Gameplay_Warden_Shoot;
+        public InputAction @ActiveAbility => m_Wrapper.m_Gameplay_Warden_ActiveAbility;
+        public InputActionMap Get() { return m_Wrapper.m_Gameplay_Warden; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(Gameplay_WardenActions set) { return set.Get(); }
+        public void AddCallbacks(IGameplay_WardenActions instance)
+        {
+            if (instance == null || m_Wrapper.m_Gameplay_WardenActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_Gameplay_WardenActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Shoot.started += instance.OnShoot;
+            @Shoot.performed += instance.OnShoot;
+            @Shoot.canceled += instance.OnShoot;
+            @ActiveAbility.started += instance.OnActiveAbility;
+            @ActiveAbility.performed += instance.OnActiveAbility;
+            @ActiveAbility.canceled += instance.OnActiveAbility;
+        }
+
+        private void UnregisterCallbacks(IGameplay_WardenActions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Shoot.started -= instance.OnShoot;
+            @Shoot.performed -= instance.OnShoot;
+            @Shoot.canceled -= instance.OnShoot;
+            @ActiveAbility.started -= instance.OnActiveAbility;
+            @ActiveAbility.performed -= instance.OnActiveAbility;
+            @ActiveAbility.canceled -= instance.OnActiveAbility;
+        }
+
+        public void RemoveCallbacks(IGameplay_WardenActions instance)
+        {
+            if (m_Wrapper.m_Gameplay_WardenActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IGameplay_WardenActions instance)
+        {
+            foreach (var item in m_Wrapper.m_Gameplay_WardenActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_Gameplay_WardenActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public Gameplay_WardenActions @Gameplay_Warden => new Gameplay_WardenActions(this);
     private int m_MouseandKeyboardSchemeIndex = -1;
     public InputControlScheme MouseandKeyboardScheme
     {
@@ -453,14 +502,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_MouseandKeyboardSchemeIndex];
         }
     }
-    public interface IGameplayActions
+    public interface IGameplay_GathererActions
     {
-        void OnGatherer_Move(InputAction.CallbackContext context);
-        void OnGatherer_ActiveAbility(InputAction.CallbackContext context);
-        void OnGatherer_PullWarden(InputAction.CallbackContext context);
-        void OnGatherer_PickUp(InputAction.CallbackContext context);
-        void OnWarden_Move(InputAction.CallbackContext context);
-        void OnWarden_Shoot(InputAction.CallbackContext context);
-        void OnWarden_ActiveAbility(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
+        void OnActiveAbility(InputAction.CallbackContext context);
+        void OnPullWarden(InputAction.CallbackContext context);
+        void OnPickUpItem(InputAction.CallbackContext context);
+    }
+    public interface IGameplay_WardenActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
+        void OnActiveAbility(InputAction.CallbackContext context);
     }
 }

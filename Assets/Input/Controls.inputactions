@@ -2,11 +2,11 @@
     "name": "Controls",
     "maps": [
         {
-            "name": "Gameplay",
+            "name": "Gameplay_Gatherer",
             "id": "d4902dec-a812-4723-b645-cf4f4840c02c",
             "actions": [
                 {
-                    "name": "Gatherer_Move",
+                    "name": "Move",
                     "type": "Value",
                     "id": "1048bd76-5a7f-48dc-8848-2e9d1ada3a51",
                     "expectedControlType": "Vector2",
@@ -15,7 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Gatherer_ActiveAbility",
+                    "name": "Active Ability",
                     "type": "Button",
                     "id": "4b63c30e-5073-4ad7-8b2e-c84a644724e0",
                     "expectedControlType": "",
@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Gatherer_PullWarden",
+                    "name": "Pull Warden",
                     "type": "Button",
                     "id": "f0a2f88e-6b67-4639-a7e4-04a08146c32c",
                     "expectedControlType": "",
@@ -33,36 +33,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Gatherer_PickUp",
+                    "name": "Pick Up Item",
                     "type": "Button",
                     "id": "822e5f86-0676-4fec-8086-d8ef0b446200",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Warden_Move",
-                    "type": "Value",
-                    "id": "5493fa43-790c-4277-be7a-aac6ae8e7986",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Warden_Shoot",
-                    "type": "Button",
-                    "id": "4b249056-b9e0-4ceb-ae1d-90ed68f09168",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Warden_ActiveAbility",
-                    "type": "Button",
-                    "id": "c1877104-ca6d-4173-98bf-5296691c394f",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -77,7 +50,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Gatherer_Move",
+                    "action": "Move",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -88,7 +61,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mouse and Keyboard",
-                    "action": "Gatherer_Move",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -99,7 +72,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mouse and Keyboard",
-                    "action": "Gatherer_Move",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -110,7 +83,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mouse and Keyboard",
-                    "action": "Gatherer_Move",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -121,62 +94,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mouse and Keyboard",
-                    "action": "Gatherer_Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Arrow Keys",
-                    "id": "9b228058-1b31-404b-a3d5-f4db4af415e3",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Warden_Move",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "1204e23d-27a7-4a2f-8e9e-e2cafec3ed08",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Mouse and Keyboard",
-                    "action": "Warden_Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "81518ea1-2aa1-4553-97df-19f0004bb0cf",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Mouse and Keyboard",
-                    "action": "Warden_Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "cadf1162-7c24-45bc-90e0-f8d6c0c65793",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Mouse and Keyboard",
-                    "action": "Warden_Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "dfe73931-6e0b-48e9-972a-0784e9ebe7f8",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Mouse and Keyboard",
-                    "action": "Warden_Move",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -187,7 +105,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mouse and Keyboard",
-                    "action": "Gatherer_PickUp",
+                    "action": "Pick Up Item",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -198,7 +116,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mouse and Keyboard",
-                    "action": "Gatherer_ActiveAbility",
+                    "action": "Active Ability",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -209,29 +127,119 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mouse and Keyboard",
-                    "action": "Gatherer_PullWarden",
+                    "action": "Pull Warden",
                     "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Gameplay_Warden",
+            "id": "c2febb73-cde2-459a-aec3-e6b1df85bee2",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "82e371d4-d483-416e-b7d9-e17103124c7c",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "b20cf932-e2b0-4ce9-b0f4-fb897aeb29b1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Active Ability",
+                    "type": "Button",
+                    "id": "f40a84ae-37d5-4e57-9d39-dc2cb2e5c0fb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "Arrow Keys",
+                    "id": "0849cf3d-82d8-42c3-ae98-9a55eab3098d",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "up",
+                    "id": "9ee52889-6070-4d69-847e-20cdd0ff4b34",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse and Keyboard",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "5ec953d7-1d7d-4a45-8781-239a14a91be5",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse and Keyboard",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "289a61cd-dc65-4243-9141-bb004b461db8",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse and Keyboard",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "c8333361-5e55-4c80-94da-3e52939b959c",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse and Keyboard",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
-                    "id": "c628fdc0-4b40-4e2d-b3b9-649074bcdd54",
+                    "id": "34c537c0-fb22-4e0f-a1f2-bd93ab9ae5af",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mouse and Keyboard",
-                    "action": "Warden_Shoot",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "d3e037ab-54cc-45a6-b934-937d9fd63e6b",
+                    "id": "70de6b86-11fb-4a7c-af5c-f222db8fe4ff",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mouse and Keyboard",
-                    "action": "Warden_ActiveAbility",
+                    "action": "Active Ability",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
