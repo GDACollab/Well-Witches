@@ -5,6 +5,8 @@ using UnityEngine.VFX;
 public class Ultimate2 : MonoBehaviour
 {
     [SerializeField] private VisualEffect tree;
+    [SerializeField] private VisualEffect groundLeaves;
+
 
     public CameraShake cameraShake;
     public GameObject volume;
@@ -27,6 +29,7 @@ public class Ultimate2 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q)) 
         {
             tree.Play();
+            groundLeaves.Play();
             StartCoroutine(cameraShake.Shake(.15f, .2f, firstTreeDelay, volume, light2d));
             StartCoroutine(cameraShake.Shake(.15f, .2f, secondTreeDelay, volume, light2d));
             StartCoroutine(cameraShake.Shake(.15f, .2f, thirdTreeDelay, volume, light2d));

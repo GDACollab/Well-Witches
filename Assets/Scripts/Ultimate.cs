@@ -1,14 +1,11 @@
-using System.Collections;
-using Unity.Properties;
-using UnityEditor.Rendering;
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.VFX;
 
 public class Ultimate : MonoBehaviour
 {
     [SerializeField] private ParticleSystem chargingParticles;
     [SerializeField] private ParticleSystem orb;
-    [SerializeField] private ParticleSystem shockwave;
+    [SerializeField] private VisualEffect shockwave;
 
     public CameraShake cameraShake;
     public GameObject volume;
