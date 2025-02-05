@@ -10,8 +10,8 @@ public class SpeedBuff : PowerupEffect
    public override void Apply(GameObject target)
    {
 
-      target.GetComponent<PlayerMovement>().moveSpeed += amount;
-      Debug.Log("Player zooming at: " + target.GetComponent<PlayerMovement>().moveSpeed.ToString());
+      target.GetComponent<PlayerController>().moveSpeed += amount;
+      Debug.Log("Player zooming at: " + target.GetComponent<PlayerController>().moveSpeed.ToString());
 
    }
 }
