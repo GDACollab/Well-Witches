@@ -14,36 +14,30 @@ public class GathererStatDisplay : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        // Singleton Pattern
+        if (Instance == null){ Instance = this; }
+        else { Destroy(gameObject); }
     }
-
-    private void OnEnable() // ✅ Updates text whenever the UI is displayed
+ 
+    // Updates text when UI Displayed
+    private void OnEnable()
     {
         RefreshStats();
     }
 
+    // Update Stat Display with new values
     public void UpdateStatDisplay(float health, float stamina, float speed)
     {
-        if (healthText != null)
-            healthText.text = $"Health: {health}";
+        if (healthText != null) healthText.text = $"Health: {health}";
 
-        if (staminaText != null)
-            staminaText.text = $"Stamina: {stamina}";
+        if (staminaText != null) staminaText.text = $"Stamina: {stamina}";
 
-        if (speedText != null)
-            speedText.text = $"Speed: {speed}";
+        if (speedText != null) speedText.text = $"Speed: {speed}";
 
-        Debug.Log($"Updated Stats: Health={health}, Stamina={stamina}, Speed={speed}");
     }
 
-    public void RefreshStats() // ✅ Fetches latest stats and updates UI
+    //Retrieve stat from GathererStatManagement
+    public void RefreshStats()
     {
         if (GathererStatManagement.Instance != null)
         {
@@ -53,9 +47,6 @@ public class GathererStatDisplay : MonoBehaviour
                 GathererStatManagement.Instance.GetSpeed()
             );
         }
-        else
-        {
-            Debug.LogError("❌ GathererStatManagement instance not found!");
-        }
+        else { Debug.LogError("GathererStatManagement instance not found!"); }
     }
 }

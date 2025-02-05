@@ -18,18 +18,18 @@ public class GathererStatManagement : MonoBehaviour
 
     private void Awake()
     {
+        // Singleton Pattern
+        
         if (Instance == null)
         {
             Instance = this;
-            transform.SetParent(null); // ✅ Ensures it's a root GameObject
-            DontDestroyOnLoad(gameObject);  // ✅ Keeps it alive across scenes
+            transform.SetParent(null); 
+            DontDestroyOnLoad(gameObject);  
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        else { Destroy(gameObject); }
     }
 
+    //Getters for Stats
     public float GetHealth() { return health + healthBuff; }
     public float GetStamina() { return stamina + staminaBuff; }
     public float GetSpeed() { return speed + speedBuff; }
