@@ -14,7 +14,7 @@ public class InteractableGenerator : MonoBehaviour
     [SerializeField] Vector2Int[] recentValues = { new Vector2Int(-10, -10), new Vector2Int(-10, -10), new Vector2Int(-10, -10) };
     [SerializeField] float spawnCutoff = 0.75f;
     //min distance from recent values nessecary for a new interactable to be spawned
-    int recentRange = 3;
+    [SerializeField] int recentRange = 3;
 
     // Start is called before the first frame update
     void Start()
