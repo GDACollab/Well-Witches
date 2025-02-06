@@ -1,138 +1,130 @@
 using System.Collections;
 using System.Collections.Generic;
+using Ink.Parsed;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class BossEnemy : MonoBehaviour, BaseEnemyClass
+// Phases in battle
+enum BossPhase {
+	Phase1,
+	Phase2
+}
+
+/*
+Boss fight:
+3 actions:
+	- Lunge
+		Set target past player, up move speed a ton
+	- Attack ("sheild bash"/"swing")
+		Hit box in front of boss
+	- Spawn Enemy
+		Reference spawner script in scene
+
+Health bar: Link to UI element
+*/
+
+public class BossEnemy : MonoBehaviour
 {
+    [SerializeField] public EnemySpawner enemySpawner;
+	private StateMachine stateMachine;
 
-    // //Placeholder values
-    // [Header("Boss Stats")]
-    // [Range(1, 500)]
-    // [Tooltip("The max health of the boss enemy. [1, 500]")]
-    // public int health;
-    // [Range(0, 100)]
-    // [Tooltip("The damage the boss enemy deals. [0, 100]")]
-    // public int damage;
-    // [Range(0, 25)]
-    // [Tooltip("The base speed of the boss enemy. [0, 25]")]
-    // public int baseSpeed;
+    // --- Boss States ---
+    [Header("Boss Stats")]
 
-    // Phases in battle
-    private enum Phase {
-        Phase1,
-        Phase2
-    }
+	// Health
+    [Range(1, 500)]
+    [Tooltip("The max health of the boss enemy. [1, 500]")]
+    public int maxHealth;
+	int health;
+    [Range(0, 100)]
 
-    Phase currPhase;
-    
-    [SerializeField] private EnemySpawner enemySpawner;
+	// Base damage (moves will have multipliers from this)
+    [Tooltip("The base damage the boss enemy deals. [0, 100]")]
+    public int damage;
+    [Range(0, 25)]
 
-    //Movement (clicking for testing)
-    //Rigidbody2D rb;
-    //Vector3 click;
-    //Vector2 target;
-    //Vector2 pos;
+	// Base speed
+    [Tooltip("The base speed of the boss enemy. [0, 25]")]
+    public int baseSpeed;
 
-    //BossActions
-    Dictionary bossAttacks = new Dictionary<int,String>();
-    bossAttacks.Add(0,"Lunge");
-    bossAttacks.Add(1,"ShieldBash");
-    bossAttacks.Add(2,"Swing");
-    bossAttacks.Add(3,"SpawnEnemies");
+	// --- Actions ---
+	BossPhase currPhase;
 
-    Dictionary attacksWeight = new Dictionary<int, int>();
-    attacksWeight.Add(0, 30);
-    attacksWeight.Add(1, 25);
-    attacksWeight.Add(2, 30);
-    attacksWeight.Add(3, 40);
+	/* Boss Attacks:
+	* Lunge: 30
+	* Shield Bash: 25
+	* Swing: 30
+	* Spawn Enemies: 40
+	*/
+	int[] attacksWeight = {30, 25, 30, 40};
+
     int attackChosen;
     int totalWeight;
 
     //Coroutine stuff for paralell movement + actions
     private IEnumerator actRoutine;
-    private IEnumerator moveRoutine;
 
     //Called upon the spawning of the boss
     void Start() 
     {
-        currPhase = Phase1;
-        rb.GetComponent<Rigidbody2D>();
-        Act();
+		health = maxHealth;
+        currPhase = BossPhase.Phase1;
+
+		// --- Initialize AI ---
+		// Initialize the state machine
+        stateMachine = gameObject.GetComponent<StateMachine>();
+        // Check if the state has been set before initializing the patrol state
+
+        // Set the initial state (PatrolState), passing the player
+        IdleState idleState = gameObject.GetComponent<IdleState>();
+        idleState.Initialize(stateMachine, gameObject);
+        stateMachine.SetState(idleState);
+
+		// TODO: Convert placeholder PickAction script to a transistion table for special attack states
+        PickAction();
     }
 
-    void FixedUpdate(){
-        if (health <= 50){
-            currPhase = Phase2;
-        }
-    }
+	public void takingDamage(int amount)
+	{   //Reduces health by the amount entered in Unity
+		health -= amount;
+		if (health <= 50){
+			currPhase = BossPhase.Phase2;
+		}
+		if (health <= 0)
+		{
+			Die();
+		}
+	}
 
-    //Starts Boss Action Coroutines
-    void Act() 
-    {
-        moveRoutine = Movement();
-        actRoutine = Actions();
-        StartCoroutine(moveRoutine);
-        StartCoroutine(actRoutine);
-    }
-
-    //Continously Moves Boss Around Player
-    // IEnumerator Movement() 
-    // {
-    //     while(true)
-    //         yield return new WaitForSeconds(0.02f)
-    //         {
-    //             pos = new Vector2(transform.position.x, transform.position.y);
-    //         // if left mouse button is clicked
-    //         if (Input.GetMouseButtonDown(0)) {
-    //             // get mouse click position
-    //             click = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    //             target = new Vector2(click.x, click.y);
-    //             // move towards target
-    //             rb.velocity = (target - pos).normalized * moveSpeed;
-    //         }
-    //         // if enemy is close to target, stop moving
-    //         if (Vector2.Distance(pos, target) < 0.5f) {
-    //             rb.velocity = Vector2.zero;
-    //         }
-
-    //         // For the code below, assume the enemy sprite is facing left, the code is dependent on the direction of the enemy its facing
-    //         // If direction.x (as calculated above) is positive, that means the enemy is on the left side of the player
-    //         if (rb.velocity.x > 0)
-    //         {
-    //             // We dont make changes to the sprite since its already facing the player
-    //             transform.localScale = new Vector3(1 ,1, 1);
-    //         // If direction.x is negative (on the left of the player)
-    //         } else if (rb.velocity.x < 0)
-    //         {
-    //             // We flip the enemy sprite so it faces the player
-    //             transform.localScale = new Vector3(-1, 1, 1);
-    //         }
-    //     }
-        
-    // }
+	void Die()
+	{
+		Destroy(gameObject);
+	}
 
     //Continously assembles a list of boss actions in a randomized order which the boss follows one after another after a random time in a range 
-    IEnumerator Actions() 
+    int PickAction() 
     {
-        attacksWeight[0] = 30 * (1 + Vector2.Distance(pos, target)/100);
-        attacksWeight[1] = 25 * (1 + 1/sqrt(Vector2.Distance(pos, target) * 1.05));
-        attacksWeight[2] = 30 * (1 + 1/Vector2.Distance(pos, target) * 1.2);
-        attacksWeight[3] = 40 * currPhase;
+		//attacksWeight[0] = 30 * (1 + Vector2.Distance(pos, target)/100);
+		//attacksWeight[1] = 25 * (1 + 1/sqrt(Vector2.Distance(pos, target) * 1.05));
+		//attacksWeight[2] = 30 * (1 + 1/Vector2.Distance(pos, target) * 1.2);
+		//attacksWeight[3] = 40 * currPhase;
 
-        totalWeight = attacksWeight[0] + attacksWeight[1] + attacksWeight[2] + attacksWeight[3];
-        int rand = Random.Range(1, totalWeight);
+		totalWeight = attacksWeight[0] + attacksWeight[1] + attacksWeight[2] + attacksWeight[3];
+		int rand = Random.Range(1, totalWeight);
 
-        foreach(KeyValuePair<int, int> attackWeight in attacksWeight) 
-        {
-
-        }
-
-    }
-    
-    void SpawnMobs()
-    {
-        // Spawn an enemy from the scene near the player
-        enemySpawner.SpawnSingleFormation(UnityEngine.Random.Range(3f, 8f));
-    }
+		// Select action to do
+		if (rand < attacksWeight[0])
+		{
+			return 0;
+		}
+		else if (rand < attacksWeight[2])
+		{
+			return 1;
+		}
+		else if (rand < attacksWeight[3])
+		{
+			return 2;
+		}
+		return 0;
+	}
 }

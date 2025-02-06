@@ -15,7 +15,6 @@ public class AIController : MonoBehaviour
         PatrolState patrolState = gameObject.GetComponent<PatrolState>();
         patrolState.Initialize(stateMachine, gameObject);
         stateMachine.SetState(patrolState);
-
     }
 
     void Update()
