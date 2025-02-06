@@ -6,6 +6,7 @@ public class InRangeTransition : Transition
     private StateMachine stateMachine;
     private MeleeEnemy meleeEnemy;
     private RangedEnemy rangedEnemy;
+    private TankEnemy tankEnemy;
     private AttackState attackState;
 
     public InRangeTransition(StateMachine stateMachine, GameObject owner) : base(owner)
@@ -14,6 +15,7 @@ public class InRangeTransition : Transition
         this.stateMachine = stateMachine;
         meleeEnemy = owner.GetComponent<MeleeEnemy>();
         rangedEnemy = owner.GetComponent<RangedEnemy>();
+        tankEnemy = owner.GetComponent<TankEnemy>();
         attackState = owner.GetComponent<AttackState>();
     }
 
@@ -29,6 +31,11 @@ public class InRangeTransition : Transition
             float distance = Vector2.Distance(owner.transform.position, rangedEnemy.currentTarget.transform.position);
             return distance <= rangedEnemy.range;
         }
+        else if (tankEnemy != null && tankEnemy.currentTarget != null)
+        {
+            float distance = Vector2.Distance(owner.transform.position, tankEnemy.currentTarget.transform.position);
+            return distance <= tankEnemy.range;
+        }
         return false;
     }
 
@@ -43,6 +50,10 @@ public class InRangeTransition : Transition
         else if (rangedEnemy != null)
         {
             attackState.Initialize(stateMachine, owner, rangedEnemy.currentTarget);
+        }
+        else if (tankEnemy != null)
+        {
+            attackState.Initialize(stateMachine, owner, tankEnemy.currentTarget);
         }
         return attackState;
     }
