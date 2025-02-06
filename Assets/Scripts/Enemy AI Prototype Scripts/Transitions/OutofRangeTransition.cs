@@ -10,6 +10,7 @@ public class OutotRangeTransition : Transition
     private AttackState attackState;
     private MeleeEnemy meleeEnemy;
     private RangedEnemy rangedEnemy;
+    private TankEnemy tankEnemy;
 
     public OutotRangeTransition(StateMachine stateMachine, GameObject owner) : base(owner)
     {
@@ -19,6 +20,7 @@ public class OutotRangeTransition : Transition
         attackState = owner.GetComponent<AttackState>();
         meleeEnemy = owner.GetComponent<MeleeEnemy>();
         rangedEnemy = owner.GetComponent<RangedEnemy>();
+        tankEnemy = owner.GetComponent<TankEnemy>();
     }
 
     public override bool ShouldTransition()
@@ -36,6 +38,11 @@ public class OutotRangeTransition : Transition
             {
                 distance = Vector2.Distance(owner.transform.position, rangedEnemy.currentTarget.position);
                 return distance >= rangedEnemy.range + 1;
+            }
+            else if (tankEnemy != null && tankEnemy.currentTarget != null)
+            {
+                distance = Vector2.Distance(owner.transform.position, tankEnemy.currentTarget.position);
+                return distance >= tankEnemy.range + 1;
             }
         }
         return false;
