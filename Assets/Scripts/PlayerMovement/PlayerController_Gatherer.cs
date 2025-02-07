@@ -29,23 +29,6 @@ public class PlayerController_Gatherer : PlayerController
 		}
 	}
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.CompareTag("Player"))
-        {
-            PlayerController_Warden warden = collision.gameObject.GetComponent<PlayerController_Warden>();
-            warden.disableRope();
-        }
-    }
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            PlayerController_Warden warden = collision.gameObject.GetComponent<PlayerController_Warden>();
-            warden.enableRope();
-        }
-    }
-
     void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))
