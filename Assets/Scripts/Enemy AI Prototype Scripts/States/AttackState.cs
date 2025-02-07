@@ -4,70 +4,86 @@ using UnityEngine;
 
 public class AttackState : State
 {
-    private NavMeshAgent agent;
-    private Transform player;
 
     [Header("Attack Settings")]
-    public float movementSpeed = 3.5f;
-    public float attackRange = 5f;
-    private int attackCount = 0;
+    private float lastAttackTime;
+    private StateMachine stateMachine;
+    public bool isAttacking;
+    private MeleeEnemy meleeEnemy;
+    private RangedEnemy rangedEnemy;
+    private TankEnemy tankEnemy;
+    private Rigidbody2D rb2d;
 
-    public AttackState(GameObject owner, GameObject player) : base(owner)
+
+    public AttackState(GameObject owner, GameObject player) : base(owner) { }
+    public void Initialize(StateMachine stateMachine, GameObject owner, Transform target)
     {
-        agent = owner.GetComponent<NavMeshAgent>();
-        this.player = player.transform;
+        this.stateMachine = stateMachine;
+        this.owner = owner;
+        meleeEnemy = owner.GetComponent<MeleeEnemy>();
+        rangedEnemy = owner.GetComponent<RangedEnemy>();
+        tankEnemy = owner.GetComponent<TankEnemy>();
+        rb2d = owner.GetComponent<Rigidbody2D>();
+
     }
 
     public override void OnEnter()
     {
         Debug.Log("Entering Attack State");
-        agent.speed = movementSpeed;
+        lastAttackTime = Time.time - (meleeEnemy != null ? meleeEnemy.AttackRate : (rangedEnemy != null ? rangedEnemy.fireRate : tankEnemy.AttackRate));
+        isAttacking = false;
+        // Disable gravity to keep the enemy still
+
+        if (rb2d != null)
+        {
+            rb2d.gravityScale = 0;
+            rb2d.velocity = Vector2.zero; // Stop any existing movement
+        }
     }
 
     public override void OnUpdate()
     {
-        if (player == null) return;
-
-        float distanceToPlayer = Vector3.Distance(owner.transform.position, player.position);
-
-        if (distanceToPlayer > attackRange)
+        if (meleeEnemy != null)
         {
-            agent.SetDestination(player.position);
+            if (Time.time >= lastAttackTime + meleeEnemy.AttackRate && !isAttacking)
+            {
+                meleeEnemy.Attack();
+                lastAttackTime = Time.time;
+            }
         }
-        else
+        else if (rangedEnemy != null)
         {
-            agent.ResetPath();
-            if (attackCount < 2)
+            if (Time.time >= lastAttackTime + rangedEnemy.fireRate && !isAttacking)
             {
-                PerformAttack();
+                rangedEnemy.Attack();
+                lastAttackTime = Time.time;
             }
-            else
+        }
+        else if (tankEnemy != null)
+        {
+            if (Time.time >= lastAttackTime + tankEnemy.AttackRate && !isAttacking)
             {
-                PerformSpecialAttack();
-                attackCount = -1; // Reset count
+                tankEnemy.Attack();
+                lastAttackTime = Time.time;
             }
-            attackCount++;
         }
     }
 
     public override void OnExit()
     {
         Debug.Log("Exiting Attack State");
-        attackCount = 0;
+        // Re-enable gravity when exiting the attack state
+        if (rb2d != null)
+        {
+            rb2d.gravityScale = 1;
+        }
     }
 
     public override List<Transition> GetTransitions()
     {
-        return new List<Transition>();
-    }
-
-    private void PerformAttack()
-    {
-        Debug.Log("Performing regular attack");
-    }
-
-    private void PerformSpecialAttack()
-    {
-        Debug.Log("Performing special attack");
+        return new List<Transition>
+        {
+            new OutotRangeTransition(stateMachine, owner),
+        };
     }
 }
