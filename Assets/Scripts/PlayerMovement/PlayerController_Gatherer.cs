@@ -1,27 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class PlayerController_Gatherer : MonoBehaviour
+public class PlayerController_Gatherer : PlayerController
 {
-    [Header("Movement")]
-    [SerializeField] PlayerMovementData movementData;
-    Rigidbody2D rb;
-    Vector2 moveDirection;
-
 	[Header("Interaction")]
 	[SerializeField] Collider2D interactRangeCollider;
 
-	private void Awake()
+	void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        base.Awake();
 		interactRangeCollider = GetComponent<Collider2D>();
-	}
-
-    // Called by the Player Input component
-	void OnMove(InputValue inputValue)
-	{
-		moveDirection = inputValue.Get<Vector2>();
 	}
 
 	// Called by the Player Input component
@@ -40,30 +28,6 @@ public class PlayerController_Gatherer : MonoBehaviour
 			}
 		}
 	}
-
-	void FixedUpdate()
-    {
-        Move();
-    }
-
-    void Move()
-    {
-        // Calculate direction & desired velocity
-        Vector2 targetSpeed = moveDirection * movementData.maxSpeed;
-
-        float accelRate = (Mathf.Abs(targetSpeed.x) > 0.01f && Mathf.Abs(targetSpeed.y) > 0.01f) ? movementData.accelerationForce : movementData.decelerationForce;
-
-        // Conserve momentumn
-        if (movementData.conserveMomentum && rb.velocity.magnitude > targetSpeed.magnitude && Vector2.Dot(rb.velocity.normalized, targetSpeed.normalized) == 1)
-        {
-            accelRate = 0;
-        }
-        Vector2 speedDiff = targetSpeed - rb.velocity;
-
-        Vector2 movement = speedDiff * accelRate;
-
-        rb.AddForce(movement, ForceMode2D.Force);
-    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {

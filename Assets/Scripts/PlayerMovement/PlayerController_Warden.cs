@@ -1,13 +1,7 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class PlayerController_Warden : MonoBehaviour
+public class PlayerController_Warden : PlayerController
 {
-    [Header("Movement")]
-    [SerializeField] PlayerMovementData movementData;
-	Rigidbody2D rb;
-    Vector2 moveDirection;
-
 	[Header("References")]
 	[Tooltip("Place Gatherer here, or whatever you want warden to attatch to")]
     [SerializeField] GameObject gatherer;
@@ -34,7 +28,7 @@ public class PlayerController_Warden : MonoBehaviour
 
 	void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        base.Awake();
         joint = GetComponent<SpringJoint2D>();
         if (!joint) Debug.Log("ERROR");
     }
@@ -70,36 +64,6 @@ public class PlayerController_Warden : MonoBehaviour
         ropeLR.SetPosition(0,transform.position);
         ropeLR.SetPosition(1, gatherer.transform.position);
 
-    }
-
-	// Called by the Player Input component
-	void OnMove(InputValue inputValue)
-	{
-		moveDirection = inputValue.Get<Vector2>();
-	}
-
-	void FixedUpdate()
-    {
-        Move();
-    }
-
-    void Move()
-    {
-        // Calculate direction & desired velocity
-        Vector2 targetSpeed = moveDirection * movementData.maxSpeed;
-
-        float accelRate = (Mathf.Abs(targetSpeed.x) > 0.01f && Mathf.Abs(targetSpeed.y) > 0.01f) ? movementData.accelerationForce : movementData.decelerationForce;
-
-        // Conserve momentum, if the velocity is faster than max speed (i.e from being launched) AND the target speed is in the same direction as velocity, don't slow down the player
-        if (movementData.conserveMomentum && rb.velocity.magnitude > targetSpeed.magnitude && Vector2.Dot(rb.velocity.normalized, targetSpeed.normalized) == 1)
-        {
-            accelRate = 0;
-        }
-        Vector2 speedDif = targetSpeed - rb.velocity;
-
-        Vector2 movement = speedDif * accelRate;
-
-        rb.AddForce(movement, ForceMode2D.Force);
     }
 
     public void enableRope()

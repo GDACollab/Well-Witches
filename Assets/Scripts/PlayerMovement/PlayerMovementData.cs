@@ -19,16 +19,16 @@ public class PlayerMovementData : ScriptableObject
     [Tooltip("Amount of time it takes for the player to decelerate from max speed to 0")]
 	public float deceleration;
 
-	[HideInInspector] public float accelerationForce; // The actual force (multiplied with the speed difference) applied to the player
-    [HideInInspector] public float decelerationForce; // The actual force (multiplied with the speed difference) applied to the player
+	[HideInInspector] public float accelForce; // The actual force (multiplied with the speed difference) applied to the player
+    [HideInInspector] public float decelForce; // The actual force (multiplied with the speed difference) applied to the player
 
     public bool conserveMomentum;
 
     // Update and clamp variables every time one is changed in the inspector
     void OnValidate()
     {
-        accelerationForce = (50 * acceleration) / maxSpeed;
-        decelerationForce = (50 * deceleration) / maxSpeed;
+        accelForce = (50 * acceleration) / maxSpeed;
+        decelForce = (50 * deceleration) / maxSpeed;
 
         // Clamp to ranges
         //acceleration = Mathf.Clamp(acceleration, 0.01f, moveSpeed);
