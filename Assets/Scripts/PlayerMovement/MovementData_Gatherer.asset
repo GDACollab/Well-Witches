@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d56ae2fa66cae494bbf52c33c6c92dc0, type: 3}
-  m_Name: GathererData
+  m_Name: MovementData_Gatherer
   m_EditorClassIdentifier: 
-  moveSpeed: 15
-  acceleration: 1.51
-  accelAmount: 5.0333333
+  maxSpeed: 15
+  acceleration: 5
   deceleration: 2.58
-  decelAmount: 8.599999
+  accelerationForce: 16.666666
+  decelerationForce: 8.599999
   conserveMomentum: 1

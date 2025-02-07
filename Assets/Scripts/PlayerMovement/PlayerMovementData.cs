@@ -1,31 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
+/*
+ * To create an instance of this:
+ *  Right click the folder you're in
+ *  Create > Player > Player Movement Data
+ *  Set values in the inspector
+ *  Drag the created object onto Gatherer or Warden
+ */
+[CreateAssetMenu(menuName = "Player/Player Movement Data")]
 
-[CreateAssetMenu(menuName = "Player/Player Movement Data")] // Create this data by right clicking the folder then Create->Player->Player Data and drag this onto the player obj
 public class PlayerMovementData : ScriptableObject
 {
-    [Header("Movement")]
-    public float moveSpeed; //Target speed (max speed) that the player will reach
-    public float acceleration; // Time that we want it to take for the player to accelerate from 0 to max speed
-    [HideInInspector] public float accelAmount; // The actual force (multiplied with the speed difference) applied to the player
-    public float deceleration; // Time that we want it to take for the player to "accelerate" from max speed to 0
-    [HideInInspector] public float decelAmount; // The actual force (multiplied with the speed difference) applied to the player
+    public float maxSpeed;
+
+    [Tooltip("Amount of time it takes for the player to accelerate from 0 to max speed")]
+    public float acceleration;
+
+    [Tooltip("Amount of time it takes for the player to decelerate from max speed to 0")]
+	public float deceleration;
+
+	[HideInInspector] public float accelerationForce; // The actual force (multiplied with the speed difference) applied to the player
+    [HideInInspector] public float decelerationForce; // The actual force (multiplied with the speed difference) applied to the player
+
     public bool conserveMomentum;
 
-    //Update and clamp respective variables everytime it is changed on the inspector
-    private void OnValidate()
+    // Update and clamp variables every time one is changed in the inspector
+    void OnValidate()
     {
-        accelAmount = (50 * acceleration) / moveSpeed;
-        decelAmount = (50 * deceleration) / moveSpeed;
+        accelerationForce = (50 * acceleration) / maxSpeed;
+        decelerationForce = (50 * deceleration) / maxSpeed;
 
-        //Calmp to ranges
+        // Clamp to ranges
         //acceleration = Mathf.Clamp(acceleration, 0.01f, moveSpeed);
-       // deceleration = Mathf.Clamp(deceleration, 0.01f, moveSpeed);
+        //deceleration = Mathf.Clamp(deceleration, 0.01f, moveSpeed);
 
     }
-
-
 }

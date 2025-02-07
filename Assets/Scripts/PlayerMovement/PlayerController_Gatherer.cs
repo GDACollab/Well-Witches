@@ -1,21 +1,44 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController_Gatherer : MonoBehaviour
 {
+    [Header("Movement")]
     [SerializeField] PlayerMovementData movementData;
     Rigidbody2D rb;
     Vector2 moveDirection;
 
-    private void Awake()
+	[Header("Interaction")]
+	[SerializeField] Collider2D interactRangeCollider;
+
+	private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-    }
+		interactRangeCollider = GetComponent<Collider2D>();
+	}
 
     // Called by the Player Input component
 	void OnMove(InputValue inputValue)
 	{
 		moveDirection = inputValue.Get<Vector2>();
+	}
+
+	// Called by the Player Input component
+	void OnPickUpItem()
+	{
+		List<Collider2D> colliderList = new List<Collider2D>();
+		ContactFilter2D contactFilter = new ContactFilter2D();
+		interactRangeCollider.OverlapCollider(contactFilter.NoFilter(), colliderList);
+
+		foreach (Collider2D collider in colliderList)
+		{
+			if (collider.gameObject.TryGetComponent(out IInteractable interactableObject))
+			{
+				interactableObject.Interact();
+				break;
+			}
+		}
 	}
 
 	void FixedUpdate()
@@ -26,12 +49,12 @@ public class PlayerController_Gatherer : MonoBehaviour
     void Move()
     {
         // Calculate direction & desired velocity
-        Vector2 targetSpeed = moveDirection * movementData.moveSpeed;
+        Vector2 targetSpeed = moveDirection * movementData.maxSpeed;
 
-        float accelRate = (Mathf.Abs(targetSpeed.x) > 0.01f && Mathf.Abs(targetSpeed.y) > 0.01f) ? movementData.accelAmount : movementData.decelAmount;
+        float accelRate = (Mathf.Abs(targetSpeed.x) > 0.01f && Mathf.Abs(targetSpeed.y) > 0.01f) ? movementData.accelerationForce : movementData.decelerationForce;
 
         // Conserve momentumn
-        if (movementData.conserveMomentum && rb.velocity.magnitude > targetSpeed.magnitude && Vector2.Dot(rb.velocity.normalized,targetSpeed.normalized) == 1)
+        if (movementData.conserveMomentum && rb.velocity.magnitude > targetSpeed.magnitude && Vector2.Dot(rb.velocity.normalized, targetSpeed.normalized) == 1)
         {
             accelRate = 0;
         }
