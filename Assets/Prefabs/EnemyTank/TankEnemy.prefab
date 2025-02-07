@@ -10,15 +10,16 @@ GameObject:
   m_Component:
   - component: {fileID: 5191984797867318150}
   - component: {fileID: 4592253895432761633}
+  - component: {fileID: 4169442950095449882}
   - component: {fileID: 1831989308789620020}
+  - component: {fileID: 1314222603258456997}
   - component: {fileID: 921411808403508448}
   - component: {fileID: 2740582209234096425}
   - component: {fileID: 1094066913076372462}
   - component: {fileID: 7223512689665479965}
   - component: {fileID: -3072643784058802820}
-  - component: {fileID: 1314222603258456997}
-  m_Layer: 0
-  m_Name: Tank Enemy Test Prefab
+  m_Layer: 6
+  m_Name: TankEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +66,52 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!61 &4169442950095449882
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6262689151968294506}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0680418, y: -0.02268058}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.89, y: 1.92}
+    newSize: {x: 5.13, y: 4.94}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.1642246, y: 1.3756679}
+  m_EdgeRadius: 0
 --- !u!212 &1831989308789620020
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -118,6 +164,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1314222603258456997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6262689151968294506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79886a99eaf7ae14ca61ae552cd072d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  damage: 5
+  moveSpeed: 2
+  range: 1
+  AttackRate: 3
+  spawnRate: 1
+  acidSize: 1.24
+  acidLifetime: 2.77
+  acidOffsetX: 0
+  acidOffsetY: 0
+  distanceToPlayer1: 0
+  distanceToPlayer2: 0
+  distanceToTarget: 0
+  timeToFire: 0
+  players: []
+  currentTarget: {fileID: 0}
 --- !u!114 &921411808403508448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,31 +254,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9744f35fdf6edd341bd720bb3bd26df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1314222603258456997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6262689151968294506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79886a99eaf7ae14ca61ae552cd072d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1
-  damage: 13
-  moveSpeed: 1
-  range: 1
-  AttackRate: 3
-  spawnRate: 1
-  acidSize: 1.24
-  acidLifetime: 2.77
-  acidOffsetX: 0
-  acidOffsetY: 0
-  distanceToPlayer1: 0
-  distanceToPlayer2: 0
-  distanceToTarget: 0
-  timeToFire: 0
-  players: []
-  currentTarget: {fileID: 0}
