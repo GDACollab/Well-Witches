@@ -18,7 +18,7 @@ public class StateMachine : MonoBehaviour
         if (currentState != null)
         {
             currentState.OnEnter();
-            
+
         }
     }
 
