@@ -79,7 +79,10 @@ public class InteractableGenerator : MonoBehaviour
 
                     TileBase foundTile = tilemap.GetTile(gridPosition);
 
-                    //if (foundTile != null && foundTile.)
+                    if (foundTile != null)
+                    {
+                        Debug.Log(foundTile.name);
+                    }
 
                     //Add new spot to recent Values
                     pushToRecentValues(new Vector2Int(x, y));
