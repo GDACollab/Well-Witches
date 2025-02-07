@@ -25,6 +25,7 @@ Health bar: Link to UI element
 
 public class BossEnemy : MonoBehaviour
 {
+    [SerializeField] public EnemySpawner enemySpawner;
 	private StateMachine stateMachine;
 
     // --- Boss States ---
@@ -81,6 +82,9 @@ public class BossEnemy : MonoBehaviour
 
 		// TODO: Convert placeholder PickAction script to a transistion table for special attack states
         PickAction();
+
+		// Just spawn a bunch of crap idk
+		StartCoroutine(SpawnMobs());
     }
 
 	public void takingDamage(int amount)
@@ -100,6 +104,17 @@ public class BossEnemy : MonoBehaviour
 		Destroy(gameObject);
 	}
 
+
+	IEnumerator SpawnMobs()
+	{
+		while (true)
+		{
+			yield return new WaitForSeconds(8f);
+			enemySpawner.SpawnSingleFormation(10f);
+		}
+	}
+
+	// PROOF OF CONCEPT NOT DEPLOYABLE!
     //Continously assembles a list of boss actions in a randomized order which the boss follows one after another after a random time in a range 
     int PickAction() 
     {
