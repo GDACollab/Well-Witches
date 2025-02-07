@@ -17,10 +17,21 @@ public class InteractableGenerator : MonoBehaviour
     //min distance from recent values nessecary for a new interactable to be spawned
     [SerializeField] int recentRange = 3;
     [SerializeField] Tilemap tilemap;
+    //List containing all tile scriptable objects
+    [SerializeField] List<tileScriptableObject> tileScriptableObjects;
+    //Dictionary to map tile bases to tilescript objects
+    private Dictionary<TileBase, tileScriptableObject> dataFromFiles;
 
     // Start is called before the first frame update
     void Start()
     {
+        dataFromFiles = new Dictionary<TileBase, tileScriptableObject>();
+
+        foreach(var tileData in tileScriptableObjects)
+        {
+            dataFromFiles.Add(tileData.tile, tileData);
+        }
+
         if (testing)
         {
             generateInteractables();
@@ -78,15 +89,14 @@ public class InteractableGenerator : MonoBehaviour
                     Vector3Int gridPosition = tilemap.WorldToCell(worldPosition);
 
                     TileBase foundTile = tilemap.GetTile(gridPosition);
-
-                    if (foundTile != null)
+                    
+                    if (foundTile != null && dataFromFiles[foundTile].canPlaceBush)
                     {
-                        Debug.Log(foundTile.name);
+                        //Add new spot to recent Values
+                        pushToRecentValues(new Vector2Int(x, y));
+                        Instantiate(interactable, new Vector3(x + offset.x, y + offset.y, -1), Quaternion.identity, transform); // Z layer of interactables is -1
                     }
 
-                    //Add new spot to recent Values
-                    pushToRecentValues(new Vector2Int(x, y));
-                    Instantiate(interactable, new Vector3(x + offset.x, y + offset.y, -1), Quaternion.identity, transform); // Z layer of interactables is -1
                 }
             }
         }
