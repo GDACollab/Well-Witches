@@ -2,7 +2,15 @@ using UnityEngine;
 
 public class PlayerController_Warden : PlayerController
 {
-	[Header("References")]
+    [Header("Shooting")]
+    [SerializeField][Tooltip("(In seconds)")] float shootCooldown;
+    [SerializeField] float bulletSpeed;
+    [SerializeField][Tooltip("(In seconds)")] float bulletLifespan;
+    [SerializeField] Transform crosshair;
+	[SerializeField] GameObject bulletPrefab;
+    float shootCooldownCounter;
+
+	[Header("Gatherer")]
 	[Tooltip("Place Gatherer here, or whatever you want warden to attatch to")]
     [SerializeField] GameObject gatherer;
     [Tooltip("Place Gatherer's CircleCollider2D here")]
@@ -63,6 +71,32 @@ public class PlayerController_Warden : PlayerController
         ropeLR.SetPosition(0,transform.position);
         ropeLR.SetPosition(1, gatherer.transform.position);
 
+        DecreaseCooldownCounters();
+    }
+
+    void DecreaseCooldownCounters()
+    {
+        if (shootCooldownCounter > 0) shootCooldownCounter -= Time.deltaTime;
+	}
+
+	// Called by the Player Input component
+	void OnShoot()
+    {
+        if (shootCooldownCounter > 0) return;
+
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        bullet.SetActive(true);
+        Vector2 crosshairDirection = (crosshair.position - transform.position).normalized;
+        bullet.GetComponent<Rigidbody2D>().velocity = crosshairDirection * bulletSpeed;
+        Destroy(bullet, bulletLifespan);    // destroy the bullet after a some time; a horrible way to handle getting rid of bullets but this is all temporary so...
+
+        shootCooldownCounter = shootCooldown;
+	}
+
+	// Called by the Player Input component
+	void OnActiveAbility()
+    {
+        Debug.Log("Warden active ability activated");   // temporary, so we can see that something's actually happening
     }
 
     public void enableRope()
