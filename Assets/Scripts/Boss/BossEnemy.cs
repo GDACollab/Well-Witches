@@ -25,7 +25,6 @@ Health bar: Link to UI element
 
 public class BossEnemy : MonoBehaviour
 {
-    [SerializeField] public EnemySpawner enemySpawner;
 	private StateMachine stateMachine;
 
     // --- Boss States ---
