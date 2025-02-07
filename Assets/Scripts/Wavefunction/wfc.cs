@@ -90,7 +90,8 @@ public class wfc : MonoBehaviour
         }*/
 
         PlaceTiles();
-        StartCoroutine(testWFCFastButOnlyIfISaySo());
+        StartCoroutine(testWFCFastButOnlyIfISaySo()); //Do it fast
+        //StartCoroutine(testWFCSlowly()); // Does the generation slowly, only have one uncommented
     }
 
     private IEnumerator testWFCSlowly()
@@ -98,11 +99,11 @@ public class wfc : MonoBehaviour
         bool done = false;
         while (done == false)
         {
-            if (Input.GetKey("e"))
-            {
+            //if (Input.GetKey("e"))                 Uncomment these lines to press e to spawn
+            //{
                 done = WaveFunctionCollapse();
                 PlaceTiles();
-            }
+            //}
             yield return null;
         }
     }
@@ -113,15 +114,15 @@ public class wfc : MonoBehaviour
 
         while (done == false)
         {
-            if (Input.GetKey("e"))
-            {
+            //if (Input.GetKey("e"))
+            //{
                 done = WaveFunctionCollapse();
                 while (done == false)
                 {
                     done = WaveFunctionCollapse();
                 }
                 PlaceTiles();
-            }
+            //}
             yield return null;
         }
     }
