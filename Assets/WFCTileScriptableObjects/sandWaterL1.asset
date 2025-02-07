@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a28953cb0352d04a84f5e864515aa5c, type: 3}
+  m_Name: sandWaterL1
+  m_EditorClassIdentifier: 
+  tile: {fileID: 11400000, guid: c90703f39087515419b948c2e8278fd3, type: 2}
+  weight: 0.5
+  edgeNorthLeft: sand
+  edgeNorthRight: sand
+  edgeSouthLeft: sand
+  edgeSouthRight: water
+  edgeEastUp: sand
+  edgeEastDown: water
+  edgeWestUp: sand
+  edgeWestDown: sand
+  tileImage: {fileID: 315997989, guid: c54e5c5acfe0fa34b9aa3422d8208204, type: 3}
+  tileID: uglySandWaterLShape_0

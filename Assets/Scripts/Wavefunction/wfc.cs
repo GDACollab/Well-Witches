@@ -15,46 +15,33 @@ DIRECTIONS:
 
 public class wfc : MonoBehaviour
 {
-    [SerializeField] TileBase grassTile;
-    [SerializeField] TileBase grassFlowerTile;
-    [SerializeField] TileBase waterTile;
-    [SerializeField] TileBase sandTile;
-    [SerializeField] TileBase grassSandSouthTile;
-    [SerializeField] TileBase grassSandEastTile;
-    [SerializeField] TileBase grassSandNorthTile;
-    [SerializeField] TileBase grassSandWestTile;
-    [SerializeField] TileBase grassSandSouthEastTile;
-    [SerializeField] TileBase grassSandSouthWestTile;
-    [SerializeField] TileBase grassSandNorthEastTile;
-    [SerializeField] TileBase grassSandNorthWestTile;
-
     [SerializeField] Tilemap groundTilemap;
 
-    private static int sizeX = 25;
-    private static int sizeY = 25;
+    [SerializeField] private tileScriptableObject[] tileScriptableObjects;
+
+    private static int sizeX = 75;
+    private static int sizeY = 75;
+
+    private static int NORTH = 1;
+    private static int SOUTH = 2;
+    private static int EAST = 3;
+    private static int WEST = 4;
 
     private static Dictionary<string, List<string>> tileRules = new Dictionary<string, List<string>>();
+
+    private static Dictionary<string, float> tileWeights = new Dictionary<string, float>();
 
     private Tile[,] tiles = new Tile[sizeX, sizeY];
 
     private void Start()
     {
         //Make tile rules, probably have a better way for designers to change this later
-
-        tileRules.Add("grass", new List<string>{"grass", "grass", "grass", "grass" });
-        tileRules.Add("grass_flower", new List<string>{ "grass", "grass", "grass", "grass" });
-        tileRules.Add("sand", new List<string>{ "sand", "sand", "sand", "sand" });
-        tileRules.Add("water", new List<string>{ "water", "water", "water", "water" });
-        
-        tileRules.Add("grass_sand_south", new List<string> { "grass", "sand", "grass_sand", "grass_sand" });
-        tileRules.Add("grass_sand_east", new List<string> { "grass_sand", "grass_sand", "sand", "grass" });
-        tileRules.Add("grass_sand_north", new List<string> { "sand", "grass", "sand_grass", "sand_grass" });
-        tileRules.Add("grass_sand_west", new List<string> { "sand_grass", "sand_grass", "grass", "sand" });
-
-        tileRules.Add("grass_sand_south_east", new List<string> { "grass", "grass_sand", "grass_sand", "grass" });
-        tileRules.Add("grass_sand_south_west", new List<string> { "grass", "sand_grass", "grass", "grass_sand" });
-        tileRules.Add("grass_sand_north_east", new List<string> { "grass_sand", "grass", "sand_grass", "grass" });
-        tileRules.Add("grass_sand_north_west", new List<string> { "sand_grass", "grass", "grass", "sand_grass" });
+        for (int i = 0; i < tileScriptableObjects.Length; i++)
+        {
+            tileScriptableObject temp = tileScriptableObjects[i];
+            tileRules.Add(temp.tileID, new List<string> { temp.edgeNorthLeft + "_" + temp.edgeNorthRight, temp.edgeSouthLeft + "_" + temp.edgeSouthRight, temp.edgeEastUp + "_" + temp.edgeEastDown, temp.edgeWestUp + "_" + temp.edgeWestDown });
+            tileWeights.Add(temp.tileID, temp.weight);
+        }
 
         //Initialize tile array
         for (int x = 0; x < sizeX; x++)
@@ -75,22 +62,22 @@ public class wfc : MonoBehaviour
                 //North
                 if (y + 1 < sizeY)
                 {
-                    tiles[x, y].AddNeighbor(1, tiles[x, y + 1]);
+                    tiles[x, y].AddNeighbor(NORTH, tiles[x, y + 1]);
                 }
                 //South
                 if (y > 0)
                 {
-                    tiles[x, y].AddNeighbor(2, tiles[x, y - 1]);
+                    tiles[x, y].AddNeighbor(SOUTH, tiles[x, y - 1]);
                 }
                 //East
                 if (x + 1 < sizeX)
                 {
-                    tiles[x, y].AddNeighbor(3, tiles[x + 1, y]);
+                    tiles[x, y].AddNeighbor(EAST, tiles[x + 1, y]);
                 }
                 //West
                 if (x > 0)
                 {
-                    tiles[x, y].AddNeighbor(4, tiles[x - 1, y]);
+                    tiles[x, y].AddNeighbor(WEST, tiles[x - 1, y]);
                 }
 
             }
@@ -103,7 +90,7 @@ public class wfc : MonoBehaviour
         }*/
 
         PlaceTiles();
-        StartCoroutine(testWFCSlowly());
+        StartCoroutine(testWFCFastButOnlyIfISaySo());
     }
 
     private IEnumerator testWFCSlowly()
@@ -114,6 +101,25 @@ public class wfc : MonoBehaviour
             if (Input.GetKey("e"))
             {
                 done = WaveFunctionCollapse();
+                PlaceTiles();
+            }
+            yield return null;
+        }
+    }
+
+    private IEnumerator testWFCFastButOnlyIfISaySo()
+    {
+        bool done = false;
+
+        while (done == false)
+        {
+            if (Input.GetKey("e"))
+            {
+                done = WaveFunctionCollapse();
+                while (done == false)
+                {
+                    done = WaveFunctionCollapse();
+                }
                 PlaceTiles();
             }
             yield return null;
@@ -133,53 +139,13 @@ public class wfc : MonoBehaviour
                 TileBase tileToPlace = null;
                 if (tiles[x, y].GetPossibilities().Count == 1)
                 {
-                    if (tiles[x, y].GetPossibilities()[0] == "grass")
+                    for (int i = 0; i < tileScriptableObjects.Length; i++)
                     {
-                        tileToPlace = grassTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "grass_flower")
-                    {
-                        tileToPlace = grassFlowerTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "water")
-                    {
-                        tileToPlace = waterTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "sand")
-                    {
-                        tileToPlace = sandTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "grass_sand_south")
-                    {
-                        tileToPlace = grassSandSouthTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "grass_sand_east")
-                    {
-                        tileToPlace = grassSandEastTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "grass_sand_north")
-                    {
-                        tileToPlace = grassSandNorthTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "grass_sand_west")
-                    {
-                        tileToPlace = grassSandWestTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "grass_sand_south_east")
-                    {
-                        tileToPlace = grassSandSouthEastTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "grass_sand_south_west")
-                    {
-                        tileToPlace = grassSandSouthWestTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "grass_sand_north_east")
-                    {
-                        tileToPlace = grassSandNorthEastTile;
-                    }
-                    else if (tiles[x, y].GetPossibilities()[0] == "grass_sand_north_west")
-                    {
-                        tileToPlace = grassSandNorthWestTile;
+                        if (tiles[x, y].GetPossibilities()[0] == tileScriptableObjects[i].tileID)
+                        {
+                            tileToPlace = tileScriptableObjects[i].tile;
+                            break;
+                        }
                     }
                 }
 
@@ -341,10 +307,27 @@ public class wfc : MonoBehaviour
         //no weights yet
         public void Collapse()
         {
-            int random = Random.Range(0, possibilities.Count);
-            string randomPossibility = possibilities[random];
-            possibilities = new List<string> { randomPossibility };
-            entropy = 0;
+            //Calculate total weight
+            float tileWeightsSum = 0.0f;
+            for (int i = 0; i < possibilities.Count; i++) {
+                tileWeightsSum += tileWeights[possibilities[i]];
+            }
+            //Pick a random number less than total sum of weights
+            float random = Random.Range(0f, tileWeightsSum);
+            //Go through all possibilities, subtracting their weight each time until its less than 0
+            string randomPossibility;
+            for (int i = 0; i < possibilities.Count; i++)
+            {
+                if (random <= tileWeights[possibilities[i]])
+                {
+                    randomPossibility = possibilities[i];
+                    possibilities = new List<string> { randomPossibility };
+                    entropy = 0;
+                    return;
+                }
+                random -= tileWeights[possibilities[i]];
+            }
+            Debug.Log("SOMETHING HAS GONE VERY, VERYYY WRONG!!!!!!!!!!!!");
         }
 
         //Direction is the direction it is being constrained FROM
@@ -360,22 +343,22 @@ public class wfc : MonoBehaviour
                     connectors.Add(tileRules[neighbourPossibilities[i]][direction-1]);
                 }
 
-                int oppositeDirection = 1;
-                if (direction == 1)
+                int oppositeDirection = NORTH;
+                if (direction == NORTH)
                 {
-                    oppositeDirection = 2;
+                    oppositeDirection = SOUTH;
                 }
-                else if (direction == 2)
+                else if (direction == SOUTH)
                 {
-                    oppositeDirection = 1;
+                    oppositeDirection = NORTH;
                 }
-                else if (direction == 3)
+                else if (direction == EAST)
                 {
-                    oppositeDirection = 4;
+                    oppositeDirection = WEST;
                 }
-                else if (direction == 4)
+                else if (direction == WEST)
                 {
-                    oppositeDirection = 3;
+                    oppositeDirection = EAST;
                 }
                 else
                 {
