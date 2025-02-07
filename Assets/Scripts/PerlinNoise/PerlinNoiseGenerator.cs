@@ -17,8 +17,8 @@ public class perlinNoiseMap : MonoBehaviour
     public GameObject TileGlass;
 
     //size of map
-    int mapWidth = 160;
-    int mapHeight = 90;
+    [SerializeField] int mapWidth = 160;
+    [SerializeField] int mapHeight = 90;
 
 
     //2D Lists to hold tiles and frequency
@@ -27,16 +27,16 @@ public class perlinNoiseMap : MonoBehaviour
 
     //var to magnify randomness/customization of perlin noise
     //any value between 4 and 20
-    float magnification = 14.0f;
+    [SerializeField] float magnification = 14.0f;
 
-    int xOffset = -10; //if increase/decrease, move right/left
-    int yOffset = -10; //if inc/dec, move up/down
+    [SerializeField] int xOffset = -10; //if increase/decrease, move right/left
+    [SerializeField] int yOffset = -10; //if inc/dec, move up/down
     // Start is called before the first frame update
     void Start()
     {
-        createTileset();
-        createTileGroups();
-        generateMap();
+        //createTileset();
+        //createTileGroups();
+        //generateMap();
 
     }
 
@@ -97,6 +97,18 @@ public class perlinNoiseMap : MonoBehaviour
         }
 
         return Mathf.FloorToInt(scaledPerlin);
+    }
+
+    //Modified getIdUsingPerlin to not mult/floor value, instead just return perlin float value (modded by Ashton G)
+    public float getFloatUsingPerlin(int x, int y)
+    {
+        //will generate a bunch of random numbers
+        float rawPerlin = Mathf.PerlinNoise((x - xOffset) / magnification, (y - yOffset) / magnification);
+
+        //will clamp numbers between 0 and 1, then multiplied by count(4) so that we can assign them to diff tiles
+        //float clamp_perlin = Mathf.Clamp(rawPerlin, 0, 1);
+
+        return rawPerlin;
     }
 
     void createTile(int tile_id, int x, int y)

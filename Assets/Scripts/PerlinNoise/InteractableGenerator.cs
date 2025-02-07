@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InteractableGenerator : MonoBehaviour
 {
+    [SerializeField] perlinNoiseMap perlinNoiseGen;
     [SerializeField] bool testing = true;
     public GameObject interactable;
     public Vector2 mapSize = new Vector2(100,100);
@@ -11,8 +12,9 @@ public class InteractableGenerator : MonoBehaviour
     [SerializeField] Vector2 offset = new Vector2(-50, -50);
     //queue structure tracking the 3 most recent spots
     [SerializeField] Vector2Int[] recentValues = { new Vector2Int(-10, -10), new Vector2Int(-10, -10), new Vector2Int(-10, -10) };
+    [SerializeField] float spawnCutoff = 0.75f;
     //min distance from recent values nessecary for a new interactable to be spawned
-    int recentRange = 3;
+    [SerializeField] int recentRange = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -23,12 +25,6 @@ public class InteractableGenerator : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void generateInteractables()
     {
         //skip very edges; we don't want interactables to spawn there
@@ -37,7 +33,7 @@ public class InteractableGenerator : MonoBehaviour
             for (int y = 1; y < mapSize.y - 1; y++)
             {
                 //if high enough value...
-                if(getValFromPerlinNoise(x,y) >= 0.99)
+                if(getValFromPerlinNoise(x,y) >= spawnCutoff)
                 {
                     float spotVal = getValFromPerlinNoise(x, y);
                     bool isValid = true;
@@ -93,9 +89,13 @@ public class InteractableGenerator : MonoBehaviour
         recentValues[recentValues.Length - 1] = pushedVal;
     }
 
+    //gets a perlin noise value
     public float getValFromPerlinNoise(int x, int y)
     {
+        float myVal = perlinNoiseGen.getFloatUsingPerlin(x, y);
+        Debug.Log(myVal);
+        return myVal;
         //temp code for testing; implement perlin reading later
-        return ((float)x + 1.5f * (float)y) % 2;
+        //return ((float)x + 1.5f * (float)y) % 2;
     }
 }
