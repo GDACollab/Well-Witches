@@ -14,6 +14,10 @@ public class tileScriptableObject : ScriptableObject
     [Tooltip("Float, high values means its more common")]
     public float weight;
 
+    [Space(10), Header("Has Hitbox?")]
+    [Tooltip("Will have a full box collision")]
+    public bool hasHitbox;
+
     [Space(10), Header("Edge definitions:")]
     [Tooltip("String, the edge on the left portion of the north edge")]
     public string edgeNorthLeft;

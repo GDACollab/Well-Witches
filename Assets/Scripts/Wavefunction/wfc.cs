@@ -17,7 +17,13 @@ public class wfc : MonoBehaviour
 {
     [SerializeField] Tilemap groundTilemap;
 
+    [SerializeField] Tilemap hitboxesTileMap;
+
     [SerializeField] private tileScriptableObject[] tileScriptableObjects;
+
+    [SerializeField] InteractableGenerator interactableGenerating;
+
+
 
     private static int sizeX = 75;
     private static int sizeY = 75;
@@ -26,6 +32,8 @@ public class wfc : MonoBehaviour
     private static int SOUTH = 2;
     private static int EAST = 3;
     private static int WEST = 4;
+
+    private bool hasAHitBox = false;
 
     private static Dictionary<string, List<string>> tileRules = new Dictionary<string, List<string>>();
 
@@ -106,6 +114,7 @@ public class wfc : MonoBehaviour
             //}
             yield return null;
         }
+        interactableGenerating.generateInteractables(); //Calls the other script (interactable spawning) to start
     }
 
     private IEnumerator testWFCFastButOnlyIfISaySo()
@@ -125,6 +134,8 @@ public class wfc : MonoBehaviour
             //}
             yield return null;
         }
+        interactableGenerating.generateInteractables(); //Calls the other script (interactable spawning) to start
+
     }
 
     private void PlaceTiles()
@@ -145,12 +156,17 @@ public class wfc : MonoBehaviour
                         if (tiles[x, y].GetPossibilities()[0] == tileScriptableObjects[i].tileID)
                         {
                             tileToPlace = tileScriptableObjects[i].tile;
+                            hasAHitBox = tileScriptableObjects[i].hasHitbox;
                             break;
                         }
                     }
                 }
+                if (hasAHitBox)
+                {
+                    hitboxesTileMap.SetTile(new Vector3Int(x, y, 0), tileToPlace);
 
-                if (tileToPlace != null)
+                }
+                else if (tileToPlace != null)
                 {
                     groundTilemap.SetTile(new Vector3Int(x, y, 0), tileToPlace);
                 }
