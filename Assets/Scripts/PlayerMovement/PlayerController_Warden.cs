@@ -1,46 +1,44 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class WardenMovement : MonoBehaviour
+public class PlayerController_Warden : MonoBehaviour
 {
-    public PlayerMovementData moveData; //Scriptable object that holds all our movement vars
+    [SerializeField] PlayerMovementData movementData;
+	Rigidbody2D rb;
+	LineRenderer ropeLR;
+    Vector2 moveDirection;
 
-    //Components
-    [Header("Refrences")]
-
-    public Rigidbody2D rb;
-    public SpringJoint2D joint;
-    private LineRenderer ropeLR;
-
-    [Tooltip("Place Gatherer here, or whatever you want warden to attatch to")]
-    [SerializeField]public GameObject gatherer;
-
+	[Header("References")]
+	[Tooltip("Place Gatherer here, or whatever you want warden to attatch to")]
+    [SerializeField] GameObject gatherer;
     [Tooltip("Place Gatherer's CircleCollider2D here")]
-    [SerializeField] public CircleCollider2D gathererRadiusCircle;
+    [SerializeField] CircleCollider2D gathererRadiusCircle;
 
-    [Header("Rope Controls")]
-
-    [Tooltip("Set the degree to suppress spring oscillation. In the range 0 to 1, the higher the value, the less movement.")]
-    [SerializeField][Range(0f, 1f)] public float ropeDampening;
-
+	[Header("Rope Controls")]
+	[SerializeField] SpringJoint2D joint;
+	[Tooltip("Set the degree to suppress spring oscillation. In the range 0 to 1, the higher the value, the less movement.")]
+    [SerializeField][Range(0f, 1f)] float ropeDampening;
     [Tooltip("Changes how 'stiff' the rope is, the higher the value, the more stiff")]
-    [SerializeField][Range(0.01f,10f)] public float ropeStiffness;
+    [SerializeField][Range(0.01f,10f)] float ropeStiffness;
 
-    //Rope Test Vars
+    //Rope Test Variables
     Gradient gradient;
     Gradient gradientStressed;
 
+	void OnValidate()
+	{
+		joint.frequency = ropeStiffness;
+		joint.dampingRatio = ropeDampening;
+	}
 
-    //Input
-    //TO-DO: Change to new input system
-    private Vector2 playerInput;
-
-    private void Awake()
+	void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         joint = GetComponent<SpringJoint2D>();
+        if (!joint) Debug.Log("ERROR");
     }
 
-    private void Start()
+    void Start()
     {
         joint.enableCollision = true;
         joint.distance = gathererRadiusCircle.radius;
@@ -62,41 +60,37 @@ public class WardenMovement : MonoBehaviour
         );
     }
 
-    private void OnValidate()
+    void Update()
     {
-        joint.frequency = ropeStiffness;
-        joint.dampingRatio = ropeDampening;
-    }
-
-    //Update is not framerate independant, so use it to grab inputs
-    private void Update()
-    {
-        playerInput = new Vector2(Input.GetAxisRaw("ArrowHorizontal"), Input.GetAxisRaw("ArrowVertical")).normalized;
-
-        //calcuate spring's anchor position
+        // Calcuate spring's anchor position
         joint.connectedAnchor = gatherer.transform.position;
 
-        //ROPE visualization test
+        // ROPE visualization test
         ropeLR.SetPosition(0,transform.position);
         ropeLR.SetPosition(1, gatherer.transform.position);
 
     }
 
-    //fixedUpdate is framerate independant, so do physics calculations here
-    private void FixedUpdate()
+	// Called by the Player Input component
+	void OnMove(InputValue inputValue)
+	{
+		moveDirection = inputValue.Get<Vector2>();
+	}
+
+	void FixedUpdate()
     {
         Move();
     }
 
-    private void Move()
+    void Move()
     {
-        //Calculate direction + desired velocity
-        Vector2 targetSpeed = playerInput * moveData.moveSpeed;
+        // Calculate direction & desired velocity
+        Vector2 targetSpeed = moveDirection * movementData.moveSpeed;
 
-        float accelRate = (Mathf.Abs(targetSpeed.x) > 0.01f && Mathf.Abs(targetSpeed.y) > 0.01f) ? moveData.accelAmount : moveData.decelAmount;
+        float accelRate = (Mathf.Abs(targetSpeed.x) > 0.01f && Mathf.Abs(targetSpeed.y) > 0.01f) ? movementData.accelAmount : movementData.decelAmount;
 
-        //Conserve Momentumn, if the velocity is faster than max speed (i.e from being launched) AND the target speed is in the same direction as velocity, don't slow down the player
-        if (moveData.conserveMomentum && rb.velocity.magnitude > targetSpeed.magnitude && Vector2.Dot(rb.velocity.normalized, targetSpeed.normalized) == 1)
+        // Conserve momentum, if the velocity is faster than max speed (i.e from being launched) AND the target speed is in the same direction as velocity, don't slow down the player
+        if (movementData.conserveMomentum && rb.velocity.magnitude > targetSpeed.magnitude && Vector2.Dot(rb.velocity.normalized, targetSpeed.normalized) == 1)
         {
             accelRate = 0;
         }

@@ -25,12 +25,12 @@ public class PlayerController_Gatherer : MonoBehaviour
 
     void Move()
     {
-        //Calculate direction + desired velocity
+        // Calculate direction & desired velocity
         Vector2 targetSpeed = moveDirection * movementData.moveSpeed;
 
         float accelRate = (Mathf.Abs(targetSpeed.x) > 0.01f && Mathf.Abs(targetSpeed.y) > 0.01f) ? movementData.accelAmount : movementData.decelAmount;
 
-        //Conserve Momentumn
+        // Conserve momentumn
         if (movementData.conserveMomentum && rb.velocity.magnitude > targetSpeed.magnitude && Vector2.Dot(rb.velocity.normalized,targetSpeed.normalized) == 1)
         {
             accelRate = 0;
@@ -46,7 +46,7 @@ public class PlayerController_Gatherer : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            WardenMovement warden = collision.gameObject.GetComponent<WardenMovement>();
+            PlayerController_Warden warden = collision.gameObject.GetComponent<PlayerController_Warden>();
             warden.disableRope();
         }
     }
@@ -54,7 +54,7 @@ public class PlayerController_Gatherer : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            WardenMovement warden = collision.gameObject.GetComponent<WardenMovement>();
+            PlayerController_Warden warden = collision.gameObject.GetComponent<PlayerController_Warden>();
             warden.enableRope();
         }
     }
