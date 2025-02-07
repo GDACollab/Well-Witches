@@ -122,7 +122,7 @@ public class EnemySpawner : MonoBehaviour
 		SpawnCreature(creature, new Vector3(x, y, 0));	// Place new enemy
 	}
 
-	void SpawnSingleFormation(float radius)
+	public void SpawnSingleFormation(float radius)
 	{
 		float dir = UnityEngine.Random.Range(0f, 2 * math.PI);		// Generate direction from 0 to 360 degrees
 
