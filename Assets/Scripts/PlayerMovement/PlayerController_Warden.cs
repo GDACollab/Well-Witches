@@ -30,7 +30,6 @@ public class PlayerController_Warden : PlayerController
     {
         base.Awake();
         joint = GetComponent<SpringJoint2D>();
-        if (!joint) Debug.Log("ERROR");
     }
 
     void Start()
