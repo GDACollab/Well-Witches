@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class InteractableGenerator : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class InteractableGenerator : MonoBehaviour
     [SerializeField] float spawnCutoff = 0.75f;
     //min distance from recent values nessecary for a new interactable to be spawned
     [SerializeField] int recentRange = 3;
+    [SerializeField] Tilemap tilemap;
 
     // Start is called before the first frame update
     void Start()
@@ -71,6 +73,14 @@ public class InteractableGenerator : MonoBehaviour
                     {
                         continue;
                     }
+
+                    Vector3 worldPosition = new Vector3(x, y, 0);
+                    Vector3Int gridPosition = tilemap.WorldToCell(worldPosition);
+
+                    TileBase foundTile = tilemap.GetTile(gridPosition);
+
+                    //if (foundTile != null && foundTile.)
+
                     //Add new spot to recent Values
                     pushToRecentValues(new Vector2Int(x, y));
                     Instantiate(interactable, new Vector3(x + offset.x, y + offset.y, -1), Quaternion.identity, transform); // Z layer of interactables is -1
@@ -93,7 +103,7 @@ public class InteractableGenerator : MonoBehaviour
     public float getValFromPerlinNoise(int x, int y)
     {
         float myVal = perlinNoiseGen.getFloatUsingPerlin(x, y);
-        Debug.Log(myVal);
+        //Debug.Log(myVal);
         return myVal;
         //temp code for testing; implement perlin reading later
         //return ((float)x + 1.5f * (float)y) % 2;
