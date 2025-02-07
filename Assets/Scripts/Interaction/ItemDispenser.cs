@@ -25,6 +25,7 @@ public class ItemDispenser : MonoBehaviour, IInteractable
         Item itemToDispense = ChooseItem();
 
         Debug.Log($"Dispensing item: {itemToDispense}");
+
     }
 
     Item ChooseItem()
