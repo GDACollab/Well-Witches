@@ -5,7 +5,7 @@ public class PlayerController_Gatherer : MonoBehaviour
 {
     [SerializeField] PlayerMovementData movementData;
     Rigidbody2D rb;
-    Vector2 moveDir;
+    Vector2 moveDirection;
 
     private void Awake()
     {
@@ -15,7 +15,7 @@ public class PlayerController_Gatherer : MonoBehaviour
     // Called by the Player Input component
 	void OnMove(InputValue inputValue)
 	{
-		moveDir = inputValue.Get<Vector2>();
+		moveDirection = inputValue.Get<Vector2>();
 	}
 
 	void FixedUpdate()
@@ -26,7 +26,7 @@ public class PlayerController_Gatherer : MonoBehaviour
     void Move()
     {
         //Calculate direction + desired velocity
-        Vector2 targetSpeed = moveDir * movementData.moveSpeed;
+        Vector2 targetSpeed = moveDirection * movementData.moveSpeed;
 
         float accelRate = (Mathf.Abs(targetSpeed.x) > 0.01f && Mathf.Abs(targetSpeed.y) > 0.01f) ? movementData.accelAmount : movementData.decelAmount;
 
@@ -35,11 +35,11 @@ public class PlayerController_Gatherer : MonoBehaviour
         {
             accelRate = 0;
         }
-        Vector2 speedDif = targetSpeed - rb.velocity;
+        Vector2 speedDiff = targetSpeed - rb.velocity;
 
-        Vector2 movement = speedDif * accelRate;
+        Vector2 movement = speedDiff * accelRate;
 
-        rb.AddForce(movement,ForceMode2D.Force);
+        rb.AddForce(movement, ForceMode2D.Force);
     }
 
     void OnTriggerEnter2D(Collider2D collision)

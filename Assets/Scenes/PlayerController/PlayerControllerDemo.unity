@@ -232,9 +232,9 @@ Transform:
   m_GameObject: {fileID: 283719159}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: 0.725, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1134319822}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -737,9 +737,9 @@ Transform:
   m_GameObject: {fileID: 863550141}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.45, y: -0.4, z: 0}
-  m_LocalScale: {x: 0.33, y: 0.33, z: 0.33}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: 0.725, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1447894215}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -784,12 +784,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7e0b31240c2141e4185b9c05a220445e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c5af2ded20cc74c4f93408341d12c2ce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 20.48, y: 14.48}
+  m_Size: {x: 3.83, y: 4.86}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -980,8 +980,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1134319822}
   - component: {fileID: 1134319821}
-  - component: {fileID: 1134319824}
   - component: {fileID: 1134319823}
+  - component: {fileID: 1134319824}
   - component: {fileID: 1134319825}
   - component: {fileID: 1134319820}
   m_Layer: 0
@@ -1079,8 +1079,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.16780794}
-  m_Size: {x: 0.5241486, y: 0.93908703}
+  m_Offset: {x: 0, y: 0.55}
+  m_Size: {x: 0.5, y: 1}
   m_Direction: 0
 --- !u!58 &1134319824
 CircleCollider2D:
@@ -1378,8 +1378,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1447894215}
   - component: {fileID: 1447894214}
-  - component: {fileID: 1447894218}
   - component: {fileID: 1447894219}
+  - component: {fileID: 1447894218}
   - component: {fileID: 1447894220}
   - component: {fileID: 1447894221}
   m_Layer: 0
@@ -1425,7 +1425,7 @@ Transform:
   m_GameObject: {fileID: 1447894213}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.94, y: 0.03, z: 0}
+  m_LocalPosition: {x: 1.94, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1485,8 +1485,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.06979695}
-  m_Size: {x: 0.4644776, y: 0.8604061}
+  m_Offset: {x: 0.05, y: 0.55}
+  m_Size: {x: 0.5, y: 1}
   m_Direction: 0
 --- !u!114 &1447894220
 MonoBehaviour:
