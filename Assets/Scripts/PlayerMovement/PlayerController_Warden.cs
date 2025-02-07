@@ -1,14 +1,18 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController_Warden : PlayerController
 {
+    [Header("Input")]
+    PlayerInput playerInput;
+
     [Header("Shooting")]
     [SerializeField][Tooltip("(In seconds)")] float shootCooldown;
     [SerializeField] float bulletSpeed;
     [SerializeField][Tooltip("(In seconds)")] float bulletLifespan;
     [SerializeField] Transform crosshair;
 	[SerializeField] GameObject bulletPrefab;
-    float shootCooldownCounter;
+	float shootCooldownCounter;
 
 	[Header("Gatherer")]
 	[Tooltip("Place Gatherer here, or whatever you want warden to attatch to")]
@@ -37,6 +41,7 @@ public class PlayerController_Warden : PlayerController
 	void Awake()
     {
         base.Awake();
+        playerInput = GetComponent<PlayerInput>();
         joint = GetComponent<SpringJoint2D>();
     }
 
@@ -71,6 +76,8 @@ public class PlayerController_Warden : PlayerController
         ropeLR.SetPosition(0,transform.position);
         ropeLR.SetPosition(1, gatherer.transform.position);
 
+        if (playerInput.actions["Shoot"].IsPressed()) Shoot();
+
         DecreaseCooldownCounters();
     }
 
@@ -79,8 +86,7 @@ public class PlayerController_Warden : PlayerController
         if (shootCooldownCounter > 0) shootCooldownCounter -= Time.deltaTime;
 	}
 
-	// Called by the Player Input component
-	void OnShoot()
+	void Shoot()
     {
         if (shootCooldownCounter > 0) return;
 
