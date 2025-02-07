@@ -76,13 +76,13 @@ public class TankEnemy : BaseEnemyClass
         Debug.Log("Shield Bash");
     }
 
-    public void spawnPool()
+    public void SpawnPool()
     {
         if (timeTillPool <= 0)
         {
 
             // spawns acid pool
-            GameObject acidPool = ProjectilePooling.SharedInstance.GetProjectileObject();
+            GameObject acidPool = AcidTrailPooling.SharedInstance.GetProjectileObject();
             if (acidPool)
             {
                 acidPool.transform.position = new Vector2(acidOffsetX, acidOffsetY) + rb2d.position;
@@ -99,29 +99,31 @@ public class TankEnemy : BaseEnemyClass
         }
     }
 
-    public void pursue()
+    public void Pursue()
     {
         // set the target to the closest target
         TargetClosestPlayer();
-        // direction is the normalized vector between the enemy and target
-        Vector2 direction = (new Vector2(currentTarget.transform.position.x, currentTarget.transform.position.y) - rb2d.position).normalized;
-        // only move when far form the target
-        if (Vector2.Distance(rb2d.position, currentTarget.transform.position) > 0.5f)
-        {
-            rb2d.MovePosition(rb2d.position + direction * moveSpeed * Time.deltaTime);
-        }
-        // For the code below, assume the enemy sprite is facing left, the code is dependent on the direction of the enemy its facing
-        // If direction.x (as calculated above) is positive, that means the enemy is on the left side of the player
-        if (direction.x > 0)
-        {
-            // We dont make changes to the sprite since its already facing the player
-            transform.localScale = new Vector3(1, 1, 1);
-            // If direction.x is negative (on the left of the player)
-        }
-        else if (direction.x < 0)
-        {
-            // We flip the enemy sprite so it faces the player
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
+        Vector3 direction = currentTarget.position - transform.position;
+        rb2d.velocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
+        //// direction is the normalized vector between the enemy and target
+        //Vector2 direction = (new Vector2(currentTarget.transform.position.x, currentTarget.transform.position.y) - rb2d.position).normalized;
+        //// only move when far form the target
+        //if (Vector2.Distance(rb2d.position, currentTarget.transform.position) > 0.5f)
+        //{
+        //    rb2d.MovePosition(rb2d.position + direction * moveSpeed * Time.deltaTime);
+        //}
+        //// For the code below, assume the enemy sprite is facing left, the code is dependent on the direction of the enemy its facing
+        //// If direction.x (as calculated above) is positive, that means the enemy is on the left side of the player
+        //if (direction.x > 0)
+        //{
+        //    // We dont make changes to the sprite since its already facing the player
+        //    transform.localScale = new Vector3(1, 1, 1);
+        //    // If direction.x is negative (on the left of the player)
+        //}
+        //else if (direction.x < 0)
+        //{
+        //    // We flip the enemy sprite so it faces the player
+        //    transform.localScale = new Vector3(-1, 1, 1);
+        //}
     }
 }

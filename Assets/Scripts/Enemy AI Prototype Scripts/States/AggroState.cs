@@ -67,8 +67,8 @@ public class AggroState : State
         }
         else if (tankEnemy != null)
         {
-            tankEnemy.pursue();
-            tankEnemy.spawnPool();
+            tankEnemy.Pursue();
+            tankEnemy.SpawnPool();
         }
     }
 

@@ -17,7 +17,8 @@ GameObject:
   - component: {fileID: -8795496448747402198}
   - component: {fileID: 1617731613382952628}
   - component: {fileID: -7702012812884302270}
-  m_Layer: 0
+  - component: {fileID: 8773697611418252469}
+  m_Layer: 6
   m_Name: RangedEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -123,7 +124,9 @@ MonoBehaviour:
   distanceToPlayer2: 0
   distanceToTarget: 0
   timeToFire: 0
-  players: []
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
   currentTarget: {fileID: 0}
 --- !u!50 &6673968106200130034
 Rigidbody2D:
@@ -151,7 +154,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &-2319001648079001521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,3 +217,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe660fd068c3264fa20861b37ee39d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &8773697611418252469
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8877866808826064330}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.2609148, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 20.48, y: 20.48}
+    newSize: {x: 20.48, y: 20.48}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 8.831539, y: 20.48}
+  m_EdgeRadius: 0

@@ -35,7 +35,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -15, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -107,7 +107,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fadd7c21a2e8674498ebfaefefebf56b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1e39a1f6e0457fb4fbd57d71a8133908, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -194,10 +194,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   damage: 13
-  moveSpeed: 6
-  range: 2.1
+  moveSpeed: 1
+  range: 1
   AttackRate: 3
-  spawnRate: 5.3
+  spawnRate: 1
   acidSize: 1.24
   acidLifetime: 2.77
   acidOffsetX: 0

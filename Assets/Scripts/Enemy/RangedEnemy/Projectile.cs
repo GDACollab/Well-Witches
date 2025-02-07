@@ -44,21 +44,27 @@ public class Projectile : MonoBehaviour
 
     // on hitting a Tag that isn't enemy
     // instatiates(from pool) the AOE prefab and deactivates the projectile
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.CompareTag("Enemy"))
+        if (!collision.gameObject.CompareTag("Enemy"))
         {
             AOEPrefab.SetActive(true);
             AOEPrefab.transform.localScale = Vector3.one * _AOESize;
             rb.velocity = Vector3.zero;
-            if (collision.CompareTag("Player"))
+            if (collision.gameObject.CompareTag("Player"))
             {
                 // TODO: DEAL DAMAGE TO PLAYER
             }
             projectilePrefab.SetActive(false);
             StartCoroutine(DespawnAOE());
-        }
+        } 
     }
+
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+        
+    //}
 
     // used to expire the projectile if it doesn't hit anything
     IEnumerator DespawnProjectile()
