@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,3 +30,4 @@ public class tileScriptableObjectEditor : Editor
         GUI.DrawTexture(GUILayoutUtility.GetLastRect(), sprite);
     }
 }
+#endif

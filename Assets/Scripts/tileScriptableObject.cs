@@ -57,7 +57,7 @@ public class tileScriptableObject : ScriptableObject
     private void OnValidate()
     {
         tileID = tile.name;
-        tileImage = ((Tile)tile).sprite;
+        
     }
     
 }

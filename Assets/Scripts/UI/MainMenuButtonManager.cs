@@ -14,6 +14,8 @@ public class MainMenuButtonManager : MonoBehaviour
     public void OnMainMenuQuitButtonPress()
     {
         Application.Quit(); // quit game build
+        #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;    // quit game in editor
+        #endif
     }
 }
