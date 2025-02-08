@@ -23,6 +23,7 @@ public class MeleeEnemy : BaseEnemyClass
     public Transform currentTarget;
 
     private Rigidbody2D rb2d;
+    private CircleCollider2D circol;
     
     private bool canAttack = true;
 
@@ -30,6 +31,7 @@ public class MeleeEnemy : BaseEnemyClass
     {
         rb2d = GetComponent<Rigidbody2D>();
         players = GameObject.FindGameObjectsWithTag("Player");
+        circol = GetComponent<CircleCollider2D>();
     }
 
 
@@ -59,6 +61,12 @@ public class MeleeEnemy : BaseEnemyClass
     {
         Debug.Log("Attacking");
         if (canAttack) {
+            if (circol.IsTouching(players[0].GetComponent<CapsuleCollider2D>())) {
+                Debug.Log(players[0].name + " has been hit");
+            }
+            if (circol.IsTouching(players[1].GetComponent<CapsuleCollider2D>())) {
+                Debug.Log(players[1].name + " has been hit");
+            }
             rb2d.AddForce((currentTarget.position - transform.position).normalized * dashDistance, ForceMode2D.Impulse);
         } else {
             rb2d.velocity = Vector2.zero;
