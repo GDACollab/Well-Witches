@@ -11,6 +11,8 @@ public class MeleeEnemy : BaseEnemyClass
     [Header("Attack")]
     [Tooltip("The lower the value the faster the enemy fires projectiles")]
     public float AttackRate;
+    [Tooltip("The higher the value the further the enemy dashes and the faster the dash is.")]
+    public float dashDistance;
 
     [Header("DEBUG")]
     public float distanceToPlayer1;
@@ -21,11 +23,15 @@ public class MeleeEnemy : BaseEnemyClass
     public Transform currentTarget;
 
     private Rigidbody2D rb2d;
+    private CircleCollider2D circol;
+    
+    private bool canAttack = true;
 
     private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         players = GameObject.FindGameObjectsWithTag("Player");
+        circol = GetComponent<CircleCollider2D>();
     }
 
 
@@ -54,5 +60,23 @@ public class MeleeEnemy : BaseEnemyClass
     public void Attack()
     {
         Debug.Log("Attacking");
+        if (canAttack) {
+            if (circol.IsTouching(players[0].GetComponent<CapsuleCollider2D>())) {
+                Debug.Log(players[0].name + " has been hit");
+            }
+            if (circol.IsTouching(players[1].GetComponent<CapsuleCollider2D>())) {
+                Debug.Log(players[1].name + " has been hit");
+            }
+            rb2d.AddForce((currentTarget.position - transform.position).normalized * dashDistance, ForceMode2D.Impulse);
+        } else {
+            rb2d.velocity = Vector2.zero;
+        }
+        canAttack = !canAttack;
+    }
+
+    void OnTriggerEnter2D(Collider2D collider) {
+        if (collider.CompareTag("Player") && !canAttack && !collider.isTrigger) {
+            Debug.Log(collider.name + " has been hit");
+        }
     }
 }
