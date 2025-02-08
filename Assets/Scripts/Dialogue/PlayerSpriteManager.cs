@@ -93,6 +93,7 @@ public class PlayerSpriteManager : MonoBehaviour
         wardenSpriteHolder.GetComponent<RectTransform>().anchoredPosition = activePosition;
         gathererSpriteHolder.GetComponent<RectTransform>().anchoredPosition = inactivePosition;
         wardenSpriteHolder.GetComponent<RectTransform>().SetAsLastSibling();
+        gathererSpriteHolder.GetComponent <RectTransform>().SetAsFirstSibling();
     }
 
     public void SwitchToGatherer()
@@ -100,5 +101,6 @@ public class PlayerSpriteManager : MonoBehaviour
         gathererSpriteHolder.GetComponent<RectTransform>().anchoredPosition = activePosition;
         wardenSpriteHolder.GetComponent<RectTransform>().anchoredPosition = inactivePosition;
         gathererSpriteHolder.GetComponent<RectTransform>().SetAsLastSibling();
+        wardenSpriteHolder.GetComponent<RectTransform>().SetAsFirstSibling();
     }
 }
