@@ -23,8 +23,8 @@ public class wfc : MonoBehaviour
 
     [SerializeField] InteractableGenerator interactableGenerating;
 
-    private static int sizeX = 75;
-    private static int sizeY = 75;
+    private static int sizeX = 150;
+    private static int sizeY = 150;
 
     private static int NORTH = 1;
     private static int SOUTH = 2;
@@ -36,6 +36,8 @@ public class wfc : MonoBehaviour
     private static Dictionary<ushort, float> tileWeights = new Dictionary<ushort, float>();
 
     private Tile[,] tiles = new Tile[sizeX, sizeY];
+
+    private float timeStart;
 
     private void Start()
     {
@@ -116,7 +118,7 @@ public class wfc : MonoBehaviour
     private IEnumerator testWFCFastButOnlyIfISaySo()
     {
         bool done = false;
-        float timeStart = 0f;
+        timeStart = 0f;
 
         while (done == false)
         {
@@ -165,29 +167,6 @@ public class wfc : MonoBehaviour
         }
     }
 
-    private int GetEntropy(int x, int y)
-    {
-        return tiles[x, y].GetEntropy();
-    }
-
-    private int GetLowestEntropy()
-    {
-        int lowestEntropy = new List<ushort>(tileRules.Keys).Count; //number of types of tiles
-        int tempEntropy;
-        for (int x = 0; x < sizeX; x++)
-        {
-            for (int y = 0; y < sizeY; y++)
-            {
-                tempEntropy = tiles[x, y].GetEntropy();
-                if (tempEntropy > 0 && tempEntropy < lowestEntropy)
-                {
-                    lowestEntropy = tempEntropy;
-                }
-            }
-        }
-        return lowestEntropy;
-    }
-
     private List<Tile> GetTilesLowestEntropy()
     {
         int lowestEntropy = new List<ushort>(tileRules.Keys).Count; //number of types of tiles
@@ -220,7 +199,7 @@ public class wfc : MonoBehaviour
     public bool WaveFunctionCollapse()
     {
         List<Tile> tilesLowestEntropy = GetTilesLowestEntropy();
-
+        Debug.Log("GetTilesLowestEntropy: " + ((Time.realtimeSinceStartup - timeStart) * 1000) + " ms");
         if (tilesLowestEntropy.Count == 0)
         {
             return true;
@@ -232,6 +211,7 @@ public class wfc : MonoBehaviour
 
         Stack<Tile> tileStack = new Stack<Tile>();
         tileStack.Push(tileToCollapse);
+        Debug.Log("Collapse Random Tile: " + ((Time.realtimeSinceStartup - timeStart) * 1000) + " ms");
 
         Tile tempTile;
         bool reduced = false;
@@ -256,6 +236,7 @@ public class wfc : MonoBehaviour
                 }
             }
         }
+        Debug.Log("Constrain Stuff: " + ((Time.realtimeSinceStartup - timeStart) * 1000) + " ms");
         return false;
     }
 
