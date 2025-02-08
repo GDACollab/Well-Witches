@@ -12,9 +12,10 @@ public class EnemySpawner : MonoBehaviour
 	public GameObject goofyBoy;			// Evildoer that will be placed (temp)
 	public List<GameObject> formationPrefabs;
 
-	public Transform referencePoint;	// Reference point for creatures to be spawned around
+	public Transform referencePoint;    // Reference point for creatures to be spawned around
 
-
+	private float timer = 0.0f;
+	public float spawnTime = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,15 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
 	void Update()
 	{
+		timer = +Time.deltaTime;
+
+		if(timer > 10)
+		{
+			SpawnSingle(goofyBoy, 3);
+
+        }
+
+		/* TEST FUNCTIONS FOR SPAWNING IN ENEMIES
 		if (Input.GetKeyDown("1"))
 		{
 			SpawnSingle(goofyBoy, 3);
@@ -43,6 +53,7 @@ public class EnemySpawner : MonoBehaviour
 		{
 			SpawnSingleFormation(4f);
 		}
+		*/
 	}
 
 	// Use for placing enemies
