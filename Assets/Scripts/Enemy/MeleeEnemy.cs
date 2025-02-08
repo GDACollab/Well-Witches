@@ -11,6 +11,8 @@ public class MeleeEnemy : BaseEnemyClass
     [Header("Attack")]
     [Tooltip("The lower the value the faster the enemy fires projectiles")]
     public float AttackRate;
+    [Tooltip("The higher the value the further the enemy dashes and the faster the dash is.")]
+    public float dashDistance;
 
     [Header("DEBUG")]
     public float distanceToPlayer1;
@@ -21,6 +23,8 @@ public class MeleeEnemy : BaseEnemyClass
     public Transform currentTarget;
 
     private Rigidbody2D rb2d;
+    
+    private bool canAttack = true;
 
     private void Start()
     {
@@ -54,5 +58,17 @@ public class MeleeEnemy : BaseEnemyClass
     public void Attack()
     {
         Debug.Log("Attacking");
+        if (canAttack) {
+            rb2d.AddForce((currentTarget.position - transform.position).normalized * dashDistance, ForceMode2D.Impulse);
+        } else {
+            rb2d.velocity = Vector2.zero;
+        }
+        canAttack = !canAttack;
+    }
+
+    void OnTriggerEnter2D(Collider2D collider) {
+        if (collider.CompareTag("Player") && !canAttack && !collider.isTrigger) {
+            Debug.Log(collider.name + " has been hit");
+        }
     }
 }
