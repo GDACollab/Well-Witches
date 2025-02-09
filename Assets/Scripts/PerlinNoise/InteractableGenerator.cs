@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class InteractableGenerator : MonoBehaviour
 {
+    [SerializeField] perlinNoiseMap perlinNoiseGen;
     [SerializeField] bool testing = true;
     public GameObject interactable;
     public Vector2 mapSize = new Vector2(100,100);
@@ -11,22 +13,29 @@ public class InteractableGenerator : MonoBehaviour
     [SerializeField] Vector2 offset = new Vector2(-50, -50);
     //queue structure tracking the 3 most recent spots
     [SerializeField] Vector2Int[] recentValues = { new Vector2Int(-10, -10), new Vector2Int(-10, -10), new Vector2Int(-10, -10) };
+    [SerializeField] float spawnCutoff = 0.75f;
     //min distance from recent values nessecary for a new interactable to be spawned
-    int recentRange = 3;
+    [SerializeField] int recentRange = 3;
+    [SerializeField] Tilemap tilemap;
+    //List containing all tile scriptable objects
+    [SerializeField] List<tileScriptableObject> tileScriptableObjects;
+    //Dictionary to map tile bases to tilescript objects
+    private Dictionary<TileBase, tileScriptableObject> dataFromFiles;
 
     // Start is called before the first frame update
     void Start()
     {
+        dataFromFiles = new Dictionary<TileBase, tileScriptableObject>();
+
+        foreach(var tileData in tileScriptableObjects)
+        {
+            dataFromFiles.Add(tileData.tile, tileData);
+        }
+
         if (testing)
         {
             generateInteractables();
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void generateInteractables()
@@ -37,7 +46,7 @@ public class InteractableGenerator : MonoBehaviour
             for (int y = 1; y < mapSize.y - 1; y++)
             {
                 //if high enough value...
-                if(getValFromPerlinNoise(x,y) >= 0.99)
+                if(getValFromPerlinNoise(x,y) >= spawnCutoff)
                 {
                     float spotVal = getValFromPerlinNoise(x, y);
                     bool isValid = true;
@@ -75,9 +84,19 @@ public class InteractableGenerator : MonoBehaviour
                     {
                         continue;
                     }
-                    //Add new spot to recent Values
-                    pushToRecentValues(new Vector2Int(x, y));
-                    Instantiate(interactable, new Vector3(x + offset.x, y + offset.y, 0), Quaternion.identity, transform);
+
+                    Vector3 worldPosition = new Vector3(x, y, 0);
+                    Vector3Int gridPosition = tilemap.WorldToCell(worldPosition);
+
+                    TileBase foundTile = tilemap.GetTile(gridPosition);
+                    
+                    if (foundTile != null && dataFromFiles[foundTile].canPlaceBush)
+                    {
+                        //Add new spot to recent Values
+                        pushToRecentValues(new Vector2Int(x, y));
+                        Instantiate(interactable, new Vector3(x + offset.x, y + offset.y, -1), Quaternion.identity, transform); // Z layer of interactables is -1
+                    }
+
                 }
             }
         }
@@ -93,9 +112,13 @@ public class InteractableGenerator : MonoBehaviour
         recentValues[recentValues.Length - 1] = pushedVal;
     }
 
+    //gets a perlin noise value
     public float getValFromPerlinNoise(int x, int y)
     {
+        float myVal = perlinNoiseGen.getFloatUsingPerlin(x, y);
+        //Debug.Log(myVal);
+        return myVal;
         //temp code for testing; implement perlin reading later
-        return ((float)x + 1.5f * (float)y) % 2;
+        //return ((float)x + 1.5f * (float)y) % 2;
     }
 }
