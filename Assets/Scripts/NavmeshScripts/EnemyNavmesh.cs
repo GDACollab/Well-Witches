@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemyNavmesh : MonoBehaviour
 {
-    [SerializeField] private Transform target;
+    public Transform target;
 
     private NavMeshAgent agent;
 
