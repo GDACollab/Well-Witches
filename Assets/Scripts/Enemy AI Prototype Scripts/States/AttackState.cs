@@ -63,6 +63,7 @@ public class AttackState : State
         {
             if (Time.time >= lastAttackTime + tankEnemy.AttackRate && !isAttacking)
             {
+                tankEnemy.SpawnPool();
                 tankEnemy.Attack();
                 lastAttackTime = Time.time;
             }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class IdleState : State
 {
     private StateMachine stateMachine;
-    public IdleState(GameObject owner) : base(owner) {}
+    public IdleState(GameObject owner) : base(owner) { }
     public void Initialize(StateMachine stateMachine, GameObject owner)
     {
         this.stateMachine = stateMachine;
@@ -31,7 +31,7 @@ public class IdleState : State
     {
         return new List<Transition>
         {
-            new IdleToPatrolMouseClickTransition(stateMachine, owner)
+            //new IdleToPatrolMouseClickTransition(stateMachine, owner)
         };
     }
 }

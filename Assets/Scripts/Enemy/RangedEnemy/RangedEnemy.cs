@@ -25,7 +25,7 @@ public class RangedEnemy : BaseEnemyClass
     [Tooltip("Time in seconds before the projectile explodes")]
     public float projectileLifetime;
     public float projectileDamage;
-
+     
     [Header("AOE")]
     [Tooltip("Size of the AOE when projectile lands")]
     public float AOESize;
@@ -55,7 +55,7 @@ public class RangedEnemy : BaseEnemyClass
 
     private void Update()
     {
-
+        
     }
 
     // calculates and set target to the closest player to the enemy
@@ -93,12 +93,11 @@ public class RangedEnemy : BaseEnemyClass
             {
                 rb2d.velocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
             }
-        }
-        else
+        } else
         {
             rb2d.velocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
         }
-
+        
     }
 
     // fires projectiles in a cone shape depending on the spread and projectile count
@@ -117,8 +116,8 @@ public class RangedEnemy : BaseEnemyClass
                 projectile.transform.position = transform.position;
                 projectile.transform.localScale = Vector3.one * projectileSize;
                 projectile.SetActive(true);
-                //projectile.GetComponent<Projectile>().
-                    //InitializeProjectile(currentTarget.transform.position, offset, projectileSpeed, projectileLifetime, projectileDamage, AOESize, AOELifetime, AOEDamage);
+                projectile.GetComponent<Projectile>().
+                    InitializeProjectile(currentTarget.transform.position, offset, projectileSpeed, projectileLifetime, projectileDamage, AOESize, AOELifetime, AOEDamage);
             }
         }
 
