@@ -33,11 +33,12 @@ public class PlayerController : MonoBehaviour
 
 		float accelRate = (Mathf.Abs(targetSpeed.x) > 0.01f && Mathf.Abs(targetSpeed.y) > 0.01f) ? movementData.accelForce : movementData.decelForce;
 
-		// Conserve momentumn
-		if (movementData.conserveMomentum && rb.velocity.magnitude > targetSpeed.magnitude && Vector2.Dot(rb.velocity.normalized, targetSpeed.normalized) == 1)
+		// Conserve momentum
+		if (movementData.conserveMomentum && rb.velocity.magnitude > targetSpeed.magnitude && Vector2.Dot(rb.velocity.normalized, targetSpeed.normalized) >= 0.5) 
 		{
 			accelRate = 0;
-		}
+            Debug.Log(Mathf.DeltaAngle(Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg, Mathf.Atan2(targetSpeed.y, targetSpeed.x) * Mathf.Rad2Deg).ToString());
+        }
 		Vector2 speedDiff = targetSpeed - rb.velocity;
 
 		Vector2 movement = speedDiff * accelRate;
