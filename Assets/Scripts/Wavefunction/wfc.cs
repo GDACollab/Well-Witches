@@ -23,23 +23,21 @@ public class wfc : MonoBehaviour
 
     [SerializeField] InteractableGenerator interactableGenerating;
 
-
-
-    private static int sizeX = 75;
-    private static int sizeY = 75;
+    private static int sizeX = 150;
+    private static int sizeY = 150;
 
     private static int NORTH = 1;
     private static int SOUTH = 2;
     private static int EAST = 3;
     private static int WEST = 4;
 
-    private bool hasAHitBox = false;
+    private static Dictionary<ushort, List<string>> tileRules = new Dictionary<ushort, List<string>>();
 
-    private static Dictionary<string, List<string>> tileRules = new Dictionary<string, List<string>>();
-
-    private static Dictionary<string, float> tileWeights = new Dictionary<string, float>();
+    private static Dictionary<ushort, float> tileWeights = new Dictionary<ushort, float>();
 
     private Tile[,] tiles = new Tile[sizeX, sizeY];
+
+    private float timeStart;
 
     private void Start()
     {
@@ -47,8 +45,8 @@ public class wfc : MonoBehaviour
         for (int i = 0; i < tileScriptableObjects.Length; i++)
         {
             tileScriptableObject temp = tileScriptableObjects[i];
-            tileRules.Add(temp.tileID, new List<string> { temp.edgeNorthLeft + "_" + temp.edgeNorthRight, temp.edgeSouthLeft + "_" + temp.edgeSouthRight, temp.edgeEastUp + "_" + temp.edgeEastDown, temp.edgeWestUp + "_" + temp.edgeWestDown });
-            tileWeights.Add(temp.tileID, temp.weight);
+            tileRules.Add((ushort)i, new List<string> { temp.edgeNorthLeft + "_" + temp.edgeNorthRight, temp.edgeSouthLeft + "_" + temp.edgeSouthRight, temp.edgeEastUp + "_" + temp.edgeEastDown, temp.edgeWestUp + "_" + temp.edgeWestDown });
+            tileWeights.Add((ushort)i, temp.weight);
         }
 
         //Initialize tile array
@@ -109,8 +107,8 @@ public class wfc : MonoBehaviour
         {
             //if (Input.GetKey("e"))                 Uncomment these lines to press e to spawn
             //{
-                done = WaveFunctionCollapse();
-                PlaceTiles();
+            done = WaveFunctionCollapse();
+            PlaceTiles();
             //}
             yield return null;
         }
@@ -120,93 +118,58 @@ public class wfc : MonoBehaviour
     private IEnumerator testWFCFastButOnlyIfISaySo()
     {
         bool done = false;
+        timeStart = 0f;
 
         while (done == false)
         {
-            //if (Input.GetKey("e"))
-            //{
-                done = WaveFunctionCollapse();
+            yield return null;
+            if (Input.GetKey("e"))
+            {
+                timeStart = Time.realtimeSinceStartup;
                 while (done == false)
                 {
                     done = WaveFunctionCollapse();
                 }
                 PlaceTiles();
-            //}
-            yield return null;
+            }
         }
+
+        Debug.Log("Time taken to wfc: " + ((Time.realtimeSinceStartup - timeStart) * 1000) + " ms");
+
         interactableGenerating.generateInteractables(); //Calls the other script (interactable spawning) to start
 
     }
 
     private void PlaceTiles()
     {
-        //Debug.Log(" ");
+        bool hasAHitBox = false;
+        TileBase tileToPlace = null;
         for (int x = 0; x < sizeX; x++)
         {
-            //string debug = "";
             for (int y = 0; y < sizeY; y++)
             {
-                //debug += tiles[x, y].GetEntropy();
-                //debug += " ";
-                TileBase tileToPlace = null;
-                if (tiles[x, y].GetPossibilities().Count == 1)
+                if (tiles[x, y].GetEntropy() <= 1)
                 {
-                    for (int i = 0; i < tileScriptableObjects.Length; i++)
+                    tileToPlace = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tile;
+                    hasAHitBox = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].hasHitbox;
+
+                    if (hasAHitBox)
                     {
-                        if (tiles[x, y].GetPossibilities()[0] == tileScriptableObjects[i].tileID)
-                        {
-                            tileToPlace = tileScriptableObjects[i].tile;
-                            hasAHitBox = tileScriptableObjects[i].hasHitbox;
-                            break;
-                        }
+                        hitboxesTileMap.SetTile(new Vector3Int(x, y, 0), tileToPlace);
+
+                    }
+                    else
+                    {
+                        groundTilemap.SetTile(new Vector3Int(x, y, 0), tileToPlace);
                     }
                 }
-                if (hasAHitBox)
-                {
-                    hitboxesTileMap.SetTile(new Vector3Int(x, y, 0), tileToPlace);
-
-                }
-                else if (tileToPlace != null)
-                {
-                    groundTilemap.SetTile(new Vector3Int(x, y, 0), tileToPlace);
-                }
-            }
-            //Debug.Log(debug);
-        }
-        //Debug.Log(" ");
-    }
-
-    private int GetEntropy(int x, int y)
-    {
-        return tiles[x, y].GetEntropy();
-    }
-
-    private string GetType(int x, int y)
-    {
-        return tiles[x, y].GetPossibilities()[0];
-    }
-
-    private int GetLowestEntropy()
-    {
-        int lowestEntropy = new List<string>(tileRules.Keys).Count; //number of types of tiles
-        int tempEntropy;
-        for (int x = 0; x < sizeX; x++)
-        {
-            for (int y = 0; y < sizeY; y++)
-            {
-                tempEntropy = tiles[x, y].GetEntropy();
-                if (tempEntropy > 0 && tempEntropy < lowestEntropy)
-                {
-                    lowestEntropy = tempEntropy;
-                }
             }
         }
-        return lowestEntropy;
     }
 
     private List<Tile> GetTilesLowestEntropy()
     {
-        int lowestEntropy = new List<string>(tileRules.Keys).Count; //number of types of tiles
+        int lowestEntropy = new List<ushort>(tileRules.Keys).Count; //number of types of tiles
         int tempEntropy;
         List<Tile> tileList = new List<Tile>();
 
@@ -236,7 +199,7 @@ public class wfc : MonoBehaviour
     public bool WaveFunctionCollapse()
     {
         List<Tile> tilesLowestEntropy = GetTilesLowestEntropy();
-
+        Debug.Log("GetTilesLowestEntropy: " + ((Time.realtimeSinceStartup - timeStart) * 1000) + " ms");
         if (tilesLowestEntropy.Count == 0)
         {
             return true;
@@ -248,10 +211,11 @@ public class wfc : MonoBehaviour
 
         Stack<Tile> tileStack = new Stack<Tile>();
         tileStack.Push(tileToCollapse);
+        Debug.Log("Collapse Random Tile: " + ((Time.realtimeSinceStartup - timeStart) * 1000) + " ms");
 
         Tile tempTile;
         bool reduced = false;
-        List<string> tempTilePossibilities;
+        List<ushort> tempTilePossibilities;
         List<int> tempTileDirections;
         while (tileStack.Count > 0)
         {
@@ -272,19 +236,20 @@ public class wfc : MonoBehaviour
                 }
             }
         }
+        Debug.Log("Constrain Stuff: " + ((Time.realtimeSinceStartup - timeStart) * 1000) + " ms");
         return false;
     }
 
     //Each tile stores its posibilities, entropy, and references to neighbors
     public class Tile
     {
-        private List<string> possibilities;
+        private List<ushort> possibilities;
         private int entropy;
         private Dictionary<int, Tile> neighbors = new Dictionary<int, Tile>();
 
         public Tile()
         {
-            possibilities = new List<string>(tileRules.Keys);
+            possibilities = new List<ushort>(tileRules.Keys);
             entropy = possibilities.Count;
         }
 
@@ -311,7 +276,7 @@ public class wfc : MonoBehaviour
             return new List<int>(neighbors.Keys);
         }
 
-        public List<string> GetPossibilities()
+        public List<ushort> GetPossibilities()
         {
             return possibilities;
         }
@@ -326,19 +291,20 @@ public class wfc : MonoBehaviour
         {
             //Calculate total weight
             float tileWeightsSum = 0.0f;
-            for (int i = 0; i < possibilities.Count; i++) {
+            for (int i = 0; i < possibilities.Count; i++)
+            {
                 tileWeightsSum += tileWeights[possibilities[i]];
             }
             //Pick a random number less than total sum of weights
             float random = Random.Range(0f, tileWeightsSum);
             //Go through all possibilities, subtracting their weight each time until its less than 0
-            string randomPossibility;
+            ushort randomPossibility;
             for (int i = 0; i < possibilities.Count; i++)
             {
                 if (random <= tileWeights[possibilities[i]])
                 {
                     randomPossibility = possibilities[i];
-                    possibilities = new List<string> { randomPossibility };
+                    possibilities = new List<ushort> { randomPossibility };
                     entropy = 0;
                     return;
                 }
@@ -348,7 +314,7 @@ public class wfc : MonoBehaviour
         }
 
         //Direction is the direction it is being constrained FROM
-        public bool Constrain(List<string> neighbourPossibilities, int direction)
+        public bool Constrain(List<ushort> neighbourPossibilities, int direction)
         {
             bool reduced = false;
 
@@ -357,7 +323,7 @@ public class wfc : MonoBehaviour
                 List<string> connectors = new List<string>();
                 for (int i = 0; i < neighbourPossibilities.Count; i++)
                 {
-                    connectors.Add(tileRules[neighbourPossibilities[i]][direction-1]);
+                    connectors.Add(tileRules[neighbourPossibilities[i]][direction - 1]);
                 }
 
                 int oppositeDirection = NORTH;
@@ -382,10 +348,10 @@ public class wfc : MonoBehaviour
                     Debug.Log("A GRAVE ERROR HAS OCCURRED");
                 }
 
-                List<string> possibilitiesCopy = new List<string>(possibilities);
+                List<ushort> possibilitiesCopy = new List<ushort>(possibilities);
                 for (int i = 0; i < possibilitiesCopy.Count; i++)
                 {
-                    string currentPossibility = possibilitiesCopy[i];
+                    ushort currentPossibility = possibilitiesCopy[i];
                     List<string> currentPossibilityEdges = tileRules[currentPossibility];
 
                     if (!connectors.Contains(currentPossibilityEdges[oppositeDirection - 1]))

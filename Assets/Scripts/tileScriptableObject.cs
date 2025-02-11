@@ -51,13 +51,14 @@ public class tileScriptableObject : ScriptableObject
     public string edgeWestDown;
 
     [HideInInspector] public Sprite tileImage; //Grabbed from TileBase tile, used in tileScriptableObjectEditor.cs
-    [HideInInspector] public string tileID; //Grabbed from name of TileBase tile, used in wfc
 
     //Runs when the inspector changes at all
+    /*
     private void OnValidate()
     {
         tileID = tile.name;
         
     }
-    
+    */
+
 }
