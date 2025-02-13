@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2078853364359199225}
   - component: {fileID: 1838803214255850882}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: traitless_trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 7453749685637770534}
   - component: {fileID: 1190079047189226133}
   - component: {fileID: 5625115474597146709}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: traitless
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,9 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb5bc3c4f1373a24aaada4c33a4d6b6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingVelocity: 0.1
-  acceleration: 1.05
-  maxVelocity: 15
+  velocity: 10
   traitless_VFX: {fileID: 2789491192333863405}
   trail_VFX: {fileID: 616542351161041455}
   impact_VFX: {fileID: 5688022461790013274}
@@ -264,7 +262,7 @@ GameObject:
   - component: {fileID: 2915208951933032557}
   - component: {fileID: 4519515828478318312}
   - component: {fileID: 6230720128499158754}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: traitless_VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,7 +373,7 @@ GameObject:
   - component: {fileID: 4554387828185716608}
   - component: {fileID: 5571902697081996316}
   - component: {fileID: 5353058058587884655}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: traitless_impact_VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -15118,6 +15118,8 @@ MonoBehaviour:
   bulletList:
   - {fileID: 3343885884013181807, guid: 53b368dae724c6841bc03d1661c02116, type: 3}
   currentNum: 0
+  fireRate: 0.1
+  time: 0
 --- !u!1001 &6456405263015470744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15189,6 +15191,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e8dcb792265942948bef5c33102728ad, type: 3}
       propertyPath: m_Name
       value: barrier_mesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e8dcb792265942948bef5c33102728ad, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e8dcb792265942948bef5c33102728ad, type: 3}
       propertyPath: m_IsActive

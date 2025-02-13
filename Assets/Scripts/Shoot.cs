@@ -8,6 +8,10 @@ public class Shoot : MonoBehaviour
     [SerializeField] private List<GameObject> bulletList;
     [SerializeField] private int currentNum = 0;
 
+    public float fireRate = 0.5f;
+
+    public float time = 0f;
+
     private GameObject currentBullet;
     private void Start()
     {
@@ -16,9 +20,11 @@ public class Shoot : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        time += Time.deltaTime; 
+        if (Input.GetMouseButton(0) && time > fireRate)
         {
             Instantiate(currentBullet, transform.position, Quaternion.identity);
+            time = 0f;
         }
 
         if (Input.GetMouseButtonDown(1))
