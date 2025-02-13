@@ -46,6 +46,7 @@ public class EnemyProjectile : MonoBehaviour
     // instatiates(from pool) the AOE prefab and deactivates the projectile
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // if it collides with something that isn't tagged with Enemy spawn AOE
         if (!collision.gameObject.CompareTag("Enemy"))
         {
             AOEPrefab.SetActive(true);
@@ -59,12 +60,6 @@ public class EnemyProjectile : MonoBehaviour
             StartCoroutine(DespawnAOE());
         } 
     }
-
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-        
-    //}
 
     // used to expire the projectile if it doesn't hit anything
     IEnumerator DespawnProjectile()

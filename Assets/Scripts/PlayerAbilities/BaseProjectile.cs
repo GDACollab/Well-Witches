@@ -37,15 +37,15 @@ public class BaseProjectile : MonoBehaviour
     {
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (!collision.gameObject.CompareTag("PlayerProjectile"))
         {
             rb.velocity = Vector2.zero;
             traitless_VFX.SetActive(false);
             trail_VFX.SetActive(false);
             impact_VFX.SetActive(true);
-            
+
             Destroy(gameObject, 0.5f);
         }
     }
