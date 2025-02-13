@@ -3,7 +3,7 @@ using UnityEngine;
 
 // Jim Lee <-- who to ask and blame if something here doesn't work
 
-public class Projectile : MonoBehaviour
+public class EnemyProjectile : MonoBehaviour
 {
     private Rigidbody2D rb;
     private float _lifetime;
