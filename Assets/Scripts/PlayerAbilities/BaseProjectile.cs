@@ -8,7 +8,7 @@ public class BaseProjectile : MonoBehaviour
     private Rigidbody2D rb;
     public float velocity;
 
-    public GameObject traitless_VFX;
+    public GameObject main_VFX;
     public GameObject trail_VFX;
     public GameObject impact_VFX;
 
@@ -25,7 +25,7 @@ public class BaseProjectile : MonoBehaviour
         float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
 
-        traitless_VFX.SetActive(true);
+        main_VFX.SetActive(true);
         impact_VFX.SetActive(false);
 
         StartCoroutine(Despawn());
@@ -39,15 +39,12 @@ public class BaseProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.gameObject.CompareTag("PlayerProjectile"))
-        {
             rb.velocity = Vector2.zero;
-            traitless_VFX.SetActive(false);
+            main_VFX.SetActive(false);
             trail_VFX.SetActive(false);
             impact_VFX.SetActive(true);
 
             Destroy(gameObject, 0.5f);
-        }
     }
 
 
