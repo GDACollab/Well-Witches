@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Slash : MonoBehaviour
@@ -15,11 +14,12 @@ public class Slash : MonoBehaviour
     void Start()
     {
         rb.velocity = new Vector2(-1, 0).normalized * startingVelocity;
+        StartCoroutine(Despawn());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator Despawn()
     {
-        
+        yield return new WaitForSeconds(3);
+        Destroy(gameObject);
     }
 }
