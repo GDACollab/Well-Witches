@@ -81,23 +81,30 @@ public class Health : MonoBehaviour
         Debug.Log($"⚠️ {obstacle.name} is NOT in the damage dictionary! Check if it was added correctly.");
     }
 }
-
-
-    void ReduceHealth(float damage)
+void ReduceHealth(float damage)
 {
     if (healthBar == null)
     {
-        Debug.LogError("❌ Cannot reduce health, health bar reference is missing!");
+        Debug.LogError("❌ Health bar reference is missing!");
         return;
     }
 
-    float currentWidth = healthBar.rect.width; // Get current width
+    float currentWidth = healthBar.rect.width;
     float newWidth = Mathf.Max(currentWidth - damage, 0); // Prevent negative width
 
-    // Set the width while keeping the left side anchored
-    healthBar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newWidth);
+    // Get RectTransform
+    RectTransform rectTransform = healthBar.GetComponent<RectTransform>();
 
-    Debug.Log($"❤️ Health bar width reduced to {newWidth}");
+    // **Lock Left Side**
+    rectTransform.offsetMin = new Vector2(0, rectTransform.offsetMin.y);
+
+    // **Only Adjust Right Side**
+    rectTransform.offsetMax = new Vector2(- (maxHealthWidth - newWidth), rectTransform.offsetMax.y);
+
+    Debug.Log($"❤️ Health bar reduced to {newWidth}, Right side shrunk, Left locked.");
 }
 
+
+
 }
+

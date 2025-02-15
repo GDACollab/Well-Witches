@@ -10,10 +10,15 @@ public class HealthTracking : MonoBehaviour
 
     void Update()
     {
-        if (player != null && healthBar != null)
-        {
-            // Set health bar's position above the player
-            healthBar.position = player.position + offset;
-        }
+        void Update()
+{
+    if (player != null && healthBar != null)
+    {
+        // Preserve X and only adjust Y to follow the player
+        Vector3 fixedX = new Vector3(healthBar.position.x, player.position.y + offset.y, healthBar.position.z);
+        healthBar.position = fixedX;
+    }
+}
+
     }
 }

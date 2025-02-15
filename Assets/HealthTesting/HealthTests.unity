@@ -248,7 +248,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 395874184}
   m_Father: {fileID: 1998589949}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -380,7 +381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterImage: {fileID: 322403230}
   characterSprite: {fileID: 0}
-  speed: 20
+  speed: 40
 --- !u!114 &322403233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,17 +542,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 395874183}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1998589949}
+  m_Father: {fileID: 322403227}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 35.971992}
-  m_SizeDelta: {x: 100, y: 12.9389}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 18.423424}
+  m_SizeDelta: {x: 0, y: 12.9389}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &395874185
 MonoBehaviour:
@@ -674,7 +675,7 @@ GameObject:
   - component: {fileID: 644805918}
   m_Layer: 5
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -839,7 +840,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 644805916}
-  - {fileID: 395874184}
   - {fileID: 322403227}
   m_Father: {fileID: 378456790}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
