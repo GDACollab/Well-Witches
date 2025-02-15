@@ -5,14 +5,6 @@ using UnityEngine;
 using static wfc;
 using UnityEngine.Tilemaps;
 
-/*
-DIRECTIONS:
-1 - north
-2 - south
-3 - east
-4 - west
-*/
-
 public class wfc : MonoBehaviour
 {
     [SerializeField] Tilemap groundTilemap;
@@ -26,10 +18,7 @@ public class wfc : MonoBehaviour
     private static int sizeX = 100;
     private static int sizeY = 100;
 
-    private static int NORTH = 1;
-    private static int SOUTH = 2;
-    private static int EAST = 3;
-    private static int WEST = 4;
+    public enum Direction { North, South, East, West };
 
     private static Dictionary<ushort, List<string>> tileRules = new Dictionary<ushort, List<string>>();
 
@@ -68,22 +57,22 @@ public class wfc : MonoBehaviour
                 //North
                 if (y + 1 < sizeY)
                 {
-                    tiles[x, y].AddNeighbor(NORTH, tiles[x, y + 1]);
+                    tiles[x, y].AddNeighbor(Direction.North, tiles[x, y + 1]);
                 }
                 //South
                 if (y > 0)
                 {
-                    tiles[x, y].AddNeighbor(SOUTH, tiles[x, y - 1]);
+                    tiles[x, y].AddNeighbor(Direction.South, tiles[x, y - 1]);
                 }
                 //East
                 if (x + 1 < sizeX)
                 {
-                    tiles[x, y].AddNeighbor(EAST, tiles[x + 1, y]);
+                    tiles[x, y].AddNeighbor(Direction.East, tiles[x + 1, y]);
                 }
                 //West
                 if (x > 0)
                 {
-                    tiles[x, y].AddNeighbor(WEST, tiles[x - 1, y]);
+                    tiles[x, y].AddNeighbor(Direction.West, tiles[x - 1, y]);
                 }
 
             }
@@ -199,7 +188,7 @@ public class wfc : MonoBehaviour
     public bool WaveFunctionCollapse()
     {
         List<Tile> tilesLowestEntropy = GetTilesLowestEntropy();
-        Debug.Log("GetTilesLowestEntropy: " + ((Time.realtimeSinceStartup - timeStart) * 1000) + " ms");
+        //Debug.Log("GetTilesLowestEntropy: " + ((Time.realtimeSinceStartup - timeStart) * 1000) + " ms");
         if (tilesLowestEntropy.Count == 0)
         {
             return true;
@@ -211,12 +200,12 @@ public class wfc : MonoBehaviour
 
         Stack<Tile> tileStack = new Stack<Tile>();
         tileStack.Push(tileToCollapse);
-        Debug.Log("Collapse Random Tile: " + ((Time.realtimeSinceStartup - timeStart) * 1000) + " ms");
+        //Debug.Log("Collapse Random Tile: " + ((Time.realtimeSinceStartup - timeStart) * 1000) + " ms");
 
         Tile tempTile;
         bool reduced = false;
         List<ushort> tempTilePossibilities;
-        List<int> tempTileDirections;
+        List<Direction> tempTileDirections;
         while (tileStack.Count > 0)
         {
             tempTile = tileStack.Pop();
@@ -236,7 +225,7 @@ public class wfc : MonoBehaviour
                 }
             }
         }
-        Debug.Log("Constrain Stuff: " + ((Time.realtimeSinceStartup - timeStart) * 1000) + " ms");
+        //Debug.Log("Constrain Stuff: " + ((Time.realtimeSinceStartup - timeStart) * 1000) + " ms");
         return false;
     }
 
@@ -245,7 +234,7 @@ public class wfc : MonoBehaviour
     {
         private List<ushort> possibilities;
         private int entropy;
-        private Dictionary<int, Tile> neighbors = new Dictionary<int, Tile>();
+        private Dictionary<Direction, Tile> neighbors = new Dictionary<Direction, Tile>();
 
         public Tile()
         {
@@ -253,12 +242,12 @@ public class wfc : MonoBehaviour
             entropy = possibilities.Count;
         }
 
-        public void AddNeighbor(int direction, Tile neighbor)
+        public void AddNeighbor(Direction direction, Tile neighbor)
         {
             neighbors.Add(direction, neighbor);
         }
 
-        public Tile GetNeighbor(int direction)
+        public Tile GetNeighbor(Direction direction)
         {
             try
             {
@@ -271,9 +260,9 @@ public class wfc : MonoBehaviour
         }
 
         //Tiles on the edges will return smaller lists
-        public List<int> GetDirections()
+        public List<Direction> GetDirections()
         {
-            return new List<int>(neighbors.Keys);
+            return new List<Direction>(neighbors.Keys);
         }
 
         public List<ushort> GetPossibilities()
@@ -314,7 +303,7 @@ public class wfc : MonoBehaviour
         }
 
         //Direction is the direction it is being constrained FROM
-        public bool Constrain(List<ushort> neighbourPossibilities, int direction)
+        public bool Constrain(List<ushort> neighbourPossibilities, Direction direction)
         {
             bool reduced = false;
 
@@ -323,25 +312,25 @@ public class wfc : MonoBehaviour
                 List<string> connectors = new List<string>();
                 for (int i = 0; i < neighbourPossibilities.Count; i++)
                 {
-                    connectors.Add(tileRules[neighbourPossibilities[i]][direction - 1]);
+                    connectors.Add(tileRules[neighbourPossibilities[i]][(int)direction]);
                 }
 
-                int oppositeDirection = NORTH;
-                if (direction == NORTH)
+                Direction oppositeDirection = Direction.North;
+                if (direction == Direction.North)
                 {
-                    oppositeDirection = SOUTH;
+                    oppositeDirection = Direction.South;
                 }
-                else if (direction == SOUTH)
+                else if (direction == Direction.South)
                 {
-                    oppositeDirection = NORTH;
+                    oppositeDirection = Direction.North;
                 }
-                else if (direction == EAST)
+                else if (direction == Direction.East)
                 {
-                    oppositeDirection = WEST;
+                    oppositeDirection = Direction.West;
                 }
-                else if (direction == WEST)
+                else if (direction == Direction.West)
                 {
-                    oppositeDirection = EAST;
+                    oppositeDirection = Direction.East;
                 }
                 else
                 {
@@ -354,7 +343,7 @@ public class wfc : MonoBehaviour
                     ushort currentPossibility = possibilitiesCopy[i];
                     List<string> currentPossibilityEdges = tileRules[currentPossibility];
 
-                    if (!connectors.Contains(currentPossibilityEdges[oppositeDirection - 1]))
+                    if (!connectors.Contains(currentPossibilityEdges[(int)oppositeDirection]))
                     {
                         possibilities.Remove(currentPossibility);
                         reduced = true;
