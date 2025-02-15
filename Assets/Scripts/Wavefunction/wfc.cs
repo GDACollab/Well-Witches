@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using static wfc;
 using UnityEngine.Tilemaps;
+using System.Linq.Expressions;
 
 public class wfc : MonoBehaviour
 {
@@ -15,8 +16,8 @@ public class wfc : MonoBehaviour
 
     [SerializeField] InteractableGenerator interactableGenerating;
 
-    private static int sizeX = 100;
-    private static int sizeY = 100;
+    private static int sizeX = 170;
+    private static int sizeY = 170;
 
     public enum Direction { North, South, East, West };
 
@@ -78,6 +79,8 @@ public class wfc : MonoBehaviour
             }
         }
 
+        GetSeededTiles();
+
         /*bool done = false;
         while (done == false)
         {
@@ -94,11 +97,12 @@ public class wfc : MonoBehaviour
         bool done = false;
         while (done == false)
         {
-            //if (Input.GetKey("e"))                 Uncomment these lines to press e to spawn
-            //{
-            done = WaveFunctionCollapse();
-            PlaceTiles();
-            //}
+            if (Input.GetKey("e"))                 //Uncomment these lines to press e to spawn
+            {
+                for (int i = 0; i <= 25; i++)
+                    done = WaveFunctionCollapse();
+                PlaceTiles();
+            }
             yield return null;
         }
         interactableGenerating.generateInteractables(); //Calls the other script (interactable spawning) to start
@@ -126,6 +130,58 @@ public class wfc : MonoBehaviour
         Debug.Log("Time taken to wfc: " + ((Time.realtimeSinceStartup - timeStart) * 1000) + " ms");
 
         interactableGenerating.generateInteractables(); //Calls the other script (interactable spawning) to start
+
+    }
+
+    private void GetSeededTiles()
+    {
+        bool hasAHitBox = false;
+        TileBase tileGetGround = null;
+        TileBase tileGetHitbox = null;
+        Stack<Tile> tileStack = new Stack<Tile>();
+        for (int x = 0; x < sizeX; x++)
+        {
+            for (int y = 0; y < sizeY; y++)
+            {
+                tileGetGround = groundTilemap.GetTile(new Vector3Int(x, y, 0));
+                tileGetHitbox = hitboxesTileMap.GetTile(new Vector3Int(x, y, 0));
+
+                for (int i = 0; i < tileScriptableObjects.Length; i++)
+                {
+                    if (tileGetGround == tileScriptableObjects[i].tile || tileGetHitbox == tileScriptableObjects[i].tile)
+                    {
+                        tiles[x, y].SetPossibilities(new List<ushort> {(ushort)i});
+                        tileStack.Push(tiles[x, y]);
+                    }
+                }
+            }
+        }           
+
+        //Copy pasted from WaveFunctionCollapse()
+        //uhh clean this up later
+        Tile tempTile;
+        bool reduced = false;
+        List<ushort> tempTilePossibilities;
+        List<Direction> tempTileDirections;
+        while (tileStack.Count > 0)
+        {
+            tempTile = tileStack.Pop();
+            tempTilePossibilities = tempTile.GetPossibilities();
+            tempTileDirections = tempTile.GetDirections();
+            for (int i = 0; i < tempTileDirections.Count; i++)
+            {
+                Tile tempTileNeighbor = tempTile.GetNeighbor(tempTileDirections[i]);
+                if (tempTileNeighbor != null && tempTileNeighbor.GetEntropy() > 1)
+                {
+                    //Debug.Log(i + "    e   ");
+                    reduced = tempTileNeighbor.Constrain(tempTilePossibilities, tempTileDirections[i]);
+                    if (reduced == true)
+                    {
+                        tileStack.Push(tempTileNeighbor);
+                    }
+                }
+            }
+        }
 
     }
 
@@ -167,7 +223,7 @@ public class wfc : MonoBehaviour
             for (int y = 0; y < sizeY; y++)
             {
                 tempEntropy = tiles[x, y].GetEntropy();
-                if (tempEntropy > 0)
+                if (tempEntropy > 1)
                 {
                     if (tempEntropy < lowestEntropy)
                     {
@@ -214,7 +270,7 @@ public class wfc : MonoBehaviour
             for (int i = 0; i < tempTileDirections.Count; i++)
             {
                 Tile tempTileNeighbor = tempTile.GetNeighbor(tempTileDirections[i]);
-                if (tempTileNeighbor != null && tempTileNeighbor.GetEntropy() != 0)
+                if (tempTileNeighbor != null && tempTileNeighbor.GetEntropy() > 1)
                 {
                     //Debug.Log(i + "    e   ");
                     reduced = tempTileNeighbor.Constrain(tempTilePossibilities, tempTileDirections[i]);
@@ -233,13 +289,11 @@ public class wfc : MonoBehaviour
     public class Tile
     {
         private List<ushort> possibilities;
-        private int entropy;
         private Dictionary<Direction, Tile> neighbors = new Dictionary<Direction, Tile>();
 
         public Tile()
         {
             possibilities = new List<ushort>(tileRules.Keys);
-            entropy = possibilities.Count;
         }
 
         public void AddNeighbor(Direction direction, Tile neighbor)
@@ -249,14 +303,7 @@ public class wfc : MonoBehaviour
 
         public Tile GetNeighbor(Direction direction)
         {
-            try
-            {
-                return neighbors[direction];
-            }
-            catch (KeyNotFoundException)
-            {
-                return null;
-            }
+            return neighbors[direction];
         }
 
         //Tiles on the edges will return smaller lists
@@ -270,12 +317,16 @@ public class wfc : MonoBehaviour
             return possibilities;
         }
 
-        public int GetEntropy()
+        public void SetPossibilities(List<ushort> newPossibilities)
         {
-            return entropy;
+            possibilities = newPossibilities;
         }
 
-        //no weights yet
+        public int GetEntropy()
+        {
+            return possibilities.Count;
+        }
+
         public void Collapse()
         {
             //Calculate total weight
@@ -294,7 +345,6 @@ public class wfc : MonoBehaviour
                 {
                     randomPossibility = possibilities[i];
                     possibilities = new List<ushort> { randomPossibility };
-                    entropy = 0;
                     return;
                 }
                 random -= tileWeights[possibilities[i]];
@@ -307,7 +357,7 @@ public class wfc : MonoBehaviour
         {
             bool reduced = false;
 
-            if (entropy > 0)
+            if (possibilities.Count > 1)
             {
                 List<string> connectors = new List<string>();
                 for (int i = 0; i < neighbourPossibilities.Count; i++)
@@ -349,7 +399,6 @@ public class wfc : MonoBehaviour
                         reduced = true;
                     }
                 }
-                entropy = possibilities.Count;
             }
 
             return reduced;
