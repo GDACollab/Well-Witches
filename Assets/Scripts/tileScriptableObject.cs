@@ -53,12 +53,12 @@ public class tileScriptableObject : ScriptableObject
     [HideInInspector] public Sprite tileImage; //Grabbed from TileBase tile, used in tileScriptableObjectEditor.cs
 
     //Runs when the inspector changes at all
-    /*
+    
     private void OnValidate()
     {
-        tileID = tile.name;
-        
+        //tileID = tile.name;
+        tileImage = ((Tile)tile).sprite;
     }
-    */
+    
 
 }

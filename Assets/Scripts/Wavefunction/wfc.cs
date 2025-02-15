@@ -23,8 +23,8 @@ public class wfc : MonoBehaviour
 
     [SerializeField] InteractableGenerator interactableGenerating;
 
-    private static int sizeX = 150;
-    private static int sizeY = 150;
+    private static int sizeX = 100;
+    private static int sizeY = 100;
 
     private static int NORTH = 1;
     private static int SOUTH = 2;
