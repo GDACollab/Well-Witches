@@ -1,11 +1,14 @@
+//DELETE THIS FILE AS WE ALREADY HAVE A MOVEMENT SCRIPT.
+// THIS FILE IS FOR TESTING PURPOSES ONLY.
+
 using UnityEngine;
 using UnityEngine.UI; // Required for UI Images
 
 public class MoveTest : MonoBehaviour
 {
-    [SerializeField] private Image characterImage; // UI-based character (optional)
-    [SerializeField] private SpriteRenderer characterSprite; // 2D sprite-based character (optional)
-    [SerializeField] private float speed = 5f; // Speed of movement
+    [SerializeField] private Image characterImage; 
+    [SerializeField] private SpriteRenderer characterSprite; 
+    [SerializeField] private float speed = 5f; 
 
     void Update()
     {
@@ -32,7 +35,7 @@ public class MoveTest : MonoBehaviour
         }
         else
         {
-            transform.position += movement; // Moves the GameObject itself
+            transform.position += movement;
         }
     }
 }
