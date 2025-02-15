@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using static wfc;
 using UnityEngine.Tilemaps;
-using System.Linq.Expressions;
 
 public class wfc : MonoBehaviour
 {
@@ -135,7 +133,6 @@ public class wfc : MonoBehaviour
 
     private void GetSeededTiles()
     {
-        bool hasAHitBox = false;
         TileBase tileGetGround = null;
         TileBase tileGetHitbox = null;
         Stack<Tile> tileStack = new Stack<Tile>();
