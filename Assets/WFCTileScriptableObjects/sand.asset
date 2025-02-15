@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a28953cb0352d04a84f5e864515aa5c, type: 3}
   m_Name: sand
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: 2d58e48c46382a443bfcdd28c66fd35f, type: 2}
+  tileGround: {fileID: 11400000, guid: 2d58e48c46382a443bfcdd28c66fd35f, type: 2}
+  tileHitbox: {fileID: 0}
   weight: 0.1
-  hasHitbox: 0
   canPlaceBush: 1
   edgeNorthLeft: sand
   edgeNorthRight: sand
@@ -25,4 +25,3 @@ MonoBehaviour:
   edgeWestUp: sand
   edgeWestDown: sand
   tileImage: {fileID: 21300000, guid: 0cb4f19ce612aae499e0656371bd2d52, type: 3}
-  tileID: uglySand

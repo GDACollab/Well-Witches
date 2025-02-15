@@ -7,8 +7,8 @@ using UnityEngine.Tilemaps;
 public class wfc : MonoBehaviour
 {
     [SerializeField] Tilemap groundTilemap;
-
     [SerializeField] Tilemap hitboxesTileMap;
+    [SerializeField] Tilemap aboveTileMap;
 
     [SerializeField] private tileScriptableObject[] tileScriptableObjects;
 
@@ -86,8 +86,8 @@ public class wfc : MonoBehaviour
         }*/
 
         PlaceTiles();
-        StartCoroutine(testWFCFastButOnlyIfISaySo()); //Do it fast
-        //StartCoroutine(testWFCSlowly()); // Does the generation slowly, only have one uncommented
+        //StartCoroutine(testWFCFastButOnlyIfISaySo()); //Do it fast
+        StartCoroutine(testWFCSlowly()); // Does the generation slowly, only have one uncommented
     }
 
     private IEnumerator testWFCSlowly()
@@ -135,6 +135,7 @@ public class wfc : MonoBehaviour
     {
         TileBase tileGetGround = null;
         TileBase tileGetHitbox = null;
+        TileBase tileGetAbove = null;
         Stack<Tile> tileStack = new Stack<Tile>();
         for (int x = 0; x < sizeX; x++)
         {
@@ -142,15 +143,42 @@ public class wfc : MonoBehaviour
             {
                 tileGetGround = groundTilemap.GetTile(new Vector3Int(x, y, 0));
                 tileGetHitbox = hitboxesTileMap.GetTile(new Vector3Int(x, y, 0));
+                tileGetAbove = aboveTileMap.GetTile(new Vector3Int(x, y, 0));
 
-                for (int i = 0; i < tileScriptableObjects.Length; i++)
+                if (tileGetGround != null)
                 {
-                    if (tileGetGround == tileScriptableObjects[i].tile || tileGetHitbox == tileScriptableObjects[i].tile)
+                    for (int i = 0; i < tileScriptableObjects.Length; i++)
                     {
-                        tiles[x, y].SetPossibilities(new List<ushort> {(ushort)i});
-                        tileStack.Push(tiles[x, y]);
+                        if (tileGetGround == tileScriptableObjects[i].tileGround)
+                        {
+                            tiles[x, y].SetPossibilities(new List<ushort> { (ushort)i });
+                            tileStack.Push(tiles[x, y]);
+                        }
                     }
                 }
+                else if (tileGetHitbox != null)
+                {
+                    for (int i = 0; i < tileScriptableObjects.Length; i++)
+                    {
+                        if (tileGetHitbox == tileScriptableObjects[i].tileHitbox)
+                        {
+                            tiles[x, y].SetPossibilities(new List<ushort> { (ushort)i });
+                            tileStack.Push(tiles[x, y]);
+                        }
+                    }
+                }
+                else if (tileGetAbove != null)
+                {
+                    for (int i = 0; i < tileScriptableObjects.Length; i++)
+                    {
+                        if (tileGetAbove == tileScriptableObjects[i].tileAbove)
+                        {
+                            tiles[x, y].SetPossibilities(new List<ushort> { (ushort)i });
+                            tileStack.Push(tiles[x, y]);
+                        }
+                    }
+                }
+
             }
         }           
 
@@ -185,24 +213,30 @@ public class wfc : MonoBehaviour
     private void PlaceTiles()
     {
         bool hasAHitBox = false;
-        TileBase tileToPlace = null;
+        TileBase tileToPlaceGround = null;
+        TileBase tileToPlaceHitbox = null;
+        TileBase tileToPlaceAbove = null;
         for (int x = 0; x < sizeX; x++)
         {
             for (int y = 0; y < sizeY; y++)
             {
                 if (tiles[x, y].GetEntropy() <= 1)
                 {
-                    tileToPlace = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tile;
-                    hasAHitBox = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].hasHitbox;
+                    tileToPlaceGround = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileGround;
+                    tileToPlaceHitbox = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileHitbox;
+                    tileToPlaceAbove = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileAbove;
 
-                    if (hasAHitBox)
+                    if (tileToPlaceGround != null)
                     {
-                        hitboxesTileMap.SetTile(new Vector3Int(x, y, 0), tileToPlace);
-
+                        groundTilemap.SetTile(new Vector3Int(x, y, 0), tileToPlaceGround);
                     }
-                    else
+                    if (tileToPlaceHitbox != null)
                     {
-                        groundTilemap.SetTile(new Vector3Int(x, y, 0), tileToPlace);
+                        hitboxesTileMap.SetTile(new Vector3Int(x, y, 0), tileToPlaceHitbox);
+                    }
+                    if (tileToPlaceAbove != null)
+                    {
+                        aboveTileMap.SetTile(new Vector3Int(x, y, 0), tileToPlaceAbove);
                     }
                 }
             }

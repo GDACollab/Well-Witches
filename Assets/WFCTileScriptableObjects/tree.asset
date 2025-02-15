@@ -10,18 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a28953cb0352d04a84f5e864515aa5c, type: 3}
-  m_Name: uglyGrassDirt_11
+  m_Name: tree
   m_EditorClassIdentifier: 
-  tileGround: {fileID: 11400000, guid: 1d5be95692b30a645b5bdabbaf8d7b05, type: 2}
-  tileHitbox: {fileID: 0}
-  weight: 2
-  canPlaceBush: 1
-  edgeNorthLeft: dirt
-  edgeNorthRight: dirt
+  tileGround: {fileID: 11400000, guid: 77f694ccbf80b8847ac299520bd20f57, type: 2}
+  tileHitbox: {fileID: 11400000, guid: ab9079560a93dc94c86e084a78a903b3, type: 2}
+  tileAbove: {fileID: 11400000, guid: 54b9e48d0a0bd2f4c9cb816a466129f2, type: 2}
+  weight: 5
+  canPlaceBush: 0
+  edgeNorthLeft: grass
+  edgeNorthRight: grass
   edgeSouthLeft: grass
   edgeSouthRight: grass
-  edgeEastUp: dirt
+  edgeEastUp: grass
   edgeEastDown: grass
-  edgeWestUp: dirt
+  edgeWestUp: grass
   edgeWestDown: grass
-  tileImage: {fileID: 369240565, guid: b965d352e5b02f045b9ee46d3ca4358d, type: 3}
+  tileImage: {fileID: 21300000, guid: 821c2f604a8f8a44f81fbd099a10dc43, type: 3}

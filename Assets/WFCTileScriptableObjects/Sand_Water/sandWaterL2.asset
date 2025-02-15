@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a28953cb0352d04a84f5e864515aa5c, type: 3}
   m_Name: sandWaterL2
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: d7d2bf05a57d243499b13b30c17df433, type: 2}
+  tileGround: {fileID: 11400000, guid: d7d2bf05a57d243499b13b30c17df433, type: 2}
+  tileHitbox: {fileID: 0}
   weight: 0.5
+  canPlaceBush: 0
   edgeNorthLeft: sand
   edgeNorthRight: sand
   edgeSouthLeft: water
@@ -23,4 +25,3 @@ MonoBehaviour:
   edgeWestUp: sand
   edgeWestDown: water
   tileImage: {fileID: -210185392, guid: c54e5c5acfe0fa34b9aa3422d8208204, type: 3}
-  tileID: uglySandWaterLShape_1
