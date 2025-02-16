@@ -29,8 +29,18 @@ public class Health : MonoBehaviour
             if (pair.obstacle != null) { damageDictionary[pair.obstacle] = pair.damage; }
         }
 
-        // Initialize health
+         // Fetch health from GathererStatManagement
+        if (GathererStatManagement.Instance != null)
+        {
+            maxHealth = GathererStatManagement.Instance.GetHealth();
+        }
+        else
+        {
+            Debug.LogError("❌ GathererStatManagement Instance is missing!");
+            maxHealth = 100f; // Fallback value
+        }
         currentHealth = maxHealth;
+        UpdateHealthBar();
 
         // Store the initial width of the health bar at runtime
         if (healthBar != null) { initialHealthBarWidth = healthBar.rect.width; }
@@ -79,11 +89,15 @@ public class Health : MonoBehaviour
     {
         if (healthBar == null) return;
 
+        // Get initial full width dynamically
+        float fullWidth = initialHealthBarWidth; 
+
+
         // Ensure health percentage is within valid range
         float healthPercentage = Mathf.Clamp(currentHealth / maxHealth, 0f, 1f);
 
-        // Calculate new width proportionally based on the initial width
-        float newWidth = Mathf.Max(initialHealthBarWidth * healthPercentage, 1); // Prevent disappearing bar
+        // Calculate new width proportionally based on initial width
+        float newWidth = Mathf.Max(fullWidth * healthPercentage, 1); // Prevent disappearing bar
 
         // Apply new width
         healthBar.sizeDelta = new Vector2(newWidth, healthBar.sizeDelta.y);
