@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//Add as many obstacles and damages as you want
 [System.Serializable]
 public class ObstacleDamagePair
 {
@@ -14,11 +13,12 @@ public class ObstacleDamagePair
 public class Health : MonoBehaviour
 {
     [SerializeField] private RectTransform healthBar;
-    //Adjust Health bar width according to stats
-    [SerializeField] private float maxHealthWidth = 100f;
+    [SerializeField] private float maxHealth = 10f;
     [SerializeField] private List<ObstacleDamagePair> obstaclesAndDamage;
     [SerializeField] private GameObject player;
-
+   
+    private float currentHealth;
+    private float initialHealthBarWidth;
     private Dictionary<GameObject, float> damageDictionary;
 
     void Start()
@@ -29,39 +29,37 @@ public class Health : MonoBehaviour
             if (pair.obstacle != null) { damageDictionary[pair.obstacle] = pair.damage; }
         }
 
-        if (healthBar != null) { healthBar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, maxHealthWidth); }
-        else { Debug.LogError(" Health bar reference missing!"); }
+        // Initialize health
+        currentHealth = maxHealth;
+
+        // Store the initial width of the health bar at runtime
+        if (healthBar != null) { initialHealthBarWidth = healthBar.rect.width; }
+        else { Debug.LogError("Health bar reference missing!"); }
+        UpdateHealthBar();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject other = collision.gameObject;
 
-        // Case 1: The Player collides with an obstacle
-        if (other == player)  
+        // Player collides with an obstacle
+        if (collision.gameObject.CompareTag("Obstacle") && damageDictionary.ContainsKey(other))
         {
-            foreach (ContactPoint2D contact in collision.contacts)
-            {
-                GameObject obstacle = contact.collider.gameObject;
-                CheckObstacleDamage(obstacle);
-            }
-        }
-        // Case 2: The obstacle collides with the Player (in case event triggers on the obstacle)
-        else if (collision.gameObject.CompareTag("Obstacle") && damageDictionary.ContainsKey(other))
-        {
-            Debug.Log($"✅ Obstacle {other.name} hit the player!");
             CheckObstacleDamage(other);
         }
-        else { Debug.Log($"{other.name} collided, but it's not the player or a recognized obstacle."); }
     }
 
-    void CheckObstacleDamage(GameObject obstacle){
+    void CheckObstacleDamage(GameObject obstacle)
+    {
         if (damageDictionary.TryGetValue(obstacle, out float damage))
         {
-            Debug.Log($"💥 Player hit {obstacle.name} and took {damage} damage.");
+            Debug.Log($"Player hit {obstacle.name} and took {damage} damage.");
             ReduceHealth(damage);
         }
-        else { Debug.Log($"⚠️ {obstacle.name} is NOT in damage dictionary!"); }
+        else
+        {
+            Debug.Log($"⚠️ {obstacle.name} is NOT in damage dictionary!");
+        }
     }
 
     void ReduceHealth(float damage)
@@ -72,17 +70,30 @@ public class Health : MonoBehaviour
             return;
         }
 
-        float currentWidth = healthBar.rect.width;
-        float newWidth = Mathf.Max(currentWidth - damage, 0); // Prevent negative width
+        // Decrease health, but not below 0
+        currentHealth = Mathf.Max(currentHealth - damage, 0);
+        UpdateHealthBar();
+    }
 
-        // Get RectTransform
+    void UpdateHealthBar()
+    {
+        if (healthBar == null) return;
+
+        // Ensure health percentage is within valid range
+        float healthPercentage = Mathf.Clamp(currentHealth / maxHealth, 0f, 1f);
+
+        // Calculate new width proportionally based on the initial width
+        float newWidth = Mathf.Max(initialHealthBarWidth * healthPercentage, 1); // Prevent disappearing bar
+
+        // Apply new width
+        healthBar.sizeDelta = new Vector2(newWidth, healthBar.sizeDelta.y);
+
+        // Lock Left Side
+        // Adjust Right Side
         RectTransform rectTransform = healthBar.GetComponent<RectTransform>();
-
-        // **Lock Left Side**
         rectTransform.offsetMin = new Vector2(0, rectTransform.offsetMin.y);
+        rectTransform.offsetMax = new Vector2(-(initialHealthBarWidth - newWidth), rectTransform.offsetMax.y);
 
-        // **Only Adjust Right Side**
-        rectTransform.offsetMax = new Vector2(- (maxHealthWidth - newWidth), rectTransform.offsetMax.y);
+        Debug.Log($"Health bar updated: {currentHealth}/{maxHealth} | Actual Width: {initialHealthBarWidth} -> {newWidth}");
     }
 }
-
