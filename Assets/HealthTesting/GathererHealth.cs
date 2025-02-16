@@ -29,8 +29,7 @@ public class GathererHealth : MonoBehaviour
         }
         else
         {
-            Debug.LogError("❌ GathererStatManagement Instance is missing!");
-            maxHealth = 100f; // Fallback value
+            Debug.LogError("GathererStatManagement Instance is missing!");
         }
 
         currentHealth = maxHealth;
@@ -38,7 +37,7 @@ public class GathererHealth : MonoBehaviour
 
         // Store the initial width of the health bar
         if (healthBar != null) { initialHealthBarWidth = healthBar.rect.width; }
-        else { Debug.LogError("Health bar reference missing!"); }
+        else { Debug.LogError("Health bar missing!"); }
         UpdateHealthBar();
     }
 
@@ -68,7 +67,7 @@ public class GathererHealth : MonoBehaviour
     {
         if (healthBar == null)
         {
-            Debug.LogError("Health bar reference missing!");
+            Debug.LogError("Health bar missing!");
             return;
         }
 
@@ -77,27 +76,26 @@ public class GathererHealth : MonoBehaviour
     }
 
     void UpdateHealthBar()
-{
-    if (healthBar == null) return;
+    {
+        if (healthBar == null) return;
 
-    // Get initial full width dynamically
-    float fullWidth = initialHealthBarWidth; // Keep the original width as reference
+        // Get initial full width dynamically
+        float fullWidth = initialHealthBarWidth;
 
-    // Ensure health percentage is within valid range
-    float healthPercentage = Mathf.Clamp(currentHealth / maxHealth, 0f, 1f);
+        // Ensure health percentage is within valid range
+        float healthPercentage = Mathf.Clamp(currentHealth / maxHealth, 0f, 1f);
 
-    // Calculate new width proportionally based on initial width
-    float newWidth = Mathf.Max(fullWidth * healthPercentage, 1); // Prevent disappearing bar
+        // Calculate new width
+        float newWidth = Mathf.Max(fullWidth * healthPercentage, 1); // Prevent disappearing bar
 
-    // Apply new width
-    healthBar.sizeDelta = new Vector2(newWidth, healthBar.sizeDelta.y);
+        // Apply new width
+        healthBar.sizeDelta = new Vector2(newWidth, healthBar.sizeDelta.y);
 
-    // Lock Left Side
-    RectTransform rectTransform = healthBar.GetComponent<RectTransform>();
-    rectTransform.offsetMin = new Vector2(0, rectTransform.offsetMin.y);
-    rectTransform.offsetMax = new Vector2(-(fullWidth - newWidth), rectTransform.offsetMax.y);
+        // Lock Left Side
+        RectTransform rectTransform = healthBar.GetComponent<RectTransform>();
+        rectTransform.offsetMin = new Vector2(0, rectTransform.offsetMin.y);
+        rectTransform.offsetMax = new Vector2(-(fullWidth - newWidth), rectTransform.offsetMax.y);
 
-    Debug.Log($"📏 Gatherer Health bar updated: {currentHealth}/{maxHealth} | Width: {fullWidth} -> {newWidth}");
-}
-
+        Debug.Log($"Gatherer Health bar updated: {currentHealth}/{maxHealth} | Width: {fullWidth} -> {newWidth}");
+    }
 }

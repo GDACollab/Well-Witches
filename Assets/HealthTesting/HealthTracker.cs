@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class HealthTracking : MonoBehaviour
 {
-    [SerializeField] private Transform player; // Reference to the Player (Blue Box)
-    [SerializeField] private Transform healthBar; // Reference to the Health Bar (White Box)
-    [SerializeField] private Vector3 offset = new Vector3(0, 1.5f, 0); // Position Health Bar
+    [SerializeField] private Transform player;
+    [SerializeField] private Transform healthBar;
+    [SerializeField] private Vector3 offset = new Vector3(0, 1.5f, 0);
 
     void Update()
     {

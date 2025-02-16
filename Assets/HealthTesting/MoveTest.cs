@@ -2,7 +2,7 @@
 // THIS FILE IS FOR TESTING PURPOSES ONLY.
 
 using UnityEngine;
-using UnityEngine.UI; // Required for UI Images
+using UnityEngine.UI; 
 
 public class MoveTest : MonoBehaviour
 {
