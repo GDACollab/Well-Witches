@@ -11,6 +11,7 @@ public class QuestEvents
         }
     }
 
+
     public event Action<string> onAdvanceQuest;
     public void AdvanceQuest(string id)
     {
@@ -35,6 +36,15 @@ public class QuestEvents
         if (onQuestStateChange != null)
         {
             onQuestStateChange(quest);
+        }
+    }
+
+    public event Action onCancelQuest;
+    public void CancelQuest()
+    {
+        if (onCancelQuest != null)
+        {
+            onCancelQuest();
         }
     }
 }

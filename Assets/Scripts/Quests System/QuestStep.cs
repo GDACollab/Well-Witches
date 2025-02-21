@@ -26,4 +26,9 @@ public abstract class QuestStep : MonoBehaviour
 
         
     }
+
+    public void CancelQuestStep()
+    {
+        Destroy(this.gameObject);
+    }
 }

@@ -27,6 +27,7 @@ public class QuestManager : MonoBehaviour
         EventManager.instance.questEvents.onStartQuest += StartQuest;
         EventManager.instance.questEvents.onAdvanceQuest += AdvanceQuest;
         EventManager.instance.questEvents.onFinishQuest += FinishQuest;
+        EventManager.instance.questEvents.onCancelQuest += CancelQuest;
     }
 
     private void OnDisable()
@@ -34,6 +35,7 @@ public class QuestManager : MonoBehaviour
         EventManager.instance.questEvents.onStartQuest -= StartQuest;
         EventManager.instance.questEvents.onAdvanceQuest -= AdvanceQuest;
         EventManager.instance.questEvents.onFinishQuest -= FinishQuest;
+        EventManager.instance.questEvents.onCancelQuest -= CancelQuest;
     }
 
     private void Start()
@@ -119,6 +121,24 @@ public class QuestManager : MonoBehaviour
         Quest quest = GetQuestByID(id);
         ResetQuestText();
         ChangeQuestState(quest.info.id, QuestState.FINISHED);
+    }
+
+    private void CancelQuest()
+    {
+        // currently, this cancels all quests that are in progress
+        // considering we can only have one quest at a time, this should be fine, however if we choose to not do that, then this needs to be reworked a tad
+        foreach(Quest q in questMap.Values)
+        {
+            if(q.state == QuestState.IN_PROGRESS) // changing this to in progress and/or finished will make it so you can cancel finishable quests too
+            {
+                ChangeQuestState(q.info.id, QuestState.CAN_START);
+                ResetQuestText();
+            }
+        }
+        foreach (Transform child in transform) // additionally if we were to change it so we can have multiple quests, this needs to check if the object it found == current quest id
+        {
+            child.gameObject.GetComponent<QuestStep>().CancelQuestStep();
+        }
     }
 
     private void ResetQuestText()
