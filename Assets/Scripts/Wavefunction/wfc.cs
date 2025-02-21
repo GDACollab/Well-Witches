@@ -8,6 +8,7 @@ public class wfc : MonoBehaviour
 {
     [SerializeField] Tilemap groundTilemap;
     [SerializeField] Tilemap hitboxesTileMap;
+    [SerializeField] Tilemap middleTileMap;
     [SerializeField] Tilemap aboveTileMap;
 
     [SerializeField] private tileScriptableObject[] tileScriptableObjects;
@@ -135,20 +136,24 @@ public class wfc : MonoBehaviour
     {
         TileBase tileGetGround = null;
         TileBase tileGetHitbox = null;
+        TileBase tileGetMiddle = null;
         TileBase tileGetAbove = null;
         Stack<Tile> tileStack = new Stack<Tile>();
+
         for (int x = 0; x < sizeX; x++)
         {
             for (int y = 0; y < sizeY; y++)
             {
                 tileGetGround = groundTilemap.GetTile(new Vector3Int(x, y, 0));
                 tileGetHitbox = hitboxesTileMap.GetTile(new Vector3Int(x, y, 0));
+                tileGetMiddle = middleTileMap.GetTile(new Vector3Int(x, y, 0));
                 tileGetAbove = aboveTileMap.GetTile(new Vector3Int(x, y, 0));
 
                 for (int i = 0; i < tileScriptableObjects.Length; i++)
                 {
                     if (tileScriptableObjects[i].tileGround == tileGetGround && 
                         tileScriptableObjects[i].tileHitbox == tileGetHitbox && 
+                        tileScriptableObjects[i].tileMiddle == tileGetMiddle &&
                         tileScriptableObjects[i].tileAbove == tileGetAbove)
                     {
                         tiles[x, y].SetPossibilities(new List<ushort> { (ushort)i });
@@ -191,7 +196,9 @@ public class wfc : MonoBehaviour
         bool hasAHitBox = false;
         TileBase tileToPlaceGround = null;
         TileBase tileToPlaceHitbox = null;
+        TileBase tileToPlaceMiddle = null;
         TileBase tileToPlaceAbove = null;
+
         for (int x = 0; x < sizeX; x++)
         {
             for (int y = 0; y < sizeY; y++)
@@ -200,6 +207,7 @@ public class wfc : MonoBehaviour
                 {
                     tileToPlaceGround = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileGround;
                     tileToPlaceHitbox = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileHitbox;
+                    tileToPlaceMiddle = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileMiddle;
                     tileToPlaceAbove = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileAbove;
 
                     if (tileToPlaceGround != null)
@@ -209,6 +217,10 @@ public class wfc : MonoBehaviour
                     if (tileToPlaceHitbox != null)
                     {
                         hitboxesTileMap.SetTile(new Vector3Int(x, y, 0), tileToPlaceHitbox);
+                    }
+                    if (tileToPlaceMiddle != null)
+                    {
+                        middleTileMap.SetTile(new Vector3Int(x, y, 0), tileToPlaceMiddle);
                     }
                     if (tileToPlaceAbove != null)
                     {

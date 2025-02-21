@@ -6,15 +6,16 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu(fileName = "WFCTile", menuName = "ScriptableObjects/WFCTile")]
 public class tileScriptableObject : ScriptableObject
 {
-    [Space(10), Header("Ground Tile Asset")]
+    [Space(10), Header("Tile Assets")]
     [Tooltip("A tile asset, will be placed in a tilemap")]
     public TileBase tileGround = null;
 
-    [Space(10), Header("Hitbox Tile Asset")]
     [Tooltip("A tile asset, will be placed in a tilemap")]
     public TileBase tileHitbox = null;
 
-    [Space(10), Header("Above Tile Asset")]
+    [Tooltip("A tile asset, will be placed in a tilemap")]
+    public TileBase tileMiddle = null;
+
     [Tooltip("A tile asset, will be placed in a tilemap")]
     public TileBase tileAbove = null;
 
