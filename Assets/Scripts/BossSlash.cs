@@ -9,7 +9,7 @@ public class BossSlash : MonoBehaviour
     public GameObject wavePrefab;
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Instantiate(slashPrefab, slashSpawn.position, Quaternion.identity);
             StartCoroutine(SpawnWave());
