@@ -14,8 +14,8 @@ public class wfc : MonoBehaviour
 
     [SerializeField] InteractableGenerator interactableGenerating;
 
-    private static int sizeX = 170;
-    private static int sizeY = 170;
+    private static int sizeX = 130;
+    private static int sizeY = 130;
 
     public enum Direction { North, South, East, West };
 
@@ -145,40 +145,16 @@ public class wfc : MonoBehaviour
                 tileGetHitbox = hitboxesTileMap.GetTile(new Vector3Int(x, y, 0));
                 tileGetAbove = aboveTileMap.GetTile(new Vector3Int(x, y, 0));
 
-                if (tileGetGround != null)
+                for (int i = 0; i < tileScriptableObjects.Length; i++)
                 {
-                    for (int i = 0; i < tileScriptableObjects.Length; i++)
+                    if (tileScriptableObjects[i].tileGround == tileGetGround && 
+                        tileScriptableObjects[i].tileHitbox == tileGetHitbox && 
+                        tileScriptableObjects[i].tileAbove == tileGetAbove)
                     {
-                        if (tileGetGround == tileScriptableObjects[i].tileGround)
-                        {
-                            tiles[x, y].SetPossibilities(new List<ushort> { (ushort)i });
-                            tileStack.Push(tiles[x, y]);
-                        }
-                    }
+                        tiles[x, y].SetPossibilities(new List<ushort> { (ushort)i });
+                        tileStack.Push(tiles[x, y]);
+                    } 
                 }
-                else if (tileGetHitbox != null)
-                {
-                    for (int i = 0; i < tileScriptableObjects.Length; i++)
-                    {
-                        if (tileGetHitbox == tileScriptableObjects[i].tileHitbox)
-                        {
-                            tiles[x, y].SetPossibilities(new List<ushort> { (ushort)i });
-                            tileStack.Push(tiles[x, y]);
-                        }
-                    }
-                }
-                else if (tileGetAbove != null)
-                {
-                    for (int i = 0; i < tileScriptableObjects.Length; i++)
-                    {
-                        if (tileGetAbove == tileScriptableObjects[i].tileAbove)
-                        {
-                            tiles[x, y].SetPossibilities(new List<ushort> { (ushort)i });
-                            tileStack.Push(tiles[x, y]);
-                        }
-                    }
-                }
-
             }
         }           
 
