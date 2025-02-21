@@ -6,9 +6,9 @@ public class BaseProjectile : MonoBehaviour
     private Camera cam;
     private Rigidbody2D rb;
 
-    public GameObject main_VFX;
-    public GameObject trail_VFX;
-    public GameObject impact_VFX;
+    [SerializeField] private GameObject main_VFX;
+    [SerializeField] private GameObject trail_VFX;
+    [SerializeField] GameObject impact_VFX;
 
     private float _damage;
 
@@ -39,7 +39,7 @@ public class BaseProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // LET ME EDIT BASE CLASS ENEMY
+        // LET ME EDIT BASE CLASS ENEMY WHY IS IT NOT CAPILIZED AND WHY IS IT INT
         if (collision.gameObject.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<BaseEnemyClass>().takingDamage((int) _damage);
