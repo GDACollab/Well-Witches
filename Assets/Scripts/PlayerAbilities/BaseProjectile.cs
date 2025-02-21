@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class BaseProjectile : MonoBehaviour
@@ -6,15 +5,17 @@ public class BaseProjectile : MonoBehaviour
     private Vector3 mousePosition;
     private Camera cam;
     private Rigidbody2D rb;
-    public float velocity;
 
     public GameObject main_VFX;
     public GameObject trail_VFX;
     public GameObject impact_VFX;
 
+    private float _damage;
+
     // Start is called before the first frame update
-    void Start()
+    public void InitializeProjectile(float velocity, float lifetime, float damage)
     {
+        _damage = damage;
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         rb = GetComponent<Rigidbody2D>();
         mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -28,8 +29,7 @@ public class BaseProjectile : MonoBehaviour
         main_VFX.SetActive(true);
         impact_VFX.SetActive(false);
 
-        StartCoroutine(Despawn());
-
+        Destroy(gameObject, lifetime);
     }
 
     // Update is called once per frame
@@ -39,18 +39,16 @@ public class BaseProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-            rb.velocity = Vector2.zero;
-            main_VFX.SetActive(false);
-            trail_VFX.SetActive(false);
-            impact_VFX.SetActive(true);
+        // LET ME EDIT BASE CLASS ENEMY
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<BaseEnemyClass>().takingDamage((int) _damage);
+        }  
+        rb.velocity = Vector2.zero;
+        main_VFX.SetActive(false);
+        trail_VFX.SetActive(false);
+        impact_VFX.SetActive(true);
 
-            Destroy(gameObject, 0.5f);
-    }
-
-
-    IEnumerator Despawn()
-    {
-        yield return new WaitForSeconds(3);
-        Destroy(gameObject);
+        Destroy(gameObject, 0.5f);
     }
 }

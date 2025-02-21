@@ -2,13 +2,18 @@ using UnityEngine;
 
 public class WardenShoot : MonoBehaviour
 {
+    [SerializeField] private WardenStatsManagement wardenStats;
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private Transform projectileSpawn;
 
-    public GameObject projectilePrefab;
-    public Transform projectileSpawn;
+    [SerializeField] private float projectileVelocity;
+    [SerializeField] private float projectileLifetime;
+
 
     private void Awake()
     {
-        if (projectileSpawn != null) 
+        // these should hopefully never trigger
+        if (projectileSpawn == null) 
         {
             projectileSpawn = transform.Find("ProjectileSpawn");
         }
@@ -16,9 +21,12 @@ public class WardenShoot : MonoBehaviour
 
     private void Update()
     {
+        // if we are using the new input manager change this
         if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(projectilePrefab, projectileSpawn.position, Quaternion.identity);
+            BaseProjectile projectile = Instantiate(projectilePrefab, projectileSpawn.position, Quaternion.identity).GetComponent<BaseProjectile>();
+            projectile.InitializeProjectile(projectileVelocity, projectileLifetime, wardenStats.GetAttack());
+            
         }
     }
 }

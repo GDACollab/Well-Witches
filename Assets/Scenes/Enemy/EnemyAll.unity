@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 61058126}
   - component: {fileID: 61058125}
   - component: {fileID: 61058127}
+  - component: {fileID: 61058128}
   m_Layer: 0
   m_Name: Pooling
   m_TagString: Untagged
@@ -185,6 +186,20 @@ MonoBehaviour:
   pooledObjects: []
   acidPoolPrefab: {fileID: 8986336780949027244, guid: f2236a13f9befb24da0e88e15838f929, type: 3}
   amountToPool: 50
+--- !u!114 &61058128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61058124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b3763b169ac6a438ad344dbf48489b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  attack: 10
 --- !u!1001 &511549897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -270,6 +285,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Warden
       objectReference: {fileID: 0}
+    - target: {fileID: 4290127505824787876, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: wardenStats
+      value: 
+      objectReference: {fileID: 61058128}
     - target: {fileID: 7347747762842868080, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.38
