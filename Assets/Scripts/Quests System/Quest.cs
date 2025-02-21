@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Quest
@@ -28,13 +29,13 @@ public class Quest
         return (currentQuestStepIndex < info.questStepPrefabs.Length);
     }
 
-    public void InstantiateCurrentQuestStep(Transform parentTransform)
+    public void InstantiateCurrentQuestStep(Transform parentTransform, TextMeshProUGUI questDescription)
     {
         GameObject questStepPrefab = getCurrentQuestStepPrefab();
         if (questStepPrefab != null)
         {
             QuestStep questStep = Object.Instantiate(questStepPrefab, parentTransform).GetComponent<QuestStep>();
-            questStep.InitializeQuestStep(info.id);
+            questStep.InitializeQuestStep(info.id, questDescription);
         }
     }
 
