@@ -10,8 +10,11 @@ using UnityEngine;
 
 public class PlayerMovementData : ScriptableObject
 {
-	// Note: [field: SerializeField] allows auto-implemented properties to be set in the inspector
-	// An auto-implemented property is a variable with { get; set }
+	/*
+	 *	Note: [field: SerializeField] allows auto-implemented properties to be set in the inspector
+	 *	An auto-implemented property is a variable with { get; set }
+	 *	I'm using them for the variables here that should only be able to be set by developers, not scripts
+	 */
 
 	[field: SerializeField]
 	public float maxSpeed { get; private set; }
