@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class QuestManager : MonoBehaviour
@@ -10,6 +11,11 @@ public class QuestManager : MonoBehaviour
     // TODO - setup so on starting a new run after the first one, this increments
     private int currentRunCount = 0;
 
+    // Quest UI TMP Objects
+    // NOTE: MUST DRAG THIS IN FOR THIS TO WORK
+    [Header("Quest UI Text")]
+    [SerializeField] public TextMeshProUGUI questDisplay; // this is set by this script
+    [SerializeField] public TextMeshProUGUI questDescription; // this is passed onto the instantiated step object
 
     private void Awake()
     {
@@ -83,7 +89,8 @@ public class QuestManager : MonoBehaviour
     private void StartQuest(string id)
     {
         Quest quest = GetQuestByID(id);
-        quest.InstantiateCurrentQuestStep(this.transform);
+        questDisplay.text = "Quest: " + quest.info.displayName;
+        quest.InstantiateCurrentQuestStep(this.transform, questDescription);
         ChangeQuestState(quest.info.id, QuestState.IN_PROGRESS);
 
     }
@@ -98,7 +105,7 @@ public class QuestManager : MonoBehaviour
         // if there are more steps, instantiate the next one
         if (quest.CurrentStepExists())
         {
-            quest.InstantiateCurrentQuestStep(this.transform);
+            quest.InstantiateCurrentQuestStep(this.transform, questDescription);
         }
         // if no more steps, the quest is done!
         else
@@ -110,9 +117,15 @@ public class QuestManager : MonoBehaviour
     private void FinishQuest(string id)
     {
         Quest quest = GetQuestByID(id);
+        ResetQuestText();
         ChangeQuestState(quest.info.id, QuestState.FINISHED);
     }
 
+    private void ResetQuestText()
+    {
+        questDescription.text = "";
+        questDisplay.text = "Quest: ";
+    }
 
     private Dictionary<string, Quest> CreateQuestMap()
     {
