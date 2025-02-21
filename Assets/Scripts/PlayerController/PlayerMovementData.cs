@@ -1,38 +1,45 @@
 using UnityEngine;
-
 /*
- * To create an instance of this:
- *  Right click the folder you're in
- *  Create > Player > Player Movement Data
- *  Set values in the inspector
- *  Drag the created object onto Gatherer or Warden
+ *  To create an instance of this:
+ *      Right click the folder you're in
+ *      Create > Player > Player Movement Data
+ *      Set values in the inspector
+ *      Drag the created object onto Gatherer or Warden
  */
 [CreateAssetMenu(menuName = "Player/Player Movement Data")]
 
 public class PlayerMovementData : ScriptableObject
 {
-    public float maxSpeed;
+	// Note: [field: SerializeField] allows auto-implemented properties to be set in the inspector
+	// An auto-implemented property is a variable with { get; set }
 
-    [Tooltip("Amount of time it takes for the player to accelerate from 0 to max speed")]
-    public float acceleration;
+	[field: SerializeField]
+	public float maxSpeed { get; private set; }
 
-    [Tooltip("Amount of time it takes for the player to decelerate from max speed to 0")]
-	public float deceleration;
+
+	[field: SerializeField][Tooltip("Amount of time it takes for the player to accelerate from 0 to max speed")]
+	public float acceleration { get; private set; }
+
+
+	[field: SerializeField][Tooltip("Amount of time it takes for the player to decelerate from max speed to 0")]
+	public float deceleration { get; private set; }
+
+
+	[field: SerializeField]
+	public bool conserveMomentum { get; private set; }
+
 
 	[HideInInspector] public float accelForce; // The actual force (multiplied with the speed difference) applied to the player
-    [HideInInspector] public float decelForce; // The actual force (multiplied with the speed difference) applied to the player
+	[HideInInspector] public float decelForce; // The actual force (multiplied with the speed difference) applied to the player
 
-    public bool conserveMomentum;
 
-    // Update and clamp variables every time one is changed in the inspector
-    void OnValidate()
-    {
-        accelForce = (50 * acceleration) / maxSpeed;
-        decelForce = (50 * deceleration) / maxSpeed;
+	void OnValidate()
+	{
+		// Maintain and update variables whenever something is changed in the inspector
+		acceleration = Mathf.Clamp(acceleration, 0f, maxSpeed);
+		deceleration = Mathf.Clamp(deceleration, 0f, maxSpeed);
 
-        // Clamp to ranges
-        //acceleration = Mathf.Clamp(acceleration, 0.01f, moveSpeed);
-        //deceleration = Mathf.Clamp(deceleration, 0.01f, moveSpeed);
-
-    }
+		accelForce = (50 * acceleration) / maxSpeed;
+		decelForce = (50 * deceleration) / maxSpeed;
+	}
 }
