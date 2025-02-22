@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
 {
 	[Header("Movement")]
 	[SerializeField] PlayerMovementData movementData;
-	public Rigidbody2D rb;
+	protected Rigidbody2D rb;
 	Vector2 moveDirection;
 	[HideInInspector] public float maxSpeed_Adjusted;	// this has to exist for now because of SpeedBuff.cs
 
