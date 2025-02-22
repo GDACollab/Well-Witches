@@ -46,15 +46,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Pull Warden"",
-                    ""type"": ""Button"",
-                    ""id"": ""f0a2f88e-6b67-4639-a7e4-04a08146c32c"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Pick Up Item"",
                     ""type"": ""Button"",
                     ""id"": ""822e5f86-0676-4fec-8086-d8ef0b446200"",
@@ -141,17 +132,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Active Ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0c16b67c-685f-44f8-b2ed-2dd6cd965ebc"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Mouse and Keyboard"",
-                    ""action"": ""Pull Warden"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -181,6 +161,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""Active Ability"",
                     ""type"": ""Button"",
                     ""id"": ""f40a84ae-37d5-4e57-9d39-dc2cb2e5c0fb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pull Warden"",
+                    ""type"": ""Button"",
+                    ""id"": ""fe6295e4-750b-4ef9-81d2-a3056269708a"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -264,6 +253,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Active Ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3881b470-02d2-4b23-82b2-22866d4b0a78"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mouse and Keyboard"",
+                    ""action"": ""Pull Warden"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -291,13 +291,13 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Gameplay_Gatherer = asset.FindActionMap("Gameplay_Gatherer", throwIfNotFound: true);
         m_Gameplay_Gatherer_Move = m_Gameplay_Gatherer.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_Gatherer_ActiveAbility = m_Gameplay_Gatherer.FindAction("Active Ability", throwIfNotFound: true);
-        m_Gameplay_Gatherer_PullWarden = m_Gameplay_Gatherer.FindAction("Pull Warden", throwIfNotFound: true);
         m_Gameplay_Gatherer_PickUpItem = m_Gameplay_Gatherer.FindAction("Pick Up Item", throwIfNotFound: true);
         // Gameplay_Warden
         m_Gameplay_Warden = asset.FindActionMap("Gameplay_Warden", throwIfNotFound: true);
         m_Gameplay_Warden_Move = m_Gameplay_Warden.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_Warden_Shoot = m_Gameplay_Warden.FindAction("Shoot", throwIfNotFound: true);
         m_Gameplay_Warden_ActiveAbility = m_Gameplay_Warden.FindAction("Active Ability", throwIfNotFound: true);
+        m_Gameplay_Warden_PullWarden = m_Gameplay_Warden.FindAction("Pull Warden", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -367,7 +367,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IGameplay_GathererActions> m_Gameplay_GathererActionsCallbackInterfaces = new List<IGameplay_GathererActions>();
     private readonly InputAction m_Gameplay_Gatherer_Move;
     private readonly InputAction m_Gameplay_Gatherer_ActiveAbility;
-    private readonly InputAction m_Gameplay_Gatherer_PullWarden;
     private readonly InputAction m_Gameplay_Gatherer_PickUpItem;
     public struct Gameplay_GathererActions
     {
@@ -375,7 +374,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public Gameplay_GathererActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Gameplay_Gatherer_Move;
         public InputAction @ActiveAbility => m_Wrapper.m_Gameplay_Gatherer_ActiveAbility;
-        public InputAction @PullWarden => m_Wrapper.m_Gameplay_Gatherer_PullWarden;
         public InputAction @PickUpItem => m_Wrapper.m_Gameplay_Gatherer_PickUpItem;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay_Gatherer; }
         public void Enable() { Get().Enable(); }
@@ -392,9 +390,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ActiveAbility.started += instance.OnActiveAbility;
             @ActiveAbility.performed += instance.OnActiveAbility;
             @ActiveAbility.canceled += instance.OnActiveAbility;
-            @PullWarden.started += instance.OnPullWarden;
-            @PullWarden.performed += instance.OnPullWarden;
-            @PullWarden.canceled += instance.OnPullWarden;
             @PickUpItem.started += instance.OnPickUpItem;
             @PickUpItem.performed += instance.OnPickUpItem;
             @PickUpItem.canceled += instance.OnPickUpItem;
@@ -408,9 +403,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ActiveAbility.started -= instance.OnActiveAbility;
             @ActiveAbility.performed -= instance.OnActiveAbility;
             @ActiveAbility.canceled -= instance.OnActiveAbility;
-            @PullWarden.started -= instance.OnPullWarden;
-            @PullWarden.performed -= instance.OnPullWarden;
-            @PullWarden.canceled -= instance.OnPullWarden;
             @PickUpItem.started -= instance.OnPickUpItem;
             @PickUpItem.performed -= instance.OnPickUpItem;
             @PickUpItem.canceled -= instance.OnPickUpItem;
@@ -438,6 +430,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Warden_Move;
     private readonly InputAction m_Gameplay_Warden_Shoot;
     private readonly InputAction m_Gameplay_Warden_ActiveAbility;
+    private readonly InputAction m_Gameplay_Warden_PullWarden;
     public struct Gameplay_WardenActions
     {
         private @Controls m_Wrapper;
@@ -445,6 +438,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Gameplay_Warden_Move;
         public InputAction @Shoot => m_Wrapper.m_Gameplay_Warden_Shoot;
         public InputAction @ActiveAbility => m_Wrapper.m_Gameplay_Warden_ActiveAbility;
+        public InputAction @PullWarden => m_Wrapper.m_Gameplay_Warden_PullWarden;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay_Warden; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -463,6 +457,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ActiveAbility.started += instance.OnActiveAbility;
             @ActiveAbility.performed += instance.OnActiveAbility;
             @ActiveAbility.canceled += instance.OnActiveAbility;
+            @PullWarden.started += instance.OnPullWarden;
+            @PullWarden.performed += instance.OnPullWarden;
+            @PullWarden.canceled += instance.OnPullWarden;
         }
 
         private void UnregisterCallbacks(IGameplay_WardenActions instance)
@@ -476,6 +473,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ActiveAbility.started -= instance.OnActiveAbility;
             @ActiveAbility.performed -= instance.OnActiveAbility;
             @ActiveAbility.canceled -= instance.OnActiveAbility;
+            @PullWarden.started -= instance.OnPullWarden;
+            @PullWarden.performed -= instance.OnPullWarden;
+            @PullWarden.canceled -= instance.OnPullWarden;
         }
 
         public void RemoveCallbacks(IGameplay_WardenActions instance)
@@ -506,7 +506,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnActiveAbility(InputAction.CallbackContext context);
-        void OnPullWarden(InputAction.CallbackContext context);
         void OnPickUpItem(InputAction.CallbackContext context);
     }
     public interface IGameplay_WardenActions
@@ -514,5 +513,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnActiveAbility(InputAction.CallbackContext context);
+        void OnPullWarden(InputAction.CallbackContext context);
     }
 }

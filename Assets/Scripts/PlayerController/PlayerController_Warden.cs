@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController_Warden : PlayerController
 {
@@ -16,6 +17,10 @@ public class PlayerController_Warden : PlayerController
     [Tooltip("Changes how 'stiff' the rope is, the higher the value, the more stiff")]
     [SerializeField][Range(0.01f,10f)] float ropeStiffness;
 
+    [Header("Warden Pull Controls")]
+    [Tooltip("Changes how strongly Warden is pulled to Gatherer when using the Warden pull ability.")]
+    [SerializeField][Range(0f, 3000f)] float wardenPullForce;
+
     //Rope Test Variables
     Gradient gradient;
     Gradient gradientStressed;
@@ -30,6 +35,12 @@ public class PlayerController_Warden : PlayerController
     {
         base.Awake();
         joint = GetComponent<SpringJoint2D>();
+    }
+
+    void OnPullWarden(InputValue iv)
+    {
+        rb.velocity = Vector2.zero;
+        rb.AddForce(wardenPullForce * (gatherer.transform.position - gameObject.transform.position));
     }
 
     void Start()

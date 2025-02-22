@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
 {
 	[Header("Movement")]
 	[SerializeField] PlayerMovementData movementData;
-	Rigidbody2D rb;
+	public Rigidbody2D rb;
 	Vector2 moveDirection;
 	[HideInInspector] public float maxSpeed_Adjusted;	// this has to exist for now because of SpeedBuff.cs
 
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
 		moveDirection = iv.Get<Vector2>();
 	}
 
-	void FixedUpdate()
+    void FixedUpdate()
 	{
 		Move();
 	}
@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour
 		if (movementData.conserveMomentum && currentVelocity.magnitude > maxSpeed_Adjusted && Vector2.Dot(rb.velocity.normalized, targetVelocity.normalized) >= 0.5) 
 		{
 			acceleration = 0;
-			Debug.Log(Vector2.Angle(currentVelocity, targetVelocity));
         }
 		else acceleration = (moveDirection != Vector2.zero) ? movementData.acceleration : movementData.deceleration;
 
