@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerController_Warden : PlayerController
 {
@@ -18,7 +17,7 @@ public class PlayerController_Warden : PlayerController
     [Header("Warden Pull Ability")]
     [SerializeField][Range(0f, 3000f)] float wardenPullForce;
 
-    //Rope Test Variables
+    // Rope Test Variables
     Gradient gradient;
     Gradient gradientStressed;
 
@@ -42,8 +41,9 @@ public class PlayerController_Warden : PlayerController
         joint.anchor = Vector2.zero;
         ropeLR = GetComponent<LineRenderer>();
 
-        // A simple 2 color gradient with a fixed alpha of 1.0f.
+        // A simple 2 color gradient with a fixed alpha of 1.0f
         float alpha = 1.0f;
+
         gradient = new Gradient();
         gradient.SetKeys(
             new GradientColorKey[] { new GradientColorKey(Color.white, 0.0f), new GradientColorKey(Color.white, 1.0f) },
@@ -59,13 +59,11 @@ public class PlayerController_Warden : PlayerController
 
     void Update()
     {
-        // Calcuate spring's anchor position
         joint.connectedAnchor = gatherer.transform.position;
 
         // Rope visualization test
         ropeLR.SetPosition(0,transform.position);
         ropeLR.SetPosition(1, gatherer.transform.position);
-
     }
 
     public void enableRope()
@@ -79,10 +77,10 @@ public class PlayerController_Warden : PlayerController
         ropeLR.colorGradient = gradient;
     }
     /// <summary>
-    /// Public API function for powerups to call in order to update wanderer's settings incase any of them have been changed
+    /// Public API function for powerups to call in order to update warden's settings incase any of them have been changed
     /// - Currently only updates the joint distance incase its been changed by a powerup
     /// </summary>
-    public void UpdateWanderer()
+    public void UpdateWarden()
     {
         joint.distance = gathererRopeRadius.radius;
     }
