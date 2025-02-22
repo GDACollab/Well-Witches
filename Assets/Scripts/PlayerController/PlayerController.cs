@@ -16,9 +16,9 @@ public class PlayerController : MonoBehaviour
 	}
 
 	// Called by the Player Input component
-	void OnMove(InputValue inputValue)
+	void OnMove(InputValue iv)
 	{
-		moveDirection = inputValue.Get<Vector2>();
+		moveDirection = iv.Get<Vector2>();
 	}
 
 	void FixedUpdate()
@@ -31,13 +31,14 @@ public class PlayerController : MonoBehaviour
 		// Calculate direction & desired velocity
 		Vector2 targetSpeed = moveDirection * maxSpeed_Adjusted;
 
-		float accelRate = (Mathf.Abs(targetSpeed.x) > 0.01f && Mathf.Abs(targetSpeed.y) > 0.01f) ? movementData.accelForce : movementData.decelForce;
+		float accelRate = (moveDirection != Vector2.zero) ? movementData.acceleration : movementData.deceleration;
+		accelRate *= Time.deltaTime;
 
 		// Conserve momentum
-		if (movementData.conserveMomentum && rb.velocity.magnitude > targetSpeed.magnitude && Vector2.Dot(rb.velocity.normalized, targetSpeed.normalized) >= 0.5) 
+		if (movementData.conserveMomentum && rb.velocity.magnitude > maxSpeed_Adjusted && Vector2.Dot(rb.velocity.normalized, targetSpeed.normalized) >= 0.5) 
 		{
 			accelRate = 0;
-            Debug.Log(Mathf.DeltaAngle(Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg, Mathf.Atan2(targetSpeed.y, targetSpeed.x) * Mathf.Rad2Deg).ToString());
+			Debug.Log(Vector2.Angle(rb.velocity, targetSpeed));
         }
 		Vector2 speedDiff = targetSpeed - rb.velocity;
 
