@@ -28,21 +28,20 @@ public class PlayerController : MonoBehaviour
 
 	void Move()
 	{
-		// Calculate direction & desired velocity
-		Vector2 targetSpeed = moveDirection * maxSpeed_Adjusted;
+		Vector2 currentVelocity = rb.velocity;
+		Vector2 targetVelocity = moveDirection * maxSpeed_Adjusted;
+		Vector2 deltaVelocity = targetVelocity - currentVelocity;
 
-		float accelRate = (moveDirection != Vector2.zero) ? movementData.acceleration : movementData.deceleration;
-
-		// Conserve momentum
-		if (movementData.conserveMomentum && rb.velocity.magnitude > maxSpeed_Adjusted && Vector2.Dot(rb.velocity.normalized, targetSpeed.normalized) >= 0.5) 
+		float acceleration;
+		if (movementData.conserveMomentum && currentVelocity.magnitude > maxSpeed_Adjusted && Vector2.Dot(rb.velocity.normalized, targetVelocity.normalized) >= 0.5) 
 		{
-			accelRate = 0;
-			Debug.Log(Vector2.Angle(rb.velocity, targetSpeed));
+			acceleration = 0;
+			Debug.Log(Vector2.Angle(currentVelocity, targetVelocity));
         }
-		Vector2 speedDiff = targetSpeed - rb.velocity;
+		else acceleration = (moveDirection != Vector2.zero) ? movementData.acceleration : movementData.deceleration;
 
-		Vector2 movement = speedDiff * accelRate;
+		Vector2 accelerationVector = deltaVelocity * acceleration;
 
-		rb.AddForce(movement, ForceMode2D.Force);
+		rb.AddForce(accelerationVector, ForceMode2D.Force);
 	}
 }
