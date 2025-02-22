@@ -16,33 +16,18 @@ public class PlayerMovementData : ScriptableObject
 	 *	I'm using them for the variables here that should only be able to be set by developers, not scripts
 	 */
 
-	[field: SerializeField]
+	[field: SerializeField, Tooltip("Max speed possible via movement input only")]
 	public float maxSpeed { get; private set; }
 
 
-	[field: SerializeField][Tooltip("Amount of time it takes for the player to accelerate from 0 to max speed")]
+	[field: SerializeField, Tooltip("Speed gained per second")]
 	public float acceleration { get; private set; }
 
 
-	[field: SerializeField][Tooltip("Amount of time it takes for the player to decelerate from max speed to 0")]
+	[field: SerializeField, Tooltip("Speed lost per second")]
 	public float deceleration { get; private set; }
 
 
-	[field: SerializeField]
+	[field: SerializeField, Tooltip("Todo")]
 	public bool conserveMomentum { get; private set; }
-
-
-	[HideInInspector] public float accelForce; // The actual force (multiplied with the speed difference) applied to the player
-	[HideInInspector] public float decelForce; // The actual force (multiplied with the speed difference) applied to the player
-
-
-	void OnValidate()
-	{
-		// Maintain and update variables whenever something is changed in the inspector
-		acceleration = Mathf.Clamp(acceleration, 0f, maxSpeed);
-		deceleration = Mathf.Clamp(deceleration, 0f, maxSpeed);
-
-		accelForce = (50 * acceleration) / maxSpeed;
-		decelForce = (50 * deceleration) / maxSpeed;
-	}
 }
