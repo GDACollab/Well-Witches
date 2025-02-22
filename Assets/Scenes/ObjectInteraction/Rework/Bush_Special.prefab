@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 8631602320420666309}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7009, y: -0.2478, z: 0}
+  m_LocalPosition: {x: -1.7009, y: -0.2478, z: 1}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -168,7 +168,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 1.75
 --- !u!114 &1279498616103864335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +186,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5285d0ff03e0bf845baa40b64eb5d081, type: 2}
   - {fileID: 11400000, guid: 06d3036608581edcb932e93bec7613a1, type: 2}
   respawnTime: 30
+  prefabToSpawn: {fileID: 4926586859736898184, guid: 6fb847e4c2a67d54d978c3fce330ec01, type: 3}
 --- !u!199 &-6895085806437997794
 ParticleSystemRenderer:
   serializedVersion: 6
