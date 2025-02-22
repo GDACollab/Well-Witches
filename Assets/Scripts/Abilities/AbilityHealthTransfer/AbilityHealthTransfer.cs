@@ -16,26 +16,26 @@ public class AbilityHealthTransfer : MonoBehaviour
    {
       if (Input.GetKeyDown(KeyCode.Q) && Time.time > lastUsedTime + cooldownTime)
       { //varifies that someone isn't spamming the q button and there is a gap between presses (Abiltiy Cooldown)
-         if (Input.GetKeyDown(KeyCode.Q) && StatsManager.Instance.Gatherer_CurrentHealth > healthgate)
+         if (Input.GetKeyDown(KeyCode.Q) && StatsManager.Instance.GathererCurrentHealth > healthgate)
          { //Ability confirmed to be Q && Timer
            // transfer health from Gatherer to Wanderer
             lastUsedTime = Time.time;
 
-            temp = StatsManager.Instance.Gatherer_CurrentHealth * StatsManager.Instance.healthTransferAmount; // temp holds %25 percent of Gatherer's current health
+            temp = StatsManager.Instance.GathererCurrentHealth * StatsManager.Instance.healthTransferAmount; // temp holds %25 percent of Gatherer's current health
 
-            StatsManager.Instance.Gatherer_CurrentHealth -= math.round(temp); // Subtract from current gatherer health
+            StatsManager.Instance.GathererCurrentHealth -= math.round(temp); // Subtract from current gatherer health
 
 
 
-            StatsManager.Instance.wanderer_MaxHealth += math.round(temp);
+            StatsManager.Instance.WandererCurrentHealth += math.round(temp);
 
-            if (StatsManager.Instance.wanderer_MaxHealth > 10)
+            if (StatsManager.Instance.WandererCurrentHealth > StatsManager.Instance.WandererMaxHealth)
             { //above 10 health
-               StatsManager.Instance.wanderer_MaxHealth = 10;
+               StatsManager.Instance.WandererCurrentHealth = 10;
             }
 
-            Debug.Log("Health of Gatherer:" + StatsManager.Instance.Gatherer_CurrentHealth);
-            Debug.Log("Health of Warden:" + StatsManager.Instance.wanderer_MaxHealth);
+            Debug.Log("Health of Gatherer:" + StatsManager.Instance.GathererCurrentHealth);
+            Debug.Log("Health of Warden:" + StatsManager.Instance.WandererCurrentHealth);
             temp = 0f;
          }
 

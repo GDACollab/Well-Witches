@@ -8,46 +8,64 @@ public class StatsManager : MonoBehaviour
 
    /*
    With the StatsManager gameObject 
-   it contains the stats in a nice and neat way
+   it contains the stats in a nice and neat way (hopefully)
     */
 
-   [Header("Gatherer Combat stats")]
+   [Header("---------------Gatherer Combat stats---------------")]
    public float healthTransferAmount; //current health transfer amount put in stats for now
    public float Resistance;
 
-   [Header("Gatherer Movement stats")]
-   public float speed;
+   [Header("---------------Gatherer Movement stats---------------")]
+   public float MaxSpeed; //connected to Movement script for testing
+   public float acceleration; //based on movement scripts
+   public float deacceleration; //based on movement scripts
+   public float CurrentSpeed; //unused just using MaxSpeed for now
 
-   [Header("Gatherer Defense stats")]
+
+   [Header("---------------Gatherer Defense Stats---------------")]
    public float Defense; //current defense put in stats for now
 
+   [Header ("---------------Gatherer Passive Stats---------------")]
+   public float GathererHaste; //luck stat dunno just sounds cool
+   public float GathererLuck;
 
-   [Header("Gatherer Health stats")]
+   [Header("---------------Gatherer Health Stats---------------")]
 
-   public float Gatherer_MaxHealth;
-   public float Gatherer_CurrentHealth;
+   public float GathererMaxHealth;
+   public float GathererCurrentHealth;
+
+   public float GathererHealthRegen;
 
 
 
-   [Header("Wanderer Combat stats")]
-   public float Ability_Power;
+   [Header("---------------Wanderer Combat Stats---------------")]
+   
+   public float AbilityPower;
 
-   public float Critical_Chance;
+   public float Mana;
 
-   public float Critical_Damage;
+   public float CriticalChance;
 
-   public float Attack_Speed;
+   public float CriticalDamage;
 
-   public float Haste;
+   public float AttackSpeed;
 
-   [Header("Wanderer Defense stats")]
+   public float LifeSteal;
 
-   public float Wanderer_Resistance; //might add a max resistance?
+   [Header("---------------Wanderer Passive Stats---------------")]
+   public float WandererHaste;
+   public float WandererLuck;
 
-   [Header("Wanderer Health stats")]
+   [Header("---------------Wanderer Defense Stats---------------")]
 
-   public float wanderer_MaxHealth;
-   public float wanderer_Health;
+   public float WandererResistance; //might add a max resistance?
+
+   [Header("---------------Wanderer Health Stats---------------")]
+
+   public float WandererMaxHealth;
+   public float WandererCurrentHealth;
+   
+   public float WandererHealthRegen;
 
 
    private void Awake()

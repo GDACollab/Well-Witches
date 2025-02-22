@@ -11,7 +11,7 @@ using UnityEngine;
 
 public class PlayerMovementData : ScriptableObject
 {
-    public float maxSpeed = StatsManager.Instance.speed;
+    public float maxSpeed;// = StatsManager.Instance.speed;
 
     [Tooltip("Amount of time it takes for the player to accelerate from 0 to max speed")]
     public float acceleration;
