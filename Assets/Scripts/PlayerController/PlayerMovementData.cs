@@ -28,6 +28,6 @@ public class PlayerMovementData : ScriptableObject
 	public float deceleration { get; private set; }
 
 
-	[field: SerializeField, Tooltip("Todo")]
+	[field: SerializeField, Tooltip("Character can use other forces (eg. the pull of the tether) to exceed maxSpeed")]
 	public bool conserveMomentum { get; private set; }
 }
