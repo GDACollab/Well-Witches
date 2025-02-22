@@ -302,6 +302,64 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupEffect: {fileID: 11400000, guid: ef839119c04ffc448aca1a5104306fa6, type: 2}
+--- !u!1 &668364326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 668364328}
+  - component: {fileID: 668364327}
+  m_Layer: 0
+  m_Name: StatsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &668364327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668364326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b3763b169ac6a438ad344dbf48489b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthTransferAmount: 0
+  Resistance: 0
+  speed: 0
+  Defense: 0
+  Gatherer_MaxHealth: 0
+  Gatherer_CurrentHealth: 0
+  Ability_Power: 0
+  Critical_Chance: 0
+  Critical_Damage: 0
+  Attack_Speed: 0
+  Haste: 0
+  Wanderer_Resistance: 0
+  wanderer_MaxHealth: 0
+  wanderer_Health: 0
+--- !u!4 &668364328
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668364326}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.326764, y: 0.6965196, z: -0.035082374}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &989721090
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,7 +393,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e56369476caf64123b6a0bab2fe983ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
 --- !u!212 &989721092
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -397,8 +454,8 @@ Transform:
   m_GameObject: {fileID: 989721090}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.006670475, y: -0.07, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.115}
+  m_LocalPosition: {x: -0.02, y: 0.56, z: 0}
+  m_LocalScale: {x: 2.5021315, y: 3.6848712, z: 0.115}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -435,8 +492,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.2, y: 0}
-  m_Size: {x: 5.61, y: 19.8}
+  m_Offset: {x: 0.15, y: 0}
+  m_Size: {x: 0.9, y: 1.33}
   m_Direction: 0
 --- !u!50 &989721095
 Rigidbody2D:
@@ -474,12 +531,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 989721090}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2883c1984721347e18cf0614844ab220, type: 3}
+  m_Script: {fileID: 11500000, guid: e9110e49d469f1e47991e28ba82680b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraToControl: {fileID: 1692952634}
-  smoothSpeed: 0.125
-  offset: {x: 0, y: 0, z: -10}
+  movementData: {fileID: 0}
+  maxSpeed_Adjusted: 0
+  interactRangeCollider: {fileID: 0}
 --- !u!1 &1196954140
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,3 +1050,4 @@ SceneRoots:
   - {fileID: 1478695985}
   - {fileID: 585077592}
   - {fileID: 989721093}
+  - {fileID: 668364328}

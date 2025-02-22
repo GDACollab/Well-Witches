@@ -12,7 +12,8 @@ public class PlayerController : MonoBehaviour
 	protected void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
-		maxSpeed_Adjusted = movementData.maxSpeed;
+		//maxSpeed_Adjusted = movementData.maxSpeed;
+		maxSpeed_Adjusted = StatsManager.Instance.speed;
 	}
 
 	// Called by the Player Input component

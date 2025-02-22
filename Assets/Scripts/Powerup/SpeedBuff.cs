@@ -6,7 +6,7 @@ public class SpeedBuff : PowerupEffect
    public float amount;
    public override void Apply(GameObject target)
    {
-      target.GetComponent<PlayerController>().maxSpeed_Adjusted += amount;
+      StatsManager.Instance.speed += amount;
         Debug.Log("Player zooming at: " + target.GetComponent<PlayerController>().maxSpeed_Adjusted.ToString());
    }
 }
