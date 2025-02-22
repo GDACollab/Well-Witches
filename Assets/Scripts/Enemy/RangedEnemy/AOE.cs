@@ -6,7 +6,7 @@ public class AOE : MonoBehaviour
 
     private void Start()
     {
-        damage = GetComponentInParent<Projectile>()._AOEdamage;
+        damage = GetComponentInParent<EnemyProjectile>()._AOEdamage;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

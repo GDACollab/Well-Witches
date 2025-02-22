@@ -116,7 +116,7 @@ public class RangedEnemy : BaseEnemyClass
                 projectile.transform.position = transform.position;
                 projectile.transform.localScale = Vector3.one * projectileSize;
                 projectile.SetActive(true);
-                projectile.GetComponent<Projectile>().
+                projectile.GetComponent<EnemyProjectile>().
                     InitializeProjectile(currentTarget.transform.position, offset, projectileSpeed, projectileLifetime, projectileDamage, AOESize, AOELifetime, AOEDamage);
             }
         }

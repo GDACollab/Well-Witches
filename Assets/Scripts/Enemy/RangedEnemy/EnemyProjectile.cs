@@ -3,7 +3,7 @@ using UnityEngine;
 
 // Jim Lee <-- who to ask and blame if something here doesn't work
 
-public class Projectile : MonoBehaviour
+public class EnemyProjectile : MonoBehaviour
 {
     private Rigidbody2D rb;
     private float _lifetime;
@@ -11,7 +11,8 @@ public class Projectile : MonoBehaviour
     private float _AOESize;
     private float _AOElifetime;
     [HideInInspector] public float _AOEdamage;
-    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private GameObject head;
+    [SerializeField] private GameObject smoke;
     [SerializeField] private GameObject AOEPrefab;
 
     // Start is called before the first frame update
@@ -24,7 +25,8 @@ public class Projectile : MonoBehaviour
     // I'll explain it if needed but eugh - Jim Lee
     public void InitializeProjectile(Vector3 targetPosition, float offset, float projectileSpeed, float lifetime, float damage, float AOESize, float AOElifetime, float AOEDamage)
     {
-        projectilePrefab.SetActive(true);
+        head.SetActive(true);
+        smoke.SetActive(true);
         AOEPrefab.SetActive(false);
         _lifetime = lifetime;
         _damage = damage;
@@ -46,6 +48,7 @@ public class Projectile : MonoBehaviour
     // instatiates(from pool) the AOE prefab and deactivates the projectile
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // if it collides with something that isn't tagged with Enemy spawn AOE
         if (!collision.gameObject.CompareTag("Enemy"))
         {
             AOEPrefab.SetActive(true);
@@ -55,16 +58,11 @@ public class Projectile : MonoBehaviour
             {
                 // TODO: DEAL DAMAGE TO PLAYER
             }
-            projectilePrefab.SetActive(false);
+            head.SetActive(false);
+            smoke.SetActive(false);
             StartCoroutine(DespawnAOE());
         } 
     }
-
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-        
-    //}
 
     // used to expire the projectile if it doesn't hit anything
     IEnumerator DespawnProjectile()
@@ -74,7 +72,8 @@ public class Projectile : MonoBehaviour
         AOEPrefab.SetActive(true);
         AOEPrefab.transform.localScale = Vector3.one * _AOESize;
         rb.velocity = Vector3.zero;
-        projectilePrefab.SetActive(false);
+        head.SetActive(false);
+        smoke.SetActive(false);
         StartCoroutine(DespawnAOE());
     }
 
