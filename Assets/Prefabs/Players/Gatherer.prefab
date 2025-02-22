@@ -211,7 +211,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementData: {fileID: 11400000, guid: 489df731d713c9541a1b93ecaf127b03, type: 2}
   maxSpeed_Adjusted: 0
+  maxPullForce: 22.5
+  pullCooldown: 2
   interactionRadius: {fileID: 2982385783056123225}
+  warden: {fileID: 0}
+  ropeRadius: {fileID: 3652925597344170551}
 --- !u!1 &6319885882415222397
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,7 +283,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.3
+  m_Radius: 2.5
 --- !u!114 &9045643999490133509
 MonoBehaviour:
   m_ObjectHideFlags: 0

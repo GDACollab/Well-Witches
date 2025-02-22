@@ -2,10 +2,6 @@ using UnityEngine;
 
 public class PlayerController_Warden : PlayerController
 {
-	[Header("References")]
-    [SerializeField] GameObject gatherer;
-    [SerializeField] CircleCollider2D gathererRopeRadius;
-
 	[Header("Rope Controls")]
 	[SerializeField] SpringJoint2D joint;
 	LineRenderer ropeLR;
@@ -14,11 +10,12 @@ public class PlayerController_Warden : PlayerController
     [Tooltip("Changes how 'stiff' the rope is, the higher the value, the more stiff")]
     [SerializeField][Range(0.01f,10f)] float ropeStiffness;
 
-    [Header("Warden Pull Ability")]
-    [SerializeField][Range(0f, 3000f)] float wardenPullForce;
+	[Header("References")]
+	[SerializeField] GameObject gatherer;
+	[SerializeField] CircleCollider2D gathererRopeRadius;
 
-    // Rope Test Variables
-    Gradient gradient;
+	// Rope Test Variables
+	Gradient gradient;
     Gradient gradientStressed;
 
 	void OnValidate()
@@ -26,13 +23,6 @@ public class PlayerController_Warden : PlayerController
 		joint.frequency = ropeStiffness;
 		joint.dampingRatio = ropeDampening;
 	}
-
-	// Called by the Player Input component
-	void OnPullWarden()
-    {
-        rb.velocity = Vector2.zero;
-        rb.AddForce(wardenPullForce * (gatherer.transform.position - gameObject.transform.position));
-    }
 
     void Start()
     {

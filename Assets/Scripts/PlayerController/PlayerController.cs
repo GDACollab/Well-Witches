@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 		Vector2 deltaVelocity = targetVelocity - currentVelocity;
 
 		float acceleration;
-		if (movementData.conserveMomentum && currentVelocity.magnitude > maxSpeed_Adjusted && Vector2.Angle(currentVelocity, targetVelocity) <= 60) acceleration = 0;
+		if (movementData.conserveMomentum && currentVelocity.magnitude > maxSpeed_Adjusted && Vector2.Dot(currentVelocity.normalized, targetVelocity.normalized) >= 0.5f) acceleration = 0;
 		else if (moveDirection != Vector2.zero) acceleration = movementData.acceleration;
 		else acceleration = movementData.deceleration;
 
