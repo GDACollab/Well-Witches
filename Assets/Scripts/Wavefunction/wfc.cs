@@ -11,6 +11,8 @@ public class wfc : MonoBehaviour
     [SerializeField] Tilemap middleTileMap;
     [SerializeField] Tilemap aboveTileMap;
 
+    [SerializeField] tileScriptableObject edgeTile;
+
     [SerializeField] private tileScriptableObject[] tileScriptableObjects;
 
     [SerializeField] InteractableGenerator interactableGenerating;
@@ -140,10 +142,29 @@ public class wfc : MonoBehaviour
         TileBase tileGetAbove = null;
         Stack<Tile> tileStack = new Stack<Tile>();
 
+        ushort edgeTileID = 0;
+        //Get rock tile for edges
+        for (int i = 0; i < tileScriptableObjects.Length; i++)
+        {
+            if (tileScriptableObjects[i] == edgeTile)
+            {
+                edgeTileID = (ushort)i;
+                break;
+            }
+        }
+
         for (int x = 0; x < sizeX; x++)
         {
             for (int y = 0; y < sizeY; y++)
             {
+                //Make edges rocks
+                if (x == 0 || x == sizeX - 1 || y == 0 || y == sizeY - 1)
+                {
+                    tiles[x, y].SetPossibilities(new List<ushort> { edgeTileID });
+                    tileStack.Push(tiles[x, y]);
+                    continue;
+                }
+
                 tileGetGround = groundTilemap.GetTile(new Vector3Int(x, y, 0));
                 tileGetHitbox = hitboxesTileMap.GetTile(new Vector3Int(x, y, 0));
                 tileGetMiddle = middleTileMap.GetTile(new Vector3Int(x, y, 0));
