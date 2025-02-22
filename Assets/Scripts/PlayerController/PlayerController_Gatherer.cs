@@ -12,7 +12,7 @@ public class PlayerController_Gatherer : PlayerController
 	[Header("Interaction")]
 	[SerializeField] Collider2D interactionRadius;
 
-	[Header("Reference")]
+	[Header("References")]
 	[SerializeField] GameObject warden;
 	[SerializeField] CircleCollider2D ropeRadius;
 
