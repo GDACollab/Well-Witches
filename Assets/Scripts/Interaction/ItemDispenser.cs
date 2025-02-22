@@ -9,6 +9,7 @@ public class ItemDispenser : MonoBehaviour, IInteractable
     private Item[] items;
 
     private SpriteRenderer spriteRenderer;
+    private ParticleSystem particleSystem;
 
     private float timer = 0f;
     [SerializeField] private float respawnTime = 30f;
@@ -17,6 +18,7 @@ public class ItemDispenser : MonoBehaviour, IInteractable
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        particleSystem = GetComponent<ParticleSystem>();
     }
     /*
     // Update is called once per frame
@@ -31,6 +33,7 @@ public class ItemDispenser : MonoBehaviour, IInteractable
 
         Debug.Log($"Dispensing item: {itemToDispense}");
         spriteRenderer.color = Color.grey;
+        particleSystem.Stop();
         StartCoroutine(TrackTime());
 
     }
@@ -50,6 +53,7 @@ public class ItemDispenser : MonoBehaviour, IInteractable
 
     void IInteractable.Interact()
     {
+        Debug.Log("interaction!");
         Dispense();
     }
 }
