@@ -1,16 +1,22 @@
 using UnityEngine;
 
-public class BaseProjectile : MonoBehaviour
+public class PlayerProjectile : MonoBehaviour
 {
     private Vector3 mousePosition;
     private Camera cam;
     private Rigidbody2D rb;
 
-    [SerializeField] private GameObject main_VFX;
-    [SerializeField] private GameObject trail_VFX;
-    [SerializeField] GameObject impact_VFX;
+    [SerializeField] private ParticleSystem head;
+    [SerializeField] private ParticleSystem sparks;
+    [SerializeField] private ParticleSystem tails;
+    [SerializeField] private ParticleSystem impact;
+    [SerializeField] private TrailRenderer trail_VFX;
 
     private float _damage;
+
+    private void Start()
+    {
+    }
 
     // Start is called before the first frame update
     public void InitializeProjectile(float velocity, float lifetime, float damage)
@@ -19,6 +25,7 @@ public class BaseProjectile : MonoBehaviour
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         rb = GetComponent<Rigidbody2D>();
         mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
+
         Vector3 direction = mousePosition - transform.position;
         Vector3 rotation = transform.position - mousePosition;
         rb.velocity = new Vector2(direction.x, direction.y).normalized * velocity;
@@ -26,8 +33,10 @@ public class BaseProjectile : MonoBehaviour
         float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
 
-        main_VFX.SetActive(true);
-        impact_VFX.SetActive(false);
+        head.gameObject.SetActive(true);
+        sparks.gameObject.SetActive(true);
+        tails.gameObject.SetActive(true);
+        impact.gameObject.SetActive(false);
 
         Destroy(gameObject, lifetime);
     }
@@ -45,9 +54,10 @@ public class BaseProjectile : MonoBehaviour
             collision.gameObject.GetComponent<BaseEnemyClass>().takingDamage((int) _damage);
         }  
         rb.velocity = Vector2.zero;
-        main_VFX.SetActive(false);
-        trail_VFX.SetActive(false);
-        impact_VFX.SetActive(true);
+        head.gameObject.SetActive(false);
+        sparks.gameObject.SetActive(false);
+        tails.gameObject.SetActive(false);
+        impact.gameObject.SetActive(true);
 
         Destroy(gameObject, 0.5f);
     }

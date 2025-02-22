@@ -24,7 +24,7 @@ public class WardenShoot : MonoBehaviour
         // if we are using the new input manager change this
         if (Input.GetMouseButtonDown(0))
         {
-            BaseProjectile projectile = Instantiate(projectilePrefab, projectileSpawn.position, Quaternion.identity).GetComponent<BaseProjectile>();
+            PlayerProjectile projectile = Instantiate(projectilePrefab, projectileSpawn.position, Quaternion.identity).GetComponent<PlayerProjectile>();
             projectile.InitializeProjectile(projectileVelocity, projectileLifetime, wardenStats.GetAttack());
             
         }
