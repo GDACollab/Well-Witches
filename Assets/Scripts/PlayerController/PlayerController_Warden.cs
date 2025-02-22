@@ -4,10 +4,8 @@ using UnityEngine.InputSystem;
 public class PlayerController_Warden : PlayerController
 {
 	[Header("References")]
-	[Tooltip("Place Gatherer here, or whatever you want warden to attatch to")]
     [SerializeField] GameObject gatherer;
-    [Tooltip("Place Gatherer's CircleCollider2D here")]
-    [SerializeField] CircleCollider2D gathererRadiusCircle;
+    [SerializeField] CircleCollider2D gathererRopeRadius;
 
 	[Header("Rope Controls")]
 	[SerializeField] SpringJoint2D joint;
@@ -17,8 +15,7 @@ public class PlayerController_Warden : PlayerController
     [Tooltip("Changes how 'stiff' the rope is, the higher the value, the more stiff")]
     [SerializeField][Range(0.01f,10f)] float ropeStiffness;
 
-    [Header("Warden Pull Controls")]
-    [Tooltip("Changes how strongly Warden is pulled to Gatherer when using the Warden pull ability.")]
+    [Header("Warden Pull Ability")]
     [SerializeField][Range(0f, 3000f)] float wardenPullForce;
 
     //Rope Test Variables
@@ -31,13 +28,8 @@ public class PlayerController_Warden : PlayerController
 		joint.dampingRatio = ropeDampening;
 	}
 
-	void Awake()
-    {
-        base.Awake();
-        joint = GetComponent<SpringJoint2D>();
-    }
-
-    void OnPullWarden(InputValue iv)
+	// Called by the Player Input component
+	void OnPullWarden()
     {
         rb.velocity = Vector2.zero;
         rb.AddForce(wardenPullForce * (gatherer.transform.position - gameObject.transform.position));
@@ -46,7 +38,7 @@ public class PlayerController_Warden : PlayerController
     void Start()
     {
         joint.enableCollision = true;
-        joint.distance = gathererRadiusCircle.radius;
+        joint.distance = gathererRopeRadius.radius;
         joint.anchor = Vector2.zero;
         ropeLR = GetComponent<LineRenderer>();
 
@@ -70,7 +62,7 @@ public class PlayerController_Warden : PlayerController
         // Calcuate spring's anchor position
         joint.connectedAnchor = gatherer.transform.position;
 
-        // ROPE visualization test
+        // Rope visualization test
         ropeLR.SetPosition(0,transform.position);
         ropeLR.SetPosition(1, gatherer.transform.position);
 
@@ -92,6 +84,6 @@ public class PlayerController_Warden : PlayerController
     /// </summary>
     public void UpdateWanderer()
     {
-        joint.distance = gathererRadiusCircle.radius;
+        joint.distance = gathererRopeRadius.radius;
     }
 }

@@ -46,7 +46,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Pick Up Item"",
+                    ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""822e5f86-0676-4fec-8086-d8ef0b446200"",
                     ""expectedControlType"": """",
@@ -118,7 +118,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mouse and Keyboard"",
-                    ""action"": ""Pick Up Item"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -291,7 +291,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Gameplay_Gatherer = asset.FindActionMap("Gameplay_Gatherer", throwIfNotFound: true);
         m_Gameplay_Gatherer_Move = m_Gameplay_Gatherer.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_Gatherer_ActiveAbility = m_Gameplay_Gatherer.FindAction("Active Ability", throwIfNotFound: true);
-        m_Gameplay_Gatherer_PickUpItem = m_Gameplay_Gatherer.FindAction("Pick Up Item", throwIfNotFound: true);
+        m_Gameplay_Gatherer_Interact = m_Gameplay_Gatherer.FindAction("Interact", throwIfNotFound: true);
         // Gameplay_Warden
         m_Gameplay_Warden = asset.FindActionMap("Gameplay_Warden", throwIfNotFound: true);
         m_Gameplay_Warden_Move = m_Gameplay_Warden.FindAction("Move", throwIfNotFound: true);
@@ -367,14 +367,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IGameplay_GathererActions> m_Gameplay_GathererActionsCallbackInterfaces = new List<IGameplay_GathererActions>();
     private readonly InputAction m_Gameplay_Gatherer_Move;
     private readonly InputAction m_Gameplay_Gatherer_ActiveAbility;
-    private readonly InputAction m_Gameplay_Gatherer_PickUpItem;
+    private readonly InputAction m_Gameplay_Gatherer_Interact;
     public struct Gameplay_GathererActions
     {
         private @Controls m_Wrapper;
         public Gameplay_GathererActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Gameplay_Gatherer_Move;
         public InputAction @ActiveAbility => m_Wrapper.m_Gameplay_Gatherer_ActiveAbility;
-        public InputAction @PickUpItem => m_Wrapper.m_Gameplay_Gatherer_PickUpItem;
+        public InputAction @Interact => m_Wrapper.m_Gameplay_Gatherer_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay_Gatherer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -390,9 +390,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ActiveAbility.started += instance.OnActiveAbility;
             @ActiveAbility.performed += instance.OnActiveAbility;
             @ActiveAbility.canceled += instance.OnActiveAbility;
-            @PickUpItem.started += instance.OnPickUpItem;
-            @PickUpItem.performed += instance.OnPickUpItem;
-            @PickUpItem.canceled += instance.OnPickUpItem;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         private void UnregisterCallbacks(IGameplay_GathererActions instance)
@@ -403,9 +403,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ActiveAbility.started -= instance.OnActiveAbility;
             @ActiveAbility.performed -= instance.OnActiveAbility;
             @ActiveAbility.canceled -= instance.OnActiveAbility;
-            @PickUpItem.started -= instance.OnPickUpItem;
-            @PickUpItem.performed -= instance.OnPickUpItem;
-            @PickUpItem.canceled -= instance.OnPickUpItem;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         public void RemoveCallbacks(IGameplay_GathererActions instance)
@@ -506,7 +506,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnActiveAbility(InputAction.CallbackContext context);
-        void OnPickUpItem(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface IGameplay_WardenActions
     {

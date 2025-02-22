@@ -4,20 +4,14 @@ using UnityEngine;
 public class PlayerController_Gatherer : PlayerController
 {
 	[Header("Interaction")]
-	[SerializeField] Collider2D interactRangeCollider;
-
-	void Awake()
-    {
-        base.Awake();
-		interactRangeCollider = GetComponent<Collider2D>();
-	}
+	[SerializeField] Collider2D interactionRadius;
 
 	// Called by the Player Input component
-	void OnPickUpItem()
+	void OnInteract()
 	{
 		List<Collider2D> colliderList = new List<Collider2D>();
 		ContactFilter2D contactFilter = new ContactFilter2D();
-		interactRangeCollider.OverlapCollider(contactFilter.NoFilter(), colliderList);
+		interactionRadius.OverlapCollider(contactFilter.NoFilter(), colliderList);
 
 		foreach (Collider2D collider in colliderList)
 		{
@@ -31,10 +25,6 @@ public class PlayerController_Gatherer : PlayerController
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
-        {
-            Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
-        }
+		if (collision.gameObject.CompareTag("Player")) Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
     }
-
 }
