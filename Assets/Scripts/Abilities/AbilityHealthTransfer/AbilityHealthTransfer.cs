@@ -31,7 +31,7 @@ public class AbilityHealthTransfer : MonoBehaviour
 
             if (StatsManager.Instance.WandererCurrentHealth > StatsManager.Instance.WandererMaxHealth)
             { //above 10 health
-               StatsManager.Instance.WandererCurrentHealth = 10;
+               StatsManager.Instance.WandererCurrentHealth = StatsManager.Instance.WandererMaxHealth;
             }
 
             Debug.Log("Health of Gatherer:" + StatsManager.Instance.GathererCurrentHealth);

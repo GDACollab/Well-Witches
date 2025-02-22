@@ -13,7 +13,7 @@ public class StatsManager : MonoBehaviour
 
    [Header("---------------Gatherer Combat stats---------------")]
    public float healthTransferAmount; //current health transfer amount put in stats for now
-   public float Resistance;
+   public float GathererResistance; 
 
    [Header("---------------Gatherer Movement stats---------------")]
    public float MaxSpeed; //connected to Movement script for testing
