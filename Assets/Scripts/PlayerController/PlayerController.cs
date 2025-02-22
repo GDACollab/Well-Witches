@@ -32,7 +32,6 @@ public class PlayerController : MonoBehaviour
 		Vector2 targetSpeed = moveDirection * maxSpeed_Adjusted;
 
 		float accelRate = (moveDirection != Vector2.zero) ? movementData.acceleration : movementData.deceleration;
-		accelRate *= Time.deltaTime;
 
 		// Conserve momentum
 		if (movementData.conserveMomentum && rb.velocity.magnitude > maxSpeed_Adjusted && Vector2.Dot(rb.velocity.normalized, targetSpeed.normalized) >= 0.5) 
