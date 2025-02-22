@@ -32,6 +32,12 @@ public class AnnouncementManager : MonoBehaviour
         AnnouncementTextBox.text = "";
         AnnouncementTextBox.alpha = 0;
         Backdrop.gameObject.SetActive(false);
+
+        for (int i = 0; i < 5; i++)
+        {
+            AddAnnouncementToQueue("this is announcement " + i.ToString());
+        }
+        
     }
 
     // FOR TESTING PURPOSES ONLY, DO NOT UNCOMMENT
@@ -72,5 +78,10 @@ public class AnnouncementManager : MonoBehaviour
         if(!playingAnnouncement){
             StartCoroutine(TimerRoutine());
         }
+    }
+
+    public void StartAnimation()
+    {
+        
     }
 }
