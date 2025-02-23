@@ -13,15 +13,12 @@ public class AnnouncementManager : MonoBehaviour
     [SerializeField]
     private Image Backdrop;
     [SerializeField]
-    private float AnnouncementTime = 1;
+    private Animation TransitionAnimation;
     [SerializeField]
-    private float AnimationTransitionSpeed = 100;
+    private float AnnouncementTime = 1;
+    
     private Queue<String> AnnouncementQueue = new Queue<String>();
     private bool playingAnnouncement = false;
-
-    private RectTransform panelTransform;
-    private float panelOriginalY;
-    private float panelGoalY;
 
     private void Awake(){
         if(Instance != null && Instance != this){
@@ -38,61 +35,34 @@ public class AnnouncementManager : MonoBehaviour
         AnnouncementTextBox.text = "";
         AnnouncementTextBox.alpha = 0;
         Backdrop.gameObject.SetActive(false);
-
-        panelTransform = Backdrop.GetComponent<RectTransform>();
-        panelGoalY = panelOriginalY = panelTransform.position.y;
-
-        // FOR TESTING:
-        AddAnnouncementToQueue("this is an announcement");
-        AddAnnouncementToQueue("another one");
-        AddAnnouncementToQueue("announcing for the third time");
     }
-
     
     void Update()
     {
-        // FOR TESTING PURPOSES ONLY, DO NOT UNCOMMENT
-        if(Input.GetKeyDown(KeyCode.Space)){
-            AddAnnouncementToQueue(Time.deltaTime.ToString());
+        if (!playingAnnouncement && !TransitionAnimation.isPlaying && Backdrop.gameObject.activeSelf)
+        {
+            AnnouncementTextBox.text = "";
+            AnnouncementTextBox.alpha = 0;
+            Backdrop.gameObject.SetActive(false);
         }
 
-        if (panelTransform.position.y < panelGoalY)
-        {
-            panelTransform.position = new Vector3(panelTransform.position.x,
-                                                  panelTransform.position.y + AnimationTransitionSpeed * Time.deltaTime,
-                                                  panelTransform.position.z);
-            if (panelTransform.position.y > panelGoalY)
-            {
-                // if we overshoot it, set it exactly
-                panelTransform.position = new Vector3(panelTransform.position.x,
-                                                      panelTransform.position.y,
-                                                      panelTransform.position.z);
-            }
-        }
-        else if (panelTransform.position.y > panelGoalY)
-        {
-            panelTransform.position = new Vector3(panelTransform.position.x,
-                                                  panelTransform.position.y - AnimationTransitionSpeed * Time.deltaTime,
-                                                  panelTransform.position.z);
-            if (panelTransform.position.y < panelGoalY)
-            {
-                // if we overshoot it, set it exactly
-                panelTransform.position = new Vector3(panelTransform.position.x,
-                                                      panelTransform.position.y,
-                                                      panelTransform.position.z);
-            }
-        }
+        // FOR TESTING PURPOSES ONLY, DO NOT UNCOMMENT
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    AddAnnouncementToQueue(Time.deltaTime.ToString());
+        //}
     }
-    
-    
 
     IEnumerator TimerRoutine ()
     {
         AnnouncementTextBox.text = AnnouncementQueue.Peek();
         AnnouncementTextBox.alpha = 255;
         Backdrop.gameObject.SetActive(true);
-        playingAnnouncement = true;
-        panelGoalY = panelOriginalY - panelTransform.sizeDelta.y;
+        if (!playingAnnouncement)
+        {
+            TransitionAnimation.Play("announcementTransition");
+            playingAnnouncement = true;
+        }
         WaitForSeconds delay = new WaitForSeconds(AnnouncementTime);
         yield return delay;
         AnnouncementQueue.Dequeue();
@@ -101,11 +71,8 @@ public class AnnouncementManager : MonoBehaviour
             StartCoroutine(TimerRoutine());
         }
         else{
-            panelGoalY = panelOriginalY;
+            TransitionAnimation.Play("announcementTransitionReversed");
             playingAnnouncement = false;
-            //AnnouncementTextBox.alpha = 0;
-            //Backdrop.gameObject.SetActive(false);
-            //AnnouncementTextBox.text = "";
         }
     }
 
