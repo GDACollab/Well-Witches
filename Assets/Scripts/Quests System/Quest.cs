@@ -19,6 +19,10 @@ public class Quest
         this.currentQuestStepIndex = 0;
     }
 
+    public void Reset()
+    {
+        this.currentQuestStepIndex = 0;
+    }
     public void AdvanceToNextStep()
     {
         currentQuestStepIndex++;

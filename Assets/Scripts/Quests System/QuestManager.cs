@@ -132,6 +132,7 @@ public class QuestManager : MonoBehaviour
             if(q.state == QuestState.IN_PROGRESS) // changing this to in progress and/or finished will make it so you can cancel finishable quests too
             {
                 ChangeQuestState(q.info.id, QuestState.CAN_START);
+                q.Reset();
                 ResetQuestText();
             }
         }
