@@ -16,7 +16,10 @@ public class RopeControllerScript : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        pcw = collision.gameObject.GetComponent<PlayerController_Warden>();
-        pcw.enableRope();
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            pcw = collision.gameObject.GetComponent<PlayerController_Warden>();
+            pcw.enableRope();
+        }
     }
 }
