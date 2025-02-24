@@ -133,7 +133,6 @@ GameObject:
   - component: {fileID: 61058126}
   - component: {fileID: 61058125}
   - component: {fileID: 61058127}
-  - component: {fileID: 61058128}
   m_Layer: 0
   m_Name: Pooling
   m_TagString: Untagged
@@ -186,20 +185,6 @@ MonoBehaviour:
   pooledObjects: []
   acidPoolPrefab: {fileID: 8986336780949027244, guid: f2236a13f9befb24da0e88e15838f929, type: 3}
   amountToPool: 50
---- !u!114 &61058128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 61058124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29b3763b169ac6a438ad344dbf48489b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  attack: 10
 --- !u!1001 &511549897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -278,6 +263,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1661577765}
     - target: {fileID: 2315779408742167239, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: gathererRopeRadius
+      value: 
+      objectReference: {fileID: 1966091311}
+    - target: {fileID: 2315779408742167239, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: gathererRadiusCircle
       value: 
       objectReference: {fileID: 1966091311}
@@ -288,7 +277,7 @@ PrefabInstance:
     - target: {fileID: 4290127505824787876, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: wardenStats
       value: 
-      objectReference: {fileID: 61058128}
+      objectReference: {fileID: 1386749512}
     - target: {fileID: 7347747762842868080, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.38
@@ -334,10 +323,84 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+--- !u!1 &1386749511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1386749513}
+  - component: {fileID: 1386749512}
+  m_Layer: 0
+  m_Name: StatsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1386749512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386749511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b3763b169ac6a438ad344dbf48489b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthTransferAmount: 0.25
+  GathererResistance: 0
+  MaxSpeed: 7.5
+  acceleration: 0
+  deacceleration: 0
+  CurrentSpeed: 0
+  Defense: 5
+  GathererHaste: 0
+  GathererLuck: 0
+  GathererMaxHealth: 10
+  GathererCurrentHealth: 10
+  GathererHealthRegen: 0
+  AbilityPower: 0
+  AttackPower: 50
+  Mana: 100
+  CriticalChance: 0
+  CriticalDamage: 0
+  AttackSpeed: 0
+  LifeSteal: 0
+  WandererHaste: 0
+  WandererLuck: 0
+  WandererResistance: 0
+  WandererMaxHealth: 10
+  WandererCurrentHealth: 5
+  WandererHealthRegen: 0
+--- !u!4 &1386749513
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386749511}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.326764, y: 0.6965196, z: -0.035082374}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1661577765 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5708320580637796411, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
   m_PrefabInstance: {fileID: 1966091310}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1763540352 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3424275855618714540, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+  m_PrefabInstance: {fileID: 1178672593}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1776638602
 PrefabInstance:
@@ -461,6 +524,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2438252464448227829, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
+      propertyPath: warden
+      value: 
+      objectReference: {fileID: 1763540352}
     - target: {fileID: 5708320580637796411, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
       propertyPath: m_Name
       value: Gatherer
@@ -671,3 +738,4 @@ SceneRoots:
   - {fileID: 511549897}
   - {fileID: 1776638602}
   - {fileID: 1906538788}
+  - {fileID: 1386749513}

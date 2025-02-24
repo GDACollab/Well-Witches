@@ -42,6 +42,8 @@ public class StatsManager : MonoBehaviour
    
    public float AbilityPower;
 
+   public float AttackPower;
+
    public float Mana;
 
    public float CriticalChance;

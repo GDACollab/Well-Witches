@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WardenShoot : MonoBehaviour
 {
-    [SerializeField] private WardenStatsManagement wardenStats;
+    [SerializeField] private StatsManager wardenStats;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Transform projectileSpawn;
 
@@ -25,7 +25,7 @@ public class WardenShoot : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             PlayerProjectile projectile = Instantiate(projectilePrefab, projectileSpawn.position, Quaternion.identity).GetComponent<PlayerProjectile>();
-            projectile.InitializeProjectile(projectileVelocity, projectileLifetime, wardenStats.GetAttack());
+            projectile.InitializeProjectile(projectileVelocity, projectileLifetime, wardenStats.AttackPower);
             
         }
     }
