@@ -26,14 +26,14 @@
                 {
                     "name": "Pull Warden",
                     "type": "Button",
-                    "id": "f0a2f88e-6b67-4639-a7e4-04a08146c32c",
+                    "id": "38e555f2-3271-406f-bb61-cfe0a5dbe12c",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pick Up Item",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "822e5f86-0676-4fec-8086-d8ef0b446200",
                     "expectedControlType": "",
@@ -105,7 +105,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mouse and Keyboard",
-                    "action": "Pick Up Item",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "444b2ff5-94d1-4d01-977a-49b73f0fc128",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse and Keyboard",
+                    "action": "Pull Warden",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -117,17 +128,6 @@
                     "processors": "",
                     "groups": ";Mouse and Keyboard",
                     "action": "Active Ability",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0c16b67c-685f-44f8-b2ed-2dd6cd965ebc",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Mouse and Keyboard",
-                    "action": "Pull Warden",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
