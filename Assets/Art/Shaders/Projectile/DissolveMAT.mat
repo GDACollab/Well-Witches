@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6377283646069783209
+--- !u!114 &-2864510650147987652
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DulluhanULTv2_MAT
-  m_Shader: {fileID: -6465566751694194690, guid: d7db41ea2cfc03c47af4fb69e8cbffbb, type: 3}
+  m_Name: DissolveMAT
+  m_Shader: {fileID: -6465566751694194690, guid: 5369abc449a85b74bb4fdca0d9f5ea96, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -29,13 +29,17 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3050
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _MainTexture:
+        m_Texture: {fileID: 2800000, guid: d0edf1cc670b20e46b71dc6f84e2fd83, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -50,15 +54,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Dissolve: 0.2
-    - _NoisePower: 1
-    - _NoiseScale: 30
+    - _AlphaClip: 0.381
     - _QueueControl: 0
-    - _QueueOffset: 0
-    - _TwirlStrength: 1
+    - _QueueOffset: 50
+    - _SubtractStrength: 0.343
     m_Colors:
-    - _Color: {r: 16.94838, g: 5.0765057, b: 0, a: 1}
-    - _NoiseSpeed: {r: -3, g: -2, b: 0, a: 0}
-    - _TwirlCenter: {r: 10, g: 4, b: 0, a: 0}
-    - _TwirlSpeed: {r: -4.2, g: 0, b: 0, a: 0}
+    - _BackColor: {r: 1, g: 0, b: 0, a: 0}
+    - _FrontColor: {r: 4.237095, g: 0.79074377, b: 0, a: 1}
+    - _TilingSpeed: {r: 1, g: -1, b: 0, a: 0}
   m_BuildTextureStacks: []
