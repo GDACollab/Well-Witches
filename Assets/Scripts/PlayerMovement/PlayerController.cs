@@ -12,7 +12,12 @@ public class PlayerController : MonoBehaviour
 	protected void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
-		maxSpeed_Adjusted = movementData.maxSpeed;
+		
+		/* 
+		//commented out so max speed is found from statsManager
+		 & updates to change speed with StatsManager Object
+		 */
+		//maxSpeed_Adjusted = movementData.maxSpeed; 
 	}
 
 	// Called by the Player Input component
@@ -28,6 +33,8 @@ public class PlayerController : MonoBehaviour
 
 	void Move()
 	{
+		//get updated speed from StatsManager singleton (change in StatsManager GameObject)
+		maxSpeed_Adjusted = StatsManager.Instance.MaxSpeed;
 		// Calculate direction & desired velocity
 		Vector2 targetSpeed = moveDirection * maxSpeed_Adjusted;
 
