@@ -21,13 +21,11 @@ public class AnnouncementManager : MonoBehaviour
     private bool playingAnnouncement = false;
 
     private void Awake(){
-        if(Instance != null && Instance != this){
-            Destroy(this);
+        if (Instance != null)
+        {
+            Debug.LogError("Found more than one GameManager in the scene. Please make sure there is only one");
         }
-        else{
-            Instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
+        Instance = this;
     }
 
     void Start()
