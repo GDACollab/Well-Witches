@@ -895,6 +895,7 @@ GameObject:
   - component: {fileID: 1049334575}
   - component: {fileID: 1049334574}
   - component: {fileID: 1049334576}
+  - component: {fileID: 1049334577}
   m_Layer: 0
   m_Name: StatsManager
   m_TagString: Untagged
@@ -949,6 +950,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   attack: 10
+--- !u!114 &1049334577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049334573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5764d25406c0d48a2a0bcec40eaee778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthTransferAmount: 10
+  gathererMaxHealth: 0
+  gathererCurrentHealth: 0
+  wardenattack: 0
+  wardenMaxHealth: 0
+  wardenHealth: 0
+  healthBuff: 0
+  staminaBuff: 0
+  speedBuff: 0
+  attackBuff: 0
+  speed: 0
 --- !u!1 &1808285836
 GameObject:
   m_ObjectHideFlags: 0
