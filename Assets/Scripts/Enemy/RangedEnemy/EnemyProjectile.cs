@@ -11,8 +11,7 @@ public class EnemyProjectile : MonoBehaviour
     private float _AOESize;
     private float _AOElifetime;
     [HideInInspector] public float _AOEdamage;
-    [SerializeField] private GameObject head;
-    [SerializeField] private GameObject smoke;
+    [SerializeField] private GameObject[] projectileComponents;
     [SerializeField] private GameObject AOEPrefab;
 
     // Start is called before the first frame update
@@ -25,8 +24,10 @@ public class EnemyProjectile : MonoBehaviour
     // I'll explain it if needed but eugh - Jim Lee
     public void InitializeProjectile(Vector3 targetPosition, float offset, float projectileSpeed, float lifetime, float damage, float AOESize, float AOElifetime, float AOEDamage)
     {
-        head.SetActive(true);
-        smoke.SetActive(true);
+        for (int i = 0; i < projectileComponents.Length; i++) 
+        {
+            projectileComponents[i].SetActive(true);
+        }
         AOEPrefab.SetActive(false);
         _lifetime = lifetime;
         _damage = damage;
@@ -58,8 +59,10 @@ public class EnemyProjectile : MonoBehaviour
             {
                 // TODO: DEAL DAMAGE TO PLAYER
             }
-            head.SetActive(false);
-            smoke.SetActive(false);
+            for (int i = 0; i < projectileComponents.Length; i++)
+            {
+                projectileComponents[i].SetActive(false);
+            }
             StartCoroutine(DespawnAOE());
         } 
     }
@@ -72,8 +75,10 @@ public class EnemyProjectile : MonoBehaviour
         AOEPrefab.SetActive(true);
         AOEPrefab.transform.localScale = Vector3.one * _AOESize;
         rb.velocity = Vector3.zero;
-        head.SetActive(false);
-        smoke.SetActive(false);
+        for (int i = 0; i < projectileComponents.Length; i++)
+        {
+            projectileComponents[i].SetActive(false);
+        }
         StartCoroutine(DespawnAOE());
     }
 
