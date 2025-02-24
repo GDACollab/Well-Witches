@@ -42,6 +42,8 @@ public class StatsManager : MonoBehaviour
    
    public float AbilityPower;
 
+   public float AttackPower;
+
    public float Mana;
 
    public float CriticalChance;
@@ -70,11 +72,10 @@ public class StatsManager : MonoBehaviour
 
    private void Awake()
    {
-      if (Instance == null) {
-
-         Instance = this;
-      } else {
-         Destroy(this);
-      }
-   }
+        if (Instance != null)
+        {
+            Debug.LogError("Found more than one GameManager in the scene. Please make sure there is only one");
+        }
+        Instance = this;
+    }
 }
