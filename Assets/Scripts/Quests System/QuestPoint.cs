@@ -20,6 +20,8 @@ public class QuestPoint : MonoBehaviour
 
     private QuestIcon questIcon;
 
+    [SerializeField]private bool anotherQuestActive = false;
+
     private void Awake()
     {
         questID = questInfo.id;
@@ -43,6 +45,15 @@ public class QuestPoint : MonoBehaviour
             currentQuestState = quest.state;
             questIcon.SetState(currentQuestState,startPoint,endPoint);
         }
+        if(quest.state == QuestState.IN_PROGRESS)
+        {
+            anotherQuestActive = true;
+        }
+        else if(quest.state == QuestState.FINISHED || quest.state == QuestState.CAN_START)
+        {
+            anotherQuestActive = false;
+        }
+
     }
 
     private void SpawnQuestReward(GameObject reward)
@@ -74,6 +85,7 @@ public class QuestPoint : MonoBehaviour
         }
     }
 
+
     private void Update()
     {
         // TODO - Change this to use new input system, via making the input bus in the event manager
@@ -81,7 +93,7 @@ public class QuestPoint : MonoBehaviour
         {
             if (playerNear)
             {
-                if(currentQuestState.Equals(QuestState.CAN_START) && startPoint)
+                if(currentQuestState.Equals(QuestState.CAN_START) && startPoint && !anotherQuestActive)
                 {
                     EventManager.instance.questEvents.StartQuest(questID);
                 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class CollectGarlicQuestStep : QuestStep
 {
     private int garlicCollected = 0;
-    private int garlicToCollect = 5;
+    [SerializeField]public int garlicToCollect = 5;
     
 
     private void OnEnable()
@@ -21,7 +21,8 @@ public class CollectGarlicQuestStep : QuestStep
 
     private void Start()
     {
-        questDescription.text = "- (0/5) Garlic Collected";
+        questDescription.color = Color.white;
+        questDescription.text = $"- (0/{garlicToCollect}) Garlic Collected";
     }
 
     private void GarlicCollected()
