@@ -15,9 +15,17 @@ public class PlayerController_Gatherer : PlayerController
 	[Header("References")]
 	[SerializeField] GameObject warden;
 	[SerializeField] CircleCollider2D ropeRadius;
+	StatsManager statsManager;
+    [SerializeField] HealthBar healthBar;
 
-	// Called by the Player Input component
-	void OnPullWarden()
+    // Subscribe to any events
+    private void OnEnable()
+    {
+        EventManager.instance.playerEvents.onPlayerDamage += PlayerDamage;
+    }
+
+    // Called by the Player Input component
+    void OnPullWarden()
 	{
 		if (pullCounter > 0) return;	// on cooldown
 
@@ -51,11 +59,16 @@ public class PlayerController_Gatherer : PlayerController
 
 	void Awake()
 	{
+        statsManager = StatsManager.Instance;
 		base.Awake();
 		rb_Warden = warden.GetComponent<Rigidbody2D>();
 	}
+    private void Start()
+    {
+        healthBar.UpdateHealthBar(statsManager.GathererCurrentHealth, statsManager.GathererMaxHealth);
+    }
 
-	void Update()
+    void Update()
 	{
 		if (pullCounter > 0) pullCounter -= Time.deltaTime;
 	}
@@ -63,5 +76,31 @@ public class PlayerController_Gatherer : PlayerController
 	void OnCollisionEnter2D(Collision2D collision)
     {
 		if (collision.gameObject.CompareTag("Player")) Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
+    }
+
+    public void PlayerDamage(float damage, string name)
+    {
+        if (name.ToLower().Equals("gatherer"))
+        {
+            float newHealth = statsManager.GathererCurrentHealth - damage;
+            if (newHealth > 0)
+            {
+                statsManager.GathererCurrentHealth = newHealth;
+            }
+            else
+            {
+                statsManager.GathererCurrentHealth = 0;
+                Die();
+            }
+            healthBar.UpdateHealthBar(statsManager.GathererCurrentHealth, statsManager.GathererMaxHealth);
+        }
+    }
+
+    public void Die()
+    {
+        //send out signal
+        EventManager.instance.playerEvents.PlayerDeath();
+        // TODO - implement death
+        return;
     }
 }

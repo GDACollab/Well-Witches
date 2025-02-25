@@ -10,6 +10,7 @@ public class EventManager : MonoBehaviour
     // event types
     public MiscEvent miscEvent;
     public QuestEvents questEvents;
+    public PlayerEvents playerEvents;
 
     private void Awake()
     {
@@ -20,9 +21,9 @@ public class EventManager : MonoBehaviour
         instance = this;
 
         // initialize all events 
-        // EX: playerEvents = new PlayerEvents();
         miscEvent = new MiscEvent();
         questEvents = new QuestEvents();
+        playerEvents = new PlayerEvents();
     }
 
 

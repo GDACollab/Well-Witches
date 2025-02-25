@@ -13,9 +13,12 @@ public class PlayerController_Warden : PlayerController
 	[Header("References")]
 	[SerializeField] GameObject gatherer;
 	[SerializeField] CircleCollider2D gathererRopeRadius;
+    StatsManager statsManager;
+    [SerializeField]HealthBar healthBar;
 
-	// Rope Test Variables
-	Gradient gradient;
+
+    // Rope Test Variables
+    Gradient gradient;
     Gradient gradientStressed;
 
 	void OnValidate()
@@ -23,13 +26,20 @@ public class PlayerController_Warden : PlayerController
 		joint.frequency = ropeStiffness;
 		joint.dampingRatio = ropeDampening;
 	}
+    // Subscribe to any event
+    private void OnEnable()
+    {
+        EventManager.instance.playerEvents.onPlayerDamage += PlayerDamage;
+    }
 
     void Start()
     {
+        statsManager = StatsManager.Instance;
         joint.enableCollision = true;
         joint.distance = gathererRopeRadius.radius;
         joint.anchor = Vector2.zero;
         ropeLR = GetComponent<LineRenderer>();
+        healthBar.UpdateHealthBar(statsManager.WardenCurrentHealth, statsManager.WardenMaxHealth);
 
         // A simple 2 color gradient with a fixed alpha of 1.0f
         float alpha = 1.0f;
@@ -73,5 +83,32 @@ public class PlayerController_Warden : PlayerController
     public void UpdateWarden()
     {
         joint.distance = gathererRopeRadius.radius;
+    }
+
+    public void PlayerDamage(float damage, string name)
+    {
+        if (name.ToLower().Equals("warden"))
+        {
+            float newHealth = statsManager.WardenCurrentHealth - damage;
+            if (newHealth > 0)
+            {
+                statsManager.WardenCurrentHealth = newHealth;
+                healthBar.UpdateHealthBar(statsManager.WardenCurrentHealth, statsManager.WardenMaxHealth);
+            }
+            else
+            {
+                statsManager.WardenCurrentHealth = 0;
+                healthBar.UpdateHealthBar(statsManager.WardenCurrentHealth, statsManager.WardenMaxHealth);
+                Die();
+            }
+        }
+    }
+
+    public void Die()
+    {
+        //send out signal
+        EventManager.instance.playerEvents.PlayerDeath();
+        // TODO - implement death
+        return;
     }
 }

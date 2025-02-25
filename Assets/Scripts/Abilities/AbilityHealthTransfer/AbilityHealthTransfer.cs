@@ -27,15 +27,15 @@ public class AbilityHealthTransfer : MonoBehaviour
 
 
 
-            StatsManager.Instance.WandererCurrentHealth += math.round(temp); //add to Wanderer Current Health
+            StatsManager.Instance.WardenCurrentHealth += math.round(temp); //add to Wanderer Current Health
 
-            if (StatsManager.Instance.WandererCurrentHealth > StatsManager.Instance.WandererMaxHealth)
+            if (StatsManager.Instance.WardenCurrentHealth > StatsManager.Instance.WardenMaxHealth)
             { 
-               StatsManager.Instance.WandererCurrentHealth = StatsManager.Instance.WandererMaxHealth;
+               StatsManager.Instance.WardenCurrentHealth = StatsManager.Instance.WardenMaxHealth;
             }
 
             Debug.Log("Health of Gatherer:" + StatsManager.Instance.GathererCurrentHealth); //TESTING PURPOSES
-            Debug.Log("Health of Warden:" + StatsManager.Instance.WandererCurrentHealth); //TESTING PURPOSES
+            Debug.Log("Health of Warden:" + StatsManager.Instance.WardenCurrentHealth); //TESTING PURPOSES
             temp = 0f; //reset the health value stored (No longer needed health % can be different)
          }
 

@@ -38,7 +38,7 @@ public class StatsManager : MonoBehaviour
 
 
 
-   [Header("---------------Wanderer Combat Stats---------------")]
+   [Header("---------------Warden Combat Stats---------------")]
    
    public float AbilityPower;
 
@@ -54,20 +54,20 @@ public class StatsManager : MonoBehaviour
 
    public float LifeSteal;
 
-   [Header("---------------Wanderer Passive Stats---------------")]
-   public float WandererHaste;
-   public float WandererLuck;
+   [Header("---------------Warden Passive Stats---------------")]
+   public float WardenHaste;
+   public float WardenLuck;
 
-   [Header("---------------Wanderer Defense Stats---------------")]
+   [Header("---------------Warden Defense Stats---------------")]
 
-   public float WandererResistance; //might add a max resistance?
+   public float WardenResistance; //might add a max resistance?
 
-   [Header("---------------Wanderer Health Stats---------------")]
+   [Header("---------------Warden Health Stats---------------")]
 
-   public float WandererMaxHealth;
-   public float WandererCurrentHealth;
+   public float WardenMaxHealth;
+   public float WardenCurrentHealth;
    
-   public float WandererHealthRegen;
+   public float WardenHealthRegen;
 
 
    private void Awake()
