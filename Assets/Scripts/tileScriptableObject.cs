@@ -6,17 +6,22 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu(fileName = "WFCTile", menuName = "ScriptableObjects/WFCTile")]
 public class tileScriptableObject : ScriptableObject
 {
-    [Space(10), Header("Tile Asset")]
+    [Space(10), Header("Tile Assets")]
     [Tooltip("A tile asset, will be placed in a tilemap")]
-    public TileBase tile;
+    public TileBase tileGround = null;
+
+    [Tooltip("A tile asset, will be placed in a tilemap")]
+    public TileBase tileHitbox = null;
+
+    [Tooltip("A tile asset, will be placed in a tilemap")]
+    public TileBase tileMiddle = null;
+
+    [Tooltip("A tile asset, will be placed in a tilemap")]
+    public TileBase tileAbove = null;
 
     [Space(10), Header("Tile Weight")]
     [Tooltip("Float, high values means its more common")]
     public float weight;
-
-    [Space(10), Header("Has Hitbox?")]
-    [Tooltip("Will have a full box collision")]
-    public bool hasHitbox;
 
     [Space(10), Header("Has Hitbox?")]
     [Tooltip("Will have a full box collision")]
@@ -51,13 +56,21 @@ public class tileScriptableObject : ScriptableObject
     public string edgeWestDown;
 
     [HideInInspector] public Sprite tileImage; //Grabbed from TileBase tile, used in tileScriptableObjectEditor.cs
-    [HideInInspector] public string tileID; //Grabbed from name of TileBase tile, used in wfc
 
     //Runs when the inspector changes at all
+    
     private void OnValidate()
     {
-        tileID = tile.name;
-        
+        //tileID = tile.name;
+        if (tileGround != null)
+        {
+            tileImage = ((Tile)tileGround).sprite;
+        }
+        else
+        {
+            tileImage = ((Tile)tileHitbox).sprite;
+        }
     }
     
+
 }

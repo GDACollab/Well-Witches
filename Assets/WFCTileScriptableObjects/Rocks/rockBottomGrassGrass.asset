@@ -10,18 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a28953cb0352d04a84f5e864515aa5c, type: 3}
-  m_Name: grass
+  m_Name: rockBottomGrassGrass
   m_EditorClassIdentifier: 
-  tileGround: {fileID: 11400000, guid: 77f694ccbf80b8847ac299520bd20f57, type: 2}
-  tileHitbox: {fileID: 0}
-  weight: 10
+  tileGround: {fileID: 0}
+  tileHitbox: {fileID: 11400000, guid: b10e3a9209ef66f409ec6a2d8f7e515f, type: 2}
+  tileMiddle: {fileID: 0}
+  tileAbove: {fileID: 0}
+  weight: 3
   canPlaceBush: 1
-  edgeNorthLeft: grass
-  edgeNorthRight: grass
+  edgeNorthLeft: rock
+  edgeNorthRight: rock
   edgeSouthLeft: grass
   edgeSouthRight: grass
   edgeEastUp: grass
   edgeEastDown: grass
   edgeWestUp: grass
   edgeWestDown: grass
-  tileImage: {fileID: 21300000, guid: 821c2f604a8f8a44f81fbd099a10dc43, type: 3}
+  tileImage: {fileID: 21300000, guid: 6af3c6d00f1f95f4f9c1eb1b0369ebce, type: 3}
