@@ -59,12 +59,12 @@ public class PlayerController_Gatherer : PlayerController
 
 	void Awake()
 	{
-        statsManager = StatsManager.Instance;
 		base.Awake();
 		rb_Warden = warden.GetComponent<Rigidbody2D>();
 	}
     private void Start()
     {
+        statsManager = StatsManager.Instance;
         healthBar.UpdateHealthBar(statsManager.GathererCurrentHealth, statsManager.GathererMaxHealth);
     }
 
