@@ -214,23 +214,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &800857213 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4510760633449180580, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
-  m_PrefabInstance: {fileID: 1331427973}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &800857222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 800857213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d3fd9b90589d364a9e42011554e3c5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1202044812
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,30 +310,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossPrefab
       objectReference: {fileID: 0}
-    - target: {fileID: 4640196686164595869, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
-      propertyPath: range
-      value: 1.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640196686164595869, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
-      propertyPath: health
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640196686164595869, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
-      propertyPath: phaseHP
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640196686164595869, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
-      propertyPath: LungeDistance
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640196686164595869, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
-      propertyPath: LungeAttackSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640196686164595869, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
-      propertyPath: LungeBuildupTime
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 6589887343824488861, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.26
@@ -391,14 +350,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -5931077785316589715, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4510760633449180580, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 800857222}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
 --- !u!1 &1983182833
 GameObject:
