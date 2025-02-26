@@ -56,7 +56,7 @@ public class EnemySpawner : MonoBehaviour
 	}
 
 	// Use for placing enemies
-	void SpawnCreature(GameObject creature, Vector3 position)
+	public void SpawnCreature(GameObject creature, Vector3 position)
 	{
 		Debug.Log("Spawning '" + creature.name + "' at " +  position.ToString());
 
@@ -66,7 +66,7 @@ public class EnemySpawner : MonoBehaviour
 		Instantiate(creature, position, Quaternion.identity);
 	}
 
-	void SpawnFormation(Vector3 spawnPosition, float rotation = 0)
+	public void SpawnFormation(Vector3 spawnPosition, float rotation = 0)
 	{
 		// Get the formation prefab to spawn
 		GameObject formationObject = formationPrefabs[UnityEngine.Random.Range(0, formationPrefabs.Count)];
@@ -99,7 +99,7 @@ public class EnemySpawner : MonoBehaviour
 	/// <param name="creature">Creature to be instanced</param>
 	/// <param name="num">Number of creatures to be placed</param>
 	/// <param name="radius">Distance from reference point</param>
-	void SpawnSurrounded(GameObject creature, uint num, float radius)
+	public void SpawnSurrounded(GameObject creature, uint num, float radius)
 	{
 		// Calculate directions required for equidistant placement
 		float offset = 2 * math.PI / num;
@@ -122,7 +122,7 @@ public class EnemySpawner : MonoBehaviour
 	/// </summary>
 	/// <param name="creature"></param>
 	/// <param name="radius"></param>
-	void SpawnSingle(GameObject creature, float radius)
+	public void SpawnSingle(GameObject creature, float radius)
 	{
 		float dir = UnityEngine.Random.Range(0f, 2 * math.PI);		// Generate direction from 0 to 360 degrees
 
@@ -132,7 +132,7 @@ public class EnemySpawner : MonoBehaviour
 		SpawnCreature(creature, new Vector3(x, y, 0));	// Place new enemy
 	}
 
-	void SpawnSingleFormation(float radius)
+	public void SpawnSingleFormation(float radius)
 	{
 		float dir = UnityEngine.Random.Range(0f, 2 * math.PI);		// Generate direction from 0 to 360 degrees
 
@@ -147,7 +147,7 @@ public class EnemySpawner : MonoBehaviour
 		SpawnFormation(spawnPosition, angleToReference);	// Place new enemy
 	}
 
-	void SpawnSingle(GameObject creature)
+	public void SpawnSingle(GameObject creature)
 	{
 		float dir = UnityEngine.Random.Range(0f, 2 * math.PI);		// Generate direction from 0 to 360 degrees
 		int radius = UnityEngine.Random.Range(3, 8);
