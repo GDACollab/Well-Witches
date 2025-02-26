@@ -11,11 +11,13 @@ GameObject:
   - component: {fileID: 6589887343824488861}
   - component: {fileID: 4886292762916306601}
   - component: {fileID: 4640196686164595869}
-  - component: {fileID: -5931077785316589715}
   - component: {fileID: -8890955783834646036}
   - component: {fileID: 4503831973655279794}
   - component: {fileID: 6295733835520927185}
   - component: {fileID: -6867864601708749626}
+  - component: {fileID: 6238185323363766685}
+  - component: {fileID: 1275831431557215407}
+  - component: {fileID: 2489913026196321409}
   m_Layer: 0
   m_Name: BossPrefab
   m_TagString: Untagged
@@ -77,29 +79,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdab6e6d6184cc144927fe3c2acc5523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
+  health: 100
   damage: 15
   moveSpeed: 2
-  range: 0
-  phaseHP: 0
+  range: 1.59
+  phaseHP: 50
+  LungeDistance: 10
+  LungeBuildupTime: 3
+  LungeSpeed: 0
   distanceToPlayer1: 0
   distanceToPlayer2: 0
   distanceToTarget: 0
   timeToFire: 0
   players: []
   currentTarget: {fileID: 0}
---- !u!114 &-5931077785316589715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4510760633449180580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bfbdd0b530ca1348837608b24632757, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-8890955783834646036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,3 +182,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6238185323363766685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4510760633449180580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d3fd9b90589d364a9e42011554e3c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1275831431557215407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4510760633449180580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdb15b7b0b2fe4c539a4e0428273c842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2489913026196321409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4510760633449180580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e67b21829f745d7b63db0811f7d0f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
