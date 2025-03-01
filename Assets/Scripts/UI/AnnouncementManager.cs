@@ -13,18 +13,19 @@ public class AnnouncementManager : MonoBehaviour
     [SerializeField]
     private Image Backdrop;
     [SerializeField]
+    private Animation TransitionAnimation;
+    [SerializeField]
     private float AnnouncementTime = 1;
+    
     private Queue<String> AnnouncementQueue = new Queue<String>();
     private bool playingAnnouncement = false;
 
     private void Awake(){
-        if(Instance != null && Instance != this){
-            Destroy(this);
+        if (Instance != null)
+        {
+            Debug.LogError("Found more than one GameManager in the scene. Please make sure there is only one");
         }
-        else{
-            Instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
+        Instance = this;
     }
 
     void Start()
@@ -33,25 +34,33 @@ public class AnnouncementManager : MonoBehaviour
         AnnouncementTextBox.alpha = 0;
         Backdrop.gameObject.SetActive(false);
     }
-
-    // FOR TESTING PURPOSES ONLY, DO NOT UNCOMMENT
-    /*
+    
     void Update()
     {
-        Debug.Log(AnnouncementQueue.Count);
-        if(Input.GetKeyDown(KeyCode.Space)){
-            AddAnnouncementToQueue(Time.deltaTime.ToString());
+        if (!playingAnnouncement && !TransitionAnimation.isPlaying && Backdrop.gameObject.activeSelf)
+        {
+            AnnouncementTextBox.text = "";
+            AnnouncementTextBox.alpha = 0;
+            Backdrop.gameObject.SetActive(false);
         }
+
+        // FOR TESTING PURPOSES ONLY, DO NOT UNCOMMENT
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    AddAnnouncementToQueue(Time.deltaTime.ToString());
+        //}
     }
-    */
-    
 
     IEnumerator TimerRoutine ()
     {
         AnnouncementTextBox.text = AnnouncementQueue.Peek();
         AnnouncementTextBox.alpha = 255;
         Backdrop.gameObject.SetActive(true);
-        playingAnnouncement = true;
+        if (!playingAnnouncement)
+        {
+            TransitionAnimation.Play("announcementTransition");
+            playingAnnouncement = true;
+        }
         WaitForSeconds delay = new WaitForSeconds(AnnouncementTime);
         yield return delay;
         AnnouncementQueue.Dequeue();
@@ -60,9 +69,7 @@ public class AnnouncementManager : MonoBehaviour
             StartCoroutine(TimerRoutine());
         }
         else{
-            AnnouncementTextBox.alpha = 0;
-            Backdrop.gameObject.SetActive(false);
-            AnnouncementTextBox.text = "";
+            TransitionAnimation.Play("announcementTransitionReversed");
             playingAnnouncement = false;
         }
     }
