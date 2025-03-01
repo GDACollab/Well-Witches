@@ -9,15 +9,14 @@ public class PlayerController_Gatherer : PlayerController
 	Rigidbody2D rb_Warden;
 	float pullCounter = 0f;
 
-	[Header("Interaction")]
+	[Header("Interact")]
 	[SerializeField] Collider2D interactionRadius;
 
 	[Header("References")]
 	[SerializeField] GameObject warden;
 	[SerializeField] CircleCollider2D ropeRadius;
 
-	// Called by the Player Input component
-	void OnPullWarden()
+	void OnPullWarden() // called by the Player Input component
 	{
 		if (pullCounter > 0) return;	// on cooldown
 
@@ -31,9 +30,7 @@ public class PlayerController_Gatherer : PlayerController
 
 		pullCounter = pullCooldown;
 	}
-
-	// Called by the Player Input component
-	void OnInteract()
+	void OnInteract()   // called by the Player Input component
 	{
 		List<Collider2D> colliderList = new List<Collider2D>();
 		ContactFilter2D contactFilter = new ContactFilter2D();
