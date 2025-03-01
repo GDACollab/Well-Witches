@@ -14,8 +14,7 @@ public class PlayerController_Warden : PlayerController
 	[SerializeField] GameObject gatherer;
 	[SerializeField] CircleCollider2D gathererRopeRadius;
     StatsManager statsManager;
-    [SerializeField]HealthBar healthBar;
-
+    HealthBar healthBar;
 
     // Rope Test Variables
     Gradient gradient;
@@ -26,15 +25,23 @@ public class PlayerController_Warden : PlayerController
 		joint.frequency = ropeStiffness;
 		joint.dampingRatio = ropeDampening;
 	}
-    // Subscribe to any event
-    private void OnEnable()
+
+	// Subscribe to events here
+	void OnEnable()
     {
         EventManager.instance.playerEvents.onPlayerDamage += PlayerDamage;
     }
+	// Unsubscribe to events here (otherwise we'll be wasting memory)
+	void OnDisable()
+	{
+		EventManager.instance.playerEvents.onPlayerDamage -= PlayerDamage;
+	}
 
-    void Start()
+	void Start()
     {
         statsManager = StatsManager.Instance;
+        healthBar = GetComponentInChildren<HealthBar>();
+
         joint.enableCollision = true;
         joint.distance = gathererRopeRadius.radius;
         joint.anchor = Vector2.zero;

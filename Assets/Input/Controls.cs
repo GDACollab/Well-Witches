@@ -37,18 +37,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Primary Ability"",
+                    ""name"": ""Ability"",
                     ""type"": ""Button"",
                     ""id"": ""4b63c30e-5073-4ad7-8b2e-c84a644724e0"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Special Ability"",
-                    ""type"": ""Button"",
-                    ""id"": ""55b5a18b-a4e8-4a31-b6b0-99624f345ce4"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -158,18 +149,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mouse and Keyboard"",
-                    ""action"": ""Primary Ability"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6fb5f6f4-76b3-4cf7-86d4-14733171d8d6"",
-                    ""path"": ""<Keyboard>/z"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Mouse and Keyboard"",
-                    ""action"": ""Special Ability"",
+                    ""action"": ""Ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -198,18 +178,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Active Ability"",
+                    ""name"": ""Ability"",
                     ""type"": ""Button"",
                     ""id"": ""f40a84ae-37d5-4e57-9d39-dc2cb2e5c0fb"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Special Ability"",
-                    ""type"": ""Button"",
-                    ""id"": ""d8b26c24-ca9e-4829-b8f6-5a180f30c6c0"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -290,18 +261,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mouse and Keyboard"",
-                    ""action"": ""Active Ability"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""99806dcb-861f-4cb8-b071-aebd827bb754"",
-                    ""path"": ""<Mouse>/middleButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Mouse and Keyboard"",
-                    ""action"": ""Special Ability"",
+                    ""action"": ""Ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -330,16 +290,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         // Gameplay_Gatherer
         m_Gameplay_Gatherer = asset.FindActionMap("Gameplay_Gatherer", throwIfNotFound: true);
         m_Gameplay_Gatherer_Move = m_Gameplay_Gatherer.FindAction("Move", throwIfNotFound: true);
-        m_Gameplay_Gatherer_PrimaryAbility = m_Gameplay_Gatherer.FindAction("Primary Ability", throwIfNotFound: true);
-        m_Gameplay_Gatherer_SpecialAbility = m_Gameplay_Gatherer.FindAction("Special Ability", throwIfNotFound: true);
+        m_Gameplay_Gatherer_Ability = m_Gameplay_Gatherer.FindAction("Ability", throwIfNotFound: true);
         m_Gameplay_Gatherer_PullWarden = m_Gameplay_Gatherer.FindAction("Pull Warden", throwIfNotFound: true);
         m_Gameplay_Gatherer_Interact = m_Gameplay_Gatherer.FindAction("Interact", throwIfNotFound: true);
         // Gameplay_Warden
         m_Gameplay_Warden = asset.FindActionMap("Gameplay_Warden", throwIfNotFound: true);
         m_Gameplay_Warden_Move = m_Gameplay_Warden.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_Warden_Shoot = m_Gameplay_Warden.FindAction("Shoot", throwIfNotFound: true);
-        m_Gameplay_Warden_ActiveAbility = m_Gameplay_Warden.FindAction("Active Ability", throwIfNotFound: true);
-        m_Gameplay_Warden_SpecialAbility = m_Gameplay_Warden.FindAction("Special Ability", throwIfNotFound: true);
+        m_Gameplay_Warden_Ability = m_Gameplay_Warden.FindAction("Ability", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -408,8 +366,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay_Gatherer;
     private List<IGameplay_GathererActions> m_Gameplay_GathererActionsCallbackInterfaces = new List<IGameplay_GathererActions>();
     private readonly InputAction m_Gameplay_Gatherer_Move;
-    private readonly InputAction m_Gameplay_Gatherer_PrimaryAbility;
-    private readonly InputAction m_Gameplay_Gatherer_SpecialAbility;
+    private readonly InputAction m_Gameplay_Gatherer_Ability;
     private readonly InputAction m_Gameplay_Gatherer_PullWarden;
     private readonly InputAction m_Gameplay_Gatherer_Interact;
     public struct Gameplay_GathererActions
@@ -417,8 +374,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         private @Controls m_Wrapper;
         public Gameplay_GathererActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Gameplay_Gatherer_Move;
-        public InputAction @PrimaryAbility => m_Wrapper.m_Gameplay_Gatherer_PrimaryAbility;
-        public InputAction @SpecialAbility => m_Wrapper.m_Gameplay_Gatherer_SpecialAbility;
+        public InputAction @Ability => m_Wrapper.m_Gameplay_Gatherer_Ability;
         public InputAction @PullWarden => m_Wrapper.m_Gameplay_Gatherer_PullWarden;
         public InputAction @Interact => m_Wrapper.m_Gameplay_Gatherer_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay_Gatherer; }
@@ -433,12 +389,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @PrimaryAbility.started += instance.OnPrimaryAbility;
-            @PrimaryAbility.performed += instance.OnPrimaryAbility;
-            @PrimaryAbility.canceled += instance.OnPrimaryAbility;
-            @SpecialAbility.started += instance.OnSpecialAbility;
-            @SpecialAbility.performed += instance.OnSpecialAbility;
-            @SpecialAbility.canceled += instance.OnSpecialAbility;
+            @Ability.started += instance.OnAbility;
+            @Ability.performed += instance.OnAbility;
+            @Ability.canceled += instance.OnAbility;
             @PullWarden.started += instance.OnPullWarden;
             @PullWarden.performed += instance.OnPullWarden;
             @PullWarden.canceled += instance.OnPullWarden;
@@ -452,12 +405,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @PrimaryAbility.started -= instance.OnPrimaryAbility;
-            @PrimaryAbility.performed -= instance.OnPrimaryAbility;
-            @PrimaryAbility.canceled -= instance.OnPrimaryAbility;
-            @SpecialAbility.started -= instance.OnSpecialAbility;
-            @SpecialAbility.performed -= instance.OnSpecialAbility;
-            @SpecialAbility.canceled -= instance.OnSpecialAbility;
+            @Ability.started -= instance.OnAbility;
+            @Ability.performed -= instance.OnAbility;
+            @Ability.canceled -= instance.OnAbility;
             @PullWarden.started -= instance.OnPullWarden;
             @PullWarden.performed -= instance.OnPullWarden;
             @PullWarden.canceled -= instance.OnPullWarden;
@@ -487,16 +437,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IGameplay_WardenActions> m_Gameplay_WardenActionsCallbackInterfaces = new List<IGameplay_WardenActions>();
     private readonly InputAction m_Gameplay_Warden_Move;
     private readonly InputAction m_Gameplay_Warden_Shoot;
-    private readonly InputAction m_Gameplay_Warden_ActiveAbility;
-    private readonly InputAction m_Gameplay_Warden_SpecialAbility;
+    private readonly InputAction m_Gameplay_Warden_Ability;
     public struct Gameplay_WardenActions
     {
         private @Controls m_Wrapper;
         public Gameplay_WardenActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Gameplay_Warden_Move;
         public InputAction @Shoot => m_Wrapper.m_Gameplay_Warden_Shoot;
-        public InputAction @ActiveAbility => m_Wrapper.m_Gameplay_Warden_ActiveAbility;
-        public InputAction @SpecialAbility => m_Wrapper.m_Gameplay_Warden_SpecialAbility;
+        public InputAction @Ability => m_Wrapper.m_Gameplay_Warden_Ability;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay_Warden; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -512,12 +460,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
-            @ActiveAbility.started += instance.OnActiveAbility;
-            @ActiveAbility.performed += instance.OnActiveAbility;
-            @ActiveAbility.canceled += instance.OnActiveAbility;
-            @SpecialAbility.started += instance.OnSpecialAbility;
-            @SpecialAbility.performed += instance.OnSpecialAbility;
-            @SpecialAbility.canceled += instance.OnSpecialAbility;
+            @Ability.started += instance.OnAbility;
+            @Ability.performed += instance.OnAbility;
+            @Ability.canceled += instance.OnAbility;
         }
 
         private void UnregisterCallbacks(IGameplay_WardenActions instance)
@@ -528,12 +473,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
             @Shoot.canceled -= instance.OnShoot;
-            @ActiveAbility.started -= instance.OnActiveAbility;
-            @ActiveAbility.performed -= instance.OnActiveAbility;
-            @ActiveAbility.canceled -= instance.OnActiveAbility;
-            @SpecialAbility.started -= instance.OnSpecialAbility;
-            @SpecialAbility.performed -= instance.OnSpecialAbility;
-            @SpecialAbility.canceled -= instance.OnSpecialAbility;
+            @Ability.started -= instance.OnAbility;
+            @Ability.performed -= instance.OnAbility;
+            @Ability.canceled -= instance.OnAbility;
         }
 
         public void RemoveCallbacks(IGameplay_WardenActions instance)
@@ -563,8 +505,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     public interface IGameplay_GathererActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnPrimaryAbility(InputAction.CallbackContext context);
-        void OnSpecialAbility(InputAction.CallbackContext context);
+        void OnAbility(InputAction.CallbackContext context);
         void OnPullWarden(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
     }
@@ -572,7 +513,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
-        void OnActiveAbility(InputAction.CallbackContext context);
-        void OnSpecialAbility(InputAction.CallbackContext context);
+        void OnAbility(InputAction.CallbackContext context);
     }
 }

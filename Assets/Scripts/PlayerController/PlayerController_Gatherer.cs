@@ -16,16 +16,21 @@ public class PlayerController_Gatherer : PlayerController
 	[SerializeField] GameObject warden;
 	[SerializeField] CircleCollider2D ropeRadius;
 	StatsManager statsManager;
-    [SerializeField] HealthBar healthBar;
+    HealthBar healthBar;
 
-    // Subscribe to any events
-    private void OnEnable()
+	// Subscribe to events here
+    void OnEnable()
     {
         EventManager.instance.playerEvents.onPlayerDamage += PlayerDamage;
     }
+	// Unsubscribe to events here (otherwise we'll be wasting memory)
+	void OnDisable()
+	{
+		EventManager.instance.playerEvents.onPlayerDamage -= PlayerDamage;
+	}
 
-    // Called by the Player Input component
-    void OnPullWarden()
+	// Called by the Player Input component
+	void OnPullWarden()
 	{
 		if (pullCounter > 0) return;	// on cooldown
 
@@ -62,9 +67,10 @@ public class PlayerController_Gatherer : PlayerController
 		base.Awake();
 		rb_Warden = warden.GetComponent<Rigidbody2D>();
 	}
-    private void Start()
+    void Start()
     {
         statsManager = StatsManager.Instance;
+		healthBar = GetComponentInChildren<HealthBar>();
         healthBar.UpdateHealthBar(statsManager.GathererCurrentHealth, statsManager.GathererMaxHealth);
     }
 
