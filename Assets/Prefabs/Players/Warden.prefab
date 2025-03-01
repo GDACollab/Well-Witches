@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 8489313638676957520}
   - component: {fileID: 5872864872400187484}
   - component: {fileID: 2315779408742167239}
+  - component: {fileID: 6962365198856826383}
   - component: {fileID: 4290127505824787876}
   m_Layer: 7
   m_Name: Warden
@@ -122,7 +123,7 @@ Transform:
   m_Children:
   - {fileID: 3863549545985356329}
   - {fileID: 2827204371654931226}
-  - {fileID: 4885740525538796091}
+  - {fileID: 6276767679827043186}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &229500659633084064
@@ -361,7 +362,18 @@ MonoBehaviour:
   ropeStiffness: 2
   gatherer: {fileID: 0}
   gathererRopeRadius: {fileID: 0}
-  healthBar: {fileID: 0}
+--- !u!114 &6962365198856826383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3424275855618714540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 067730cbff686d44a9276f114181acf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4290127505824787876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,11 +386,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276a49d4874b9ea42b7c99aa78dc4ca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wardenStats: {fileID: 0}
-  projectilePrefab: {fileID: 7751528799329377102, guid: c3f430c214822e947aea04d020c02ff6, type: 3}
-  projectileSpawn: {fileID: 2827204371654931226}
   projectileVelocity: 15
   projectileLifetime: 3
+  projectilePrefab: {fileID: 7751528799329377102, guid: c3f430c214822e947aea04d020c02ff6, type: 3}
+  projectileSpawn: {fileID: 2827204371654931226}
 --- !u!1 &8866154363906637985
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +421,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7347747762842868080}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &7589181036072287643
+--- !u!1001 &9044356274505792722
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -492,7 +503,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3071328425361825696, guid: a682d49a2f7be364a8cd8a275468cd89, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.55
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 3071328425361825696, guid: a682d49a2f7be364a8cd8a275468cd89, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -508,15 +519,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8747848260698512493, guid: a682d49a2f7be364a8cd8a275468cd89, type: 3}
       propertyPath: m_Name
-      value: Health Bar
+      value: Player Health Bar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a682d49a2f7be364a8cd8a275468cd89, type: 3}
---- !u!224 &4885740525538796091 stripped
+--- !u!224 &6276767679827043186 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3071328425361825696, guid: a682d49a2f7be364a8cd8a275468cd89, type: 3}
-  m_PrefabInstance: {fileID: 7589181036072287643}
+  m_PrefabInstance: {fileID: 9044356274505792722}
   m_PrefabAsset: {fileID: 0}

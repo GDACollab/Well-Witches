@@ -254,6 +254,14 @@ PrefabInstance:
       propertyPath: warden
       value: 
       objectReference: {fileID: 1135581394}
+    - target: {fileID: 4538815209976620414, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538815209976620414, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5708320580637796411, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
       propertyPath: m_Name
       value: Gatherer
@@ -409,6 +417,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7408869642382623052, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7408869642382623052, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8216740838489866245, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -473,8 +489,8 @@ MonoBehaviour:
   Defense: 0
   GathererHaste: 0
   GathererLuck: 0
-  GathererMaxHealth: 0
-  GathererCurrentHealth: 0
+  GathererMaxHealth: 100
+  GathererCurrentHealth: 100
   GathererHealthRegen: 0
   AbilityPower: 0
   AttackPower: 0
@@ -486,8 +502,8 @@ MonoBehaviour:
   WardenHaste: 0
   WardenLuck: 0
   WardenResistance: 0
-  WardenMaxHealth: 0
-  WardenCurrentHealth: 0
+  WardenMaxHealth: 100
+  WardenCurrentHealth: 100
   WardenHealthRegen: 0
 --- !u!4 &1783273599
 Transform:

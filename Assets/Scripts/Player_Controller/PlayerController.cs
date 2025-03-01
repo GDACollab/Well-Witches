@@ -8,18 +8,16 @@ public class PlayerController : MonoBehaviour
 	protected Rigidbody2D rb;
 	Vector2 moveDirection;
 	[HideInInspector] public float maxSpeed_Adjusted;   // this has to exist for now because of SpeedBuff.cs
-    
 
-    protected void Awake()
+	void OnMove(InputValue iv)  // Called by the Player Input component
+	{
+		moveDirection = iv.Get<Vector2>();
+	}
+
+	protected void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
         maxSpeed_Adjusted = movementData.maxSpeed;
-	}
-
-	// Called by the Player Input component
-	void OnMove(InputValue iv)
-	{
-		moveDirection = iv.Get<Vector2>();
 	}
 
     void FixedUpdate()

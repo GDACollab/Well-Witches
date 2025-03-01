@@ -1,25 +1,17 @@
 using System;
-using UnityEngine;
 
 public class PlayerEvents
 {
-    public event Action<float,string> onPlayerDamage;
-    
-    public void PlayerDamage(float damage, string player)
+    public event Action<float,string> onPlayerDamaged;
+	public event Action onPlayerDied;
+
+	public void PlayerDamaged(float damage, string player)
     {
-        if (onPlayerDamage != null)
-        {
-            onPlayerDamage(damage, player);
-        }
+        if (onPlayerDamaged != null)  onPlayerDamaged(damage, player);
     }
 
-    public event Action onPlayerDeath;
-
-    public void PlayerDeath()
+    public void PlayerDied()
     {
-        if (onPlayerDamage != null)
-        {
-            onPlayerDeath();
-        }
+        if (onPlayerDamaged != null) onPlayerDied();
     }
 }

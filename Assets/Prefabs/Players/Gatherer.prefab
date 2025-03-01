@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 9173437783460584710}
   - component: {fileID: 233584353143235204}
   - component: {fileID: 2438252464448227829}
+  - component: {fileID: 3947874931346806455}
   m_Layer: 7
   m_Name: Gatherer
   m_TagString: Player
@@ -103,7 +104,7 @@ Transform:
   - {fileID: 885768738423404132}
   - {fileID: 6194866380299654315}
   - {fileID: 1940337477319582645}
-  - {fileID: 4673504000237065064}
+  - {fileID: 1096350805164934976}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &732597258827690589
@@ -217,7 +218,18 @@ MonoBehaviour:
   interactionRadius: {fileID: 2982385783056123225}
   warden: {fileID: 0}
   ropeRadius: {fileID: 3652925597344170551}
-  healthBar: {fileID: 5839561811515825861}
+--- !u!114 &3947874931346806455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5708320580637796411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ef4845f87b8ae4469a8969ee4be5703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6319885882415222397
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,7 +394,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &7657267043401403592
+--- !u!1001 &2713570308468611296
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -480,26 +492,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8747848260698512493, guid: a682d49a2f7be364a8cd8a275468cd89, type: 3}
       propertyPath: m_Name
-      value: Health Bar
+      value: Player Health Bar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a682d49a2f7be364a8cd8a275468cd89, type: 3}
---- !u!224 &4673504000237065064 stripped
+--- !u!224 &1096350805164934976 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3071328425361825696, guid: a682d49a2f7be364a8cd8a275468cd89, type: 3}
-  m_PrefabInstance: {fileID: 7657267043401403592}
+  m_PrefabInstance: {fileID: 2713570308468611296}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5839561811515825861 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4273451268156510733, guid: a682d49a2f7be364a8cd8a275468cd89, type: 3}
-  m_PrefabInstance: {fileID: 7657267043401403592}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f931f54f31f6648afe536fcbffdc63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
