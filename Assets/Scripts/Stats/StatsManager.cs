@@ -6,12 +6,17 @@ public class StatsManager : MonoBehaviour
 {
    public static StatsManager Instance; //singleton for both character stats
 
-   /*
-   With the StatsManager gameObject 
-   it contains the stats in a nice and neat way (hopefully)
-    */
+    /*
+    With the StatsManager gameObject 
+    it contains the stats in a nice and neat way (hopefully)
+     */
 
-   [Header("---------------Gatherer Combat stats---------------")]
+    //buffs and buff timers
+    public List<int> myBuffs = new List<int>();
+    public List<float> buffTimers = new List<float>();
+
+
+    [Header("---------------Gatherer Combat stats---------------")]
    public float healthTransferAmount; //current health transfer amount put in stats for now
    public float GathererResistance; 
 
@@ -77,5 +82,28 @@ public class StatsManager : MonoBehaviour
             Debug.LogError("Found more than one GameManager in the scene. Please make sure there is only one");
         }
         Instance = this;
+        addStatus(5318008, 5);
+    }
+
+    private void Update()
+    {
+        for(int i = 0; i < buffTimers.Count; i++)
+        {
+            buffTimers[i] -= Time.deltaTime;
+            Debug.Log("status " + myBuffs[i] + ": " + buffTimers[i]);
+            if (buffTimers[i] <= 0)
+            {
+                Debug.Log("status " + myBuffs[i] + " is over!");
+                myBuffs.RemoveAt(i);
+                buffTimers.RemoveAt(i);
+                i--;
+            }
+        }
+    }
+
+    public void addStatus(int buff, float time)
+    {
+        myBuffs.Add(buff);
+        buffTimers.Add(time);
     }
 }
