@@ -8,18 +8,22 @@ public class EventManager : MonoBehaviour
     public static EventManager instance { get; private set; }
 
     // event types
-    // EX: public PlayerEvents playerEvents;
+    public MiscEvent miscEvent;
+    public QuestEvents questEvents;
+    public PlayerEvents playerEvents;
 
     private void Awake()
     {
-        if(instance == null)
+        if(instance != null)
         {
             Debug.LogError("Found more than one GameManager in the scene. Please make sure there is only one");
         }
         instance = this;
 
         // initialize all events 
-        // EX: playerEvents = new PlayerEvents();
+        miscEvent = new MiscEvent();
+        questEvents = new QuestEvents();
+        playerEvents = new PlayerEvents();
     }
 
 

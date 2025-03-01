@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//unsure if used ya can probably delete
 public class WardenStats : MonoBehaviour
 {
     //some of these are made on assumptions
