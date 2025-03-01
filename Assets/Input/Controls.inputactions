@@ -15,9 +15,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Active Ability",
+                    "name": "Primary Ability",
                     "type": "Button",
                     "id": "4b63c30e-5073-4ad7-8b2e-c84a644724e0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Special Ability",
+                    "type": "Button",
+                    "id": "55b5a18b-a4e8-4a31-b6b0-99624f345ce4",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -127,7 +136,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mouse and Keyboard",
-                    "action": "Active Ability",
+                    "action": "Primary Ability",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6fb5f6f4-76b3-4cf7-86d4-14733171d8d6",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse and Keyboard",
+                    "action": "Special Ability",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -159,6 +179,15 @@
                     "name": "Active Ability",
                     "type": "Button",
                     "id": "f40a84ae-37d5-4e57-9d39-dc2cb2e5c0fb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Special Ability",
+                    "type": "Button",
+                    "id": "d8b26c24-ca9e-4829-b8f6-5a180f30c6c0",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -240,6 +269,17 @@
                     "processors": "",
                     "groups": ";Mouse and Keyboard",
                     "action": "Active Ability",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "99806dcb-861f-4cb8-b071-aebd827bb754",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse and Keyboard",
+                    "action": "Special Ability",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
