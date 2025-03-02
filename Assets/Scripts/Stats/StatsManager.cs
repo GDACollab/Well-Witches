@@ -82,6 +82,8 @@ public class StatsManager : MonoBehaviour
             Debug.LogError("Found more than one GameManager in the scene. Please make sure there is only one");
         }
         Instance = this;
+        
+        //For Testing Purposes
         addStatus(5318008, 5);
     }
 
