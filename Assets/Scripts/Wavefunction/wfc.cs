@@ -89,6 +89,7 @@ public class wfc : MonoBehaviour
         }
 
         PlaceTiles();
+        interactableGenerating.generateInteractables(); //Calls the other script (interactable spawning) to start
         //StartCoroutine(testWFCFastButOnlyIfISaySo()); //Do it fast
         //StartCoroutine(testWFCSlowly()); // Does the generation slowly, only have one uncommented
     }
