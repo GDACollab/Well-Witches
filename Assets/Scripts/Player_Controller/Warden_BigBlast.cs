@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Warden_BigBlast : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] float duration;
+    [SerializeField] Transform spawnPoint;
+    [SerializeField] GameObject prefab;
 
-    // Update is called once per frame
-    void Update()
+    void OnActivateAbility()    // called by the Player Input component
     {
-        
+        BigBlast bb = Instantiate(prefab, spawnPoint.position, Quaternion.identity).GetComponent<BigBlast>();
+        bb.Activate(duration);
     }
 }

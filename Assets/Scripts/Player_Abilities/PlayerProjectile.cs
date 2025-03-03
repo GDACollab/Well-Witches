@@ -14,11 +14,6 @@ public class PlayerProjectile : MonoBehaviour
 
     private float _damage;
 
-    private void Start()
-    {
-    }
-
-    // Start is called before the first frame update
     public void InitializeProjectile(float velocity, float lifetime, float damage)
     {
         _damage = damage;
@@ -39,11 +34,6 @@ public class PlayerProjectile : MonoBehaviour
         impact.gameObject.SetActive(false);
 
         Destroy(gameObject, lifetime);
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
