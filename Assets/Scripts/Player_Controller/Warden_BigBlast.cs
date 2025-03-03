@@ -8,7 +8,7 @@ public class Warden_BigBlast : MonoBehaviour
 
     void OnActivateAbility()    // called by the Player Input component
     {
-        BigBlast bb = Instantiate(prefab, spawnPoint.position, Quaternion.identity).GetComponent<BigBlast>();
+        BigBlast bb = Instantiate(prefab, spawnPoint).GetComponent<BigBlast>();
         bb.Activate(duration);
     }
 }
