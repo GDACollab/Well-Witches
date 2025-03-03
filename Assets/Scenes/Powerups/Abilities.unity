@@ -242,6 +242,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -0.0007324219
       objectReference: {fileID: 0}
+    - target: {fileID: 871047896541522312, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
+      propertyPath: warden
+      value: 
+      objectReference: {fileID: 1135581394}
+    - target: {fileID: 871047896541522312, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
+      propertyPath: ropeRadius
+      value: 
+      objectReference: {fileID: 1504276489}
     - target: {fileID: 924560265499444435, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
       propertyPath: warden
       value: 
@@ -413,6 +421,14 @@ PrefabInstance:
       propertyPath: gathererRopeRadius
       value: 
       objectReference: {fileID: 1504276489}
+    - target: {fileID: 6765816677484888606, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: gatherer
+      value: 
+      objectReference: {fileID: 905696340}
+    - target: {fileID: 6765816677484888606, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: gathererRopeRadius
+      value: 
+      objectReference: {fileID: 1504276489}
     - target: {fileID: 7347747762842868080, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -469,7 +485,8 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5774433990191121981, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

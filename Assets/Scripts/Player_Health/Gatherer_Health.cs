@@ -1,4 +1,4 @@
-public class PlayerHealth_Gatherer : PlayerHealth
+public class Gatherer_Health : PlayerHealth
 {
 	protected override void TakeDamage(float damage, string player)
 	{

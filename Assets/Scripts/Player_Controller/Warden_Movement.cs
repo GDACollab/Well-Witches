@@ -1,27 +1,18 @@
 using UnityEngine;
 
-public class PlayerController_Warden : PlayerController
-{
-	[Header("Shooting")]
-	[SerializeField] float projectileVelocity;
-	[SerializeField] float projectileLifetime;
-	[SerializeField] GameObject projectilePrefab;
-	[SerializeField] Transform projectileSpawn;
-	StatsManager statsManager;
-
+public class Warden_Movement : PlayerMovement
+{	
 	[Header("Rope")]
-	[Tooltip("Set the degree to suppress spring oscillation. In the range 0 to 1, the higher the value, the less movement.")]
-	[SerializeField, Range(0f, 1f)] float ropeDampening;
-	[Tooltip("Changes how 'stiff' the rope is, the higher the value, the more stiff")]
-	[SerializeField, Range(0.01f,10f)] float ropeStiffness;
-	[SerializeField] SpringJoint2D joint;   // has to be a serialized field because of OnValidate()
+	[SerializeField, Range(0f, 1f), Tooltip("The degree to suppress spring oscillation. Higher value = less movement.")] float ropeDampening;
+	[SerializeField, Range(0.01f,10f), Tooltip("How stiff the rope is. Higher value = more stiff.")] float ropeStiffness;
+	[SerializeField] SpringJoint2D joint;   // needs a reference set in the inspector so OnValidate() can work properly
 	LineRenderer ropeLR;
 
 	// Rope Test Variables
 	Gradient gradient;
 	Gradient gradientStressed;
 
-	[Header("References")]
+	[Header("Gatherer")]
 	[SerializeField] GameObject gatherer;
 	[SerializeField] CircleCollider2D gathererRopeRadius;
 
@@ -31,16 +22,8 @@ public class PlayerController_Warden : PlayerController
 		joint.dampingRatio = ropeDampening;
 	}
 
-	void OnShoot()  // called by the Player Input component
-	{
-		PlayerProjectile projectile = Instantiate(projectilePrefab, projectileSpawn.position, Quaternion.identity).GetComponent<PlayerProjectile>();
-		projectile.InitializeProjectile(projectileVelocity, projectileLifetime, statsManager.AttackPower);
-	}
-
 	void Start()
 	{
-		statsManager = StatsManager.Instance;
-
 		joint.enableCollision = true;
 		joint.distance = gathererRopeRadius.radius;
 		joint.anchor = Vector2.zero;

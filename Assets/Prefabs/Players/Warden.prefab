@@ -98,8 +98,10 @@ GameObject:
   - component: {fileID: 5266548998552274237}
   - component: {fileID: 8489313638676957520}
   - component: {fileID: 5872864872400187484}
-  - component: {fileID: 5774433990191121981}
   - component: {fileID: 587994351749758748}
+  - component: {fileID: 6765816677484888606}
+  - component: {fileID: 7330388417451776427}
+  - component: {fileID: 3046167562820563143}
   m_Layer: 7
   m_Name: Warden
   m_TagString: Player
@@ -342,29 +344,6 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay_Warden
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &5774433990191121981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3424275855618714540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87b62b05b8d28d647849db9cb8da3bf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementData: {fileID: 11400000, guid: 0b9cd22267ec7cd489c76aefce0bd43b, type: 2}
-  maxSpeed_Adjusted: 0
-  projectileVelocity: 15
-  projectileLifetime: 3
-  projectilePrefab: {fileID: 7751528799329377102, guid: c3f430c214822e947aea04d020c02ff6, type: 3}
-  projectileSpawn: {fileID: 2827204371654931226}
-  ropeDampening: 0.4
-  ropeStiffness: 2
-  joint: {fileID: 5266548998552274237}
-  gatherer: {fileID: 0}
-  gathererRopeRadius: {fileID: 0}
 --- !u!114 &587994351749758748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +354,53 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4cfa3cfa8ac41674cb5faf68325d310d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6765816677484888606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3424275855618714540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc486cefec852b9458de4a70179c2cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementData: {fileID: 11400000, guid: 0b9cd22267ec7cd489c76aefce0bd43b, type: 2}
+  maxSpeed_Adjusted: 0
+  ropeDampening: 0.4
+  ropeStiffness: 2
+  joint: {fileID: 5266548998552274237}
+  gatherer: {fileID: 0}
+  gathererRopeRadius: {fileID: 0}
+--- !u!114 &7330388417451776427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3424275855618714540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc1db1239ec5c548900bc2bddd09e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileVelocity: 15
+  projectileLifetime: 3
+  projectilePrefab: {fileID: 7751528799329377102, guid: c3f430c214822e947aea04d020c02ff6, type: 3}
+  projectileSpawn: {fileID: 2827204371654931226}
+--- !u!114 &3046167562820563143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3424275855618714540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5becf096d7dc3724d854a0260287601c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8866154363906637985

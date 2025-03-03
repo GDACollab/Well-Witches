@@ -79,8 +79,10 @@ GameObject:
   - component: {fileID: 732597258827690589}
   - component: {fileID: 9173437783460584710}
   - component: {fileID: 233584353143235204}
-  - component: {fileID: 924560265499444435}
   - component: {fileID: 4873925345921034497}
+  - component: {fileID: 924560265499444435}
+  - component: {fileID: 871047896541522312}
+  - component: {fileID: 2686973554895526223}
   m_Layer: 7
   m_Name: Gatherer
   m_TagString: Player
@@ -199,6 +201,18 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay_Gatherer
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &4873925345921034497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5708320580637796411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da399ee4076e9c646bd4fb50ad3220dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &924560265499444435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,12 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementData: {fileID: 11400000, guid: f3ee9fd79406baf49867f478438dc2a9, type: 2}
   maxSpeed_Adjusted: 0
-  maxPullForce: 22.5
-  pullCooldown: 2
-  interactionRadius: {fileID: 2982385783056123225}
-  warden: {fileID: 0}
-  ropeRadius: {fileID: 3652925597344170551}
---- !u!114 &4873925345921034497
+--- !u!114 &871047896541522312
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -227,9 +236,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 5708320580637796411}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da399ee4076e9c646bd4fb50ad3220dd, type: 3}
+  m_Script: {fileID: 11500000, guid: dc1f3b1c76600d94cb679c4b40fa8be0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxPullForce: 22.5
+  pullCooldown: 2
+  warden: {fileID: 0}
+  ropeRadius: {fileID: 3652925597344170551}
+--- !u!114 &2686973554895526223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5708320580637796411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89c34e3beb14ecf4685a0f6175327128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRadius: {fileID: 2982385783056123225}
 --- !u!1 &6319885882415222397
 GameObject:
   m_ObjectHideFlags: 0
