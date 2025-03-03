@@ -12,8 +12,18 @@ public class StatsManager : MonoBehaviour
      */
 
     //buffs and buff timers
-    public List<int> myBuffs = new List<int>();
+
+    [Header("---------------Buff / Curse Tracking---------------")]
+    public List<string> myBuffs = new List<string>();
     public List<float> buffTimers = new List<float>();
+
+    public Dictionary<string, float> questItems = new Dictionary<string, float>
+    {
+        {"Dullahan’s Head", 0.15f},
+        {"Vampire Garlics", 0.10f}
+    };
+
+    public float keyItemChance = 0.05f;
 
 
     [Header("---------------Gatherer Combat stats---------------")]
@@ -82,7 +92,6 @@ public class StatsManager : MonoBehaviour
             Debug.LogError("Found more than one GameManager in the scene. Please make sure there is only one");
         }
         Instance = this;
-        addStatus(5318008, 5);
     }
 
     private void Update()
@@ -101,9 +110,24 @@ public class StatsManager : MonoBehaviour
         }
     }
 
-    public void addStatus(int buff, float time)
+    public void addStatus(string buff, float time)
     {
         myBuffs.Add(buff);
         buffTimers.Add(time);
+    }
+
+    public Dictionary<string, float> getQuestItems() 
+    {
+        return new Dictionary<string, float> (questItems);
+    }
+
+    public List<string> getMyBuffs() 
+    {
+        return new List<string> (myBuffs);
+    }
+
+    public float getKeyItemChance()
+    {
+        return keyItemChance;
     }
 }
