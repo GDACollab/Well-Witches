@@ -157,12 +157,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         },
         {
             ""name"": ""Gameplay_Warden"",
-            ""id"": ""c2febb73-cde2-459a-aec3-e6b1df85bee2"",
+            ""id"": ""5d21ef32-969f-4789-8c52-106ed13270dc"",
             ""actions"": [
                 {
                     ""name"": ""Move"",
                     ""type"": ""Value"",
-                    ""id"": ""82e371d4-d483-416e-b7d9-e17103124c7c"",
+                    ""id"": ""d86009bf-f483-4441-8fae-be1646dc0d78"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -171,7 +171,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Shoot"",
                     ""type"": ""Button"",
-                    ""id"": ""b20cf932-e2b0-4ce9-b0f4-fb897aeb29b1"",
+                    ""id"": ""92f18b23-80cd-47b1-a562-e44145612afc"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -180,7 +180,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Activate Ability"",
                     ""type"": ""Button"",
-                    ""id"": ""f40a84ae-37d5-4e57-9d39-dc2cb2e5c0fb"",
+                    ""id"": ""33b9fa95-ccb4-472b-b5f6-a8dda9a18912"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -190,7 +190,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": ""Arrow Keys"",
-                    ""id"": ""0849cf3d-82d8-42c3-ae98-9a55eab3098d"",
+                    ""id"": ""4724f625-09da-494a-86bc-5cbfe1f40a81"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -201,7 +201,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""9ee52889-6070-4d69-847e-20cdd0ff4b34"",
+                    ""id"": ""7f71229f-f481-45fc-9f8b-146fd77cc3ca"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -212,7 +212,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""5ec953d7-1d7d-4a45-8781-239a14a91be5"",
+                    ""id"": ""b45f4f85-30e1-4dc1-9675-14f46dd90a4a"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -223,7 +223,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""289a61cd-dc65-4243-9141-bb004b461db8"",
+                    ""id"": ""d1c8ff3f-6726-4197-a615-2bbf79085eb1"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -234,7 +234,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""c8333361-5e55-4c80-94da-3e52939b959c"",
+                    ""id"": ""b796b58f-4f59-454a-b80e-022dbc6e792a"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -245,7 +245,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""34c537c0-fb22-4e0f-a1f2-bd93ab9ae5af"",
+                    ""id"": ""027df28c-5f6e-4261-860f-067455109e83"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -256,7 +256,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""70de6b86-11fb-4a7c-af5c-f222db8fe4ff"",
+                    ""id"": ""49f65c61-d02a-4d56-a9ab-aae09a521cd3"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -268,24 +268,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             ]
         }
     ],
-    ""controlSchemes"": [
-        {
-            ""name"": ""Mouse and Keyboard"",
-            ""bindingGroup"": ""Mouse and Keyboard"",
-            ""devices"": [
-                {
-                    ""devicePath"": ""<Mouse>"",
-                    ""isOptional"": false,
-                    ""isOR"": false
-                },
-                {
-                    ""devicePath"": ""<Keyboard>"",
-                    ""isOptional"": false,
-                    ""isOR"": false
-                }
-            ]
-        }
-    ]
+    ""controlSchemes"": []
 }");
         // Gameplay_Gatherer
         m_Gameplay_Gatherer = asset.FindActionMap("Gameplay_Gatherer", throwIfNotFound: true);
@@ -493,15 +476,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         }
     }
     public Gameplay_WardenActions @Gameplay_Warden => new Gameplay_WardenActions(this);
-    private int m_MouseandKeyboardSchemeIndex = -1;
-    public InputControlScheme MouseandKeyboardScheme
-    {
-        get
-        {
-            if (m_MouseandKeyboardSchemeIndex == -1) m_MouseandKeyboardSchemeIndex = asset.FindControlSchemeIndex("Mouse and Keyboard");
-            return asset.controlSchemes[m_MouseandKeyboardSchemeIndex];
-        }
-    }
     public interface IGameplay_GathererActions
     {
         void OnMove(InputAction.CallbackContext context);
