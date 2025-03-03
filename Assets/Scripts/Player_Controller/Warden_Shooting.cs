@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class Warden_Shooting : MonoBehaviour
 {
-	[SerializeField] float projectileVelocity;
-	[SerializeField] float projectileLifetime;
-	[SerializeField] GameObject projectilePrefab;
-	[SerializeField] Transform projectileSpawn;
+	[SerializeField] float cooldown;
+	[SerializeField] float velocity;
+	[SerializeField] float lifetime;
+	[SerializeField] GameObject prefab;
+	[SerializeField] Transform spawn;
+	float cooldownCounter = 0;
 	StatsManager statsManager;
 
 	void Start()
@@ -13,9 +15,17 @@ public class Warden_Shooting : MonoBehaviour
 		statsManager = StatsManager.Instance;
 	}
 
+	void Update()
+	{
+		if (cooldownCounter > 0) cooldownCounter -= Time.deltaTime;
+	}
+
 	void OnShoot()  // called by the Player Input component
 	{
-		PlayerProjectile projectile = Instantiate(projectilePrefab, projectileSpawn.position, Quaternion.identity).GetComponent<PlayerProjectile>();
-		projectile.InitializeProjectile(projectileVelocity, projectileLifetime, statsManager.AttackPower);
+		if (cooldownCounter > 0) return;
+
+		PlayerProjectile projectile = Instantiate(prefab, spawn.position, Quaternion.identity).GetComponent<PlayerProjectile>();
+		projectile.InitializeProjectile(velocity, lifetime, statsManager.AttackPower);
+		cooldownCounter = cooldown;
 	}
 }

@@ -387,10 +387,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cc1db1239ec5c548900bc2bddd09e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileVelocity: 15
-  projectileLifetime: 3
-  projectilePrefab: {fileID: 7751528799329377102, guid: c3f430c214822e947aea04d020c02ff6, type: 3}
-  projectileSpawn: {fileID: 2827204371654931226}
+  cooldown: 0.5
+  velocity: 15
+  lifetime: 3
+  prefab: {fileID: 7751528799329377102, guid: c3f430c214822e947aea04d020c02ff6, type: 3}
+  spawn: {fileID: 2827204371654931226}
 --- !u!114 &3046167562820563143
 MonoBehaviour:
   m_ObjectHideFlags: 0
