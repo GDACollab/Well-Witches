@@ -24,22 +24,30 @@ public class InteractableGenerator : MonoBehaviour
     private Dictionary<TileBase, tileScriptableObject> dataFromFiles;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        // This dictionary will store tiles with thier corresponding tile scriptable object
+        // dataFromFiles[tile gameobject (not to be confused with the scriptable objects with the same name)] -> that tiles scriptable object
         dataFromFiles = new Dictionary<TileBase, tileScriptableObject>();
 
-        
-        foreach(var tileData in tileScriptableObjects)
+
+        // All walkable tiles are found within a tile scriptable objects "Tile Ground" parameter
+        // This for loop goes through all the given scriptable objects in that god-forsaken list and pairs them up with the correct
+        // tile gameobject by getting what that tile should be from the "Tile Ground" parameter
+
+        // We only do this with "Tile Ground" because walkable areas are the only places we want bushes to be
+
+        foreach (var tileData in tileScriptableObjects)
         {
-            if(tileData.tileGround != null && !(dataFromFiles.ContainsKey(tileData.tileGround)))
+            if(tileData.tileGround != null)
             {
-                Debug.Log(tileData.tileGround);
-                dataFromFiles.Add(tileData.tileGround, tileData);
                 //Debug.Log(tileData.tileGround);
-                //dataFromFiles.Add(tileData.tileHitbox, tileData);
+                dataFromFiles.Add(tileData.tileGround, tileData);
             }
 
         }
+
+        // This WILL break if two tile scriptable objects refer to the same tile, so uhhhhh dont do that teehee :D
         
 
         /*
@@ -102,11 +110,13 @@ public class InteractableGenerator : MonoBehaviour
                     Vector3 worldPosition = new Vector3(x, y, 0);
                     Vector3Int gridPosition = tilemap.WorldToCell(worldPosition);
 
+                    // Given x y coords, returns the tile gameobject at those coords
                     TileBase foundTile = tilemap.GetTile(gridPosition);
+                    
                     //Debug.Log(foundTile);
+                    //Debug.Log("size of dict: " + dataFromFiles.Count);
 
-                    Debug.Log(foundTile);
-
+                    // Use the dictionary to go to that tiles scriptable object and see if the "can place bush" bool is true
                     if (foundTile != null && dataFromFiles[foundTile].canPlaceBush)
                     {
                         //Add new spot to recent Values
