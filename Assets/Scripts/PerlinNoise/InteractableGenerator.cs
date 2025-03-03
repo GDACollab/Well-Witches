@@ -27,16 +27,25 @@ public class InteractableGenerator : MonoBehaviour
     {
         dataFromFiles = new Dictionary<TileBase, tileScriptableObject>();
 
+        /*
         foreach(var tileData in tileScriptableObjects)
         {
+            //Debug.Log("Im here!1");
+            Debug.Log(tileData.tileGround);
             dataFromFiles.Add(tileData.tileGround, tileData);
-            dataFromFiles.Add(tileData.tileHitbox, tileData);
+            //Debug.Log(tileData.tileHitbox);
+            //dataFromFiles.Add(tileData.tileHitbox, tileData);
+            //Debug.Log("Im here!3");
         }
+        */
 
+        /*
         if (testing)
         {
             generateInteractables();
         }
+        */
+        
     }
 
     public void generateInteractables()
@@ -87,16 +96,17 @@ public class InteractableGenerator : MonoBehaviour
                     }
 
                     Vector3 worldPosition = new Vector3(x, y, 0);
-                    Vector3Int gridPosition = tilemap.WorldToCell(worldPosition);
+                    //Vector3Int gridPosition = tilemap.WorldToCell(worldPosition);
 
-                    TileBase foundTile = tilemap.GetTile(gridPosition);
+                    //TileBase foundTile = tilemap.GetTile(gridPosition);
                     
-                    if (foundTile != null && dataFromFiles[foundTile].canPlaceBush)
-                    {
+                    //if (foundTile != null && dataFromFiles[foundTile].canPlaceBush)
+                    //{
                         //Add new spot to recent Values
                         pushToRecentValues(new Vector2Int(x, y));
+                        Debug.Log("COrrectly spawned tile");
                         Instantiate(interactable, new Vector3(x + offset.x, y + offset.y, -1), Quaternion.identity, transform); // Z layer of interactables is -1
-                    }
+                    //}
 
                 }
             }
