@@ -14,10 +14,6 @@ public class PlayerProjectile : MonoBehaviour
 
     private float _damage;
 
-    private void Start()
-    {
-    }
-
     // Start is called before the first frame update
     public void InitializeProjectile(float velocity, float lifetime, float damage)
     {
@@ -41,17 +37,11 @@ public class PlayerProjectile : MonoBehaviour
         Destroy(gameObject, lifetime);
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // LET ME EDIT BASE CLASS ENEMY WHY IS IT NOT CAPILIZED AND WHY IS IT INT
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<BaseEnemyClass>().takingDamage((int) _damage);
+            collision.gameObject.GetComponent<BaseEnemyClass>().TakeDamage(_damage);
         }  
         rb.velocity = Vector2.zero;
         head.gameObject.SetActive(false);

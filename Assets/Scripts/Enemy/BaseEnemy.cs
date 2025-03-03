@@ -9,19 +9,19 @@ public class BaseEnemyClass : MonoBehaviour
     [Header("Enemy Stats")]
     [Range(1, 100)]
     [Tooltip("The max health of an enemy. [1, 100]")]
-    public int health;
+    public float health;
     [Range(0, 100)]
     [Tooltip("How much damage an enemy does. [0, 100]")]
-    public int damage;
+    public float damage;
     [Range(0, 20)]
     [Tooltip("How fast an enemy moves. [0, 20]")]
-    public int moveSpeed;
+    public float moveSpeed;
 
     // used for Move()
-    Rigidbody2D rb;
-    Vector3 click;
-    Vector2 target;
-    Vector2 pos;
+    private Rigidbody2D rb;
+    private Vector3 click;
+    private Vector2 target;
+    private Vector2 pos;
 
     // Start is called before the first frame update
     void Start()
@@ -70,7 +70,12 @@ public class BaseEnemyClass : MonoBehaviour
         }
     }
 
-    public void takingDamage(int amount)
+    public void Spawn(Vector3 position)
+    {
+        Instantiate(gameObject, position, Quaternion.identity);
+    }
+
+    public void TakeDamage(float amount)
     {   //Reduces health by the amount entered in Unity
         health -= amount;
         if (health <= 0)
