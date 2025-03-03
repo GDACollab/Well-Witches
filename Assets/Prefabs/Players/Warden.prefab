@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 5872864872400187484}
   - component: {fileID: 2315779408742167239}
   - component: {fileID: 6962365198856826383}
+  - component: {fileID: 4290127505824787876}
   m_Layer: 7
   m_Name: Warden
   m_TagString: Player
@@ -356,13 +357,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementData: {fileID: 11400000, guid: b988b90c56368594ab960a7b5b37ff86, type: 2}
   maxSpeed_Adjusted: 0
-  projectileVelocity: 15
-  projectileLifetime: 3
-  projectilePrefab: {fileID: 7751528799329377102, guid: c3f430c214822e947aea04d020c02ff6, type: 3}
-  projectileSpawn: {fileID: 2827204371654931226}
+  joint: {fileID: 5266548998552274237}
   ropeDampening: 0.4
   ropeStiffness: 2
-  joint: {fileID: 5266548998552274237}
   gatherer: {fileID: 0}
   gathererRopeRadius: {fileID: 0}
 --- !u!114 &6962365198856826383
@@ -377,6 +374,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 067730cbff686d44a9276f114181acf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4290127505824787876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3424275855618714540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276a49d4874b9ea42b7c99aa78dc4ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileVelocity: 15
+  projectileLifetime: 3
+  projectilePrefab: {fileID: 7751528799329377102, guid: c3f430c214822e947aea04d020c02ff6, type: 3}
+  projectileSpawn: {fileID: 2827204371654931226}
 --- !u!1 &8866154363906637985
 GameObject:
   m_ObjectHideFlags: 0
