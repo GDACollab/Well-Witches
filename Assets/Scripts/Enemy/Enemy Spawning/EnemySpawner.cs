@@ -60,6 +60,7 @@ public class EnemySpawner : MonoBehaviour
 		*/
     }
 
+    // chooses a random enemy to spawn
 	private void SpawnSingle()
 	{
         Vector3 spawnPosition = GetRandomSpawnPosition();
@@ -69,19 +70,21 @@ public class EnemySpawner : MonoBehaviour
 	}
 
 
-
+    // spawns one randomly chosen enemy in a randomly chosen formation
     private void SpawnFormation()
     {
         Vector3 spawnPosition = GetRandomSpawnPosition();
 
-        // get formation prefab
+        // get random formation prefab
         EnemyFormation formation = formationPrefabs[Random.Range(0, formationPrefabs.Count)].GetComponent<EnemyFormation>();
 
+        // get enemy to spawn, so it'll only spawn one type per formation
+        BaseEnemyClass enemy = enemies[Random.Range(0, enemies.Count)];
         foreach (var creatureInfo in formation.creaturesInFormation)
         {
             Vector3 spawnLocation = spawnPosition + creatureInfo.relativePosition;
 
-            enemies[Random.Range(0, enemies.Count)].Spawn(spawnLocation);
+            enemy.Spawn(spawnLocation);
         }
     }
 
