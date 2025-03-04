@@ -1,11 +1,10 @@
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-	public BaseEnemyClass tankEnemy;			// Evildoer that will be placed (temp)
-	public List<GameObject> formationPrefabs;
+    public List<BaseEnemyClass> enemies;
+    public List<GameObject> formationPrefabs;
 
 	public Transform referencePoint;    // Reference point for creatures to be spawned around
 
@@ -31,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
 
 		if(timer > spawnTime)
 		{
-			SpawnSingle(tankEnemy);
+			SpawnSingle();
 			timer = 0f;
         }
 
@@ -61,10 +60,12 @@ public class EnemySpawner : MonoBehaviour
 		*/
     }
 
-	private void SpawnSingle(BaseEnemyClass enemy)
+	private void SpawnSingle()
 	{
         Vector3 spawnPosition = GetRandomSpawnPosition();
-        enemy.Spawn(spawnPosition);
+
+        // spawn random enemy from list
+        enemies[Random.Range(0, enemies.Count)].Spawn(spawnPosition);
 	}
 
 
@@ -76,16 +77,11 @@ public class EnemySpawner : MonoBehaviour
         // get formation prefab
         EnemyFormation formation = formationPrefabs[Random.Range(0, formationPrefabs.Count)].GetComponent<EnemyFormation>();
 
-        // rotates the formation to face the reference point (mainly for arrow or any formation with a directional thing)
-        //Vector3 rotation = spawnPosition - referencePoint.position;
-        //float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        //formation.transform.rotation = Quaternion.Euler(0, 0, rot + 90);
-
         foreach (var creatureInfo in formation.creaturesInFormation)
         {
             Vector3 spawnLocation = spawnPosition + creatureInfo.relativePosition;
 
-            tankEnemy.Spawn(spawnLocation);
+            enemies[Random.Range(0, enemies.Count)].Spawn(spawnLocation);
         }
     }
 
