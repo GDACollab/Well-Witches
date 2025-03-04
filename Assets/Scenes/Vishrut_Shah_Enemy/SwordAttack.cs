@@ -21,11 +21,7 @@ public class SwordAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeSinceAttack += Time.deltaTime;
-        // If enemy hasn't attacked in a while, attack
-        if (timeSinceAttack >= ATTACK_COOLDOWN) {
-            Attack();
-        }
+
     }
 
     public void Attack() {
@@ -33,6 +29,7 @@ public class SwordAttack : MonoBehaviour
             // In first attack frame, record time that attack started
             isAttacking = true;
             attackStartTime = timeSinceAttack;
+            Debug.Log("Sword Attack");
         }
         // Add code for the sword attack here
 

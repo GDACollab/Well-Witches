@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine.AI;
 using UnityEngine;
 
 public class PhaseOne : State
@@ -7,9 +6,9 @@ public class PhaseOne : State
     private Rigidbody2D rb;
     private StateMachine stateMachine;
     private BossEnemy bossEnemy;
+    private float P1attackCooldown = 0;
 
     private bool useShieldBash = true; // Flag to alternate between attacks
-
 
     public PhaseOne(GameObject owner) : base(owner) { }
 
@@ -24,7 +23,6 @@ public class PhaseOne : State
     public override void OnEnter()
     {
         Debug.Log("Entering Phase One");
-
     }
 
     public override void OnUpdate()
@@ -32,40 +30,50 @@ public class PhaseOne : State
         bossEnemy.TargetClosestPlayer();
         if (bossEnemy.currentTarget != null)
         {
-            if (bossEnemy.distanceToTarget >= bossEnemy.LungeDistance)
+            float distanceToTarget = Vector2.Distance(bossEnemy.transform.position, bossEnemy.currentTarget.position);
+
+            if (distanceToTarget >= bossEnemy.LungeDistance)
             {
                 bossEnemy.LungeAttack();
                 Debug.Log("Lunge Attack");
             }
-            else
+            else if (distanceToTarget > bossEnemy.range)
             {
                 // Move towards the player
                 Vector2 direction = (bossEnemy.currentTarget.position - bossEnemy.transform.position).normalized;
                 rb.MovePosition(rb.position + direction * bossEnemy.moveSpeed * Time.deltaTime);
-                Debug.Log("Moving towards player");
             }
-
-            // Alternate between Shield_Bash and Sword_Slash when in range
-            if (bossEnemy.distanceToTarget <= bossEnemy.range)
+            else
             {
-                if (useShieldBash)
+                if (P1attackCooldown <= 0)
                 {
-                    bossEnemy.Shield_Bash();
-
+                    // Alternate between Shield_Bash and Sword_Slash when in range
+                    if (useShieldBash)
+                    {
+                        bossEnemy.Shield_Bash();
+                    }
+                    else
+                    {
+                        bossEnemy.Sword_Slash();
+                    }
+                    // Reset the attack cooldown
+                    P1attackCooldown = bossEnemy.attackCooldown;
+                    // Toggle the flag for the next update
+                    useShieldBash = !useShieldBash;
                 }
-                else
-                {
-                    bossEnemy.Sword_Slash();
-                }
-                // Toggle the flag for the next update
-                useShieldBash = !useShieldBash;
             }
+        }
+
+        // Decrement the attack cooldown
+        if (P1attackCooldown > 0)
+        {
+            P1attackCooldown -= Time.deltaTime;
         }
     }
 
     public override void OnExit()
     {
-        Debug.Log("Exiting Patrol State");
+        Debug.Log("Exiting Phase One");
     }
 
     public override List<Transition> GetTransitions()

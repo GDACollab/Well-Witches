@@ -39,7 +39,7 @@ public class ClawAttack : MonoBehaviour
         if (other.gameObject.tag == "Player"){
             target = other.transform;
             if (canDmg){
-                target.GetComponent<PlayerHealth>().TakeDamage(clawDamage);
+                //target.GetComponent<PlayerHealth>().TakeDamage(clawDamage);
                 Bleeding();
             }
         }

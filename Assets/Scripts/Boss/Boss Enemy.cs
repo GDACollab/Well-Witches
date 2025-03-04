@@ -7,6 +7,8 @@ public class BossEnemy : BaseEnemyClass
     [Range(0, 20)]
     [Tooltip("How far away the enemy stops before attacking")]
     public float range;
+    [Tooltip("Time Between Attacks")]
+    public float attackCooldown;
     [Tooltip("Phase 1 to 2 HP")]
     public float phaseHP;
     [Tooltip("The distance the Player has to be from the boss for the lunge attack to activiate")]
