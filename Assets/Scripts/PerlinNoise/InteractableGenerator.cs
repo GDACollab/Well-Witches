@@ -29,7 +29,8 @@ public class InteractableGenerator : MonoBehaviour
 
         foreach(var tileData in tileScriptableObjects)
         {
-            dataFromFiles.Add(tileData.tile, tileData);
+            dataFromFiles.Add(tileData.tileGround, tileData);
+            dataFromFiles.Add(tileData.tileHitbox, tileData);
         }
 
         if (testing)
