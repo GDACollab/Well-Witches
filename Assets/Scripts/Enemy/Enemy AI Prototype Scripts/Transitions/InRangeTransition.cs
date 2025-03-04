@@ -42,7 +42,7 @@ public class InRangeTransition : Transition
     public override State GetNextState()
     {
         // Transition to the AttackState and pass both owner and player
-        Debug.Log("InRangeTransition");
+        // Debug.Log("InRangeTransition");
         if (meleeEnemy != null)
         {
             attackState.Initialize(stateMachine, owner, meleeEnemy.currentTarget);

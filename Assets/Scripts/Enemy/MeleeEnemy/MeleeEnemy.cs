@@ -9,10 +9,12 @@ public class MeleeEnemy : BaseEnemyClass
 
 
     [Header("Attack")]
-    [Tooltip("The lower the value the more the player is hit while in range.")]
-    public float attackRate;
+    [Tooltip("Amount of time in seconds between an instance of damage")]
+    public float timeBetweenAttack;
     [Tooltip("The higher the value larger the AOE indicated by the red circle")]
     public float attackAOE;
+    [Tooltip("How fast the melee enemy moves while spinning")]
+    public float speedWhileAttacking;
 
     [Header("DEBUG")]
     public float distanceToPlayer1;
@@ -22,11 +24,11 @@ public class MeleeEnemy : BaseEnemyClass
     [SerializeField] private GameObject[] players;
     public Transform currentTarget;
 
-    private bool canAttack = true;
-
+    private Rigidbody2D rb2d;
     private void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
 
@@ -54,19 +56,13 @@ public class MeleeEnemy : BaseEnemyClass
 
     public void Attack()
     {
-        if (canAttack) 
+        if (Vector2.Distance(currentTarget.transform.position, transform.position) < attackAOE) 
         {
-            if (Vector2.Distance(currentTarget.transform.position, transform.position) < attackAOE) 
-            {
-                Debug.Log("Deal damage to player");
-            }
-        }
-        canAttack = !canAttack;
-    }
-
-    void OnTriggerEnter2D(Collider2D collider) {
-        if (collider.CompareTag("Player") && !canAttack && !collider.isTrigger) {
-            Debug.Log(collider.name + " has been hit");
+            rb2d.velocity = (currentTarget.position - transform.position).normalized * speedWhileAttacking;
+            Debug.Log("Deal damage to player");
+        } else
+        {
+            Debug.Log(Vector2.Distance(currentTarget.transform.position, transform.position).ToString());
         }
     }
 

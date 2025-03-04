@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine;
+using System.Transactions;
 
 public class AttackState : State
 {
 
     [Header("Attack Settings")]
-    private float lastAttackTime;
     private StateMachine stateMachine;
     public bool isAttacking;
     private MeleeEnemy meleeEnemy;
@@ -14,6 +14,9 @@ public class AttackState : State
     private TankEnemy tankEnemy;
     private Rigidbody2D rb2d;
     private NavMeshAgent agent;
+
+    [Header("Debug")]
+    [SerializeField] private float attackTime;
 
 
     public AttackState(GameObject owner, GameObject player) : base(owner) { }
@@ -31,50 +34,54 @@ public class AttackState : State
     public override void OnEnter()
     {
         Debug.Log("Entering Attack State");
-        lastAttackTime = Time.time - (meleeEnemy != null ? meleeEnemy.attackRate : (rangedEnemy != null ? rangedEnemy.fireRate : tankEnemy.AttackRate));
+        attackTime = Time.time - (meleeEnemy != null ? meleeEnemy.timeBetweenAttack : (rangedEnemy != null ? rangedEnemy.fireRate : tankEnemy.AttackRate));
+        attackTime = 0f;
         isAttacking = false;
-        // Disable gravity to keep the enemy still
+        agent.enabled = false;
 
         if (rb2d != null)
         {
-            rb2d.gravityScale = 0;
-            rb2d.velocity = Vector2.zero; // Stop any existing movement
+            {
+                rb2d.gravityScale = 0;
+                rb2d.velocity = Vector2.zero; // Stop any existing movement
+            }            
         }
-        agent.enabled = false;
     }
 
     public override void OnUpdate()
     {
+        // apparently Time.deltaTime doesn't work in OnUpdate. this makes me extremely uncomfortable :(
         if (meleeEnemy != null)
         {
-            if (Time.time >= lastAttackTime + meleeEnemy.attackRate && !isAttacking)
+            if (Time.time >= attackTime + meleeEnemy.timeBetweenAttack && !isAttacking)
             {
                 meleeEnemy.Attack();
-                lastAttackTime = Time.time;
+                attackTime = Time.time;
             }
         }
-        else if (rangedEnemy != null)
-        {
-            if (Time.time >= lastAttackTime + rangedEnemy.fireRate && !isAttacking)
-            {
-                rangedEnemy.Attack();
-                lastAttackTime = Time.time;
-            }
-        }
-        else if (tankEnemy != null)
-        {
-            if (Time.time >= lastAttackTime + tankEnemy.AttackRate && !isAttacking)
-            {
-                tankEnemy.SpawnPool();
-                tankEnemy.Attack();
-                lastAttackTime = Time.time;
-            }
-        }
+
+        //else if (rangedEnemy != null)
+        //{
+        //    if (Time.time >= lastAttackTime + rangedEnemy.fireRate && !isAttacking)
+        //    {
+        //        rangedEnemy.Attack();
+        //        lastAttackTime = Time.time;
+        //    }
+        //}
+        //else if (tankEnemy != null)
+        //{
+        //    if (Time.time >= lastAttackTime + tankEnemy.AttackRate && !isAttacking)
+        //    {
+        //        tankEnemy.SpawnPool();
+        //        tankEnemy.Attack();
+        //        lastAttackTime = Time.time;
+        //    }
+        //}
     }
 
     public override void OnExit()
     {
-        Debug.Log("Exiting Attack State");
+        //Debug.Log("Exiting Attack State");
     }
 
     public override List<Transition> GetTransitions()

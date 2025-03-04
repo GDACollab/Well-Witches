@@ -84,7 +84,7 @@ public class AggroState : State
 
     public override void OnExit()
     {
-        Debug.Log("Exiting Aggro State");
+        //Debug.Log("Exiting Aggro State");
     }
 
     public override List<Transition> GetTransitions()
