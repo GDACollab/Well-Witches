@@ -82,15 +82,16 @@ public class wfc : MonoBehaviour
 
         GetSeededTiles();
 
-        /*bool done = false;
+        bool done = false;
         while (done == false)
         {
             done = WaveFunctionCollapse();
-        }*/
+        }
 
         PlaceTiles();
+        interactableGenerating.generateInteractables(); //Calls the other script (interactable spawning) to start
         //StartCoroutine(testWFCFastButOnlyIfISaySo()); //Do it fast
-        StartCoroutine(testWFCSlowly()); // Does the generation slowly, only have one uncommented
+        //StartCoroutine(testWFCSlowly()); // Does the generation slowly, only have one uncommented
     }
 
     private IEnumerator testWFCSlowly()
@@ -106,7 +107,7 @@ public class wfc : MonoBehaviour
             }
             yield return null;
         }
-        interactableGenerating.generateInteractables(); //Calls the other script (interactable spawning) to start
+        //interactableGenerating.generateInteractables(); //Calls the other script (interactable spawning) to start
     }
 
     private IEnumerator testWFCFastButOnlyIfISaySo()
@@ -130,7 +131,7 @@ public class wfc : MonoBehaviour
 
         Debug.Log("Time taken to wfc: " + ((Time.realtimeSinceStartup - timeStart) * 1000) + " ms");
 
-        interactableGenerating.generateInteractables(); //Calls the other script (interactable spawning) to start
+        //interactableGenerating.generateInteractables(); //Calls the other script (interactable spawning) to start
 
     }
 
