@@ -4,53 +4,58 @@ using UnityEngine;
 
 public class BossEnemySpawns : EnemySpawner
 {
+    public float phaseTime = 10.0f; 
     
     EnemySpawner enemySpawner = new EnemySpawner();
     [SerializeField] private float timer = 0.0f;
-    public void phaseOne()
-    {
+    /*public IEnumerator phaseOne(){
         
         //Phase one should just be the normal spawning of enemies, we can make it more frequent but for now this spawn rate should be the same
+        
+        
+        Debug.Log("second passed");
         timer += Time.deltaTime;
-        if (timer > 10)
-        {
+        if (timer > 0.1){
             enemySpawner.SpawnSingle(goofyBoy, 3);
             enemySpawner.SpawnFormation(referencePoint.position, 45);
-            timer = 0;
-        }
+        }    
+        
+        
+       
+        yield return new WaitForSeconds(phaseTime);
+        StartCoroutine(phaseOne());
+            
+        
         
         
     
     }
-
-    public void phaseTwo()
-    {
+    */
+    void Update(){
+        //This is a placeholder for enemy spawning, to whoever takes on this task, the goal is to spawn an enemy every 10 seconds for Phase One
+        //
         timer += Time.deltaTime;
-        if (timer > 5)
-        {
+        if (timer > 10){
+            timer = 0;
             enemySpawner.SpawnSingle(goofyBoy, 3);
             enemySpawner.SpawnFormation(referencePoint.position, 45);
-            timer = 0;
+            
         }
     }
+    
     // Update is called once per frame
-    void Update()
-    {
-        phaseOne();
-        
-        //This should spawn enemies form the enemy spawner class into the boss
-        //enemySpawner.SpawnSingle(goofyBoy, 3);
-
-        //enemySpawner.SpawnSingle(goofyBoy, 3);
-        //enemySpawner.SpawnSurrounded(goofyBoy, 3, 2);
-        //enemySpawner.SpawnFormation(referencePoint.position, 45); 
-    }
-
+    
+    //Enemy spawn function, spawn ememy, yield wieghts for timer, than call itself again, for the ready function, 
     void Start()
     {
+        
         this.referencePoint = this.gameObject.transform;
         enemySpawner.referencePoint = this.referencePoint;
-
         enemySpawner.goofyBoy = this.goofyBoy;
+        
+        
+        
+        
+        
     }
 }
