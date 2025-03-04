@@ -177,14 +177,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79886a99eaf7ae14ca61ae552cd072d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 100
   damage: 5
   moveSpeed: 2
-  range: 1
-  AttackRate: 3
+  range: 2
+  timeBetweenAttack: 5
+  bashStrength: 5
+  bashTime: 1.5
   spawnRate: 1
-  acidSize: 1.24
-  acidLifetime: 2.77
+  acidSize: 1
+  acidLifetime: 2
   acidOffsetX: 0
   acidOffsetY: 0
   distanceToPlayer1: 0
@@ -243,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAttacking: 0
+  attackTime: 0
 --- !u!114 &-3072643784058802820
 MonoBehaviour:
   m_ObjectHideFlags: 0

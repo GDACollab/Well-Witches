@@ -9,6 +9,7 @@ public class MeleeEnemy : BaseEnemyClass
 
 
     [Header("Attack")]
+    public float damage;
     [Tooltip("Amount of time in seconds between an instance of damage")]
     public float timeBetweenAttack;
     [Tooltip("The higher the value larger the AOE indicated by the red circle")]
@@ -59,11 +60,15 @@ public class MeleeEnemy : BaseEnemyClass
         if (Vector2.Distance(currentTarget.transform.position, transform.position) < attackAOE) 
         {
             rb2d.velocity = (currentTarget.position - transform.position).normalized * speedWhileAttacking;
-            Debug.Log("Deal damage to player");
-        } else
-        {
-            Debug.Log(Vector2.Distance(currentTarget.transform.position, transform.position).ToString());
-        }
+            if (currentTarget.gameObject.name == "Warden")
+            {
+                currentTarget.gameObject.GetComponent<PlayerController_Warden>().PlayerDamage(damage, "warden");
+            }
+            else if (currentTarget.gameObject.name == "Gatherer")
+            {
+                currentTarget.gameObject.GetComponent<PlayerController_Gatherer>().PlayerDamage(damage, "gatherer");
+            }
+        } 
     }
 
     private void OnDrawGizmos()

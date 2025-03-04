@@ -7,9 +7,6 @@ public class BaseEnemyClass : MonoBehaviour
     [Range(1, 100)]
     [Tooltip("The max health of an enemy. [1, 100]")]
     public float health;
-    [Range(0, 100)]
-    [Tooltip("How much damage an enemy does. [0, 100]")]
-    public float damage;
     [Range(0, 20)]
     [Tooltip("How fast an enemy moves. [0, 20]")]
     public float moveSpeed;

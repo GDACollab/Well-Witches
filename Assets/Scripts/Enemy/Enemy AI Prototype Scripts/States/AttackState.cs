@@ -34,7 +34,7 @@ public class AttackState : State
     public override void OnEnter()
     {
         Debug.Log("Entering Attack State");
-        attackTime = Time.time - (meleeEnemy != null ? meleeEnemy.timeBetweenAttack : (rangedEnemy != null ? rangedEnemy.timeBetweenAttack : tankEnemy.AttackRate));
+        attackTime = Time.time - (meleeEnemy != null ? meleeEnemy.timeBetweenAttack : (rangedEnemy != null ? rangedEnemy.timeBetweenAttack : tankEnemy.timeBetweenAttack));
         attackTime = 0f;
         isAttacking = false;
         agent.enabled = false;
@@ -66,21 +66,19 @@ public class AttackState : State
                 attackTime = Time.time;
             }
         }
-
-        //else if (tankEnemy != null)
-        //{
-        //    if (Time.time >= lastAttackTime + tankEnemy.AttackRate && !isAttacking)
-        //    {
-        //        tankEnemy.SpawnPool();
-        //        tankEnemy.Attack();
-        //        lastAttackTime = Time.time;
-        //    }
-        //}
+        else if (tankEnemy != null)
+        {
+            if (Time.time >= attackTime + tankEnemy.timeBetweenAttack && !isAttacking)
+            {
+                tankEnemy.Attack();
+                attackTime = Time.time;
+            }
+        }
     }
 
     public override void OnExit()
     {
-        //Debug.Log("Exiting Attack State");
+        agent.enabled = true;
     }
 
     public override List<Transition> GetTransitions()

@@ -7,12 +7,10 @@ public class AggroState : State
     private Rigidbody2D rb;
     private StateMachine stateMachine;
     private float moveSpeed;
-    private float damage;
     private MeleeEnemy meleeEnemy;
     private RangedEnemy rangedEnemy;
     private TankEnemy tankEnemy;
 
-    public Transform target;
 
     private NavMeshAgent agent;
 
@@ -77,14 +75,15 @@ public class AggroState : State
         }
         else if (tankEnemy != null)
         {
-            tankEnemy.Pursue();
+            tankEnemy.TargetClosestPlayer();
+            agent.SetDestination(tankEnemy.currentTarget.position);
             tankEnemy.SpawnPool();
         }
     }
 
     public override void OnExit()
     {
-        //Debug.Log("Exiting Aggro State");
+        agent.enabled = false;
     }
 
     public override List<Transition> GetTransitions()

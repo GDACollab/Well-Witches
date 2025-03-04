@@ -7,8 +7,6 @@ public class RangedEnemy : BaseEnemyClass
     [Range(0, 20)]
     [Tooltip("How far away the enemy stops before attacking")]
     public float range;
-    [Tooltip("If enabled, enemy's speed will scale with distance from player with Move Speed being considered max speed.")]
-    public bool PrototypeAdvancedMovement;
 
     [Header("Projectile")]
     [Tooltip("Time between projectile firing in seconds")]
@@ -53,11 +51,6 @@ public class RangedEnemy : BaseEnemyClass
         players = GameObject.FindGameObjectsWithTag("Player");
     }
 
-    private void Update()
-    {
-        
-    }
-
     // calculates and set target to the closest player to the enemy
     public void TargetClosestPlayer()
     {
@@ -81,12 +74,12 @@ public class RangedEnemy : BaseEnemyClass
 
         for (int i = 0; i < projectileCount; i++)
         {
-            // offset of the projectile based on count and spread
-            // used in InitializeProjectile() to calculate proper direction and projectile rotation
             // spawns the projectile
             GameObject projectile = ProjectilePooling.SharedInstance.GetProjectileObject();
             if (projectile != null)
             {
+                // offset of the projectile based on count and spread
+                // used in InitializeProjectile() to calculate proper direction and projectile rotation
                 float offset = (i - (projectileCount / 2)) * projectileSpread;
                 projectile.transform.position = transform.position;
                 projectile.transform.localScale = Vector3.one * projectileSize;
