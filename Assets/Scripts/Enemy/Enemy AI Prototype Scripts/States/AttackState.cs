@@ -13,6 +13,7 @@ public class AttackState : State
     private RangedEnemy rangedEnemy;
     private TankEnemy tankEnemy;
     private Rigidbody2D rb2d;
+    private NavMeshAgent agent;
 
 
     public AttackState(GameObject owner, GameObject player) : base(owner) { }
@@ -24,13 +25,13 @@ public class AttackState : State
         rangedEnemy = owner.GetComponent<RangedEnemy>();
         tankEnemy = owner.GetComponent<TankEnemy>();
         rb2d = owner.GetComponent<Rigidbody2D>();
-
+        agent = owner.GetComponent<NavMeshAgent>();
     }
 
     public override void OnEnter()
     {
         Debug.Log("Entering Attack State");
-        lastAttackTime = Time.time - (meleeEnemy != null ? meleeEnemy.AttackRate : (rangedEnemy != null ? rangedEnemy.fireRate : tankEnemy.AttackRate));
+        lastAttackTime = Time.time - (meleeEnemy != null ? meleeEnemy.attackRate : (rangedEnemy != null ? rangedEnemy.fireRate : tankEnemy.AttackRate));
         isAttacking = false;
         // Disable gravity to keep the enemy still
 
@@ -39,13 +40,14 @@ public class AttackState : State
             rb2d.gravityScale = 0;
             rb2d.velocity = Vector2.zero; // Stop any existing movement
         }
+        agent.enabled = false;
     }
 
     public override void OnUpdate()
     {
         if (meleeEnemy != null)
         {
-            if (Time.time >= lastAttackTime + meleeEnemy.AttackRate && !isAttacking)
+            if (Time.time >= lastAttackTime + meleeEnemy.attackRate && !isAttacking)
             {
                 meleeEnemy.Attack();
                 lastAttackTime = Time.time;
@@ -73,11 +75,6 @@ public class AttackState : State
     public override void OnExit()
     {
         Debug.Log("Exiting Attack State");
-        // Re-enable gravity when exiting the attack state
-        if (rb2d != null)
-        {
-            rb2d.gravityScale = 1;
-        }
     }
 
     public override List<Transition> GetTransitions()

@@ -39,6 +39,7 @@ public class AggroState : State
         if (meleeEnemy != null)
         {
             moveSpeed = meleeEnemy.moveSpeed;
+            agent.stoppingDistance = meleeEnemy.range;
             agent.speed = moveSpeed;
         }
         else if (rangedEnemy != null)
@@ -50,7 +51,7 @@ public class AggroState : State
         else if (tankEnemy != null)
         {
             moveSpeed = tankEnemy.moveSpeed;
-            damage = tankEnemy.damage;
+            agent.stoppingDistance = tankEnemy.range;
             agent.speed = moveSpeed;
         }
 
@@ -58,28 +59,21 @@ public class AggroState : State
 
     public override void OnEnter()
     {
-        Debug.Log("Entering Patrol State");
-
+        //Debug.Log("Entering Aggro State");
+        agent.enabled = true;
     }
 
     public override void OnUpdate()
     {
-        if (meleeEnemy != null)
+        if (meleeEnemy != null && meleeEnemy.GetComponent<NavMeshAgent>().enabled == true)
         {
             meleeEnemy.TargetClosestPlayer();
             agent.SetDestination(meleeEnemy.currentTarget.position);
-            //if (target != null)
-            //{
-            //    Vector2 targetPosition = new Vector2(target.position.x, target.position.y);
-            //    Vector2 direction = (targetPosition - rb.position).normalized;
-            //    rb.MovePosition(rb.position + direction * moveSpeed * Time.deltaTime);
-            //}
         }
         else if (rangedEnemy != null)
         {
             rangedEnemy.TargetClosestPlayer();
             agent.SetDestination(rangedEnemy.currentTarget.position);
-
         }
         else if (tankEnemy != null)
         {

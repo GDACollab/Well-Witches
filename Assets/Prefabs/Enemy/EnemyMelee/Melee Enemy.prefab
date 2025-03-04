@@ -67,7 +67,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &2584467169149165658
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -102,7 +102,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 5.13
+  m_Radius: 2.96
 --- !u!212 &-8109608043262893261
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -170,9 +170,9 @@ MonoBehaviour:
   health: 8
   damage: 6
   moveSpeed: 6
-  range: 1
-  AttackRate: 1
-  dashDistance: 5
+  range: 2
+  attackRate: 1.5
+  attackAOE: 2
   distanceToPlayer1: 0
   distanceToPlayer2: 0
   distanceToTarget: 0

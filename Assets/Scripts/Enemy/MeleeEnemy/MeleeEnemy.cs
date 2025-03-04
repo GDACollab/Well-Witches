@@ -9,10 +9,10 @@ public class MeleeEnemy : BaseEnemyClass
 
 
     [Header("Attack")]
-    [Tooltip("The lower the value the faster the enemy fires projectiles")]
-    public float AttackRate;
-    [Tooltip("The higher the value the further the enemy dashes and the faster the dash is.")]
-    public float dashDistance;
+    [Tooltip("The lower the value the more the player is hit while in range.")]
+    public float attackRate;
+    [Tooltip("The higher the value larger the AOE indicated by the red circle")]
+    public float attackAOE;
 
     [Header("DEBUG")]
     public float distanceToPlayer1;
@@ -22,16 +22,11 @@ public class MeleeEnemy : BaseEnemyClass
     [SerializeField] private GameObject[] players;
     public Transform currentTarget;
 
-    private Rigidbody2D rb2d;
-    private CircleCollider2D circol;
-    
     private bool canAttack = true;
 
     private void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
         players = GameObject.FindGameObjectsWithTag("Player");
-        circol = GetComponent<CircleCollider2D>();
     }
 
 
@@ -59,17 +54,12 @@ public class MeleeEnemy : BaseEnemyClass
 
     public void Attack()
     {
-        Debug.Log("Attacking");
-        if (canAttack) {
-            if (circol.IsTouching(players[0].GetComponent<CapsuleCollider2D>())) {
-                Debug.Log(players[0].name + " has been hit");
+        if (canAttack) 
+        {
+            if (Vector2.Distance(currentTarget.transform.position, transform.position) < attackAOE) 
+            {
+                Debug.Log("Deal damage to player");
             }
-            if (circol.IsTouching(players[1].GetComponent<CapsuleCollider2D>())) {
-                Debug.Log(players[1].name + " has been hit");
-            }
-            rb2d.AddForce((currentTarget.position - transform.position).normalized * dashDistance, ForceMode2D.Impulse);
-        } else {
-            rb2d.velocity = Vector2.zero;
         }
         canAttack = !canAttack;
     }
@@ -78,5 +68,11 @@ public class MeleeEnemy : BaseEnemyClass
         if (collider.CompareTag("Player") && !canAttack && !collider.isTrigger) {
             Debug.Log(collider.name + " has been hit");
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackAOE);
     }
 }

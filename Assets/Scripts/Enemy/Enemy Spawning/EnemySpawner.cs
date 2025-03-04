@@ -110,6 +110,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
     // Use for placing enemies
+    // 98% sure the code i commented out below was chatgpt bs so i rewrote it
     //void SpawnCreature(GameObject creature, Vector3 position)
     //{
     //	Debug.Log("Spawning '" + creature.name + "' at " +  position.ToString());
