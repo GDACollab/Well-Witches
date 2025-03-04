@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1271707009065071165}
   - component: {fileID: 3565661079290760021}
   - component: {fileID: 1429451045759365386}
+  - component: {fileID: 4963630385092419946}
   m_Layer: 0
   m_Name: Melee Enemy
   m_TagString: Untagged
@@ -96,7 +97,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -215,6 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9744f35fdf6edd341bd720bb3bd26df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!114 &3565661079290760021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,3 +242,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe660fd068c3264fa20861b37ee39d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!195 &4963630385092419946
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2942535793044935551}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 2.565
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 4.94
+  m_BaseOffset: 2.47
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

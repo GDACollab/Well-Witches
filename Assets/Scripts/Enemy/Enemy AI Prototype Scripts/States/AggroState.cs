@@ -12,6 +12,20 @@ public class AggroState : State
     private RangedEnemy rangedEnemy;
     private TankEnemy tankEnemy;
 
+    public Transform target;
+
+    private NavMeshAgent agent;
+
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Start()
+    {
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+    }
     public AggroState(GameObject owner) : base(owner) { }
 
     public void Initialize(StateMachine stateMachine, GameObject owner)
@@ -25,15 +39,19 @@ public class AggroState : State
         if (meleeEnemy != null)
         {
             moveSpeed = meleeEnemy.moveSpeed;
+            agent.speed = moveSpeed;
         }
         else if (rangedEnemy != null)
         {
             moveSpeed = rangedEnemy.moveSpeed;
+            agent.speed = moveSpeed;
+            agent.stoppingDistance = rangedEnemy.range;
         }
         else if (tankEnemy != null)
         {
             moveSpeed = tankEnemy.moveSpeed;
             damage = tankEnemy.damage;
+            agent.speed = moveSpeed;
         }
 
     }
@@ -49,18 +67,19 @@ public class AggroState : State
         if (meleeEnemy != null)
         {
             meleeEnemy.TargetClosestPlayer();
-            Transform target = meleeEnemy.currentTarget;
-            if (target != null)
-            {
-                Vector2 targetPosition = new Vector2(target.position.x, target.position.y);
-                Vector2 direction = (targetPosition - rb.position).normalized;
-                rb.MovePosition(rb.position + direction * moveSpeed * Time.deltaTime);
-            }
+            agent.SetDestination(meleeEnemy.currentTarget.position);
+            //if (target != null)
+            //{
+            //    Vector2 targetPosition = new Vector2(target.position.x, target.position.y);
+            //    Vector2 direction = (targetPosition - rb.position).normalized;
+            //    rb.MovePosition(rb.position + direction * moveSpeed * Time.deltaTime);
+            //}
         }
         else if (rangedEnemy != null)
         {
             rangedEnemy.TargetClosestPlayer();
-            rangedEnemy.MoveRanged();
+            agent.SetDestination(rangedEnemy.currentTarget.position);
+
         }
         else if (tankEnemy != null)
         {
@@ -71,7 +90,7 @@ public class AggroState : State
 
     public override void OnExit()
     {
-        Debug.Log("Exiting Patrol State");
+        Debug.Log("Exiting Aggro State");
     }
 
     public override List<Transition> GetTransitions()
