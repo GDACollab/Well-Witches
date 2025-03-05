@@ -53,10 +53,9 @@ public class BigBlast : MonoBehaviour
 			damageTickCounter = damageTickDuration;
 		}
 	}
-
 	void DamageEnemies()
 	{
-		foreach (Collider2D collider in enemiesInBlast) collider.GetComponent<BaseEnemyClass>().takingDamage((int)damagePerTick);
+		foreach (Collider2D collider in enemiesInBlast) collider.GetComponent<BaseEnemyClass>().TakeDamage(damagePerTick);
 	}
 
 	void HandleKnockbackTick()
@@ -68,26 +67,13 @@ public class BigBlast : MonoBehaviour
 			knockbackTickCounter = knockbackTickDuration;
 		}
 	}
-
 	void KnockbackEnemies()
 	{
 		Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		Vector2 mouseDirection = (mousePosition - transform.position).normalized;
-
-		foreach (Collider2D collider in enemiesInBlast)
-		{
-			Debug.Log($"Knocking back {collider.name}");
-			collider.GetComponent<Rigidbody2D>().AddForce(mouseDirection * knockbackForce, ForceMode2D.Impulse);
-		}
+		foreach (Collider2D collider in enemiesInBlast) collider.GetComponent<Rigidbody2D>().AddForce(mouseDirection * knockbackForce, ForceMode2D.Impulse);
 	}
 
-	void OnTriggerEnter2D(Collider2D collider)
-	{
-		if (collider.CompareTag("Enemy")) enemiesInBlast.Add(collider);
-	}
-
-	void OnTriggerExit2D(Collider2D collider)
-	{
-		enemiesInBlast.Remove(collider);	// will removes if item in set
-	}
+	void OnTriggerEnter2D(Collider2D collider) { if (collider.CompareTag("Enemy")) enemiesInBlast.Add(collider); }
+	void OnTriggerExit2D(Collider2D collider) { enemiesInBlast.Remove(collider); } // only removes if item in set
 }

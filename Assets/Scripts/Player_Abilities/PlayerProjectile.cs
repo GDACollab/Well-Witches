@@ -38,11 +38,7 @@ public class PlayerProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // LET ME EDIT BASE CLASS ENEMY WHY IS IT NOT CAPILIZED AND WHY IS IT INT
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            collision.gameObject.GetComponent<BaseEnemyClass>().takingDamage((int) _damage);
-        }  
+        if (collision.gameObject.CompareTag("Enemy")) collision.gameObject.GetComponent<BaseEnemyClass>().TakeDamage(_damage);
         rb.velocity = Vector2.zero;
         head.gameObject.SetActive(false);
         sparks.gameObject.SetActive(false);
