@@ -12,11 +12,13 @@ public class EnemySpawner : MonoBehaviour
     public float spawnRadiusMin;
     [Tooltip("Maximum distance enemy will spawn from player.")]
     public float spawnRadiusMax;
-    public float spawnTime = 0.0f;
+    public float singleSpawnTime = 0.0f;
+    public float formationSpawnTime = 0.0f;
 	
 
 	[Header("Debug")]
-	public float timer;
+	public float singleTimer;
+    public float formationTimer;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,38 +31,20 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
 	void Update()
 	{
-		timer += Time.deltaTime;
+		singleTimer += Time.deltaTime;
+        formationTimer += Time.deltaTime;
 
-		if(timer > spawnTime)
+		if (singleTimer >= singleSpawnTime)
 		{
 			SpawnSingle();
-			timer = 0f;
+			singleTimer = 0f;
         }
 
-        if (Input.GetKeyDown("1"))
+        if (formationTimer >= formationSpawnTime)
         {
             SpawnFormation();
+            formationTimer = 0f;
         }
-
-        /* TEST FUNCTIONS FOR SPAWNING IN ENEMIES
-		if (Input.GetKeyDown("1"))
-		{
-			SpawnSingle(goofyBoy, 3);
-		}
-		if (Input.GetKeyDown("2"))
-		{
-			SpawnSingle(goofyBoy);
-		}
-		if (Input.GetKeyDown("3"))
-		{
-			float radius = UnityEngine.Random.Range(3f, 8f);
-			SpawnSurrounded(goofyBoy, 3, radius);
-		}
-		if (Input.GetKeyDown("4"))
-		{
-			SpawnSingleFormation(4f);
-		}
-		*/
     }
 
     // chooses a random enemy to spawn
