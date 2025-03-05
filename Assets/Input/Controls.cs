@@ -37,9 +37,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Activate Ability"",
+                    ""name"": ""Interact"",
                     ""type"": ""Button"",
-                    ""id"": ""4b63c30e-5073-4ad7-8b2e-c84a644724e0"",
+                    ""id"": ""822e5f86-0676-4fec-8086-d8ef0b446200"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -55,9 +55,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Interact"",
+                    ""name"": ""Activate Ability"",
                     ""type"": ""Button"",
-                    ""id"": ""822e5f86-0676-4fec-8086-d8ef0b446200"",
+                    ""id"": ""4b63c30e-5073-4ad7-8b2e-c84a644724e0"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -273,9 +273,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         // Gameplay_Gatherer
         m_Gameplay_Gatherer = asset.FindActionMap("Gameplay_Gatherer", throwIfNotFound: true);
         m_Gameplay_Gatherer_Move = m_Gameplay_Gatherer.FindAction("Move", throwIfNotFound: true);
-        m_Gameplay_Gatherer_ActivateAbility = m_Gameplay_Gatherer.FindAction("Activate Ability", throwIfNotFound: true);
-        m_Gameplay_Gatherer_PullWarden = m_Gameplay_Gatherer.FindAction("Pull Warden", throwIfNotFound: true);
         m_Gameplay_Gatherer_Interact = m_Gameplay_Gatherer.FindAction("Interact", throwIfNotFound: true);
+        m_Gameplay_Gatherer_PullWarden = m_Gameplay_Gatherer.FindAction("Pull Warden", throwIfNotFound: true);
+        m_Gameplay_Gatherer_ActivateAbility = m_Gameplay_Gatherer.FindAction("Activate Ability", throwIfNotFound: true);
         // Gameplay_Warden
         m_Gameplay_Warden = asset.FindActionMap("Gameplay_Warden", throwIfNotFound: true);
         m_Gameplay_Warden_Move = m_Gameplay_Warden.FindAction("Move", throwIfNotFound: true);
@@ -349,17 +349,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay_Gatherer;
     private List<IGameplay_GathererActions> m_Gameplay_GathererActionsCallbackInterfaces = new List<IGameplay_GathererActions>();
     private readonly InputAction m_Gameplay_Gatherer_Move;
-    private readonly InputAction m_Gameplay_Gatherer_ActivateAbility;
-    private readonly InputAction m_Gameplay_Gatherer_PullWarden;
     private readonly InputAction m_Gameplay_Gatherer_Interact;
+    private readonly InputAction m_Gameplay_Gatherer_PullWarden;
+    private readonly InputAction m_Gameplay_Gatherer_ActivateAbility;
     public struct Gameplay_GathererActions
     {
         private @Controls m_Wrapper;
         public Gameplay_GathererActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Gameplay_Gatherer_Move;
-        public InputAction @ActivateAbility => m_Wrapper.m_Gameplay_Gatherer_ActivateAbility;
-        public InputAction @PullWarden => m_Wrapper.m_Gameplay_Gatherer_PullWarden;
         public InputAction @Interact => m_Wrapper.m_Gameplay_Gatherer_Interact;
+        public InputAction @PullWarden => m_Wrapper.m_Gameplay_Gatherer_PullWarden;
+        public InputAction @ActivateAbility => m_Wrapper.m_Gameplay_Gatherer_ActivateAbility;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay_Gatherer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -372,15 +372,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @ActivateAbility.started += instance.OnActivateAbility;
-            @ActivateAbility.performed += instance.OnActivateAbility;
-            @ActivateAbility.canceled += instance.OnActivateAbility;
-            @PullWarden.started += instance.OnPullWarden;
-            @PullWarden.performed += instance.OnPullWarden;
-            @PullWarden.canceled += instance.OnPullWarden;
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @PullWarden.started += instance.OnPullWarden;
+            @PullWarden.performed += instance.OnPullWarden;
+            @PullWarden.canceled += instance.OnPullWarden;
+            @ActivateAbility.started += instance.OnActivateAbility;
+            @ActivateAbility.performed += instance.OnActivateAbility;
+            @ActivateAbility.canceled += instance.OnActivateAbility;
         }
 
         private void UnregisterCallbacks(IGameplay_GathererActions instance)
@@ -388,15 +388,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @ActivateAbility.started -= instance.OnActivateAbility;
-            @ActivateAbility.performed -= instance.OnActivateAbility;
-            @ActivateAbility.canceled -= instance.OnActivateAbility;
-            @PullWarden.started -= instance.OnPullWarden;
-            @PullWarden.performed -= instance.OnPullWarden;
-            @PullWarden.canceled -= instance.OnPullWarden;
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @PullWarden.started -= instance.OnPullWarden;
+            @PullWarden.performed -= instance.OnPullWarden;
+            @PullWarden.canceled -= instance.OnPullWarden;
+            @ActivateAbility.started -= instance.OnActivateAbility;
+            @ActivateAbility.performed -= instance.OnActivateAbility;
+            @ActivateAbility.canceled -= instance.OnActivateAbility;
         }
 
         public void RemoveCallbacks(IGameplay_GathererActions instance)
@@ -479,9 +479,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     public interface IGameplay_GathererActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnActivateAbility(InputAction.CallbackContext context);
-        void OnPullWarden(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnPullWarden(InputAction.CallbackContext context);
+        void OnActivateAbility(InputAction.CallbackContext context);
     }
     public interface IGameplay_WardenActions
     {

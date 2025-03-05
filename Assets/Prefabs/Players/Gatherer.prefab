@@ -80,9 +80,9 @@ GameObject:
   - component: {fileID: 9173437783460584710}
   - component: {fileID: 233584353143235204}
   - component: {fileID: 8323796786317442292}
-  - component: {fileID: 8282183718129652020}
-  - component: {fileID: 871047896541522312}
   - component: {fileID: 2686973554895526223}
+  - component: {fileID: 871047896541522312}
+  - component: {fileID: 8282183718129652020}
   m_Layer: 7
   m_Name: Gatherer
   m_TagString: Player
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementData: {fileID: 11400000, guid: f3ee9fd79406baf49867f478438dc2a9, type: 2}
   maxSpeed_Adjusted: 0
---- !u!114 &8282183718129652020
+--- !u!114 &2686973554895526223
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -224,16 +224,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5708320580637796411}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c1c91f704e9c06438bb5d1b9c83171c, type: 3}
+  m_Script: {fileID: 11500000, guid: 89c34e3beb14ecf4685a0f6175327128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chargeDuration: 5
-  radius: 16
-  stunDuration: 5
-  cooldownDuration: 5
-  collisionLayersToCheck:
-    serializedVersion: 2
-    m_Bits: 64
+  interactionRadius: {fileID: 2982385783056123225}
 --- !u!114 &871047896541522312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +244,7 @@ MonoBehaviour:
   pullCooldown: 2
   warden: {fileID: 0}
   ropeRadius: {fileID: 3652925597344170551}
---- !u!114 &2686973554895526223
+--- !u!114 &8282183718129652020
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -259,10 +253,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5708320580637796411}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89c34e3beb14ecf4685a0f6175327128, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c1c91f704e9c06438bb5d1b9c83171c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionRadius: {fileID: 2982385783056123225}
+  chargeDuration: 5
+  radius: 16
+  stunDuration: 5
+  <cooldownDuration>k__BackingField: 90
+  collisionLayersToCheck:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &6319885882415222397
 GameObject:
   m_ObjectHideFlags: 0

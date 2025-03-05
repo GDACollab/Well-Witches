@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerProjectile : MonoBehaviour
@@ -13,6 +14,8 @@ public class PlayerProjectile : MonoBehaviour
     [SerializeField] private TrailRenderer trail_VFX;
 
     private float _damage;
+
+    public static event Action OnHitEnemy;
 
     public void InitializeProjectile(float velocity, float lifetime, float damage)
     {
@@ -38,7 +41,11 @@ public class PlayerProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy")) collision.gameObject.GetComponent<BaseEnemyClass>().TakeDamage(_damage);
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<BaseEnemyClass>().TakeDamage(_damage);
+            OnHitEnemy?.Invoke();
+        }
         rb.velocity = Vector2.zero;
         head.gameObject.SetActive(false);
         sparks.gameObject.SetActive(false);

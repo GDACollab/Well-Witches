@@ -8,6 +8,8 @@ public class HUD : MonoBehaviour
 	[SerializeField] Slider wardenHealthBar;
 	[SerializeField] Slider wardenAbilityMeter;
 	StatsManager statsManager;
+	Gatherer_FlashStun flashStun;
+	Warden_BigBlast bigBlast;
 
 	void OnEnable()     // Subscribe to events here
 	{
@@ -20,6 +22,13 @@ public class HUD : MonoBehaviour
 	void Start()
 	{
 		statsManager = StatsManager.Instance;
+		flashStun = Gatherer_FlashStun.Instance;
+		bigBlast = Warden_BigBlast.Instance;
+	}
+	void Update()
+	{
+		gathererAbilityMeter.value = (flashStun.cooldownDuration - flashStun.cooldownCounter) / flashStun.cooldownDuration;
+		wardenAbilityMeter.value = (float)bigBlast.Charge / (float)bigBlast.NumHitsRequired;
 	}
 
 	void OnPlayerDamaged(float damage, string player)
@@ -33,7 +42,6 @@ public class HUD : MonoBehaviour
 			{
 				statsManager.GathererCurrentHealth = 0;
 				EventManager.instance.playerEvents.PlayerDied();
-				Debug.Log("Die");
 			}
 
 			gathererHealthBar.value = newHealth / statsManager.GathererMaxHealth;
@@ -48,19 +56,9 @@ public class HUD : MonoBehaviour
 			{
 				statsManager.WardenCurrentHealth = 0;
 				EventManager.instance.playerEvents.PlayerDied();
-				Debug.Log("Die");
 			}
 
 			wardenHealthBar.value = newHealth / statsManager.WardenMaxHealth;
 		}
-	}
-
-	public void DamageGatherer()
-	{
-		EventManager.instance.playerEvents.PlayerDamaged(5f, "gatherer");
-	}
-	public void DamageWarden()
-	{
-		EventManager.instance.playerEvents.PlayerDamaged(5f, "warden");
 	}
 }
