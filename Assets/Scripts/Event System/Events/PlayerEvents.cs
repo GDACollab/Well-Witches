@@ -7,11 +7,11 @@ public class PlayerEvents
 
 	public void PlayerDamaged(float damage, string player)
     {
-        if (onPlayerDamaged != null)  onPlayerDamaged(damage, player);
+        if (onPlayerDamaged != null)  onPlayerDamaged?.Invoke(damage, player);
     }
 
     public void PlayerDied()
     {
-        if (onPlayerDamaged != null) onPlayerDied();
+        if (onPlayerDamaged != null) onPlayerDied?.Invoke();
     }
 }

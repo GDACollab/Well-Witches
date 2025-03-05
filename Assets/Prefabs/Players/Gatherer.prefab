@@ -79,7 +79,6 @@ GameObject:
   - component: {fileID: 732597258827690589}
   - component: {fileID: 9173437783460584710}
   - component: {fileID: 233584353143235204}
-  - component: {fileID: 4873925345921034497}
   - component: {fileID: 8323796786317442292}
   - component: {fileID: 8282183718129652020}
   - component: {fileID: 871047896541522312}
@@ -202,18 +201,6 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay_Gatherer
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &4873925345921034497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5708320580637796411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da399ee4076e9c646bd4fb50ad3220dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8323796786317442292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +215,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementData: {fileID: 11400000, guid: f3ee9fd79406baf49867f478438dc2a9, type: 2}
   maxSpeed_Adjusted: 0
-  canMove: 1
 --- !u!114 &8282183718129652020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,11 +437,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1969645009260674462, guid: 9f93fa66d3cb51544955caed335ad15e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1969645009260674462, guid: 9f93fa66d3cb51544955caed335ad15e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2665543033660672575, guid: 9f93fa66d3cb51544955caed335ad15e, type: 3}
       propertyPath: m_Layer
@@ -560,6 +546,10 @@ PrefabInstance:
     - target: {fileID: 8747848260698512493, guid: 9f93fa66d3cb51544955caed335ad15e, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8747848260698512493, guid: 9f93fa66d3cb51544955caed335ad15e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
