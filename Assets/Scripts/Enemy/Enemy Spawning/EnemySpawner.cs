@@ -20,7 +20,10 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        if (referencePoint == null)
+        {
+            referencePoint = GameObject.Find("Gatherer").transform; // should be changed to tag if we decide to change names
+        }
     }
 
     // Update is called once per frame

@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 3565661079290760021}
   - component: {fileID: 1429451045759365386}
   - component: {fileID: 4963630385092419946}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Melee Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -168,9 +168,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 8
-  damage: 6
   moveSpeed: 6
   range: 2
+  damage: 6
   timeBetweenAttack: 2
   attackAOE: 2
   speedWhileAttacking: 0.5
@@ -217,7 +217,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9744f35fdf6edd341bd720bb3bd26df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!114 &3565661079290760021
 MonoBehaviour:
   m_ObjectHideFlags: 0
