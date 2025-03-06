@@ -1,17 +1,25 @@
 using System;
+using UnityEngine;
 
 public class PlayerEvents
 {
-    public event Action<float,string> onPlayerDamaged;
-	public event Action onPlayerDied;
-
-	public void PlayerDamaged(float damage, string player)
+    public event Action<float,string> onPlayerDamage;
+    
+    public void PlayerDamage(float damage, string player)
     {
-        if (onPlayerDamaged != null)  onPlayerDamaged?.Invoke(damage, player);
+        if (onPlayerDamage != null)
+        {
+            onPlayerDamage(damage, player);
+        }
     }
 
-    public void PlayerDied()
+    public event Action onPlayerDeath;
+
+    public void PlayerDeath()
     {
-        if (onPlayerDamaged != null) onPlayerDied?.Invoke();
+        if (onPlayerDeath != null)
+        {
+            onPlayerDeath();
+        }
     }
 }
