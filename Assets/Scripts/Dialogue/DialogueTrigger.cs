@@ -1,3 +1,4 @@
+using Ink.Runtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +10,34 @@ public class DialogueTrigger : MonoBehaviour
 
     [Header("JSON Dialogue File")]
     [SerializeField] private TextAsset JSON;
+    private Story story;
+    private QuestState questState;
+
+    private InkDialogueVariables inkDialogueVariables;
+
+    private InkExternalFunctions inkExternalFunctions;
+
+    [SerializeField] private QuestInfo quest;
 
     private bool playerInRange;
 
+
+    private void OnEnable()
+    {
+        EventManager.instance.questEvents.onQuestStateChange += QuestStateChange;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.instance.questEvents.onQuestStateChange -= QuestStateChange;
+    }
+    public void QuestStateChange(Quest quest)
+    {
+        if(this.quest.name == quest.info.name)
+        {
+            questState = quest.state;
+        }
+    }
     private void Awake()
     {
         playerInRange = false;
@@ -25,13 +51,23 @@ public class DialogueTrigger : MonoBehaviour
             visualCue.SetActive(true);
             if (Input.GetKeyUp(KeyCode.E)) //TODO: CHANGE THIS TO THE PLAYER INTERACT BUTTON 
             {
-                DialogueManager.GetInstance().StartDialogueMode(JSON, GetComponentInParent<SpriteManager>());
+                story = new Story(JSON.text);
+                inkExternalFunctions = new InkExternalFunctions();
+                inkDialogueVariables = new InkDialogueVariables(story);
+                inkDialogueVariables.UpdateVariableState(quest.name + "State", new StringValue(questState.ToString()));
+                inkExternalFunctions.Bind(story);
+                DialogueManager.GetInstance().StartDialogueMode(story, GetComponentInParent<SpriteManager>(), inkDialogueVariables);
             }
         }
         else
         {
             visualCue.SetActive(false);
         }
+    }
+
+    private void OnDestroy()
+    {
+        inkExternalFunctions.Unbind(story);
     }
 
     // Player has not been made yet, but when it is, make sure it is tagged with Player
@@ -49,13 +85,13 @@ public class DialogueTrigger : MonoBehaviour
     }
 
     //TESTING ONLY CODE BELOW, DO NOT UNCOMMENT :(
-    private void OnMouseEnter()
-    {
-        playerInRange = true;
-    }
+    //private void OnMouseEnter()
+    //
+    //    playerInRange = true;
+    //}
 
-    private void OnMouseExit()
-    {
-        playerInRange = false;
-    }
+    //private void OnMouseExit()
+    //{
+    //    playerInRange = false;
+    //}
 }
