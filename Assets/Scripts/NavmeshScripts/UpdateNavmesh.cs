@@ -7,7 +7,9 @@ using UnityEngine;
 public class UpdateNavmesh : MonoBehaviour
 {
     [SerializeField] private NavMeshSurface navMeshSurface;
+    public bool updateMesh = true;
     public float updateCooldown = 3f;
+    
 
     private void Start()
     {
@@ -16,7 +18,7 @@ public class UpdateNavmesh : MonoBehaviour
 
     private IEnumerator UpdateMesh()
     {
-        while (true)
+        while (updateMesh)
         {
             navMeshSurface.BuildNavMesh();
             yield return new WaitForSeconds(updateCooldown);

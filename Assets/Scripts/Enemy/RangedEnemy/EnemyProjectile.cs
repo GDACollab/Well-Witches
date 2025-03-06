@@ -55,9 +55,17 @@ public class EnemyProjectile : MonoBehaviour
             AOEPrefab.SetActive(true);
             AOEPrefab.transform.localScale = Vector3.one * _AOESize;
             rb.velocity = Vector3.zero;
+            // TODO: don't like how this damage checking is set up, should be standardized in final build
             if (collision.gameObject.CompareTag("Player"))
             {
-                // TODO: DEAL DAMAGE TO PLAYER
+                if (collision.gameObject.name == "Warden")
+                {
+                    collision.gameObject.GetComponent<PlayerController_Warden>().PlayerDamage(_damage, "warden");
+                }
+                else if (collision.gameObject.name == "Gatherer")
+                {
+                    collision.gameObject.GetComponent<PlayerController_Gatherer>().PlayerDamage(_damage, "gatherer");
+                }
             }
             for (int i = 0; i < projectileComponents.Length; i++)
             {

@@ -318,6 +318,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8514674852657251333, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8514674852657251333, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -371,12 +379,12 @@ MonoBehaviour:
   CriticalDamage: 0
   AttackSpeed: 0
   LifeSteal: 0
-  WandererHaste: 0
-  WandererLuck: 0
-  WandererResistance: 0
-  WandererMaxHealth: 10
-  WandererCurrentHealth: 5
-  WandererHealthRegen: 0
+  WardenHaste: 0
+  WardenLuck: 0
+  WardenResistance: 0
+  WardenMaxHealth: 0
+  WardenCurrentHealth: 0
+  WardenHealthRegen: 0
 --- !u!4 &1386749513
 Transform:
   m_ObjectHideFlags: 0
