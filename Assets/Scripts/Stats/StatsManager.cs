@@ -6,12 +6,27 @@ public class StatsManager : MonoBehaviour
 {
    public static StatsManager Instance; //singleton for both character stats
 
-   /*
-   With the StatsManager gameObject 
-   it contains the stats in a nice and neat way (hopefully)
-    */
+    /*
+    With the StatsManager gameObject 
+    it contains the stats in a nice and neat way (hopefully)
+     */
 
-   [Header("---------------Gatherer Combat stats---------------")]
+    //buffs and buff timers
+
+    [Header("---------------Buff / Curse Tracking---------------")]
+    public List<string> myBuffs = new List<string>();
+    public List<float> buffTimers = new List<float>();
+
+    public Dictionary<string, float> questItems = new Dictionary<string, float>
+    {
+        {"Dullahan’s Head", 0.15f},
+        {"Vampire Garlics", 0.10f}
+    };
+
+    public float keyItemChance = 0.05f;
+
+
+    [Header("---------------Gatherer Combat stats---------------")]
    public float healthTransferAmount; //current health transfer amount put in stats for now
    public float GathererResistance; 
 
@@ -77,5 +92,42 @@ public class StatsManager : MonoBehaviour
             Debug.LogError("Found more than one GameManager in the scene. Please make sure there is only one");
         }
         Instance = this;
+    }
+
+    private void Update()
+    {
+        for(int i = 0; i < buffTimers.Count; i++)
+        {
+            buffTimers[i] -= Time.deltaTime;
+            Debug.Log("status " + myBuffs[i] + ": " + buffTimers[i]);
+            if (buffTimers[i] <= 0)
+            {
+                Debug.Log("status " + myBuffs[i] + " is over!");
+                myBuffs.RemoveAt(i);
+                buffTimers.RemoveAt(i);
+                i--;
+            }
+        }
+    }
+
+    public void addStatus(string buff, float time)
+    {
+        myBuffs.Add(buff);
+        buffTimers.Add(time);
+    }
+
+    public Dictionary<string, float> getQuestItems() 
+    {
+        return new Dictionary<string, float> (questItems);
+    }
+
+    public List<string> getMyBuffs() 
+    {
+        return new List<string> (myBuffs);
+    }
+
+    public float getKeyItemChance()
+    {
+        return keyItemChance;
     }
 }
