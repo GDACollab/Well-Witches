@@ -107,6 +107,9 @@ public class InteractableGenerator : MonoBehaviour
                         continue;
                     }
 
+
+                    //Code for avoiding objects in tilemap. Currently we have no tilemap, so it's commented out to avoid crashes
+                    /*
                     Vector3 worldPosition = new Vector3(x, y, 0);
                     Vector3Int gridPosition = tilemap.WorldToCell(worldPosition);
 
@@ -124,7 +127,9 @@ public class InteractableGenerator : MonoBehaviour
                         Debug.Log("Correctly spawned tile");
                         Instantiate(interactable, new Vector3(x + offset.x, y + offset.y, -1), Quaternion.identity, transform); // Z layer of interactables is -1
                     }
-
+                    */
+                    pushToRecentValues(new Vector2Int(x, y));
+                    Instantiate(interactable, new Vector3(x + offset.x, y + offset.y, -1), Quaternion.identity, transform); // Z layer of interactables is -1
                 }
             }
         }
