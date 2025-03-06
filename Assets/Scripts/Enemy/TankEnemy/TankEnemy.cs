@@ -1,5 +1,5 @@
-using System.Collections;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 
 public class TankEnemy : BaseEnemyClass
@@ -9,20 +9,18 @@ public class TankEnemy : BaseEnemyClass
     public float range;
 
 
-    [Header("Bash Attack")]
-    [Tooltip("Time between shield bash in seconds")]
-    public float timeBetweenAttack;
-    [Tooltip("How strongly the tank enemy launches during shield bash")]
-    public float bashStrength;
-    [Tooltip("How long the bash lasts")]
-    public float bashTime;
-    public float bashDamage;
+    [Header("Attack")]
+    [Tooltip("The lower the value the faster the enemy fires projectiles")]
+    public float AttackRate;
 
     [Header("Acid Pool")]
+    [Range(0, 25)]
     [Tooltip("How many acid pools spawn per second. [0,25]")]
     public float spawnRate;
+    [Range(0, 10)]
     [Tooltip("Size of the acid pool. [0,10]")]
     public float acidSize;
+    [Range(0, 5)]
     [Tooltip("Time in seconds before the acid pool disapears. [0,5]")]
     public float acidLifetime;
     [Range(-5, 5)]
@@ -31,7 +29,6 @@ public class TankEnemy : BaseEnemyClass
     [Range(-5, 5)]
     [Tooltip("Move the spawn point of the acid pool up and down. [-5,5]")]
     public float acidOffsetY;
-    public float acidDamage;
 
     [Header("DEBUG")]
     public float distanceToPlayer1;
@@ -58,7 +55,7 @@ public class TankEnemy : BaseEnemyClass
     }
 
     // calculates and set target to the closest player to the enemy
-    public void TargetClosestPlayer()
+    private void TargetClosestPlayer()
     {
         distanceToPlayer1 = Vector2.Distance(players[0].transform.position, transform.position);
         distanceToPlayer2 = Vector2.Distance(players[1].transform.position, transform.position);
@@ -76,20 +73,14 @@ public class TankEnemy : BaseEnemyClass
 
     public void Attack()
     {
-        rb2d.velocity = (currentTarget.position - transform.position).normalized * bashStrength;
-        StartCoroutine(EndBash());
-    }
-
-    IEnumerator EndBash()
-    {
-        yield return new WaitForSeconds(bashTime);
-        rb2d.velocity = Vector2.zero;
+        Debug.Log("Shield Bash");
     }
 
     public void SpawnPool()
     {
         if (timeTillPool <= 0)
         {
+
             // spawns acid pool
             GameObject acidPool = AcidTrailPooling.SharedInstance.GetProjectileObject();
             if (acidPool)
@@ -98,7 +89,7 @@ public class TankEnemy : BaseEnemyClass
                 acidPool.transform.localScale = Vector3.one * acidSize;
                 acidPool.SetActive(true);
                 acidPool.GetComponent<AcidPool>().
-                    InitializeAcid(acidLifetime, acidDamage);
+                    InitializeAcid(acidLifetime, damage);
             }
             timeTillPool = 1 / spawnRate;
         }
@@ -108,18 +99,31 @@ public class TankEnemy : BaseEnemyClass
         }
     }
 
-    // TODO: don't like how this damage checking is set up, should be standardized in final build
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void Pursue()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            if (collision.gameObject.name == "Warden")
-            {
-                collision.gameObject.GetComponent<PlayerController_Warden>().PlayerDamage(bashDamage, "warden");
-            } else if (collision.gameObject.name == "Gatherer")
-            {
-                collision.gameObject.GetComponent<PlayerController_Gatherer>().PlayerDamage(bashDamage, "gatherer");
-            }
-        }
+        // set the target to the closest target
+        TargetClosestPlayer();
+        Vector3 direction = currentTarget.position - transform.position;
+        rb2d.velocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
+        //// direction is the normalized vector between the enemy and target
+        //Vector2 direction = (new Vector2(currentTarget.transform.position.x, currentTarget.transform.position.y) - rb2d.position).normalized;
+        //// only move when far form the target
+        //if (Vector2.Distance(rb2d.position, currentTarget.transform.position) > 0.5f)
+        //{
+        //    rb2d.MovePosition(rb2d.position + direction * moveSpeed * Time.deltaTime);
+        //}
+        //// For the code below, assume the enemy sprite is facing left, the code is dependent on the direction of the enemy its facing
+        //// If direction.x (as calculated above) is positive, that means the enemy is on the left side of the player
+        //if (direction.x > 0)
+        //{
+        //    // We dont make changes to the sprite since its already facing the player
+        //    transform.localScale = new Vector3(1, 1, 1);
+        //    // If direction.x is negative (on the left of the player)
+        //}
+        //else if (direction.x < 0)
+        //{
+        //    // We flip the enemy sprite so it faces the player
+        //    transform.localScale = new Vector3(-1, 1, 1);
+        //}
     }
 }

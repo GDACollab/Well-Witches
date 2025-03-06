@@ -7,10 +7,12 @@ public class RangedEnemy : BaseEnemyClass
     [Range(0, 20)]
     [Tooltip("How far away the enemy stops before attacking")]
     public float range;
+    [Tooltip("If enabled, enemy's speed will scale with distance from player with Move Speed being considered max speed.")]
+    public bool PrototypeAdvancedMovement;
 
     [Header("Projectile")]
-    [Tooltip("Time between projectile firing in seconds")]
-    public float timeBetweenAttack;
+    [Tooltip("The lower the value the faster the enemy fires projectiles")]
+    public float fireRate;
     [Tooltip("Amount of projectiles to fire out")]
     public float projectileCount;
     [Tooltip("Angle of the projectile's spread, the larger the wider the spread")]
@@ -51,6 +53,11 @@ public class RangedEnemy : BaseEnemyClass
         players = GameObject.FindGameObjectsWithTag("Player");
     }
 
+    private void Update()
+    {
+        
+    }
+
     // calculates and set target to the closest player to the enemy
     public void TargetClosestPlayer()
     {
@@ -68,18 +75,43 @@ public class RangedEnemy : BaseEnemyClass
         }
     }
 
+    // moves target towards player (pls let me override base class Move()
+    // TODO: improve prototype movement to make it look more natural
+    public void MoveRanged()
+    {
+        Vector3 direction = currentTarget.position - transform.position;
+        if (PrototypeAdvancedMovement)
+        {
+            float distanceToTarget = Vector2.Distance(players[0].transform.position, transform.position);
+            if (distanceToTarget < moveSpeed)
+            {
+                // speed starts to scale from distance to the target once the distance becomes less than the max move speed
+                // likely needs more fine tuning
+                rb2d.velocity = new Vector2(direction.x, direction.y).normalized * (distanceToTarget - (range - 1));
+            }
+            else
+            {
+                rb2d.velocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
+            }
+        } else
+        {
+            rb2d.velocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
+        }
+        
+    }
+
     // fires projectiles in a cone shape depending on the spread and projectile count
     public void Attack()
     {
 
         for (int i = 0; i < projectileCount; i++)
         {
+            // offset of the projectile based on count and spread
+            // used in InitializeProjectile() to calculate proper direction and projectile rotation
             // spawns the projectile
             GameObject projectile = ProjectilePooling.SharedInstance.GetProjectileObject();
             if (projectile != null)
             {
-                // offset of the projectile based on count and spread
-                // used in InitializeProjectile() to calculate proper direction and projectile rotation
                 float offset = (i - (projectileCount / 2)) * projectileSpread;
                 projectile.transform.position = transform.position;
                 projectile.transform.localScale = Vector3.one * projectileSize;
@@ -90,30 +122,4 @@ public class RangedEnemy : BaseEnemyClass
         }
 
     }
-
-    // not needed since im switching to navmesh maybe delete
-    //// moves target towards player (pls let me override base class Move()
-    //// TODO: improve prototype movement to make it look more natural
-    //public void MoveRanged()
-    //{
-    //    Vector3 direction = currentTarget.position - transform.position;
-    //    if (PrototypeAdvancedMovement)
-    //    {
-    //        float distanceToTarget = Vector2.Distance(players[0].transform.position, transform.position);
-    //        if (distanceToTarget < moveSpeed)
-    //        {
-    //            // speed starts to scale from distance to the target once the distance becomes less than the max move speed
-    //            // likely needs more fine tuning
-    //            rb2d.velocity = new Vector2(direction.x, direction.y).normalized * (distanceToTarget - (range - 1));
-    //        }
-    //        else
-    //        {
-    //            rb2d.velocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
-    //        }
-    //    } else
-    //    {
-    //        rb2d.velocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
-    //    }
-
-    //}
 }
