@@ -822,7 +822,7 @@ GameObject:
   - component: {fileID: 257071363}
   - component: {fileID: 257071362}
   m_Layer: 0
-  m_Name: Dullahan
+  m_Name: (ARCHIVED)Dullahan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -904,15 +904,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 257071361}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.78, y: -10.69, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -10.275616, y: -9.0045185, z: 8.438579}
   m_LocalScale: {x: 0.38503438, y: 0.38503438, z: 0.38503438}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 123973552}
   - {fileID: 1579783206}
   - {fileID: 1498444663}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 458718894}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &274629763
 GameObject:
@@ -1540,6 +1540,39 @@ Transform:
   - {fileID: 1098275628}
   - {fileID: 278431862}
   - {fileID: 1796462401}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &458718893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 458718894}
+  m_Layer: 0
+  m_Name: DONT DELETE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &458718894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458718893}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.02, y: -1.6854806, z: -8.438579}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1557719403}
+  - {fileID: 257071365}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &475617240
@@ -2458,7 +2491,7 @@ GameObject:
   - component: {fileID: 762762568}
   - component: {fileID: 762762567}
   m_Layer: 0
-  m_Name: NPC 2
+  m_Name: Wysteria
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5033,7 +5066,7 @@ GameObject:
   - component: {fileID: 1557719402}
   - component: {fileID: 1557719401}
   m_Layer: 0
-  m_Name: Vamp
+  m_Name: (ARCHIVED)Vamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5098,15 +5131,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1557719400}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.643, y: 7.33, z: 6.6162066}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9.138617, y: 9.01548, z: 15.054785}
   m_LocalScale: {x: 1.370287, y: 1.370287, z: 1.370287}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 582060321}
   - {fileID: 1746114241}
   - {fileID: 1019165412}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 458718894}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1559974237
 PrefabInstance:
@@ -6661,11 +6694,10 @@ SceneRoots:
   - {fileID: 1669392903}
   - {fileID: 2026094686}
   - {fileID: 442018023}
-  - {fileID: 1557719403}
-  - {fileID: 257071365}
   - {fileID: 119012301}
   - {fileID: 475617241}
   - {fileID: 762762568}
+  - {fileID: 1300437355}
   - {fileID: 735984276}
   - {fileID: 1170119613}
-  - {fileID: 1300437355}
+  - {fileID: 458718894}
