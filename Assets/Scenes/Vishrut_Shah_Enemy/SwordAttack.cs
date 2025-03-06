@@ -4,52 +4,94 @@ using UnityEngine;
 
 public class SwordAttack : MonoBehaviour
 {
-    const float ATTACK_COOLDOWN = 10;
-    const float ATTACK_TIME = 10;
-    const int SWORD_DAMAGE = 10;
-    private float timeSinceAttack;
-    private bool isAttacking;
-    private float attackStartTime;
-    // Start is called before the first frame update
-    void Start()
+    public float warningDuration = 2f;  // Duration of warning
+    public float attackDuration = 1f;   // Duration of the attack
+    private bool isCasting = false;
+    private SpriteRenderer warningRenderer; // Reference to the warning sprite
+    private Collider2D hitboxCollider;     // Reference to the half-circle hitbox collider
+    private BossEnemy bossEnemy;           // Reference to the BossEnemy script
+    private AttackIndicatorCapsule attackIndicatorCapsule; // Reference to the AttackIndicatorSquare script
+    private SpriteRenderer InnerGrow;
+
+    private void Start()
     {
-        // This guarantees that attack will start at beginning
-        timeSinceAttack = ATTACK_COOLDOWN;
-        isAttacking = false;
+        Transform warningObject = transform.Find("SwordSlashWarning");
+        if (warningObject != null)
+        {
+            warningRenderer = warningObject.Find("ShapeAndColliders").GetComponent<SpriteRenderer>();
+            hitboxCollider = warningObject.Find("ShapeAndColliders").GetComponent<Collider2D>();
+            InnerGrow = warningObject.Find("InnerGrow").GetComponent<SpriteRenderer>();
+            attackIndicatorCapsule = warningObject.GetComponent<AttackIndicatorCapsule>();
+
+            Debug.Log("Initialization successful");
+            Debug.Log("warningRenderer: " + (warningRenderer != null));
+            Debug.Log("hitboxCollider: " + (hitboxCollider != null));
+            Debug.Log("InnerGrow: " + (InnerGrow != null));
+            Debug.Log("attackIndicatorSquare: " + (attackIndicatorCapsule != null));
+        }
+        else
+        {
+            Debug.LogError("SwordSlashWarning not found! Make sure it's a child of the Boss Enemy.");
+        }
+        bossEnemy = GetComponentInParent<BossEnemy>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PerformSwordAttack()
+    {
+        if (!isCasting)
+        {
+            StartCoroutine(SwordAttackRoutine());
+        }
+    }
+
+    private IEnumerator SwordAttackRoutine()
     {
 
-    }
+        PhaseOne phaseOne = GetComponentInParent<PhaseOne>(); // Access PhaseOne to set the casting flag
+        phaseOne.SetAbilityCasting(true); // Set casting flag to true
 
-    public void Attack() {
-        if (!isAttacking) {
-            // In first attack frame, record time that attack started
-            isAttacking = true;
-            attackStartTime = timeSinceAttack;
-            Debug.Log("Sword Attack");
+        // Set the flag for casting
+        isCasting = true;
+
+        // Enable visibility of the warning renderer and InnerGrow
+        if (warningRenderer != null) warningRenderer.enabled = true;
+        if (InnerGrow != null) InnerGrow.enabled = true;
+
+        // Gradually increase the size of the attack indicator
+        float elapsedTime = 0f;
+        while (elapsedTime < warningDuration)
+        {
+            if (attackIndicatorCapsule != null)
+            {
+                attackIndicatorCapsule.size = Mathf.Lerp(0, 1, elapsedTime / warningDuration);
+            }
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
-        // Add code for the sword attack here
+        if (attackIndicatorCapsule != null) attackIndicatorCapsule.size = 1f;
 
-        // If enemy has been attacking for ATTACK_TIME, stop attacking
-        if (timeSinceAttack - attackStartTime >= ATTACK_TIME){
-            EndAttack();
+        // Check if the player is within the hitbox
+        if (bossEnemy != null && bossEnemy.currentTarget != null)
+        {
+            Collider2D playerCollider = bossEnemy.currentTarget.GetComponent<Collider2D>();
+            if (hitboxCollider != null && playerCollider != null && hitboxCollider.bounds.Intersects(playerCollider.bounds))
+            {
+                // Player is within the hitbox, apply damage here
+                // bossEnemy.currentTarget.GetComponent<Player>().TakeDamage(damage);
+            }
         }
-    }
 
-    public void EndAttack() {
-        // 
-        isAttacking = false;
-        timeSinceAttack = 0;
+        // Wait for the attack duration
+        yield return new WaitForSeconds(attackDuration);
 
-        // Add code to reset sword position back to initial state
-    }
+        // Disable visibility of the warning renderer and InnerGrow
+        if (warningRenderer != null) warningRenderer.enabled = false;
+        if (InnerGrow != null) InnerGrow.enabled = false;
 
-    void onTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Player" && isAttacking) {
-            // Add code here to decrease player's health by SWORD_DAMAGE
-        }
+        // Reset casting state
+        isCasting = false;
+
+        phaseOne.SetAbilityCasting(false); // Reset casting flag to false
+
     }
 }

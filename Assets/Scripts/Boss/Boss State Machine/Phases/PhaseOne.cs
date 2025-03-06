@@ -10,6 +10,11 @@ public class PhaseOne : State
 
     private bool useShieldBash = true; // Flag to alternate between attacks
 
+
+    private BossShieldBash shieldBash;
+    private SwordAttack swordAttack;
+
+    private bool isAnyAbilityCasting = false; 
     public PhaseOne(GameObject owner) : base(owner) { }
 
     public void Initialize(StateMachine stateMachine, GameObject owner)
@@ -18,6 +23,8 @@ public class PhaseOne : State
         this.owner = owner;
         rb = owner.GetComponent<Rigidbody2D>();
         bossEnemy = owner.GetComponent<BossEnemy>();
+        shieldBash = owner.GetComponent<BossShieldBash>();
+        swordAttack = owner.GetComponent<SwordAttack>();
     }
 
     public override void OnEnter()
@@ -39,9 +46,20 @@ public class PhaseOne : State
             }
             else if (distanceToTarget > bossEnemy.range)
             {
-                // Move towards the player
-                Vector2 direction = (bossEnemy.currentTarget.position - bossEnemy.transform.position).normalized;
-                rb.MovePosition(rb.position + direction * bossEnemy.moveSpeed * Time.deltaTime);
+                // Only move if no ability is being cast
+                if (!isAnyAbilityCasting)
+                {
+                    Vector2 direction = (bossEnemy.currentTarget.position - bossEnemy.transform.position).normalized;
+                    rb.MovePosition(rb.position + direction * bossEnemy.moveSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    //Stop movement and rotation
+                    rb.velocity = Vector2.zero;
+                    rb.angularVelocity = 0f;
+
+                }
+
             }
             else
             {
@@ -50,11 +68,12 @@ public class PhaseOne : State
                     // Alternate between Shield_Bash and Sword_Slash when in range
                     if (useShieldBash)
                     {
-                        bossEnemy.Shield_Bash();
+                        //shieldBash.PerformShieldBash();
+                        Debug.Log("Shield Bash");
                     }
                     else
                     {
-                        bossEnemy.Sword_Slash();
+                        swordAttack.PerformSwordAttack();
                     }
                     // Reset the attack cooldown
                     P1attackCooldown = bossEnemy.attackCooldown;
@@ -82,5 +101,10 @@ public class PhaseOne : State
         {
             new PhaseOnetoTwo(stateMachine, owner)
         };
+    }
+
+    public void SetAbilityCasting(bool isCasting)
+    {
+        isAnyAbilityCasting = isCasting;
     }
 }
