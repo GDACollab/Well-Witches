@@ -8,6 +8,9 @@ public class DialogueTrigger : MonoBehaviour
     [Header("Visual Queue")]
     [SerializeField] private GameObject visualCue;
 
+    [Header("Reward Gameobject")]
+    [SerializeField] private GameObject reward;
+
     [Header("JSON Dialogue File")]
     [SerializeField] private TextAsset JSON;
     private Story story;
@@ -36,6 +39,24 @@ public class DialogueTrigger : MonoBehaviour
         if(this.quest.name == quest.info.name)
         {
             questState = quest.state;
+            if(quest.state == QuestState.FINISHED)
+            {
+                SpawnQuestReward();
+            }
+        }
+    }
+
+    private void SpawnQuestReward()
+    {
+        Debug.Log("HI!!");
+        //TODO - might want to implement this better? this seems a bit too dependent
+        foreach (Transform child in transform.parent.transform)
+        {
+            if (child.gameObject.name.Equals("rewardPoint"))
+            {
+                Instantiate(reward, child.transform);
+                break;
+            }
         }
     }
     private void Awake()
@@ -67,7 +88,10 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnDestroy()
     {
-        inkExternalFunctions.Unbind(story);
+        if(inkExternalFunctions != null)
+        {
+            inkExternalFunctions.Unbind(story);
+        }
     }
 
     // Player has not been made yet, but when it is, make sure it is tagged with Player

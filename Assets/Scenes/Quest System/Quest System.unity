@@ -734,6 +734,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questDisplay: {fileID: 632751850}
   questDescription: {fileID: 348939375}
+--- !u!1 &243781625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 243781626}
+  m_Layer: 0
+  m_Name: rewardPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &243781626
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243781625}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.12, y: -2.08, z: 6.616206}
+  m_LocalScale: {x: 1.3702899, y: 1.3702899, z: 1.3702899}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 762762568}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &247224515
 GameObject:
   m_ObjectHideFlags: 0
@@ -2283,6 +2314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualCue: {fileID: 324182411}
+  reward: {fileID: 4581381201516256351, guid: e438fbe7130d8e346bbf874574776822, type: 3}
   JSON: {fileID: 4900000, guid: 19740bd2611cb0d43b706b6bbfea5406, type: 3}
   quest: {fileID: 11400000, guid: 9207d6df5aabee946a1b22ec06df339b, type: 2}
 --- !u!61 &642858937
@@ -2530,6 +2562,7 @@ Transform:
   - {fileID: 320047425}
   - {fileID: 1231336875}
   - {fileID: 2102115576}
+  - {fileID: 243781626}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &787530479
@@ -4092,6 +4125,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111828659}
   m_CullTransparentMesh: 1
+--- !u!1 &1140794550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1140794551}
+  m_Layer: 0
+  m_Name: rewardPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1140794551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140794550}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4, y: 0.02, z: 11.593347}
+  m_LocalScale: {x: 2.4011111, y: 2.4011111, z: 2.4011111}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1300437355}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1143919027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4456,6 +4520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualCue: {fileID: 2102115575}
+  reward: {fileID: 4581381201516256351, guid: e438fbe7130d8e346bbf874574776822, type: 3}
   JSON: {fileID: 4900000, guid: 7e02e57cdb0449d47a67912929c57073, type: 3}
   quest: {fileID: 11400000, guid: 64d6d54c630f4a84389cc9933e4314d7, type: 2}
 --- !u!61 &1231336877
@@ -4748,6 +4813,7 @@ Transform:
   - {fileID: 1732274147}
   - {fileID: 642858935}
   - {fileID: 324182412}
+  - {fileID: 1140794551}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1327193742
