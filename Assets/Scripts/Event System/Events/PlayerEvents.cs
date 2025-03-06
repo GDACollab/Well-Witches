@@ -17,7 +17,7 @@ public class PlayerEvents
 
     public void PlayerDeath()
     {
-        if (onPlayerDamage != null)
+        if (onPlayerDeath != null)
         {
             onPlayerDeath();
         }
