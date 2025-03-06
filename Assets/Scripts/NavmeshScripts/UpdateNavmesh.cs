@@ -1,4 +1,5 @@
 using NavMeshPlus.Components;
+using System.Collections;
 using UnityEngine;
 
 // TODO: should be changed to every time an obstacle spawns/despawns whenever that is implemented

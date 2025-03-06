@@ -13,11 +13,11 @@ public class HUD : MonoBehaviour
 
 	void OnEnable()     // Subscribe to events here
 	{
-		EventManager.instance.playerEvents.onPlayerDamaged += OnPlayerDamaged;
+		EventManager.instance.playerEvents.onPlayerDamage += OnPlayerDamaged;
 	}
 	void OnDisable()    // Unsubscribe to events here (otherwise we waste memory)
 	{
-		EventManager.instance.playerEvents.onPlayerDamaged -= OnPlayerDamaged;
+		EventManager.instance.playerEvents.onPlayerDamage -= OnPlayerDamaged;
 	}
 	void Start()
 	{
@@ -41,7 +41,7 @@ public class HUD : MonoBehaviour
 			else
 			{
 				statsManager.GathererCurrentHealth = 0;
-				EventManager.instance.playerEvents.PlayerDied();
+				EventManager.instance.playerEvents.PlayerDeath();
 			}
 
 			gathererHealthBar.value = newHealth / statsManager.GathererMaxHealth;
@@ -55,7 +55,7 @@ public class HUD : MonoBehaviour
 			else
 			{
 				statsManager.WardenCurrentHealth = 0;
-				EventManager.instance.playerEvents.PlayerDied();
+				EventManager.instance.playerEvents.PlayerDeath();
 			}
 
 			wardenHealthBar.value = newHealth / statsManager.WardenMaxHealth;

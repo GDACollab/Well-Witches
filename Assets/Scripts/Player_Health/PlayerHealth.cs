@@ -7,11 +7,11 @@ public class PlayerHealth : MonoBehaviour
 
 	void OnEnable()     // Subscribe to events here
 	{
-		EventManager.instance.playerEvents.onPlayerDamaged += TakeDamage;
+		EventManager.instance.playerEvents.onPlayerDamage += TakeDamage;
 	}
 	void OnDisable()    // Unsubscribe to events here (otherwise we waste memory)
 	{
-		EventManager.instance.playerEvents.onPlayerDamaged -= TakeDamage;
+		EventManager.instance.playerEvents.onPlayerDamage -= TakeDamage;
 	}
 	void Start()
 	{

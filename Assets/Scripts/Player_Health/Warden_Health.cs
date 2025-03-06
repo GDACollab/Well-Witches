@@ -19,7 +19,7 @@ public class Warden_Health : PlayerHealth
 	protected override void Die()
 	{
 		//send out signal
-		EventManager.instance.playerEvents.PlayerDied();
+		EventManager.instance.playerEvents.PlayerDeath();
 		// TODO - implement death
 		return;
 	}
