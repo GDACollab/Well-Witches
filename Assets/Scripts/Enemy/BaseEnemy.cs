@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class BaseEnemyClass : MonoBehaviour
 {
@@ -9,8 +7,8 @@ public class BaseEnemyClass : MonoBehaviour
     [Header("Enemy Stats")]
     [Range(1, 100)]
     [Tooltip("The max health of an enemy. [1, 100]")]
-    public int health;
-    [Range(0, 100)]
+    public float health;
+    [Range(0f, 100f)]
     [Tooltip("How much damage an enemy does. [0, 100]")]
     public int damage;
     [Range(0, 20)]
@@ -70,16 +68,13 @@ public class BaseEnemyClass : MonoBehaviour
         }
     }
 
-    public void takingDamage(int amount)
-    {   //Reduces health by the amount entered in Unity
+    public void TakeDamage(float amount)
+    {
         health -= amount;
-        if (health <= 0)
-        {
-            Die();
-        }
+        if (health <= 0) Die();
     }
 
-    void Die()
+	void Die()
     {
         Destroy(gameObject);
     }
