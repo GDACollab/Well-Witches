@@ -17,6 +17,8 @@ public class SceneHandler : MonoBehaviour
     private int GameplaySceneIndex = 2;
     [SerializeField]
     private int PauseSceneIndex = 3;
+    [SerializeField]
+    private int BossSceneIndex = 4;
     
     
     private void Awake(){
@@ -97,6 +99,9 @@ public class SceneHandler : MonoBehaviour
         else if(index == PauseSceneIndex){
             
         }
+        else if(index == BossSceneIndex){
+            
+        }
         // Unsupported Scenes
         else{
             Debug.Log("Transitions from the current scene, " + currentScene.name + " are not currently supported");
@@ -157,5 +162,12 @@ public class SceneHandler : MonoBehaviour
             return;
         }
         SceneManager.LoadScene(PauseSceneIndex);
+    }
+
+
+
+
+    public void ToBossScene(){
+        SceneManager.LoadScene(BossSceneIndex);
     }
 }
