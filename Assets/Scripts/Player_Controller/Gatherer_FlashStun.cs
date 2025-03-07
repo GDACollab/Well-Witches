@@ -11,6 +11,7 @@ public class Gatherer_FlashStun : MonoBehaviour
 	InputAction activateAbilityAction;
 	float chargeCounter;
 	public float cooldownCounter { get; private set; } = 0;
+	private bool canCastSpellSFX = false;
 
 	public static Gatherer_FlashStun Instance { get; private set; } void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
 
@@ -27,6 +28,11 @@ public class Gatherer_FlashStun : MonoBehaviour
 			cooldownCounter -= Time.deltaTime;
 			return;	// don't even think about charging up if on cooldown
 		}
+		if (!canCastSpellSFX)
+		{
+            canCastSpellSFX = true;
+			AudioManager.Instance.PlayOneShot(FMODEvents.Instance.abilityReady, this.transform.position);
+        }
 
 		if (activateAbilityAction.IsPressed())
 		{
@@ -44,6 +50,8 @@ public class Gatherer_FlashStun : MonoBehaviour
 	void ExecuteAbility()
 	{
 		AudioManager.Instance.PlayOneShot(FMODEvents.Instance.flashStun, this.transform.position);
+		canCastSpellSFX = false;
+
 		bool didHitEnemy = false;
 		
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, collisionLayersToCheck);
