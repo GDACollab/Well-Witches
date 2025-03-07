@@ -18,9 +18,9 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //SpawnSurrounded(goofyBoy, 3, 2);
-        //SpawnSurrounded(goofyBoy, 8, 5);
-		//SpawnFormation(referencePoint.position, 45);
+        SpawnSurrounded(goofyBoy, 3, 2);
+        SpawnSurrounded(goofyBoy, 8, 5);
+		SpawnFormation(referencePoint.position, 45);
     }
 
     // Update is called once per frame
@@ -28,11 +28,13 @@ public class EnemySpawner : MonoBehaviour
 	{
 		timer = +Time.deltaTime;
 
+		/*
 		if(timer > 10)
 		{
 			SpawnSingle(goofyBoy, 3);
 
         }
+		*/
 
 		/* TEST FUNCTIONS FOR SPAWNING IN ENEMIES
 		if (Input.GetKeyDown("1"))

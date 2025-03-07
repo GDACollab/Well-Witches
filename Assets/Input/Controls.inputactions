@@ -15,9 +15,9 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Active Ability",
+                    "name": "Interact",
                     "type": "Button",
-                    "id": "4b63c30e-5073-4ad7-8b2e-c84a644724e0",
+                    "id": "822e5f86-0676-4fec-8086-d8ef0b446200",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -26,16 +26,16 @@
                 {
                     "name": "Pull Warden",
                     "type": "Button",
-                    "id": "f0a2f88e-6b67-4639-a7e4-04a08146c32c",
+                    "id": "38e555f2-3271-406f-bb61-cfe0a5dbe12c",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pick Up Item",
+                    "name": "Activate Ability",
                     "type": "Button",
-                    "id": "822e5f86-0676-4fec-8086-d8ef0b446200",
+                    "id": "4b63c30e-5073-4ad7-8b2e-c84a644724e0",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -105,7 +105,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mouse and Keyboard",
-                    "action": "Pick Up Item",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "444b2ff5-94d1-4d01-977a-49b73f0fc128",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse and Keyboard",
+                    "action": "Pull Warden",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -116,18 +127,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mouse and Keyboard",
-                    "action": "Active Ability",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0c16b67c-685f-44f8-b2ed-2dd6cd965ebc",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Mouse and Keyboard",
-                    "action": "Pull Warden",
+                    "action": "Activate Ability",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -135,12 +135,12 @@
         },
         {
             "name": "Gameplay_Warden",
-            "id": "c2febb73-cde2-459a-aec3-e6b1df85bee2",
+            "id": "5d21ef32-969f-4789-8c52-106ed13270dc",
             "actions": [
                 {
                     "name": "Move",
                     "type": "Value",
-                    "id": "82e371d4-d483-416e-b7d9-e17103124c7c",
+                    "id": "d86009bf-f483-4441-8fae-be1646dc0d78",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -149,16 +149,16 @@
                 {
                     "name": "Shoot",
                     "type": "Button",
-                    "id": "b20cf932-e2b0-4ce9-b0f4-fb897aeb29b1",
+                    "id": "92f18b23-80cd-47b1-a562-e44145612afc",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Active Ability",
+                    "name": "Activate Ability",
                     "type": "Button",
-                    "id": "f40a84ae-37d5-4e57-9d39-dc2cb2e5c0fb",
+                    "id": "33b9fa95-ccb4-472b-b5f6-a8dda9a18912",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -168,7 +168,7 @@
             "bindings": [
                 {
                     "name": "Arrow Keys",
-                    "id": "0849cf3d-82d8-42c3-ae98-9a55eab3098d",
+                    "id": "4724f625-09da-494a-86bc-5cbfe1f40a81",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -179,7 +179,7 @@
                 },
                 {
                     "name": "up",
-                    "id": "9ee52889-6070-4d69-847e-20cdd0ff4b34",
+                    "id": "7f71229f-f481-45fc-9f8b-146fd77cc3ca",
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
@@ -190,7 +190,7 @@
                 },
                 {
                     "name": "down",
-                    "id": "5ec953d7-1d7d-4a45-8781-239a14a91be5",
+                    "id": "b45f4f85-30e1-4dc1-9675-14f46dd90a4a",
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
@@ -201,7 +201,7 @@
                 },
                 {
                     "name": "left",
-                    "id": "289a61cd-dc65-4243-9141-bb004b461db8",
+                    "id": "d1c8ff3f-6726-4197-a615-2bbf79085eb1",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
@@ -212,7 +212,7 @@
                 },
                 {
                     "name": "right",
-                    "id": "c8333361-5e55-4c80-94da-3e52939b959c",
+                    "id": "b796b58f-4f59-454a-b80e-022dbc6e792a",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
@@ -223,7 +223,7 @@
                 },
                 {
                     "name": "",
-                    "id": "34c537c0-fb22-4e0f-a1f2-bd93ab9ae5af",
+                    "id": "027df28c-5f6e-4261-860f-067455109e83",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
@@ -234,34 +234,17 @@
                 },
                 {
                     "name": "",
-                    "id": "70de6b86-11fb-4a7c-af5c-f222db8fe4ff",
+                    "id": "49f65c61-d02a-4d56-a9ab-aae09a521cd3",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mouse and Keyboard",
-                    "action": "Active Ability",
+                    "action": "Activate Ability",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
         }
     ],
-    "controlSchemes": [
-        {
-            "name": "Mouse and Keyboard",
-            "bindingGroup": "Mouse and Keyboard",
-            "devices": [
-                {
-                    "devicePath": "<Mouse>",
-                    "isOptional": false,
-                    "isOR": false
-                },
-                {
-                    "devicePath": "<Keyboard>",
-                    "isOptional": false,
-                    "isOR": false
-                }
-            ]
-        }
-    ]
+    "controlSchemes": []
 }
