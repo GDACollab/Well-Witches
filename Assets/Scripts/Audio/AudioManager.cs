@@ -7,6 +7,8 @@ using FMOD.Studio;
 
 public class AudioManager : MonoBehaviour
 {
+    private List<EventInstance> eventInstances;
+
     private static AudioManager _instance;
     public static AudioManager Instance { get { return _instance; } }
 
@@ -21,6 +23,8 @@ public class AudioManager : MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+
+        eventInstances = new List<EventInstance>();
     }
 
     public void PlayOneShot(EventReference sound, Vector3 worldPos)
@@ -34,6 +38,21 @@ public class AudioManager : MonoBehaviour
     public EventInstance CreateEventInstance(EventReference eventRefrence)
     {
         EventInstance eventInstance = RuntimeManager.CreateInstance(eventRefrence);
+        eventInstances.Add(eventInstance); 
         return eventInstance;
+    }
+
+    private void CleanUp()
+    {
+        foreach (EventInstance eventInstance in eventInstances)
+        {
+            eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            eventInstance.release();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        CleanUp();
     }
 }

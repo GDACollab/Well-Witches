@@ -11,6 +11,9 @@ public class FMODEvents : MonoBehaviour
     [field: Header("Player Footsteps")]
     [field: SerializeField] public EventReference playerFootsteps { get; private set; }
 
+    [field: Header("Spectral Shot")]
+    [field: SerializeField] public EventReference spectralShot { get; private set; }
+
     private static FMODEvents _instance;
     public static FMODEvents Instance { get { return _instance; } }
 
