@@ -43,7 +43,16 @@ public class Gatherer_FlashStun : MonoBehaviour
 
 	void ExecuteAbility()
 	{
+		AudioManager.Instance.PlayOneShot(FMODEvents.Instance.flashStun, this.transform.position);
+		bool didHitEnemy = false;
+		
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, collisionLayersToCheck);
-		foreach (Collider2D collider in colliders) if (collider.CompareTag("Enemy")) { /* stun enemy */ }
+		foreach (Collider2D collider in colliders) if (collider.CompareTag("Enemy")) 
+			{
+				if (!didHitEnemy) { didHitEnemy = true; }
+				/* stun enemy */ 
+			}
+
+		if (didHitEnemy) { AudioManager.Instance.PlayOneShot(FMODEvents.Instance.flashStunHit, this.transform.position); }
 	}
 }

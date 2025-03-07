@@ -10,6 +10,8 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference playerFootsteps { get; private set; }
     [field: SerializeField] public EventReference spectralShot { get; private set; }
     [field: SerializeField] public EventReference interactBush { get; private set; }
+    [field: SerializeField] public EventReference flashStun { get; private set; }
+    [field: SerializeField] public EventReference flashStunHit { get; private set; }
 
     [field: Header("BGM")]
     [field: SerializeField] public EventReference lobbyBGM { get; private set; }
