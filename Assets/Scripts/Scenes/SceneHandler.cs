@@ -17,6 +17,8 @@ public class SceneHandler : MonoBehaviour
     private int GameplaySceneIndex = 2;
     [SerializeField]
     private int PauseSceneIndex = 3;
+    [SerializeField]
+    private int LoadSceneIndex = 4;
     
     
     private void Awake(){
@@ -28,12 +30,13 @@ public class SceneHandler : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
     }
+
     private void OnApplicationQuit(){
         Instance = null;
     }
 
     // FOR TESTING PURPOSES ONLY DO NOT UNCOMMENT
-    /*
+/*
     public void Update(){
         if(Input.GetKeyDown(KeyCode.A)){
             ToMainMenuScene();
@@ -48,7 +51,7 @@ public class SceneHandler : MonoBehaviour
             ToPauseScene();
         }
     }
-    */
+*/
 
     public void ToMainMenuScene(){
         Scene currentScene = SceneManager.GetActiveScene();
@@ -77,6 +80,41 @@ public class SceneHandler : MonoBehaviour
         }
         SceneManager.LoadScene(MainMenuSceneIndex);
     }
+    public void ToLoadScene()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        int index = currentScene.buildIndex;
+        // From Main Menu
+        if (index == MainMenuSceneIndex)
+        {
+
+        }
+        // From Hub
+        else if (index == HubSceneIndex)
+        {
+            Debug.Log("Attempt to change scenes from " + currentScene.name + " to " + currentScene.name + " is not allowed");
+            return;
+        }
+        // From Gameplay Scene
+        else if (index == GameplaySceneIndex)
+        {
+            Debug.Log("Attempt to change scenes from " + currentScene.name + " to " + currentScene.name + " is not allowed");
+            return;
+        }
+        // From Pause Scene
+        else if (index == PauseSceneIndex)
+        {
+            Debug.Log("Attempt to change scenes from " + currentScene.name + " to " + currentScene.name + " is not allowed");
+            return;
+        }
+        // Unsupported Scene
+        else
+        {
+            Debug.Log("Transitions from the current scene, " + currentScene.name + " are not currently supported");
+            return;
+        }
+        SceneManager.LoadScene(LoadSceneIndex);
+    }
     public void ToHubScene(){
         Scene currentScene = SceneManager.GetActiveScene();
         int index = currentScene.buildIndex;
@@ -96,6 +134,11 @@ public class SceneHandler : MonoBehaviour
         // From Pause scene
         else if(index == PauseSceneIndex){
             
+        }
+        // From Load Scene
+        else if(index == LoadSceneIndex)
+        {
+
         }
         // Unsupported Scenes
         else{

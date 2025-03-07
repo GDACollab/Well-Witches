@@ -12,7 +12,7 @@ public class EventManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance != null) Debug.LogError("Found more than one GameManager in the scene. Please make sure there is only one");
+        if (instance != null) Debug.LogWarning("Found more than one EventManager in the scene. Please make sure there is only one");
         else instance = this;
 
         // initialize all events 
