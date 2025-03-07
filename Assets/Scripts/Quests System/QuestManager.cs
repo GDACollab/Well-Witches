@@ -107,6 +107,7 @@ public class QuestManager : MonoBehaviour
         {
             return;
         }
+        GameManager.instance.activeQuestState = QuestState.IN_PROGRESS;
         Quest quest = GetQuestByID(id);
         questDisplay.text = "Quest: " + quest.info.displayName;
         quest.InstantiateCurrentQuestStep(this.transform, questDescription);
@@ -139,6 +140,7 @@ public class QuestManager : MonoBehaviour
         Quest quest = GetQuestByID(id);
         ResetQuestText();
         ChangeQuestState(quest.info.id, QuestState.FINISHED);
+        GameManager.instance.activeQuestState = QuestState.FINISHED;
         isQuestAlreadyActive = false;
     }
 

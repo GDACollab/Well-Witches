@@ -5,11 +5,12 @@ using UnityEngine;
 using Ink.Runtime;
 using System;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
     [Header("Dialogue UI")]
-    [SerializeField] private GameObject dialoguePanel;
+    [SerializeField] public GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI speakerText;
 
@@ -39,8 +40,20 @@ public class DialogueManager : MonoBehaviour
         instance = this;
     }
 
+    private void OnEnable()
+    {
+        SceneManager.activeSceneChanged += OnSceneChange;
+    }
 
+    private void OnDisable()
+    {
+        SceneManager.activeSceneChanged -= OnSceneChange;
+    }
 
+    public void OnSceneChange(Scene before, Scene current)
+    {
+        init();
+    }
     public static DialogueManager GetInstance()
     {
         return instance;
@@ -48,12 +61,17 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
+        init();
+    }
+
+    private void init()
+    {
         dialogueActive = false;
         dialoguePanel.SetActive(false);
 
         choicesText = new TextMeshProUGUI[choices.Length];
         int index = 0;
-        foreach(GameObject c in choices)
+        foreach (GameObject c in choices)
         {
             choicesText[index] = c.GetComponentInChildren<TextMeshProUGUI>();
             index++;
@@ -87,7 +105,7 @@ public class DialogueManager : MonoBehaviour
         inkDialogueVariables.SyncVariablesAndStartListening(currentStory);
         currentVars = inkDialogueVariables;
         dialogueActive = true;
-        dialoguePanel.SetActive(true);
+        dialoguePanel.SetActive(true);  
 
         // reset speaker
         speakerText.text = "???"; 
