@@ -80,7 +80,7 @@ public class Warden_Movement : PlayerMovement
 	}
     private void UpdateSound()
     {
-        Debug.Log(rb.velocity);
+        //Debug.Log(rb.velocity);
 
         if (Mathf.Abs(rb.velocity.x) > 1 || Mathf.Abs(rb.velocity.y) > 1)
         {

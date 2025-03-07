@@ -5,17 +5,15 @@ using FMODUnity;
 
 public class FMODEvents : MonoBehaviour
 {
-    [field: Header("Test_Audio")]
+    [field: Header("SFX")]
     [field: SerializeField] public EventReference testAudio { get; private set; }
-
-    [field: Header("Player Footsteps")]
     [field: SerializeField] public EventReference playerFootsteps { get; private set; }
-
-    [field: Header("Spectral Shot")]
     [field: SerializeField] public EventReference spectralShot { get; private set; }
-
-    [field: Header("Interact Bush")]
     [field: SerializeField] public EventReference interactBush { get; private set; }
+
+    [field: Header("BGM")]
+    [field: SerializeField] public EventReference lobbyBGM { get; private set; }
+    [field: SerializeField] public EventReference mainMapBGM { get; private set; }
 
     private static FMODEvents _instance;
     public static FMODEvents Instance { get { return _instance; } }
