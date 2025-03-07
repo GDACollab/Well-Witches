@@ -5,8 +5,21 @@ using FMODUnity;
 
 public class FMODEvents : MonoBehaviour
 {
-    [field: Header("Test_Audio")]
+    [field: Header("SFX")]
     [field: SerializeField] public EventReference testAudio { get; private set; }
+    [field: SerializeField] public EventReference playerFootsteps { get; private set; }
+    [field: SerializeField] public EventReference spectralShot { get; private set; }
+    [field: SerializeField] public EventReference interactBush { get; private set; }
+    [field: SerializeField] public EventReference flashStun { get; private set; }
+    [field: SerializeField] public EventReference flashStunHit { get; private set; }
+    [field: SerializeField] public EventReference abilityReady { get; private set; }
+    [field: SerializeField] public EventReference vampireTalk { get; private set; }
+    [field: SerializeField] public EventReference dullahanTalk { get; private set; }
+
+    [field: Header("BGM")]
+    [field: SerializeField] public EventReference lobbyBGM { get; private set; }
+    [field: SerializeField] public EventReference mainMapBGM { get; private set; }
+    [field: SerializeField] public EventReference bossBGM { get; private set; }
 
     private static FMODEvents _instance;
     public static FMODEvents Instance { get { return _instance; } }

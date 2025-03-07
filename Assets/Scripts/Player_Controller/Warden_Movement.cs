@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using UnityEngine;
 
 public class Warden_Movement : PlayerMovement
@@ -15,8 +16,9 @@ public class Warden_Movement : PlayerMovement
 	[Header("Gatherer")]
 	[SerializeField] GameObject gatherer;
 	[SerializeField] CircleCollider2D gathererRopeRadius;
+    private EventInstance playerFootsteps;
 
-	void OnValidate()
+    void OnValidate()
 	{
 		joint.frequency = ropeStiffness;
 		joint.dampingRatio = ropeDampening;
@@ -43,7 +45,9 @@ public class Warden_Movement : PlayerMovement
 			new GradientColorKey[] { new GradientColorKey(Color.red, 0.0f), new GradientColorKey(Color.red, 1.0f) },
 			new GradientAlphaKey[] { new GradientAlphaKey(alpha, 0.0f), new GradientAlphaKey(alpha, 1.0f) }
 		);
-	}
+
+        playerFootsteps = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.playerFootsteps);
+    }
 
 	void Update()
 	{
@@ -52,7 +56,9 @@ public class Warden_Movement : PlayerMovement
 		// Rope visualization test
 		ropeLR.SetPosition(0,transform.position);
 		ropeLR.SetPosition(1, gatherer.transform.position);
-	}
+
+		UpdateSound();
+    }
 
 	public void enableRope()
 	{
@@ -72,4 +78,23 @@ public class Warden_Movement : PlayerMovement
 	{
 		joint.distance = gathererRopeRadius.radius;
 	}
+    private void UpdateSound()
+    {
+        //Debug.Log(rb.velocity);
+
+        if (Mathf.Abs(rb.velocity.x) > 1 || Mathf.Abs(rb.velocity.y) > 1)
+        {
+            PLAYBACK_STATE playbackState;
+            playerFootsteps.getPlaybackState(out playbackState);
+
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                playerFootsteps.start();
+            }
+        }
+        else
+        {
+            playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
+        }
+    }
 }

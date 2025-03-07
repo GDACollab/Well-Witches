@@ -31,6 +31,7 @@ public class Warden_BigBlast : MonoBehaviour
     void GainCharge()
     {
         Charge++;
+        if (Charge == NumHitsRequired) { AudioManager.Instance.PlayOneShot(FMODEvents.Instance.abilityReady, this.transform.position); }
         if (Charge > NumHitsRequired) Charge = NumHitsRequired;
     }
 

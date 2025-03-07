@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -81,6 +82,7 @@ public class SceneHandler : MonoBehaviour
         SceneManager.LoadScene(MainMenuSceneIndex);
     }
     public void ToHubScene(){
+
         Scene currentScene = SceneManager.GetActiveScene();
         int index = currentScene.buildIndex;
         // From Main Menu
@@ -108,7 +110,11 @@ public class SceneHandler : MonoBehaviour
             Debug.Log("Transitions from the current scene, " + currentScene.name + " are not currently supported");
             return;
         }
+
         SceneManager.LoadScene(HubSceneIndex);
+
+        AudioManager.Instance.CleanUp();
+        AudioManager.Instance.PlayOST(FMODEvents.Instance.lobbyBGM);
     }
     public void ToGameplayScene(){
         Scene currentScene = SceneManager.GetActiveScene();
@@ -136,6 +142,9 @@ public class SceneHandler : MonoBehaviour
             return;
         }
         SceneManager.LoadScene(GameplaySceneIndex);
+
+        AudioManager.Instance.CleanUp();
+        AudioManager.Instance.PlayOST(FMODEvents.Instance.mainMapBGM);
     }
     public void ToPauseScene(){
         Scene currentScene = SceneManager.GetActiveScene();
@@ -170,5 +179,8 @@ public class SceneHandler : MonoBehaviour
 
     public void ToBossScene(){
         SceneManager.LoadScene(BossSceneIndex);
+
+        AudioManager.Instance.CleanUp();
+        AudioManager.Instance.PlayOST(FMODEvents.Instance.bossBGM);
     }
 }

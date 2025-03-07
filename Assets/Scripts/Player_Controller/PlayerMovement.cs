@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using FMOD.Studio;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 	protected Rigidbody2D rb;
 	Vector2 moveDirection;
 	[HideInInspector] public float maxSpeed_Adjusted;   // this has to exist for now because of SpeedBuff.cs
+	private EventInstance playerFootsteps;
 
 	void OnMove(InputValue iv)  // Called by the Player Input component
 	{
@@ -19,6 +21,11 @@ public class PlayerMovement : MonoBehaviour
 		rb = GetComponent<Rigidbody2D>();
         maxSpeed_Adjusted = movementData.maxSpeed;
 	}
+
+    private void Start()
+    {
+		playerFootsteps = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.playerFootsteps);
+    }
 
     void FixedUpdate()
 	{
@@ -34,5 +41,27 @@ public class PlayerMovement : MonoBehaviour
 
 		Vector2 accelerationVector = deltaVelocity * acceleration;
 		rb.AddForce(accelerationVector);
+
+		UpdateSound();
+    }
+
+	private void UpdateSound()
+	{
+		//Debug.Log(rb.velocity);
+
+		if (Mathf.Abs(rb.velocity.x) > 2.5f || Mathf.Abs(rb.velocity.y) > 2.5f)
+		{
+			PLAYBACK_STATE playbackState;
+			playerFootsteps.getPlaybackState(out playbackState);
+
+			if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+			{
+				playerFootsteps.start();
+			}
+		}
+		else
+		{
+			playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
+		}
 	}
 }

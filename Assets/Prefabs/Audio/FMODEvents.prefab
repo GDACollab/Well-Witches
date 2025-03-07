@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8547520829530627448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5840642612280084433}
+  - component: {fileID: 5030171153055699167}
+  m_Layer: 0
+  m_Name: FMODEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5840642612280084433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8547520829530627448}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5030171153055699167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8547520829530627448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e9b535bf99959341a49e03130772dd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <testAudio>k__BackingField:
+    Guid:
+      Data1: -1161436488
+      Data2: 1210317221
+      Data3: -515466600
+      Data4: -941029537
+    Path: event:/TEST_EVENT
+  <playerFootsteps>k__BackingField:
+    Guid:
+      Data1: 1622725694
+      Data2: 1247836690
+      Data3: 708242094
+      Data4: 2116044748
+    Path: event:/SFX/Player Footsteps
+  <spectralShot>k__BackingField:
+    Guid:
+      Data1: -886495890
+      Data2: 1208184257
+      Data3: -1948506969
+      Data4: -982450287
+    Path: event:/SFX/Spectral Shot
+  <interactBush>k__BackingField:
+    Guid:
+      Data1: 1805081636
+      Data2: 1225740557
+      Data3: -1517023359
+      Data4: -322940136
+    Path: event:/SFX/Bush Interact
+  <flashStun>k__BackingField:
+    Guid:
+      Data1: -1074955844
+      Data2: 1209484095
+      Data3: 623482559
+      Data4: 61298409
+    Path: event:/SFX/Flash Stun
+  <flashStunHit>k__BackingField:
+    Guid:
+      Data1: 569013897
+      Data2: 1122951061
+      Data3: -1200787522
+      Data4: 1590639582
+    Path: event:/SFX/Flash Stun Hit
+  <abilityReady>k__BackingField:
+    Guid:
+      Data1: -1640675208
+      Data2: 1228002804
+      Data3: -1376480339
+      Data4: 296606036
+    Path: event:/SFX/Ability Ready
+  <vampireTalk>k__BackingField:
+    Guid:
+      Data1: 815665685
+      Data2: 1186680340
+      Data3: 1203360926
+      Data4: 815130692
+    Path: event:/SFX/Vampire Talk
+  <lobbyBGM>k__BackingField:
+    Guid:
+      Data1: -827118031
+      Data2: 1324110020
+      Data3: 936171414
+      Data4: -279680180
+    Path: event:/BGM/Lobby
+  <mainMapBGM>k__BackingField:
+    Guid:
+      Data1: 280531751
+      Data2: 1296786283
+      Data3: -2011048059
+      Data4: 1026977568
+    Path: event:/BGM/Main Map

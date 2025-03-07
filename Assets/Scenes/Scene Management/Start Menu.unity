@@ -122,51 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &132767799
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 132767801}
-  - component: {fileID: 132767800}
-  m_Layer: 0
-  m_Name: Audio Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &132767800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132767799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78050bc9d3064b0479bf000a16e5970b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &132767801
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132767799}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 87.152626, y: 46.502556, z: -0.02944002}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1376487354}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &506911298
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +155,7 @@ MonoBehaviour:
   HubSceneIndex: 1
   GameplaySceneIndex: 2
   PauseSceneIndex: 3
-  LoadSceneIndex: 4
+  BossSceneIndex: 4
 --- !u!4 &506911300
 Transform:
   m_ObjectHideFlags: 0
@@ -601,57 +556,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1376487353
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1376487354}
-  - component: {fileID: 1376487355}
-  m_Layer: 0
-  m_Name: FMODEvents
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1376487354
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376487353}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 132767801}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1376487355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376487353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e9b535bf99959341a49e03130772dd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <testAudio>k__BackingField:
-    Guid:
-      Data1: -1161436488
-      Data2: 1210317221
-      Data3: -515466600
-      Data4: -941029537
-    Path: event:/TEST_EVENT
 --- !u!1 &1448869213
 GameObject:
   m_ObjectHideFlags: 0
@@ -1166,6 +1070,119 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &7056977087681655014
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1258604741967570512, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 87.152626
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258604741967570512, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 46.502556
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258604741967570512, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.02944002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258604741967570512, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258604741967570512, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258604741967570512, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258604741967570512, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258604741967570512, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258604741967570512, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258604741967570512, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357887660012900661, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: m_Name
+      value: Audio Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989470339114768613, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: <bossBGM>k__BackingField.Path
+      value: event:/BGM/Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989470339114768613, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: <dullahanTalk>k__BackingField.Path
+      value: event:/SFX/Dullahan Talk
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989470339114768613, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: <bossBGM>k__BackingField.Guid.Data1
+      value: 1660249166
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989470339114768613, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: <bossBGM>k__BackingField.Guid.Data2
+      value: 1115999709
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989470339114768613, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: <bossBGM>k__BackingField.Guid.Data3
+      value: 1583276471
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989470339114768613, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: <bossBGM>k__BackingField.Guid.Data4
+      value: 764447009
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989470339114768613, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: <abilityReady>k__BackingField.Guid.Data1
+      value: -355754744
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989470339114768613, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: <abilityReady>k__BackingField.Guid.Data2
+      value: 1151081765
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989470339114768613, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: <abilityReady>k__BackingField.Guid.Data3
+      value: 985021058
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989470339114768613, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: <abilityReady>k__BackingField.Guid.Data4
+      value: 1096234289
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989470339114768613, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: <dullahanTalk>k__BackingField.Guid.Data1
+      value: -280885689
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989470339114768613, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: <dullahanTalk>k__BackingField.Guid.Data2
+      value: 1283066863
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989470339114768613, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: <dullahanTalk>k__BackingField.Guid.Data3
+      value: 1201687426
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989470339114768613, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+      propertyPath: <dullahanTalk>k__BackingField.Guid.Data4
+      value: 884803567
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1174,4 +1191,4 @@ SceneRoots:
   - {fileID: 506911300}
   - {fileID: 1781236466}
   - {fileID: 1370907365}
-  - {fileID: 132767801}
+  - {fileID: 7056977087681655014}
