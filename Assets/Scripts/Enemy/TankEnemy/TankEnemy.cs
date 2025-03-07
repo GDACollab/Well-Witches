@@ -13,6 +13,10 @@ public class TankEnemy : BaseEnemyClass
     [Tooltip("The lower the value the faster the enemy fires projectiles")]
     public float AttackRate;
 
+    [Header("DamageOfAcid")]
+    [Tooltip("Acid Damage")]
+    public float damage;
+
     [Header("Acid Pool")]
     [Range(0, 25)]
     [Tooltip("How many acid pools spawn per second. [0,25]")]
