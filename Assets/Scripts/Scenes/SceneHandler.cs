@@ -18,7 +18,7 @@ public class SceneHandler : MonoBehaviour
     [SerializeField]
     private int PauseSceneIndex = 3;
     [SerializeField]
-    private int LoadSceneIndex = 4;
+    private int BossSceneIndex = 4;
     
     
     private void Awake(){
@@ -135,10 +135,8 @@ public class SceneHandler : MonoBehaviour
         else if(index == PauseSceneIndex){
             
         }
-        // From Load Scene
-        else if(index == LoadSceneIndex)
-        {
-
+        else if(index == BossSceneIndex){
+            
         }
         // Unsupported Scenes
         else{
@@ -200,5 +198,12 @@ public class SceneHandler : MonoBehaviour
             return;
         }
         SceneManager.LoadScene(PauseSceneIndex);
+    }
+
+
+
+
+    public void ToBossScene(){
+        SceneManager.LoadScene(BossSceneIndex);
     }
 }
