@@ -1,11 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyFormation : MonoBehaviour
 {
-	// The list that holds the creature and its relative position.
-	public List<CreatureInfo> creaturesInFormation = new List<CreatureInfo>();
+    // The list that holds the creature and its relative position.
+    public List<CreatureInfo> creaturesInFormation = new List<CreatureInfo>();
 }
 
 
