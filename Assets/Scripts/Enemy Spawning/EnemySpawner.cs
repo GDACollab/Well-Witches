@@ -1,42 +1,51 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Collections;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
 public class EnemySpawner : MonoBehaviour
 {
-	public GameObject goofyBoy;			// Evildoer that will be placed (temp)
-	public List<GameObject> formationPrefabs;
+    public List<GameObject> enemies;      // Evildoer that will be placed (temp)
+    public List<GameObject> formationPrefabs;
 
 	public Transform referencePoint;    // Reference point for creatures to be spawned around
 
 	private float timer = 0.0f;
-	public float spawnTime = 0.0f;
+    private float surroundedTimer = 0.0f;
+    public float spawnTimeSurrounded = 0.0f;
+	public float spawnTimeSingles = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
-        SpawnSurrounded(goofyBoy, 3, 2);
-        SpawnSurrounded(goofyBoy, 8, 5);
-		SpawnFormation(referencePoint.position, 45);
+        //SpawnSurrounded(goofyBoy, 3, 2);
+        //SpawnSurrounded(goofyBoy, 8, 5);
+		//SpawnFormation(referencePoint.position, 45);
     }
 
     // Update is called once per frame
 	void Update()
 	{
 		timer = +Time.deltaTime;
-
-		/*
-		if(timer > 10)
+		surroundedTimer = +Time.deltaTime;
+		//Debug.Log("AHH");
+		if(timer >= spawnTimeSingles)
 		{
-			SpawnSingle(goofyBoy, 3);
-
+            SpawnSingle(enemies[UnityEngine.Random.Range(0, enemies.Count)], 12);
+			//SpawnSingle(enemies[Random.Range(0, )])
+			//SpawnSingle(enemies[Random.Range(0, enemies.Count)], 3);
+			timer = 0f;
         }
-		*/
 
-		/* TEST FUNCTIONS FOR SPAWNING IN ENEMIES
+        if (surroundedTimer >= spawnTimeSurrounded)
+        {
+			SpawnSurrounded(enemies[UnityEngine.Random.Range(0, enemies.Count)], 6, 18);
+            surroundedTimer = 0f;
+        }
+
+
+        /* TEST FUNCTIONS FOR SPAWNING IN ENEMIES
 		if (Input.GetKeyDown("1"))
 		{
 			SpawnSingle(goofyBoy, 3);
@@ -55,7 +64,7 @@ public class EnemySpawner : MonoBehaviour
 			SpawnSingleFormation(4f);
 		}
 		*/
-	}
+    }
 
 	// Use for placing enemies
 	void SpawnCreature(GameObject creature, Vector3 position)
