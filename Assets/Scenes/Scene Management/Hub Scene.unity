@@ -2943,7 +2943,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualCue: {fileID: 2135223245}
+  reward: {fileID: 0}
   JSON: {fileID: 4900000, guid: 19740bd2611cb0d43b706b6bbfea5406, type: 3}
+  quest: {fileID: 0}
 --- !u!61 &1075230188
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3426,7 +3428,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualCue: {fileID: 759730016}
+  reward: {fileID: 0}
   JSON: {fileID: 4900000, guid: 0e7dc9546e1862b47a6620c0040ceaf8, type: 3}
+  quest: {fileID: 0}
 --- !u!61 &1292404990
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3701,8 +3705,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1469362979}
   - component: {fileID: 1469362978}
-  - component: {fileID: 1469362977}
   - component: {fileID: 1469362980}
+  - component: {fileID: 1469362981}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3710,14 +3714,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1469362977
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1469362976}
-  m_Enabled: 1
 --- !u!20 &1469362978
 Camera:
   m_ObjectHideFlags: 0
@@ -3828,6 +3824,20 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1469362981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469362976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 1438284235}
 --- !u!1001 &1471752495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4282,7 +4292,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualCue: {fileID: 602147745}
+  reward: {fileID: 0}
   JSON: {fileID: 4900000, guid: 27baf9089431b0d47ad5086a368811b8, type: 3}
+  quest: {fileID: 0}
 --- !u!61 &1638937091
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4872,7 +4884,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualCue: {fileID: 904358373}
+  reward: {fileID: 0}
   JSON: {fileID: 4900000, guid: 7e02e57cdb0449d47a67912929c57073, type: 3}
+  quest: {fileID: 0}
 --- !u!61 &1860218614
 BoxCollider2D:
   m_ObjectHideFlags: 0
