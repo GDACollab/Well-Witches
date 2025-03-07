@@ -13,10 +13,13 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference flashStun { get; private set; }
     [field: SerializeField] public EventReference flashStunHit { get; private set; }
     [field: SerializeField] public EventReference abilityReady { get; private set; }
+    [field: SerializeField] public EventReference vampireTalk { get; private set; }
+    [field: SerializeField] public EventReference dullahanTalk { get; private set; }
 
     [field: Header("BGM")]
     [field: SerializeField] public EventReference lobbyBGM { get; private set; }
     [field: SerializeField] public EventReference mainMapBGM { get; private set; }
+    [field: SerializeField] public EventReference bossBGM { get; private set; }
 
     private static FMODEvents _instance;
     public static FMODEvents Instance { get { return _instance; } }

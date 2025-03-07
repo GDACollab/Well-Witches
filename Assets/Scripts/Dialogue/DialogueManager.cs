@@ -115,6 +115,7 @@ public class DialogueManager : MonoBehaviour
         currentCharacter.DisplaySprite();
         playerSpriteManager.DisplayPlayerSprite();
 
+        AudioManager.Instance.PlayCharacterTalk(currentCharacter.name);
         ContinueStory();
     }
 
@@ -150,6 +151,8 @@ public class DialogueManager : MonoBehaviour
                 DisplayChoices();
                 HandleTagsNPC((string)currentStory.variablesState["currentSpeaker"], currentStory.currentTags);
             }
+
+            AudioManager.Instance.PlayCharacterTalk(currentCharacter.name);
         }
         else
         {

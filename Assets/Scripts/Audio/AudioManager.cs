@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
 {
     private List<EventInstance> eventInstances;
     private EventInstance currentBGM;
+    private EventInstance currentCharacterTalk;
 
     private static AudioManager _instance;
     public static AudioManager Instance { get { return _instance; } }
@@ -57,18 +58,42 @@ public class AudioManager : MonoBehaviour
         currentBGM.start();
     }
 
+    public void PlayCharacterTalk(string characterName)
+    {
+        if (currentCharacterTalk.isValid())
+        {
+            currentCharacterTalk.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            currentCharacterTalk.release();
+        }
+
+        switch(characterName)
+        {
+            case "Wysteria":
+                currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.vampireTalk);
+                break;
+            case "Dullahan":
+                currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.dullahanTalk);
+                break;
+        }
+
+        currentCharacterTalk.start();
+    }
+
     public void CleanUp()
     {
         Debug.Log("Sound EventInstance CleanUp");
-        Debug.Log(eventInstances.Count);
+        //Debug.Log(eventInstances.Count);
         foreach (EventInstance eventInstance in eventInstances)
         {
-            Debug.Log("hello");
+            //Debug.Log("hello");
             eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             eventInstance.release();
         }
 
         eventInstances.Clear();
+
+        currentCharacterTalk.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        currentCharacterTalk.release();
     }
 
     private void OnDestroy()

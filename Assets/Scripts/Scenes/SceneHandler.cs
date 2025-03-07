@@ -179,5 +179,8 @@ public class SceneHandler : MonoBehaviour
 
     public void ToBossScene(){
         SceneManager.LoadScene(BossSceneIndex);
+
+        AudioManager.Instance.CleanUp();
+        AudioManager.Instance.PlayOST(FMODEvents.Instance.bossBGM);
     }
 }
