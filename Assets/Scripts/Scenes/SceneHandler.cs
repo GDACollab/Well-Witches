@@ -18,6 +18,8 @@ public class SceneHandler : MonoBehaviour
     private int GameplaySceneIndex = 2;
     [SerializeField]
     private int PauseSceneIndex = 3;
+    [SerializeField]
+    private int BossSceneIndex = 4;
     
     
     private void Awake(){
@@ -29,12 +31,13 @@ public class SceneHandler : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
     }
+
     private void OnApplicationQuit(){
         Instance = null;
     }
 
     // FOR TESTING PURPOSES ONLY DO NOT UNCOMMENT
-    /*
+/*
     public void Update(){
         if(Input.GetKeyDown(KeyCode.A)){
             ToMainMenuScene();
@@ -49,7 +52,7 @@ public class SceneHandler : MonoBehaviour
             ToPauseScene();
         }
     }
-    */
+*/
 
     public void ToMainMenuScene(){
         Scene currentScene = SceneManager.GetActiveScene();
@@ -97,6 +100,9 @@ public class SceneHandler : MonoBehaviour
         }
         // From Pause scene
         else if(index == PauseSceneIndex){
+            
+        }
+        else if(index == BossSceneIndex){
             
         }
         // Unsupported Scenes
@@ -166,5 +172,12 @@ public class SceneHandler : MonoBehaviour
             return;
         }
         SceneManager.LoadScene(PauseSceneIndex);
+    }
+
+
+
+
+    public void ToBossScene(){
+        SceneManager.LoadScene(BossSceneIndex);
     }
 }

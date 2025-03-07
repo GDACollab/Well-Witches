@@ -29,6 +29,13 @@ public class EnterForestTrigger : MonoBehaviour
         {
             visualCue.SetActive(false);
         }
+
+
+
+         if (Input.GetKeyUp(KeyCode.B))  //BOSS ROOM TRANSITION CLAUSE - Change to input if kept in final build
+            {
+                SceneHandler.Instance.ToBossScene();
+            }
     }
 
     // TODO: make sure player gets tagged with "Player" tag!!
