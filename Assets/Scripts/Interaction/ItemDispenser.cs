@@ -158,6 +158,7 @@ public class ItemDispenser : MonoBehaviour, IInteractable
             Debug.Log("Vacating");
             vacate();
 
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.interactBush, this.transform.position);
         }
     }
 

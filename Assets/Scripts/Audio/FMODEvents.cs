@@ -14,6 +14,9 @@ public class FMODEvents : MonoBehaviour
     [field: Header("Spectral Shot")]
     [field: SerializeField] public EventReference spectralShot { get; private set; }
 
+    [field: Header("Interact Bush")]
+    [field: SerializeField] public EventReference interactBush { get; private set; }
+
     private static FMODEvents _instance;
     public static FMODEvents Instance { get { return _instance; } }
 
