@@ -80,41 +80,6 @@ public class SceneHandler : MonoBehaviour
         }
         SceneManager.LoadScene(MainMenuSceneIndex);
     }
-    public void ToLoadScene()
-    {
-        Scene currentScene = SceneManager.GetActiveScene();
-        int index = currentScene.buildIndex;
-        // From Main Menu
-        if (index == MainMenuSceneIndex)
-        {
-
-        }
-        // From Hub
-        else if (index == HubSceneIndex)
-        {
-            Debug.Log("Attempt to change scenes from " + currentScene.name + " to " + currentScene.name + " is not allowed");
-            return;
-        }
-        // From Gameplay Scene
-        else if (index == GameplaySceneIndex)
-        {
-            Debug.Log("Attempt to change scenes from " + currentScene.name + " to " + currentScene.name + " is not allowed");
-            return;
-        }
-        // From Pause Scene
-        else if (index == PauseSceneIndex)
-        {
-            Debug.Log("Attempt to change scenes from " + currentScene.name + " to " + currentScene.name + " is not allowed");
-            return;
-        }
-        // Unsupported Scene
-        else
-        {
-            Debug.Log("Transitions from the current scene, " + currentScene.name + " are not currently supported");
-            return;
-        }
-        SceneManager.LoadScene(LoadSceneIndex);
-    }
     public void ToHubScene(){
         Scene currentScene = SceneManager.GetActiveScene();
         int index = currentScene.buildIndex;
