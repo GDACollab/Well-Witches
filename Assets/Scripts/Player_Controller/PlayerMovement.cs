@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private void UpdateSound()
 	{
-		Debug.Log(rb.velocity);
+		//Debug.Log(rb.velocity);
 
 		if (Mathf.Abs(rb.velocity.x) > 2.5f || Mathf.Abs(rb.velocity.y) > 2.5f)
 		{
