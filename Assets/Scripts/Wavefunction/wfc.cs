@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static wfc;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class wfc : MonoBehaviour
 {
@@ -30,8 +30,32 @@ public class wfc : MonoBehaviour
 
     private float timeStart;
 
-    private void Start()
+    public void OnEnable()
     {
+        SceneManager.activeSceneChanged += onSceneChange;
+    }
+
+    public void OnDisable()
+    {
+        SceneManager.activeSceneChanged -= onSceneChange;
+    }
+
+    public void onSceneChange(Scene before, Scene current)
+    {
+        if (current.name == "Gameplay Scene")
+        {
+            sizeX = 130;
+            sizeY = 130;
+
+            tileRules = new Dictionary<ushort, List<string>>();
+
+            tileWeights = new Dictionary<ushort, float>();
+            wfcGenerate();
+        }
+    }
+    public void wfcGenerate()
+    {
+        Debug.Log("IUHBASYUBUCBSAUCBDGHASBCGXHABSJNhjn");
         //Make tile rules, probably have a better way for designers to change this later
         for (int i = 0; i < tileScriptableObjects.Length; i++)
         {
