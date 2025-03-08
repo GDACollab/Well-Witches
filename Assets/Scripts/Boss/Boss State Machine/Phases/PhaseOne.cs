@@ -23,8 +23,8 @@ public class PhaseOne : State
         this.owner = owner;
         rb = owner.GetComponent<Rigidbody2D>();
         bossEnemy = owner.GetComponent<BossEnemy>();
-        shieldBash = owner.GetComponent<BossShieldBash>();
         swordAttack = owner.GetComponent<SwordAttack>();
+        shieldBash = owner.GetComponent<BossShieldBash>();
     }
 
     public override void OnEnter()
@@ -69,7 +69,7 @@ public class PhaseOne : State
                     if (useShieldBash)
                     {
                         //shieldBash.PerformShieldBash();
-                        Debug.Log("Shield Bash");
+                        shieldBash.PerformShieldBash();
                     }
                     else
                     {
