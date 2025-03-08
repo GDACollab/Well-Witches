@@ -11,11 +11,12 @@ public class BossEnemySpawns : EnemySpawner
     {
         
         //Phase one should just be the normal spawning of enemies, we can make it more frequent but for now this spawn rate should be the same
+        
         timer = +Time.deltaTime;
         if (timer > 10)
         {
-            enemySpawner.SpawnSingle(goofyBoy, 3);
-            enemySpawner.SpawnFormation(referencePoint.position, 45);
+            enemySpawner.SpawnSingle();
+            //enemySpawner.SpawnFormation(referencePoint.position, 45);
         }
         
         
@@ -27,8 +28,8 @@ public class BossEnemySpawns : EnemySpawner
         timer = +Time.deltaTime;
         if (timer > 5)
         {
-            enemySpawner.SpawnSingle(goofyBoy, 3);
-            enemySpawner.SpawnFormation(referencePoint.position, 45);
+            enemySpawner.SpawnSingle();
+            //enemySpawner.SpawnFormation(referencePoint.position, 45);
         }
     }
     // Update is called once per frame
@@ -36,7 +37,7 @@ public class BossEnemySpawns : EnemySpawner
     {
         
         //This should spawn enemies form the enemy spawner class into the boss
-        enemySpawner.SpawnSingle(goofyBoy, 3);
+        enemySpawner.SpawnSingle();
 
         //enemySpawner.SpawnSingle(goofyBoy, 3);
         //enemySpawner.SpawnSurrounded(goofyBoy, 3, 2);
