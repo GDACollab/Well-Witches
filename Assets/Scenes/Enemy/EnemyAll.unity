@@ -193,6 +193,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7724197375004876401, guid: 842b350a5dbea204f9e240d00ade7c24, type: 3}
+      propertyPath: AOEDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7724197375004876401, guid: 842b350a5dbea204f9e240d00ade7c24, type: 3}
+      propertyPath: currentTarget
+      value: 
+      objectReference: {fileID: 1661577766}
     - target: {fileID: 8743953608036847159, guid: 842b350a5dbea204f9e240d00ade7c24, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.04
@@ -246,6 +254,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 842b350a5dbea204f9e240d00ade7c24, type: 3}
+--- !u!114 &1169755631 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4189060932986526103, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
+  m_PrefabInstance: {fileID: 1966091310}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbd56c397e17f8e4b8d46efe4fbfc8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1178672593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -254,6 +273,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 432329342564120527, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1815965804272796333, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -368,6 +391,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29b3763b169ac6a438ad344dbf48489b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Warden: {fileID: 0}
+  Gatherer: {fileID: 1169755631}
+  myBuffs: []
+  buffTimers: []
+  keyItemChance: 0.05
   healthTransferAmount: 0.25
   GathererResistance: 0
   MaxSpeed: 7.5
@@ -411,6 +439,11 @@ Transform:
 --- !u!1 &1661577765 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5708320580637796411, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
+  m_PrefabInstance: {fileID: 1966091310}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1661577766 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8015346194276888610, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
   m_PrefabInstance: {fileID: 1966091310}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1763540352 stripped
@@ -487,6 +520,10 @@ PrefabInstance:
       propertyPath: health
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 1314222603258456997, guid: f6ab2e98325a9bb4997d563ba9a67bc5, type: 3}
+      propertyPath: currentTarget
+      value: 
+      objectReference: {fileID: 1661577766}
     - target: {fileID: 5191984797867318150, guid: f6ab2e98325a9bb4997d563ba9a67bc5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.42131
@@ -544,6 +581,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 69023787319940635, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 871047896541522312, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
       propertyPath: warden
       value: 

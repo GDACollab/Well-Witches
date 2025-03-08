@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,12 @@ public class StatsManager : MonoBehaviour
     it contains the stats in a nice and neat way (hopefully)
      */
 
+    //Gets references to each individual health bars
+    [SerializeField] HealthBar Warden;
+    [SerializeField] HealthBar Gatherer;
     //buffs and buff timers
+
+
 
     [Header("---------------Buff / Curse Tracking---------------")]
     public List<string> myBuffs = new List<string>();
@@ -129,5 +135,28 @@ public class StatsManager : MonoBehaviour
     public float getKeyItemChance()
     {
         return keyItemChance;
+    }
+
+    //Public func to calculate taking damage and updating healthbars.
+    //Sends a signal to ondie to the individual warden/gatherer movement scripts to stop
+    //This may be temp until event bus/script is figured out (sorry - ben)
+    public void tookDamage(string player, float damage)
+    {
+        if (player == "Gatherer")
+        {
+            GathererCurrentHealth = GathererCurrentHealth - damage;
+            Gatherer.UpdateHealthBar(GathererCurrentHealth, GathererMaxHealth);
+            Debug.Log(GathererCurrentHealth);
+        }
+        else if (player == "Warden")
+        {
+            WardenCurrentHealth = WardenCurrentHealth - damage;
+            Warden.UpdateHealthBar(WardenCurrentHealth, WardenMaxHealth);
+
+        }
+        else
+        {
+            Debug.Log("Somethign has gone very god dam wrong");
+        }
     }
 }
