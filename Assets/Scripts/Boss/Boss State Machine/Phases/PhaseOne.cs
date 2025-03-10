@@ -39,10 +39,15 @@ public class PhaseOne : State
         {
             float distanceToTarget = Vector2.Distance(bossEnemy.transform.position, bossEnemy.currentTarget.position);
 
-            if (distanceToTarget >= bossEnemy.LungeDistance)
+            BossLunge bossLunge = owner.GetComponent<BossLunge>();
+
+            if (distanceToTarget >= bossLunge.LungeDistance)
             {
-                bossEnemy.LungeAttack();
-                Debug.Log("Lunge Attack");
+                // Perform lunge attack
+                if (bossLunge != null)
+                {
+                    bossLunge.PerformLunge();
+                }
             }
             else if (distanceToTarget > bossEnemy.range)
             {
@@ -54,12 +59,10 @@ public class PhaseOne : State
                 }
                 else
                 {
-                    //Stop movement and rotation
+                    // Stop movement and rotation
                     rb.velocity = Vector2.zero;
                     rb.angularVelocity = 0f;
-
                 }
-
             }
             else
             {
@@ -68,7 +71,6 @@ public class PhaseOne : State
                     // Alternate between Shield_Bash and Sword_Slash when in range
                     if (useShieldBash)
                     {
-                        //shieldBash.PerformShieldBash();
                         shieldBash.PerformShieldBash();
                     }
                     else

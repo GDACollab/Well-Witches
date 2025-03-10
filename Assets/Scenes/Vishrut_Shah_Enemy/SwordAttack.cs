@@ -77,7 +77,7 @@ public class SwordAttack : MonoBehaviour
             // Set the position and rotation of the attack indicator
             if (attackIndicatorCapsule != null)
             {
-                attackIndicatorCapsule.transform.position = transform.position + directionToPlayer;
+                attackIndicatorCapsule.transform.position = transform.position + directionToPlayer * 2;
                 attackIndicatorCapsule.transform.rotation = Quaternion.Euler(0, 0, angle);
             }
         }
