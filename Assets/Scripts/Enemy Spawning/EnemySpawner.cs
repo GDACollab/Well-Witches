@@ -14,7 +14,10 @@ public class EnemySpawner : MonoBehaviour
     public float spawnRadiusMax;
     public float singleSpawnTime = 0.0f;
     public float formationSpawnTime = 0.0f;
-
+    [Tooltip("Maximum coordinate an enemy can spawn.")]
+    [SerializeField] private Vector2 maxSpawnCoord;
+    [Tooltip("Miniumm coordinate an enemy can spawn.")]
+    [SerializeField] private Vector2 minSpawnCoord;
 
     [Header("Debug")]
     public float singleTimer;
@@ -79,11 +82,27 @@ public class EnemySpawner : MonoBehaviour
     // returns a Vector3
     private Vector3 GetRandomSpawnPosition()
     {
-        float dir = Random.Range(0f, 2 * Mathf.PI);		// Generate direction from 0 to 360 degrees
-        float radius = Random.Range(spawnRadiusMin, spawnRadiusMax);
+        float x = maxSpawnCoord.x;
+        float y = maxSpawnCoord.y;
 
-        float x = radius * Mathf.Cos(dir) + referencePoint.position.x;
-        float y = radius * Mathf.Sin(dir) + referencePoint.position.y;
+        float dir;
+        float radius;
+
+        //Failsafe, only attempts spawning 100 times to not crash the game
+        int i = 0;
+
+        //Keep attempting spawn positions until its within bounds
+        while ((x >= maxSpawnCoord.x || y >= maxSpawnCoord.y || x <= minSpawnCoord.x || y <= minSpawnCoord.y ) && i < 100)
+        {
+            dir = Random.Range(0f, 2 * Mathf.PI);     // Generate direction from 0 to 360 degrees
+            radius = Random.Range(spawnRadiusMin, spawnRadiusMax);
+
+            x = radius * Mathf.Cos(dir) + referencePoint.position.x;
+            y = radius * Mathf.Sin(dir) + referencePoint.position.y;
+
+            i++;
+        }
+
         return new Vector3(x, y, 0);
     }
 
