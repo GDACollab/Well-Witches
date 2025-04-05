@@ -20,9 +20,6 @@ public class cameraScript : MonoBehaviour
 
     private void Update()
     {
-        //Move camera to target gameobject
-        //transform.position = target.transform.position;
-
         //Clamp x and y positions based on min and max view coords
         x = target.transform.position.x;
         x = Mathf.Min(x, maxViewCoord.x);
@@ -32,6 +29,7 @@ public class cameraScript : MonoBehaviour
         y = Mathf.Min(y, maxViewCoord.y);
         y = Mathf.Max(y, minViewCoord.y);
 
+        //Lerp (slowly move) camera to these calculated x and y coordinates
         transform.position = Vector3.Lerp(transform.position, new Vector3(x, y, -11), Time.deltaTime * cameraMoveSpeed);
     }
 }
