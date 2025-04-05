@@ -19,7 +19,7 @@ public class Ultimate : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) 
+        if (Input.GetKeyDown(KeyCode.B)) 
         {
             chargingParticles.Play();
             orb.Play();
