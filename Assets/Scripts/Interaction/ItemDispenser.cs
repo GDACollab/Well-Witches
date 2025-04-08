@@ -206,6 +206,7 @@ public class ItemDispenser : MonoBehaviour, IInteractable
 
     Item ChooseItem()
     {
+        AnnouncementManager.Instance.AddAnnouncementToQueue("You got a thing!");
         return items[Random.Range(0, items.Length)];
     }
 
