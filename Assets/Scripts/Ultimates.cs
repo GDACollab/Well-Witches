@@ -18,22 +18,22 @@ public class Ultimates : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            currentUlt.SetActive(true);
-        }
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    currentUlt.SetActive(true);
+        //}
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            if (ultNum < Ultimate.Count - 1)
-            {
-                ultNum++;
-            }
-            else
-            {
-                ultNum = 0;
-            }
-            currentUlt = Ultimate[ultNum];
-        }
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    if (ultNum < Ultimate.Count - 1)
+        //    {
+        //        ultNum++;
+        //    }
+        //    else
+        //    {
+        //        ultNum = 0;
+        //    }
+        //    currentUlt = Ultimate[ultNum];
+        //}
     }
 }
