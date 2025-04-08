@@ -36,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!114 &5213248895469507566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,10 +57,12 @@ MonoBehaviour:
   - {fileID: 3663203546483103794, guid: d8bf0567f46e47d4b88ada500863f322, type: 3}
   - {fileID: 3663203546483103794, guid: db228e4e930cef94e96e1ee45d085544, type: 3}
   referencePoint: {fileID: 0}
-  spawnRadiusMin: 6
-  spawnRadiusMax: 8
-  singleSpawnTime: 5
-  formationSpawnTime: 15
+  spawnRadiusMin: 12
+  spawnRadiusMax: 18
+  singleSpawnTime: 3
+  formationSpawnTime: 10
+  maxSpawnCoord: {x: 130, y: 130}
+  minSpawnCoord: {x: 0, y: 0}
   singleTimer: 0
   formationTimer: 0
 --- !u!114 &3603494246620078635
@@ -153,5 +155,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshSurface: {fileID: 7755896293438908595}
-  updateMesh: 0
   updateCooldown: 5
