@@ -7,11 +7,8 @@ public class PlayerProjectile : MonoBehaviour
     private Camera cam;
     private Rigidbody2D rb;
 
-    [SerializeField] private ParticleSystem head;
-    [SerializeField] private ParticleSystem sparks;
-    [SerializeField] private ParticleSystem tails;
-    [SerializeField] private ParticleSystem impact;
-    [SerializeField] private TrailRenderer trail_VFX;
+    [SerializeField] private GameObject projectile;
+    [SerializeField] private GameObject impact;
 
     private float _damage;
 
@@ -31,10 +28,8 @@ public class PlayerProjectile : MonoBehaviour
         float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
 
-        head.gameObject.SetActive(true);
-        sparks.gameObject.SetActive(true);
-        tails.gameObject.SetActive(true);
-        impact.gameObject.SetActive(false);
+        projectile.SetActive(true);
+        impact.SetActive(false);
 
         Destroy(gameObject, lifetime);
     }
@@ -47,10 +42,8 @@ public class PlayerProjectile : MonoBehaviour
             OnHitEnemy?.Invoke();
         }
         rb.velocity = Vector2.zero;
-        head.gameObject.SetActive(false);
-        sparks.gameObject.SetActive(false);
-        tails.gameObject.SetActive(false);
-        impact.gameObject.SetActive(true);
+        projectile.SetActive(false);
+        impact.SetActive(true);
 
         Destroy(gameObject, 0.5f);
     }
