@@ -5,11 +5,12 @@ using UnityEngine;
 using Ink.Runtime;
 using System;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
     [Header("Dialogue UI")]
-    [SerializeField] private GameObject dialoguePanel;
+    [SerializeField] public GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI speakerText;
 
@@ -19,6 +20,7 @@ public class DialogueManager : MonoBehaviour
 
     private Story currentStory;
     private static DialogueManager instance;
+    private InkDialogueVariables currentVars;
     public Boolean dialogueActive { get; private set; } //variable is read-only to outside scripts
 
     private SpriteManager currentCharacter;
@@ -37,6 +39,21 @@ public class DialogueManager : MonoBehaviour
         }
         instance = this;
     }
+
+    private void OnEnable()
+    {
+        SceneManager.activeSceneChanged += OnSceneChange;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.activeSceneChanged -= OnSceneChange;
+    }
+
+    public void OnSceneChange(Scene before, Scene current)
+    {
+        init();
+    }
     public static DialogueManager GetInstance()
     {
         return instance;
@@ -44,12 +61,17 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
+        init();
+    }
+
+    private void init()
+    {
         dialogueActive = false;
         dialoguePanel.SetActive(false);
 
         choicesText = new TextMeshProUGUI[choices.Length];
         int index = 0;
-        foreach(GameObject c in choices)
+        foreach (GameObject c in choices)
         {
             choicesText[index] = c.GetComponentInChildren<TextMeshProUGUI>();
             index++;
@@ -77,11 +99,13 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogueMode(TextAsset JSON, SpriteManager currChara)
+    public void StartDialogueMode(Story story, SpriteManager currChara, InkDialogueVariables inkDialogueVariables)
     {
-        currentStory = new Story(JSON.text);
+        currentStory = story;
+        inkDialogueVariables.SyncVariablesAndStartListening(currentStory);
+        currentVars = inkDialogueVariables;
         dialogueActive = true;
-        dialoguePanel.SetActive(true);
+        dialoguePanel.SetActive(true);  
 
         // reset speaker
         speakerText.text = "???"; 
@@ -91,6 +115,7 @@ public class DialogueManager : MonoBehaviour
         currentCharacter.DisplaySprite();
         playerSpriteManager.DisplayPlayerSprite();
 
+        AudioManager.Instance.PlayCharacterTalk(currentCharacter.name);
         ContinueStory();
     }
 
@@ -103,6 +128,7 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = "";
         currentCharacter.HideSprite();
         playerSpriteManager.HidePlayerSprite();
+        currentVars.StopListening(currentStory);
     }
 
     private void ContinueStory()
@@ -110,9 +136,23 @@ public class DialogueManager : MonoBehaviour
         //sets dialogue text and advances through ink 
         if (currentStory.canContinue)
         {
-            dialogueText.text = currentStory.Continue();
-            DisplayChoices();
-            HandleTagsNPC((string)currentStory.variablesState["currentSpeaker"], currentStory.currentTags);
+            string text = currentStory.Continue();
+            while (IsLineBlank(text) && currentStory.canContinue)
+            {
+                text = currentStory.Continue();
+            }
+            if(IsLineBlank(text) && !currentStory.canContinue)
+            {
+                StartCoroutine(EndDialogueMode());
+            }
+            else
+            {
+                dialogueText.text = text;
+                DisplayChoices();
+                HandleTagsNPC((string)currentStory.variablesState["currentSpeaker"], currentStory.currentTags);
+            }
+
+            AudioManager.Instance.PlayCharacterTalk(currentCharacter.name);
         }
         else
         {
@@ -209,5 +249,10 @@ public class DialogueManager : MonoBehaviour
         List<String> choiceTags = currentStory.currentChoices[choiceIndex].tags;
         currentStory.ChooseChoiceIndex(choiceIndex);
         ContinueStory();
+    }
+
+    private bool IsLineBlank(string dialogueLine)
+    {
+        return dialogueLine.Trim().Equals("") || dialogueLine.Trim().Equals("\n");
     }
 }

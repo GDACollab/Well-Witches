@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,12 +7,32 @@ public class StatsManager : MonoBehaviour
 {
    public static StatsManager Instance; //singleton for both character stats
 
-   /*
-   With the StatsManager gameObject 
-   it contains the stats in a nice and neat way (hopefully)
-    */
+    /*
+    With the StatsManager gameObject 
+    it contains the stats in a nice and neat way (hopefully)
+     */
 
-   [Header("---------------Gatherer Combat stats---------------")]
+    //Gets references to each individual health bars
+    [SerializeField] HealthBar Warden;
+    [SerializeField] HealthBar Gatherer;
+    //buffs and buff timers
+
+
+
+    [Header("---------------Buff / Curse Tracking---------------")]
+    public List<string> myBuffs = new List<string>();
+    public List<float> buffTimers = new List<float>();
+
+    public Dictionary<string, float> questItems = new Dictionary<string, float>
+    {
+        {"Dullahan’s Head", 0.15f},
+        {"Vampire Garlics", 0.10f}
+    };
+
+    public float keyItemChance = 0.05f;
+
+
+    [Header("---------------Gatherer Combat stats---------------")]
    public float healthTransferAmount; //current health transfer amount put in stats for now
    public float GathererResistance; 
 
@@ -77,5 +98,65 @@ public class StatsManager : MonoBehaviour
             Debug.LogError("Found more than one GameManager in the scene. Please make sure there is only one");
         }
         Instance = this;
+    }
+
+    private void Update()
+    {
+        for(int i = 0; i < buffTimers.Count; i++)
+        {
+            buffTimers[i] -= Time.deltaTime;
+            Debug.Log("status " + myBuffs[i] + ": " + buffTimers[i]);
+            if (buffTimers[i] <= 0)
+            {
+                Debug.Log("status " + myBuffs[i] + " is over!");
+                myBuffs.RemoveAt(i);
+                buffTimers.RemoveAt(i);
+                i--;
+            }
+        }
+    }
+
+    public void addStatus(string buff, float time)
+    {
+        myBuffs.Add(buff);
+        buffTimers.Add(time);
+    }
+
+    public Dictionary<string, float> getQuestItems() 
+    {
+        return new Dictionary<string, float> (questItems);
+    }
+
+    public List<string> getMyBuffs() 
+    {
+        return new List<string> (myBuffs);
+    }
+
+    public float getKeyItemChance()
+    {
+        return keyItemChance;
+    }
+
+    //Public func to calculate taking damage and updating healthbars.
+    //Sends a signal to ondie to the individual warden/gatherer movement scripts to stop
+    //This may be temp until event bus/script is figured out (sorry - ben)
+    public void tookDamage(string player, float damage)
+    {
+        if (player == "Gatherer")
+        {
+            GathererCurrentHealth = GathererCurrentHealth - damage;
+            Gatherer.UpdateHealthBar(GathererCurrentHealth, GathererMaxHealth);
+            Debug.Log(GathererCurrentHealth);
+        }
+        else if (player == "Warden")
+        {
+            WardenCurrentHealth = WardenCurrentHealth - damage;
+            Warden.UpdateHealthBar(WardenCurrentHealth, WardenMaxHealth);
+
+        }
+        else
+        {
+            Debug.Log("Somethign has gone very god dam wrong");
+        }
     }
 }

@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ public class SceneHandler : MonoBehaviour
     private int GameplaySceneIndex = 2;
     [SerializeField]
     private int PauseSceneIndex = 3;
+    [SerializeField]
+    private int BossSceneIndex = 4;
     
     
     private void Awake(){
@@ -28,12 +31,13 @@ public class SceneHandler : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
     }
+
     private void OnApplicationQuit(){
         Instance = null;
     }
 
     // FOR TESTING PURPOSES ONLY DO NOT UNCOMMENT
-    /*
+/*
     public void Update(){
         if(Input.GetKeyDown(KeyCode.A)){
             ToMainMenuScene();
@@ -48,7 +52,7 @@ public class SceneHandler : MonoBehaviour
             ToPauseScene();
         }
     }
-    */
+*/
 
     public void ToMainMenuScene(){
         Scene currentScene = SceneManager.GetActiveScene();
@@ -78,6 +82,7 @@ public class SceneHandler : MonoBehaviour
         SceneManager.LoadScene(MainMenuSceneIndex);
     }
     public void ToHubScene(){
+
         Scene currentScene = SceneManager.GetActiveScene();
         int index = currentScene.buildIndex;
         // From Main Menu
@@ -97,12 +102,19 @@ public class SceneHandler : MonoBehaviour
         else if(index == PauseSceneIndex){
             
         }
+        else if(index == BossSceneIndex){
+            
+        }
         // Unsupported Scenes
         else{
             Debug.Log("Transitions from the current scene, " + currentScene.name + " are not currently supported");
             return;
         }
+
         SceneManager.LoadScene(HubSceneIndex);
+
+        AudioManager.Instance.CleanUp();
+        AudioManager.Instance.PlayOST(FMODEvents.Instance.lobbyBGM);
     }
     public void ToGameplayScene(){
         Scene currentScene = SceneManager.GetActiveScene();
@@ -130,6 +142,9 @@ public class SceneHandler : MonoBehaviour
             return;
         }
         SceneManager.LoadScene(GameplaySceneIndex);
+
+        AudioManager.Instance.CleanUp();
+        AudioManager.Instance.PlayOST(FMODEvents.Instance.mainMapBGM);
     }
     public void ToPauseScene(){
         Scene currentScene = SceneManager.GetActiveScene();
@@ -157,5 +172,15 @@ public class SceneHandler : MonoBehaviour
             return;
         }
         SceneManager.LoadScene(PauseSceneIndex);
+    }
+
+
+
+
+    public void ToBossScene(){
+        SceneManager.LoadScene(BossSceneIndex);
+
+        AudioManager.Instance.CleanUp();
+        AudioManager.Instance.PlayOST(FMODEvents.Instance.bossBGM);
     }
 }

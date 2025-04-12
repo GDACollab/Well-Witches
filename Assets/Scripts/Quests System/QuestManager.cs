@@ -17,6 +17,8 @@ public class QuestManager : MonoBehaviour
     [SerializeField] public TextMeshProUGUI questDisplay; // this is set by this script
     [SerializeField] public TextMeshProUGUI questDescription; // this is passed onto the instantiated step object
 
+    private bool isQuestAlreadyActive = false;
+
     private void Awake()
     {
         questMap = CreateQuestMap();
@@ -51,7 +53,7 @@ public class QuestManager : MonoBehaviour
     {
         bool meetsRequirements = true;
 
-        if(currentRunCount < quest.info.runRequirement)
+        if(currentRunCount < quest.info.runRequirement || isQuestAlreadyActive)
         {
             meetsRequirements = false;
         }
@@ -88,13 +90,30 @@ public class QuestManager : MonoBehaviour
         EventManager.instance.questEvents.QuestStateChange(quest);
     }
 
+    private void DisableOtherQuests(Quest activeQuest)
+    {
+        foreach(Quest quest in questMap.Values)
+        {
+            if(quest != activeQuest)
+            {
+                ChangeQuestState(quest.info.id, QuestState.REQUIREMENTS_NOT_MET);
+            }
+        }
+    }
+
     private void StartQuest(string id)
     {
+        if (isQuestAlreadyActive)
+        {
+            return;
+        }
+        GameManager.instance.activeQuestState = QuestState.IN_PROGRESS;
         Quest quest = GetQuestByID(id);
         questDisplay.text = "Quest: " + quest.info.displayName;
         quest.InstantiateCurrentQuestStep(this.transform, questDescription);
         ChangeQuestState(quest.info.id, QuestState.IN_PROGRESS);
-
+        isQuestAlreadyActive = true;
+        DisableOtherQuests(quest);
     }
 
     private void AdvanceQuest(string id)
@@ -121,6 +140,8 @@ public class QuestManager : MonoBehaviour
         Quest quest = GetQuestByID(id);
         ResetQuestText();
         ChangeQuestState(quest.info.id, QuestState.FINISHED);
+        GameManager.instance.activeQuestState = QuestState.FINISHED;
+        isQuestAlreadyActive = false;
     }
 
     private void CancelQuest()
@@ -140,6 +161,7 @@ public class QuestManager : MonoBehaviour
         {
             child.gameObject.GetComponent<QuestStep>().CancelQuestStep();
         }
+        isQuestAlreadyActive = false;
     }
 
     private void ResetQuestText()

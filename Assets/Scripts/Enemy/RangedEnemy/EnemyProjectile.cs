@@ -57,7 +57,19 @@ public class EnemyProjectile : MonoBehaviour
             rb.velocity = Vector3.zero;
             if (collision.gameObject.CompareTag("Player"))
             {
+                //Debug.Log(collision.gameObject.name);
                 // TODO: DEAL DAMAGE TO PLAYER
+                // - Producer (ben) added some temp checks and calls to StatsManager to do damage here
+
+                if (collision.gameObject.name == "Gatherer")
+                {
+                    EventManager.instance.playerEvents.PlayerDamage(_damage, "Gatherer");
+                }
+                else if (collision.gameObject.name == "Warden")
+                {
+                    EventManager.instance.playerEvents.PlayerDamage(_damage, "Warden");
+
+                }
             }
             for (int i = 0; i < projectileComponents.Length; i++)
             {
