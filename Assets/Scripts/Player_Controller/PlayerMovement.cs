@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
 	void OnMove(InputValue iv)  // Called by the Player Input component
 	{
+		print("blah");
 		moveDirection = iv.Get<Vector2>();
 	}
 
