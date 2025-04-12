@@ -20,7 +20,7 @@ public class Warden_BigBlast : MonoBehaviour
 
     [Header("References")]
     [SerializeField] Transform spawnPoint;
-    [SerializeField] GameObject prefab;
+    [SerializeField] BigBlast prefab;
 
 	public static Warden_BigBlast Instance { get; private set; } void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
 
@@ -39,8 +39,7 @@ public class Warden_BigBlast : MonoBehaviour
     {
         if (Charge < NumHitsRequired) return;
 
-        BigBlast bb = Instantiate(prefab, spawnPoint).GetComponent<BigBlast>();
-        bb.Activate(damagePerTick, damageTickDuration, knockbackForce, knockbackTickDuration, abilityDuration);
+        prefab.Activate(damagePerTick, damageTickDuration, knockbackForce, knockbackTickDuration, abilityDuration);
         Charge = 0;
     }
 }
