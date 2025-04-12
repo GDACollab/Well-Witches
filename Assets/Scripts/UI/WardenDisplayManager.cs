@@ -10,18 +10,19 @@ public class WardenDisplayManager : MonoBehaviour
     [SerializeField]
     private GameObject wardenDisplay;
     private GameObject wardenRotatingDisplay;
-    [SerializeField]
     private GameObject warden;
     private SpriteRenderer wardenSprite;
-    [SerializeField]
     private Camera cam;
     [SerializeField]
     private int displayMargins = 10; // in pixels
 
     void Awake()
     {
+        warden = GameObject.Find("Warden");
+        cam = Camera.main;
         wardenRotatingDisplay = wardenDisplay.transform.GetChild(0).gameObject;
         wardenSprite = warden.GetComponentInChildren<SpriteRenderer>();
+        
     }
 
     // Start is called before the first frame update
