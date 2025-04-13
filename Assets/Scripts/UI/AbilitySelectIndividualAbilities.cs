@@ -46,14 +46,6 @@ public class AbilitySelectIndividualAbilities : MonoBehaviour, IPointerEnterHand
         abilitySelectManager.updateHoveredAbility(id);
     }
 
-    //So uhhhhh this code doesnt work for some reason :(
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        abilitySelectManager.updateHoveredAbility(-1);
-        Debug.Log("kljsfdavaksdvhasdv");
-    }
-
-
     public void setSelected(bool selected)
     {
         if (selected)

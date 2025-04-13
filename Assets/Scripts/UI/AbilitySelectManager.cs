@@ -15,6 +15,7 @@ public class AbilitySelectManager : MonoBehaviour
     [SerializeField] private AbilitySelectIndividualAbilities[] abilitiesList;
 
     [SerializeField] private TextMeshProUGUI abilityInfoText;
+    [SerializeField] private TextMeshProUGUI abilityNameText;
 
     [SerializeField] private string defaultAbilityText;
 
@@ -88,10 +89,12 @@ public class AbilitySelectManager : MonoBehaviour
         if (id == -1)
         {
             abilityInfoText.text = defaultAbilityText;
+            abilityNameText.text = " ";
             return;
         }
 
         abilityInfoText.text = abilitiesList[id].getAbilityText();
+        abilityNameText.text = abilitiesList[id].getAbilityName();
     }
 
 }
