@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: 2686973554895526223}
   - component: {fileID: 871047896541522312}
   - component: {fileID: 8282183718129652020}
+  - component: {fileID: 346488403322498464}
   m_Layer: 7
   m_Name: Gatherer
   m_TagString: Player
@@ -263,6 +264,18 @@ MonoBehaviour:
   collisionLayersToCheck:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &346488403322498464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5708320580637796411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da399ee4076e9c646bd4fb50ad3220dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6319885882415222397
 GameObject:
   m_ObjectHideFlags: 0

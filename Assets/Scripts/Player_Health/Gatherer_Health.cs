@@ -20,7 +20,7 @@ public class Gatherer_Health : PlayerHealth
 	{
 		//send out signal
 		EventManager.instance.playerEvents.PlayerDeath();
-		// TODO - implement death
+		SceneHandler.Instance.ToHubScene();
 		return;
 	}
 }

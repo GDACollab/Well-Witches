@@ -130,4 +130,19 @@ public class TankEnemy : BaseEnemyClass
         //    transform.localScale = new Vector3(-1, 1, 1);
         //}
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (collision.gameObject.name == "Gatherer")
+            {
+                EventManager.instance.playerEvents.PlayerDamage(damage, "Gatherer");
+            }
+            else if (collision.gameObject.name == "Warden")
+            {
+                EventManager.instance.playerEvents.PlayerDamage(damage, "Warden");
+            }
+        }
+    }
 }
