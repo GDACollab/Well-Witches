@@ -59,19 +59,28 @@ public class MeleeEnemy : BaseEnemyClass
 
     public void Attack()
     {
+        /*
+        A
+
+        */
         Debug.Log("Attacking");
         if (canAttack) {
-            if (circol.IsTouching(players[0].GetComponent<CapsuleCollider2D>())) {
-                Debug.Log(players[0].name + " has been hit");
-            }
-            if (circol.IsTouching(players[1].GetComponent<CapsuleCollider2D>())) {
-                Debug.Log(players[1].name + " has been hit");
-            }
+            // if (circol.IsTouching(players[0].GetComponent<CapsuleCollider2D>())) {
+            //     Debug.Log(players[0].name + " has been hit");
+            // }
+            // if (circol.IsTouching(players[1].GetComponent<CapsuleCollider2D>())) {
+            //     Debug.Log(players[1].name + " has been hit");
+            // }
             rb2d.AddForce((currentTarget.position - transform.position).normalized * dashDistance, ForceMode2D.Impulse);
         } else {
             rb2d.velocity = Vector2.zero;
         }
         canAttack = !canAttack;
+    }
+
+    public void AggroMove() {
+        Vector3 direction = currentTarget.position - transform.position;
+        rb2d.velocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
