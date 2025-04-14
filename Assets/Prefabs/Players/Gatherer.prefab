@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2982385783056123225}
   m_Layer: 7
   m_Name: Interaction Radius
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 871047896541522312}
   - component: {fileID: 8282183718129652020}
   - component: {fileID: 346488403322498464}
+  - component: {fileID: 1533228272490873876}
   m_Layer: 7
   m_Name: Gatherer
   m_TagString: Player
@@ -257,10 +258,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1c91f704e9c06438bb5d1b9c83171c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chargeDuration: 5
-  radius: 16
+  chargeDuration: 2
+  radius: 20
   stunDuration: 5
-  <cooldownDuration>k__BackingField: 90
+  <cooldownDuration>k__BackingField: 45
   collisionLayersToCheck:
     serializedVersion: 2
     m_Bits: 64
@@ -276,6 +277,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da399ee4076e9c646bd4fb50ad3220dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1533228272490873876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5708320580637796411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9ea445f6c4db074ea17897b4b0bf57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  temp: 0
+  healthgate: 3
+  cooldownTime: 5
 --- !u!1 &6319885882415222397
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +305,7 @@ GameObject:
   - component: {fileID: 4615590928577258544}
   m_Layer: 0
   m_Name: Rope Radius
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -306,7 +322,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 255523634104090149}
   m_Father: {fileID: 8015346194276888610}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &3652925597344170551
@@ -368,7 +385,7 @@ GameObject:
   - component: {fileID: 1038293068960941036}
   m_Layer: 7
   m_Name: Sprite
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -440,6 +457,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &9211009601340083901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 255523634104090149}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &255523634104090149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9211009601340083901}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.0594201, y: -0.5883798, z: 0}
+  m_LocalScale: {x: 1.1488402, y: 1.1488402, z: 1.1488402}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1940337477319582645}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8760523141567335030
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -450,11 +498,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1969645009260674462, guid: 9f93fa66d3cb51544955caed335ad15e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1969645009260674462, guid: 9f93fa66d3cb51544955caed335ad15e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2665543033660672575, guid: 9f93fa66d3cb51544955caed335ad15e, type: 3}
       propertyPath: m_Layer
@@ -562,7 +610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8747848260698512493, guid: 9f93fa66d3cb51544955caed335ad15e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
