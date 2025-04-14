@@ -76,7 +76,7 @@ public class MeleeEnemy : BaseEnemyClass
 
     void OnTriggerEnter2D(Collider2D collider) {
         if (collider.CompareTag("Player") && !canAttack && !collider.isTrigger) {
-            Debug.Log(collider.name + " has been hit");
+            Debug.Log(collider.name + " is in range");
         }
     }
 }
