@@ -7,13 +7,17 @@ public class BubbleShield : GathererBaseAbilities
 
     private void Start()
     {
-        abilityName = "Bubble Shield";
-        durationOfAbility = 5; // seconds
-        chargeTime = 3.0f; // seconds
+
     }
 
     private void Update()
     {
+        // DEBUG: ACTIVATE ABILITY USING B KEY
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            useAbility();
+        }
+
         if (isShieldActive)
         {
             shieldTimer -= Time.deltaTime;

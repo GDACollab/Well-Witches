@@ -378,13 +378,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5708320580637796411, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 905696349}
   m_SourcePrefab: {fileID: 100100000, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
 --- !u!1 &905696340 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5708320580637796411, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
   m_PrefabInstance: {fileID: 651592787}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &905696349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905696340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bddd29bb145ba3147adee84ddda36053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityName: Bubble Shield
+  durationOfAbility: 10
+  chargeTime: 3
 --- !u!1 &1135581394 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3424275855618714540, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
@@ -570,6 +588,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29b3763b169ac6a438ad344dbf48489b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Warden: {fileID: 0}
+  Gatherer: {fileID: 0}
+  myBuffs: []
+  buffTimers: []
+  keyItemChance: 0.05
   healthTransferAmount: 0
   GathererResistance: 0
   MaxSpeed: 0
