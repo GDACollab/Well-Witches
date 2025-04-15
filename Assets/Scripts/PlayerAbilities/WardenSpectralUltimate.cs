@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class SpectralUltimate : MonoBehaviour
+public class WardenSpectralUltimate : MonoBehaviour
 {
     [field: Header("Charge")]
     [field: SerializeField] public int NumHitsRequired { get; private set; }
@@ -25,7 +25,7 @@ public class SpectralUltimate : MonoBehaviour
     [SerializeField] private GameObject pivotPoint;
 
     // this stuff should prob be moved into wardenbaseability or something
-    public static SpectralUltimate Instance { get; private set; }
+    public static WardenSpectralUltimate Instance { get; private set; }
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
     void Awake() { InitSingleton(); }
     //void OnEnable() { PlayerProjectile.OnHitEnemy += GainCharge; }
