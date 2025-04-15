@@ -10,16 +10,19 @@ public class UpdateNavmesh : MonoBehaviour
     private void Start()
     {
         navMeshSurface.BuildNavMesh();
+        //StartCoroutine(UpdateMesh());
     }
     public float updateCooldown = 3f;
 
-    //private IEnumerator UpdateMesh()
-    //{
-    //    while (true)
-    //    {
-    //        navMeshSurface.BuildNavMesh();
-    //        yield return new WaitForSeconds(updateCooldown);
-    //    }
-    //}
+    /* Caused FPS issues due to meshes being updated constantly
+    private IEnumerator UpdateMesh()
+    {
+        while (true)
+        {
+            navMeshSurface.BuildNavMesh();
+            yield return new WaitForSeconds(updateCooldown);
+        }
+    }
+    */
 
 }
