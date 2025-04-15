@@ -12,6 +12,7 @@ public class WardenAbilityManager : MonoBehaviour
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
     void Awake() { InitSingleton(); }
 
+    // Subscribe to the Warden controls input action asset "Activate Ability" action
     void OnEnable() { PlayerProjectile.OnHitEnemy += OnActivateAbility; }
     void OnDisable() { PlayerProjectile.OnHitEnemy -= OnActivateAbility; }
 
@@ -19,11 +20,19 @@ public class WardenAbilityManager : MonoBehaviour
     private void Start()
     {
         equipedAbility = WardenDevastationBeam.Instance;
-        print("equip");
+        //print("equip");
     }
     void OnActivateAbility()
     {
-        print("using ability");
-        equipedAbility.useAbility();
+        //print("using ability");
+        if (equipedAbility != null)
+        {
+            equipedAbility.useAbility();
+        }
     }
+
+    /*
+     TODO: Write a function that takes in an instance of an ability and sets "equipedAbility" to that instance
+        will likley be called by whatever UI stuff selects abilities
+     */
 }
