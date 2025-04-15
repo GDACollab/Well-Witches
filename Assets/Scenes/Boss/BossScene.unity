@@ -950,10 +950,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab7ca9ddce9e354199a19f21c9245e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPoint: {fileID: 0}
   warningDuration: 1.5
   attackDuration: 0.3
-  damageAmount: 20
 --- !u!114 &1383751396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -961,7 +959,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383751374}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e02801a6649bd44ab50fd13b6a5a798, type: 3}
   m_Name: 
@@ -973,7 +971,7 @@ MonoBehaviour:
   formationPrefabs:
   - {fileID: 3663203546483103794, guid: d8bf0567f46e47d4b88ada500863f322, type: 3}
   - {fileID: 3663203546483103794, guid: db228e4e930cef94e96e1ee45d085544, type: 3}
-  referencePoint: {fileID: 1967984587}
+  referencePoint: {fileID: 1967984594}
   spawnRadiusMin: 1
   spawnRadiusMax: 10
   singleSpawnTime: 5
@@ -1000,7 +998,7 @@ MonoBehaviour:
   formationPrefabs:
   - {fileID: 3663203546483103794, guid: d8bf0567f46e47d4b88ada500863f322, type: 3}
   - {fileID: 3663203546483103794, guid: db228e4e930cef94e96e1ee45d085544, type: 3}
-  referencePoint: {fileID: 1383751374}
+  referencePoint: {fileID: 1383751385}
   spawnRadiusMin: 1
   spawnRadiusMax: 10
   singleSpawnTime: 5
@@ -1167,9 +1165,9 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 732597258827690589, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
   m_PrefabInstance: {fileID: 2050199711}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1967984587 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5708320580637796411, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
+--- !u!4 &1967984594 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8015346194276888610, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
   m_PrefabInstance: {fileID: 2050199711}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2050199711
