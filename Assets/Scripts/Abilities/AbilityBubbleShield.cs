@@ -2,31 +2,44 @@ using UnityEngine;
 
 public class BubbleShield : GathererBaseAbilities
 {
-    private bool isShieldActive = false;
-    private float shieldTimer = 0f;
+	public bool isShieldActive = false;
+	private float shieldTimer = 0f;
 
-    private void Start()
-    {
+	private SpriteRenderer bubbleShieldRenderer;
 
-    }
+	private void Start()
+	{
+		// Find the sprite for bubble shield
+		Transform child = transform.Find("Bubble Shield");
+		if (child != null)
+		{
+			bubbleShieldRenderer = child.GetComponent<SpriteRenderer>();
+		}
+		else
+		{
+			Debug.LogWarning("Bubble Shield sprite not found!");
+		}
 
-    private void Update()
-    {
-        // DEBUG: ACTIVATE ABILITY USING B KEY
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            useAbility();
-        }
+		bubbleShieldRenderer.enabled = false;
+	}
 
-        if (isShieldActive)
-        {
-            shieldTimer -= Time.deltaTime;
-            if (shieldTimer <= 0f)
-            {
-                DeactivateShield();
-            }
+	private void Update()
+	{
+		// DEBUG: ACTIVATE ABILITY USING B KEY
+		if (Input.GetKeyDown(KeyCode.B))
+		{
+			useAbility();
+		}
 
-            /*
+		if (isShieldActive)
+		{
+			shieldTimer -= Time.deltaTime;
+			if (shieldTimer <= 0f)
+			{
+				DeactivateShield();
+			}
+
+			/*
             * // On collision
             * {
             *     // Check for interaction on enemy projectile layer
@@ -44,29 +57,31 @@ public class BubbleShield : GathererBaseAbilities
             *     }
             * }
             */
-        }
-    }
+		}
+	}
 
-    public override void useAbility()
-    {
-        if (!isShieldActive)
-        {
-            ActivateShield();
-        }
-    }
+	public override void useAbility()
+	{
+		if (!isShieldActive)
+		{
+			ActivateShield();
+		}
+	}
 
-    private void ActivateShield()
-    {
-        isShieldActive = true;
-        shieldTimer = durationOfAbility;
-        Debug.Log($"{abilityName} activated for {durationOfAbility} seconds.");
-        // Add visual/audio effect or shield logic here
-    }
+	private void ActivateShield()
+	{
+		isShieldActive = true;
+		shieldTimer = durationOfAbility;
+		Debug.Log($"{abilityName} activated for {durationOfAbility} seconds.");
+		// Add visual/audio effect or shield logic here
+		bubbleShieldRenderer.enabled = true;
+	}
 
-    private void DeactivateShield()
-    {
-        isShieldActive = false;
-        Debug.Log($"{abilityName} deactivated.");
-        // Remove shield effect logic here
-    }
+	private void DeactivateShield()
+	{
+		isShieldActive = false;
+		Debug.Log($"{abilityName} deactivated.");
+		// Remove shield effect logic here
+		bubbleShieldRenderer.enabled = false;
+	}
 }
