@@ -14671,10 +14671,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1790751296530761198}
-  - component: {fileID: 6910472829611805654}
   - component: {fileID: 7187952970753463069}
+  - component: {fileID: 6910472829611805654}
   m_Layer: 0
-  m_Name: LaserUltimate
+  m_Name: DevastationBeam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14697,23 +14697,6 @@ Transform:
   - {fileID: 5070571073772356830}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6910472829611805654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4086121002454552835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80e5372d84071dc4abe9224a1a3be305, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spellCircle: {fileID: 3229615804840620087}
-  laserBeam: {fileID: 1440370296690746313}
-  volume: {fileID: 3917190950274080131}
-  light2d: {fileID: 8956140959238298427}
-  smoothTime: 0.5
 --- !u!61 &7187952970753463069
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14759,6 +14742,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 25, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6910472829611805654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4086121002454552835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e5372d84071dc4abe9224a1a3be305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellCircle: {fileID: 3229615804840620087}
+  laserBeam: {fileID: 1440370296690746313}
+  volume: {fileID: 3917190950274080131}
+  light2d: {fileID: 8956140959238298427}
+  smoothTime: 0.5
 --- !u!1 &6802605875112852829
 GameObject:
   m_ObjectHideFlags: 0

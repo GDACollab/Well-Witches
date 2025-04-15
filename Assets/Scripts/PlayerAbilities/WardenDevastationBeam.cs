@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Warden_BigBlast : MonoBehaviour
+public class WardenDevastationBeam : MonoBehaviour
 {
     [field: Header("Charge")]
     [field: SerializeField] public int NumHitsRequired {  get; private set; }
@@ -20,9 +20,9 @@ public class Warden_BigBlast : MonoBehaviour
 
     [Header("References")]
     [SerializeField] Transform spawnPoint;
-    [SerializeField] BigBlast prefab;
+    [SerializeField] DevastationBeam prefab;
 
-	public static Warden_BigBlast Instance { get; private set; } void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
+	public static WardenDevastationBeam Instance { get; private set; } void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
 
 	void Awake() { InitSingleton(); }
 	void OnEnable() { PlayerProjectile.OnHitEnemy += GainCharge; }
@@ -38,8 +38,8 @@ public class Warden_BigBlast : MonoBehaviour
 	void OnActivateAbility()    // called by the Player Input component
     {
         if (Charge < NumHitsRequired) return;
-
-        prefab.Activate(damagePerTick, damageTickDuration, knockbackForce, knockbackTickDuration, abilityDuration);
+        DevastationBeam db = Instantiate(prefab, spawnPoint).GetComponent<DevastationBeam>();
+        db.Activate(damagePerTick, damageTickDuration, knockbackForce, knockbackTickDuration, abilityDuration);
         Charge = 0;
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BigBlast : MonoBehaviour
+public class DevastationBeam : MonoBehaviour
 {
 	float damagePerTick;
 	float damageTickDuration;

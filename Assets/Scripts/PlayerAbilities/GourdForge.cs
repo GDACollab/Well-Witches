@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GourdForgeUltimate : MonoBehaviour
+public class GourdForge : MonoBehaviour
 {
     [Header("Debug")]
     [SerializeField] private float damagePerTick;

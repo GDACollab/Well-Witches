@@ -1,31 +1,35 @@
 using UnityEngine;
 
-public class WardenGourdForge : MonoBehaviour
+
+public class WardenSpellBurst : MonoBehaviour
 {
     [field: Header("Charge")]
     [field: SerializeField] public int NumHitsRequired { get; private set; }
     public int Charge { get; private set; } = 0;
 
-    [Header("Damage")]
-    [SerializeField] float damagePerTick;
-    [SerializeField, Tooltip("in seconds")] float damageTickDuration;
-
-    [Header("Size")]
-    [SerializeField, Tooltip("Radius of AOE")] float size;
+    [Header("Projectile Stats")]
+    public float projectileDamage;
+    public float projectileSpeed;
+    public float distanceFromPlayer;
+    public float projectileLifetime;
+    public float timeBetweenProjectile;
 
     [Header("Duration")]
     [SerializeField, Tooltip("in seconds")] float abilityDuration;
 
     [Header("References")]
+    public SpellBurstProjectile projectilePrefab;
+
+    [Header("References")]
     [SerializeField] Transform spawnPoint;
-    [SerializeField] GourdForge prefab;
+    [SerializeField] SpellBurst prefab;
 
-    public static WardenGourdForge Instance { get; private set; }
+    public static WardenSpellBurst Instance { get; private set; }
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
-
     void Awake() { InitSingleton(); }
     void OnEnable() { PlayerProjectile.OnHitEnemy += GainCharge; }
     void OnDisable() { PlayerProjectile.OnHitEnemy -= GainCharge; }
+
     void GainCharge()
     {
         Charge++;
@@ -36,8 +40,8 @@ public class WardenGourdForge : MonoBehaviour
     void OnActivateAbility()    // called by the Player Input component
     {
         if (Charge < NumHitsRequired) return;
-        GourdForge gourdForge = Instantiate(prefab, spawnPoint).GetComponent<GourdForge>();
-        gourdForge.Activate(damagePerTick, damageTickDuration, size, abilityDuration);
+        SpellBurst spellBurst = Instantiate(prefab).GetComponent<SpellBurst>();
+        spellBurst.Activate(projectileDamage, projectileSpeed, distanceFromPlayer, projectileLifetime, timeBetweenProjectile, abilityDuration);
         Charge = 0;
     }
 }

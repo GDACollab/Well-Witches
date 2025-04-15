@@ -401,8 +401,8 @@ MonoBehaviour:
   knockbackForce: 5
   knockbackTickDuration: 0.5
   abilityDuration: 3
-  spawnPoint: {fileID: 8220529920076846946}
-  prefab: {fileID: 3830831364550154586}
+  spawnPoint: {fileID: 7347747762842868080}
+  prefab: {fileID: 6910472829611805654, guid: 959fe09636fe21c4ab7db7263356823a, type: 3}
 --- !u!114 &7937995718109404009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,10 +420,11 @@ MonoBehaviour:
   projectileSpeed: 2
   distanceFromPlayer: 3
   projectileLifetime: 10
+  timeBetweenProjectile: 0.5
   abilityDuration: 10
   projectilePrefab: {fileID: 7603238177100266058, guid: 02ce3b291024fd946b9b2065d544b07e, type: 3}
-  timeActive: 0
-  pivotPoint: {fileID: 0}
+  spawnPoint: {fileID: 7347747762842868080}
+  prefab: {fileID: 5213519764763690752, guid: 5f9c5b65f2e8cab428a295d4d4d557fd, type: 3}
 --- !u!114 &6883891788245031158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,7 +443,7 @@ MonoBehaviour:
   size: 0.5
   abilityDuration: 20
   spawnPoint: {fileID: 7347747762842868080}
-  prefab: {fileID: 0}
+  prefab: {fileID: 5819169371919718163, guid: 02d4f21ea28faa44f96c08e532ce6824, type: 3}
 --- !u!1 &8866154363906637985
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,17 +598,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 959fe09636fe21c4ab7db7263356823a, type: 3}
---- !u!114 &3830831364550154586 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6910472829611805654, guid: 959fe09636fe21c4ab7db7263356823a, type: 3}
-  m_PrefabInstance: {fileID: 7696430454407156364}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80e5372d84071dc4abe9224a1a3be305, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &8220529920076846946 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1790751296530761198, guid: 959fe09636fe21c4ab7db7263356823a, type: 3}

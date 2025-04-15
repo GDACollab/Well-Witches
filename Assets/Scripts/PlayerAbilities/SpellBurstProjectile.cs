@@ -1,9 +1,8 @@
-using UnityEditor;
 using UnityEngine;
 using System;
 
 
-public class SpectralProjectile : MonoBehaviour
+public class SpellBurstProjectile : MonoBehaviour
 {
     [Header("Debug, Do Not Change")]
     [SerializeField] private float _damage;
