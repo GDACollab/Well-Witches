@@ -15,6 +15,7 @@ public class AbilitySelectIndividualAbilities : MonoBehaviour, IPointerEnterHand
     [SerializeField] private Sprite normalSprite;
     [SerializeField] private Sprite hoverSprite;
     [SerializeField] private Sprite selectSprite;
+    [SerializeField] private Sprite lockedSprite;
 
     [Header("Text")]
     [SerializeField] private string abilityText;
@@ -23,31 +24,39 @@ public class AbilitySelectIndividualAbilities : MonoBehaviour, IPointerEnterHand
     [Header("Ability Info")]
     [SerializeField] private bool isWarden;
     [SerializeField] private bool isActive;
+    [SerializeField] private bool isLocked;
 
     private int id;
 
     private void Start()
     {
-        abilityImage.sprite = normalSprite;
-
-        SpriteState spriteState = new SpriteState();
-        spriteState.highlightedSprite = hoverSprite;
-        abilityButton.spriteState = spriteState;
+        setLocked(isLocked);
         abilityButton.onClick.AddListener(TaskOnClick);
     }
 
     private void TaskOnClick()
     {
-        abilitySelectManager.clickedAbility(isWarden, isActive, id);
+        if (!isLocked)
+        {
+            abilitySelectManager.clickedAbility(isWarden, isActive, id);
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        abilitySelectManager.updateHoveredAbility(id);
+        if (!isLocked)
+        {
+            abilitySelectManager.updateHoveredAbility(id);
+        }
     }
 
     public void setSelected(bool selected)
     {
+        if (isLocked)
+        {
+            return;
+        }
+
         if (selected)
         {
             abilityImage.sprite = selectSprite;
@@ -76,6 +85,25 @@ public class AbilitySelectIndividualAbilities : MonoBehaviour, IPointerEnterHand
     public string getAbilityName()
     {
         return abilityName;
+    }
+
+    public void setLocked(bool locked)
+    {
+        isLocked = locked;
+
+        SpriteState spriteState = new SpriteState();
+        if (isLocked)
+        {
+            abilityImage.sprite = lockedSprite;
+            spriteState.highlightedSprite = lockedSprite; //disables hover effect when sprite is locked
+        }
+        else
+        {
+            abilityImage.sprite = normalSprite;
+            spriteState.highlightedSprite = hoverSprite;
+        }
+
+        abilityButton.spriteState = spriteState;
     }
 
     //Run at the start of the game in abilityselectmanager
