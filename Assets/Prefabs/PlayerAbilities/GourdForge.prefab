@@ -4839,9 +4839,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7098406661239115278}
-  - component: {fileID: 5819169371919718163}
   - component: {fileID: 330873311146501793}
   - component: {fileID: 5369209044240397704}
+  - component: {fileID: 5819169371919718163}
   m_Layer: 0
   m_Name: GourdForge
   m_TagString: Untagged
@@ -4867,21 +4867,6 @@ Transform:
   - {fileID: 1958436547957967840}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &5819169371919718163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3230164502582545307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 187df72a802401c48bb6540873d102d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damagePerTick: 0
-  damageTickDuration: 0
-  damageTickCounter: 0
 --- !u!50 &330873311146501793
 Rigidbody2D:
   serializedVersion: 4
@@ -4968,6 +4953,21 @@ PolygonCollider2D:
       - {x: 2.7061996, y: -1.5002823}
       - {x: 3.2921133, y: -0.09719473}
   m_UseDelaunayMesh: 0
+--- !u!114 &5819169371919718163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3230164502582545307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187df72a802401c48bb6540873d102d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePerTick: 0
+  damageTickDuration: 0
+  damageTickCounter: 0
 --- !u!1 &5614873424546952753
 GameObject:
   m_ObjectHideFlags: 0

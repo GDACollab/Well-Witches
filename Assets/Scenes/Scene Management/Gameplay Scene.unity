@@ -4974,8 +4974,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3424275855618714540, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1905635739}
   m_SourcePrefab: {fileID: 100100000, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+--- !u!114 &1905635739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580238798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7371db03bf901d3428bb3bf8e8b17627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <NumHitsRequired>k__BackingField: 0
+  damagePerTick: 0
+  damageTickDuration: 0
+  size: 0
+  abilityDuration: 0
+  spawnPoint: {fileID: 0}
+  prefab: {fileID: 0}
 --- !u!1001 &1911410390
 PrefabInstance:
   m_ObjectHideFlags: 0

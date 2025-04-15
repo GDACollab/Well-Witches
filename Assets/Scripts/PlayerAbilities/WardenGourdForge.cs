@@ -6,7 +6,21 @@ public class WardenGourdForge : MonoBehaviour
     [field: SerializeField] public int NumHitsRequired { get; private set; }
     public int Charge { get; private set; } = 0;
 
-    public static Warden_BigBlast Instance { get; private set; }
+    [Header("Damage")]
+    [SerializeField] float damagePerTick;
+    [SerializeField, Tooltip("in seconds")] float damageTickDuration;
+
+    [Header("Size")]
+    [SerializeField, Tooltip("Radius of AOE")] float size;
+
+    [Header("Duration")]
+    [SerializeField, Tooltip("in seconds")] float abilityDuration;
+
+    [Header("References")]
+    [SerializeField] Transform spawnPoint;
+    [SerializeField] GourdForgeUltimate prefab;
+
+    public static WardenGourdForge Instance { get; private set; }
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
 
     void Awake() { InitSingleton(); }
@@ -22,7 +36,8 @@ public class WardenGourdForge : MonoBehaviour
     void OnActivateAbility()    // called by the Player Input component
     {
         if (Charge < NumHitsRequired) return;
-
+        GourdForgeUltimate gourdForge = Instantiate(prefab, spawnPoint).GetComponent<GourdForgeUltimate>();
+        gourdForge.Activate(damagePerTick, damageTickDuration, size, abilityDuration);
         Charge = 0;
     }
 }
