@@ -15,6 +15,7 @@ public class GourdForge : MonoBehaviour
         this.damagePerTick = damagePerTick;
         this.damageTickDuration = damageTickDuration;
 
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.35f);
         transform.localScale = Vector3.one * size;
         Destroy(gameObject, lifespan);
     }

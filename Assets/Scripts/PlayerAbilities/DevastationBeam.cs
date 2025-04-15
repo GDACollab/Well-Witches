@@ -58,6 +58,7 @@ public class DevastationBeam : MonoBehaviour
         yield return new WaitForSeconds(lifespan);
         spellCircle.SetActive(false);
         laserBeam.SetActive(false);
+		Destroy(gameObject);
     }
 
     void Update()

@@ -101,8 +101,8 @@ GameObject:
   - component: {fileID: 6765816677484888606}
   - component: {fileID: 7330388417451776427}
   - component: {fileID: 3046167562820563143}
-  - component: {fileID: 7937995718109404009}
   - component: {fileID: 6883891788245031158}
+  - component: {fileID: 7937995718109404009}
   m_Layer: 7
   m_Name: Warden
   m_TagString: Player
@@ -403,6 +403,25 @@ MonoBehaviour:
   abilityDuration: 3
   spawnPoint: {fileID: 7347747762842868080}
   prefab: {fileID: 6910472829611805654, guid: 959fe09636fe21c4ab7db7263356823a, type: 3}
+--- !u!114 &6883891788245031158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3424275855618714540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7371db03bf901d3428bb3bf8e8b17627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <NumHitsRequired>k__BackingField: 1
+  damagePerTick: 5
+  damageTickDuration: 0
+  size: 0.5
+  abilityDuration: 20
+  spawnPoint: {fileID: 7347747762842868080}
+  prefab: {fileID: 5819169371919718163, guid: 02d4f21ea28faa44f96c08e532ce6824, type: 3}
 --- !u!114 &7937995718109404009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,25 +444,6 @@ MonoBehaviour:
   projectilePrefab: {fileID: 7603238177100266058, guid: 02ce3b291024fd946b9b2065d544b07e, type: 3}
   spawnPoint: {fileID: 7347747762842868080}
   prefab: {fileID: 5213519764763690752, guid: 5f9c5b65f2e8cab428a295d4d4d557fd, type: 3}
---- !u!114 &6883891788245031158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3424275855618714540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7371db03bf901d3428bb3bf8e8b17627, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <NumHitsRequired>k__BackingField: 1
-  damagePerTick: 5
-  damageTickDuration: 0
-  size: 0.5
-  abilityDuration: 20
-  spawnPoint: {fileID: 7347747762842868080}
-  prefab: {fileID: 5819169371919718163, guid: 02d4f21ea28faa44f96c08e532ce6824, type: 3}
 --- !u!1 &8866154363906637985
 GameObject:
   m_ObjectHideFlags: 0
