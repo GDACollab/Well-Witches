@@ -209,7 +209,11 @@ Transform:
   m_GameObject: {fileID: 456651213}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< Updated upstream
   m_LocalPosition: {x: 4.59, y: 0.12, z: 0}
+=======
+  m_LocalPosition: {x: 4.75, y: 0.11, z: 0}
+>>>>>>> Stashed changes
   m_LocalScale: {x: 0.18519732, y: 0.18519732, z: 0.18519732}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -229,12 +233,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 5
   attackTimer: 0
+<<<<<<< Updated upstream
   attackDuration: 0
   timeSinceAttack: 0
   targetHealth: 100
   player: {fileID: 0}
   clawDamage: 10
   attachSphereCenter: {fileID: 0}
+=======
+  dmg: 0
+  attackDuration: 0
+  timeSinceAttack: 0
+  targetHealth: 100
+  clawDamage: 10
+  attachSphereCenter: {fileID: 456651215}
+>>>>>>> Stashed changes
 --- !u!114 &456651217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,14 +260,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e02801a6649bd44ab50fd13b6a5a798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   goofyBoy: {fileID: 2413214241567298752, guid: da62137968f8eb1448399aa2f77f026c, type: 3}
+=======
+  enemies: []
+>>>>>>> Stashed changes
   formationPrefabs:
   - {fileID: 3663203546483103794, guid: d8bf0567f46e47d4b88ada500863f322, type: 3}
   - {fileID: 3663203546483103794, guid: db228e4e930cef94e96e1ee45d085544, type: 3}
   referencePoint: {fileID: 1163882296}
+<<<<<<< Updated upstream
   spawnTime: 1
   phaseTime: 10
   timer: 0
+=======
+  spawnRadiusMin: 0
+  spawnRadiusMax: 0
+  singleSpawnTime: 0
+  formationSpawnTime: 0
+  maxSpawnCoord: {x: 0, y: 0}
+  minSpawnCoord: {x: 0, y: 0}
+  singleTimer: 0
+  formationTimer: 0
+>>>>>>> Stashed changes
 --- !u!114 &456651218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +295,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a33a40ef083a5344480b84678f0fcb1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
+=======
+  playerHealth: 10
+  bleedingdamagepersecond: 0.5
+>>>>>>> Stashed changes
 --- !u!114 &456651219
 MonoBehaviour:
   m_ObjectHideFlags: 0

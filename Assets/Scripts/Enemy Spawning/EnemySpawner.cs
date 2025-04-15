@@ -11,16 +11,29 @@ public class EnemySpawner : MonoBehaviour
 	public GameObject goofyBoy;			// Evildoer that will be placed (temp)
 	public List<GameObject> formationPrefabs;
 
+<<<<<<< Updated upstream
 	public Transform referencePoint;    // Reference point for creatures to be spawned around
+=======
+    public GameObject referencePoint;    // Reference point for creatures to be spawned around
+>>>>>>> Stashed changes
 
 	private float timer = 0.0f;
 	public float spawnTime = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
+<<<<<<< Updated upstream
         //SpawnSurrounded(goofyBoy, 3, 2);
         //SpawnSurrounded(goofyBoy, 8, 5);
 		//SpawnFormation(referencePoint.position, 45);
+=======
+        if (referencePoint == null)
+        {
+            referencePoint = GameObject.Find("Gatherer");
+         // should be changed to tag if we decide to change names
+        }
+        print(referencePoint.transform.position.x);
+>>>>>>> Stashed changes
     }
 
     // Update is called once per frame
@@ -60,7 +73,15 @@ public class EnemySpawner : MonoBehaviour
 	{
 		Debug.Log("Spawning '" + creature.name + "' at " +  position.ToString());
 
+<<<<<<< Updated upstream
 		// TODO: Check if spawn location is valid
+=======
+        print("enemies: " + enemies[0]);
+
+        // spawn random enemy from list
+        enemies[Random.Range(0, enemies.Count)].Spawn(spawnPosition);
+    }
+>>>>>>> Stashed changes
 
 		// Spawn creature with no rotation
 		Instantiate(creature, position, Quaternion.identity);
@@ -83,8 +104,17 @@ public class EnemySpawner : MonoBehaviour
 			// Apply the rotation to the relative position of each creature
 			Vector3 rotatedPosition = rotationQuaternion * creatureInfo.relativePosition;
 
+<<<<<<< Updated upstream
 			// Calculate the spawn location by adding the rotated position to the spawn position
 			Vector3 spawnLocation = spawnPosition + rotatedPosition;
+=======
+    // gets a random position within the min and max spawn radius
+    // returns a Vector3
+    public Vector3 GetRandomSpawnPosition()
+    {
+        float x = maxSpawnCoord.x;
+        float y = maxSpawnCoord.y;
+>>>>>>> Stashed changes
 
 			// Spawn the creature
 			SpawnCreature(creatureInfo.gameObject, spawnLocation);
@@ -110,7 +140,14 @@ public class EnemySpawner : MonoBehaviour
 			float x = radius * math.cos(dir) + referencePoint.position.x;
 			float y = radius * math.sin(dir) + referencePoint.position.y;
 
+<<<<<<< Updated upstream
 			SpawnCreature(creature, new Vector3(x, y, 0));	// Place new enemy
+=======
+            //print(referencePoint);
+
+            x = radius * Mathf.Cos(dir) + 100;
+            y = radius * Mathf.Sin(dir) + 100;
+>>>>>>> Stashed changes
 
 			// Align direction for next enemy
 			dir += offset;
