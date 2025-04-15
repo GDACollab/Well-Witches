@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WardenGourdForge : MonoBehaviour
+public class WardenGourdForge : WardenBaseAbilities
 {
     [field: Header("Charge")]
     [field: SerializeField] public int NumHitsRequired { get; private set; }
@@ -19,6 +19,9 @@ public class WardenGourdForge : MonoBehaviour
     [Header("References")]
     [SerializeField] Transform spawnPoint;
     [SerializeField] GourdForge prefab;
+    public override string abilityName => "GourdForge";
+    public override int numHitsRequired => NumHitsRequired;
+    public override float duration => abilityDuration;
 
     public static WardenGourdForge Instance { get; private set; }
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
@@ -33,7 +36,7 @@ public class WardenGourdForge : MonoBehaviour
         if (Charge > NumHitsRequired) Charge = NumHitsRequired;
     }
 
-    void OnActivateAbility()    // called by the Player Input component
+    public override void useAbility()    // called by the Player Input component
     {
         if (Charge < NumHitsRequired) return;
         GourdForge gourdForge = Instantiate(prefab, spawnPoint).GetComponent<GourdForge>();
