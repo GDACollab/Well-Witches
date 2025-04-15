@@ -1,3 +1,7 @@
+using System.Linq;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
 public class Warden_Health : PlayerHealth
 {
 	protected override void TakeDamage(float damage, string player)
@@ -20,7 +24,7 @@ public class Warden_Health : PlayerHealth
 	{
 		//send out signal
 		EventManager.instance.playerEvents.PlayerDeath();
-		// TODO - implement death
+		GameObject.FindGameObjectsWithTag("Player").First(x => x.name == "Warden").GetComponent<PlayerInput>().enabled = false;
 		return;
 	}
 }
