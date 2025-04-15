@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class WardenDevastationBeam : MonoBehaviour
+public class WardenDevastationBeam : WardenBaseAbilities
 {
     [field: Header("Charge")]
     [field: SerializeField] public int NumHitsRequired {  get; private set; }
@@ -22,7 +22,11 @@ public class WardenDevastationBeam : MonoBehaviour
     [SerializeField] Transform spawnPoint;
     [SerializeField] DevastationBeam prefab;
 
-	public static WardenDevastationBeam Instance { get; private set; } void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
+    public override string abilityName => "DevastationBeam";
+    public override int numHitsRequired => NumHitsRequired;
+    public override float duration => abilityDuration;
+
+    public static WardenDevastationBeam Instance { get; private set; } void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
 
 	void Awake() { InitSingleton(); }
 	void OnEnable() { PlayerProjectile.OnHitEnemy += GainCharge; }
@@ -35,7 +39,7 @@ public class WardenDevastationBeam : MonoBehaviour
         if (Charge > NumHitsRequired) Charge = NumHitsRequired;
     }
 
-	void OnActivateAbility()    // called by the Player Input component
+	public override void useAbility()    // called by the Ability Manager
     {
         if (Charge < NumHitsRequired) return;
         DevastationBeam db = Instantiate(prefab, spawnPoint).GetComponent<DevastationBeam>();
