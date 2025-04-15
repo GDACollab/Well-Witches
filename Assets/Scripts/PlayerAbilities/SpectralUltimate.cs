@@ -19,10 +19,10 @@ public class SpectralUltimate : MonoBehaviour
 
     [Header("References")]
     public SpectralProjectile projectilePrefab;
-    public Transform pivot;
 
     [Header("Debug")]
     public float timeActive = 0f;
+    [SerializeField] private GameObject pivotPoint;
 
     // this stuff should prob be moved into wardenbaseability or something
     public static SpectralUltimate Instance { get; private set; }
@@ -35,21 +35,29 @@ public class SpectralUltimate : MonoBehaviour
     {
         InvokeRepeating(nameof(SpawnSpectralProjectile), 0, 0.5f);
         timeActive = 0f;
+        pivotPoint = new GameObject("SpectralPivotPoint");
     }
 
     private void Update()
     {
-        pivot.Rotate(Vector3.forward, projectileSpeed);
+        pivotPoint.transform.position = transform.position;
+        pivotPoint.transform.Rotate(Vector3.forward, projectileSpeed);
+
+        // TODO:
+        // tbh the instance should be deleted?
+        // not sure how to turn off the ability yet for now this is one time use, change later
+        // if the instance is deleted and respawned this'll work fine
         timeActive += Time.deltaTime;
         if (timeActive >= abilityDuration)
         {
             CancelInvoke();
+            Destroy(pivotPoint);
         }
     }
 
     private void SpawnSpectralProjectile()
     {
-        SpectralProjectile projectile = Instantiate(projectilePrefab, new Vector3(pivot.position.x, pivot.position.y + distanceFromPlayer, pivot.position.z), Quaternion.identity).GetComponent<SpectralProjectile>();
-        projectile.Initialize(pivot, projectileDamage, projectileSpeed, distanceFromPlayer, projectileLifetime);
+        SpectralProjectile projectile = Instantiate(projectilePrefab, new Vector3(pivotPoint.transform.position.x, pivotPoint.transform.position.y + distanceFromPlayer, pivotPoint.transform.position.z), Quaternion.identity).GetComponent<SpectralProjectile>();
+        projectile.Initialize(pivotPoint.transform, projectileDamage, projectileSpeed, projectileLifetime);
     }
 }

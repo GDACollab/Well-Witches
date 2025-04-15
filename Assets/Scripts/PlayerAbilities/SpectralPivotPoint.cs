@@ -2,9 +2,18 @@ using UnityEngine;
 
 public class SpectralPivotPoint : MonoBehaviour
 {
-    [SerializeField] private Transform player;
+    [Tooltip("Target should be Warden.")]
+    [SerializeField] private Transform target;
+
+    private void Start()
+    {
+        if (target == null)
+        {
+            target = GameObject.Find("Warden").GetComponent<Transform>();   
+        }
+    }
     private void Update()
     {
-        transform.position = player.position;
+        transform.position = target.position;
     }
 }

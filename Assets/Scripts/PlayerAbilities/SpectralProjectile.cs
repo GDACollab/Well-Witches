@@ -1,35 +1,38 @@
+using UnityEditor;
 using UnityEngine;
+using System;
+
 
 public class SpectralProjectile : MonoBehaviour
 {
-    [Header("Debug, do not change")]
-    [SerializeField] private Transform target;
+    [Header("Debug, Do Not Change")]
     [SerializeField] private float _damage;
     [SerializeField] private float _speed;
-    [SerializeField] private float _distance;
-    private bool once = true;
-    private Vector3 relativeDistance = Vector3.zero;
-    public void Initialize(Transform pivot, float damage, float speed, float distance, float lifetime)
+    [SerializeField] private Vector3 velocity;
+
+    public static event Action OnHitEnemy;
+
+
+    public void Initialize(Transform pivot, float damage, float speed, float lifetime)
     {
-        target = pivot;
+        transform.eulerAngles = new Vector3(0, 0, 90f);
         _damage = damage;
         _speed = speed;
-        _distance = distance;
         transform.SetParent(pivot);
         Destroy(gameObject, lifetime);
     }
 
     private void Update()
     {
-        //target.Rotate(Vector3.forward, _speed);
-        //transform.position = (target.position + relativeDistance);
-        //gameObject.transform.RotateAround(target.position, Vector3.forward, _speed * Time.deltaTime);
-        //if (once)
-        //{
-        //    transform.position *= (_distance / 1000);
-        //    once = false;
-        //}
-        //relativeDistance = transform.position - target.position;
+        transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z +  _speed * 0.00625f);
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            collision.GetComponent<BaseEnemyClass>().TakeDamage(_damage);
+            OnHitEnemy?.Invoke();
+        }
     }
 }
