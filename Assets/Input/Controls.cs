@@ -33,7 +33,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""id"": ""1048bd76-5a7f-48dc-8848-2e9d1ada3a51"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""initialStateCheck"": true
                 },
                 {
@@ -58,15 +58,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""Activate Ability"",
                     ""type"": ""Button"",
                     ""id"": ""4b63c30e-5073-4ad7-8b2e-c84a644724e0"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Activate Ability After Duration"",
-                    ""type"": ""Button"",
-                    ""id"": ""1863b671-32a5-42bb-aa3d-a682bc0504e8"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -159,17 +150,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Mouse and Keyboard"",
                     ""action"": ""Activate Ability"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0949ee3e-1a51-49f5-82fa-6c38e9f2cd33"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": ""Hold(duration=5)"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Activate Ability After Duration"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -296,7 +276,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Gameplay_Gatherer_Interact = m_Gameplay_Gatherer.FindAction("Interact", throwIfNotFound: true);
         m_Gameplay_Gatherer_PullWarden = m_Gameplay_Gatherer.FindAction("Pull Warden", throwIfNotFound: true);
         m_Gameplay_Gatherer_ActivateAbility = m_Gameplay_Gatherer.FindAction("Activate Ability", throwIfNotFound: true);
-        m_Gameplay_Gatherer_ActivateAbilityAfterDuration = m_Gameplay_Gatherer.FindAction("Activate Ability After Duration", throwIfNotFound: true);
         // Gameplay_Warden
         m_Gameplay_Warden = asset.FindActionMap("Gameplay_Warden", throwIfNotFound: true);
         m_Gameplay_Warden_Move = m_Gameplay_Warden.FindAction("Move", throwIfNotFound: true);
@@ -373,7 +352,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Gatherer_Interact;
     private readonly InputAction m_Gameplay_Gatherer_PullWarden;
     private readonly InputAction m_Gameplay_Gatherer_ActivateAbility;
-    private readonly InputAction m_Gameplay_Gatherer_ActivateAbilityAfterDuration;
     public struct Gameplay_GathererActions
     {
         private @Controls m_Wrapper;
@@ -382,7 +360,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Gameplay_Gatherer_Interact;
         public InputAction @PullWarden => m_Wrapper.m_Gameplay_Gatherer_PullWarden;
         public InputAction @ActivateAbility => m_Wrapper.m_Gameplay_Gatherer_ActivateAbility;
-        public InputAction @ActivateAbilityAfterDuration => m_Wrapper.m_Gameplay_Gatherer_ActivateAbilityAfterDuration;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay_Gatherer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -404,9 +381,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ActivateAbility.started += instance.OnActivateAbility;
             @ActivateAbility.performed += instance.OnActivateAbility;
             @ActivateAbility.canceled += instance.OnActivateAbility;
-            @ActivateAbilityAfterDuration.started += instance.OnActivateAbilityAfterDuration;
-            @ActivateAbilityAfterDuration.performed += instance.OnActivateAbilityAfterDuration;
-            @ActivateAbilityAfterDuration.canceled += instance.OnActivateAbilityAfterDuration;
         }
 
         private void UnregisterCallbacks(IGameplay_GathererActions instance)
@@ -423,9 +397,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ActivateAbility.started -= instance.OnActivateAbility;
             @ActivateAbility.performed -= instance.OnActivateAbility;
             @ActivateAbility.canceled -= instance.OnActivateAbility;
-            @ActivateAbilityAfterDuration.started -= instance.OnActivateAbilityAfterDuration;
-            @ActivateAbilityAfterDuration.performed -= instance.OnActivateAbilityAfterDuration;
-            @ActivateAbilityAfterDuration.canceled -= instance.OnActivateAbilityAfterDuration;
         }
 
         public void RemoveCallbacks(IGameplay_GathererActions instance)
@@ -511,7 +482,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnPullWarden(InputAction.CallbackContext context);
         void OnActivateAbility(InputAction.CallbackContext context);
-        void OnActivateAbilityAfterDuration(InputAction.CallbackContext context);
     }
     public interface IGameplay_WardenActions
     {
