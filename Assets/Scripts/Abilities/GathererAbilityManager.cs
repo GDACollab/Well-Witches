@@ -22,12 +22,12 @@ public class GathererAbilityManager : MonoBehaviour
     void OnEnable()
     {
         controls.Gameplay_Gatherer.ActivateAbility.performed += OnActivateAbility;
-        controls.Gameplay_Gatherer.ActivateAbility.performed += OnActivateAbilityAfterDuration;
+        controls.Gameplay_Gatherer.ActivateAbilityAfterHold.performed += OnActivateAbilityAfterHold;
     }
     void OnDisable()
     {
         controls.Gameplay_Gatherer.ActivateAbility.performed -= OnActivateAbility;
-        controls.Gameplay_Gatherer.ActivateAbility.performed -= OnActivateAbilityAfterDuration;
+        controls.Gameplay_Gatherer.ActivateAbilityAfterHold.performed -= OnActivateAbilityAfterHold;
     }
 
 
@@ -48,9 +48,12 @@ public class GathererAbilityManager : MonoBehaviour
         }
     }
 
-    void OnActivateAbilityAfterDuration(InputAction.CallbackContext context)
+    void OnActivateAbilityAfterHold(InputAction.CallbackContext context)
     {
-        print("FLASH OUT");
+        if (equipedAbility.abilityName == "FlashStun")
+        {
+            equipedAbility.useAbility();
+        }
     }
 
     /*

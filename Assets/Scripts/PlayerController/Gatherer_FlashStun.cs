@@ -41,10 +41,15 @@ public class Gatherer_FlashStun : GathererBaseAbilities
         if (activateAbilityAction.IsPressed())
         {
             chargeCounter -= Time.deltaTime;
+            //if (chargeCounter <= 0)
+            //{
+            //    chargeCounter = chargeDuration;
+            //    cooldownCounter = cooldownDuration;
+            //}
         }
         else chargeCounter = chargeDuration;
 
-        print(chargeCounter);
+        //print(chargeCounter);
     }
 
     void ExecuteAbility()
@@ -68,14 +73,14 @@ public class Gatherer_FlashStun : GathererBaseAbilities
     {
         if (chargeCounter <= 0)
         {
-            print("PROC");
+            print("PROC: " + chargeCounter);
             ExecuteAbility();
             chargeCounter = chargeDuration;
             cooldownCounter = cooldownDuration;
         }
         else
         {
-            print("dud");
+            print("dud: " + chargeCounter);
         }
     }
 }
