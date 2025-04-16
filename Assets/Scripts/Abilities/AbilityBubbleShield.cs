@@ -1,13 +1,25 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BubbleShield : GathererBaseAbilities
 {
 	public bool isShieldActive = false;
 	private float shieldTimer = 0f;
 
-	private SpriteRenderer bubbleShieldRenderer;
+    public override float duration => 10;
+    public override string abilityName => "BubbleShield";
 
-	private void Start()
+    private SpriteRenderer bubbleShieldRenderer;
+
+    public static BubbleShield Instance { get; private set; }
+    void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
+
+    void Awake()
+    {
+        InitSingleton();
+    }
+
+    private void Start()
 	{
 		// Find the sprite for bubble shield
 		Transform child = transform.Find("Bubble Shield");
@@ -25,11 +37,11 @@ public class BubbleShield : GathererBaseAbilities
 
 	private void Update()
 	{
-		// DEBUG: ACTIVATE ABILITY USING B KEY
-		if (Input.GetKeyDown(KeyCode.B))
-		{
-			useAbility();
-		}
+	//DEBUG: ACTIVATE ABILITY USING B KEY
+		//if (Input.GetKeyDown(KeyCode.B))
+		//{
+		//	useAbility();
+		//}
 
 		if (isShieldActive)
 		{
@@ -40,23 +52,23 @@ public class BubbleShield : GathererBaseAbilities
 			}
 
 			/*
-            * // On collision
-            * {
-            *     // Check for interaction on enemy projectile layer
-            *     {
-            *         // Get projectile
-            *         // Invert projectile velocity
-            *     }
-            *     // Check for interaction on enemy melee(?) layer
-            *     {
-            *         // pop (after attack process is over)
-            *     }
-            *     // Check for interaction with Warden
-            *     {
-            *         // pop
-            *     }
-            * }
-            */
+			* // On collision
+			* {
+			*     // Check for interaction on enemy projectile layer
+			*     {
+			*         // Get projectile
+			*         // Invert projectile velocity
+			*     }
+			*     // Check for interaction on enemy melee(?) layer
+			*     {
+			*         // pop (after attack process is over)
+			*     }
+			*     // Check for interaction with Warden
+			*     {
+			*         // pop
+			*     }
+			* }
+			*/
 		}
 	}
 
@@ -71,8 +83,8 @@ public class BubbleShield : GathererBaseAbilities
 	private void ActivateShield()
 	{
 		isShieldActive = true;
-		shieldTimer = durationOfAbility;
-		Debug.Log($"{abilityName} activated for {durationOfAbility} seconds.");
+		shieldTimer = duration;
+		Debug.Log($"{abilityName} activated for {duration} seconds.");
 		// Add visual/audio effect or shield logic here
 		bubbleShieldRenderer.enabled = true;
 	}

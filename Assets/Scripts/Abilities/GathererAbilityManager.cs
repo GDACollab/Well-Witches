@@ -34,7 +34,7 @@ public class GathererAbilityManager : MonoBehaviour
 
     private void Start()
     {
-        equipedAbility = AbilityHealthTransfer.Instance;
+        equipedAbility = BubbleShield.Instance;
         passiveAbility = HealForcePassive.Instance;
         //print("equip");
     }
