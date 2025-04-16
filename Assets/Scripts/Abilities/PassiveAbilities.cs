@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PassiveAbilities : MonoBehaviour
+public abstract class PassiveAbilities : MonoBehaviour
 {
-    public string abilityName;
-    public int durationOfAbility;
+    public abstract string abilityName { get; }
+
+    public abstract void passiveUpdate();
 
 }

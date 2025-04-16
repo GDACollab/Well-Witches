@@ -2572,6 +2572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipedAbility: {fileID: 0}
+  passiveAbility: {fileID: 0}
 --- !u!1 &713196564
 GameObject:
   m_ObjectHideFlags: 0
@@ -5065,9 +5066,9 @@ MonoBehaviour:
   Defense: 0
   GathererHaste: 0
   GathererLuck: 0
-  GathererMaxHealth: 0
-  GathererCurrentHealth: 0
-  GathererHealthRegen: 0
+  GathererMaxHealth: 100
+  GathererCurrentHealth: 1
+  GathererHealthRegen: 5
   AbilityPower: 0
   AttackPower: 0
   Mana: 0

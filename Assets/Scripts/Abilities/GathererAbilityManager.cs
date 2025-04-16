@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class GathererAbilityManager : MonoBehaviour
 {
     public GathererBaseAbilities equipedAbility;
+    public PassiveAbilities passiveAbility;
     [SerializeField] private Controls controls;
 
     public static GathererAbilityManager Instance { get; private set; }
@@ -34,6 +35,7 @@ public class GathererAbilityManager : MonoBehaviour
     private void Start()
     {
         equipedAbility = Gatherer_FlashStun.Instance;
+        passiveAbility = HealForcePassive.Instance;
         //print("equip");
     }
     void OnActivateAbility(InputAction.CallbackContext context)
@@ -53,6 +55,13 @@ public class GathererAbilityManager : MonoBehaviour
         if (equipedAbility.abilityName == "FlashStun")
         {
             equipedAbility.useAbility();
+        }
+    }
+    private void Update()
+    {
+        if (passiveAbility != null)
+        {
+            passiveAbility.passiveUpdate();
         }
     }
 

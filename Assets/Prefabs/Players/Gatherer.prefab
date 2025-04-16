@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 871047896541522312}
   - component: {fileID: 8282183718129652020}
   - component: {fileID: 346488403322498464}
+  - component: {fileID: 405281284013656679}
   m_Layer: 7
   m_Name: Gatherer
   m_TagString: Player
@@ -276,6 +277,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da399ee4076e9c646bd4fb50ad3220dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &405281284013656679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5708320580637796411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6147eaf2a0899a443b994ce1ad53fa3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthRegen: 0
+  regenTime: 0
 --- !u!1 &6319885882415222397
 GameObject:
   m_ObjectHideFlags: 0
