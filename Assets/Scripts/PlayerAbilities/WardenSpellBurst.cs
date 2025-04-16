@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class WardenSpellBurst : MonoBehaviour
+public class WardenSpellBurst : WardenBaseAbilities
 {
     [field: Header("Charge")]
     [field: SerializeField] public int NumHitsRequired { get; private set; }
@@ -24,6 +24,10 @@ public class WardenSpellBurst : MonoBehaviour
     [SerializeField] Transform spawnPoint;
     [SerializeField] SpellBurst prefab;
 
+    public override string abilityName => "SpellBurst";
+    public override int numHitsRequired => NumHitsRequired;
+    public override float duration => abilityDuration;
+
     public static WardenSpellBurst Instance { get; private set; }
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
     void Awake() { InitSingleton(); }
@@ -37,7 +41,7 @@ public class WardenSpellBurst : MonoBehaviour
         if (Charge > NumHitsRequired) Charge = NumHitsRequired;
     }
 
-    void OnActivateAbility()    // called by the Player Input component
+    public override void useAbility()    // called by the Ability Manager
     {
         if (Charge < NumHitsRequired) return;
         SpellBurst spellBurst = Instantiate(prefab).GetComponent<SpellBurst>();

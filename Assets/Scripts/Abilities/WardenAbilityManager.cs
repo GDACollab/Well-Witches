@@ -6,15 +6,21 @@ using UnityEngine.InputSystem;
 public class WardenAbilityManager : MonoBehaviour
 {
     public WardenBaseAbilities equipedAbility;
-    [SerializeField] private PlayerInput WardenControls;
+    [SerializeField] private Controls controls;
 
     public static WardenAbilityManager Instance { get; private set; }
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
-    void Awake() { InitSingleton(); }
+    void Awake() 
+    { 
+        InitSingleton();
+
+        controls = new Controls();
+        controls.Gameplay_Warden.Enable();
+    }
 
     // Subscribe to the Warden controls input action asset "Activate Ability" action
-    void OnEnable() { PlayerProjectile.OnHitEnemy += OnActivateAbility; }
-    void OnDisable() { PlayerProjectile.OnHitEnemy -= OnActivateAbility; }
+    void OnEnable() { controls.Gameplay_Warden.ActivateAbility.performed += OnActivateAbility; }
+    void OnDisable() { controls.Gameplay_Warden.ActivateAbility.performed -= OnActivateAbility; }
 
 
     private void Start()
@@ -22,9 +28,9 @@ public class WardenAbilityManager : MonoBehaviour
         equipedAbility = WardenDevastationBeam.Instance;
         //print("equip");
     }
-    void OnActivateAbility()
+    void OnActivateAbility(InputAction.CallbackContext context)
     {
-        //print("using ability");
+        print("using ability");
         if (equipedAbility != null)
         {
             equipedAbility.useAbility();
