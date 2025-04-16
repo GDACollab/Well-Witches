@@ -17,7 +17,7 @@ public class DevastationBeam : MonoBehaviour
 
     public GameObject spellCircle;
     public GameObject laserBeam;
-    //public CameraShake cameraShake;
+    public CameraShake cameraShake;
     public GameObject volume;
     public GameObject light2d;
 
@@ -31,7 +31,7 @@ public class DevastationBeam : MonoBehaviour
     private void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        spellCircle.SetActive(false);
+		cameraShake = mainCam.GetComponentInParent<CameraShake>();
         laserBeam.SetActive(false);
     }
 
@@ -48,8 +48,10 @@ public class DevastationBeam : MonoBehaviour
 
     IEnumerator ActivateLaser(float lifespan)
     {
+		spellCircle.SetActive(true);
         yield return new WaitForSeconds(2f);
         laserBeam.SetActive(true);
+		StartCoroutine(cameraShake.Shake(0.14f, 0.5f, 0, volume, light2d));
         StartCoroutine(DisableUltimate(lifespan));
     }
 
