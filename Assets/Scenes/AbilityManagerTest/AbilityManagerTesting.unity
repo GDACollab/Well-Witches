@@ -768,6 +768,7 @@ Transform:
   - {fileID: 1696653895}
   - {fileID: 22040035}
   - {fileID: 1363254553}
+  - {fileID: 659645086}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &119708908
@@ -2392,6 +2393,51 @@ Transform:
   - {fileID: 94554688}
   m_Father: {fileID: 713196565}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &659645085
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 659645086}
+  - component: {fileID: 659645087}
+  m_Layer: 0
+  m_Name: GathererAbilityManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &659645086
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659645085}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -25.661755, y: -4.1134577, z: 8.445727}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 104197302}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &659645087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659645085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e18769ec4034cba418e601164d033a7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipedAbility: {fileID: 0}
 --- !u!1 &677842907
 GameObject:
   m_ObjectHideFlags: 0
@@ -4178,7 +4224,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipedAbility: {fileID: 0}
-  WardenControls: {fileID: 0}
 --- !u!1 &1409419740
 GameObject:
   m_ObjectHideFlags: 0

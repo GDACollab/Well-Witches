@@ -30,7 +30,7 @@ public class WardenAbilityManager : MonoBehaviour
     }
     void OnActivateAbility(InputAction.CallbackContext context)
     {
-        print("using ability");
+        print("using warden ability");
         if (equipedAbility != null)
         {
             equipedAbility.useAbility();
