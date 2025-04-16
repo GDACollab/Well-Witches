@@ -34,7 +34,7 @@ public class GathererAbilityManager : MonoBehaviour
 
     private void Start()
     {
-        equipedAbility = Gatherer_FlashStun.Instance;
+        equipedAbility = AbilityHealthTransfer.Instance;
         passiveAbility = HealForcePassive.Instance;
         //print("equip");
     }

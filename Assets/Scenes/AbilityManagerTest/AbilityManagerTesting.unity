@@ -2617,6 +2617,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 405281284013656679, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
+      propertyPath: regenTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 405281284013656679, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
+      propertyPath: healthRegen
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 871047896541522312, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
       propertyPath: warden
       value: 
@@ -5079,9 +5087,9 @@ MonoBehaviour:
   WardenHaste: 0
   WardenLuck: 0
   WardenResistance: 0
-  WardenMaxHealth: 0
-  WardenCurrentHealth: 0
-  WardenHealthRegen: 0
+  WardenMaxHealth: 100
+  WardenCurrentHealth: 1
+  WardenHealthRegen: 5
 --- !u!1 &1623256273
 GameObject:
   m_ObjectHideFlags: 0
