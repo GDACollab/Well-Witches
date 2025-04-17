@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class AbilitySelectManager : MonoBehaviour
 {
@@ -17,8 +18,32 @@ public class AbilitySelectManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI abilityInfoText;
     [SerializeField] private TextMeshProUGUI abilityNameText;
 
+    [SerializeField] private GameObject abilityUIDisabler;
+    [SerializeField] private Controls controls;
+
     [SerializeField] private string defaultAbilityText;
 
+    private void Awake()
+    {
+        controls = new Controls();
+
+        controls.Gameplay_Gatherer.Enable();
+    }
+
+    private void OnEnable()
+    {
+        controls.Gameplay_Gatherer.Interact.performed += OnGathererInteract;
+    }
+    private void OnDisable()
+    {
+        controls.Gameplay_Gatherer.Interact.performed -= OnGathererInteract;
+    }
+
+    //Toggles ui on gatherer interact
+    private void OnGathererInteract(InputAction.CallbackContext context)
+    {
+        abilityUIDisabler.SetActive(!abilityUIDisabler.active);
+    }
 
     private void Start()
     {
