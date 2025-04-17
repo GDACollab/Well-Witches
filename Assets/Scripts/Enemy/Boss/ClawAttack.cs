@@ -7,13 +7,14 @@ public class ClawAttack : MonoBehaviour
     // These variables are used in the script to help with the attack and cooldown functions
     public float attackCooldown = 2f;
     public float attackTimer;
-    public float dmg;
+   
     private bool canDmg;
     public float attackDuration;
     public float timeSinceAttack;
     public float targetHealth = 100;
     private float bleedingdamagepersecond = 0.5f; 
     
+    [SerializeField] private GameObject player;
     public float clawDamage = 10f;
     UnityEngine.AI.NavMeshAgent agent;
     Transform target;
@@ -36,12 +37,12 @@ public class ClawAttack : MonoBehaviour
         canDmg = false;
     }
     void onTriggerEnter(Collider other){
-        if (other.gameObject.tag == "Player"){
-            target = other.transform;
-            if (canDmg){
-                //target.GetComponent<PlayerHealth>().TakeDamage(clawDamage);
-                Bleeding();
-            }
-        }
+        // if (other.GameObject.tag == "Player"){
+        //     target = other.transform;
+        //     if (canDmg){
+        //         target.GetComponent<PlayerHealth>().TakeDamage(clawDamage);
+        //         Bleeding();
+        //     }
+        // }
     }
 }
