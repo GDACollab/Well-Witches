@@ -23,6 +23,9 @@ public class AbilitySelectManager : MonoBehaviour
 
     [SerializeField] private string defaultAbilityText;
 
+    private WardenAbilityManager wardenAbilityManager;
+    private GathererAbilityManager gathererAbilityManager;
+
     private void Awake()
     {
         controls = new Controls();
@@ -53,6 +56,9 @@ public class AbilitySelectManager : MonoBehaviour
         }
 
         updateHoveredAbility(-1);
+
+        wardenAbilityManager = WardenAbilityManager.Instance;
+        gathererAbilityManager = GathererAbilityManager.Instance;
     }
 
     public void clickedAbility(bool warden, bool active, int id)
@@ -64,11 +70,14 @@ public class AbilitySelectManager : MonoBehaviour
             {
                 selected = selectedActiveAbilityWarden;
                 selectedActiveAbilityWarden = selectAbilityDoStuff(selected, warden, active, id);
+                wardenAbilityManager.EquipActive(abilitiesList[selectedActiveAbilityWarden].getAbilityID());
             }
             else
             {
                 selected = selectedPassiveAbilityWarden;
                 selectedPassiveAbilityWarden = selectAbilityDoStuff(selected, warden, active, id);
+                // TODO: dont uncomment if wardenAbilityManager.EquipPassive() is not created yet
+                // wardenAbilityManager.EquipPassive(abilitiesList[selectedActiveAbilityWarden].getAbilityID());
             }
         }
         else
@@ -77,11 +86,13 @@ public class AbilitySelectManager : MonoBehaviour
             {
                 selected = selectedActiveAbilityGatherer;
                 selectedActiveAbilityGatherer = selectAbilityDoStuff(selected, warden, active, id);
+                gathererAbilityManager.EquipActive(abilitiesList[selectedActiveAbilityGatherer].getAbilityID());
             }
             else
             {
                 selected = selectedPassiveAbilityGatherer;
                 selectedPassiveAbilityGatherer = selectAbilityDoStuff(selected, warden, active, id);
+                gathererAbilityManager.EquipPassive(abilitiesList[selectedActiveAbilityGatherer].getAbilityID());
             }
         }
     }
@@ -120,25 +131,5 @@ public class AbilitySelectManager : MonoBehaviour
 
         abilityInfoText.text = abilitiesList[id].getAbilityText();
         abilityNameText.text = abilitiesList[id].getAbilityName();
-    }
-
-    public int getSelectedWardenPassive()
-    {
-        return selectedPassiveAbilityWarden;
-    }
-
-    public int getSelectedWardenActive()
-    {
-        return selectedActiveAbilityWarden;
-    }
-
-    public int getSelectedGathererPassive()
-    {
-        return selectedPassiveAbilityGatherer;
-    }
-
-    public int getSelectedGathererActive()
-    {
-        return selectedActiveAbilityGatherer;
     }
 }

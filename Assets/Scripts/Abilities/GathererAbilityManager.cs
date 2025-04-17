@@ -107,9 +107,49 @@ public class GathererAbilityManager : MonoBehaviour
         }
 
     }
+    public void EquipActive(string abilityID)
+    {
+        if (abilityID != null)
+        {
+            switch (abilityID)
+            {
+                case "FlashStun":
+                    equipedAbility = Gatherer_FlashStun.Instance;
+                    equipedAbilityName = abilityID;
+                    break;
+                case "HealthTransfer":
+                    equipedAbility = AbilityHealthTransfer.Instance;
+                    equipedAbilityName = abilityID;
+                    break;
+                case "BubbleShield":
+                    equipedAbility = BubbleShield.Instance;
+                    equipedAbilityName = abilityID;
+                    break;
+                default:
+                    print("failed to swap to: " + abilityID);
+                    break;
+            }
+        }
+        else
+        {
+            print("Failed to equip ability: Null ability");
+        }
+    }
 
-    /*
-     TODO: Write a function that takes in an instance of an ability and sets "equipedAbility" to that instance
-        will likley be called by whatever UI stuff selects abilities
-     */
+    public void EquipPassive(string abilityID)
+    {
+        if (abilityID != null)
+        {
+            switch (abilityID)
+            {
+                case "HealForce":
+                    passiveAbility = HealForcePassive.Instance;
+                    passiveAbilityName = abilityID;
+                    break;
+                default:
+                    print("failed to swap to: " + abilityID);
+                    break;
+            }
+        }
+    }
 }

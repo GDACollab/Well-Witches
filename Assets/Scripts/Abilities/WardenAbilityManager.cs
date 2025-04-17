@@ -36,7 +36,7 @@ public class WardenAbilityManager : MonoBehaviour
 
     private void Start()
     {
-        equipedAbility = WardenGourdForge.Instance;
+        equipedAbility = WardenDevastationBeam.Instance;
         equipedAbilityName = equipedAbility.abilityName;
         print("Ability is of type: " + equipedAbilityName);
         //print("equip");
@@ -73,8 +73,36 @@ public class WardenAbilityManager : MonoBehaviour
         
     }
 
-    /*
-     TODO: Write a function that takes in an instance of an ability and sets "equipedAbility" to that instance
-        will likley be called by whatever UI stuff selects abilities
-     */
+    public void EquipActive(string abilityID)
+    {
+        if (abilityID != null)
+        {
+            switch (abilityID)
+            {
+                case "DevastationBeam":
+                    equipedAbility = WardenDevastationBeam.Instance;
+                    equipedAbilityName = abilityID;
+                    break;
+                case "SpellBurst":
+                    equipedAbility = WardenSpellBurst.Instance;
+                    equipedAbilityName = abilityID;
+                    break;
+                case "GourdForge":
+                    equipedAbility = WardenGourdForge.Instance;
+                    equipedAbilityName = abilityID;
+                    break;
+                default:
+                    print("failed to swap to: " + abilityID);
+                    break;
+            }
+        }
+        else
+        {
+            print("Failed to equip ability: Null ability");
+        }
+    }
+    //public void EquipActive(string abilityID)
+    //{
+        // the same as above, just for passives (look at gatherer manager)
+    //}
 }

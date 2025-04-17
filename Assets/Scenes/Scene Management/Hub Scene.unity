@@ -903,6 +903,8 @@ Transform:
   - {fileID: 119708909}
   - {fileID: 1696653895}
   - {fileID: 22040035}
+  - {fileID: 496648204}
+  - {fileID: 1411389824}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &119708908
@@ -1686,7 +1688,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &211911061
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1768,14 +1770,13 @@ MonoBehaviour:
   abilityImage: {fileID: 212913056}
   abilityButton: {fileID: 212913055}
   abilitySelectManager: {fileID: 45010631}
+  abilityID: FlashStun
   normalSprite: {fileID: 21300000, guid: 81f9b53c6e8776b4b96d588a7b96af50, type: 3}
   hoverSprite: {fileID: 21300000, guid: d30390cb97b1cc743984f999e00d3753, type: 3}
   selectSprite: {fileID: 21300000, guid: 60d84697e3fe81a4da647169d72ec053, type: 3}
   lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
-  abilityText: That's the ability yep it does this and that mmmmhhhmmmmm. It even
-    like does this other thing which is particularly helpful when trying to um win.
-    Yeeeuppppp thats for sure an item.
-  abilityName: Spiky
+  abilityText: Freeze enemies with your STUNning looks!
+  abilityName: Flash Stun
   isWarden: 0
   isActive: 1
   isLocked: 0
@@ -1990,6 +1991,7 @@ MonoBehaviour:
   abilityImage: {fileID: 298191899}
   abilityButton: {fileID: 298191898}
   abilitySelectManager: {fileID: 45010631}
+  abilityID: 
   normalSprite: {fileID: 21300000, guid: 264713fbf5f3026458f632760c1d0422, type: 3}
   hoverSprite: {fileID: 21300000, guid: f271bf28c4bae7f4592b10388b213e60, type: 3}
   selectSprite: {fileID: 21300000, guid: b76b54c9b204e0348b908b78eff9cd56, type: 3}
@@ -2677,6 +2679,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461363171}
   m_CullTransparentMesh: 1
+--- !u!1 &496648203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 496648204}
+  - component: {fileID: 496648205}
+  m_Layer: 0
+  m_Name: WardenAbilityManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &496648204
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496648203}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -25.661755, y: -4.1134577, z: 8.445727}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 104197302}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &496648205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496648203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41543fbac8250d643b0a5f2abf8e24d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipedAbility: {fileID: 0}
+  equipedAbilityName: 
 --- !u!1 &499584890
 GameObject:
   m_ObjectHideFlags: 0
@@ -3485,6 +3533,7 @@ MonoBehaviour:
   abilityImage: {fileID: 732063310}
   abilityButton: {fileID: 732063309}
   abilitySelectManager: {fileID: 45010631}
+  abilityID: 
   normalSprite: {fileID: 21300000, guid: f0e27b584602e6640a2eff97fd6a1f74, type: 3}
   hoverSprite: {fileID: 21300000, guid: 6fe8e3bd580485147a5c03ac9233edb8, type: 3}
   selectSprite: {fileID: 21300000, guid: cfd2e26cea4ff784eaeb433ead54bc3e, type: 3}
@@ -3493,7 +3542,7 @@ MonoBehaviour:
   abilityName: I see you
   isWarden: 1
   isActive: 0
-  isLocked: 0
+  isLocked: 1
 --- !u!114 &732063309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3630,15 +3679,16 @@ MonoBehaviour:
   abilityImage: {fileID: 775799460}
   abilityButton: {fileID: 775799459}
   abilitySelectManager: {fileID: 45010631}
+  abilityID: HealthTransfer
   normalSprite: {fileID: 21300000, guid: 81f9b53c6e8776b4b96d588a7b96af50, type: 3}
   hoverSprite: {fileID: 21300000, guid: d30390cb97b1cc743984f999e00d3753, type: 3}
   selectSprite: {fileID: 21300000, guid: 60d84697e3fe81a4da647169d72ec053, type: 3}
   lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
-  abilityText: This ability finds who asked
-  abilityName: Spiky the second
+  abilityText: Gives Vervain Health in exchange for some of Aloe's
+  abilityName: Health Transfer
   isWarden: 0
   isActive: 1
-  isLocked: 1
+  isLocked: 0
 --- !u!114 &775799459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4604,6 +4654,7 @@ MonoBehaviour:
   abilityImage: {fileID: 996827046}
   abilityButton: {fileID: 996827045}
   abilitySelectManager: {fileID: 45010631}
+  abilityID: 
   normalSprite: {fileID: 21300000, guid: 264713fbf5f3026458f632760c1d0422, type: 3}
   hoverSprite: {fileID: 21300000, guid: f271bf28c4bae7f4592b10388b213e60, type: 3}
   selectSprite: {fileID: 21300000, guid: b76b54c9b204e0348b908b78eff9cd56, type: 3}
@@ -4612,7 +4663,7 @@ MonoBehaviour:
   abilityName: Minute glaz
   isWarden: 0
   isActive: 0
-  isLocked: 0
+  isLocked: 1
 --- !u!114 &996827045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6015,6 +6066,7 @@ MonoBehaviour:
   abilityImage: {fileID: 1243710221}
   abilityButton: {fileID: 1243710220}
   abilitySelectManager: {fileID: 45010631}
+  abilityID: 
   normalSprite: {fileID: 21300000, guid: f0e27b584602e6640a2eff97fd6a1f74, type: 3}
   hoverSprite: {fileID: 21300000, guid: 6fe8e3bd580485147a5c03ac9233edb8, type: 3}
   selectSprite: {fileID: 21300000, guid: cfd2e26cea4ff784eaeb433ead54bc3e, type: 3}
@@ -6023,7 +6075,7 @@ MonoBehaviour:
   abilityName: Eye
   isWarden: 1
   isActive: 0
-  isLocked: 0
+  isLocked: 1
 --- !u!114 &1243710220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6707,6 +6759,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1409419740}
   m_CullTransparentMesh: 1
+--- !u!1 &1411389823
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1411389824}
+  - component: {fileID: 1411389825}
+  m_Layer: 0
+  m_Name: GathererAbilityManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1411389824
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411389823}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -25.661755, y: -4.1134577, z: 8.445727}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 104197302}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1411389825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411389823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e18769ec4034cba418e601164d033a7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipedAbility: {fileID: 0}
+  equipedAbilityName: 
+  passiveAbility: {fileID: 0}
+  passiveAbilityName: 
 --- !u!1 &1438284235 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5708320580637796411, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
@@ -6766,12 +6866,13 @@ MonoBehaviour:
   abilityImage: {fileID: 1443900517}
   abilityButton: {fileID: 1443900516}
   abilitySelectManager: {fileID: 45010631}
+  abilityID: SpellBurst
   normalSprite: {fileID: 21300000, guid: 224080a2b7ca1a443b089c61034c27f7, type: 3}
   hoverSprite: {fileID: 21300000, guid: a9c4ed3c7935bce4f93e5f94bec96676, type: 3}
   selectSprite: {fileID: 21300000, guid: ec0b3e0f070872f4f8c9fbf6da9aa6c9, type: 3}
   lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
-  abilityText: explanation of abilite
-  abilityName: Super Swriflysadfamksdfnvalskjd
+  abilityText: Makes you the center of the universe
+  abilityName: Spell Burst
   isWarden: 1
   isActive: 1
   isLocked: 0
@@ -7045,12 +7146,13 @@ MonoBehaviour:
   abilityImage: {fileID: 1463411766}
   abilityButton: {fileID: 1463411765}
   abilitySelectManager: {fileID: 45010631}
+  abilityID: DevastationBeam
   normalSprite: {fileID: 21300000, guid: 224080a2b7ca1a443b089c61034c27f7, type: 3}
   hoverSprite: {fileID: 21300000, guid: a9c4ed3c7935bce4f93e5f94bec96676, type: 3}
   selectSprite: {fileID: 21300000, guid: ec0b3e0f070872f4f8c9fbf6da9aa6c9, type: 3}
   lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
-  abilityText: a
-  abilityName: Swirly
+  abilityText: '"Ka... Me... Ha.. Me..."'
+  abilityName: Devastation Beam
   isWarden: 1
   isActive: 1
   isLocked: 0
@@ -7467,6 +7569,7 @@ MonoBehaviour:
   abilityImage: {fileID: 1547412079}
   abilityButton: {fileID: 1547412078}
   abilitySelectManager: {fileID: 45010631}
+  abilityID: 
   normalSprite: {fileID: 21300000, guid: f0e27b584602e6640a2eff97fd6a1f74, type: 3}
   hoverSprite: {fileID: 21300000, guid: 6fe8e3bd580485147a5c03ac9233edb8, type: 3}
   selectSprite: {fileID: 21300000, guid: cfd2e26cea4ff784eaeb433ead54bc3e, type: 3}
@@ -8472,12 +8575,13 @@ MonoBehaviour:
   abilityImage: {fileID: 1817059214}
   abilityButton: {fileID: 1817059213}
   abilitySelectManager: {fileID: 45010631}
+  abilityID: HealForce
   normalSprite: {fileID: 21300000, guid: 264713fbf5f3026458f632760c1d0422, type: 3}
   hoverSprite: {fileID: 21300000, guid: f271bf28c4bae7f4592b10388b213e60, type: 3}
   selectSprite: {fileID: 21300000, guid: b76b54c9b204e0348b908b78eff9cd56, type: 3}
   lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
-  abilityText: time or smthn
-  abilityName: Hourglaz
+  abilityText: health regen over time
+  abilityName: Heal Force
   isWarden: 0
   isActive: 0
   isLocked: 0
@@ -8806,12 +8910,13 @@ MonoBehaviour:
   abilityImage: {fileID: 1849198558}
   abilityButton: {fileID: 1849198557}
   abilitySelectManager: {fileID: 45010631}
+  abilityID: GourdForge
   normalSprite: {fileID: 21300000, guid: 224080a2b7ca1a443b089c61034c27f7, type: 3}
   hoverSprite: {fileID: 21300000, guid: a9c4ed3c7935bce4f93e5f94bec96676, type: 3}
   selectSprite: {fileID: 21300000, guid: ec0b3e0f070872f4f8c9fbf6da9aa6c9, type: 3}
   lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
-  abilityText: This ability swirlys
-  abilityName: name.
+  abilityText: Something Johnny Cash something something ring of fire
+  abilityName: Gourd Forge
   isWarden: 1
   isActive: 1
   isLocked: 0
@@ -9606,15 +9711,16 @@ MonoBehaviour:
   abilityImage: {fileID: 2060081177}
   abilityButton: {fileID: 2060081176}
   abilitySelectManager: {fileID: 45010631}
+  abilityID: BubbleShield
   normalSprite: {fileID: 21300000, guid: 81f9b53c6e8776b4b96d588a7b96af50, type: 3}
   hoverSprite: {fileID: 21300000, guid: d30390cb97b1cc743984f999e00d3753, type: 3}
   selectSprite: {fileID: 21300000, guid: 60d84697e3fe81a4da647169d72ec053, type: 3}
   lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
-  abilityText: Ability text AAAAAAAAAAAAAAAAAAAAAAAAA
-  abilityName: Very spiky
+  abilityText: I saw a kid with a rock in his stomach do this one before
+  abilityName: Bubble Shield
   isWarden: 0
   isActive: 1
-  isLocked: 1
+  isLocked: 0
 --- !u!114 &2060081176
 MonoBehaviour:
   m_ObjectHideFlags: 0

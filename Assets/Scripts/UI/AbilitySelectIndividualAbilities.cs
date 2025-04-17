@@ -10,6 +10,7 @@ public class AbilitySelectIndividualAbilities : MonoBehaviour, IPointerEnterHand
     [SerializeField] private Image abilityImage;
     [SerializeField] private Button abilityButton;
     [SerializeField] private AbilitySelectManager abilitySelectManager;
+    [SerializeField] private string abilityID; //Should be the same as what is in the "abilityName" field of each ability
 
     [Header("Images")]
     [SerializeField] private Sprite normalSprite;
@@ -85,6 +86,11 @@ public class AbilitySelectIndividualAbilities : MonoBehaviour, IPointerEnterHand
     public string getAbilityName()
     {
         return abilityName;
+    }
+
+    public string getAbilityID()
+    {
+        return abilityID;
     }
 
     public void setLocked(bool locked)
