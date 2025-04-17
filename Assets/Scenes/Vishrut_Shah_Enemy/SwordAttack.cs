@@ -7,8 +7,9 @@ public class SwordAttack : MonoBehaviour
     public float warningDuration = 2f;  // Duration of warning
     public float attackDuration = 1f;   // Duration of the attack
     private bool isCasting = false;
+    private bool playerInHitbox = false; // Flag to track if the player is in the hitbox
     private SpriteRenderer warningRenderer; // Reference to the warning sprite
-    private Collider2D hitboxCollider;     // Reference to the half-circle hitbox collider
+    private PolygonCollider2D hitboxCollider;     // Reference to the half-circle hitbox collider
     private BossEnemy bossEnemy;           // Reference to the BossEnemy script
     private AttackIndicatorCapsule attackIndicatorCapsule; // Reference to the AttackIndicatorSquare script
     private SpriteRenderer InnerGrow;
@@ -19,21 +20,32 @@ public class SwordAttack : MonoBehaviour
         if (warningObject != null)
         {
             warningRenderer = warningObject.Find("ShapeAndColliders").GetComponent<SpriteRenderer>();
-            hitboxCollider = warningObject.Find("ShapeAndColliders").GetComponent<Collider2D>();
+            hitboxCollider = warningObject.Find("ShapeAndColliders").GetComponent<PolygonCollider2D>();
             InnerGrow = warningObject.Find("InnerGrow").GetComponent<SpriteRenderer>();
             attackIndicatorCapsule = warningObject.GetComponent<AttackIndicatorCapsule>();
 
-            Debug.Log("Initialization successful");
-            Debug.Log("warningRenderer: " + (warningRenderer != null));
-            Debug.Log("hitboxCollider: " + (hitboxCollider != null));
-            Debug.Log("InnerGrow: " + (InnerGrow != null));
-            Debug.Log("attackIndicatorSquare: " + (attackIndicatorCapsule != null));
         }
         else
         {
             Debug.LogError("SwordSlashWarning not found! Make sure it's a child of the Boss Enemy.");
         }
         bossEnemy = GetComponentInParent<BossEnemy>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInHitbox = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInHitbox = false;
+        }
     }
 
     public void PerformSwordAttack()
@@ -46,7 +58,6 @@ public class SwordAttack : MonoBehaviour
 
     private IEnumerator SwordAttackRoutine()
     {
-
         PhaseOne phaseOne = GetComponentInParent<PhaseOne>(); // Access PhaseOne to set the casting flag
         phaseOne.SetAbilityCasting(true); // Set casting flag to true
 
@@ -56,6 +67,20 @@ public class SwordAttack : MonoBehaviour
         // Enable visibility of the warning renderer and InnerGrow
         if (warningRenderer != null) warningRenderer.enabled = true;
         if (InnerGrow != null) InnerGrow.enabled = true;
+
+        // Calculate the direction to the player
+        if (bossEnemy != null && bossEnemy.currentTarget != null)
+        {
+            Vector3 directionToPlayer = (bossEnemy.currentTarget.position - transform.position).normalized;
+            float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
+
+            // Set the position and rotation of the attack indicator
+            if (attackIndicatorCapsule != null)
+            {
+                attackIndicatorCapsule.transform.position = transform.position + directionToPlayer * 2;
+                attackIndicatorCapsule.transform.rotation = Quaternion.Euler(0, 0, angle);
+            }
+        }
 
         // Gradually increase the size of the attack indicator
         float elapsedTime = 0f;
@@ -70,15 +95,16 @@ public class SwordAttack : MonoBehaviour
         }
         if (attackIndicatorCapsule != null) attackIndicatorCapsule.size = 1f;
 
+        // Play sword slash animation here
+
         // Check if the player is within the hitbox
-        if (bossEnemy != null && bossEnemy.currentTarget != null)
+        if (playerInHitbox)
         {
-            Collider2D playerCollider = bossEnemy.currentTarget.GetComponent<Collider2D>();
-            if (hitboxCollider != null && playerCollider != null && hitboxCollider.bounds.Intersects(playerCollider.bounds))
-            {
-                // Player is within the hitbox, apply damage here
-                // bossEnemy.currentTarget.GetComponent<Player>().TakeDamage(damage);
-            }
+            Debug.Log("Player hit by sword attack!");
+        }
+        else
+        {
+            Debug.Log("Player not hit by sword attack.");
         }
 
         // Wait for the attack duration
@@ -92,6 +118,5 @@ public class SwordAttack : MonoBehaviour
         isCasting = false;
 
         phaseOne.SetAbilityCasting(false); // Reset casting flag to false
-
     }
 }
