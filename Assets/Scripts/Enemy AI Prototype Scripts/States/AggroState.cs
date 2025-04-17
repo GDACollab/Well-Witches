@@ -48,7 +48,7 @@ public class AggroState : State
     {
         if (meleeEnemy != null)
         {
-            meleeEnemy.TargetClosestPlayer();
+            meleeEnemy.TargetGathererPlayer();
             meleeEnemy.AggroMove();
         }
         else if (rangedEnemy != null)

@@ -168,20 +168,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 8
-  moveSpeed: 6
-  range: 4.5
+  moveSpeed: 5
+  range: 2.5
   AttackRate: 2
-  dashDistance: 5
-  dashTime: 1.5
-  damage: 10
-  attackAOE: 0.95
+  dashDistance: 3
+  dashTime: 0.5
+  damage: 2
+  attackAOE: 0.68
   spinAttackSprite: {fileID: 7161134626065402768}
-  maxSpinSpeed: 15
-  distanceToPlayer1: 0
-  distanceToPlayer2: 0
+  maxSpinSpeed: 40
+  distanceToGatherer: 0
+  distanceToWarden: 0
   distanceToTarget: 0
-  timeToFire: 0
-  players: []
   currentTarget: {fileID: 0}
   isSpinAttacking: 0
 --- !u!114 &-4798716198282340914
