@@ -1,4 +1,7 @@
+using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 public class MeleeEnemy : BaseEnemyClass
@@ -9,35 +12,44 @@ public class MeleeEnemy : BaseEnemyClass
 
 
     [Header("Attack")]
-    [Tooltip("The lower the value the faster the enemy fires projectiles")]
+    [Tooltip("The time it takes before the enemy can attack again")]
     public float AttackRate;
-    [Tooltip("The higher the value the further the enemy dashes and the faster the dash is.")]
+    [Tooltip("How far the enemy dashes")]
     public float dashDistance;
+    [Tooltip("Controls how fast in seconds it takes the enemy to dash across that distance")]
+    public float dashTime;
+    [Tooltip("The Damage done to the player every time they get hit")]
+    public float damage;
+    [Tooltip("The higher the value larger the AOE indicated by the red circle")]
+    public float attackAOE;
+    [Tooltip("Sprite used for the spin attack")]
+    public SpriteRenderer spinAttackSprite;
+    [Tooltip("Spin Attack Sprite Spinning speed (revolutions per second)")]
+    public float maxSpinSpeed;
 
     [Header("DEBUG")]
     public float distanceToPlayer1;
     public float distanceToPlayer2;
     public float distanceToTarget;
     public float timeToFire;
+
+
     [SerializeField] private GameObject[] players;
     public Transform currentTarget;
-
+    [SerializeField] private bool isSpinAttacking = false;    
+    private float actualDashSpeed = 0;
     private Rigidbody2D rb2d;
-    private CircleCollider2D circol;
-    
-    private bool canAttack = true;
-
     private void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
         players = GameObject.FindGameObjectsWithTag("Player");
-        circol = GetComponent<CircleCollider2D>();
+        rb2d = GetComponent<Rigidbody2D>();
+        spinAttackSprite.enabled = false;
+        actualDashSpeed = dashDistance/dashTime;
     }
 
 
     private void Update()
     {
-
     }
 
     // calculates and set target to the closest player to the enemy
@@ -59,33 +71,68 @@ public class MeleeEnemy : BaseEnemyClass
 
     public void Attack()
     {
-        /*
-        A
 
-        */
-        Debug.Log("Attacking");
-        if (canAttack) {
-            // if (circol.IsTouching(players[0].GetComponent<CapsuleCollider2D>())) {
-            //     Debug.Log(players[0].name + " has been hit");
-            // }
-            // if (circol.IsTouching(players[1].GetComponent<CapsuleCollider2D>())) {
-            //     Debug.Log(players[1].name + " has been hit");
-            // }
-            rb2d.AddForce((currentTarget.position - transform.position).normalized * dashDistance, ForceMode2D.Impulse);
-        } else {
-            rb2d.velocity = Vector2.zero;
+        isSpinAttacking = true;
+        StartCoroutine(Attacking());
+        // if (Vector2.Distance(currentTarget.transform.position, transform.position) < attackAOE) 
+        // {
+        //     rb2d.velocity = (currentTarget.position - transform.position).normalized * speedWhileAttacking;
+        //     if (currentTarget.gameObject.name == "Warden")
+        //     {
+        //         EventManager.instance.playerEvents.PlayerDamage(damage, "Warden");
+        //     }
+        //     else if (currentTarget.gameObject.name == "Gatherer")
+        //     {
+        //         EventManager.instance.playerEvents.PlayerDamage(damage, "Gatherer");
+        //     }
+        // }
+    }
+
+    // this is for a better lerp function
+    // referenced from this video: https://www.youtube.com/watch?v=LSNQuFEDOyQ&ab_channel=FreyaHolm%C3%A9r
+    private Vector2 expDecay(Vector2 a, Vector2 b, float decay) {
+        return b+(a-b)*MathF.Exp(-decay*Time.deltaTime);
+    }
+    IEnumerator Attacking()
+    {
+        Debug.Log("Entering Spin Attack");
+        //Debug.Break();
+        spinAttackSprite.enabled = true;
+        Vector3 directionToTarget = (currentTarget.position - transform.position).normalized;
+        Vector2 dashVector = directionToTarget * actualDashSpeed;
+        float attackStartTime = Time.time;
+        // Attack Proper
+        while (Time.time - attackStartTime < dashTime) {
+            rb2d.AddForce(dashVector,ForceMode2D.Force);
+            rb2d.velocity = dashVector;
+            spinAttackSprite.transform.Rotate(Vector3.forward*maxSpinSpeed);
+            if (Vector2.Distance(currentTarget.transform.position, transform.position) < attackAOE) 
+            {
+                if (currentTarget.gameObject.name == "Warden")
+                {
+                    EventManager.instance.playerEvents.PlayerDamage(damage, "Warden");
+                }
+                else if (currentTarget.gameObject.name == "Gatherer")
+                {
+                    EventManager.instance.playerEvents.PlayerDamage(damage, "Gatherer");
+                }
+            }
+            yield return new WaitForFixedUpdate();
         }
-        canAttack = !canAttack;
+        // Attack Winddown
+
+        isSpinAttacking = false;
+        spinAttackSprite.enabled = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackAOE);
     }
 
     public void AggroMove() {
         Vector3 direction = currentTarget.position - transform.position;
         rb2d.velocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
-    }
-
-    void OnTriggerEnter2D(Collider2D collider) {
-        if (collider.CompareTag("Player") && !canAttack && !collider.isTrigger) {
-            Debug.Log(collider.name + " has been hit");
-        }
     }
 }
