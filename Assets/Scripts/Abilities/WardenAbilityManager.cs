@@ -30,7 +30,7 @@ public class WardenAbilityManager : MonoBehaviour
     void OnDisable() 
     { 
         controls.Gameplay_Warden.ActivateAbility.performed -= OnActivateAbility;
-        SceneManager.activeSceneChanged += ChangedActiveScene;
+        SceneManager.activeSceneChanged -= ChangedActiveScene;
     }
 
 
