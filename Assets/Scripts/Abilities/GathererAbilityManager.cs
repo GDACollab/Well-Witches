@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GathererAbilityManager : MonoBehaviour
 {
     public GathererBaseAbilities equipedAbility;
+    [SerializeField] string equipedAbilityName;
     public PassiveAbilities passiveAbility;
+    [SerializeField] string passiveAbilityName;
     [SerializeField] private Controls controls;
 
     public static GathererAbilityManager Instance { get; private set; }
@@ -24,18 +27,22 @@ public class GathererAbilityManager : MonoBehaviour
     {
         controls.Gameplay_Gatherer.ActivateAbility.performed += OnActivateAbility;
         controls.Gameplay_Gatherer.ActivateAbilityAfterHold.performed += OnActivateAbilityAfterHold;
+        SceneManager.activeSceneChanged += ChangedActiveScene;
     }
     void OnDisable()
     {
         controls.Gameplay_Gatherer.ActivateAbility.performed -= OnActivateAbility;
         controls.Gameplay_Gatherer.ActivateAbilityAfterHold.performed -= OnActivateAbilityAfterHold;
+        SceneManager.activeSceneChanged -= ChangedActiveScene;
     }
 
 
     private void Start()
     {
-        equipedAbility = BubbleShield.Instance;
+        equipedAbility = Gatherer_FlashStun.Instance;
+        equipedAbilityName = equipedAbility.abilityName;
         passiveAbility = HealForcePassive.Instance;
+        passiveAbilityName = passiveAbility.abilityName;
         //print("equip");
     }
     void OnActivateAbility(InputAction.CallbackContext context)
@@ -63,6 +70,42 @@ public class GathererAbilityManager : MonoBehaviour
         {
             passiveAbility.passiveUpdate();
         }
+    }
+
+    private void ChangedActiveScene(Scene current, Scene next)
+    {
+        if (equipedAbilityName != null)
+        {
+            switch (equipedAbilityName)
+            {
+                case "FlashStun":
+                    equipedAbility = Gatherer_FlashStun.Instance;
+                    break;
+                case "HealthTransfer":
+                    equipedAbility = AbilityHealthTransfer.Instance;
+                    break;
+                case "BubbleShield":
+                    equipedAbility = BubbleShield.Instance;
+                    break;
+                default:
+                    print("failed to swap to: " + equipedAbilityName);
+                    break;
+            }
+        }
+
+        if (passiveAbilityName != null)
+        {
+            switch (passiveAbilityName)
+            {
+                case "HealForce":
+                    passiveAbility = HealForcePassive.Instance;
+                    break;
+                default:
+                    print("failed to swap to: " + passiveAbilityName);
+                    break;
+            }
+        }
+
     }
 
     /*

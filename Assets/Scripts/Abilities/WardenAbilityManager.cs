@@ -50,7 +50,7 @@ public class WardenAbilityManager : MonoBehaviour
         }
     }
 
-    void ChangedActiveScene(Scene current, Scene next)
+    private void ChangedActiveScene(Scene current, Scene next)
     {
         if (equipedAbilityName != null)
         {
