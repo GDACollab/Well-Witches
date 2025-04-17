@@ -8,6 +8,7 @@ public class WardenAbilityManager : MonoBehaviour
     public WardenBaseAbilities equipedAbility;
     [SerializeField] private Controls controls;
 
+    // WardenAbilityManager.Instance.equipedAbility.numHitsRequired
     public static WardenAbilityManager Instance { get; private set; }
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
     void Awake() 
