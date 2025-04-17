@@ -10,8 +10,9 @@ public class KeyItem : MonoBehaviour
     private Sprite keyItemSprite; 
     
     public void setSprite(int ID) {
-        if (ID >= 1 || ID <= 9) {
-            keyItemSprite = Resources.Load<Sprite>($"Assets/Resources/KeyItems/KeyItemSprite {ID}.png");
+        if (ID >= 1 && ID <= 9) {
+            keyItemSprite = Resources.Load<Sprite>($"KeyItems/KeyItemSprite {ID}");
+            spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.sprite = keyItemSprite;
         }
     }

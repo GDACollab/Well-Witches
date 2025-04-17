@@ -47,7 +47,7 @@ public class ItemDispenser : MonoBehaviour, IInteractable
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         particleSystem = GetComponent<ParticleSystem>();
-        keyItemToSpawn = Resources.Load<GameObject>("Assets/Resources/KeyItems/KeyItem");
+        keyItemToSpawn = Resources.Load<GameObject>("KeyItems/KeyItem");
     }
 
     /*
@@ -106,18 +106,17 @@ public class ItemDispenser : MonoBehaviour, IInteractable
             // First checks if the ROLL is less than the keyItemChance. 
             // If it is, we spawn the key item and set the chance in the StatsManager back to 5%.
             // If not, then add 6% to the curent keyItemChance in StatsManager.
-            if (ROLL <= 2f) {
+            if (ROLL <= keyItemChance) {
                 Debug.Log("HIIII!!!!");
-
-                KeyItem keyItemScript = keyItemToSpawn.GetComponent<KeyItem>();
-                keyItemScript.keyItemID = GameManager.instance.currentKeyItem;
-                keyItemScript.setSprite(keyItemScript.keyItemID);
-
-                Instantiate(
+                GameObject keyItemDrop = Instantiate(
                     keyItemToSpawn,
                     new Vector3(transform.position.x + spawnX, transform.position.y +spawnY, 0f),
                     Quaternion.identity
                 );
+                KeyItem keyItemScript = keyItemDrop.GetComponent<KeyItem>();
+                Debug.Log($"{GameManager.instance.currentKeyItem}");
+                keyItemScript.keyItemID = GameManager.instance.currentKeyItem;
+                keyItemScript.setSprite(keyItemScript.keyItemID);
 
                 GameManager.instance.currentKeyItem++;
                 StatsManager.Instance.keyItemChance = 0.05f;
