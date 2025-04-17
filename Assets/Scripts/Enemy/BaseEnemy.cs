@@ -28,7 +28,6 @@ public class BaseEnemyClass : MonoBehaviour
 
     void Die()
     {
-        //WardenAbilityManager.Instance.equipedAbility.numHitsRequired 
         Destroy(gameObject);
     }
 
