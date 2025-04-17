@@ -446,6 +446,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8015346194276888610, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
   m_PrefabInstance: {fileID: 1966091310}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1661577779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661577765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e7f9f438ab61845b5881f1eb56232a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 10
+  damage: 20
+  flamesPerSecond: 5
+  startAbility: 0
+  fire: {fileID: 6194044856683223204, guid: 9ab1ab0254f60cd48bc873a50962bbcf, type: 3}
+  resetTimer: 0
+  currentTimer: 0
 --- !u!1 &1763540352 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3424275855618714540, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
@@ -656,7 +675,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5708320580637796411, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1661577779}
   m_SourcePrefab: {fileID: 100100000, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
 --- !u!58 &1966091311 stripped
 CircleCollider2D:

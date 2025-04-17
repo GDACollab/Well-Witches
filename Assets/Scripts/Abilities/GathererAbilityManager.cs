@@ -7,6 +7,7 @@ public class GathererAbilityManager : MonoBehaviour
 {
     public GathererBaseAbilities equipedAbility;
     public PassiveAbilities passiveAbility;
+    public PassiveAbilities passiveAbility2;
     [SerializeField] private Controls controls;
 
     public static GathererAbilityManager Instance { get; private set; }
@@ -36,6 +37,7 @@ public class GathererAbilityManager : MonoBehaviour
     {
         equipedAbility = BubbleShield.Instance;
         passiveAbility = HealForcePassive.Instance;
+        passiveAbility2 = SolesOfTheDamned.Instance;
         //print("equip");
     }
     void OnActivateAbility(InputAction.CallbackContext context)
