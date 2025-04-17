@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
+using UnityEngine.SceneManagement;
 
 public class WardenAbilityManager : MonoBehaviour
 {
     public WardenBaseAbilities equipedAbility;
+    [SerializeField] string equipedAbilityName;
     [SerializeField] private Controls controls;
 
     public static WardenAbilityManager Instance { get; private set; }
@@ -19,13 +22,23 @@ public class WardenAbilityManager : MonoBehaviour
     }
 
     // Subscribe to the Warden controls input action asset "Activate Ability" action
-    void OnEnable() { controls.Gameplay_Warden.ActivateAbility.performed += OnActivateAbility; }
-    void OnDisable() { controls.Gameplay_Warden.ActivateAbility.performed -= OnActivateAbility; }
+    void OnEnable() 
+    { 
+        controls.Gameplay_Warden.ActivateAbility.performed += OnActivateAbility;
+        SceneManager.activeSceneChanged += ChangedActiveScene;
+    }
+    void OnDisable() 
+    { 
+        controls.Gameplay_Warden.ActivateAbility.performed -= OnActivateAbility;
+        SceneManager.activeSceneChanged += ChangedActiveScene;
+    }
 
 
     private void Start()
     {
-        equipedAbility = WardenDevastationBeam.Instance;
+        equipedAbility = WardenGourdForge.Instance;
+        equipedAbilityName = equipedAbility.abilityName;
+        print("Ability is of type: " + equipedAbilityName);
         //print("equip");
     }
     void OnActivateAbility(InputAction.CallbackContext context)
@@ -35,6 +48,29 @@ public class WardenAbilityManager : MonoBehaviour
         {
             equipedAbility.useAbility();
         }
+    }
+
+    void ChangedActiveScene(Scene current, Scene next)
+    {
+        if (equipedAbilityName != null)
+        {
+            switch (equipedAbilityName)
+            {
+                case "DevastationBeam":
+                    equipedAbility = WardenDevastationBeam.Instance;
+                    break;
+                case "SpellBurst":
+                    equipedAbility = WardenSpellBurst.Instance;
+                    break;
+                case "GourdForge":
+                    equipedAbility = WardenGourdForge.Instance;
+                    break;
+                default:
+                    print("failed to swap to: " + equipedAbilityName);
+                    break;
+            }
+        }
+        
     }
 
     /*
