@@ -122,4 +122,23 @@ public class AbilitySelectManager : MonoBehaviour
         abilityNameText.text = abilitiesList[id].getAbilityName();
     }
 
+    public int getSelectedWardenPassive()
+    {
+        return selectedPassiveAbilityWarden;
+    }
+
+    public int getSelectedWardenActive()
+    {
+        return selectedActiveAbilityWarden;
+    }
+
+    public int getSelectedGathererPassive()
+    {
+        return selectedPassiveAbilityGatherer;
+    }
+
+    public int getSelectedGathererActive()
+    {
+        return selectedActiveAbilityGatherer;
+    }
 }
