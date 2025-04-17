@@ -9,7 +9,7 @@ public class HUD : MonoBehaviour
 	[SerializeField] Slider wardenAbilityMeter;
 	StatsManager statsManager;
 	Gatherer_FlashStun flashStun;
-	Warden_BigBlast bigBlast;
+    WardenDevastationBeam bigBlast;
 
 	void OnEnable()     // Subscribe to events here
 	{
@@ -23,7 +23,7 @@ public class HUD : MonoBehaviour
 	{
 		statsManager = StatsManager.Instance;
 		flashStun = Gatherer_FlashStun.Instance;
-		bigBlast = Warden_BigBlast.Instance;
+		bigBlast = WardenDevastationBeam.Instance;
 	}
 	void Update()
 	{
