@@ -101,7 +101,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("hhh: "+questState);
+        //Debug.Log("hhh: "+questState);
         if (playerInRange && !DialogueManager.GetInstance().dialogueActive)
         {
             visualCue.SetActive(true);
