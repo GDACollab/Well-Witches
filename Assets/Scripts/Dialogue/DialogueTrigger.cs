@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class DialogueTrigger : MonoBehaviour
@@ -29,11 +30,14 @@ public class DialogueTrigger : MonoBehaviour
 
     private bool playerInRange;
 
+    private Controls controls;
+
 
     private void OnEnable()
     {
         EventManager.instance.questEvents.onQuestStateChange += QuestStateChange;
         SceneManager.activeSceneChanged += OnSceneChange;
+        controls.Gameplay_Gatherer.Interact.performed += OnGathererInteract;
     }
 
     private void OnSceneChange(Scene before, Scene current)
@@ -64,6 +68,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         EventManager.instance.questEvents.onQuestStateChange -= QuestStateChange;
         SceneManager.activeSceneChanged -= OnSceneChange;
+        controls.Gameplay_Gatherer.Interact.performed -= OnGathererInteract;
     }
 
     public void QuestStateChange(Quest quest)
@@ -97,6 +102,10 @@ public class DialogueTrigger : MonoBehaviour
     {
         playerInRange = false;
         visualCue.SetActive(false);
+
+        controls = new Controls();
+
+        controls.Gameplay_Gatherer.Enable();
     }
 
     private void Update()
@@ -105,19 +114,23 @@ public class DialogueTrigger : MonoBehaviour
         if (playerInRange && !DialogueManager.GetInstance().dialogueActive)
         {
             visualCue.SetActive(true);
-            if (Input.GetKeyUp(KeyCode.E)) //TODO: CHANGE THIS TO THE PLAYER INTERACT BUTTON 
-            {
-                story = new Story(JSON.text);
-                inkExternalFunctions = new InkExternalFunctions();
-                inkDialogueVariables = new InkDialogueVariables(story);
-                inkDialogueVariables.UpdateVariableState(quest.name + "State", new StringValue(questState.ToString()));
-                inkExternalFunctions.Bind(story);
-                DialogueManager.GetInstance().StartDialogueMode(story, GetComponentInParent<SpriteManager>(), inkDialogueVariables);
-            }
         }
         else
         {
             visualCue.SetActive(false);
+        }
+    }
+
+    private void OnGathererInteract(InputAction.CallbackContext context)
+    {
+        if (playerInRange && !DialogueManager.GetInstance().dialogueActive && visualCue)
+        {
+            story = new Story(JSON.text);
+            inkExternalFunctions = new InkExternalFunctions();
+            inkDialogueVariables = new InkDialogueVariables(story);
+            inkDialogueVariables.UpdateVariableState(quest.name + "State", new StringValue(questState.ToString()));
+            inkExternalFunctions.Bind(story);
+            DialogueManager.GetInstance().StartDialogueMode(story, GetComponentInParent<SpriteManager>(), inkDialogueVariables);
         }
     }
 
