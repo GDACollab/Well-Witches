@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "Hold(duration=5)",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Ability Menu",
+                    "type": "Button",
+                    "id": "5d075408-650f-45b1-9734-7a774ec53dc9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -148,6 +157,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Activate Ability After Hold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "72e7b915-d2dd-4a0b-a7ff-4164df59b701",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ability Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
