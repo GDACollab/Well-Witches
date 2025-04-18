@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 405281284013656679}
   - component: {fileID: 6218362828026916798}
   - component: {fileID: 6479075504277769317}
+  - component: {fileID: 8634759373121981911}
   m_Layer: 7
   m_Name: Gatherer
   m_TagString: Player
@@ -441,6 +442,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isShieldActive: 0
+--- !u!114 &8634759373121981911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5708320580637796411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e7f9f438ab61845b5881f1eb56232a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 10
+  damage: 20
+  flamesPerSecond: 5
+  startAbility: 0
+  fire: {fileID: 6194044856683223204, guid: 9ab1ab0254f60cd48bc873a50962bbcf, type: 3}
+  resetTimer: 0
+  currentTimer: 0
 --- !u!1 &6319885882415222397
 GameObject:
   m_ObjectHideFlags: 0

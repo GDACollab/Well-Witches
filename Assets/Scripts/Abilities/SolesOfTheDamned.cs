@@ -28,16 +28,9 @@ public class SolesOfTheDamned : PassiveAbilities
     {
         resetTimer = 1f/flamesPerSecond;
         currentTimer = resetTimer;
-        Instantiate(fire, transform.position, Quaternion.identity, transform);
+        //Instantiate(fire, transform.position, Quaternion.identity, transform);
     }
-    public override void passiveUpdate() {
-
-
-    }
-
-    //the code didnt work when it was in passiveUpdate() so I moved it to normal update
-    //instatiates a fire object at Gatherer as a child object and resets the timer
-    public void Update()
+    public override void passiveUpdate() 
     {
         currentTimer -= Time.deltaTime;
         if (currentTimer <= 0f)
@@ -46,4 +39,16 @@ public class SolesOfTheDamned : PassiveAbilities
             currentTimer = resetTimer;
         }
     }
+
+    //the code didnt work when it was in passiveUpdate() so I moved it to normal update
+    //instatiates a fire object at Gatherer as a child object and resets the timer
+    //public void Update()
+    //{
+    //    currentTimer -= Time.deltaTime;
+    //    if (currentTimer <= 0f)
+    //    {
+    //        Instantiate(fire, transform.position, Quaternion.identity, transform);
+    //        currentTimer = resetTimer;
+    //    }
+    //}
 }
