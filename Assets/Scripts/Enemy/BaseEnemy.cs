@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class BaseEnemyClass : MonoBehaviour
 {
@@ -17,8 +18,9 @@ public class BaseEnemyClass : MonoBehaviour
         Instantiate(gameObject, position, Quaternion.identity);
     }
 
-    public void TakeDamage(float amount)
+    public virtual void TakeDamage(float amount)
     {   //Reduces health by the amount entered in Unity
+        //Debug.Log("took damage");
         health -= amount;
         if (health <= 0)
         {
@@ -26,7 +28,7 @@ public class BaseEnemyClass : MonoBehaviour
         }
     }
 
-    void Die()
+    public virtual void Die()
     {
         Destroy(gameObject);
     }

@@ -58,4 +58,19 @@ public class BossEnemy : BaseEnemyClass
     {
         Debug.Log("Spawn Enemies");
     }
+
+    public override void TakeDamage(float amount)
+    {   //Reduces health by the amount entered in Unity
+        //Debug.Log("took damage");
+        health -= amount;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+    public override void Die()
+    {
+        Destroy(gameObject);
+        Debug.Log("Boss dead yippee"); //Make boss drop quest item here.
+    }
 }

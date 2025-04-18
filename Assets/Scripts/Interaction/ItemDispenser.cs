@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEditor;
 public class ItemDispenser : MonoBehaviour, IInteractable
 {
 
@@ -18,6 +18,8 @@ public class ItemDispenser : MonoBehaviour, IInteractable
     [SerializeField] private float respawnTime = 10f;
 
     [SerializeField] private GameObject prefabToSpawn;
+
+    private GameObject keyItemToSpawn;
 
 
     // Pre-Made list of (name, timer) tuples for both buffs and debuffs. 
@@ -45,6 +47,7 @@ public class ItemDispenser : MonoBehaviour, IInteractable
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         particleSystem = GetComponent<ParticleSystem>();
+        keyItemToSpawn = Resources.Load<GameObject>("KeyItems/KeyItem");
     }
 
     /*
@@ -104,9 +107,20 @@ public class ItemDispenser : MonoBehaviour, IInteractable
             // If it is, we spawn the key item and set the chance in the StatsManager back to 5%.
             // If not, then add 6% to the curent keyItemChance in StatsManager.
             if (ROLL <= keyItemChance) {
-                Instantiate(prefabToSpawn, new Vector3 (transform.position.x + spawnX,
-                                            transform.position.y +spawnY, 0), Quaternion.identity);
+                Debug.Log("HIIII!!!!");
+                GameObject keyItemDrop = Instantiate(
+                    keyItemToSpawn,
+                    new Vector3(transform.position.x + spawnX, transform.position.y +spawnY, 0f),
+                    Quaternion.identity
+                );
+                KeyItem keyItemScript = keyItemDrop.GetComponent<KeyItem>();
+                Debug.Log($"{GameManager.instance.currentKeyItem}");
+                keyItemScript.keyItemID = GameManager.instance.currentKeyItem;
+                keyItemScript.setSprite(keyItemScript.keyItemID);
+
+                GameManager.instance.currentKeyItem++;
                 StatsManager.Instance.keyItemChance = 0.05f;
+
                 Debug.Log("Instantiated on Key Item!");
                 Debug.Log("Vacating");
                 vacate();

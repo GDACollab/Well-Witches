@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     public QuestState activeQuestState;
 
+    public int currentKeyItem = 1;
+
     private void OnEnable()
     {
         EventManager.instance.questEvents.onQuestStateChange += QuestStateChange;

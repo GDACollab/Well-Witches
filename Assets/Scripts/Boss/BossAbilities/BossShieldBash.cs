@@ -13,6 +13,10 @@ public class BossShieldBash : MonoBehaviour
     private AttackIndicatorSquare attackIndicatorSquare; // Reference to the AttackIndicatorSquare script
     private SpriteRenderer InnerGrow;
 
+    public float damage;
+    private bool gathererInRange = false;
+    private bool wardenInRange = false;
+
     private void Start()
     {
         // Find the warning object within the boss
@@ -35,6 +39,15 @@ public class BossShieldBash : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            //Keeps track if gatherer is in hitbox
+            if (other.gameObject.name == "Gatherer")
+            {
+                gathererInRange = true;
+            }
+            else if (other.gameObject.name == "Warden")
+            {
+                wardenInRange = true;
+            }
             playerInHitbox = true;
         }
     }
@@ -43,6 +56,15 @@ public class BossShieldBash : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            //Keeps track if gatherer is in hitbox
+            if (other.gameObject.name == "Gatherer")
+            {
+                gathererInRange = false;
+            }
+            else if (other.gameObject.name == "Warden")
+            {
+                wardenInRange = false;
+            }
             playerInHitbox = false;
         }
     }
@@ -101,6 +123,15 @@ public class BossShieldBash : MonoBehaviour
         // Check if the player is within the hitbox
         if (playerInHitbox)
         {
+            if (gathererInRange)
+            {
+                EventManager.instance.playerEvents.PlayerDamage(damage, "Gatherer");
+            }
+            if (wardenInRange)
+            {
+                EventManager.instance.playerEvents.PlayerDamage(damage, "Warden");
+
+            }
             Debug.Log("Player hit by shield bash!");
         }
         else

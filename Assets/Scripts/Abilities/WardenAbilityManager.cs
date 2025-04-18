@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
+using UnityEngine.SceneManagement;
 
 public class WardenAbilityManager : MonoBehaviour
 {
     public WardenBaseAbilities equipedAbility;
+    [SerializeField] string equipedAbilityName;
     [SerializeField] private Controls controls;
 
     public static WardenAbilityManager Instance { get; private set; }
@@ -19,13 +22,23 @@ public class WardenAbilityManager : MonoBehaviour
     }
 
     // Subscribe to the Warden controls input action asset "Activate Ability" action
-    void OnEnable() { controls.Gameplay_Warden.ActivateAbility.performed += OnActivateAbility; }
-    void OnDisable() { controls.Gameplay_Warden.ActivateAbility.performed -= OnActivateAbility; }
+    void OnEnable() 
+    { 
+        controls.Gameplay_Warden.ActivateAbility.performed += OnActivateAbility;
+        SceneManager.activeSceneChanged += ChangedActiveScene;
+    }
+    void OnDisable() 
+    { 
+        controls.Gameplay_Warden.ActivateAbility.performed -= OnActivateAbility;
+        SceneManager.activeSceneChanged -= ChangedActiveScene;
+    }
 
 
     private void Start()
     {
         equipedAbility = WardenDevastationBeam.Instance;
+        equipedAbilityName = equipedAbility.abilityName;
+        print("Ability is of type: " + equipedAbilityName);
         //print("equip");
     }
     void OnActivateAbility(InputAction.CallbackContext context)
@@ -37,8 +50,59 @@ public class WardenAbilityManager : MonoBehaviour
         }
     }
 
-    /*
-     TODO: Write a function that takes in an instance of an ability and sets "equipedAbility" to that instance
-        will likley be called by whatever UI stuff selects abilities
-     */
+    private void ChangedActiveScene(Scene current, Scene next)
+    {
+        if (equipedAbilityName != null)
+        {
+            switch (equipedAbilityName)
+            {
+                case "DevastationBeam":
+                    equipedAbility = WardenDevastationBeam.Instance;
+                    break;
+                case "SpellBurst":
+                    equipedAbility = WardenSpellBurst.Instance;
+                    break;
+                case "GourdForge":
+                    equipedAbility = WardenGourdForge.Instance;
+                    break;
+                default:
+                    print("failed to swap to: " + equipedAbilityName);
+                    break;
+            }
+        }
+        
+    }
+
+    public void EquipActive(string abilityID)
+    {
+        if (abilityID != null)
+        {
+            switch (abilityID)
+            {
+                case "DevastationBeam":
+                    equipedAbility = WardenDevastationBeam.Instance;
+                    equipedAbilityName = abilityID;
+                    break;
+                case "SpellBurst":
+                    equipedAbility = WardenSpellBurst.Instance;
+                    equipedAbilityName = abilityID;
+                    break;
+                case "GourdForge":
+                    equipedAbility = WardenGourdForge.Instance;
+                    equipedAbilityName = abilityID;
+                    break;
+                default:
+                    print("failed to swap to: " + abilityID);
+                    break;
+            }
+        }
+        else
+        {
+            print("Failed to equip ability: Null ability");
+        }
+    }
+    //public void EquipActive(string abilityID)
+    //{
+        // the same as above, just for passives (look at gatherer manager)
+    //}
 }
