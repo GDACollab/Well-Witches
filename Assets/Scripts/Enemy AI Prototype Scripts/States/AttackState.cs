@@ -47,6 +47,7 @@ public class AttackState : State
         {
             if (Time.time >= lastAttackTime + meleeEnemy.AttackRate && !isAttacking)
             {
+                meleeEnemy.TargetClosestPlayer();
                 meleeEnemy.Attack();
                 lastAttackTime = Time.time;
             }
