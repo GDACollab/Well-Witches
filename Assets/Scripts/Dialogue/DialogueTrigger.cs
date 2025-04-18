@@ -38,15 +38,24 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnSceneChange(Scene before, Scene current)
     {
+        
         if(current.name.Equals("Hub Scene"))
         {
-            if (GameManager.instance.activeQuestState == QuestState.CAN_FINISH)
+            if (GameManager.instance.activeQuestID != null && GameManager.instance.activeQuestID == quest.id)
             {
-                questState = QuestState.CAN_FINISH;
+                if (GameManager.instance.activeQuestState == QuestState.CAN_FINISH)
+                {
+                    questState = QuestState.CAN_FINISH;
+                }
+                else if (GameManager.instance.activeQuestState == QuestState.IN_PROGRESS)
+                {
+                    questState = QuestState.IN_PROGRESS;
+                }
             }
-            else if (GameManager.instance.activeQuestState == QuestState.IN_PROGRESS)
+            else if (GameManager.instance.activeQuestID == "")
             {
-                questState = QuestState.IN_PROGRESS;
+                Debug.Log("RAHH");
+                questState = QuestState.CAN_START;
             }
         }
     }
@@ -92,7 +101,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(qm);
+        Debug.Log("hhh: "+questState);
         if (playerInRange && !DialogueManager.GetInstance().dialogueActive)
         {
             visualCue.SetActive(true);

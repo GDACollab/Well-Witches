@@ -108,6 +108,7 @@ public class QuestManager : MonoBehaviour
             return;
         }
         GameManager.instance.activeQuestState = QuestState.IN_PROGRESS;
+        GameManager.instance.activeQuestID = GetQuestByID(id).info.id;
         Quest quest = GetQuestByID(id);
         questDisplay.text = "Quest: " + quest.info.displayName;
         quest.InstantiateCurrentQuestStep(this.transform, questDescription);
@@ -141,6 +142,9 @@ public class QuestManager : MonoBehaviour
         ResetQuestText();
         ChangeQuestState(quest.info.id, QuestState.FINISHED);
         GameManager.instance.activeQuestState = QuestState.FINISHED;
+        GameManager.instance.activeQuestID = null;
+        GameManager.instance.activeQuestPrefab = null;
+        GameManager.instance.activeQuestItemCount = 0;
         isQuestAlreadyActive = false;
     }
 
@@ -161,7 +165,10 @@ public class QuestManager : MonoBehaviour
         {
             child.gameObject.GetComponent<QuestStep>().CancelQuestStep();
         }
+        GameManager.instance.activeQuestPrefab = null;
+        GameManager.instance.activeQuestItemCount = 0;
         isQuestAlreadyActive = false;
+        GameManager.instance.activeQuestID = null;
     }
 
     private void ResetQuestText()
