@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Activate Ability After Hold",
+                    "type": "Button",
+                    "id": "aebcaee9-572f-428f-8fbe-55e2bb9c7821",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Hold(duration=5)",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -128,6 +137,17 @@
                     "processors": "",
                     "groups": ";Mouse and Keyboard",
                     "action": "Activate Ability",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc794f16-bfbd-4a23-b71a-1f8f9f3bb506",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Activate Ability After Hold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
