@@ -498,7 +498,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340847527}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e02801a6649bd44ab50fd13b6a5a798, type: 3}
   m_Name: 
@@ -1560,6 +1560,39 @@ CircleCollider2D:
   m_CorrespondingSourceObject: {fileID: 3652925597344170551, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
   m_PrefabInstance: {fileID: 1088075896}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1239006464 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7057809440924223819, guid: 5935ae11f5b8c784b999605299358255, type: 3}
+  m_PrefabInstance: {fileID: 1550945269}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1239006470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239006464}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e02801a6649bd44ab50fd13b6a5a798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 7724197375004876401, guid: 842b350a5dbea204f9e240d00ade7c24, type: 3}
+  - {fileID: 1314222603258456997, guid: f6ab2e98325a9bb4997d563ba9a67bc5, type: 3}
+  - {fileID: 0}
+  formationPrefabs:
+  - {fileID: 3663203546483103794, guid: d8bf0567f46e47d4b88ada500863f322, type: 3}
+  - {fileID: 3663203546483103794, guid: db228e4e930cef94e96e1ee45d085544, type: 3}
+  referencePoint: {fileID: 0}
+  spawnRadiusMin: 12
+  spawnRadiusMax: 18
+  singleSpawnTime: 3
+  formationSpawnTime: 10
+  maxSpawnCoord: {x: 128, y: 128}
+  minSpawnCoord: {x: 2, y: 2}
+  singleTimer: 0
+  formationTimer: 0
 --- !u!1001 &1331427973
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1917,6 +1950,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5213248895469507566, guid: 5935ae11f5b8c784b999605299358255, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5213248895469507566, guid: 5935ae11f5b8c784b999605299358255, type: 3}
       propertyPath: referencePoint
       value: 
       objectReference: {fileID: 0}
@@ -1987,7 +2024,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7057809440924223819, guid: 5935ae11f5b8c784b999605299358255, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 1239006470}
   m_SourcePrefab: {fileID: 100100000, guid: 5935ae11f5b8c784b999605299358255, type: 3}
 --- !u!1 &1588999231
 GameObject:
