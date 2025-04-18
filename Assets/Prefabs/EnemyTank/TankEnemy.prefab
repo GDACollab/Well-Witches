@@ -34,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 6262689151968294506}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15, y: 0, z: 0}
+  m_LocalPosition: {x: -15, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -177,10 +177,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  damage: 5
   moveSpeed: 2
   range: 1
   AttackRate: 3
+  damage: 5
   spawnRate: 1
   acidSize: 1.24
   acidLifetime: 2.77

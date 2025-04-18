@@ -8,6 +8,7 @@ public class BossLunge : MonoBehaviour
     public float stunDuration = 2f; // Duration of stun if the attack misses
     public float LungeDistance; // The distance the Player has to be from the boss for the lunge attack to activate
     public float LungeSpeed; // Speed of the lunge attack
+    public float damage; //How much damage will be dealt to players on hit
 
     private bool isCasting = false;
     private bool playerInHitbox = false; // Flag to track if the player is in the hitbox
@@ -126,6 +127,16 @@ public class BossLunge : MonoBehaviour
                 if (hit.CompareTag("Player"))
                 {
                     playerInHitbox = true;
+                    if (hit.gameObject.name == "Gatherer")
+                    {
+                        //Debug.Log("Gatherher is hit");
+                        EventManager.instance.playerEvents.PlayerDamage(damage, "Gatherer");
+                    }
+                    else if (hit.gameObject.name == "Warden")
+                    {
+                        EventManager.instance.playerEvents.PlayerDamage(damage, "Warden");
+
+                    }
                     break;
                 }
             }
@@ -137,6 +148,7 @@ public class BossLunge : MonoBehaviour
         if (playerInHitbox)
         {
             Debug.Log("Player hit by lunge attack!");
+
         }
         else
         {

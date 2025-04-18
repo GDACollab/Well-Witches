@@ -14,6 +14,9 @@ public class SwordAttack : MonoBehaviour
     private AttackIndicatorCapsule attackIndicatorCapsule; // Reference to the AttackIndicatorSquare script
     private SpriteRenderer InnerGrow;
 
+    public float damage;
+    private bool gathererInRange = false;
+    private bool wardenInRange = false;
     private void Start()
     {
         Transform warningObject = transform.Find("SwordSlashWarning");
@@ -36,6 +39,15 @@ public class SwordAttack : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            //Keeps track if gatherer is in hitbox
+            if (other.gameObject.name == "Gatherer")
+            {
+                gathererInRange = true;
+            }
+            else if (other.gameObject.name == "Warden")
+            {
+                wardenInRange = true;
+            }
             playerInHitbox = true;
         }
     }
@@ -44,6 +56,15 @@ public class SwordAttack : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            //Keeps track if gatherer is in hitbox
+            if (other.gameObject.name == "Gatherer")
+            {
+                gathererInRange = false;
+            }
+            else if (other.gameObject.name == "Warden")
+            {
+                wardenInRange = false;
+            }
             playerInHitbox = false;
         }
     }
@@ -100,6 +121,15 @@ public class SwordAttack : MonoBehaviour
         // Check if the player is within the hitbox
         if (playerInHitbox)
         {
+            if (gathererInRange)
+            {
+                EventManager.instance.playerEvents.PlayerDamage(damage, "Gatherer");
+            }
+            if (wardenInRange)
+            {
+                EventManager.instance.playerEvents.PlayerDamage(damage, "Warden");
+
+            }
             Debug.Log("Player hit by sword attack!");
         }
         else
