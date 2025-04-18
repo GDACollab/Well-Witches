@@ -1980,6 +1980,7 @@ GameObject:
   - component: {fileID: 1320986229}
   - component: {fileID: 1320986228}
   - component: {fileID: 1320986227}
+  - component: {fileID: 1320986230}
   m_Layer: 5
   m_Name: PersistentCanvas
   m_TagString: Untagged
@@ -2072,6 +2073,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1320986230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320986224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59b26f0cae8f6b4e98a0e946b83e53e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectIndex: 1
 --- !u!1 &1361974037
 GameObject:
   m_ObjectHideFlags: 0
