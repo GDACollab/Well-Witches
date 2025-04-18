@@ -184,7 +184,7 @@ MonoBehaviour:
   GathererCurrentHealth: 10
   GathererHealthRegen: 0
   AbilityPower: 0
-  AttackPower: 5
+  AttackPower: 30
   Mana: 0
   CriticalChance: 0
   CriticalDamage: 0
@@ -577,6 +577,10 @@ PrefabInstance:
     - target: {fileID: 4510760633449180580, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
       propertyPath: m_Name
       value: BossPrefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4510760633449180580, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4510760633449180580, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
       propertyPath: m_TagString
