@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class QuestManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class QuestManager : MonoBehaviour
     [SerializeField] public TextMeshProUGUI questDescription; // this is passed onto the instantiated step object
 
     private bool isQuestAlreadyActive = false;
+    private List<string> UnlockedAbilities = new List<string>();
 
     private void Awake()
     {
@@ -30,6 +32,8 @@ public class QuestManager : MonoBehaviour
         EventManager.instance.questEvents.onAdvanceQuest += AdvanceQuest;
         EventManager.instance.questEvents.onFinishQuest += FinishQuest;
         EventManager.instance.questEvents.onCancelQuest += CancelQuest;
+        EventManager.instance.questEvents.onQuestStateChange += UpdateAbilityUnlocks;
+        SceneManager.activeSceneChanged += ChangedActiveScene;
     }
 
     private void OnDisable()
@@ -38,6 +42,8 @@ public class QuestManager : MonoBehaviour
         EventManager.instance.questEvents.onAdvanceQuest -= AdvanceQuest;
         EventManager.instance.questEvents.onFinishQuest -= FinishQuest;
         EventManager.instance.questEvents.onCancelQuest -= CancelQuest;
+        EventManager.instance.questEvents.onQuestStateChange -= UpdateAbilityUnlocks;
+        SceneManager.activeSceneChanged -= ChangedActiveScene;
     }
 
     private void Start()
@@ -206,5 +212,66 @@ public class QuestManager : MonoBehaviour
 
     }
 
+    private void UpdateAbilityUnlocks(Quest Q)
+    {
+        GameObject AbilityUI = GameObject.Find("AbilitySelectionUI");
 
+        if (AbilityUI != null)
+        {
+            if (Q != null)
+            {
+                if (Q.state == QuestState.FINISHED)
+                {
+                    string AbilityToUnlock = "";
+                    print("quest: " + Q.info.id);
+
+                    switch (Q.info.id)
+                    {
+                            case "CollectGarlicQuest":
+                                AbilityToUnlock = "HealthTransfer";
+                            UnlockedAbilities.Add(AbilityToUnlock);
+                            break;
+                        default:
+                            print("Quest ID not recognized: " + Q.info.id);
+                            break;
+                    }
+
+                    AbilitySelectIndividualAbilities[] abilityList = AbilityUI.GetComponent<AbilitySelectManager>().abilitiesList;
+                    foreach (var ability in abilityList)
+                    {
+                        if (ability.getAbilityID() == AbilityToUnlock)
+                        {
+                            ability.setLocked(false);
+                            print("set " + ability + "to unlocked");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                print("Quest was null");
+            }
+        }
+    }
+
+    private void ChangedActiveScene(Scene current, Scene next)
+    {
+        if (next.name == "Hub Scene")
+        {
+            GameObject AbilityUI = GameObject.Find("AbilitySelectionUI");
+
+            AbilitySelectIndividualAbilities[] abilityList = AbilityUI.GetComponent<AbilitySelectManager>().abilitiesList;
+            foreach(string UnlockedAbility in UnlockedAbilities)
+            {
+                foreach (var ability in abilityList)
+                {
+                    if (ability.getAbilityID() == UnlockedAbility)
+                    {
+                        ability.setLocked(false);
+                        //print("set " + ability + "to unlocked");
+                    }
+                }
+            }
+        }
+    }
 }

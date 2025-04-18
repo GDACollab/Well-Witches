@@ -13,7 +13,7 @@ public class AbilitySelectManager : MonoBehaviour
     [SerializeField] private int selectedPassiveAbilityGatherer;
     [SerializeField] private int selectedActiveAbilityGatherer;
 
-    [SerializeField] private AbilitySelectIndividualAbilities[] abilitiesList;
+    [SerializeField] public AbilitySelectIndividualAbilities[] abilitiesList;
 
     [SerializeField] private TextMeshProUGUI abilityInfoText;
     [SerializeField] private TextMeshProUGUI abilityNameText;
