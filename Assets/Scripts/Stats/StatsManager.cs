@@ -23,11 +23,7 @@ public class StatsManager : MonoBehaviour
     public List<string> myBuffs = new List<string>();
     public List<float> buffTimers = new List<float>();
 
-    public Dictionary<string, float> questItems = new Dictionary<string, float>
-    {
-        {"Dullahan’s Head", 0.15f},
-        {"Vampire Garlics", 0.10f}
-    };
+    public Dictionary<GameObject, float> questItems = new Dictionary<GameObject, float>();
 
     public float keyItemChance = 0.05f;
 
@@ -122,9 +118,9 @@ public class StatsManager : MonoBehaviour
         buffTimers.Add(time);
     }
 
-    public Dictionary<string, float> getQuestItems() 
+    public Dictionary<GameObject, float> getQuestItems() 
     {
-        return new Dictionary<string, float> (questItems);
+        return questItems;
     }
 
     public List<string> getMyBuffs() 
