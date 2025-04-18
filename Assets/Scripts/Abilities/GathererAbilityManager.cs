@@ -100,6 +100,9 @@ public class GathererAbilityManager : MonoBehaviour
                 case "HealForce":
                     passiveAbility = HealForcePassive.Instance;
                     break;
+                case "SolesOfTheDamned":
+                    passiveAbility = SolesOfTheDamned.Instance;
+                    break;
                 default:
                     print("failed to swap to: " + passiveAbilityName);
                     break;
@@ -145,6 +148,12 @@ public class GathererAbilityManager : MonoBehaviour
                 case "HealForce":
                     passiveAbility = HealForcePassive.Instance;
                     passiveAbilityName = abilityID;
+                    print("swap to: " + abilityID);
+                    break;
+                case "SolesOfTheDamned":
+                    passiveAbility = SolesOfTheDamned.Instance;
+                    passiveAbilityName = abilityID;
+                    print("swap to: " + abilityID);
                     break;
                 default:
                     print("failed to swap to: " + abilityID);
