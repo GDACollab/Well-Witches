@@ -141,6 +141,7 @@ public class StatsManager : MonoBehaviour
 
     public void addStatus(string buff, float time)
     {
+        AnnouncementManager.Instance.AddAnnouncementToQueue(buff);
         myBuffs.Add(buff);
         buffTimers.Add(time);
     }

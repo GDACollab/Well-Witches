@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c5af2ded20cc74c4f93408341d12c2ce, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fd7997f82d2f25f458a098819f984bd3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <NumHitsRequired>k__BackingField: 5
-  damagePerTick: 1
+  damagePerTick: 10
   damageTickDuration: 0.25
   knockbackForce: 5
   knockbackTickDuration: 0.5
@@ -429,8 +429,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <NumHitsRequired>k__BackingField: 1
-  damagePerTick: 5
-  damageTickDuration: 0
+  damagePerTick: 15
+  damageTickDuration: 0.25
   size: 0.5
   abilityDuration: 20
   spawnPoint: {fileID: 7347747762842868080}
