@@ -34,8 +34,8 @@ public class AbilityHealthTransfer : GathererBaseAbilities
 
             temp = StatsManager.Instance.GathererCurrentHealth * StatsManager.Instance.healthTransferAmount; // temp holds %25 percent of Gatherer's current health
 
-            StatsManager.Instance.GathererCurrentHealth -= math.round(temp); // Subtract from current gatherer health
-
+            //StatsManager.Instance.GathererCurrentHealth -= math.round(temp); // Subtract from current gatherer health
+            EventManager.instance.playerEvents.PlayerDamage(math.round(temp), "Gatherer");
 
 
             StatsManager.Instance.WardenCurrentHealth += math.round(temp); //add to Wanderer Current Health
@@ -45,8 +45,8 @@ public class AbilityHealthTransfer : GathererBaseAbilities
                StatsManager.Instance.WardenCurrentHealth = StatsManager.Instance.WardenMaxHealth;
             }
 
-            Debug.Log("Health of Gatherer:" + StatsManager.Instance.GathererCurrentHealth); //TESTING PURPOSES
-            Debug.Log("Health of Warden:" + StatsManager.Instance.WardenCurrentHealth); //TESTING PURPOSES
+            //Debug.Log("Health of Gatherer:" + StatsManager.Instance.GathererCurrentHealth); //TESTING PURPOSES
+            //Debug.Log("Health of Warden:" + StatsManager.Instance.WardenCurrentHealth); //TESTING PURPOSES
             temp = 0f; //reset the health value stored (No longer needed health % can be different)
          }
 

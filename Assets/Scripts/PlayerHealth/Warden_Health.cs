@@ -17,7 +17,7 @@ public class Warden_Health : PlayerHealth
 			Die();
 		}
 
-		healthBar.UpdateHealthBar(statsManager.WardenCurrentHealth, statsManager.WardenMaxHealth);
+		UpdateHealthBar(statsManager.WardenCurrentHealth, statsManager.WardenMaxHealth);
 	}
 
 	protected override void Die()

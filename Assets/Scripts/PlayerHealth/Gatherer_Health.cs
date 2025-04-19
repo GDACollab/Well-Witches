@@ -13,7 +13,7 @@ public class Gatherer_Health : PlayerHealth
 			Die();
 		}
 
-		healthBar.UpdateHealthBar(statsManager.GathererCurrentHealth, statsManager.GathererMaxHealth);
+		UpdateHealthBar(statsManager.GathererCurrentHealth, statsManager.GathererMaxHealth);
 	}
 
 	protected override void Die()

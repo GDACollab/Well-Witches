@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
 	protected StatsManager statsManager;
-	protected HealthBar healthBar;
+	private Slider HealthSlider;
 
 	void OnEnable()     // Subscribe to events here
 	{
@@ -16,8 +17,12 @@ public class PlayerHealth : MonoBehaviour
 	void Start()
 	{
 		statsManager = StatsManager.Instance;
-		healthBar = GetComponentInChildren<HealthBar>();
-		healthBar.UpdateHealthBar(statsManager.GathererCurrentHealth, statsManager.GathererMaxHealth);
+		HealthSlider = GetComponentInChildren<Slider>();
+	}
+	public void UpdateHealthBar(float currentHealth, float maxHealth)
+	{
+		HealthSlider.value = currentHealth / maxHealth;
+		//Debug.Log("should be working?");
 	}
 
 	protected virtual void TakeDamage(float damage, string player) { }  // to be implemented by the child class
