@@ -9,15 +9,15 @@ public class TankEnemy : BaseEnemyClass
     public float range;
 
 
-    [Header("Attack")]
+    [Header("Bash Attack")]
     [Tooltip("The lower the value the faster the enemy fires projectiles")]
     public float AttackRate;
-
-    [Header("DamageOfAcid")]
-    [Tooltip("Acid Damage")]
     public float damage;
 
+
     [Header("Acid Pool")]
+    [Tooltip("Acid Damage")]
+    public float acidDamage;
     [Range(0, 25)]
     [Tooltip("How many acid pools spawn per second. [0,25]")]
     public float spawnRate;
@@ -86,14 +86,14 @@ public class TankEnemy : BaseEnemyClass
         {
 
             // spawns acid pool
-            GameObject acidPool = AcidTrailPooling.SharedInstance.GetProjectileObject();
+            GameObject acidPool = AcidTrailPooling.SharedInstance.GetAcidPoolObject();
             if (acidPool)
             {
-                acidPool.transform.position = new Vector2(acidOffsetX, acidOffsetY) + rb2d.position;
+                acidPool.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1f);
                 acidPool.transform.localScale = Vector3.one * acidSize;
                 acidPool.SetActive(true);
                 acidPool.GetComponent<AcidPool>().
-                    InitializeAcid(acidLifetime, damage);
+                    InitializeAcid(acidLifetime, acidDamage, acidSize);
             }
             timeTillPool = 1 / spawnRate;
         }

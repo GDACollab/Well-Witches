@@ -25,7 +25,7 @@ public class AcidTrailPooling : MonoBehaviour
         }
     }
 
-    public GameObject GetProjectileObject()
+    public GameObject GetAcidPoolObject()
     {
         for (int i = 0; i < amountToPool; i++)
         {

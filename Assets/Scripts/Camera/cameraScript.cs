@@ -18,6 +18,10 @@ public class CameraScript : MonoBehaviour
     private float x;
     private float y;
 
+    private void Start()
+    {
+        transform.position = new Vector3(target.transform.position.x, target.transform.position.y, -11);
+    }
     private void Update()
     {
         //Clamp x and y positions based on min and max view coords
