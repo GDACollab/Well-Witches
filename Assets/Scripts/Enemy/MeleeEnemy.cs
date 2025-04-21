@@ -1,10 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
-
-
 public class MeleeEnemy : BaseEnemyClass
 {
     [Range(0, 20)]
@@ -13,150 +7,71 @@ public class MeleeEnemy : BaseEnemyClass
 
 
     [Header("Attack")]
-    [Tooltip("The time it takes before the enemy can attack again")]
-    public float AttackRate;
-    [Tooltip("How far the enemy dashes")]
-    public float dashDistance;
-    [Tooltip("Controls how fast in seconds it takes the enemy to dash across that distance")]
-    public float dashTime;
-    [Tooltip("The Damage done to the player every time they get hit")]
     public float damage;
+    [Tooltip("Amount of time in seconds between an instance of damage")]
+    public float timeBetweenAttack;
     [Tooltip("The higher the value larger the AOE indicated by the red circle")]
     public float attackAOE;
-    [Tooltip("Sprite used for the spin attack")]
-    public SpriteRenderer spinAttackSprite;
-    [Tooltip("Spin Attack Sprite Spinning speed (revolutions per second)")]
-    public float maxSpinSpeed;
+    [Tooltip("How fast the melee enemy moves while spinning")]
+    public float speedWhileAttacking;
 
     [Header("DEBUG")]
-    public float distanceToGatherer;
-    public float distanceToWarden;
+    public float distanceToPlayer1;
+    public float distanceToPlayer2;
     public float distanceToTarget;
-
-
-    //[SerializeField] private GameObject[] players;
-    [SerializeField] private Dictionary<string, GameObject> players;
+    public float timeToFire;
+    [SerializeField] private GameObject[] players;
     public Transform currentTarget;
-    [SerializeField] private bool isSpinAttacking = false;    
-    private float actualDashSpeed = 0;
-    private Rigidbody2D rb2d;
 
+    private Rigidbody2D rb2d;
     private void Start()
     {
-        players = GetPlayers();
+        players = GameObject.FindGameObjectsWithTag("Player");
         rb2d = GetComponent<Rigidbody2D>();
-        spinAttackSprite.enabled = false;
-        actualDashSpeed = dashDistance/dashTime;
-    }
-    private Dictionary<string, GameObject> GetPlayers() {
-        GameObject[] playerTags = GameObject.FindGameObjectsWithTag("Player");
-        Dictionary<string, GameObject> playersDict = new Dictionary<string, GameObject>();
-        foreach(GameObject playerTagged in playerTags) {
-            if (playerTagged.gameObject.name == "Gatherer") {
-                playersDict.Add("Gatherer", playerTagged);
-            }
-            if (playerTagged.gameObject.name == "Warden") {
-                playersDict.Add("Warden", playerTagged);
-            }
-            if (playersDict.Count == 2) {
-                break;
-            }
-        }
-        return playersDict;
     }
 
 
     private void Update()
     {
+
     }
 
     // calculates and set target to the closest player to the enemy
     public void TargetClosestPlayer()
     {
-        distanceToGatherer = Vector2.Distance(players["Gatherer"].transform.position, transform.position);
-        distanceToWarden = Vector2.Distance(players["Warden"].transform.position, transform.position);
-        if (distanceToGatherer < distanceToWarden)
+        distanceToPlayer1 = Vector2.Distance(players[0].transform.position, transform.position);
+        distanceToPlayer2 = Vector2.Distance(players[1].transform.position, transform.position);
+        if (distanceToPlayer1 < distanceToPlayer2)
         {
-            currentTarget = players["Gatherer"].transform;
-            distanceToTarget = distanceToGatherer;
+            currentTarget = players[0].transform;
+            distanceToTarget = distanceToPlayer1;
         }
         else
         {
-            currentTarget = players["Warden"].transform;
-            distanceToTarget = distanceToWarden;
+            currentTarget = players[1].transform;
+            distanceToTarget = distanceToPlayer2;
         }
-    }
-    public void TargetGathererPlayer() {
-        currentTarget = players["Gatherer"].transform;
-        distanceToGatherer = Vector2.Distance(players["Gatherer"].transform.position, transform.position);
-        distanceToTarget = distanceToGatherer;
     }
 
     public void Attack()
     {
-        isSpinAttacking = true;
-        StartCoroutine(Attacking());
-    }
-    IEnumerator Attacking()
-    {
-        Debug.Log("Entering Spin Attack");
-        //Debug.Break();
-        spinAttackSprite.enabled = true;
-        Vector3 directionToTarget = (currentTarget.position - transform.position).normalized;
-        Vector2 dashVector = directionToTarget * actualDashSpeed;
-        float attackStartTime = Time.time;
-        bool successHit = false;
-        // Attack Proper
-        while (Time.time - attackStartTime < dashTime) {
-            //rb2d.AddForce(dashVector,ForceMode2D.Force);
-            if (!successHit) {
-                rb2d.velocity = dashVector;
-                spinAttackSprite.transform.Rotate(Vector3.forward*maxSpinSpeed);
-                if (Vector2.Distance(players["Gatherer"].transform.position, transform.position) < attackAOE) 
-                {
-                    EventManager.instance.playerEvents.PlayerDamage(damage, "Gatherer");
-                    successHit = true;
-                }
-                if (Vector2.Distance(players["Warden"].transform.position, transform.position) < attackAOE) 
-                {
-                    EventManager.instance.playerEvents.PlayerDamage(damage, "Warden");
-                    successHit = true;
-                }
-                if (successHit) {
-                    rb2d.velocity = Vector2.zero;
-                    rb2d.AddForce(-dashVector,ForceMode2D.Impulse);
-                    isSpinAttacking = false;
-                    spinAttackSprite.enabled = false;
-                }
+        if (Vector2.Distance(currentTarget.transform.position, transform.position) < attackAOE)
+        {
+            rb2d.velocity = (currentTarget.position - transform.position).normalized * speedWhileAttacking;
+            if (currentTarget.gameObject.name == "Warden")
+            {
+                EventManager.instance.playerEvents.PlayerDamage(damage, "Warden");
             }
-            yield return new WaitForFixedUpdate();
+            else if (currentTarget.gameObject.name == "Gatherer")
+            {
+                EventManager.instance.playerEvents.PlayerDamage(damage, "Gatherer");
+            }
         }
-        // Attack Winddown
-
-        isSpinAttacking = false;
-        spinAttackSprite.enabled = false;
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackAOE);
-    }
-
-    public void AggroMove() {
-        Vector3 direction = currentTarget.position - transform.position;
-        //rb2d.velocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
-
-        float distanceToTarget = Vector2.Distance(currentTarget.transform.position, transform.position);
-        if (distanceToTarget < moveSpeed)
-        {
-            // speed starts to scale from distance to the target once the distance becomes less than the max move speed
-            // likely needs more fine tuning
-            rb2d.velocity = new Vector2(direction.x, direction.y).normalized * (distanceToTarget - (range - 1));
-        }
-        else
-        {
-            rb2d.velocity = new Vector2(direction.x, direction.y).normalized * moveSpeed;
-        }
     }
 }

@@ -7,11 +7,23 @@ public class AggroState : State
     private Rigidbody2D rb;
     private StateMachine stateMachine;
     private float moveSpeed;
-    private float damage;
     private MeleeEnemy meleeEnemy;
     private RangedEnemy rangedEnemy;
     private TankEnemy tankEnemy;
 
+
+    private NavMeshAgent agent;
+
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Start()
+    {
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+    }
     public AggroState(GameObject owner) : base(owner) { }
 
     public void Initialize(StateMachine stateMachine, GameObject owner)
@@ -25,47 +37,52 @@ public class AggroState : State
         if (meleeEnemy != null)
         {
             moveSpeed = meleeEnemy.moveSpeed;
+            agent.stoppingDistance = meleeEnemy.range;
+            agent.speed = moveSpeed;
         }
         else if (rangedEnemy != null)
         {
             moveSpeed = rangedEnemy.moveSpeed;
+            agent.speed = moveSpeed;
+            agent.stoppingDistance = rangedEnemy.range;
         }
         else if (tankEnemy != null)
         {
             moveSpeed = tankEnemy.moveSpeed;
-            damage = tankEnemy.damage;
+            agent.stoppingDistance = tankEnemy.range;
+            agent.speed = moveSpeed;
         }
 
     }
 
     public override void OnEnter()
     {
-        Debug.Log("Entering Patrol State");
-
+        agent.enabled = true;
     }
 
     public override void OnUpdate()
     {
-        if (meleeEnemy != null)
+        if (meleeEnemy != null && meleeEnemy.GetComponent<NavMeshAgent>().enabled == true)
         {
-            meleeEnemy.TargetGathererPlayer();
-            meleeEnemy.AggroMove();
+            meleeEnemy.TargetClosestPlayer();
+            agent.SetDestination(meleeEnemy.currentTarget.position);
         }
         else if (rangedEnemy != null)
         {
             rangedEnemy.TargetClosestPlayer();
-            rangedEnemy.MoveRanged();
+            agent.SetDestination(rangedEnemy.currentTarget.position);
         }
         else if (tankEnemy != null)
         {
-            tankEnemy.Pursue();
+            tankEnemy.TargetClosestPlayer();
+            agent.SetDestination(tankEnemy.currentTarget.position);
             tankEnemy.SpawnPool();
         }
     }
 
     public override void OnExit()
     {
-        Debug.Log("Exiting Patrol State");
+        agent.enabled = false;
     }
 
     public override List<Transition> GetTransitions()
