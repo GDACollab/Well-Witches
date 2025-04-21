@@ -8,6 +8,9 @@ public class SpellBurstProjectile : MonoBehaviour
     [SerializeField] private float _damage;
     [SerializeField] private float _speed;
     [SerializeField] private Vector3 velocity;
+    [SerializeField] private ParticleSystem impactSparks;
+    [SerializeField] private ParticleSystem impactFlash;
+
 
     public static event Action OnHitEnemy;
 
@@ -31,6 +34,8 @@ public class SpellBurstProjectile : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             collision.GetComponent<BaseEnemyClass>().TakeDamage(_damage);
+            impactSparks.Play();
+            impactFlash.Play();
             OnHitEnemy?.Invoke();
         }
     }
