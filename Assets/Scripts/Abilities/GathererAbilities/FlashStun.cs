@@ -17,8 +17,6 @@ public class FlashStun : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        gameObject.SetActive(false);
-        gameObject.transform.localPosition = Vector3.zero;
     }
 
     private void Update()

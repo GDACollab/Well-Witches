@@ -31,7 +31,6 @@ public class DevastationBeam : MonoBehaviour
     private void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        spellCircle.SetActive(false);
         laserBeam.SetActive(false);
     }
 

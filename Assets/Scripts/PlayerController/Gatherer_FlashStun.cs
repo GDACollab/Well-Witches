@@ -19,6 +19,10 @@ public class Gatherer_FlashStun : GathererBaseAbilities
     public static Gatherer_FlashStun Instance { get; private set; }
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
 
+    [Header("References")]
+    [SerializeField] Transform spawnPoint;
+    [SerializeField] FlashStun prefab;
+
     void Awake()
     {
         InitSingleton();
@@ -73,7 +77,8 @@ public class Gatherer_FlashStun : GathererBaseAbilities
     {
         if (chargeCounter <= 0)
         {
-            print("PROC: " + chargeCounter);
+            FlashStun flashStun = Instantiate(prefab, spawnPoint.position, Quaternion.identity).GetComponent<FlashStun>();
+            flashStun.LaunchStun();
             ExecuteAbility();
             chargeCounter = chargeDuration;
             cooldownCounter = cooldownDuration;
