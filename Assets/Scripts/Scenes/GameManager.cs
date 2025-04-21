@@ -8,6 +8,11 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public QuestState activeQuestState;
+    public string activeQuestID = null;
+    public GameObject activeQuestPrefab;
+    public int activeQuestItemCount = 0;
+
+    public int currentKeyItem = 1;
 
     private void OnEnable()
     {
@@ -26,6 +31,7 @@ public class GameManager : MonoBehaviour
             activeQuestState = QuestState.CAN_FINISH;
         }
     }
+
     private void Awake()
     {
         if (instance != null) Debug.LogWarning("Found more than one GameManager in the scene. Please make sure there is only one");

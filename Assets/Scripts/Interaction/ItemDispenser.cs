@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using System.Linq;
 
 public class ItemDispenser : MonoBehaviour, IInteractable
 {
@@ -18,6 +20,8 @@ public class ItemDispenser : MonoBehaviour, IInteractable
     [SerializeField] private float respawnTime = 10f;
 
     [SerializeField] private GameObject prefabToSpawn;
+
+    private GameObject keyItemToSpawn;
 
 
     // Pre-Made list of (name, timer) tuples for both buffs and debuffs. 
@@ -45,6 +49,7 @@ public class ItemDispenser : MonoBehaviour, IInteractable
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         particleSystem = GetComponent<ParticleSystem>();
+        keyItemToSpawn = Resources.Load<GameObject>("KeyItems/KeyItem");
     }
 
     /*
@@ -76,20 +81,14 @@ public class ItemDispenser : MonoBehaviour, IInteractable
 
 
             // Takes the active quest items dictionary and current buffs list from StatsManager
-            Dictionary<string, float> questItems = StatsManager.Instance.getQuestItems();
+            GameObject questItem = GameManager.instance.activeQuestPrefab;
             List<string> currentBuffs = StatsManager.Instance.getMyBuffs();
             bool questActive = false;
-            float totalQuestItemChance = 0;
-            if (questItems.Count > 0) {  //Checks if there are currently no active quest items
+            float totalQuestItemChance = 0.15f;
+            if (questItem != null) {  //Checks if there are currently no active quest items
                 questActive = true;
-                foreach (KeyValuePair<string, float> item in questItems){
-                    totalQuestItemChance += (float)item.Value;
-                }
-                Debug.Log($"Total Quest Item Chance: {totalQuestItemChance}");
+                prefabToSpawn = questItem;
             }
-
-            Debug.Log($"Quest Items Count: {questItems.Count}");
-
             // Takes a random float between [0, 1) (exclusive).
             float ROLL = Random.value;
 
@@ -104,9 +103,20 @@ public class ItemDispenser : MonoBehaviour, IInteractable
             // If it is, we spawn the key item and set the chance in the StatsManager back to 5%.
             // If not, then add 6% to the curent keyItemChance in StatsManager.
             if (ROLL <= keyItemChance) {
-                Instantiate(prefabToSpawn, new Vector3 (transform.position.x + spawnX,
-                                            transform.position.y +spawnY, 0), Quaternion.identity);
+                Debug.Log("HIIII!!!!");
+                GameObject keyItemDrop = Instantiate(
+                    keyItemToSpawn,
+                    new Vector3(transform.position.x + spawnX, transform.position.y +spawnY, 0f),
+                    Quaternion.identity
+                );
+                KeyItem keyItemScript = keyItemDrop.GetComponent<KeyItem>();
+                Debug.Log($"{GameManager.instance.currentKeyItem}");
+                keyItemScript.keyItemID = GameManager.instance.currentKeyItem;
+                keyItemScript.setSprite(keyItemScript.keyItemID);
+
+                GameManager.instance.currentKeyItem++;
                 StatsManager.Instance.keyItemChance = 0.05f;
+
                 Debug.Log("Instantiated on Key Item!");
                 Debug.Log("Vacating");
                 vacate();
@@ -121,22 +131,29 @@ public class ItemDispenser : MonoBehaviour, IInteractable
             // If there are questItems to drop, we check if the ROLL is less than the total questItemChance.
             // If yes, then we drop a questItem.
             // If not, we move on to apply a status.
-            if (questActive && ROLL <= totalQuestItemChance) {
+            Debug.Log("qactive: " + questActive);
+            if (questActive && ROLL <= 0.25)
+            {
                 Debug.Log($"Now in Quest Items. Roll: {ROLL}");
-                float questItemRunningTotal = 0f;
-                foreach (KeyValuePair<string, float> item in questItems){
-                    Debug.Log($"Running Total: {questItemRunningTotal}");
-                    if (ROLL - keyItemChance <= item.Value + questItemRunningTotal) {
-                        Debug.Log("Rolled to drop a quest item!");
-                        Instantiate(prefabToSpawn, new Vector3 (transform.position.x + spawnX,
-                                            transform.position.y +spawnY, 0), Quaternion.identity);
-                        StatsManager.Instance.questItems.Remove(item.Key);
-                        Debug.Log($"Removed Quest Item: {item.Key}");
-                        Debug.Log("Vacating");
-                        vacate();
-                        return;
+
+                if (ROLL - keyItemChance <= 0.25)
+                {
+                    Debug.Log("Rolled to drop a quest item!");
+                    Instantiate(prefabToSpawn, new Vector3(transform.position.x + spawnX,
+                                        transform.position.y + spawnY, 0), Quaternion.identity);
+                    GameManager.instance.activeQuestItemCount--;
+                    if (GameManager.instance.activeQuestItemCount <= 0)
+                    {
+                        GameManager.instance.activeQuestPrefab = null;
+                        GameManager.instance.activeQuestItemCount = 0;
+
                     }
-                    questItemRunningTotal += item.Value;
+
+                    Debug.Log("Vacating");
+                    vacate();
+                    return;
+
+
                 }
             }
 

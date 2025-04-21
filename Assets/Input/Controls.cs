@@ -62,6 +62,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Activate Ability After Hold"",
+                    ""type"": ""Button"",
+                    ""id"": ""aebcaee9-572f-428f-8fbe-55e2bb9c7821"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=5)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""5d075408-650f-45b1-9734-7a774ec53dc9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -150,6 +168,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Mouse and Keyboard"",
                     ""action"": ""Activate Ability"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc794f16-bfbd-4a23-b71a-1f8f9f3bb506"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Activate Ability After Hold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""72e7b915-d2dd-4a0b-a7ff-4164df59b701"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ability Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -276,6 +316,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Gameplay_Gatherer_Interact = m_Gameplay_Gatherer.FindAction("Interact", throwIfNotFound: true);
         m_Gameplay_Gatherer_PullWarden = m_Gameplay_Gatherer.FindAction("Pull Warden", throwIfNotFound: true);
         m_Gameplay_Gatherer_ActivateAbility = m_Gameplay_Gatherer.FindAction("Activate Ability", throwIfNotFound: true);
+        m_Gameplay_Gatherer_ActivateAbilityAfterHold = m_Gameplay_Gatherer.FindAction("Activate Ability After Hold", throwIfNotFound: true);
+        m_Gameplay_Gatherer_AbilityMenu = m_Gameplay_Gatherer.FindAction("Ability Menu", throwIfNotFound: true);
         // Gameplay_Warden
         m_Gameplay_Warden = asset.FindActionMap("Gameplay_Warden", throwIfNotFound: true);
         m_Gameplay_Warden_Move = m_Gameplay_Warden.FindAction("Move", throwIfNotFound: true);
@@ -352,6 +394,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Gatherer_Interact;
     private readonly InputAction m_Gameplay_Gatherer_PullWarden;
     private readonly InputAction m_Gameplay_Gatherer_ActivateAbility;
+    private readonly InputAction m_Gameplay_Gatherer_ActivateAbilityAfterHold;
+    private readonly InputAction m_Gameplay_Gatherer_AbilityMenu;
     public struct Gameplay_GathererActions
     {
         private @Controls m_Wrapper;
@@ -360,6 +404,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Gameplay_Gatherer_Interact;
         public InputAction @PullWarden => m_Wrapper.m_Gameplay_Gatherer_PullWarden;
         public InputAction @ActivateAbility => m_Wrapper.m_Gameplay_Gatherer_ActivateAbility;
+        public InputAction @ActivateAbilityAfterHold => m_Wrapper.m_Gameplay_Gatherer_ActivateAbilityAfterHold;
+        public InputAction @AbilityMenu => m_Wrapper.m_Gameplay_Gatherer_AbilityMenu;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay_Gatherer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -381,6 +427,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ActivateAbility.started += instance.OnActivateAbility;
             @ActivateAbility.performed += instance.OnActivateAbility;
             @ActivateAbility.canceled += instance.OnActivateAbility;
+            @ActivateAbilityAfterHold.started += instance.OnActivateAbilityAfterHold;
+            @ActivateAbilityAfterHold.performed += instance.OnActivateAbilityAfterHold;
+            @ActivateAbilityAfterHold.canceled += instance.OnActivateAbilityAfterHold;
+            @AbilityMenu.started += instance.OnAbilityMenu;
+            @AbilityMenu.performed += instance.OnAbilityMenu;
+            @AbilityMenu.canceled += instance.OnAbilityMenu;
         }
 
         private void UnregisterCallbacks(IGameplay_GathererActions instance)
@@ -397,6 +449,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ActivateAbility.started -= instance.OnActivateAbility;
             @ActivateAbility.performed -= instance.OnActivateAbility;
             @ActivateAbility.canceled -= instance.OnActivateAbility;
+            @ActivateAbilityAfterHold.started -= instance.OnActivateAbilityAfterHold;
+            @ActivateAbilityAfterHold.performed -= instance.OnActivateAbilityAfterHold;
+            @ActivateAbilityAfterHold.canceled -= instance.OnActivateAbilityAfterHold;
+            @AbilityMenu.started -= instance.OnAbilityMenu;
+            @AbilityMenu.performed -= instance.OnAbilityMenu;
+            @AbilityMenu.canceled -= instance.OnAbilityMenu;
         }
 
         public void RemoveCallbacks(IGameplay_GathererActions instance)
@@ -482,6 +540,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnPullWarden(InputAction.CallbackContext context);
         void OnActivateAbility(InputAction.CallbackContext context);
+        void OnActivateAbilityAfterHold(InputAction.CallbackContext context);
+        void OnAbilityMenu(InputAction.CallbackContext context);
     }
     public interface IGameplay_WardenActions
     {

@@ -48,14 +48,8 @@ public class AggroState : State
     {
         if (meleeEnemy != null)
         {
-            meleeEnemy.TargetClosestPlayer();
-            Transform target = meleeEnemy.currentTarget;
-            if (target != null)
-            {
-                Vector2 targetPosition = new Vector2(target.position.x, target.position.y);
-                Vector2 direction = (targetPosition - rb.position).normalized;
-                rb.MovePosition(rb.position + direction * moveSpeed * Time.deltaTime);
-            }
+            meleeEnemy.TargetGathererPlayer();
+            meleeEnemy.AggroMove();
         }
         else if (rangedEnemy != null)
         {

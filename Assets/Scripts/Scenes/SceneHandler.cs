@@ -178,6 +178,8 @@ public class SceneHandler : MonoBehaviour
 
 
     public void ToBossScene(){
+        Scene currentScene = SceneManager.GetActiveScene();
+        int index = currentScene.buildIndex;
         SceneManager.LoadScene(BossSceneIndex);
 
         AudioManager.Instance.CleanUp();

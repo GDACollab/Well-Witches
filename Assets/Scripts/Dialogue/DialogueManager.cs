@@ -6,6 +6,8 @@ using Ink.Runtime;
 using System;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using UnityEditor.ShaderGraph;
+using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -31,6 +33,8 @@ public class DialogueManager : MonoBehaviour
     private const string SPRITE_TAG = "sprite";
     private const string SPEAKER_TAG = "speaker";
 
+    private Controls controls;
+
     private void Awake()
     {
         if (instance != null)
@@ -38,16 +42,22 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("More than one instance of Dialogue Manager detected... :(");
         }
         instance = this;
+
+        controls = new Controls();
+
+        controls.Gameplay_Gatherer.Enable();
     }
 
     private void OnEnable()
     {
         SceneManager.activeSceneChanged += OnSceneChange;
+        controls.Gameplay_Gatherer.Interact.performed += OnGathererInteract;
     }
 
     private void OnDisable()
     {
         SceneManager.activeSceneChanged -= OnSceneChange;
+        controls.Gameplay_Gatherer.Interact.performed -= OnGathererInteract;
     }
 
     public void OnSceneChange(Scene before, Scene current)
@@ -93,8 +103,12 @@ public class DialogueManager : MonoBehaviour
         //BUG: Currently can just press E to completely skip the choice
         //if we change this to a system where you have to use arrow keys and enter/interact to do choices than we can fix this in favor of a system-
         //-where we have a choice already selected and the player can navigate up or down to select another one before pressing enter
-        if (currentStory.currentChoices.Count == 0 && Input.GetKeyUp(KeyCode.E)) 
-        { 
+    }
+
+    private void OnGathererInteract(InputAction.CallbackContext context)
+    {
+        if (currentStory.currentChoices.Count == 0)
+        {
             ContinueStory();
         }
     }

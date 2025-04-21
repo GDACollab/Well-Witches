@@ -14,7 +14,7 @@ public class UpdateNavmesh : MonoBehaviour
     }
     public float updateCooldown = 3f;
 
-    /* Caused FPS issues due to meshes being updated constantly
+    /* Caused FPS issues due to meshes being updated constantly+
     private IEnumerator UpdateMesh()
     {
         while (true)

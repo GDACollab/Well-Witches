@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class DialogueTrigger : MonoBehaviour
@@ -29,24 +30,36 @@ public class DialogueTrigger : MonoBehaviour
 
     private bool playerInRange;
 
+    private Controls controls;
+
 
     private void OnEnable()
     {
         EventManager.instance.questEvents.onQuestStateChange += QuestStateChange;
         SceneManager.activeSceneChanged += OnSceneChange;
+        controls.Gameplay_Gatherer.Interact.performed += OnGathererInteract;
     }
 
     private void OnSceneChange(Scene before, Scene current)
     {
+        
         if(current.name.Equals("Hub Scene"))
         {
-            if (GameManager.instance.activeQuestState == QuestState.CAN_FINISH)
+            if (GameManager.instance.activeQuestID != null && GameManager.instance.activeQuestID == quest.id)
             {
-                questState = QuestState.CAN_FINISH;
+                if (GameManager.instance.activeQuestState == QuestState.CAN_FINISH)
+                {
+                    questState = QuestState.CAN_FINISH;
+                }
+                else if (GameManager.instance.activeQuestState == QuestState.IN_PROGRESS)
+                {
+                    questState = QuestState.IN_PROGRESS;
+                }
             }
-            else if (GameManager.instance.activeQuestState == QuestState.IN_PROGRESS)
+            else if (GameManager.instance.activeQuestID == "")
             {
-                questState = QuestState.IN_PROGRESS;
+                Debug.Log("RAHH");
+                questState = QuestState.CAN_START;
             }
         }
     }
@@ -55,6 +68,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         EventManager.instance.questEvents.onQuestStateChange -= QuestStateChange;
         SceneManager.activeSceneChanged -= OnSceneChange;
+        controls.Gameplay_Gatherer.Interact.performed -= OnGathererInteract;
     }
 
     public void QuestStateChange(Quest quest)
@@ -88,27 +102,35 @@ public class DialogueTrigger : MonoBehaviour
     {
         playerInRange = false;
         visualCue.SetActive(false);
+
+        controls = new Controls();
+
+        controls.Gameplay_Gatherer.Enable();
     }
 
     private void Update()
     {
-        //Debug.Log(qm);
+        //Debug.Log("hhh: "+questState);
         if (playerInRange && !DialogueManager.GetInstance().dialogueActive)
         {
             visualCue.SetActive(true);
-            if (Input.GetKeyUp(KeyCode.E)) //TODO: CHANGE THIS TO THE PLAYER INTERACT BUTTON 
-            {
-                story = new Story(JSON.text);
-                inkExternalFunctions = new InkExternalFunctions();
-                inkDialogueVariables = new InkDialogueVariables(story);
-                inkDialogueVariables.UpdateVariableState(quest.name + "State", new StringValue(questState.ToString()));
-                inkExternalFunctions.Bind(story);
-                DialogueManager.GetInstance().StartDialogueMode(story, GetComponentInParent<SpriteManager>(), inkDialogueVariables);
-            }
         }
         else
         {
             visualCue.SetActive(false);
+        }
+    }
+
+    private void OnGathererInteract(InputAction.CallbackContext context)
+    {
+        if (playerInRange && !DialogueManager.GetInstance().dialogueActive && visualCue)
+        {
+            story = new Story(JSON.text);
+            inkExternalFunctions = new InkExternalFunctions();
+            inkDialogueVariables = new InkDialogueVariables(story);
+            inkDialogueVariables.UpdateVariableState(quest.name + "State", new StringValue(questState.ToString()));
+            inkExternalFunctions.Bind(story);
+            DialogueManager.GetInstance().StartDialogueMode(story, GetComponentInParent<SpriteManager>(), inkDialogueVariables);
         }
     }
 
