@@ -38,10 +38,10 @@ public class BubbleShield : GathererBaseAbilities
 	private void Update()
 	{
 		//DEBUG: ACTIVATE ABILITY USING B KEY
-		if (Input.GetKeyDown(KeyCode.B))
-		{
-			useAbility();
-		}
+		//if (Input.GetKeyDown(KeyCode.B))
+		//{
+		//	useAbility();
+		//}
 
 		if (isShieldActive)
 		{
