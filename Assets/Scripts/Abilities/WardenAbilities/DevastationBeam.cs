@@ -33,7 +33,6 @@ public class DevastationBeam : MonoBehaviour
     private void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        laserBeam.SetActive(false);
     }
 
     public void Activate(float damagePerTick, float damageTickDuration, float knockbackForce, float knockbackTickDuration, float lifespan)
@@ -44,6 +43,7 @@ public class DevastationBeam : MonoBehaviour
 		this.knockbackTickDuration = knockbackTickDuration;
 
         spellCircle.SetActive(true);
+        laserBeam.SetActive(false);
         StartCoroutine(ActivateLaser(lifespan));
 	}
 
