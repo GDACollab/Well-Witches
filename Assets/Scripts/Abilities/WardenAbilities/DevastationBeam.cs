@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class DevastationBeam : MonoBehaviour
 {
@@ -33,6 +34,12 @@ public class DevastationBeam : MonoBehaviour
     private void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        mousePosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 rotation = mousePosition - transform.position;
+        float targetRotation = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, targetRotation);
+
+
     }
 
     public void Activate(float damagePerTick, float damageTickDuration, float knockbackForce, float knockbackTickDuration, float lifespan)
@@ -65,8 +72,11 @@ public class DevastationBeam : MonoBehaviour
     void Update()
 	{
 		AimAtMouse();
-		HandleDamageTick();
-		HandleKnockbackTick();
+		if (laserBeam.gameObject.activeSelf)
+		{
+            HandleDamageTick();
+            HandleKnockbackTick();
+        }
 	}
 
 	void AimAtMouse()
