@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class RangedEnemy : BaseEnemyClass
 {
-    [Range(0, 20)]
-    [Tooltip("How far away the enemy stops before attacking")]
-    public float range;
-
     [Header("Projectile")]
     [Tooltip("Time between projectile firing in seconds")]
     public float timeBetweenAttack;
@@ -90,4 +86,12 @@ public class RangedEnemy : BaseEnemyClass
         }
 
     }
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, range);
+    }
+#endif
 }
+

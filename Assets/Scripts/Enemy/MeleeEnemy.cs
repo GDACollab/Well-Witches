@@ -1,11 +1,6 @@
 using UnityEngine;
 public class MeleeEnemy : BaseEnemyClass
 {
-    [Range(0, 20)]
-    [Tooltip("How far away the enemy stops before attacking")]
-    public float range;
-
-
     [Header("Attack")]
     public float damage;
     [Tooltip("Amount of time in seconds between an instance of damage")]
@@ -55,9 +50,11 @@ public class MeleeEnemy : BaseEnemyClass
 
     public void Attack()
     {
-        if (Vector2.Distance(currentTarget.transform.position, transform.position) < attackAOE)
+        rb2d.velocity = (currentTarget.position - transform.position).normalized * speedWhileAttacking;
+
+        // should change this to a collider check
+        if (Vector2.Distance(transform.position, currentTarget.position) < attackAOE)
         {
-            rb2d.velocity = (currentTarget.position - transform.position).normalized * speedWhileAttacking;
             if (currentTarget.gameObject.name == "Warden")
             {
                 EventManager.instance.playerEvents.PlayerDamage(damage, "Warden");
@@ -69,9 +66,13 @@ public class MeleeEnemy : BaseEnemyClass
         }
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, range);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackAOE);
     }
+#endif
 }
