@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DevastationBeam : MonoBehaviour
@@ -47,7 +49,7 @@ public class DevastationBeam : MonoBehaviour
 
     IEnumerator ActivateLaser(float lifespan)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         laserBeam.SetActive(true);
         StartCoroutine(DisableUltimate(lifespan));
     }
@@ -89,7 +91,7 @@ public class DevastationBeam : MonoBehaviour
 	}
 	void DamageEnemies()
 	{
-		foreach (Collider2D collider in enemiesInBlast) collider.GetComponent<BaseEnemyClass>().TakeDamage(damagePerTick);
+		foreach (Collider2D collider in enemiesInBlast.ToList()) collider.GetComponent<BaseEnemyClass>().TakeDamage(damagePerTick);
 	}
 
 	void HandleKnockbackTick()
