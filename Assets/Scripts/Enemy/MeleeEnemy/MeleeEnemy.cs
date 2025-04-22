@@ -52,7 +52,7 @@ public class MeleeEnemy : BaseEnemyClass
     {
         rb2d.velocity = (currentTarget.position - transform.position).normalized * speedWhileAttacking;
 
-        // should change this to a collider check
+        // not very performantive, better if collider check but should be good enough
         if (Vector2.Distance(transform.position, currentTarget.position) < attackAOE)
         {
             if (currentTarget.gameObject.name == "Warden")

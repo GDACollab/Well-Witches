@@ -47,12 +47,6 @@ public class TankEnemy : BaseEnemyClass
         players = GameObject.FindGameObjectsWithTag("Player");
     }
 
-
-    private void Update()
-    {
-
-    }
-
     // calculates and set target to the closest player to the enemy
     public void TargetClosestPlayer()
     {
@@ -104,7 +98,6 @@ public class TankEnemy : BaseEnemyClass
         }
     }
 
-    // TODO: don't like how this damage checking is set up, should be standardized in final build
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AggroState : State
 {
-    private Rigidbody2D rb;
     private StateMachine stateMachine;
     private float moveSpeed;
     private MeleeEnemy meleeEnemy;
@@ -30,7 +29,6 @@ public class AggroState : State
     {
         this.stateMachine = stateMachine;
         this.owner = owner;
-        rb = owner.GetComponent<Rigidbody2D>();
         meleeEnemy = owner.GetComponent<MeleeEnemy>();
         rangedEnemy = owner.GetComponent<RangedEnemy>();
         tankEnemy = owner.GetComponent<TankEnemy>();
@@ -62,7 +60,7 @@ public class AggroState : State
 
     public override void OnUpdate()
     {
-        if (meleeEnemy != null && meleeEnemy.GetComponent<NavMeshAgent>().enabled == true)
+        if (meleeEnemy != null && agent.enabled == true)
         {
             meleeEnemy.TargetClosestPlayer();
             agent.SetDestination(meleeEnemy.currentTarget.position);

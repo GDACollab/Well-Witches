@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 public class BaseEnemyClass : MonoBehaviour
 {
@@ -11,7 +10,6 @@ public class BaseEnemyClass : MonoBehaviour
     [Range(0, 20)]
     [Tooltip("How far away the enemy stops before attacking")]
     public float range;
-
 
     public void Spawn(Vector3 position)
     {
