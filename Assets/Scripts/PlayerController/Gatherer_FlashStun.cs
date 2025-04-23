@@ -8,6 +8,14 @@ public class Gatherer_FlashStun : GathererBaseAbilities
     [SerializeField] float stunDuration;
     [field: SerializeField] public float cooldownDuration { get; private set; }
     [SerializeField] LayerMask collisionLayersToCheck;
+
+    [Header("VFX Info")]
+    [SerializeField] float startingVelocity;
+    [SerializeField] float flashDuration;
+    [SerializeField] float lifetime;
+
+
+
     InputAction activateAbilityAction;
     float chargeCounter;
     public float cooldownCounter { get; private set; } = 0;
@@ -78,7 +86,7 @@ public class Gatherer_FlashStun : GathererBaseAbilities
         if (chargeCounter <= 0)
         {
             FlashStun flashStun = Instantiate(prefab, spawnPoint.position, Quaternion.identity).GetComponent<FlashStun>();
-            flashStun.LaunchStun();
+            flashStun.Initialize(startingVelocity, flashDuration, lifetime);
             ExecuteAbility();
             chargeCounter = chargeDuration;
             cooldownCounter = cooldownDuration;

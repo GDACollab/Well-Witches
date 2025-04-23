@@ -8,16 +8,11 @@ public class FlashStun : MonoBehaviour
     public ParticleSystem particles;
     
 
-    public float startingVelocity;
-    public float lifetime;
-    public float flashDuration;
+    float startingVelocity;
+    float lifetime;
+    float flashDuration;
 
     private Rigidbody2D rb;
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
 
     private void Update()
     {
@@ -25,9 +20,13 @@ public class FlashStun : MonoBehaviour
         main.startSpeed = Map(rb.velocity.y, -startingVelocity, startingVelocity, -4f, 4f);
     }
 
-    public void LaunchStun()
+    public void Initialize(float startingVelocity, float flashDuration, float lifetime)
     {
+        this.startingVelocity = startingVelocity;
+        this.flashDuration = flashDuration;
+        this.lifetime = lifetime;
         gameObject.SetActive(true);
+        rb = GetComponent<Rigidbody2D>();
         Light2D.gameObject.SetActive(false);
         rb.gravityScale = 1;
         rb.velocity = new Vector3(0, 1, 0) * startingVelocity;
@@ -56,7 +55,7 @@ public class FlashStun : MonoBehaviour
             yield return null;
         }
         gameObject.transform.localPosition = Vector2.zero;
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
 
