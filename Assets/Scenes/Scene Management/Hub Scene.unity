@@ -2677,7 +2677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipedAbility: {fileID: 0}
-  equipedAbilityName: 
+  equipedAbilityName: HealthTransfer
 --- !u!1 &499584890
 GameObject:
   m_ObjectHideFlags: 0
@@ -3325,6 +3325,10 @@ PrefabInstance:
     - target: {fileID: 5708320580637796411, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
       propertyPath: m_Name
       value: Gatherer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6218362828026916798, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
+      propertyPath: delay
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7117434340022138856, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6796,7 +6800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipedAbility: {fileID: 0}
-  equipedAbilityName: 
+  equipedAbilityName: HealthTransfer
   passiveAbility: {fileID: 0}
   passiveAbilityName: 
 --- !u!1 &1438284235 stripped
