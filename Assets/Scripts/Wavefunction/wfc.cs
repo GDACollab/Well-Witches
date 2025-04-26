@@ -17,6 +17,7 @@ public class wfc : MonoBehaviour
 
     [SerializeField] InteractableGenerator interactableGenerating;
 
+    //If you change this, change the enemy spawn bounds in EnemySpawner.cs and the camera view bound in cameraScript.cs
     private static int sizeX = 130;
     private static int sizeY = 130;
 

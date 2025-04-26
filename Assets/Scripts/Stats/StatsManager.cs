@@ -12,22 +12,19 @@ public class StatsManager : MonoBehaviour
     it contains the stats in a nice and neat way (hopefully)
      */
 
-    //Gets references to each individual health bars
-    [SerializeField] HealthBar Warden;
-    [SerializeField] HealthBar Gatherer;
+    // references to player objects
+    [Header("---------------Player Object References---------------")]
+    public Dictionary<string, GameObject> players;
+    [HideInInspector] public Warden_Health wardenHealth;
+    [HideInInspector] public Gatherer_Health gathererHealth;
+    
+    
     //buffs and buff timers
-
-
-
     [Header("---------------Buff / Curse Tracking---------------")]
     public List<string> myBuffs = new List<string>();
     public List<float> buffTimers = new List<float>();
 
-    public Dictionary<string, float> questItems = new Dictionary<string, float>
-    {
-        {"Dullahan’s Head", 0.15f},
-        {"Vampire Garlics", 0.10f}
-    };
+    public Dictionary<GameObject, float> questItems = new Dictionary<GameObject, float>();
 
     public float keyItemChance = 0.05f;
 
@@ -93,6 +90,11 @@ public class StatsManager : MonoBehaviour
 
    private void Awake()
    {
+        players = GetPlayers();
+        if (players.Count == 2) {
+            wardenHealth = players["Warden"].GetComponent<Warden_Health>();
+            gathererHealth = players["Gatherer"].GetComponent<Gatherer_Health>();
+        }
         if (Instance != null)
         {
             Debug.LogError("Found more than one GameManager in the scene. Please make sure there is only one");
@@ -116,15 +118,37 @@ public class StatsManager : MonoBehaviour
         }
     }
 
+    /// function for finding players in the scene. should only be called once
+    private Dictionary<string, GameObject> GetPlayers() {
+        GameObject[] playerTags = GameObject.FindGameObjectsWithTag("Player");
+        Dictionary<string, GameObject> playersDict = new Dictionary<string, GameObject>();
+        foreach(GameObject playerTagged in playerTags) {
+            if (playerTagged.gameObject.name == "Gatherer") {
+                playersDict.Add("Gatherer", playerTagged);
+            }
+            if (playerTagged.gameObject.name == "Warden") {
+                playersDict.Add("Warden", playerTagged);
+            }
+            if (playersDict.Count == 2) {
+                break;
+            }
+        }
+        if (playersDict.Count != 2) {
+            Debug.LogError("WARNING: Found " + playersDict.Count + "Players in scene!");
+        }
+        return playersDict;
+    }
+
     public void addStatus(string buff, float time)
     {
+        AnnouncementManager.Instance.AddAnnouncementToQueue(buff);
         myBuffs.Add(buff);
         buffTimers.Add(time);
     }
 
-    public Dictionary<string, float> getQuestItems() 
+    public Dictionary<GameObject, float> getQuestItems() 
     {
-        return new Dictionary<string, float> (questItems);
+        return questItems;
     }
 
     public List<string> getMyBuffs() 
@@ -137,26 +161,29 @@ public class StatsManager : MonoBehaviour
         return keyItemChance;
     }
 
+    // THIS FUNCTION IS DEPRICATED ######################################################w
+    // INSTEAD, USE "EventManager.instance.playerEvents.PlayerDamage([INSERT DAMAGE AMOUNT], ["Warden" or "Gatherer"]);"
     //Public func to calculate taking damage and updating healthbars.
     //Sends a signal to ondie to the individual warden/gatherer movement scripts to stop
     //This may be temp until event bus/script is figured out (sorry - ben)
-    public void tookDamage(string player, float damage)
-    {
-        if (player == "Gatherer")
-        {
-            GathererCurrentHealth = GathererCurrentHealth - damage;
-            Gatherer.UpdateHealthBar(GathererCurrentHealth, GathererMaxHealth);
-            Debug.Log(GathererCurrentHealth);
-        }
-        else if (player == "Warden")
-        {
-            WardenCurrentHealth = WardenCurrentHealth - damage;
-            Warden.UpdateHealthBar(WardenCurrentHealth, WardenMaxHealth);
-
-        }
-        else
-        {
-            Debug.Log("Somethign has gone very god dam wrong");
-        }
-    }
+    // public void tookDamage(string player, float damage)
+    // {
+    //     if (player == "Gatherer")
+    //     {
+    //         GathererCurrentHealth = GathererCurrentHealth - damage;
+    //         Warden_Health.healthBar.UpdateHealthBar(GathererCurrentHealth, GathererMaxHealth);
+    //         Debug.Log(GathererCurrentHealth);
+            
+    //     }
+    //     else if (player == "Warden")
+    //     {
+    //         WardenCurrentHealth = WardenCurrentHealth - damage;
+    //         Warden.UpdateHealthBar(WardenCurrentHealth, WardenMaxHealth);
+    //         wardenHealth.TakeDamage(damage, player);
+    //     }
+    //     else
+    //     {
+    //         Debug.Log("Somethign has gone very god dam wrong");
+    //     }
+    // }
 }

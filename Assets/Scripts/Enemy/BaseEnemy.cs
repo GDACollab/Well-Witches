@@ -2,23 +2,22 @@ using UnityEngine;
 
 public class BaseEnemyClass : MonoBehaviour
 {
-    // Ranges for stats are just placeholders and can be changed.
     [Header("Enemy Stats")]
-    [Range(1, 100)]
-    [Tooltip("The max health of an enemy. [1, 100]")]
+    [Tooltip("The max health of an enemy.")]
     public float health;
-    [Range(0, 20)]
-    [Tooltip("How fast an enemy moves. [0, 20]")]
+    [Tooltip("How fast an enemy moves.")]
     public float moveSpeed;
-
+    [Range(0, 20)]
+    [Tooltip("How far away the enemy stops before attacking")]
+    public float range;
 
     public void Spawn(Vector3 position)
     {
         Instantiate(gameObject, position, Quaternion.identity);
     }
 
-    public void TakeDamage(float amount)
-    {   //Reduces health by the amount entered in Unity
+    public virtual void TakeDamage(float amount)
+    {   
         health -= amount;
         if (health <= 0)
         {
@@ -26,7 +25,7 @@ public class BaseEnemyClass : MonoBehaviour
         }
     }
 
-    void Die()
+    public virtual void Die()
     {
         Destroy(gameObject);
     }

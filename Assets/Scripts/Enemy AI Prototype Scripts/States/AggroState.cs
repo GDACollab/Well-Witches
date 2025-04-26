@@ -4,74 +4,83 @@ using UnityEngine;
 
 public class AggroState : State
 {
-    private Rigidbody2D rb;
     private StateMachine stateMachine;
     private float moveSpeed;
-    private float damage;
     private MeleeEnemy meleeEnemy;
     private RangedEnemy rangedEnemy;
     private TankEnemy tankEnemy;
 
+
+    private NavMeshAgent agent;
+
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Start()
+    {
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+    }
     public AggroState(GameObject owner) : base(owner) { }
 
     public void Initialize(StateMachine stateMachine, GameObject owner)
     {
         this.stateMachine = stateMachine;
         this.owner = owner;
-        rb = owner.GetComponent<Rigidbody2D>();
         meleeEnemy = owner.GetComponent<MeleeEnemy>();
         rangedEnemy = owner.GetComponent<RangedEnemy>();
         tankEnemy = owner.GetComponent<TankEnemy>();
         if (meleeEnemy != null)
         {
             moveSpeed = meleeEnemy.moveSpeed;
+            agent.stoppingDistance = meleeEnemy.range;
+            agent.speed = moveSpeed;
         }
         else if (rangedEnemy != null)
         {
             moveSpeed = rangedEnemy.moveSpeed;
+            agent.speed = moveSpeed;
+            agent.stoppingDistance = rangedEnemy.range;
         }
         else if (tankEnemy != null)
         {
             moveSpeed = tankEnemy.moveSpeed;
-            damage = tankEnemy.damage;
+            agent.stoppingDistance = tankEnemy.range;
+            agent.speed = moveSpeed;
         }
 
     }
 
     public override void OnEnter()
     {
-        Debug.Log("Entering Patrol State");
-
+        agent.enabled = true;
     }
 
     public override void OnUpdate()
     {
-        if (meleeEnemy != null)
+        if (meleeEnemy != null && agent.enabled == true)
         {
             meleeEnemy.TargetClosestPlayer();
-            Transform target = meleeEnemy.currentTarget;
-            if (target != null)
-            {
-                Vector2 targetPosition = new Vector2(target.position.x, target.position.y);
-                Vector2 direction = (targetPosition - rb.position).normalized;
-                rb.MovePosition(rb.position + direction * moveSpeed * Time.deltaTime);
-            }
+            agent.SetDestination(meleeEnemy.currentTarget.position);
         }
         else if (rangedEnemy != null)
         {
             rangedEnemy.TargetClosestPlayer();
-            rangedEnemy.MoveRanged();
+            agent.SetDestination(rangedEnemy.currentTarget.position);
         }
         else if (tankEnemy != null)
         {
-            tankEnemy.Pursue();
+            tankEnemy.TargetClosestPlayer();
+            agent.SetDestination(tankEnemy.currentTarget.position);
             tankEnemy.SpawnPool();
         }
     }
 
     public override void OnExit()
     {
-        Debug.Log("Exiting Patrol State");
+        agent.enabled = false;
     }
 
     public override List<Transition> GetTransitions()
