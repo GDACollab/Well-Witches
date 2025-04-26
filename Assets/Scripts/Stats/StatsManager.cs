@@ -107,10 +107,10 @@ public class StatsManager : MonoBehaviour
         for(int i = 0; i < buffTimers.Count; i++)
         {
             buffTimers[i] -= Time.deltaTime;
-            Debug.Log("status " + myBuffs[i] + ": " + buffTimers[i]);
+            //Debug.Log("status " + myBuffs[i] + ": " + buffTimers[i]);
             if (buffTimers[i] <= 0)
             {
-                Debug.Log("status " + myBuffs[i] + " is over!");
+                //Debug.Log("status " + myBuffs[i] + " is over!");
                 myBuffs.RemoveAt(i);
                 buffTimers.RemoveAt(i);
                 i--;

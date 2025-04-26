@@ -10,10 +10,12 @@ public class PlayerMovement : MonoBehaviour
 	Vector2 moveDirection;
 	[HideInInspector] public float maxSpeed_Adjusted;   // this has to exist for now because of SpeedBuff.cs
 	private EventInstance playerFootsteps;
+	public bool canMove = true; //boolean that enables/disables movement, used for when you harvest from bushes
 
 	void OnMove(InputValue iv)  // Called by the Player Input component
 	{
-		moveDirection = iv.Get<Vector2>();
+		print("blah");
+		moveDirection = iv.Get<Vector2>() * (canMove ? 1 : 0);
 	}
 
 	protected void Awake()

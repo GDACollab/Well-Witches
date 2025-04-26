@@ -18,8 +18,8 @@ public class wfc : MonoBehaviour
     [SerializeField] InteractableGenerator interactableGenerating;
 
     //If you change this, change the enemy spawn bounds in EnemySpawner.cs and the camera view bound in cameraScript.cs
-    private static int sizeX = 130;
-    private static int sizeY = 130;
+    private static int sizeX = 160;
+    private static int sizeY = 160;
 
     public enum Direction { North, South, East, West };
 
@@ -45,8 +45,8 @@ public class wfc : MonoBehaviour
     {
         if (current.name == "Gameplay Scene")
         {
-            sizeX = 130;
-            sizeY = 130;
+            sizeX = 160;
+            sizeY = 160;
 
             tileRules = new Dictionary<ushort, List<string>>();
 
