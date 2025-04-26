@@ -200,8 +200,14 @@ public class SceneHandler : MonoBehaviour
     //show image, wait x seconds, load scene
     private IEnumerator LoadingScreen(int sceneName)
     {
-        //show picture
-        loadScreen.SetActive(true);
+        //show picture, backup incase some scene doesn't have it
+        if (loadScreen != null)
+        {
+            loadScreen.SetActive(true);
+        }else
+        {
+            Debug.Log("ERROR: MISSING LOADING SCREEN");
+        }
 
         //animation will be done via art
 
