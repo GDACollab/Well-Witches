@@ -341,6 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementData: {fileID: 11400000, guid: f3ee9fd79406baf49867f478438dc2a9, type: 2}
   maxSpeed_Adjusted: 0
+  canMove: 1
 --- !u!114 &2686973554895526223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,6 +355,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionRadius: {fileID: 2982385783056123225}
+  myMovement: {fileID: 8323796786317442292}
+  timeSpent: 0
+  timer: 1
 --- !u!114 &871047896541522312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,7 +405,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da399ee4076e9c646bd4fb50ad3220dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
 --- !u!114 &405281284013656679
 MonoBehaviour:
   m_ObjectHideFlags: 0
