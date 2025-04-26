@@ -215,6 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementData: {fileID: 11400000, guid: f3ee9fd79406baf49867f478438dc2a9, type: 2}
   maxSpeed_Adjusted: 0
+  canMove: 1
 --- !u!114 &2686973554895526223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,6 +229,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionRadius: {fileID: 2982385783056123225}
+  myMovement: {fileID: 8323796786317442292}
+  timeSpent: 0
+  timer: 1
 --- !u!114 &871047896541522312
 MonoBehaviour:
   m_ObjectHideFlags: 0

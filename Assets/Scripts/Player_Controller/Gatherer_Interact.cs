@@ -10,6 +10,7 @@ public class Gatherer_Interact : MonoBehaviour
     //Feel free to message me! (Ashton Gallistel, Eric Lien) I'll try to explain what I understand.
     //Major apologies for using a Vector2D in the editor, getting a float in the function, and treating it as an int in the code.
     [SerializeField] Collider2D interactionRadius;
+    [SerializeField] PlayerMovement myMovement;
     IInteractable interactable = null;
     public float timeSpent = 0.0f; //time spent searching
     public float timer = 1f; //time it takes to search
@@ -30,6 +31,9 @@ public class Gatherer_Interact : MonoBehaviour
             {
                 if (collider.gameObject.TryGetComponent(out IInteractable interactableObject))
                 {
+                    //Freeze movement
+                    myMovement.canMove = false;
+                    //begin harvesting
                     interactable = interactableObject;
                     timeSpent = 0;
                     break;
@@ -40,6 +44,9 @@ public class Gatherer_Interact : MonoBehaviour
         {
             if (interactable != null)
             {
+                //Unfreeze movement
+                myMovement.canMove = true;
+                //stop harvesting
                 interactable = null;
             }
         }
@@ -50,6 +57,9 @@ public class Gatherer_Interact : MonoBehaviour
         timeSpent += Time.deltaTime;
         if (timeSpent > timer && interactable != null)
         {
+            //Unfreeze movement
+            myMovement.canMove = true;
+            //stop harvesting
             interactable.Interact();
             interactable = null;
         }
