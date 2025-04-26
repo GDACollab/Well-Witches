@@ -20,7 +20,12 @@ public class SceneHandler : MonoBehaviour
     private int PauseSceneIndex = 3;
     [SerializeField]
     private int BossSceneIndex = 4;
-    
+
+    [Header("Transition Screen")]
+    [Tooltip("Image for loading screen")]
+    [SerializeField] private GameObject loadScreen;
+    [Tooltip("Image for loading screen")]
+    [SerializeField] private float waitTime = 2f;
     
     private void Awake(){
         if(Instance != null && Instance != this){
@@ -79,7 +84,9 @@ public class SceneHandler : MonoBehaviour
             Debug.Log("Transitions from the current scene, " + currentScene.name + " are not currently supported");
             return;
         }
-        SceneManager.LoadScene(MainMenuSceneIndex);
+
+        StartCoroutine(LoadingScreen(PauseSceneIndex));
+        //SceneManager.LoadScene(MainMenuSceneIndex);
     }
     public void ToHubScene(){
 
@@ -111,7 +118,8 @@ public class SceneHandler : MonoBehaviour
             return;
         }
 
-        SceneManager.LoadScene(HubSceneIndex);
+        //SceneManager.LoadScene(HubSceneIndex);
+        StartCoroutine(LoadingScreen(HubSceneIndex)); 
 
         AudioManager.Instance.CleanUp();
         AudioManager.Instance.PlayOST(FMODEvents.Instance.lobbyBGM);
@@ -141,7 +149,9 @@ public class SceneHandler : MonoBehaviour
             Debug.Log("Transitions from the current scene, " + currentScene.name + " are not currently supported");
             return;
         }
-        SceneManager.LoadScene(GameplaySceneIndex);
+
+        //SceneManager.LoadScene(GameplaySceneIndex);
+        StartCoroutine(LoadingScreen(PauseSceneIndex));
 
         AudioManager.Instance.CleanUp();
         AudioManager.Instance.PlayOST(FMODEvents.Instance.mainMapBGM);
@@ -171,10 +181,11 @@ public class SceneHandler : MonoBehaviour
             Debug.Log("Transitions from the current scene, " + currentScene.name + " are not currently supported");
             return;
         }
-        SceneManager.LoadScene(PauseSceneIndex);
+
+        StartCoroutine(LoadingScreen(PauseSceneIndex));
+
+        //SceneManager.LoadScene(PauseSceneIndex);
     }
-
-
 
 
     public void ToBossScene(){
@@ -185,4 +196,18 @@ public class SceneHandler : MonoBehaviour
         AudioManager.Instance.CleanUp();
         AudioManager.Instance.PlayOST(FMODEvents.Instance.bossBGM);
     }
+
+    //show image, wait x seconds, load scene
+    private IEnumerator LoadingScreen(int sceneName)
+    {
+        //show picture
+        loadScreen.SetActive(true);
+
+        //animation will be done via art
+
+        yield return new WaitForSeconds(waitTime);
+
+        SceneManager.LoadSceneAsync(sceneName);
+    }
+
 }
