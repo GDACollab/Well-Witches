@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraScript : MonoBehaviour
@@ -22,6 +20,7 @@ public class CameraScript : MonoBehaviour
     {
         transform.position = new Vector3(target.transform.position.x, target.transform.position.y, -11);
     }
+
     private void Update()
     {
         //Clamp x and y positions based on min and max view coords
