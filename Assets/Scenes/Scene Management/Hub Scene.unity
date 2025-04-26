@@ -1007,7 +1007,7 @@ MonoBehaviour:
   reward: {fileID: 4581381201516256351, guid: e438fbe7130d8e346bbf874574776822, type: 3}
   qm: {fileID: 119708910}
   JSON: {fileID: 4900000, guid: 19740bd2611cb0d43b706b6bbfea5406, type: 3}
-  quest: {fileID: 11400000, guid: 9207d6df5aabee946a1b22ec06df339b, type: 2}
+  quest: {fileID: 11400000, guid: 927dde2c6b2c9f14c9a3855495fc0021, type: 2}
 --- !u!61 &123236024
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1015,7 +1015,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 123236021}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -7665,7 +7665,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1554020340
 Transform:
   m_ObjectHideFlags: 0
@@ -7985,8 +7985,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29b3763b169ac6a438ad344dbf48489b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Warden: {fileID: 0}
-  Gatherer: {fileID: 0}
+  wardenHealth: {fileID: 0}
+  gathererHealth: {fileID: 0}
   myBuffs: []
   buffTimers: []
   keyItemChance: 0.05
