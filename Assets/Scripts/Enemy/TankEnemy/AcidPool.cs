@@ -11,7 +11,7 @@ public class AcidPool : MonoBehaviour
     ParticleSystem.MainModule poolMainModule;
 
 
-    public void InitializeAcid(float lifetime, float damage, float size)
+    public void InitializeAcid(float lifetime, float damage)
     {
         
         poolMainModule = pool.main;

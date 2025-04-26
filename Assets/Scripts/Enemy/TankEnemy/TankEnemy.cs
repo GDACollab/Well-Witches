@@ -81,7 +81,7 @@ public class TankEnemy : BaseEnemyClass
         if (timeTillPool <= 0)
         {
             // spawns acid pool
-            GameObject acidPool = AcidTrailPooling.SharedInstance.GetProjectileObject();
+            GameObject acidPool = AcidTrailPooling.SharedInstance.GetAcidPoolObject();
             if (acidPool)
             {
                 acidPool.transform.position = new Vector2(acidOffsetX, acidOffsetY) + rb2d.position;
