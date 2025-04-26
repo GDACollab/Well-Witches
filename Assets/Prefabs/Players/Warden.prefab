@@ -383,7 +383,6 @@ MonoBehaviour:
   stuckDistanceAdded: 1.5
   timeUntilStuck: 5
   wardenCollider: {fileID: 0}
-  stuckTime: 0
 --- !u!114 &7330388417451776427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,12 +452,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <NumHitsRequired>k__BackingField: 1
-  projectileDamage: 1
-  projectileSpeed: 2
-  distanceFromPlayer: 3
+  projectileDamage: 5
+  projectileSpeed: 10
   projectileLifetime: 10
-  timeBetweenProjectile: 0.5
-  abilityDuration: 10
+  timeBetweenProjectile: 0.2
+  abilityDuration: 3
   projectilePrefab: {fileID: 7603238177100266058, guid: 02ce3b291024fd946b9b2065d544b07e, type: 3}
   spawnPoint: {fileID: 7347747762842868080}
   prefab: {fileID: 5213519764763690752, guid: 5f9c5b65f2e8cab428a295d4d4d557fd, type: 3}

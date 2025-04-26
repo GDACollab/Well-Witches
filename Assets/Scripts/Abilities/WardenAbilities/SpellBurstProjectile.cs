@@ -1,32 +1,33 @@
 using UnityEngine;
 using System;
 
-
 public class SpellBurstProjectile : MonoBehaviour
 {
     [Header("Debug, Do Not Change")]
     [SerializeField] private float _damage;
-    [SerializeField] private float _speed;
-    [SerializeField] private Vector3 velocity;
     [SerializeField] private ParticleSystem impactSparks;
     [SerializeField] private ParticleSystem impactFlash;
+
+    private Rigidbody2D rb;
 
 
     public static event Action OnHitEnemy;
 
 
-    public void Initialize(Transform pivot, float damage, float speed, float lifetime)
+    public void Initialize(float damage, float speed, float lifetime)
     {
-        transform.eulerAngles = new Vector3(0, 0, 90f);
         _damage = damage;
-        _speed = speed;
-        transform.SetParent(pivot);
-        Destroy(gameObject, lifetime);
-    }
+        rb = GetComponent<Rigidbody2D>();
+        Vector3 randomTarget = Camera.main.ViewportToWorldPoint(new Vector3(UnityEngine.Random.value, UnityEngine.Random.value));
 
-    private void Update()
-    {
-        transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z +  _speed * 0.00625f);
+        Vector3 direction = randomTarget - transform.position;
+        Vector3 rotation = transform.position - randomTarget;
+        float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, rot + 90);
+
+        rb.velocity = new Vector2(direction.x, direction.y).normalized * speed;
+
+        Destroy(gameObject, lifetime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
