@@ -6,6 +6,7 @@ public class PlayerProjectile : MonoBehaviour
     private Vector3 mousePosition;
     private Camera cam;
     private Rigidbody2D rb;
+    private Collider2D collider;
 
     [SerializeField] private GameObject projectile;
     [SerializeField] private GameObject impact;
@@ -19,6 +20,7 @@ public class PlayerProjectile : MonoBehaviour
         _damage = damage;
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         rb = GetComponent<Rigidbody2D>();
+        collider = GetComponent<Collider2D>();
         mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 direction = mousePosition - transform.position;
@@ -45,7 +47,7 @@ public class PlayerProjectile : MonoBehaviour
         rb.freezeRotation = true;
         projectile.SetActive(false);
         impact.SetActive(true);
-
+        collider.enabled = false;
         Destroy(gameObject, 0.5f);
     }
 }
