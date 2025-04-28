@@ -25,14 +25,6 @@ public class Warden_Movement : PlayerMovement
 
     private float stuckTime = 0f;
 
-    private void Awake()
-    {
-        if (wardenCollider == null)
-		{
-			wardenCollider = GetComponent<Collider2D>();	
-		}
-    }
-
     void OnValidate()
 	{
 		joint.frequency = ropeStiffness;
