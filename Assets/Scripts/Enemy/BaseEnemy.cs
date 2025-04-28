@@ -27,6 +27,14 @@ public class BaseEnemyClass : MonoBehaviour
 
     public virtual void Die()
     {
+		// --- Death Siphon Interaction ---
+        // Check Warden ability
+        PassiveAbilities passiveAbility = WardenAbilityManager.Instance.passiveAbilityName;
+        if (passiveAbility is SiphonEnergy) 
+        {
+            passiveAbility.Siphon();    // Charge Warden's meter
+        }
+
         Destroy(gameObject);
     }
 
