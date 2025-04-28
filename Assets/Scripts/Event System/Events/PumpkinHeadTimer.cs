@@ -17,6 +17,7 @@ public class PumpkinHeadTimer : PumpkinHead
             timer += Time.deltaTime; // Increment timer
             if (timer == 60) // Check if 60 seconds have passed
             {
+                Destroy(this.gameObject); // Destroy the pumpkin head
                AnnouncementManager.Instance.AddAnnouncementToQueue("Gallahn Head have been safely recovered, head on over to Gallahn and return his head next time you see him, he won't!");
             }
         }
