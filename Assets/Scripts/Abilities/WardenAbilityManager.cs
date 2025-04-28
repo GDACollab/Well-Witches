@@ -9,6 +9,8 @@ public class WardenAbilityManager : MonoBehaviour
 {
     public WardenBaseAbilities equipedAbility;
     [SerializeField] string equipedAbilityName;
+    public PassiveAbilities passiveAbility;
+    [SerializeField] string passiveAbilityName;
     [SerializeField] private Controls controls;
 
     public static WardenAbilityManager Instance { get; private set; }
@@ -70,7 +72,19 @@ public class WardenAbilityManager : MonoBehaviour
                     break;
             }
         }
-        
+
+        if (passiveAbilityName != null)
+        {
+            switch (passiveAbilityName)
+            {
+                case "SiphonEnergy":
+                    passiveAbility = SiphonEnergy.Instance;
+                    break;
+                default:
+                    print("failed to swap to: " + passiveAbilityName);
+                    break;
+            }
+        }       
     }
 
     public void EquipActive(string abilityID)
@@ -101,8 +115,22 @@ public class WardenAbilityManager : MonoBehaviour
             print("Failed to equip ability: Null ability");
         }
     }
-    //public void EquipActive(string abilityID)
-    //{
-        // the same as above, just for passives (look at gatherer manager)
-    //}
+
+    public void EquipPassive(string abilityID)
+    {
+        if (abilityID != null)
+        {
+            switch (abilityID)
+            {
+                case "SiphonEnergy":
+                    passiveAbility = SiphonEnergy.Instance;
+                    passiveAbilityName = abilityID;
+                    print("swap to: " + abilityID);
+                    break;
+                default:
+                    print("failed to swap to: " + abilityID);
+                    break;
+            }
+        }
+    }
 }
