@@ -33,7 +33,8 @@ public class WardenAbilityManager : MonoBehaviour
 
     private void Start()
     {
-        equipedAbility = WardenDevastationBeam.Instance;
+        //equipedAbility = WardenDevastationBeam.Instance;
+        equipedAbility = WardenGourdForge.Instance;
         equipedAbilityName = equipedAbility.abilityName;
         print("Ability is of type: " + equipedAbilityName);
         //print("equip");

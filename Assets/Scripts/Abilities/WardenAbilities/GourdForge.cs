@@ -8,10 +8,13 @@ public class GourdForge : MonoBehaviour
     [SerializeField] private float damageTickDuration;
     [SerializeField] private float damageTickCounter = 0;
 
-    HashSet<Collider2D> enemiesInAOE = new HashSet<Collider2D>();
+    [SerializeField] List<Collider2D> enemiesInAOE = new List<Collider2D>();
+    [SerializeField] ContactFilter2D enemyFilter = new ContactFilter2D();
 
     public void Activate(float damagePerTick, float damageTickDuration, float size, float lifespan)
     {
+        Debug.Log("ACTIVATING GOURD FORGE");
+
         this.damagePerTick = damagePerTick;
         this.damageTickDuration = damageTickDuration;
 
@@ -36,6 +39,14 @@ public class GourdForge : MonoBehaviour
     }
     void DamageEnemies()
     {
-        foreach (Collider2D collider in enemiesInAOE) collider.GetComponent<BaseEnemyClass>().TakeDamage(damagePerTick);
+        int hitEnemies = GetComponent<PolygonCollider2D>().OverlapCollider(enemyFilter,enemiesInAOE);
+        
+
+        foreach (Collider2D hit in enemiesInAOE) {
+            BaseEnemyClass hitEnemy = hit.GetComponent<BaseEnemyClass>();
+            if (hitEnemy != null) hitEnemy.TakeDamage(damagePerTick);
+        }
+        enemiesInAOE.Clear();
+
     }
 }
