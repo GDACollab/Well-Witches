@@ -10,7 +10,6 @@ public class WardenSpellBurst : WardenBaseAbilities
     [Header("Projectile Stats")]
     public float projectileDamage;
     public float projectileSpeed;
-    public float distanceFromPlayer;
     public float projectileLifetime;
     public float timeBetweenProjectile;
 
@@ -44,8 +43,8 @@ public class WardenSpellBurst : WardenBaseAbilities
     public override void useAbility()    // called by the Ability Manager
     {
         if (Charge < NumHitsRequired) return;
-        SpellBurst spellBurst = Instantiate(prefab).GetComponent<SpellBurst>();
-        spellBurst.Activate(projectileDamage, projectileSpeed, distanceFromPlayer, projectileLifetime, timeBetweenProjectile, abilityDuration);
+        SpellBurst spellBurst = Instantiate(prefab, transform).GetComponent<SpellBurst>();
+        spellBurst.Activate(projectileDamage, projectileSpeed, projectileLifetime, timeBetweenProjectile, abilityDuration);
         Charge = 0;
     }
 }
