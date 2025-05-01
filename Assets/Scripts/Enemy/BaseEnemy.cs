@@ -34,6 +34,7 @@ public class BaseEnemyClass : MonoBehaviour
 
     public virtual void Die()
     {
+        EnemySpawner.currentEnemyCount--;
         Destroy(gameObject);
     }
 
