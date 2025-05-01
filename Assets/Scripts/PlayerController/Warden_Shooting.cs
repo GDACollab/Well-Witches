@@ -3,9 +3,13 @@ using UnityEngine.InputSystem;
 
 public class Warden_Shooting : MonoBehaviour
 {
-	[SerializeField] float cooldown;
+    [Header("Stats")]
+    [SerializeField] float cooldown;
 	[SerializeField] float velocity;
-	[SerializeField] float lifetime;
+    [SerializeField] float knockback;
+    [SerializeField] float lifetime;
+
+    [Header("References")]
 	[SerializeField] GameObject prefab;
 	[SerializeField] Transform spawn;
 	InputAction inputAction;
@@ -27,7 +31,7 @@ public class Warden_Shooting : MonoBehaviour
 	void Shoot()
 	{
 		PlayerProjectile projectile = Instantiate(prefab, spawn.position, Quaternion.identity).GetComponent<PlayerProjectile>();
-		projectile.InitializeProjectile(velocity, lifetime, statsManager.AttackPower);
+		projectile.InitializeProjectile(velocity, lifetime, statsManager.AttackPower, knockback);
 		AudioManager.Instance.PlayOneShot(FMODEvents.Instance.spectralShot, spawn.position);
 		cooldownCounter = cooldown;
 	}

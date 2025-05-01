@@ -65,12 +65,12 @@ public class AggroState : State
             meleeEnemy.TargetClosestPlayer();
             agent.SetDestination(meleeEnemy.currentTarget.position);
         }
-        else if (rangedEnemy != null)
+        else if (rangedEnemy != null && agent.enabled == true)
         {
             rangedEnemy.TargetClosestPlayer();
             agent.SetDestination(rangedEnemy.currentTarget.position);
         }
-        else if (tankEnemy != null)
+        else if (tankEnemy != null && agent.enabled == true)
         {
             tankEnemy.TargetClosestPlayer();
             agent.SetDestination(tankEnemy.currentTarget.position);

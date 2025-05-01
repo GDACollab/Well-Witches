@@ -1,5 +1,8 @@
 using UnityEngine;
 using System;
+using UnityEngine.AI;
+using System.Collections;
+using UnityEngine.InputSystem.Android;
 
 public class PlayerProjectile : MonoBehaviour
 {
@@ -11,19 +14,25 @@ public class PlayerProjectile : MonoBehaviour
     [SerializeField] private GameObject projectile;
     [SerializeField] private GameObject impact;
 
-    private float _damage;
+    private float damage;
+    private float knockback;
+
+    private Vector3 direction;
+
+    private NavMeshAgent agent;
 
     public static event Action OnHitEnemy;
 
-    public void InitializeProjectile(float velocity, float lifetime, float damage)
+    public void InitializeProjectile(float velocity, float lifetime, float damage, float knockback)
     {
-        _damage = damage;
+        this.damage = damage;
+        this.knockback = knockback;
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
         mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        Vector3 direction = mousePosition - transform.position;
+        direction = mousePosition - transform.position;
         Vector3 rotation = transform.position - mousePosition;
         rb.velocity = new Vector2(direction.x, direction.y).normalized * velocity;
 
@@ -40,7 +49,11 @@ public class PlayerProjectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<BaseEnemyClass>().TakeDamage(_damage);
+            collision.gameObject.GetComponent<BaseEnemyClass>().TakeDamage(damage);
+            if (collision != null)
+            {
+                collision.gameObject.GetComponent<BaseEnemyClass>().ProjectileKnockback(direction.normalized * knockback);
+            }
             OnHitEnemy?.Invoke();
         }
         rb.velocity = Vector2.zero;

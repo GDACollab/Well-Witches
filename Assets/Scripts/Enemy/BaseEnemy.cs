@@ -1,5 +1,8 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class BaseEnemyClass : MonoBehaviour
 {
     [Header("Enemy Stats")]
@@ -11,13 +14,17 @@ public class BaseEnemyClass : MonoBehaviour
     [Tooltip("How far away the enemy stops before attacking")]
     public float range;
 
+    public NavMeshAgent agent;
+
+    public Rigidbody2D rb;
+
     public void Spawn(Vector3 position)
     {
         Instantiate(gameObject, position, Quaternion.identity);
     }
 
     public virtual void TakeDamage(float amount)
-    {   
+    {
         health -= amount;
         if (health <= 0)
         {
@@ -28,6 +35,21 @@ public class BaseEnemyClass : MonoBehaviour
     public virtual void Die()
     {
         Destroy(gameObject);
+    }
+
+    public virtual void ProjectileKnockback(Vector3 force)
+    {
+        agent.enabled = false;
+        rb.AddForce(force, ForceMode2D.Impulse);
+        StartCoroutine(EnableAgent());
+    }
+    
+    IEnumerator EnableAgent()
+    {
+        yield return new WaitForSeconds(0.2f);
+        agent.enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        rb.velocity = Vector3.zero;
     }
 
 }
