@@ -10,7 +10,7 @@ public class PumpkinHead : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             EventManager.instance.miscEvent.PumpkinCollected();
-            
+            PumpkinHead.Destroy(gameObject); // Destroy the pumpkin head immediately
             
         }
     }
