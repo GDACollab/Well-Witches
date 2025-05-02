@@ -11,6 +11,7 @@ public class PumpkinHead : MonoBehaviour
         {
             EventManager.instance.miscEvent.PumpkinCollected();
             
+            
         }
     }
 }

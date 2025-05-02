@@ -5,12 +5,13 @@ public class PlayerHealth : MonoBehaviour
 {
 	protected StatsManager statsManager;
 	private Slider HealthSlider;
+	
 
-	void OnEnable()     // Subscribe to events here
+	public void OnEnable()     // Subscribe to events here
 	{
 		EventManager.instance.playerEvents.onPlayerDamage += TakeDamage;
 	}
-	void OnDisable()    // Unsubscribe to events here (otherwise we waste memory)
+	public void OnDisable()    // Unsubscribe to events here (otherwise we waste memory)
 	{
 		EventManager.instance.playerEvents.onPlayerDamage -= TakeDamage;
 	}
