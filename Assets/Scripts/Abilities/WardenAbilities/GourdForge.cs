@@ -22,6 +22,7 @@ public class GourdForge : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.35f);
         transform.localScale = Vector3.one * size;
         wardenRef = GetComponentInParent<Warden_Movement>();
+        GetComponentInParent<Warden_Health>().gourdForgeInvulnerability = true;
         wardenRef.canMove = false;
         Destroy(gameObject, lifespan);
     }
@@ -33,6 +34,7 @@ public class GourdForge : MonoBehaviour
     void OnDestroy(){
         Debug.Log("DESTROYED!!!");
         wardenRef.canMove = true;
+        GetComponentInParent<Warden_Health>().gourdForgeInvulnerability = false;
     }
     void HandleDamageTick()
     {

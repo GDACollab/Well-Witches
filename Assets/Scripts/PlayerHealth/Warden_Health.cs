@@ -4,11 +4,13 @@ using UnityEngine.InputSystem;
 
 public class Warden_Health : PlayerHealth
 {
+	
+	public bool gourdForgeInvulnerability = false;
 	protected override void TakeDamage(float damage, string player)
 	{
 		if (player.ToLower() != "warden") return;
 
-		if (isInvulnerable == true) {
+		if (gourdForgeInvulnerability == true) {
 			return;
 		}
 
@@ -31,4 +33,6 @@ public class Warden_Health : PlayerHealth
 		GameObject.FindGameObjectsWithTag("Player").First(x => x.name == "Warden").GetComponent<PlayerInput>().enabled = false;
 		return;
 	}
+
+
 }

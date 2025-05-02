@@ -22,6 +22,7 @@ public class WardenGourdForge : WardenBaseAbilities
     public override string abilityName => "GourdForge";
     public override int numHitsRequired => NumHitsRequired;
     public override float duration => abilityDuration;
+    private GourdForge gourdForgeInstance;
 
     public static WardenGourdForge Instance { get; private set; }
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
@@ -38,9 +39,14 @@ public class WardenGourdForge : WardenBaseAbilities
 
     public override void useAbility()    // called by the Player Input component
     {
+        if (gourdForgeInstance != null) {
+            Destroy(gourdForgeInstance.gameObject);
+            return;
+        }
         if (Charge < NumHitsRequired) return;
-        GourdForge gourdForge = Instantiate(prefab, spawnPoint).GetComponent<GourdForge>();
-        gourdForge.Activate(damagePerTick, damageTickDuration, size, abilityDuration);
+        gourdForgeInstance = Instantiate(prefab, spawnPoint).GetComponent<GourdForge>();
+        gourdForgeInstance.Activate(damagePerTick, damageTickDuration, size, abilityDuration);
+
         Charge = 0;
     }
 }
