@@ -8,6 +8,10 @@ public class Warden_Health : PlayerHealth
 	{
 		if (player.ToLower() != "warden") return;
 
+		if (isInvulnerable == true) {
+			return;
+		}
+
 		float newHealth = statsManager.WardenCurrentHealth - damage;
 
 		if (newHealth > 0) statsManager.WardenCurrentHealth = newHealth;

@@ -5,6 +5,7 @@ public class PlayerHealth : MonoBehaviour
 {
 	protected StatsManager statsManager;
 	private Slider HealthSlider;
+	public bool isInvulnerable = false;
 
 	void OnEnable()     // Subscribe to events here
 	{
