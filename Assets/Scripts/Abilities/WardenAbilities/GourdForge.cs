@@ -10,6 +10,7 @@ public class GourdForge : MonoBehaviour
 
     [SerializeField] List<Collider2D> enemiesInAOE = new List<Collider2D>();
     [SerializeField] ContactFilter2D enemyFilter = new ContactFilter2D();
+    Warden_Movement wardenRef;
 
     public void Activate(float damagePerTick, float damageTickDuration, float size, float lifespan)
     {
@@ -20,6 +21,8 @@ public class GourdForge : MonoBehaviour
 
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.35f);
         transform.localScale = Vector3.one * size;
+        wardenRef = GetComponentInParent<Warden_Movement>();
+        wardenRef.canMove = false;
         Destroy(gameObject, lifespan);
     }
 
@@ -27,7 +30,10 @@ public class GourdForge : MonoBehaviour
     {
         HandleDamageTick();
     }
-
+    void OnDestroy(){
+        Debug.Log("DESTROYED!!!");
+        wardenRef.canMove = true;
+    }
     void HandleDamageTick()
     {
         if (damageTickCounter > 0) damageTickCounter -= Time.deltaTime;
