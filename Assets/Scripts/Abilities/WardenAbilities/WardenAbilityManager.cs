@@ -4,8 +4,15 @@ using UnityEngine.SceneManagement;
 
 public class WardenAbilityManager : MonoBehaviour
 {
+    private enum Abilities
+    {
+        DevastationBeam,
+        GourdForge,
+        SpellBurst,
+    }
+
     public WardenBaseAbilities equipedAbility;
-    [SerializeField] string equipedAbilityName;
+    [SerializeField] Abilities equipedAbilityName;
     [SerializeField] private Controls controls;
 
     public static WardenAbilityManager Instance { get; private set; }
@@ -33,10 +40,11 @@ public class WardenAbilityManager : MonoBehaviour
 
     private void Start()
     {
-        equipedAbility = WardenDevastationBeam.Instance;
-        equipedAbilityName = equipedAbility.abilityName;
-        print("Ability is of type: " + equipedAbilityName);
-        //print("equip");
+        if (equipedAbility == null || equipedAbility == null)
+        {
+            equipedAbility = WardenDevastationBeam.Instance;
+            equipedAbilityName = Abilities.DevastationBeam;
+        }
     }
     void OnActivateAbility(InputAction.CallbackContext context)
     {
@@ -49,25 +57,21 @@ public class WardenAbilityManager : MonoBehaviour
 
     private void ChangedActiveScene(Scene current, Scene next)
     {
-        if (equipedAbilityName != null)
+        switch (equipedAbilityName)
         {
-            switch (equipedAbilityName)
-            {
-                case "DevastationBeam":
-                    equipedAbility = WardenDevastationBeam.Instance;
-                    break;
-                case "SpellBurst":
-                    equipedAbility = WardenSpellBurst.Instance;
-                    break;
-                case "GourdForge":
-                    equipedAbility = WardenGourdForge.Instance;
-                    break;
-                default:
-                    print("failed to swap to: " + equipedAbilityName);
-                    break;
-            }
-        }
-        
+            case Abilities.DevastationBeam:
+                equipedAbility = WardenDevastationBeam.Instance;
+                break;
+            case Abilities.GourdForge:
+                equipedAbility = WardenGourdForge.Instance;
+                break;
+            case Abilities.SpellBurst:
+                equipedAbility = WardenSpellBurst.Instance;
+                break;
+            default:
+                print("failed to swap to: " + equipedAbilityName);
+                break;
+        }        
     }
 
     public void EquipActive(string abilityID)
@@ -78,15 +82,15 @@ public class WardenAbilityManager : MonoBehaviour
             {
                 case "DevastationBeam":
                     equipedAbility = WardenDevastationBeam.Instance;
-                    equipedAbilityName = abilityID;
-                    break;
-                case "SpellBurst":
-                    equipedAbility = WardenSpellBurst.Instance;
-                    equipedAbilityName = abilityID;
+                    equipedAbilityName = Abilities.DevastationBeam;
                     break;
                 case "GourdForge":
                     equipedAbility = WardenGourdForge.Instance;
-                    equipedAbilityName = abilityID;
+                    equipedAbilityName = Abilities.GourdForge;
+                    break;
+                case "SpellBurst":
+                    equipedAbility = WardenSpellBurst.Instance;
+                    equipedAbilityName = Abilities.SpellBurst;
                     break;
                 default:
                     print("failed to swap to: " + abilityID);
