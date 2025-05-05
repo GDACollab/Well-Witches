@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.AI;
 
 public class Gatherer_FlashStun : GathererBaseAbilities
 {
@@ -20,6 +21,7 @@ public class Gatherer_FlashStun : GathererBaseAbilities
     float chargeCounter;
     public float cooldownCounter { get; private set; } = 0;
     private bool canCastSpellSFX = false;
+    private NavMeshAgent navAgent;
 
     public override string abilityName => "FlashStun";
     public override float duration => chargeDuration;
@@ -36,35 +38,37 @@ public class Gatherer_FlashStun : GathererBaseAbilities
         InitSingleton();
         activateAbilityAction = GetComponent<PlayerInput>().actions["Activate Ability"];
         chargeCounter = chargeDuration;
+        // navAgent = GetComponent<NavMeshAgent>();
     }
     void Update()
     {
-        if (cooldownCounter > 0)
-        {
-            cooldownCounter -= Time.deltaTime;
-            return; // don't even think about charging up if on cooldown
-        }
+        // if (cooldownCounter > 0)
+        // {
+        //     cooldownCounter -= Time.deltaTime;
+        //     return; // don't even think about charging up if on cooldown
+        // }
         if (!canCastSpellSFX)
         {
             canCastSpellSFX = true;
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.abilityReady, this.transform.position);
         }
 
-        if (activateAbilityAction.IsPressed())
-        {
-            chargeCounter -= Time.deltaTime;
+        // if (activateAbilityAction.IsPressed())
+        // {
+        //     chargeCounter -= Time.deltaTime;
             //if (chargeCounter <= 0)
             //{
             //    chargeCounter = chargeDuration;
             //    cooldownCounter = cooldownDuration;
             //}
-        }
-        else chargeCounter = chargeDuration;
+        // }
+        // else chargeCounter = chargeDuration;
 
         //print(chargeCounter);
     }
 
     void ExecuteAbility()
+    // you have to HOLD DOWN Q for 5 seconds to activate it
     {
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.flashStun, this.transform.position);
         canCastSpellSFX = false;
@@ -75,25 +79,32 @@ public class Gatherer_FlashStun : GathererBaseAbilities
         foreach (Collider2D collider in colliders) if (collider.CompareTag("Enemy"))
             {
                 if (!didHitEnemy) { didHitEnemy = true; }
-                /* stun enemy */
+                AIController aiControl = collider.GetComponentInParent<AIController>();
+                aiControl.getStunned();
+                Debug.Log("stunned this guy: " + collider.GetComponentInParent<NavMeshAgent>());
             }
 
-        if (didHitEnemy) { AudioManager.Instance.PlayOneShot(FMODEvents.Instance.flashStunHit, this.transform.position); }
+        if (didHitEnemy) 
+        { 
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.flashStunHit, this.transform.position);
+        }
+        // for each enemy on screen, freeze them for 5 seconds,
+        // by disabling their nav mesh agent or smth...
     }
 
     public override void useAbility()
     {
-        if (chargeCounter <= 0)
-        {
-            FlashStun flashStun = Instantiate(prefab, spawnPoint.position, Quaternion.identity).GetComponent<FlashStun>();
-            flashStun.Initialize(startingVelocity, flashDuration, lifetime);
-            ExecuteAbility();
-            chargeCounter = chargeDuration;
-            cooldownCounter = cooldownDuration;
-        }
-        else
-        {
-            print("dud: " + chargeCounter);
-        }
+        // if (chargeCounter <= 0)
+        // {
+        FlashStun flashStun = Instantiate(prefab, spawnPoint.position, Quaternion.identity).GetComponent<FlashStun>();
+        flashStun.Initialize(startingVelocity, flashDuration, lifetime);
+        ExecuteAbility();
+            // chargeCounter = chargeDuration;
+            // cooldownCounter = cooldownDuration;
+        // }
+        // else
+        // {
+        //     print("dud: " + chargeCounter);
+        // }
     }
 }
