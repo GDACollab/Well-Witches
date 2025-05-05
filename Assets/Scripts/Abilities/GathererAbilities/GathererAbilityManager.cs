@@ -82,7 +82,7 @@ public class GathererAbilityManager : MonoBehaviour
                     equipedAbility = Gatherer_FlashStun.Instance;
                     break;
                 case "HealthTransfer":
-                    equipedAbility = AbilityHealthTransfer.Instance;
+                    equipedAbility = GathererHealthTransfer.Instance;
                     break;
                 case "BubbleShield":
                     equipedAbility = BubbleShield.Instance;
@@ -121,7 +121,7 @@ public class GathererAbilityManager : MonoBehaviour
                     equipedAbilityName = abilityID;
                     break;
                 case "HealthTransfer":
-                    equipedAbility = AbilityHealthTransfer.Instance;
+                    equipedAbility = GathererHealthTransfer.Instance;
                     equipedAbilityName = abilityID;
                     break;
                 case "BubbleShield":
