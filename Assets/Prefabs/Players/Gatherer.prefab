@@ -385,10 +385,15 @@ MonoBehaviour:
   chargeDuration: 5
   radius: 16
   stunDuration: 5
-  <cooldownDuration>k__BackingField: 90
+  <cooldownDuration>k__BackingField: 1
   collisionLayersToCheck:
     serializedVersion: 2
     m_Bits: 64
+  startingVelocity: 12
+  flashDuration: 5
+  lifetime: 1.5
+  spawnPoint: {fileID: 8015346194276888610}
+  prefab: {fileID: 7647635600700927087, guid: 5e7e0a98f738d8a48aa6894e00ba005d, type: 3}
 --- !u!114 &346488403322498464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,6 +435,10 @@ MonoBehaviour:
   temp: 0
   healthgate: 3
   cooldownTime: 5
+  VFX: {fileID: 2183614274105536910, guid: 94b6e7433a5034b488fc3598012c6e07, type: 3}
+  delay: 1.5
+  wardenTransform: {fileID: 7347747762842868080, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+  gathererTransform: {fileID: 0}
 --- !u!114 &6479075504277769317
 MonoBehaviour:
   m_ObjectHideFlags: 0

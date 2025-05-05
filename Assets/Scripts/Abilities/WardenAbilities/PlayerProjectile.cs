@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using System;
 
 public class PlayerProjectile : MonoBehaviour
 {
@@ -42,6 +42,7 @@ public class PlayerProjectile : MonoBehaviour
             OnHitEnemy?.Invoke();
         }
         rb.velocity = Vector2.zero;
+        rb.freezeRotation = true;
         projectile.SetActive(false);
         impact.SetActive(true);
 
