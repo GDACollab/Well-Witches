@@ -43,7 +43,7 @@ public class WardenSpellBurst : WardenBaseAbilities
     public override void useAbility()    // called by the Ability Manager
     {
         if (Charge < NumHitsRequired) return;
-        SpellBurst spellBurst = Instantiate(prefab, transform).GetComponent<SpellBurst>();
+        SpellBurst spellBurst = Instantiate(prefab, transform.position, Quaternion.identity).GetComponent<SpellBurst>();
         spellBurst.Activate(projectileDamage, projectileSpeed, projectileLifetime, timeBetweenProjectile, abilityDuration);
         Charge = 0;
     }
