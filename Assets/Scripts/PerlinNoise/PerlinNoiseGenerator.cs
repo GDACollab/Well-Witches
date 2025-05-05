@@ -31,16 +31,6 @@ public class perlinNoiseMap : MonoBehaviour
 
     [SerializeField] int xOffset = -10; //if increase/decrease, move right/left
     [SerializeField] int yOffset = -10; //if inc/dec, move up/down
-
-    //Seed for getFloatUsingPerlin. -1 = random.
-    [SerializeField] float seed = -1;
-    float seedOffsetMultiplier = 100000;
-
-    void Awake()
-    {
-        if (seed == -1) generateRandomSeed();
-    }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -92,14 +82,10 @@ public class perlinNoiseMap : MonoBehaviour
         }
     }
 
-    public void generateRandomSeed() {
-        seed = Random.value;
-    }
-
     int getIdUsingPerlin(int x, int y)
     {
         //will generate a bunch of random numbers
-        float rawPerlin = getFloatUsingPerlin(x, y);
+        float rawPerlin = Mathf.PerlinNoise((x - xOffset) / magnification, (y - yOffset) / magnification);
 
         //will clamp numbers between 0 and 1, then multiplied by count(4) so that we can assign them to diff tiles
         float clamp_perlin = Mathf.Clamp(rawPerlin, 0, 1);
@@ -117,7 +103,10 @@ public class perlinNoiseMap : MonoBehaviour
     public float getFloatUsingPerlin(int x, int y)
     {
         //will generate a bunch of random numbers
-        float rawPerlin = Mathf.PerlinNoise((x - xOffset) / magnification + seed * seedOffsetMultiplier, (y - yOffset) / magnification);
+        float rawPerlin = Mathf.PerlinNoise((x - xOffset) / magnification, (y - yOffset) / magnification);
+
+        //will clamp numbers between 0 and 1, then multiplied by count(4) so that we can assign them to diff tiles
+        //float clamp_perlin = Mathf.Clamp(rawPerlin, 0, 1);
 
         return rawPerlin;
     }

@@ -1,27 +1,23 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AcidPool : MonoBehaviour
 {
+    private Rigidbody2D rb;
     private float _lifetime;
     private float _damage;
-    private float _size;
 
-    [SerializeField] ParticleSystem pool;
-    ParticleSystem.MainModule poolMainModule;
-
+    // Start is called before the first frame update
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     public void InitializeAcid(float lifetime, float damage)
     {
-        
-        poolMainModule = pool.main;
-
         _lifetime = lifetime;
         _damage = damage;
-
-        // need subtract a sec to get the fading effect
-        poolMainModule.startLifetime = _lifetime-1f;
-
 
         StartCoroutine(DespawnAcid());
     }

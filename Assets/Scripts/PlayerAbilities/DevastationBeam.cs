@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class DevastationBeam : MonoBehaviour
@@ -18,7 +17,7 @@ public class DevastationBeam : MonoBehaviour
 
     public GameObject spellCircle;
     public GameObject laserBeam;
-    public CameraShake cameraShake;
+    //public CameraShake cameraShake;
     public GameObject volume;
     public GameObject light2d;
 
@@ -31,34 +30,25 @@ public class DevastationBeam : MonoBehaviour
 
     private void Start()
     {
-
-
-
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        spellCircle.SetActive(false);
+        laserBeam.SetActive(false);
     }
 
     public void Activate(float damagePerTick, float damageTickDuration, float knockbackForce, float knockbackTickDuration, float lifespan)
 	{
-        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        mousePosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 rotation = mousePosition - transform.position;
-        float targetRotation = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, targetRotation);
-        cameraShake = mainCam.GetComponentInParent<CameraShake>();
-
-        this.damagePerTick = damagePerTick;
+		this.damagePerTick = damagePerTick;
 		this.damageTickDuration = damageTickDuration;
 		this.knockbackForce = knockbackForce;
 		this.knockbackTickDuration = knockbackTickDuration;
 
         spellCircle.SetActive(true);
-		laserBeam.SetActive(false);
         StartCoroutine(ActivateLaser(lifespan));
 	}
 
     IEnumerator ActivateLaser(float lifespan)
     {
-        yield return new WaitForSeconds(1f);
-        if (cameraShake != null) { StartCoroutine(cameraShake.Shake(.14f, 0.4f, 0, volume, light2d)); }
+        yield return new WaitForSeconds(2f);
         laserBeam.SetActive(true);
         StartCoroutine(DisableUltimate(lifespan));
     }
@@ -74,11 +64,8 @@ public class DevastationBeam : MonoBehaviour
     void Update()
 	{
 		AimAtMouse();
-		if (laserBeam.gameObject.activeSelf)
-		{
-            HandleDamageTick();
-            HandleKnockbackTick();
-        }
+		HandleDamageTick();
+		HandleKnockbackTick();
 	}
 
 	void AimAtMouse()
@@ -103,7 +90,7 @@ public class DevastationBeam : MonoBehaviour
 	}
 	void DamageEnemies()
 	{
-		foreach (Collider2D collider in enemiesInBlast.ToList()) collider.GetComponent<BaseEnemyClass>().TakeDamage(damagePerTick);
+		foreach (Collider2D collider in enemiesInBlast) collider.GetComponent<BaseEnemyClass>().TakeDamage(damagePerTick);
 	}
 
 	void HandleKnockbackTick()
