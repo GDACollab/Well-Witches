@@ -4,21 +4,19 @@ using UnityEngine;
 public class FireForSolesOfTheDamned : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField]
-    public float damage;
-    [SerializeField]
-    public float duration;
-    [SerializeField]
-    public float timeInBetweenTicks;
+    private float damage;
+    private float duration;
+    private float timeInBetweenTicks;
 
-    public SolesOfTheDamned SolesOfTheDamned;
+    private SolesOfTheDamned SolesOfTheDamned;
 
     void Start()
     {
         SolesOfTheDamned = GetComponentInParent<SolesOfTheDamned>();
         transform.parent = null;
-        duration = SolesOfTheDamned.duration;
         damage = SolesOfTheDamned.damage;
+        duration = SolesOfTheDamned.duration;
+        timeInBetweenTicks = 1f/SolesOfTheDamned.flameTicksPerSecond;
     }
 
     // Update is called once per frame
@@ -51,7 +49,7 @@ public class FireForSolesOfTheDamned : MonoBehaviour
 
     //deals damage to enemy
     IEnumerator DealDamage(BaseEnemyClass enemy) {
-        Debug.Log("taken damage");
+        Debug.Log("taken damage from hellfire");
         enemy.TakeDamage(damage);
         yield return new WaitForSeconds(timeInBetweenTicks);
         yield return null;
