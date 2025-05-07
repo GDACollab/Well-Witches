@@ -79,9 +79,10 @@ public class Gatherer_FlashStun : GathererBaseAbilities
         foreach (Collider2D collider in colliders) if (collider.CompareTag("Enemy"))
             {
                 if (!didHitEnemy) { didHitEnemy = true; }
+
                 AIController aiControl = collider.GetComponentInParent<AIController>();
                 aiControl.getStunned();
-                Debug.Log("stunned this guy: " + collider.GetComponentInParent<NavMeshAgent>());
+                // Debug.Log("stunned this guy: " + collider.GetComponentInParent<NavMeshAgent>());
             }
 
         if (didHitEnemy) 

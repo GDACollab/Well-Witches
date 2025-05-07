@@ -26,5 +26,6 @@ public class AIController : MonoBehaviour
         StunnedState stunState = gameObject.GetComponent<StunnedState>();
         stunState.Initialize(stateMachine, gameObject);
         stateMachine.SetState(stunState);
+        // Debug.Log("got stunned from aicontrol");
     }
 }
