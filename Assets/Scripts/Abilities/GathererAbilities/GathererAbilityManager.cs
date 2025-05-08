@@ -51,11 +51,16 @@ public class GathererAbilityManager : MonoBehaviour
 
     private void Start()
     {
-        equipedAbility = Gatherer_FlashStun.Instance;
-        equipedAbilityName = Active.SolarFlare;
-        passiveAbility = HealForcePassive.Instance;
-        passiveAbilityName = Passive.AloeVera;
-        //print("equip");
+        if (equipedAbility == null)
+        {
+            equipedAbility = Gatherer_FlashStun.Instance;
+            equipedAbilityName = Active.SolarFlare;
+        }
+        if (passiveAbility == null)
+        {
+            passiveAbility = HealForcePassive.Instance;
+            passiveAbilityName = Passive.AloeVera;
+        }
     }
     void OnActivateAbility(InputAction.CallbackContext context)
     {

@@ -410,8 +410,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bddd29bb145ba3147adee84ddda36053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isShieldActive: 0
-  bubbleShieldPrefab: {fileID: 0}
+  canUse: 1
+  <cooldownDuration>k__BackingField: 50
+  bubbleShieldPrefab: {fileID: 1244353024076443508, guid: 199c5c03508ddbf44856c87d364f3e59, type: 3}
 --- !u!114 &346488403322498464
 MonoBehaviour:
   m_ObjectHideFlags: 0

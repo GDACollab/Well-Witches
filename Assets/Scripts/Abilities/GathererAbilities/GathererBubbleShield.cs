@@ -1,11 +1,16 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class GathererBubbleShield : GathererBaseAbilities
 {
+    [Header("Stats")]
+    [SerializeField] private bool canUse = true;
     [field: SerializeField] public float cooldownDuration { get; private set; }
-    public BubbleShield bubbleShieldPrefab;
-    private InputAction activateAbilityAction;
+
+    [Header("References")]
+    [SerializeField] BubbleShield bubbleShieldPrefab;
+
+    private float timer;
+
 
     public override float duration => 10;
     public override string abilityName => "BubbleShield";
@@ -15,11 +20,30 @@ public class GathererBubbleShield : GathererBaseAbilities
 	void Awake()
 	{
 		InitSingleton();
-        activateAbilityAction = GetComponent<PlayerInput>().actions["Activate Ability"];
+        timer = 0f;
     }
 
-	public override void useAbility() // called by the GathererAbilityManager.cs
+    private void Update()
     {
-        BubbleShield spellBurst = Instantiate(bubbleShieldPrefab, transform.position, Quaternion.identity).GetComponent<BubbleShield>();
+        if (!canUse && timer < cooldownDuration)
+        {
+            timer += Time.deltaTime;
+            return;
+        }
+        else
+        {
+            canUse = true;
+            timer = 0f;
+        }
+    }
+
+    public override void useAbility() // called by the GathererAbilityManager.cs
+    {
+        if (canUse)
+        {
+            BubbleShield shield = Instantiate(bubbleShieldPrefab, transform).GetComponent<BubbleShield>();
+            shield.Activate(duration);
+            canUse = false;
+        }
     }
 }
