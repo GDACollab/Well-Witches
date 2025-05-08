@@ -12,7 +12,7 @@ public class WardenAbilityManager : MonoBehaviour
     }
 
     public WardenBaseAbilities equipedAbility;
-    [SerializeField] string equipedAbilityName;
+    [SerializeField] Abilities equipedAbilityName;
     public PassiveAbilities passiveAbility;
     [SerializeField] string passiveAbilityName;
     [SerializeField] private Controls controls;
