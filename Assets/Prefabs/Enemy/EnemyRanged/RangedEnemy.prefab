@@ -178,12 +178,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 15
-  moveSpeed: 12
+  moveSpeed: 8
   range: 4
+  agent: {fileID: 394531480031503680}
+  rb: {fileID: 6673968106200130034}
   timeBetweenAttack: 2
   projectileCount: 3
   projectileSpread: 10
-  projectileSpeed: 4
+  projectileSpeed: 8
   projectileSize: 0.5
   projectileLifetime: 2
   projectileDamage: 1

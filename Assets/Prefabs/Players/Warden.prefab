@@ -374,7 +374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementData: {fileID: 11400000, guid: 0b9cd22267ec7cd489c76aefce0bd43b, type: 2}
   maxSpeed_Adjusted: 0
-  canMove: 0
+  canMove: 1
   ropeDampening: 0.4
   ropeStiffness: 2
   joint: {fileID: 5266548998552274237}
@@ -382,7 +382,7 @@ MonoBehaviour:
   gathererRopeRadius: {fileID: 0}
   stuckDistanceAdded: 1.5
   timeUntilStuck: 5
-  wardenCollider: {fileID: 0}
+  wardenCollider: {fileID: 5347430669117333507}
 --- !u!114 &7330388417451776427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,6 +397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0.5
   velocity: 15
+  knockback: 10
   lifetime: 3
   prefab: {fileID: 1559157777602288747, guid: a1e508a91ea9c1b449b94133337b8dee, type: 3}
   spawn: {fileID: 2827204371654931226}
@@ -417,7 +418,7 @@ MonoBehaviour:
   damageTickDuration: 0.25
   knockbackForce: 5
   knockbackTickDuration: 0.5
-  abilityDuration: 5
+  abilityDuration: 4
   spawnPoint: {fileID: 7347747762842868080}
   prefab: {fileID: 6910472829611805654, guid: 959fe09636fe21c4ab7db7263356823a, type: 3}
 --- !u!114 &6883891788245031158
@@ -451,11 +452,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891a61dffccd18747b45509f3c8e5b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <NumHitsRequired>k__BackingField: 1
+  <NumHitsRequired>k__BackingField: 0
   projectileDamage: 5
-  projectileSpeed: 10
-  projectileLifetime: 10
-  timeBetweenProjectile: 0.01
+  projectileSpeed: 8
+  projectileRotationForce: 100
+  projectileLifetime: 5
+  timeBetweenProjectile: 0.3
+  projectilePerBurst: 16
   abilityDuration: 3
   projectilePrefab: {fileID: 7603238177100266058, guid: 02ce3b291024fd946b9b2065d544b07e, type: 3}
   spawnPoint: {fileID: 7347747762842868080}

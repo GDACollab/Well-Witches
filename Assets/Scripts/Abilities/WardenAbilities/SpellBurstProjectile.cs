@@ -4,37 +4,43 @@ using System;
 public class SpellBurstProjectile : MonoBehaviour
 {
     [Header("Debug, Do Not Change")]
-    [SerializeField] private float _damage;
+    [SerializeField] private float damage;
     [SerializeField] private ParticleSystem impactSparks;
     [SerializeField] private ParticleSystem impactFlash;
 
     private Rigidbody2D rb;
-
+    private float speed;
+    [SerializeField] private float rotationForce;
+    private Transform pivot;
 
     public static event Action OnHitEnemy;
 
 
-    public void Initialize(float damage, float speed, float lifetime)
+    public void Initialize(Transform pivot, float damage, float speed, float rotationForce, float lifetime)
     {
-        _damage = damage;
+        this.damage = damage;
+        this.pivot = pivot;
+        this.speed = speed;
+        this.rotationForce = rotationForce;
         rb = GetComponent<Rigidbody2D>();
-        Vector3 randomTarget = Camera.main.ViewportToWorldPoint(new Vector3(UnityEngine.Random.value, UnityEngine.Random.value));
 
-        Vector3 direction = randomTarget - transform.position;
-        Vector3 rotation = transform.position - randomTarget;
-        float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, rot + 90);
-
-        rb.velocity = new Vector2(direction.x, direction.y).normalized * speed;
+        transform.SetParent(pivot);
 
         Destroy(gameObject, lifetime);
+    }
+
+    private void FixedUpdate()
+    {
+        rb.velocity = transform.up * speed;
+        transform.Rotate(Vector3.forward, rotationForce * Time.fixedDeltaTime);
+        rotationForce *= 0.995f;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<BaseEnemyClass>().TakeDamage(_damage);
+            collision.GetComponent<BaseEnemyClass>().TakeDamage(damage);
             impactSparks.Play();
             impactFlash.Play();
             OnHitEnemy?.Invoke();

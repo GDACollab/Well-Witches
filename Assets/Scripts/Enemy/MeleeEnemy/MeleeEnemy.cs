@@ -18,11 +18,9 @@ public class MeleeEnemy : BaseEnemyClass
     [SerializeField] private GameObject[] players;
     public Transform currentTarget;
 
-    private Rigidbody2D rb2d;
     private void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
-        rb2d = GetComponent<Rigidbody2D>();
     }
 
 
@@ -50,7 +48,7 @@ public class MeleeEnemy : BaseEnemyClass
 
     public void Attack()
     {
-        rb2d.velocity = (currentTarget.position - transform.position).normalized * speedWhileAttacking;
+        rb.velocity = (currentTarget.position - transform.position).normalized * speedWhileAttacking;
 
         // not very performantive, better if collider check but should be good enough
         if (Vector2.Distance(transform.position, currentTarget.position) < attackAOE)
