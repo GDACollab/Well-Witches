@@ -18,7 +18,7 @@ public class Warden_Shooting : MonoBehaviour
 
 	void Start()
 	{
-		inputAction = GetComponent<PlayerInput>().actions["Shoot"];
+		inputAction = WardenAbilityManager.Controls.asset["Shoot"];
 		statsManager = StatsManager.Instance;
 	}
 

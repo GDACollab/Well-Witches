@@ -12,10 +12,13 @@ public class WardenAbilityManager : MonoBehaviour
     }
 
     public WardenBaseAbilities equipedAbility;
-    [SerializeField] Abilities equipedAbilityName;
+    [SerializeField] string equipedAbilityName;
+    public PassiveAbilities passiveAbility;
+    [SerializeField] string passiveAbilityName;
     [SerializeField] private Controls controls;
 
     public static WardenAbilityManager Instance { get; private set; }
+    public static Controls Controls {get => Instance.controls;}
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
     void Awake() 
     { 
@@ -55,6 +58,14 @@ public class WardenAbilityManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (passiveAbility != null)
+        {
+            passiveAbility.passiveUpdate();
+        }
+    }
+
     private void ChangedActiveScene(Scene current, Scene next)
     {
         switch (equipedAbilityName)
@@ -72,6 +83,19 @@ public class WardenAbilityManager : MonoBehaviour
                 print("failed to swap to: " + equipedAbilityName);
                 break;
         }        
+        
+        if (passiveAbilityName != null)
+        {
+            switch (passiveAbilityName)
+            {
+                case "DeathDefy":
+                    passiveAbility = AbilityDeathDefy.Instance;
+                    break;
+                default:
+                    print("failed to swap to: " + passiveAbilityName);
+                    break;
+            }
+        }
     }
 
     public void EquipActive(string abilityID)
@@ -102,8 +126,22 @@ public class WardenAbilityManager : MonoBehaviour
             print("Failed to equip ability: Null ability");
         }
     }
-    //public void EquipActive(string abilityID)
-    //{
-        // the same as above, just for passives (look at gatherer manager)
-    //}
+
+    public void EquipPassive(string abilityID)
+    {
+        if (abilityID != null)
+        {
+            switch (abilityID)
+            {
+                case "DeathDefy":
+                    passiveAbility = AbilityDeathDefy.Instance;
+                    passiveAbilityName = abilityID;
+                    print("swap to: " + abilityID);
+                    break;
+                default:
+                    print("failed to swap to: " + abilityID);
+                    break;
+            }
+        }
+    }
 }
