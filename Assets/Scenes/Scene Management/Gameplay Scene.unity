@@ -1151,6 +1151,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8115989650227151311, guid: 94a0ced677a3c324eacfa276aec2f2b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9020791422605731502, guid: 94a0ced677a3c324eacfa276aec2f2b9, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1603,7 +1607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6263869502043627533, guid: 3662ccf3678e8a946898d972d7d1a732, type: 3}
       propertyPath: equipedAbilityName
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2043,7 +2047,7 @@ GameObject:
   - component: {fileID: 1195329925}
   - component: {fileID: 1195329924}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: BubbleShield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2129,11 +2133,11 @@ Transform:
   m_GameObject: {fileID: 1195329923}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 92.11, y: 84.02, z: -0.88}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0.68, z: 0}
+  m_LocalScale: {x: 1.58, y: 1.58, z: 1.58}
+  m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1744974412}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1320986224
 GameObject:
@@ -3128,6 +3132,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 157751992121885328, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 233584353143235204, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
       propertyPath: m_DefaultControlScheme
       value: 
@@ -3233,8 +3241,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3984586712596893257, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8015346194276888610, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 1195329927}
     - targetCorrespondingSourceObject: {fileID: 1940337477319582645, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 964016460}
@@ -3873,7 +3885,7 @@ PrefabInstance:
       objectReference: {fileID: 842300910}
     - target: {fileID: 7347747762842868080, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 93.75
+      value: 96.71
       objectReference: {fileID: 0}
     - target: {fileID: 7347747762842868080, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4094,4 +4106,3 @@ SceneRoots:
   - {fileID: 1066987481}
   - {fileID: 964243156}
   - {fileID: 1599612873}
-  - {fileID: 1195329927}

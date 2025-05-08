@@ -85,30 +85,6 @@ public class EnemyProjectile : MonoBehaviour
 		}
 	}
 
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
-		if (!collision.gameObject.CompareTag("Enemy"))
-		{
-			if (collision.gameObject.CompareTag("Player"))
-			{
-				//Debug.Log(collision.gameObject.name);
-				// TODO: DEAL DAMAGE TO PLAYER
-				// - Producer (ben) added some temp checks and calls to StatsManager to do damage here
-
-				if (collision.gameObject.name == "Gatherer")
-				{
-					BubbleShield shield = collision.gameObject.GetComponent<BubbleShield>();
-					if (shield.isShieldActive)
-					{
-						//Debug.Log("Projectile deflected!");
-						rb.velocity = -rb.velocity; // Bounce off
-						transform.Rotate(0, 0, 180);    // Rotate the sprite
-					}
-				}
-			}
-		}
-	}
-
 	// used to expire the projectile if it doesn't hit anything
 	IEnumerator DespawnProjectile()
 	{

@@ -1,15 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GathererAbilityManager : MonoBehaviour
 {
+    private enum Active
+    {
+        SolarFlare,
+        SharingIsCaring,
+        BubbleBarrier
+    }
+
+    private enum Passive
+    {
+        AloeVera,
+        HellfireBootie,
+        Espresso
+    }
+
     public GathererBaseAbilities equipedAbility;
-    [SerializeField] string equipedAbilityName;
+    [SerializeField] Active equipedAbilityName;
     public PassiveAbilities passiveAbility;
-    [SerializeField] string passiveAbilityName;
+    [SerializeField] Passive passiveAbilityName;
     [SerializeField] private Controls controls;
 
     public static GathererAbilityManager Instance { get; private set; }
@@ -40,9 +52,9 @@ public class GathererAbilityManager : MonoBehaviour
     private void Start()
     {
         equipedAbility = Gatherer_FlashStun.Instance;
-        equipedAbilityName = equipedAbility.abilityName;
+        equipedAbilityName = Active.SolarFlare;
         passiveAbility = HealForcePassive.Instance;
-        passiveAbilityName = passiveAbility.abilityName;
+        passiveAbilityName = Passive.AloeVera;
         //print("equip");
     }
     void OnActivateAbility(InputAction.CallbackContext context)
@@ -50,10 +62,7 @@ public class GathererAbilityManager : MonoBehaviour
         print("using gatherer ability");
         if (equipedAbility != null)
         {
-            if (equipedAbility.abilityName != "FlashStun")
-            {
-                equipedAbility.useAbility();
-            }
+            equipedAbility.useAbility();
         }
     }
 
@@ -74,40 +83,39 @@ public class GathererAbilityManager : MonoBehaviour
 
     private void ChangedActiveScene(Scene current, Scene next)
     {
-        if (equipedAbilityName != null)
+        switch (equipedAbilityName)
         {
-            switch (equipedAbilityName)
-            {
-                case "FlashStun":
-                    equipedAbility = Gatherer_FlashStun.Instance;
-                    break;
-                case "HealthTransfer":
-                    equipedAbility = GathererHealthTransfer.Instance;
-                    break;
-                case "BubbleShield":
-                    equipedAbility = BubbleShield.Instance;
-                    break;
-                default:
-                    print("failed to swap to: " + equipedAbilityName);
-                    break;
-            }
+            case Active.SolarFlare:
+                equipedAbility = Gatherer_FlashStun.Instance;
+                break;
+            case Active.SharingIsCaring:
+                equipedAbility = GathererHealthTransfer.Instance;
+                break;
+            case Active.BubbleBarrier:
+                equipedAbility = GathererBubbleShield.Instance;
+                break;
+            default:
+                print("failed to swap to: " + equipedAbilityName);
+                break;
         }
 
-        if (passiveAbilityName != null)
+        // needs to be looked into 
+        switch (passiveAbilityName)
         {
-            switch (passiveAbilityName)
-            {
-                case "HealForce":
-                    passiveAbility = HealForcePassive.Instance;
-                    break;
-                case "SolesOfTheDamned":
-                    passiveAbility = SolesOfTheDamned.Instance;
-                    break;
-                default:
-                    print("failed to swap to: " + passiveAbilityName);
-                    break;
-            }
+            case Passive.AloeVera:
+                passiveAbility = HealForcePassive.Instance;
+                break;
+            case Passive.HellfireBootie:
+                passiveAbility = SolesOfTheDamned.Instance;
+                break;
+            case Passive.Espresso:
+                passiveAbility = SolesOfTheDamned.Instance;
+                break;
+            default:
+                print("failed to swap to: " + passiveAbilityName);
+                break;
         }
+        
 
     }
     public void EquipActive(string abilityID)
@@ -118,15 +126,15 @@ public class GathererAbilityManager : MonoBehaviour
             {
                 case "FlashStun":
                     equipedAbility = Gatherer_FlashStun.Instance;
-                    equipedAbilityName = abilityID;
+                    equipedAbilityName = Active.SolarFlare;
                     break;
                 case "HealthTransfer":
                     equipedAbility = GathererHealthTransfer.Instance;
-                    equipedAbilityName = abilityID;
+                    equipedAbilityName = Active.SharingIsCaring;
                     break;
                 case "BubbleShield":
-                    equipedAbility = BubbleShield.Instance;
-                    equipedAbilityName = abilityID;
+                    equipedAbility = GathererBubbleShield.Instance;
+                    equipedAbilityName = Active.BubbleBarrier;
                     break;
                 default:
                     print("failed to swap to: " + abilityID);
@@ -147,12 +155,12 @@ public class GathererAbilityManager : MonoBehaviour
             {
                 case "HealForce":
                     passiveAbility = HealForcePassive.Instance;
-                    passiveAbilityName = abilityID;
+                    passiveAbilityName = Passive.AloeVera;
                     print("swap to: " + abilityID);
                     break;
                 case "SolesOfTheDamned":
                     passiveAbility = SolesOfTheDamned.Instance;
-                    passiveAbilityName = abilityID;
+                    passiveAbilityName = Passive.HellfireBootie;
                     print("swap to: " + abilityID);
                     break;
                 default:

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class WardenAbilityManager : MonoBehaviour
 {
-    private enum Abilities
+    private enum Active
     {
         DevastationBeam,
         GourdForge,
@@ -12,7 +12,7 @@ public class WardenAbilityManager : MonoBehaviour
     }
 
     public WardenBaseAbilities equipedAbility;
-    [SerializeField] Abilities equipedAbilityName;
+    [SerializeField] Active equipedAbilityName;
     public PassiveAbilities passiveAbility;
     [SerializeField] string passiveAbilityName;
     [SerializeField] private Controls controls;
@@ -46,7 +46,7 @@ public class WardenAbilityManager : MonoBehaviour
         if (equipedAbility == null || equipedAbility == null)
         {
             equipedAbility = WardenDevastationBeam.Instance;
-            equipedAbilityName = Abilities.DevastationBeam;
+            equipedAbilityName = Active.DevastationBeam;
         }
     }
     void OnActivateAbility(InputAction.CallbackContext context)
@@ -70,13 +70,13 @@ public class WardenAbilityManager : MonoBehaviour
     {
         switch (equipedAbilityName)
         {
-            case Abilities.DevastationBeam:
+            case Active.DevastationBeam:
                 equipedAbility = WardenDevastationBeam.Instance;
                 break;
-            case Abilities.GourdForge:
+            case Active.GourdForge:
                 equipedAbility = WardenGourdForge.Instance;
                 break;
-            case Abilities.SpellBurst:
+            case Active.SpellBurst:
                 equipedAbility = WardenSpellBurst.Instance;
                 break;
             default:
@@ -106,15 +106,15 @@ public class WardenAbilityManager : MonoBehaviour
             {
                 case "DevastationBeam":
                     equipedAbility = WardenDevastationBeam.Instance;
-                    equipedAbilityName = Abilities.DevastationBeam;
+                    equipedAbilityName = Active.DevastationBeam;
                     break;
                 case "GourdForge":
                     equipedAbility = WardenGourdForge.Instance;
-                    equipedAbilityName = Abilities.GourdForge;
+                    equipedAbilityName = Active.GourdForge;
                     break;
                 case "SpellBurst":
                     equipedAbility = WardenSpellBurst.Instance;
-                    equipedAbilityName = Abilities.SpellBurst;
+                    equipedAbilityName = Active.SpellBurst;
                     break;
                 default:
                     print("failed to swap to: " + abilityID);
