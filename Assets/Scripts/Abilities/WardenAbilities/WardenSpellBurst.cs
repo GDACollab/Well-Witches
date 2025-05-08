@@ -10,8 +10,10 @@ public class WardenSpellBurst : WardenBaseAbilities
     [Header("Projectile Stats")]
     public float projectileDamage;
     public float projectileSpeed;
+    public float projectileRotationForce;
     public float projectileLifetime;
     public float timeBetweenProjectile;
+    public int projectilePerBurst;
 
     [Header("Duration")]
     [SerializeField, Tooltip("in seconds")] float abilityDuration;
@@ -44,7 +46,7 @@ public class WardenSpellBurst : WardenBaseAbilities
     {
         if (Charge < NumHitsRequired) return;
         SpellBurst spellBurst = Instantiate(prefab, transform.position, Quaternion.identity).GetComponent<SpellBurst>();
-        spellBurst.Activate(projectileDamage, projectileSpeed, projectileLifetime, timeBetweenProjectile, abilityDuration);
+        spellBurst.Activate(projectileDamage, projectileSpeed, projectileRotationForce, projectileLifetime, timeBetweenProjectile, projectilePerBurst, abilityDuration);
         Charge = 0;
     }
 }

@@ -1601,6 +1601,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6263869502043627533, guid: 3662ccf3678e8a946898d972d7d1a732, type: 3}
+      propertyPath: equipedAbilityName
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3813,6 +3817,38 @@ PrefabInstance:
     - target: {fileID: 7937995718109404009, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: pivot
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937995718109404009, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: abilityDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937995718109404009, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: projectileSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937995718109404009, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: projectileLifetime
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937995718109404009, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: projectilePerBurst
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937995718109404009, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: timeBetweenProjectile
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937995718109404009, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: projectileRotationForce
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937995718109404009, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: projectileRotationSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937995718109404009, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: <NumHitsRequired>k__BackingField
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8514674852657251333, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: m_AnchorMax.x

@@ -452,12 +452,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891a61dffccd18747b45509f3c8e5b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <NumHitsRequired>k__BackingField: 1
+  <NumHitsRequired>k__BackingField: 0
   projectileDamage: 5
-  projectileSpeed: 10
-  projectileLifetime: 10
-  timeBetweenProjectile: 0.01
-  abilityDuration: 3
+  projectileSpeed: 8
+  projectileRotationForce: 100
+  projectileLifetime: 100
+  timeBetweenProjectile: 0.3
+  projectilePerBurst: 3
+  abilityDuration: 10
   projectilePrefab: {fileID: 7603238177100266058, guid: 02ce3b291024fd946b9b2065d544b07e, type: 3}
   spawnPoint: {fileID: 7347747762842868080}
   prefab: {fileID: 5213519764763690752, guid: 5f9c5b65f2e8cab428a295d4d4d557fd, type: 3}
