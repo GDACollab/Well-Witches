@@ -12,6 +12,9 @@ public class SiphonEnergy : PassiveAbilities
 
     //helps keep code clean
     private WardenAbilityManager abilityManager = WardenAbilityManager.Instance;
+
+    //change much % of the total you gain
+    public float percent;
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
     void Awake()
     {
@@ -28,7 +31,7 @@ public class SiphonEnergy : PassiveAbilities
 
     //add energy method
     public void addEnergy() {
-        abilityManager.equipedAbility.Charge = abilityManager.equipedAbility.Charge + (0.03f * abilityManager.equipedAbility.numHitsRequired);
+        abilityManager.equipedAbility.Charge = abilityManager.equipedAbility.Charge + (percent * abilityManager.equipedAbility.numHitsRequired);
         if (abilityManager.equipedAbility.Charge > abilityManager.equipedAbility.numHitsRequired) {
             abilityManager.equipedAbility.Charge = abilityManager.equipedAbility.numHitsRequired;
         }
