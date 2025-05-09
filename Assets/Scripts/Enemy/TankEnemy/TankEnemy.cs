@@ -39,11 +39,9 @@ public class TankEnemy : BaseEnemyClass
 
     private float timeTillPool;
 
-    private Rigidbody2D rb2d;
 
     private void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
         players = GameObject.FindGameObjectsWithTag("Player");
     }
 
@@ -66,14 +64,14 @@ public class TankEnemy : BaseEnemyClass
 
     public void Attack()
     {
-        rb2d.velocity = (currentTarget.position - transform.position).normalized * bashStrength;
+        rb.velocity = (currentTarget.position - transform.position).normalized * bashStrength;
         StartCoroutine(EndBash());
     }
 
     IEnumerator EndBash()
     {
         yield return new WaitForSeconds(bashTime);
-        rb2d.velocity = Vector2.zero;
+        rb.velocity = Vector2.zero;
     }
 
     public void SpawnPool()
@@ -81,10 +79,10 @@ public class TankEnemy : BaseEnemyClass
         if (timeTillPool <= 0)
         {
             // spawns acid pool
-            GameObject acidPool = AcidTrailPooling.SharedInstance.GetProjectileObject();
+            GameObject acidPool = AcidTrailPooling.SharedInstance.GetAcidPoolObject();
             if (acidPool)
             {
-                acidPool.transform.position = new Vector2(acidOffsetX, acidOffsetY) + rb2d.position;
+                acidPool.transform.position = new Vector2(acidOffsetX, acidOffsetY) + rb.position;
                 acidPool.transform.localScale = Vector3.one * acidSize;
                 acidPool.SetActive(true);
                 acidPool.GetComponent<AcidPool>().
