@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BubbleShield : MonoBehaviour
@@ -7,17 +8,42 @@ public class BubbleShield : MonoBehaviour
         Destroy(gameObject, duration);
     }
 
-
-
+    // so there's the problem that it's constantly colliding with the Gatherer
+    // this could also be fixed by making a Shield layer, separating the Warden and Gatherer layers
+    // then configuring the layer collision matrix to only collide with Warden and Enemies
+    // otherwise this really ugly code here works
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<EnemyProjectile>() != null)
+        switch (collision.gameObject.name)
         {
-            Rigidbody2D proj = collision.GetComponent<Rigidbody2D>();
-            collision.transform.rotation = Quaternion.Euler(collision.transform.rotation.eulerAngles.x, collision.transform.rotation.eulerAngles.y, collision.transform.rotation.eulerAngles.z + 180f);
-            proj.velocity = collision.gameObject.transform.up * collision.GetComponent<EnemyProjectile>().speed;
+            case "EnemyFireball(Clone)":
+                Rigidbody2D proj = collision.GetComponent<Rigidbody2D>();
+                collision.transform.rotation = Quaternion.Euler(collision.transform.rotation.eulerAngles.x, collision.transform.rotation.eulerAngles.y, collision.transform.rotation.eulerAngles.z + 180f);
+                proj.velocity = collision.gameObject.transform.up * collision.GetComponent<EnemyProjectile>().speed;
+                break;
+            case "Warden":
+                StartCoroutine(PopShield());
+                break;
+            case "MeleeEnemy(Clone)":
+                StartCoroutine(PopShield());
+                break;
+            case "RangedEnemy(Clone)":
+                StartCoroutine(PopShield());
+                break;
+            case "TankEnemy(Clone)":
+                StartCoroutine(PopShield());
+                break;
+            default:
+                break;
         }
+        
     }
 
+    IEnumerator PopShield()
+    {
+        // idk yet
+        Destroy(gameObject);
+        yield return null;
+    }
 
 }
