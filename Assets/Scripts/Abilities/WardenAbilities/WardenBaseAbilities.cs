@@ -39,5 +39,6 @@ public abstract class WardenBaseAbilities : MonoBehaviour
     public abstract string abilityName { get; }
     public abstract int numHitsRequired { get; }
     public abstract float duration { get; }
+    public abstract float Charge { get; set; }
 
 }
