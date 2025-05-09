@@ -30,7 +30,7 @@ public class Warden_Health : PlayerHealth
 	{
 		//send out signal
 		EventManager.instance.playerEvents.PlayerDeath();
-		GameObject.FindGameObjectsWithTag("Player").First(x => x.name == "Warden").GetComponent<PlayerInput>().enabled = false;
+		WardenAbilityManager.Controls.Gameplay_Warden.Disable();
 		return;
 	}
 
