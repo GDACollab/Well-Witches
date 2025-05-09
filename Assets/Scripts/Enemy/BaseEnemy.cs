@@ -15,6 +15,7 @@ public class BaseEnemyClass : MonoBehaviour
     [Range(0, 20)]
     [Tooltip("How far away the enemy stops before attacking")]
     public float range;
+    public SpriteRenderer sr;
 
     public NavMeshAgent agent;
 
@@ -31,6 +32,9 @@ public class BaseEnemyClass : MonoBehaviour
         if (health <= 0)
         {
             Die();
+        }
+        if (WardenAbilityManager.Instance.passiveAbilityName == "WaterLogging") {
+            StartCoroutine(slow());
         }
     }
 
@@ -60,4 +64,13 @@ public class BaseEnemyClass : MonoBehaviour
         rb.velocity = Vector3.zero;
     }
 
+    IEnumerator slow() {
+        Debug.Log("SLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOW");
+        sr = GetComponent<SpriteRenderer>();
+        sr.color = Color.blue;
+        moveSpeed = moveSpeed * 0.8f;
+        yield return new WaitForSeconds(WardenAbilityManager.Instance.waterDuration);
+        moveSpeed = moveSpeed / 0.8f;
+        sr.color = Color.white;
+    }
 }

@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 7937995718109404009}
   - component: {fileID: 7562616938753922885}
   - component: {fileID: 5354700902847656464}
+  - component: {fileID: 7578344528059464942}
   m_Layer: 7
   m_Name: Warden
   m_TagString: Player
@@ -402,6 +403,7 @@ MonoBehaviour:
   lifetime: 3
   prefab: {fileID: 1559157777602288747, guid: a1e508a91ea9c1b449b94133337b8dee, type: 3}
   spawn: {fileID: 2827204371654931226}
+  waterLog: 0
 --- !u!114 &3046167562820563143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,7 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5becf096d7dc3724d854a0260287601c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <NumHitsRequired>k__BackingField: 1
+  <NumHitsRequired>k__BackingField: 10
   damagePerTick: 10
   damageTickDuration: 0.25
   knockbackForce: 5
@@ -422,6 +424,7 @@ MonoBehaviour:
   abilityDuration: 4
   spawnPoint: {fileID: 7347747762842868080}
   prefab: {fileID: 6910472829611805654, guid: 959fe09636fe21c4ab7db7263356823a, type: 3}
+  charge: 0
 --- !u!114 &6883891788245031158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,6 +444,7 @@ MonoBehaviour:
   abilityDuration: 20
   spawnPoint: {fileID: 7347747762842868080}
   prefab: {fileID: 5819169371919718163, guid: 02d4f21ea28faa44f96c08e532ce6824, type: 3}
+  charge: 0
 --- !u!114 &7937995718109404009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,7 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891a61dffccd18747b45509f3c8e5b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <NumHitsRequired>k__BackingField: 0
+  <NumHitsRequired>k__BackingField: 10
   projectileDamage: 5
   projectileSpeed: 8
   projectileRotationForce: 100
@@ -464,6 +468,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 7603238177100266058, guid: 02ce3b291024fd946b9b2065d544b07e, type: 3}
   spawnPoint: {fileID: 7347747762842868080}
   prefab: {fileID: 5213519764763690752, guid: 5f9c5b65f2e8cab428a295d4d4d557fd, type: 3}
+  charge: 0
 --- !u!114 &7562616938753922885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,6 +494,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ec81eba31dd9384eb685ddae8a0bf8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  percent: 0.03
+--- !u!114 &7578344528059464942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3424275855618714540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb4c066a9187a8468bfdce9f79257d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 5
+  speed: 0.8
 --- !u!1 &8866154363906637985
 GameObject:
   m_ObjectHideFlags: 0

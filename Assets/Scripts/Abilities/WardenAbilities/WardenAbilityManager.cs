@@ -20,8 +20,8 @@ public class WardenAbilityManager : MonoBehaviour
 
     //amount of times you kill an enemy for energy
     public float siphonTimes;
-    //checks if waterlogging is active
-    public bool waterLog = false;
+    public float waterDuration;
+    public float waterSpeed;
 
     public static WardenAbilityManager Instance { get; private set; }
     public static Controls Controls {get => Instance.controls;}
@@ -54,7 +54,8 @@ public class WardenAbilityManager : MonoBehaviour
             equipedAbility = WardenDevastationBeam.Instance;
             equipedAbilityName = Abilities.DevastationBeam;
         }
-        EquipPassive("SiphonEnergy");
+        EquipPassive("WaterLogging");
+        Debug.Log(passiveAbilityName);
     }
     void OnActivateAbility(InputAction.CallbackContext context)
     {
@@ -100,6 +101,9 @@ public class WardenAbilityManager : MonoBehaviour
                     break;
                 case "SiphonEnergy":
                     passiveAbility = SiphonEnergy.Instance;
+                    break;
+                case "WaterLogging":
+                    passiveAbility = WaterLogging.Instance;
                     break;
                 default:
                     print("failed to swap to: " + passiveAbilityName);
@@ -150,6 +154,11 @@ public class WardenAbilityManager : MonoBehaviour
                     break;
                 case "SiphonEnergy":
                     passiveAbility = SiphonEnergy.Instance;
+                    passiveAbilityName = abilityID;
+                    print("swap to: " + abilityID);
+                    break;
+                case "WaterLogging":
+                    passiveAbility = WaterLogging.Instance;
                     passiveAbilityName = abilityID;
                     print("swap to: " + abilityID);
                     break;
