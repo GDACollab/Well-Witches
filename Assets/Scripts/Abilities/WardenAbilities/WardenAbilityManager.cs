@@ -20,6 +20,8 @@ public class WardenAbilityManager : MonoBehaviour
 
     //amount of times you kill an enemy for energy
     public float siphonTimes;
+    //checks if waterlogging is active
+    public bool waterLog = false;
 
     public static WardenAbilityManager Instance { get; private set; }
     public static Controls Controls {get => Instance.controls;}
