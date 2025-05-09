@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -14,8 +15,11 @@ public class WardenAbilityManager : MonoBehaviour
     public WardenBaseAbilities equipedAbility;
     [SerializeField] Abilities equipedAbilityName;
     public PassiveAbilities passiveAbility;
-    [SerializeField] string passiveAbilityName;
+    [SerializeField] public string passiveAbilityName;
     [SerializeField] private Controls controls;
+
+    //amount of times you kill an enemy for energy
+    public float siphonTimes;
 
     public static WardenAbilityManager Instance { get; private set; }
     public static Controls Controls {get => Instance.controls;}
@@ -48,6 +52,7 @@ public class WardenAbilityManager : MonoBehaviour
             equipedAbility = WardenDevastationBeam.Instance;
             equipedAbilityName = Abilities.DevastationBeam;
         }
+        EquipPassive("SiphonEnergy");
     }
     void OnActivateAbility(InputAction.CallbackContext context)
     {
@@ -90,6 +95,9 @@ public class WardenAbilityManager : MonoBehaviour
             {
                 case "DeathDefy":
                     passiveAbility = AbilityDeathDefy.Instance;
+                    break;
+                case "SiphonEnergy":
+                    passiveAbility = SiphonEnergy.Instance;
                     break;
                 default:
                     print("failed to swap to: " + passiveAbilityName);
@@ -135,6 +143,11 @@ public class WardenAbilityManager : MonoBehaviour
             {
                 case "DeathDefy":
                     passiveAbility = AbilityDeathDefy.Instance;
+                    passiveAbilityName = abilityID;
+                    print("swap to: " + abilityID);
+                    break;
+                case "SiphonEnergy":
+                    passiveAbility = SiphonEnergy.Instance;
                     passiveAbilityName = abilityID;
                     print("swap to: " + abilityID);
                     break;

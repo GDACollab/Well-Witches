@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,7 +19,7 @@ public class BaseEnemyClass : MonoBehaviour
     public NavMeshAgent agent;
 
     public Rigidbody2D rb;
-
+    SiphonEnergy siphon;
     public void Spawn(Vector3 position)
     {
         Instantiate(gameObject, position, Quaternion.identity);
@@ -35,6 +37,11 @@ public class BaseEnemyClass : MonoBehaviour
     public virtual void Die()
     {
         EnemySpawner.currentEnemyCount--;
+        //if siphon energy is equipped then add to siphone times
+        if (WardenAbilityManager.Instance.passiveAbilityName == "SiphonEnergy")
+        {
+            WardenAbilityManager.Instance.siphonTimes++;
+        }
         Destroy(gameObject);
     }
 

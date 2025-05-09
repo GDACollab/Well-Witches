@@ -4,7 +4,6 @@ public class WardenGourdForge : WardenBaseAbilities
 {
     [field: Header("Charge")]
     [field: SerializeField] public int NumHitsRequired { get; private set; }
-    public int Charge { get; private set; } = 0;
 
     [Header("Damage")]
     [SerializeField] float damagePerTick;
@@ -22,6 +21,14 @@ public class WardenGourdForge : WardenBaseAbilities
     public override string abilityName => "GourdForge";
     public override int numHitsRequired => NumHitsRequired;
     public override float duration => abilityDuration;
+    //changed charge to a float so I can add 3% of the total charge for each kill
+    //also added Charge to WardenBaseAbilities so I can reference charge when saving the instance of the passive ability in a passiveabilities variable
+    [SerializeField] private float charge;
+    public override float Charge
+    {
+        get => charge;
+        set => charge = value;
+    }
 
     public static WardenGourdForge Instance { get; private set; }
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
@@ -32,7 +39,7 @@ public class WardenGourdForge : WardenBaseAbilities
     void GainCharge()
     {
         Charge++;
-        if (Charge == NumHitsRequired) { AudioManager.Instance.PlayOneShot(FMODEvents.Instance.abilityReady, this.transform.position); }
+        if (Charge >= NumHitsRequired) { AudioManager.Instance.PlayOneShot(FMODEvents.Instance.abilityReady, this.transform.position); }
         if (Charge > NumHitsRequired) Charge = NumHitsRequired;
     }
 
@@ -41,6 +48,6 @@ public class WardenGourdForge : WardenBaseAbilities
         if (Charge < NumHitsRequired) return;
         GourdForge gourdForge = Instantiate(prefab, spawnPoint).GetComponent<GourdForge>();
         gourdForge.Activate(damagePerTick, damageTickDuration, size, abilityDuration);
-        Charge = 0;
+        Charge = 0f;
     }
 }
