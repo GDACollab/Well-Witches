@@ -8,6 +8,8 @@ public class WaterLogging : PassiveAbilities
     public static WaterLogging Instance { get; private set; }
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
 
+    public float duration;
+
     private void Awake()
     {
         InitSingleton();
