@@ -10,6 +10,7 @@ public class EnemyProjectile : MonoBehaviour
 	private float _damage;
 	private float _AOESize;
 	private float _AOElifetime;
+	public float speed;
 	[HideInInspector] public float _AOEdamage;
 	[SerializeField] private GameObject[] projectileComponents;
 	[SerializeField] private GameObject AOEPrefab;
@@ -34,6 +35,7 @@ public class EnemyProjectile : MonoBehaviour
 		_AOESize = AOESize;
 		_AOElifetime = AOElifetime;
 		_AOEdamage = AOEDamage;
+		speed = projectileSpeed;
 		Vector3 direction = targetPosition - transform.position;
 		direction = Quaternion.Euler(0, 0, offset) * direction;
 
@@ -56,25 +58,23 @@ public class EnemyProjectile : MonoBehaviour
 			AOEPrefab.SetActive(true);
 			AOEPrefab.transform.localScale = Vector3.one * _AOESize;
 			rb.velocity = Vector3.zero;
-			if (!collision.gameObject.CompareTag("Enemy"))
+
+			//Debug.Log(collision.gameObject.name);
+			// TODO: DEAL DAMAGE TO PLAYER
+			// - Producer (ben) added some temp checks and calls to StatsManager to do damage here
+			switch (collision.gameObject.name)
 			{
-				if (collision.gameObject.CompareTag("Player"))
-				{
-					//Debug.Log(collision.gameObject.name);
-					// TODO: DEAL DAMAGE TO PLAYER
-					// - Producer (ben) added some temp checks and calls to StatsManager to do damage here
-
-					if (collision.gameObject.name == "Gatherer")
-					{
-						EventManager.instance.playerEvents.PlayerDamage(_damage, "Gatherer");
-					}
-					else if (collision.gameObject.name == "Warden")
-					{
-						EventManager.instance.playerEvents.PlayerDamage(_damage, "Warden");
-
-					}
-				}
+                case "Warden":
+                    EventManager.instance.playerEvents.PlayerDamage(_damage, "Warden");
+                    break;
+                case "Gatherer":
+                    EventManager.instance.playerEvents.PlayerDamage(_damage, "Gatherer");
+                    break;
+				default:
+					break;
 			}
+
+
 
 			// Clean up gameobject
 			for (int i = 0; i < projectileComponents.Length; i++)

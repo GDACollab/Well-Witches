@@ -8,6 +8,7 @@ public class GathererBubbleShield : GathererBaseAbilities
 
     [Header("References")]
     [SerializeField] BubbleShield bubbleShieldPrefab;
+    [SerializeField] Transform spawnPoint;
 
     private float timer;
 
@@ -41,7 +42,7 @@ public class GathererBubbleShield : GathererBaseAbilities
     {
         if (canUse)
         {
-            BubbleShield shield = Instantiate(bubbleShieldPrefab, transform).GetComponent<BubbleShield>();
+            BubbleShield shield = Instantiate(bubbleShieldPrefab, spawnPoint).GetComponent<BubbleShield>();
             shield.Activate(duration);
             canUse = false;
         }
