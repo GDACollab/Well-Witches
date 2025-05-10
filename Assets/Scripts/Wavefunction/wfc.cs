@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class wfc : MonoBehaviour
 {
     [SerializeField] Tilemap groundTilemap;
+    [SerializeField] Tilemap decoratorTilemap;
     [SerializeField] Tilemap hitboxesTileMap;
     [SerializeField] Tilemap hitboxesSortedTileMap;
     [SerializeField] Tilemap middleTileMap;
@@ -164,6 +165,7 @@ public class wfc : MonoBehaviour
     private void GetSeededTiles()
     {
         TileBase tileGetGround = null;
+        TileBase tileGetDecorator = null;
         TileBase tileGetHitbox = null;
         TileBase tileGetHitboxSorted = null;
         TileBase tileGetMiddle = null;
@@ -194,6 +196,7 @@ public class wfc : MonoBehaviour
                 }
 
                 tileGetGround = groundTilemap.GetTile(new Vector3Int(x, y, 0));
+                tileGetDecorator = decoratorTilemap.GetTile(new Vector3Int(x, y, 0));
                 tileGetHitbox = hitboxesTileMap.GetTile(new Vector3Int(x, y, 0));
                 tileGetHitboxSorted = hitboxesSortedTileMap.GetTile(new Vector3Int(x, y, 0));
                 tileGetMiddle = middleTileMap.GetTile(new Vector3Int(x, y, 0));
@@ -201,7 +204,8 @@ public class wfc : MonoBehaviour
 
                 for (int i = 0; i < tileScriptableObjects.Length; i++)
                 {
-                    if (tileScriptableObjects[i].tileGround == tileGetGround && 
+                    if (tileScriptableObjects[i].tileGround == tileGetGround &&
+                        tileScriptableObjects[i].tileDecorator == tileGetDecorator && 
                         tileScriptableObjects[i].tileHitbox == tileGetHitbox &&
                         tileScriptableObjects[i].tileHitboxSorted == tileGetHitboxSorted && 
                         tileScriptableObjects[i].tileMiddle == tileGetMiddle &&
@@ -246,6 +250,7 @@ public class wfc : MonoBehaviour
     {
         bool hasAHitBox = false;
         TileBase tileToPlaceGround = null;
+        TileBase tileToPlaceDecorator = null;
         TileBase tileToPlaceHitbox = null;
         TileBase tileToPlaceHitboxSorted = null;
         TileBase tileToPlaceMiddle = null;
@@ -258,6 +263,7 @@ public class wfc : MonoBehaviour
                 if (tiles[x, y].GetEntropy() <= 1)
                 {
                     tileToPlaceGround = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileGround;
+                    tileToPlaceDecorator = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileDecorator;
                     tileToPlaceHitbox = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileHitbox;
                     tileToPlaceHitboxSorted = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileHitboxSorted;
                     tileToPlaceMiddle = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileMiddle;
@@ -266,6 +272,10 @@ public class wfc : MonoBehaviour
                     if (tileToPlaceGround != null)
                     {
                         groundTilemap.SetTile(new Vector3Int(x, y, 0), tileToPlaceGround);
+                    }
+                    if (tileToPlaceDecorator != null)
+                    {
+                        decoratorTilemap.SetTile(new Vector3Int(x, y, 0), tileToPlaceDecorator);
                     }
                     if (tileToPlaceHitbox != null)
                     {

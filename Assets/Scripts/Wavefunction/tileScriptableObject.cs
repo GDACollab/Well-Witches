@@ -11,6 +11,9 @@ public class tileScriptableObject : ScriptableObject
     public TileBase tileGround = null;
 
     [Tooltip("A tile asset, will be placed in a tilemap")]
+    public TileBase tileDecorator = null;
+
+    [Tooltip("A tile asset, will be placed in a tilemap")]
     public TileBase tileHitbox = null;
 
     [Tooltip("A tile asset, will be placed in a tilemap")]
