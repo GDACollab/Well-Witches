@@ -133,7 +133,22 @@ public class DialogueManager : MonoBehaviour
         currentCharacter.DisplaySprite();
         playerSpriteManager.DisplayPlayerSprite();
 
-        AudioManager.Instance.PlayCharacterTalk(currentCharacter.name);
+        if ((string)currentStory.variablesState["currentSpeaker"] != "Player") {
+            AudioManager.Instance.PlayCharacterTalk((string)currentStory.variablesState["currentSpeaker"]);
+        }
+        else {
+            foreach (string tag in currentStory.currentTags) {
+                string[] splitTag = tag.Split(':');
+                string tagValue = splitTag[1].Trim();
+
+                if (tagValue == "warden") {
+                    AudioManager.Instance.PlayCharacterTalk("Vervain");
+                }
+                else if (tagValue == "gatherer") {
+                    AudioManager.Instance.PlayCharacterTalk("Aloe");
+                }
+            }
+        }
         ContinueStory();
     }
 
@@ -170,7 +185,24 @@ public class DialogueManager : MonoBehaviour
                 HandleTagsNPC((string)currentStory.variablesState["currentSpeaker"], currentStory.currentTags);
             }
 
-            AudioManager.Instance.PlayCharacterTalk(currentCharacter.name);
+            print("current character name: " + (string)currentStory.variablesState["currentSpeaker"]);
+
+            if ((string)currentStory.variablesState["currentSpeaker"] != "Player") {
+                AudioManager.Instance.PlayCharacterTalk((string)currentStory.variablesState["currentSpeaker"]);
+            }
+            else {
+                foreach (string tag in currentStory.currentTags) {
+                    string[] splitTag = tag.Split(':');
+                    string tagValue = splitTag[1].Trim();
+
+                    if (tagValue == "warden") {
+                        AudioManager.Instance.PlayCharacterTalk("Vervain");
+                    }
+                    else if (tagValue == "gatherer") {
+                        AudioManager.Instance.PlayCharacterTalk("Aloe");
+                    }
+                }
+            }
         }
         else
         {

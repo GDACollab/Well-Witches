@@ -26,6 +26,7 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference bruiserAttackSwipe  { get; private set; }
     [field: SerializeField] public EventReference bossPhase1Attack1  { get; private set; }
     [field: SerializeField] public EventReference itemPickUp  { get; private set; }
+    [field: SerializeField] public EventReference aloeTalk  { get; private set; }
 
     [field: Header("BGM")]
     [field: SerializeField] public EventReference lobbyBGM { get; private set; }
