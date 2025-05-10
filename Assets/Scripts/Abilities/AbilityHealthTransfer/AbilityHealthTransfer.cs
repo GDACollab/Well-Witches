@@ -1,7 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Unity.Mathematics;
+using System;
 
-public class GathererHealthTransfer : GathererBaseAbilities
+public class AbilityHealthTransfer : GathererBaseAbilities
 {
 
    public float temp; //hold the % of health from Singleton that holds that %value ex 0.25
@@ -12,21 +16,12 @@ public class GathererHealthTransfer : GathererBaseAbilities
     public override string abilityName => "HealthTransfer";
     public override float duration => 0;
 
-    public static GathererHealthTransfer Instance { get; private set; }
-
-    [Header("VFX Info")]
-    public HealthTransfer VFX;
-    public float delay;
-
-    [SerializeField] private Transform wardenTransform;
-    [SerializeField] private Transform gathererTransform;
+    public static AbilityHealthTransfer Instance { get; private set; }
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
 
     void Awake()
     {
         InitSingleton();
-        gathererTransform = transform;
-        if (wardenTransform != null) { wardenTransform = GameObject.Find("Warden").transform; }
     }
     public override void useAbility()
    {
@@ -37,14 +32,12 @@ public class GathererHealthTransfer : GathererBaseAbilities
            // transfer health from Gatherer to Wanderer
             lastUsedTime = Time.time;
 
-            // spawn vfx
-            HealthTransfer healthTransfer = Instantiate(VFX, gathererTransform);
-                StartCoroutine(healthTransfer.Initialize(wardenTransform, delay));
-
-
             temp = StatsManager.Instance.GathererCurrentHealth * StatsManager.Instance.healthTransferAmount; // temp holds %25 percent of Gatherer's current health
-            
+
+            //StatsManager.Instance.GathererCurrentHealth -= math.round(temp); // Subtract from current gatherer health
             EventManager.instance.playerEvents.PlayerDamage(math.round(temp), "Gatherer");
+
+
             StatsManager.Instance.WardenCurrentHealth += math.round(temp); //add to Wanderer Current Health
 
             if (StatsManager.Instance.WardenCurrentHealth > StatsManager.Instance.WardenMaxHealth)
@@ -52,8 +45,8 @@ public class GathererHealthTransfer : GathererBaseAbilities
                StatsManager.Instance.WardenCurrentHealth = StatsManager.Instance.WardenMaxHealth;
             }
 
-
-
+            //Debug.Log("Health of Gatherer:" + StatsManager.Instance.GathererCurrentHealth); //TESTING PURPOSES
+            //Debug.Log("Health of Warden:" + StatsManager.Instance.WardenCurrentHealth); //TESTING PURPOSES
             temp = 0f; //reset the health value stored (No longer needed health % can be different)
          }
 
