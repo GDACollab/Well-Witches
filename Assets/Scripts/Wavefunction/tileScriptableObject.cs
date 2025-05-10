@@ -14,6 +14,9 @@ public class tileScriptableObject : ScriptableObject
     public TileBase tileHitbox = null;
 
     [Tooltip("A tile asset, will be placed in a tilemap")]
+    public TileBase tileHitboxSorted = null;
+
+    [Tooltip("A tile asset, will be placed in a tilemap")]
     public TileBase tileMiddle = null;
 
     [Tooltip("A tile asset, will be placed in a tilemap")]
