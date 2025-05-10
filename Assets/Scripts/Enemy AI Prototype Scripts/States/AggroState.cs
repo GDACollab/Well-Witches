@@ -60,17 +60,17 @@ public class AggroState : State
 
     public override void OnUpdate()
     {
-        if (meleeEnemy != null && agent.enabled == true)
+        if (meleeEnemy != null && agent.enabled == true && !meleeEnemy.isStunned)
         {
             meleeEnemy.TargetClosestPlayer();
             agent.SetDestination(meleeEnemy.currentTarget.position);
         }
-        else if (rangedEnemy != null && agent.enabled == true)
+        else if (rangedEnemy != null && agent.enabled == true && !rangedEnemy.isStunned)
         {
             rangedEnemy.TargetClosestPlayer();
             agent.SetDestination(rangedEnemy.currentTarget.position);
         }
-        else if (tankEnemy != null && agent.enabled == true)
+        else if (tankEnemy != null && agent.enabled == true && !tankEnemy.isStunned)
         {
             tankEnemy.TargetClosestPlayer();
             agent.SetDestination(tankEnemy.currentTarget.position);

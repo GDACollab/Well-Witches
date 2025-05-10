@@ -11,6 +11,8 @@ public abstract class State : MonoBehaviour
         this.owner = owner;
     }
 
+    // public bool isStunned;
+
     public abstract void OnEnter();
     public abstract void OnUpdate();
     public abstract void OnExit();
