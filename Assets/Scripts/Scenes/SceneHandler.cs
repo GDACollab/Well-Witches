@@ -33,7 +33,7 @@ public class SceneHandler : MonoBehaviour
         }
         else{
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            //DontDestroyOnLoad(this.gameObject);
         }
     }
 
@@ -41,23 +41,28 @@ public class SceneHandler : MonoBehaviour
         Instance = null;
     }
 
-    // FOR TESTING PURPOSES ONLY DO NOT UNCOMMENT
-/*
-    public void Update(){
-        if(Input.GetKeyDown(KeyCode.A)){
-            ToMainMenuScene();
-        }
-        if(Input.GetKeyDown(KeyCode.S)){
-            ToHubScene();
-        }
-        if(Input.GetKeyDown(KeyCode.D)){
-            ToGameplayScene();
-        }
-        if(Input.GetKeyDown(KeyCode.F)){
-            ToPauseScene();
-        }
+    private void OnEnable()
+    {
+        
     }
-*/
+
+    // FOR TESTING PURPOSES ONLY DO NOT UNCOMMENT
+    /*
+        public void Update(){
+            if(Input.GetKeyDown(KeyCode.A)){
+                ToMainMenuScene();
+            }
+            if(Input.GetKeyDown(KeyCode.S)){
+                ToHubScene();
+            }
+            if(Input.GetKeyDown(KeyCode.D)){
+                ToGameplayScene();
+            }
+            if(Input.GetKeyDown(KeyCode.F)){
+                ToPauseScene();
+            }
+        }
+    */
 
     public void ToMainMenuScene(){
         Scene currentScene = SceneManager.GetActiveScene();
@@ -191,7 +196,8 @@ public class SceneHandler : MonoBehaviour
     public void ToBossScene(){
         Scene currentScene = SceneManager.GetActiveScene();
         int index = currentScene.buildIndex;
-        SceneManager.LoadScene(BossSceneIndex);
+        //SceneManager.LoadScene(BossSceneIndex);
+        StartCoroutine(LoadingScreen(BossSceneIndex));
 
         AudioManager.Instance.CleanUp();
         AudioManager.Instance.PlayOST(FMODEvents.Instance.bossBGM);
@@ -211,9 +217,15 @@ public class SceneHandler : MonoBehaviour
 
         //animation will be done via art
 
+
         yield return new WaitForSeconds(waitTime);
 
         SceneManager.LoadSceneAsync(sceneName);
+
+        //loadScreen.SetActive(false);
+
+
+
     }
 
 }
