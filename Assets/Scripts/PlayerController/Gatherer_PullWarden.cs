@@ -3,7 +3,7 @@ using UnityEngine;
 public class Gatherer_PullWarden : MonoBehaviour
 {
 	[Header("Pull")]
-	[SerializeField, Tooltip("Amount of force when Warden is at max tether distance")] float maxPullForce;
+	//[SerializeField, Tooltip("Amount of force when Warden is at max tether distance")] float maxPullForce; //Handled by StatsManager now
 	[SerializeField] float pullCooldown;
 	Rigidbody2D rb_Warden;
 	float pullCounter = 0f;
