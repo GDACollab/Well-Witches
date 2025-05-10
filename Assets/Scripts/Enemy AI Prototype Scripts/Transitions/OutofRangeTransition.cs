@@ -51,7 +51,6 @@ public class OutotRangeTransition : Transition
     public override State GetNextState()
     {
         // Transition to the AggroState and pass both owner and player
-        Debug.Log("OutotRangeTransition");
         aggroState.Initialize(stateMachine, owner);
         return aggroState;
     }

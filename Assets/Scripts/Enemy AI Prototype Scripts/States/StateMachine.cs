@@ -13,7 +13,6 @@ public class StateMachine : MonoBehaviour
 
         currentState = newState;
 
-        Debug.Log("Entering New State: " + currentState.ToString());
 
         if (currentState != null)
         {

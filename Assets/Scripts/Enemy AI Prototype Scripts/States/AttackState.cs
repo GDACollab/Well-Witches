@@ -33,7 +33,6 @@ public class AttackState : State
 
     public override void OnEnter()
     {
-        Debug.Log("Entering Attack State");
         attackTime = Time.time - (meleeEnemy != null ? meleeEnemy.timeBetweenAttack : (rangedEnemy != null ? rangedEnemy.timeBetweenAttack : tankEnemy.timeBetweenAttack));
         attackTime = 0f;
         isAttacking = false;
