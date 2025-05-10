@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 6218362828026916798}
   - component: {fileID: 6479075504277769317}
   - component: {fileID: 8634759373121981911}
+  - component: {fileID: -7641923896124788210}
   m_Layer: 7
   m_Name: Gatherer
   m_TagString: Player
@@ -342,6 +343,7 @@ MonoBehaviour:
   movementData: {fileID: 11400000, guid: f3ee9fd79406baf49867f478438dc2a9, type: 2}
   maxSpeed_Adjusted: 0
   canMove: 1
+  isMoving: 0
 --- !u!114 &2686973554895526223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,6 +475,20 @@ MonoBehaviour:
   flameTicksPerSecond: 1
   startAbility: 0
   fire: {fileID: 6194044856683223204, guid: 9ab1ab0254f60cd48bc873a50962bbcf, type: 3}
+--- !u!114 &-7641923896124788210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5708320580637796411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48dd1b19bd54e254d953346f9d8196bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  multiplier: 1.0037
 --- !u!1 &6319885882415222397
 GameObject:
   m_ObjectHideFlags: 0

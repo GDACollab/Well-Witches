@@ -21,7 +21,7 @@ public class PlayerMovementData : ScriptableObject
 
 
 	[field: SerializeField, Tooltip("Speed gained per second")]
-	public float acceleration { get; private set; }
+	public float acceleration { get; set; }
 
 
 	[field: SerializeField, Tooltip("Speed lost per second")]

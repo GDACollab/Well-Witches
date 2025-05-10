@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 public class GathererAbilityManager : MonoBehaviour
 {
     public GathererBaseAbilities equipedAbility;
-    [SerializeField] string equipedAbilityName;
+    [SerializeField] public string equipedAbilityName;
     public PassiveAbilities passiveAbility;
-    [SerializeField] string passiveAbilityName;
+    [SerializeField] public string passiveAbilityName;
     [SerializeField] private Controls controls;
 
     public static GathererAbilityManager Instance { get; private set; }
@@ -44,6 +44,7 @@ public class GathererAbilityManager : MonoBehaviour
         passiveAbility = HealForcePassive.Instance;
         passiveAbilityName = passiveAbility.abilityName;
         //print("equip");
+        //EquipPassive("ZoneMomentum");
     }
     void OnActivateAbility(InputAction.CallbackContext context)
     {
@@ -103,6 +104,9 @@ public class GathererAbilityManager : MonoBehaviour
                 case "SolesOfTheDamned":
                     passiveAbility = SolesOfTheDamned.Instance;
                     break;
+                case "ZoneMomentum":
+                    passiveAbility = ZoneMomentum.Instance;
+                    break;
                 default:
                     print("failed to swap to: " + passiveAbilityName);
                     break;
@@ -152,6 +156,11 @@ public class GathererAbilityManager : MonoBehaviour
                     break;
                 case "SolesOfTheDamned":
                     passiveAbility = SolesOfTheDamned.Instance;
+                    passiveAbilityName = abilityID;
+                    print("swap to: " + abilityID);
+                    break;
+                case "ZoneMomentum":
+                    passiveAbility = ZoneMomentum.Instance;
                     passiveAbilityName = abilityID;
                     print("swap to: " + abilityID);
                     break;
