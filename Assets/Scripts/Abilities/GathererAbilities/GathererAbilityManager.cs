@@ -13,6 +13,7 @@ public class GathererAbilityManager : MonoBehaviour
 
     private enum Passive
     {
+        None,
         AloeVera,
         HellfireBootie,
         Espresso
@@ -67,11 +68,11 @@ public class GathererAbilityManager : MonoBehaviour
             equipedAbility = Gatherer_FlashStun.Instance;
             equipedAbilityName = Active.SolarFlare;
         }
-        if (passiveAbility == null)
-        {
-            passiveAbility = HealForcePassive.Instance;
-            passiveAbilityName = Passive.AloeVera;
-        }
+        //if (passiveAbility == null)
+        //{
+        //    passiveAbility = HealForcePassive.Instance;
+        //    passiveAbilityName = Passive.AloeVera;
+        //}
     }
     void OnActivateAbility(InputAction.CallbackContext context)
     {
@@ -177,6 +178,12 @@ public class GathererAbilityManager : MonoBehaviour
                 case "SolesOfTheDamned":
                     passiveAbility = SolesOfTheDamned.Instance;
                     passiveAbilityName = Passive.HellfireBootie;
+                    print("swap to: " + abilityID);
+                    break;
+                // this name is probably wrong but idk how to check the name
+                case "ZoneMomentum":
+                    passiveAbility = ZoneMomentum.Instance;
+                    passiveAbilityName = Passive.Espresso;
                     print("swap to: " + abilityID);
                     break;
                 default:
