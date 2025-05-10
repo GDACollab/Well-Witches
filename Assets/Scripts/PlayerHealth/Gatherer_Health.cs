@@ -30,6 +30,7 @@ public class Gatherer_Health : PlayerHealth
 		//send out signal
 		EventManager.instance.playerEvents.PlayerDeath();
 		SceneHandler.Instance.ToHubScene();
+		AudioManager.Instance.PlayOneShot(FMODEvents.Instance.gathererDown, GameObject.Find("Gatherer").transform.position);
 		return;
 	}
 }
