@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StunnedState : State
 {
-    // public bool isStunned;
+    // public bool isStunned;   // inheriting this from State now
     private StateMachine stateMachine;
     private MeleeEnemy meleeEnemy;
     private RangedEnemy rangedEnemy;
@@ -37,13 +37,14 @@ public class StunnedState : State
         if (isStunned && (Time.time - stunStartTime) >= stunTime)
         {
             Debug.Log("timing out of stun");
-            OnExit();   // maybe the timer should be kept track of somewhere else?
+            OnExit();
         }
     }
 
     public override void OnExit()
     {
         isStunned = false;
+        Debug.Log("unstunned");
         navAgent.enabled = true;
     }
 

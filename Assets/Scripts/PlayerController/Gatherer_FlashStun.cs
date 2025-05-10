@@ -68,7 +68,6 @@ public class Gatherer_FlashStun : GathererBaseAbilities
     }
 
     void ExecuteAbility()
-    // you have to HOLD DOWN Q for 5 seconds to activate it
     {
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.flashStun, this.transform.position);
         canCastSpellSFX = false;

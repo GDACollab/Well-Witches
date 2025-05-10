@@ -35,7 +35,7 @@ public class StateMachine : MonoBehaviour
                 }
             }
 
-            // Update the current state
+            // Update the current state`
             currentState.OnUpdate();
         }
     }
