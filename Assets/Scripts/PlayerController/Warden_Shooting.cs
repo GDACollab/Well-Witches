@@ -15,6 +15,7 @@ public class Warden_Shooting : MonoBehaviour
 	InputAction inputAction;
 	StatsManager statsManager;
 	float cooldownCounter = 0;
+	public bool waterLog = false;
 
 	void Start()
 	{

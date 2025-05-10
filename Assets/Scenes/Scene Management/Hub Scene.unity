@@ -5911,16 +5911,16 @@ MonoBehaviour:
   abilityImage: {fileID: 1243710221}
   abilityButton: {fileID: 1243710220}
   abilitySelectManager: {fileID: 45010631}
-  abilityID: 
+  abilityID: DeathDefy
   normalSprite: {fileID: 21300000, guid: f0e27b584602e6640a2eff97fd6a1f74, type: 3}
   hoverSprite: {fileID: 21300000, guid: 6fe8e3bd580485147a5c03ac9233edb8, type: 3}
   selectSprite: {fileID: 21300000, guid: cfd2e26cea4ff784eaeb433ead54bc3e, type: 3}
   lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
-  abilityText: gives you 20/20 vison
+  abilityText: '"HEROES NEVER DIE"'
   abilityName: Resurrection Regalia
   isWarden: 1
   isActive: 0
-  isLocked: 1
+  isLocked: 0
 --- !u!114 &1243710220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7343,6 +7343,10 @@ PrefabInstance:
       propertyPath: gathererRadiusCircle
       value: 
       objectReference: {fileID: 1330570183}
+    - target: {fileID: 3046167562820563143, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: <NumHitsRequired>k__BackingField
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3424275855618714540, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: m_Name
       value: Warden
@@ -7402,6 +7406,10 @@ PrefabInstance:
     - target: {fileID: 7479631434780333628, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562616938753922885, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7834940100660095115, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: m_PresetInfoIsWorld
@@ -9849,7 +9857,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6263869502043627533, guid: 3662ccf3678e8a946898d972d7d1a732, type: 3}
       propertyPath: equipedAbilityName
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7019890448366990970, guid: 3662ccf3678e8a946898d972d7d1a732, type: 3}
       propertyPath: questDisplay

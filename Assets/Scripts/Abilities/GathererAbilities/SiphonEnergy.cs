@@ -1,14 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Resources;
 using UnityEngine;
 
 public class SiphonEnergy : PassiveAbilities
 {
     // Start is called before the first frame update
-    public override string abilityName => "Siphon Energy";
+    public override string abilityName => "SiphonEnergy";
     public static SiphonEnergy Instance { get; private set; }
 
-    public bool moreEnergy = true;
+    //helps keep code clean
+    private WardenAbilityManager abilityManager = WardenAbilityManager.Instance;
+
+    //change much % of the total you gain
+    public float percent;
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
     void Awake()
     {
@@ -16,9 +22,19 @@ public class SiphonEnergy : PassiveAbilities
     }
     public override void passiveUpdate()
     {
-        //All this does is turn this ability on or off
-        //Everytime an enemy dies, calls a method in the
-        if (moreEnergy) { moreEnergy = false; }
-        else { moreEnergy = true; }
+        //if siphonTimes is greater than 0 then add 3% of total energy
+        if (abilityManager.siphonTimes > 0) {
+            addEnergy();
+            abilityManager.siphonTimes--;
+        }
     }
+
+    //add energy method
+    public void addEnergy() {
+        abilityManager.equipedAbility.Charge = abilityManager.equipedAbility.Charge + (percent * abilityManager.equipedAbility.numHitsRequired);
+        if (abilityManager.equipedAbility.Charge > abilityManager.equipedAbility.numHitsRequired) {
+            abilityManager.equipedAbility.Charge = abilityManager.equipedAbility.numHitsRequired;
+        }
+    }
+
 }
