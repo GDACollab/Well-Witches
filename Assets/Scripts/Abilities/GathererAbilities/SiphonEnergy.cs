@@ -24,11 +24,12 @@ public class SiphonEnergy : PassiveAbilities
     }
     public override void passiveUpdate()
     {
-        //if siphonTimes is greater than 0 then add 3% of total energy
-        if (abilityManager.siphonTimes > 0) {
-            addEnergy();
-            abilityManager.siphonTimes--;
-        }
+        ////if siphonTimes is greater than 0 then add 3% of total energy
+        //if (abilityManager.siphonTimes > 0)
+        //{
+        //    addEnergy();
+        //    abilityManager.siphonTimes--;
+        //}
     }
 
     //add energy method
