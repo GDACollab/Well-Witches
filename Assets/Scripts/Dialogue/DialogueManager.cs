@@ -6,8 +6,12 @@ using Ink.Runtime;
 using System;
 using System.Linq;
 using UnityEngine.SceneManagement;
-using UnityEditor.ShaderGraph;
 using UnityEngine.InputSystem;
+
+#if UNITY_EDITOR
+using UnityEditor.ShaderGraph;
+// any other editor-only logic
+#endif
 
 public class DialogueManager : MonoBehaviour
 {
