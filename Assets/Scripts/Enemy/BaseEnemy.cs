@@ -1,26 +1,32 @@
+using System;
+using System.Collections;
+using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class BaseEnemyClass : MonoBehaviour
 {
-    // Ranges for stats are just placeholders and can be changed.
     [Header("Enemy Stats")]
-    [Range(1, 100)]
-    [Tooltip("The max health of an enemy. [1, 100]")]
+    [Tooltip("The max health of an enemy.")]
     public float health;
-    [Range(0, 20)]
-    [Tooltip("How fast an enemy moves. [0, 20]")]
+    [Tooltip("How fast an enemy moves.")]
     public float moveSpeed;
+    [Range(0, 20)]
+    [Tooltip("How far away the enemy stops before attacking")]
+    public float range;
 
+    public NavMeshAgent agent;
 
+    public Rigidbody2D rb;
+    SiphonEnergy siphon;
     public void Spawn(Vector3 position)
     {
         Instantiate(gameObject, position, Quaternion.identity);
     }
 
     public virtual void TakeDamage(float amount)
-    {   //Reduces health by the amount entered in Unity
-        //Debug.Log("took damage");
+    {
         health -= amount;
         if (health <= 0)
         {
@@ -30,7 +36,28 @@ public class BaseEnemyClass : MonoBehaviour
 
     public virtual void Die()
     {
+        EnemySpawner.currentEnemyCount--;
+        //if siphon energy is equipped then add to siphone times
+        if (WardenAbilityManager.Instance.passiveAbilityName == "SiphonEnergy")
+        {
+            WardenAbilityManager.Instance.siphonTimes++;
+        }
         Destroy(gameObject);
+    }
+
+    public virtual void ProjectileKnockback(Vector3 force)
+    {
+        agent.enabled = false;
+        rb.AddForce(force, ForceMode2D.Impulse);
+        StartCoroutine(EnableAgent());
+    }
+    
+    IEnumerator EnableAgent()
+    {
+        yield return new WaitForSeconds(0.2f);
+        agent.enabled = true;
+        yield return new WaitForSeconds(0.3f);
+        rb.velocity = Vector3.zero;
     }
 
 }
