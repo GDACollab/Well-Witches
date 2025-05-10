@@ -26,7 +26,25 @@ public class StatsManager : MonoBehaviour
 
     public Dictionary<GameObject, float> questItems = new Dictionary<GameObject, float>();
 
-    public float keyItemChance = 0.05f;
+
+    [Header("---------------Buff / Curse Strength---------------")]
+
+    public float AttackPowerBuffStrength = 2;
+    public float AttackPowerCurseStrength = 0.5f;
+    public float SpeedBuffStrength = 1.5f;
+    public float SpeedCurseStrength = 0.75f;
+    public float HarvestBuffStrength = 0.5f;
+    public float HarvestCurseStrength = 1.5f;
+    public float LuckBuffStrength = 2;
+    public float LuckCurseStrength = 0.75f;
+    public float YankBuffStrength = 2;
+    public float YankCurseStrength = 0.5f;
+
+    [Header("---------------Special stats---------------")]
+
+    public float keyItemChance = 0.05f; //Odds of a bush giving a key item. Increased from bush script
+    public float HarvestTime = 1; //How many seconds it takes to harvest a bush
+    public float YankStrength = 1; //How strong your yanking ability is
 
 
     [Header("---------------Gatherer Combat stats---------------")]
@@ -111,6 +129,7 @@ public class StatsManager : MonoBehaviour
             if (buffTimers[i] <= 0)
             {
                 Debug.Log("status " + myBuffs[i] + " is over!");
+                //remove buff from list
                 myBuffs.RemoveAt(i);
                 buffTimers.RemoveAt(i);
                 i--;
@@ -156,9 +175,38 @@ public class StatsManager : MonoBehaviour
         return new List<string> (myBuffs);
     }
 
+    //NOT CURRENTLY USED
+    public float getYank()
+    {
+        float myMult = (myBuffs.Contains("YankUp") ? YankBuffStrength : 1) * (myBuffs.Contains("YankDown") ? YankCurseStrength : 1);
+        return MaxSpeed * myMult;
+    }
+
+    //NOT CURRENTLY USED
+    public float getSpeed()
+    {
+        float myMult = (myBuffs.Contains("SpeedUp") ? SpeedBuffStrength : 1) * (myBuffs.Contains("SpeedDown") ? SpeedCurseStrength : 1);
+        return MaxSpeed * myMult;
+    }
+
+    public float getAttackPower()
+    {
+        float myMult = (myBuffs.Contains("AttackUp") ? AttackPowerBuffStrength : 1) * (myBuffs.Contains("AttackDown") ? AttackPowerCurseStrength : 1);
+        return AttackPower * myMult;
+    }
+
+    public float getHarvestTime()
+    {
+        Debug.Log(HarvestBuffStrength);
+        float myMult = (myBuffs.Contains("HarvestUp") ? HarvestBuffStrength : 1) * (myBuffs.Contains("HarvestDown") ? HarvestCurseStrength : 1);
+        Debug.Log("BUSH SHOULD TAKE " + (float)(HarvestTime * myMult) + " TO HARVEST! " + myMult);
+        return HarvestTime * myMult;
+    }
+
     public float getKeyItemChance()
     {
-        return keyItemChance;
+        float myMult = (myBuffs.Contains("LuckUp") ? LuckBuffStrength : 1) * (myBuffs.Contains("LuckDown") ? LuckCurseStrength : 1);
+        return keyItemChance * myMult;
     }
 
     // THIS FUNCTION IS DEPRICATED ######################################################w
