@@ -48,7 +48,7 @@ public class BaseEnemyClass : MonoBehaviour
     {
         EnemySpawner.currentEnemyCount--;
         //if siphon energy is equipped then add to siphone times
-        if (WardenAbilityManager.Instance.passiveAbilityName == "SiphonEnergy")
+        if (WardenAbilityManager.Instance.passiveAbilityName == WardenAbilityManager.Passive.SoulSiphon)
         {
             WardenAbilityManager.Instance.siphonTimes++;
         }
