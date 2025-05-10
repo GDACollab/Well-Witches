@@ -12,7 +12,6 @@ public class HealForcePassive : PassiveAbilities
 
     public float regenTime;
     private float time;
-
     public override string abilityName => "HealForce";
     public static HealForcePassive Instance { get; private set; }
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
@@ -25,12 +24,12 @@ public class HealForcePassive : PassiveAbilities
         time = time + Time.deltaTime;
         if(time > regenTime)
         {
-            StatsManager.Instance.GathererCurrentHealth +=  StatsManager.Instance.GathererHealthRegen;
+            EventManager.instance.playerEvents.PlayerDamage(-StatsManager.Instance.GathererHealthRegen, "Gatherer");
             if (StatsManager.Instance.GathererCurrentHealth > StatsManager.Instance.GathererMaxHealth)
             {
                 StatsManager.Instance.GathererCurrentHealth = StatsManager.Instance.GathererMaxHealth;
+                EventManager.instance.playerEvents.PlayerDamage(0, "Gatherer");
             }
-
             time = 0;
         }
     }
