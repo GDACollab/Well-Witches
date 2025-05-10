@@ -8370,7 +8370,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1764498154}
   m_CullTransparentMesh: 1
---- !u!1001 &1800785799
+--- !u!1001 &1786982341
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8381,6 +8381,10 @@ PrefabInstance:
     - target: {fileID: 351931286895300582, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
       propertyPath: m_Name
       value: LoadingScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 351931286895300582, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
       propertyPath: m_Pivot.x
@@ -8415,18 +8419,6 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -8444,23 +8436,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 960
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 540
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -8479,15 +8471,10 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
---- !u!1 &1800785800 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 351931286895300582, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
-  m_PrefabInstance: {fileID: 1800785799}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &1800785801 stripped
+--- !u!224 &1786982342 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
-  m_PrefabInstance: {fileID: 1800785799}
+  m_PrefabInstance: {fileID: 1786982341}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1817059210
 GameObject:
@@ -9366,7 +9353,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -9409,8 +9396,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1786982342}
   - {fileID: 61295339}
-  - {fileID: 1800785801}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -10007,7 +9994,7 @@ PrefabInstance:
     - target: {fileID: 3914419326737314380, guid: dd278b5a4327e604a9badbfb5aedcf04, type: 3}
       propertyPath: loadScreen
       value: 
-      objectReference: {fileID: 1800785800}
+      objectReference: {fileID: 0}
     - target: {fileID: 5605567680116676561, guid: dd278b5a4327e604a9badbfb5aedcf04, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.9220638
