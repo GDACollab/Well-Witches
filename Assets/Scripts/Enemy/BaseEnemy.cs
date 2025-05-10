@@ -17,6 +17,7 @@ public class BaseEnemyClass : MonoBehaviour
     public NavMeshAgent agent;
     public Rigidbody2D rb;
     SiphonEnergy siphon;
+    public SpriteRenderer sr;
 
     [Header("DEBUG")]
     public float distanceToPlayer1;
@@ -42,6 +43,10 @@ public class BaseEnemyClass : MonoBehaviour
         {
             Die();
         }
+        if (WardenAbilityManager.Instance.GetEquippedPassiveName() == "WaterLogging")
+        {
+            StartCoroutine(slow());
+        }
     }
 
     public virtual void Die()
@@ -53,6 +58,17 @@ public class BaseEnemyClass : MonoBehaviour
             WardenAbilityManager.Instance.siphonTimes++;
         }
         Destroy(gameObject);
+    }
+
+    IEnumerator slow()
+    {
+        Debug.Log("SLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOW");
+        sr = GetComponent<SpriteRenderer>();
+        sr.color = Color.blue;
+        moveSpeed = moveSpeed * WardenAbilityManager.Instance.waterSpeed;
+        yield return new WaitForSeconds(WardenAbilityManager.Instance.waterDuration);
+        moveSpeed = moveSpeed / WardenAbilityManager.Instance.waterSpeed;
+        sr.color = Color.white;
     }
 
     // calculates and set target to the closest player to the enemy

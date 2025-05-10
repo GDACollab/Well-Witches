@@ -24,6 +24,17 @@ public class GathererAbilityManager : MonoBehaviour
     [SerializeField] Passive passiveAbilityName;
     [SerializeField] private Controls controls;
 
+    //Public functions to get strings incase its relevant
+    public string GetEquippedActiveName()
+    {
+        return equipedAbilityName.ToString();
+    }
+
+    public string GetEquippedPassiveName()
+    {
+        return passiveAbilityName.ToString();
+    }
+
     public static GathererAbilityManager Instance { get; private set; }
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
     void Awake()
@@ -114,7 +125,7 @@ public class GathererAbilityManager : MonoBehaviour
                 passiveAbility = SolesOfTheDamned.Instance;
                 break;
             case Passive.Espresso:
-                passiveAbility = SolesOfTheDamned.Instance;
+                passiveAbility = ZoneMomentum.Instance;
                 break;
             default:
                 print("failed to swap to: " + passiveAbilityName);

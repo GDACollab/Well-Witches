@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
 	{
-		if (GathererAbilityManager.Instance.passiveAbilityName != "ZoneMomentum") {
+		if (GathererAbilityManager.Instance.GetEquippedPassiveName() != "ZoneMomentum") {
 			movementData.acceleration = originalAcc;
 			maxSpeed_Adjusted = movementData.maxSpeed;
 		}

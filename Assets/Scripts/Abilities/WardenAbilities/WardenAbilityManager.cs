@@ -27,11 +27,24 @@ public class WardenAbilityManager : MonoBehaviour
     //amount of times you kill an enemy for energy
     public float siphonTimes;
     //checks if waterlogging is active
-    public bool waterLog = false;
+    public float waterDuration;
+    public float waterSpeed;
 
     public static WardenAbilityManager Instance { get; private set; }
     public static Controls Controls {get => Instance.controls;}
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
+
+    //Public functions to get names of abilities in case its relevant
+    //For certain abilities
+    public string GetEquippedActiveName()
+    {
+        return equipedAbilityName.ToString();
+    }
+
+    public string GetEquippedPassiveName()
+    {
+        return passiveAbilityName.ToString();
+    }
     void Awake() 
     { 
         InitSingleton();
@@ -155,6 +168,11 @@ public class WardenAbilityManager : MonoBehaviour
                 case "SiphonEnergy":
                     passiveAbility = SiphonEnergy.Instance;
                     passiveAbilityName = Passive.SoulSiphon;
+                    print("swap to: " + abilityID);
+                    break;
+                case "BoggyBullets": //Waterlogging script
+                    passiveAbility = WaterLogging.Instance; //Script was called WaterLogging, as it was made before the name change
+                    passiveAbilityName = Passive.BoggyBullets;
                     print("swap to: " + abilityID);
                     break;
                 default:
