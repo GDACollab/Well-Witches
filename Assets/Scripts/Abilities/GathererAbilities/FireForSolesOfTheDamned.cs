@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FireForSolesOfTheDamned : MonoBehaviour
@@ -37,7 +36,7 @@ public class FireForSolesOfTheDamned : MonoBehaviour
     {
         GameObject hit = collision.gameObject;
         if (hit.layer == 6) {
-            StartCoroutine(dealDamage(hit.GetComponent<BaseEnemyClass>()));
+            StartCoroutine(DealDamage(hit.GetComponent<BaseEnemyClass>()));
         }
     }
     //stops coroutine when monster leaves flames.
@@ -46,12 +45,12 @@ public class FireForSolesOfTheDamned : MonoBehaviour
         GameObject hit = collision.gameObject;
         if (hit.layer == 6)
         {
-            StopCoroutine(dealDamage(hit.GetComponent<BaseEnemyClass>()));
+            StopCoroutine(DealDamage(hit.GetComponent<BaseEnemyClass>()));
         }
     }
 
     //deals damage to enemy
-    IEnumerator dealDamage(BaseEnemyClass enemy) {
+    IEnumerator DealDamage(BaseEnemyClass enemy) {
         Debug.Log("taken damage");
         enemy.TakeDamage(damage);
         yield return new WaitForSeconds(timeInBetweenTicks);
