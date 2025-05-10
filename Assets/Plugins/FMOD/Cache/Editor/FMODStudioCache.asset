@@ -42,10 +42,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638824883095037755
+  lastModified: 638824890299790173
   FileSizes:
   - Name: Desktop
-    Value: 334400
+    Value: 353408
   Exists: 1
 --- !u!114 &-6791792283865248198
 MonoBehaviour:
@@ -298,7 +298,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638824815572938864
+  lastModified: 638824890299104261
   FileSizes:
   - Name: Desktop
     Value: 6849664
@@ -372,10 +372,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638824883094496919
+  lastModified: 638824890299159562
   FileSizes:
   - Name: Desktop
-    Value: 1918
+    Value: 1970
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -418,12 +418,13 @@ MonoBehaviour:
   - {fileID: -6120182827798186609}
   - {fileID: 2674811856414105439}
   - {fileID: 4940274877757686286}
+  - {fileID: 8780735350202498826}
   EditorParameters: []
   MasterBanks:
   - {fileID: 6504835935913131893}
   StringsBanks:
   - {fileID: -134346031005777530}
-  cacheTime: 638824883095037755
+  cacheTime: 638824890299790173
   cacheVersion: 131846
 --- !u!114 &340979720622404573
 MonoBehaviour:
@@ -683,7 +684,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638824883094481891
+  lastModified: 638824890299144522
   FileSizes:
   - Name: Desktop
     Value: 1074
@@ -742,3 +743,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &8780735350202498826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Boss Phase 1 Attack 1
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Boss Phase 1 Attack 1
+  Guid:
+    Data1: -1942135787
+    Data2: 1119606534
+    Data3: -1535720790
+    Data4: -2010197340
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1567

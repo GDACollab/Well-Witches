@@ -16,7 +16,7 @@ public class Gatherer_Health : PlayerHealth
 		float newHealth = statsManager.GathererCurrentHealth - damage;
 
 		if (newHealth > 0) statsManager.GathererCurrentHealth = newHealth;
-		else
+		else if (newHealth <= 0 && statsManager.GathererCurrentHealth != 0)
 		{
 			statsManager.GathererCurrentHealth = 0;
 			Die();
