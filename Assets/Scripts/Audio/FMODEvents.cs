@@ -15,6 +15,9 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference abilityReady { get; private set; }
     [field: SerializeField] public EventReference vampireTalk { get; private set; }
     [field: SerializeField] public EventReference dullahanTalk { get; private set; }
+    [field: SerializeField] public EventReference bubbleActivate { get; private set; }
+    [field: SerializeField] public EventReference bubbleDeactivate { get; private set; }
+    [field: SerializeField] public EventReference bubbleDeflect { get; private set; }
 
     [field: Header("BGM")]
     [field: SerializeField] public EventReference lobbyBGM { get; private set; }

@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8080849515173416135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Bubble Sheild Activate
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Bubble Sheild Activate
+  Guid:
+    Data1: 1865256081
+    Data2: 1272920007
+    Data3: 1774339472
+    Data4: -834225387
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3286
 --- !u!114 &-7396572930722113715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,11 +42,38 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638796603533180607
+  lastModified: 638824821672431004
   FileSizes:
   - Name: Desktop
-    Value: 127968
+    Value: 174688
   Exists: 1
+--- !u!114 &-6679924735209201001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Bubble Sheild Deactivate
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Bubble Sheild Deactivate
+  Guid:
+    Data1: 276157048
+    Data2: 1300287701
+    Data3: 466402734
+    Data4: -1848293518
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 156
 --- !u!114 &-5314029719513498490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +116,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/TEST_BANK.bank
   Name: TEST_BANK
   StudioPath: bank:/TEST_BANK
-  lastModified: 638796603533195659
+  lastModified: 638824815574308011
   FileSizes:
   - Name: Desktop
     Value: 22272
@@ -190,7 +244,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638796603533118973
+  lastModified: 638824815572938864
   FileSizes:
   - Name: Desktop
     Value: 6849664
@@ -264,10 +318,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638796603533148977
+  lastModified: 638824821672003953
   FileSizes:
   - Name: Desktop
-    Value: 1444
+    Value: 1608
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -301,13 +355,43 @@ MonoBehaviour:
   - {fileID: -4414053934114797484}
   - {fileID: 4821367923675588727}
   - {fileID: -3460935904466853576}
+  - {fileID: -8080849515173416135}
+  - {fileID: -6679924735209201001}
+  - {fileID: 1704057231818120922}
   EditorParameters: []
   MasterBanks:
   - {fileID: 6504835935913131893}
   StringsBanks:
   - {fileID: -134346031005777530}
-  cacheTime: 638796603533195659
+  cacheTime: 638824821672431004
   cacheVersion: 131846
+--- !u!114 &1704057231818120922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Bubble Sheild Deflect
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Bubble Sheild Deflect
+  Guid:
+    Data1: 1241174713
+    Data2: 1123694533
+    Data3: 583750581
+    Data4: -1292184607
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 156
 --- !u!114 &1801688853461794212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,7 +515,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638796603533138966
+  lastModified: 638824821671993981
   FileSizes:
   - Name: Desktop
     Value: 1074

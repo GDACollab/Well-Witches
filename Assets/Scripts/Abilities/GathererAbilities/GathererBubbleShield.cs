@@ -43,6 +43,7 @@ public class GathererBubbleShield : GathererBaseAbilities
         if (canUse)
         {
             BubbleShield shield = Instantiate(bubbleShieldPrefab, spawnPoint).GetComponent<BubbleShield>();
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bubbleActivate, this.transform.position);
             shield.Activate(duration);
             canUse = false;
         }
