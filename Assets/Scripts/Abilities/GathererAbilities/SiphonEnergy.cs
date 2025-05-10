@@ -10,7 +10,7 @@ public class SiphonEnergy : PassiveAbilities
     public override string abilityName => "SiphonEnergy";
     public static SiphonEnergy Instance { get; private set; }
 
-    public GameObject VFXPrefab;
+    //public GameObject VFXPrefab;
 
     //helps keep code clean
     private WardenAbilityManager abilityManager = WardenAbilityManager.Instance;
