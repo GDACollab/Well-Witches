@@ -18,6 +18,7 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference bubbleActivate { get; private set; }
     [field: SerializeField] public EventReference bubbleDeactivate { get; private set; }
     [field: SerializeField] public EventReference bubbleDeflect { get; private set; }
+    [field: SerializeField] public EventReference flamingPumpkinYank { get; private set; }
 
     [field: Header("BGM")]
     [field: SerializeField] public EventReference lobbyBGM { get; private set; }

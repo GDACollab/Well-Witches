@@ -42,10 +42,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638824821672431004
+  lastModified: 638824835528147797
   FileSizes:
   - Name: Desktop
-    Value: 174688
+    Value: 179648
   Exists: 1
 --- !u!114 &-6679924735209201001
 MonoBehaviour:
@@ -318,10 +318,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638824821672003953
+  lastModified: 638824835527639062
   FileSizes:
   - Name: Desktop
-    Value: 1608
+    Value: 1668
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -358,13 +358,41 @@ MonoBehaviour:
   - {fileID: -8080849515173416135}
   - {fileID: -6679924735209201001}
   - {fileID: 1704057231818120922}
+  - {fileID: 340979720622404573}
   EditorParameters: []
   MasterBanks:
   - {fileID: 6504835935913131893}
   StringsBanks:
   - {fileID: -134346031005777530}
-  cacheTime: 638824821672431004
+  cacheTime: 638824835528147797
   cacheVersion: 131846
+--- !u!114 &340979720622404573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Flaming Pumpkin Yank
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Flaming Pumpkin Yank
+  Guid:
+    Data1: -362186082
+    Data2: 1147113462
+    Data3: -1528947822
+    Data4: 1882521148
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 313
 --- !u!114 &1704057231818120922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,7 +543,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638824821671993981
+  lastModified: 638824835527628838
   FileSizes:
   - Name: Desktop
     Value: 1074
