@@ -74,7 +74,11 @@ public class WardenAbilityManager : MonoBehaviour
             equipedAbility = WardenDevastationBeam.Instance;
             equipedAbilityName = Active.DevastationBeam;
         }
-        //EquipPassive("SiphonEnergy");
+        if (passiveAbility == null)
+        {
+            passiveAbility = null;
+            passiveAbilityName = Passive.None;
+        }
     }
     void OnActivateAbility(InputAction.CallbackContext context)
     {

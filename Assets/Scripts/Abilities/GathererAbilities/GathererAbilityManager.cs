@@ -15,7 +15,7 @@ public class GathererAbilityManager : MonoBehaviour
     {
         None,
         AloeVera,
-        HellfireBootie,
+        HellfireBooties,
         Espresso
     }
 
@@ -68,11 +68,11 @@ public class GathererAbilityManager : MonoBehaviour
             equipedAbility = Gatherer_FlashStun.Instance;
             equipedAbilityName = Active.SolarFlare;
         }
-        //if (passiveAbility == null)
-        //{
-        //    passiveAbility = HealForcePassive.Instance;
-        //    passiveAbilityName = Passive.AloeVera;
-        //}
+        if (passiveAbility == null)
+        {
+            passiveAbility = null;
+            passiveAbilityName = Passive.None;
+        }
     }
     void OnActivateAbility(InputAction.CallbackContext context)
     {
@@ -122,8 +122,8 @@ public class GathererAbilityManager : MonoBehaviour
             case Passive.AloeVera:
                 passiveAbility = HealForcePassive.Instance;
                 break;
-            case Passive.HellfireBootie:
-                passiveAbility = SolesOfTheDamned.Instance;
+            case Passive.HellfireBooties:
+                passiveAbility = GathererHellfire.Instance;
                 break;
             case Passive.Espresso:
                 passiveAbility = ZoneMomentum.Instance;
@@ -176,8 +176,8 @@ public class GathererAbilityManager : MonoBehaviour
                     print("swap to: " + abilityID);
                     break;
                 case "SolesOfTheDamned":
-                    passiveAbility = SolesOfTheDamned.Instance;
-                    passiveAbilityName = Passive.HellfireBootie;
+                    passiveAbility = GathererHellfire.Instance;
+                    passiveAbilityName = Passive.HellfireBooties;
                     print("swap to: " + abilityID);
                     break;
                 // this name is probably wrong but idk how to check the name
