@@ -42,10 +42,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638824890299790173
+  lastModified: 638824896285452535
   FileSizes:
   - Name: Desktop
-    Value: 353408
+    Value: 355872
   Exists: 1
 --- !u!114 &-6791792283865248198
 MonoBehaviour:
@@ -372,10 +372,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638824890299159562
+  lastModified: 638824896285003725
   FileSizes:
   - Name: Desktop
-    Value: 1970
+    Value: 2012
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -419,12 +419,13 @@ MonoBehaviour:
   - {fileID: 2674811856414105439}
   - {fileID: 4940274877757686286}
   - {fileID: 8780735350202498826}
+  - {fileID: 2076235794714511685}
   EditorParameters: []
   MasterBanks:
   - {fileID: 6504835935913131893}
   StringsBanks:
   - {fileID: -134346031005777530}
-  cacheTime: 638824890299790173
+  cacheTime: 638824896285452535
   cacheVersion: 131846
 --- !u!114 &340979720622404573
 MonoBehaviour:
@@ -534,6 +535,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 138352
+--- !u!114 &2076235794714511685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Item PickUp
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Item PickUp
+  Guid:
+    Data1: 998923154
+    Data2: 1224231440
+    Data3: -1264549497
+    Data4: 650290688
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 125
 --- !u!114 &2277774317637409470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -684,7 +712,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638824890299144522
+  lastModified: 638824896284993461
   FileSizes:
   - Name: Desktop
     Value: 1074
