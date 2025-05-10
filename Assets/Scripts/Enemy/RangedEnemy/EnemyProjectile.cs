@@ -59,9 +59,7 @@ public class EnemyProjectile : MonoBehaviour
 			AOEPrefab.transform.localScale = Vector3.one * _AOESize;
 			rb.velocity = Vector3.zero;
 
-			//Debug.Log(collision.gameObject.name);
-			// TODO: DEAL DAMAGE TO PLAYER
-			// - Producer (ben) added some temp checks and calls to StatsManager to do damage here
+
 			switch (collision.gameObject.name)
 			{
                 case "Warden":
