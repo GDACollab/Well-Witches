@@ -1,32 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8080849515173416135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Bubble Sheild Activate
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Bubble Sheild Activate
-  Guid:
-    Data1: 1865256081
-    Data2: 1272920007
-    Data3: 1774339472
-    Data4: -834225387
-  Banks:
-  - {fileID: -7396572930722113715}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3286
 --- !u!114 &-7893212100119248651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,10 +42,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638824878319982195
+  lastModified: 638824883095037755
   FileSizes:
   - Name: Desktop
-    Value: 327040
+    Value: 334400
   Exists: 1
 --- !u!114 &-6791792283865248198
 MonoBehaviour:
@@ -101,7 +74,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4000
---- !u!114 &-6679924735209201001
+--- !u!114 &-6120182827798186609
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,9 +84,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Bubble Sheild Deactivate
+  m_Name: event:/SFX/Bubble Shield Deactivate
   m_EditorClassIdentifier: 
-  Path: event:/SFX/Bubble Sheild Deactivate
+  Path: event:/SFX/Bubble Shield Deactivate
   Guid:
     Data1: 276157048
     Data2: 1300287701
@@ -399,10 +372,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638824878319446576
+  lastModified: 638824883094496919
   FileSizes:
   - Name: Desktop
-    Value: 1856
+    Value: 1918
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -436,20 +409,21 @@ MonoBehaviour:
   - {fileID: -4414053934114797484}
   - {fileID: 4821367923675588727}
   - {fileID: -3460935904466853576}
-  - {fileID: -8080849515173416135}
-  - {fileID: -6679924735209201001}
-  - {fileID: 1704057231818120922}
   - {fileID: 340979720622404573}
   - {fileID: -6791792283865248198}
   - {fileID: -7893212100119248651}
   - {fileID: -4740162215739381930}
   - {fileID: 5601257573116720907}
+  - {fileID: 1118003796294227531}
+  - {fileID: -6120182827798186609}
+  - {fileID: 2674811856414105439}
+  - {fileID: 4940274877757686286}
   EditorParameters: []
   MasterBanks:
   - {fileID: 6504835935913131893}
   StringsBanks:
   - {fileID: -134346031005777530}
-  cacheTime: 638824878319982195
+  cacheTime: 638824883095037755
   cacheVersion: 131846
 --- !u!114 &340979720622404573
 MonoBehaviour:
@@ -478,7 +452,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 313
---- !u!114 &1704057231818120922
+--- !u!114 &1118003796294227531
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -488,14 +462,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Bubble Sheild Deflect
+  m_Name: event:/SFX/Bruiser Attack Swipe
   m_EditorClassIdentifier: 
-  Path: event:/SFX/Bubble Sheild Deflect
+  Path: event:/SFX/Bruiser Attack Swipe
   Guid:
-    Data1: 1241174713
-    Data2: 1123694533
-    Data3: 583750581
-    Data4: -1292184607
+    Data1: -1875484817
+    Data2: 1102428442
+    Data3: 321158330
+    Data4: -1052513820
   Banks:
   - {fileID: -7396572930722113715}
   IsStream: 0
@@ -504,7 +478,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 156
+  Length: 532
 --- !u!114 &1801688853461794212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,6 +560,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &2674811856414105439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Bubble Shield Activate
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Bubble Shield Activate
+  Guid:
+    Data1: 1865256081
+    Data2: 1272920007
+    Data3: 1774339472
+    Data4: -834225387
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3286
 --- !u!114 &4821367923675588727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,6 +614,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &4940274877757686286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Bubble Shield Deflect
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Bubble Shield Deflect
+  Guid:
+    Data1: 1241174713
+    Data2: 1123694533
+    Data3: 583750581
+    Data4: -1292184607
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 156
 --- !u!114 &5601257573116720907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,7 +683,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638824878319426505
+  lastModified: 638824883094481891
   FileSizes:
   - Name: Desktop
     Value: 1074
