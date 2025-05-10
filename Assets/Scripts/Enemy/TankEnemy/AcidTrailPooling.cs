@@ -19,13 +19,13 @@ public class AcidTrailPooling : MonoBehaviour
         GameObject tmp;
         for (int i = 0; i < amountToPool; i++)
         {
-            tmp = Instantiate(acidPoolPrefab);
+            tmp = Instantiate(acidPoolPrefab, gameObject.transform);
             tmp.SetActive(false);
             pooledObjects.Add(tmp);
         }
     }
 
-    public GameObject GetProjectileObject()
+    public GameObject GetAcidPoolObject()
     {
         for (int i = 0; i < amountToPool; i++)
         {

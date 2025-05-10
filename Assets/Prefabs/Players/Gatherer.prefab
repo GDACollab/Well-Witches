@@ -341,6 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementData: {fileID: 11400000, guid: f3ee9fd79406baf49867f478438dc2a9, type: 2}
   maxSpeed_Adjusted: 0
+  canMove: 1
 --- !u!114 &2686973554895526223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,6 +355,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionRadius: {fileID: 2982385783056123225}
+  myMovement: {fileID: 8323796786317442292}
+  timeSpent: 0
+  timer: 1
 --- !u!114 &871047896541522312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,10 +389,15 @@ MonoBehaviour:
   chargeDuration: 5
   radius: 16
   stunDuration: 5
-  <cooldownDuration>k__BackingField: 90
+  <cooldownDuration>k__BackingField: 1
   collisionLayersToCheck:
     serializedVersion: 2
     m_Bits: 64
+  startingVelocity: 12
+  flashDuration: 5
+  lifetime: 1.5
+  spawnPoint: {fileID: 8015346194276888610}
+  prefab: {fileID: 7647635600700927087, guid: 5e7e0a98f738d8a48aa6894e00ba005d, type: 3}
 --- !u!114 &346488403322498464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,6 +438,10 @@ MonoBehaviour:
   temp: 0
   healthgate: 3
   cooldownTime: 5
+  VFX: {fileID: 2183614274105536910, guid: 94b6e7433a5034b488fc3598012c6e07, type: 3}
+  delay: 1.5
+  wardenTransform: {fileID: 7347747762842868080, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+  gathererTransform: {fileID: 0}
 --- !u!114 &6479075504277769317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,13 +467,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41e7f9f438ab61845b5881f1eb56232a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 10
-  damage: 20
-  flamesPerSecond: 5
+  duration: 3
+  damage: 5
+  flamesSpawnedPerSecond: 5
+  flameTicksPerSecond: 1
   startAbility: 0
   fire: {fileID: 6194044856683223204, guid: 9ab1ab0254f60cd48bc873a50962bbcf, type: 3}
-  resetTimer: 0
-  currentTimer: 0
 --- !u!1 &6319885882415222397
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,7 +579,7 @@ Transform:
   m_GameObject: {fileID: 6748006634615963770}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.725, z: 0}
+  m_LocalPosition: {x: 0, y: 0.394, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -624,7 +636,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!1001 &8760523141567335030
 PrefabInstance:
   m_ObjectHideFlags: 0

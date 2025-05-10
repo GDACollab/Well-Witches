@@ -4,9 +4,15 @@ using UnityEngine.InputSystem;
 
 public class Warden_Health : PlayerHealth
 {
+	
+	public bool gourdForgeInvulnerability = false;
 	protected override void TakeDamage(float damage, string player)
 	{
 		if (player.ToLower() != "warden") return;
+
+		if (gourdForgeInvulnerability == true) {
+			return;
+		}
 
 		float newHealth = statsManager.WardenCurrentHealth - damage;
 
@@ -24,7 +30,9 @@ public class Warden_Health : PlayerHealth
 	{
 		//send out signal
 		EventManager.instance.playerEvents.PlayerDeath();
-		GameObject.FindGameObjectsWithTag("Player").First(x => x.name == "Warden").GetComponent<PlayerInput>().enabled = false;
+		WardenAbilityManager.Controls.Gameplay_Warden.Disable();
 		return;
 	}
+
+
 }

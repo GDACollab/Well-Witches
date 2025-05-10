@@ -20,7 +20,7 @@ public class ProjectilePooling : MonoBehaviour
         GameObject tmp;
         for (int i = 0; i < amountToPool; i++)
         {
-            tmp = Instantiate(projectilePrefab);
+            tmp = Instantiate(projectilePrefab, gameObject.transform);
             tmp.SetActive(false);
             pooledObjects.Add(tmp);
         }
