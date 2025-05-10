@@ -30,7 +30,7 @@ public class Gatherer_PullWarden : MonoBehaviour
 
 		Vector2 direction = (Vector2)(transform.position - warden.transform.position);
 		float ratio = direction.magnitude / ropeRadius.radius;
-		float force = Mathf.Lerp(0f, maxPullForce, ratio);  // pull harder the further Warden is from Gatherer
+		float force = Mathf.Lerp(0f, StatsManager.Instance.getYank(), ratio);  // pull harder the further Warden is from Gatherer
 
 		rb_Warden.AddForce(direction * force, ForceMode2D.Impulse);
 

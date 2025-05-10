@@ -44,7 +44,7 @@ public class StatsManager : MonoBehaviour
 
     public float keyItemChance = 0.05f; //Odds of a bush giving a key item. Increased from bush script
     public float HarvestTime = 1; //How many seconds it takes to harvest a bush
-    public float YankStrength = 1; //How strong your yanking ability is
+    public float YankStrength = 22.5f; //How strong your yanking ability is
 
 
     [Header("---------------Gatherer Combat stats---------------")]
@@ -179,7 +179,8 @@ public class StatsManager : MonoBehaviour
     public float getYank()
     {
         float myMult = (myBuffs.Contains("YankUp") ? YankBuffStrength : 1) * (myBuffs.Contains("YankDown") ? YankCurseStrength : 1);
-        return MaxSpeed * myMult;
+        Debug.Log("Yanking at a rate of" + (float)(YankStrength * myMult) + " via x" + myMult);
+        return YankStrength * myMult;
     }
 
     //NOT CURRENTLY USED
@@ -197,9 +198,7 @@ public class StatsManager : MonoBehaviour
 
     public float getHarvestTime()
     {
-        Debug.Log(HarvestBuffStrength);
         float myMult = (myBuffs.Contains("HarvestUp") ? HarvestBuffStrength : 1) * (myBuffs.Contains("HarvestDown") ? HarvestCurseStrength : 1);
-        Debug.Log("BUSH SHOULD TAKE " + (float)(HarvestTime * myMult) + " TO HARVEST! " + myMult);
         return HarvestTime * myMult;
     }
 
