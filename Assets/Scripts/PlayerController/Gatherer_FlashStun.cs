@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
+using System.Collections;
 
 public class Gatherer_FlashStun : GathererBaseAbilities
 {
@@ -96,8 +97,15 @@ public class Gatherer_FlashStun : GathererBaseAbilities
         {
             FlashStun flashStun = Instantiate(prefab, spawnPoint.position, Quaternion.identity).GetComponent<FlashStun>();
             flashStun.Initialize(startingVelocity, flashDuration, lifetime);
-            ExecuteAbility();
-            cooldownCounter = cooldownDuration;
+            // Debug.Log("launching firework");
+            StartCoroutine(waitOutFireWork());
         }
+    }
+
+    IEnumerator waitOutFireWork()
+    {
+        yield return new WaitForSeconds(lifetime);
+        ExecuteAbility();
+        cooldownCounter = cooldownDuration;
     }
 }
