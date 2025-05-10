@@ -1,28 +1,8 @@
-using UnityEngine;
-
 public class Gatherer_Health : PlayerHealth
 {
 	protected override void TakeDamage(float damage, string player)
 	{
 		if (player.ToLower() != "gatherer") return;
-
-		/** Bubble Shield Damage Prevention
-		* Since projectiles are hard coded to check for bubble shield and bounce off,
-		* any damage gatherer takes should be the result of melee damage.
-		* When the shield hit the shield should break but no damage should be done.
-		*/
-		BubbleShield shield = GetComponent<BubbleShield>();
-		if (!shield)
-		{
-			Debug.LogError("Can't access Gatherer's Bubble Shield component!");
-		}
-		else if (shield.isShieldActive)
-		{
-			// Break shield
-			shield.DeactivateShield();
-			// Prevent damage
-			return;
-		}
 
 		float newHealth = statsManager.GathererCurrentHealth - damage;
 

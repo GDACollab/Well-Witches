@@ -18,13 +18,6 @@ public class Warden_Movement : PlayerMovement
 	[SerializeField] CircleCollider2D gathererRopeRadius;
     private EventInstance playerFootsteps;
 
-    [Header("Stuck Detection")]
-    [SerializeField] private float stuckDistanceAdded = 1.5f;
-    [SerializeField] private float timeUntilStuck = 5f;
-    [SerializeField] private Collider2D wardenCollider;
-
-    private float stuckTime = 0f;
-
     void OnValidate()
 	{
 		joint.frequency = ropeStiffness;
@@ -65,25 +58,6 @@ public class Warden_Movement : PlayerMovement
 		ropeLR.SetPosition(1, gatherer.transform.position);
 
 		UpdateSound();
-
-		// Disable's warden collision if stuck behind something
-		if (Vector3.Distance(gatherer.transform.position, transform.position) > gathererRopeRadius.radius + stuckDistanceAdded)
-		{
-			stuckTime += Time.deltaTime;
-			if (stuckTime > timeUntilStuck)
-			{
-				wardenCollider.enabled = false;
-			}
-			else
-			{
-                wardenCollider.enabled = true;
-            }
-        }
-		else
-		{
-			stuckTime = 0f;
-            wardenCollider.enabled = true;
-        }
     }
 
 	public void enableRope()
