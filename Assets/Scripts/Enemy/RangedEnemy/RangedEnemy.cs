@@ -45,9 +45,11 @@ public class RangedEnemy : BaseEnemyClass
     [SerializeField] private GameObject[] players;
     public Transform currentTarget;
 
+    private Rigidbody2D rb2d;
 
     private void Start()
     {
+        rb2d = GetComponent<Rigidbody2D>();
         players = GameObject.FindGameObjectsWithTag("Player");
     }
 

@@ -18,7 +18,6 @@ GameObject:
   - component: {fileID: 1094066913076372462}
   - component: {fileID: 7223512689665479965}
   - component: {fileID: -3072643784058802820}
-  - component: {fileID: -6817126600266020155}
   m_Layer: 6
   m_Name: TankEnemy
   m_TagString: Enemy
@@ -179,19 +178,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 35
   moveSpeed: 2
-  range: 1.4
-  agent: {fileID: -6817126600266020155}
-  rb: {fileID: 4592253895432761633}
-  timeBetweenAttack: 3
-  bashStrength: 5
-  bashTime: 2
-  bashDamage: 1
+  range: 1
+  AttackRate: 3
+  damage: 5
   spawnRate: 1
   acidSize: 1.24
   acidLifetime: 2.77
   acidOffsetX: 0
   acidOffsetY: 0
-  acidDamage: 0
   distanceToPlayer1: 0
   distanceToPlayer2: 0
   distanceToTarget: 0
@@ -248,7 +242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAttacking: 0
-  attackTime: 0
 --- !u!114 &-3072643784058802820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,25 +254,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9744f35fdf6edd341bd720bb3bd26df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!195 &-6817126600266020155
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6262689151968294506}
-  m_Enabled: 1
-  m_AgentTypeID: -334000983
-  m_Radius: 0.59
-  m_Speed: 0
-  m_Acceleration: 8
-  avoidancePriority: 49
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1.28
-  m_BaseOffset: 0.64
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4

@@ -76,7 +76,8 @@ public class AbilitySelectManager : MonoBehaviour
             {
                 selected = selectedPassiveAbilityWarden;
                 selectedPassiveAbilityWarden = selectAbilityDoStuff(selected, warden, active, id);
-                wardenAbilityManager.EquipPassive(abilitiesList[selectedPassiveAbilityWarden].getAbilityID());
+                // TODO: dont uncomment if wardenAbilityManager.EquipPassive() is not created yet
+                // wardenAbilityManager.EquipPassive(abilitiesList[selectedPassiveAbilityWarden].getAbilityID());
             }
         }
         else

@@ -10,13 +10,12 @@ public class SolesOfTheDamned : PassiveAbilities
     [SerializeField]
     public float duration;
     public float damage;
-    public float flamesSpawnedPerSecond;
-    public float flameTicksPerSecond;
+    public float flamesPerSecond;
     public bool startAbility = false;
     public GameObject fire;
 
-    private float resetTimer;
-    private float currentTimer;
+    public float resetTimer;
+    public float currentTimer;
     public static SolesOfTheDamned Instance { get; private set; }
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
 
@@ -27,7 +26,7 @@ public class SolesOfTheDamned : PassiveAbilities
     //resetTimer is set so it creates n flames per second
     void Start()
     {
-        resetTimer = 1f/flamesSpawnedPerSecond;
+        resetTimer = 1f/flamesPerSecond;
         currentTimer = resetTimer;
         //Instantiate(fire, transform.position, Quaternion.identity, transform);
     }

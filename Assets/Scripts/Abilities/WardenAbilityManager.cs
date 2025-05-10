@@ -1,30 +1,17 @@
-using Unity.VisualScripting;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 using UnityEngine.SceneManagement;
 
 public class WardenAbilityManager : MonoBehaviour
 {
-    private enum Abilities
-    {
-        DevastationBeam,
-        GourdForge,
-        SpellBurst,
-    }
-
     public WardenBaseAbilities equipedAbility;
-    [SerializeField] Abilities equipedAbilityName;
-    public PassiveAbilities passiveAbility;
-    [SerializeField] public string passiveAbilityName;
+    [SerializeField] string equipedAbilityName;
     [SerializeField] private Controls controls;
 
-    //amount of times you kill an enemy for energy
-    public float siphonTimes;
-    //checks if waterlogging is active
-    public bool waterLog = false;
-
     public static WardenAbilityManager Instance { get; private set; }
-    public static Controls Controls {get => Instance.controls;}
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
     void Awake() 
     { 
@@ -49,12 +36,10 @@ public class WardenAbilityManager : MonoBehaviour
 
     private void Start()
     {
-        if (equipedAbility == null || equipedAbility == null)
-        {
-            equipedAbility = WardenDevastationBeam.Instance;
-            equipedAbilityName = Abilities.DevastationBeam;
-        }
-        EquipPassive("SiphonEnergy");
+        equipedAbility = WardenDevastationBeam.Instance;
+        equipedAbilityName = equipedAbility.abilityName;
+        print("Ability is of type: " + equipedAbilityName);
+        //print("equip");
     }
     void OnActivateAbility(InputAction.CallbackContext context)
     {
@@ -65,47 +50,27 @@ public class WardenAbilityManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (passiveAbility != null)
-        {
-            passiveAbility.passiveUpdate();
-        }
-    }
-
     private void ChangedActiveScene(Scene current, Scene next)
     {
-        switch (equipedAbilityName)
+        if (equipedAbilityName != null)
         {
-            case Abilities.DevastationBeam:
-                equipedAbility = WardenDevastationBeam.Instance;
-                break;
-            case Abilities.GourdForge:
-                equipedAbility = WardenGourdForge.Instance;
-                break;
-            case Abilities.SpellBurst:
-                equipedAbility = WardenSpellBurst.Instance;
-                break;
-            default:
-                print("failed to swap to: " + equipedAbilityName);
-                break;
-        }        
-        
-        if (passiveAbilityName != null)
-        {
-            switch (passiveAbilityName)
+            switch (equipedAbilityName)
             {
-                case "DeathDefy":
-                    passiveAbility = AbilityDeathDefy.Instance;
+                case "DevastationBeam":
+                    equipedAbility = WardenDevastationBeam.Instance;
                     break;
-                case "SiphonEnergy":
-                    passiveAbility = SiphonEnergy.Instance;
+                case "SpellBurst":
+                    equipedAbility = WardenSpellBurst.Instance;
+                    break;
+                case "GourdForge":
+                    equipedAbility = WardenGourdForge.Instance;
                     break;
                 default:
-                    print("failed to swap to: " + passiveAbilityName);
+                    print("failed to swap to: " + equipedAbilityName);
                     break;
             }
         }
+        
     }
 
     public void EquipActive(string abilityID)
@@ -116,15 +81,15 @@ public class WardenAbilityManager : MonoBehaviour
             {
                 case "DevastationBeam":
                     equipedAbility = WardenDevastationBeam.Instance;
-                    equipedAbilityName = Abilities.DevastationBeam;
-                    break;
-                case "GourdForge":
-                    equipedAbility = WardenGourdForge.Instance;
-                    equipedAbilityName = Abilities.GourdForge;
+                    equipedAbilityName = abilityID;
                     break;
                 case "SpellBurst":
                     equipedAbility = WardenSpellBurst.Instance;
-                    equipedAbilityName = Abilities.SpellBurst;
+                    equipedAbilityName = abilityID;
+                    break;
+                case "GourdForge":
+                    equipedAbility = WardenGourdForge.Instance;
+                    equipedAbilityName = abilityID;
                     break;
                 default:
                     print("failed to swap to: " + abilityID);
@@ -136,27 +101,8 @@ public class WardenAbilityManager : MonoBehaviour
             print("Failed to equip ability: Null ability");
         }
     }
-
-    public void EquipPassive(string abilityID)
-    {
-        if (abilityID != null)
-        {
-            switch (abilityID)
-            {
-                case "DeathDefy":
-                    passiveAbility = AbilityDeathDefy.Instance;
-                    passiveAbilityName = abilityID;
-                    print("swap to: " + abilityID);
-                    break;
-                case "SiphonEnergy":
-                    passiveAbility = SiphonEnergy.Instance;
-                    passiveAbilityName = abilityID;
-                    print("swap to: " + abilityID);
-                    break;
-                default:
-                    print("failed to swap to: " + abilityID);
-                    break;
-            }
-        }
-    }
+    //public void EquipActive(string abilityID)
+    //{
+        // the same as above, just for passives (look at gatherer manager)
+    //}
 }

@@ -51,12 +51,12 @@ public class AggroState : State
             meleeEnemy.TargetGathererPlayer();
             meleeEnemy.AggroMove();
         }
-        else if (rangedEnemy != null && agent.enabled == true)
+        else if (rangedEnemy != null)
         {
             rangedEnemy.TargetClosestPlayer();
             rangedEnemy.MoveRanged();
         }
-        else if (tankEnemy != null && agent.enabled == true)
+        else if (tankEnemy != null)
         {
             tankEnemy.Pursue();
             tankEnemy.SpawnPool();

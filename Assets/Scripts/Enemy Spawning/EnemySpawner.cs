@@ -19,9 +19,6 @@ public class EnemySpawner : MonoBehaviour
     [Tooltip("Miniumm coordinate an enemy can spawn.")]
     [SerializeField] private Vector2 minSpawnCoord;
 
-    public int maxEnemyCount;
-    public static int currentEnemyCount;
-
     [Header("Debug")]
     public float singleTimer;
     public float formationTimer;
@@ -40,13 +37,13 @@ public class EnemySpawner : MonoBehaviour
         singleTimer += Time.deltaTime;
         formationTimer += Time.deltaTime;
 
-        if (singleTimer >= singleSpawnTime && currentEnemyCount < maxEnemyCount)
+        if (singleTimer >= singleSpawnTime)
         {
             SpawnSingle();
             singleTimer = 0f;
         }
 
-        if (formationTimer >= formationSpawnTime && (currentEnemyCount + 5) <= maxEnemyCount)
+        if (formationTimer >= formationSpawnTime)
         {
             SpawnFormation();
             formationTimer = 0f;
@@ -60,7 +57,6 @@ public class EnemySpawner : MonoBehaviour
 
         // spawn random enemy from list
         enemies[Random.Range(0, enemies.Count)].Spawn(spawnPosition);
-        currentEnemyCount++;
     }
 
 
@@ -77,7 +73,7 @@ public class EnemySpawner : MonoBehaviour
         foreach (var creatureInfo in formation.creaturesInFormation)
         {
             Vector3 spawnLocation = spawnPosition + creatureInfo.relativePosition;
-            currentEnemyCount++;
+
             enemy.Spawn(spawnLocation);
         }
     }

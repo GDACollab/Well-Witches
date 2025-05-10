@@ -18,7 +18,6 @@ GameObject:
   - component: {fileID: -8795496448747402198}
   - component: {fileID: 1617731613382952628}
   - component: {fileID: -7702012812884302270}
-  - component: {fileID: 394531480031503680}
   m_Layer: 6
   m_Name: RangedEnemy
   m_TagString: Enemy
@@ -178,14 +177,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 15
-  moveSpeed: 8
-  range: 4
-  agent: {fileID: 394531480031503680}
-  rb: {fileID: 6673968106200130034}
-  timeBetweenAttack: 2
+  moveSpeed: 12
+  range: 5
+  PrototypeAdvancedMovement: 1
+  fireRate: 1
   projectileCount: 3
   projectileSpread: 10
-  projectileSpeed: 8
+  projectileSpeed: 4
   projectileSize: 0.5
   projectileLifetime: 2
   projectileDamage: 1
@@ -251,7 +249,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAttacking: 0
-  attackTime: 0
 --- !u!114 &-7702012812884302270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,25 +261,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe660fd068c3264fa20861b37ee39d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!195 &394531480031503680
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8877866808826064330}
-  m_Enabled: 0
-  m_AgentTypeID: -1372625422
-  m_Radius: 0.68
-  m_Speed: 0
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 1
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1.25
-  m_BaseOffset: 0.64
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4

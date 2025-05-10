@@ -1,8 +1,5 @@
-using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class DevastationBeam : MonoBehaviour
@@ -18,17 +15,11 @@ public class DevastationBeam : MonoBehaviour
     private Camera mainCam;
     private Vector3 mousePosition;
 
-	public float shakeAmplitdue;
-	public float shakeFrequency;
     public GameObject spellCircle;
     public GameObject laserBeam;
+    //public CameraShake cameraShake;
     public GameObject volume;
     public GameObject light2d;
-
-	private CinemachineVirtualCamera cinemachineCam;
-	private CinemachineBasicMultiChannelPerlin shake;
-	private float lifespan;
-	private float shakeTimer;
 
     [Tooltip("The lower the number, the faster the beam reaches the mouse angle.")]
     public float smoothTime = 0.5f;
@@ -37,56 +28,34 @@ public class DevastationBeam : MonoBehaviour
 
     HashSet<Collider2D> enemiesInBlast = new HashSet<Collider2D>();
 
+    private void Start()
+    {
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        spellCircle.SetActive(false);
+        laserBeam.SetActive(false);
+    }
+
     public void Activate(float damagePerTick, float damageTickDuration, float knockbackForce, float knockbackTickDuration, float lifespan)
 	{
-		this.lifespan = lifespan;
-		shakeTimer = lifespan;
-        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        mousePosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
-		cinemachineCam = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
-        shake = cinemachineCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-
-        Vector3 rotation = mousePosition - transform.position;
-        float targetRotation = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, targetRotation);
-
-        this.damagePerTick = damagePerTick;
+		this.damagePerTick = damagePerTick;
 		this.damageTickDuration = damageTickDuration;
 		this.knockbackForce = knockbackForce;
 		this.knockbackTickDuration = knockbackTickDuration;
 
         spellCircle.SetActive(true);
-		laserBeam.SetActive(false);
-        StartCoroutine(ActivateLaser());
+        StartCoroutine(ActivateLaser(lifespan));
 	}
 
-    IEnumerator ActivateLaser()
+    IEnumerator ActivateLaser(float lifespan)
     {
-        yield return new WaitForSeconds(1f);
-
-        //camera shake
-        shake.m_AmplitudeGain = shakeAmplitdue;
-        shake.m_FrequencyGain = shakeFrequency;
-
+        yield return new WaitForSeconds(2f);
         laserBeam.SetActive(true);
-        volume.SetActive(true);
-        light2d.SetActive(true);
-        StartCoroutine(DisableUltimate());
+        StartCoroutine(DisableUltimate(lifespan));
     }
 
-    IEnumerator DisableUltimate()
+    IEnumerator DisableUltimate(float lifespan)
     {
-        yield return new WaitForSeconds(0.15f);
-		volume.SetActive(false);
-		light2d.SetActive(false);
-
-        yield return new WaitForSeconds(lifespan-0.15f);
-
-		// disable camera shake
-        shake.m_AmplitudeGain = 0f;
-		shake.m_FrequencyGain = 0f;
-
-
+        yield return new WaitForSeconds(lifespan);
         spellCircle.SetActive(false);
         laserBeam.SetActive(false);
 		Destroy(gameObject);
@@ -95,19 +64,8 @@ public class DevastationBeam : MonoBehaviour
     void Update()
 	{
 		AimAtMouse();
-
-		if (shakeTimer > 0 && shake.m_AmplitudeGain > 0)
-		{
-			shakeTimer -= Time.deltaTime;
-			shake.m_AmplitudeGain = Mathf.Lerp(shakeAmplitdue, 0f, 1 - (shakeTimer / lifespan));
-            shake.m_FrequencyGain = Mathf.Lerp(shakeFrequency, 0f, 1 - (shakeTimer / lifespan));
-        }
-
-        if (laserBeam.gameObject.activeSelf)
-		{
-            HandleDamageTick();
-            HandleKnockbackTick();
-        }
+		HandleDamageTick();
+		HandleKnockbackTick();
 	}
 
 	void AimAtMouse()
@@ -132,7 +90,7 @@ public class DevastationBeam : MonoBehaviour
 	}
 	void DamageEnemies()
 	{
-		foreach (Collider2D collider in enemiesInBlast.ToList()) collider.GetComponent<BaseEnemyClass>().TakeDamage(damagePerTick);
+		foreach (Collider2D collider in enemiesInBlast) collider.GetComponent<BaseEnemyClass>().TakeDamage(damagePerTick);
 	}
 
 	void HandleKnockbackTick()
