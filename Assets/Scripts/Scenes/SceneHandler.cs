@@ -151,7 +151,7 @@ public class SceneHandler : MonoBehaviour
         }
 
         //SceneManager.LoadScene(GameplaySceneIndex);
-        StartCoroutine(LoadingScreen(PauseSceneIndex));
+        StartCoroutine(LoadingScreen(GameplaySceneIndex));
 
         AudioManager.Instance.CleanUp();
         AudioManager.Instance.PlayOST(FMODEvents.Instance.mainMapBGM);
