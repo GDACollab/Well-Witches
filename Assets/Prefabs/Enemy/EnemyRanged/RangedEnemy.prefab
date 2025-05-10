@@ -179,19 +179,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 15
-  moveSpeed: 12
+  moveSpeed: 8
   range: 4
-  timeBetweenAttack: 2
-  projectileCount: 3
-  projectileSpread: 10
-  projectileSpeed: 4
-  projectileSize: 0.5
-  projectileLifetime: 2
-  projectileDamage: 1
-  AOESize: 0.5
-  AOELifetime: 0.2
-  AOEDamage: 0
-  projectilePrefab: {fileID: 7461220634933650060, guid: 74dd0ca34ef572744b8b98a68d822920, type: 3}
+  agent: {fileID: 394531480031503680}
+  rb: {fileID: 6673968106200130034}
   distanceToPlayer1: 0
   distanceToPlayer2: 0
   distanceToTarget: 0
@@ -200,6 +191,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   currentTarget: {fileID: 0}
+  timeBetweenAttack: 2
+  projectileCount: 3
+  projectileSpread: 10
+  projectileSpeed: 8
+  projectileSize: 0.5
+  projectileLifetime: 2
+  projectileDamage: 1
+  AOESize: 0.5
+  AOELifetime: 0.2
+  AOEDamage: 0
+  projectilePrefab: {fileID: 7461220634933650060, guid: 74dd0ca34ef572744b8b98a68d822920, type: 3}
 --- !u!114 &-2319001648079001521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,7 +272,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8877866808826064330}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: -1372625422
   m_Radius: 0.68
   m_Speed: 0

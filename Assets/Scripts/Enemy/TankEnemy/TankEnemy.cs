@@ -1,4 +1,3 @@
-using FMODUnity;
 using System.Collections;
 using UnityEngine;
 
@@ -29,51 +28,20 @@ public class TankEnemy : BaseEnemyClass
     public float acidOffsetY;
     public float acidDamage;
 
-    [Header("DEBUG")]
-    public float distanceToPlayer1;
-    public float distanceToPlayer2;
-    public float distanceToTarget;
-    public float timeToFire;
-    [SerializeField] private GameObject[] players;
-    public Transform currentTarget;
+
 
     private float timeTillPool;
 
-    private Rigidbody2D rb2d;
-
-    private void Start()
-    {
-        rb2d = GetComponent<Rigidbody2D>();
-        players = GameObject.FindGameObjectsWithTag("Player");
-    }
-
-    // calculates and set target to the closest player to the enemy
-    public void TargetClosestPlayer()
-    {
-        distanceToPlayer1 = Vector2.Distance(players[0].transform.position, transform.position);
-        distanceToPlayer2 = Vector2.Distance(players[1].transform.position, transform.position);
-        if (distanceToPlayer1 < distanceToPlayer2)
-        {
-            currentTarget = players[0].transform;
-            distanceToTarget = distanceToPlayer1;
-        }
-        else
-        {
-            currentTarget = players[1].transform;
-            distanceToTarget = distanceToPlayer2;
-        }
-    }
-
     public void Attack()
     {
-        rb2d.velocity = (currentTarget.position - transform.position).normalized * bashStrength;
+        rb.velocity = (currentTarget.position - transform.position).normalized * bashStrength;
         StartCoroutine(EndBash());
     }
 
     IEnumerator EndBash()
     {
         yield return new WaitForSeconds(bashTime);
-        rb2d.velocity = Vector2.zero;
+        rb.velocity = Vector2.zero;
     }
 
     public void SpawnPool()
@@ -84,7 +52,7 @@ public class TankEnemy : BaseEnemyClass
             GameObject acidPool = AcidTrailPooling.SharedInstance.GetAcidPoolObject();
             if (acidPool)
             {
-                acidPool.transform.position = new Vector2(acidOffsetX, acidOffsetY) + rb2d.position;
+                acidPool.transform.position = new Vector2(acidOffsetX, acidOffsetY) + rb.position;
                 acidPool.transform.localScale = Vector3.one * acidSize;
                 acidPool.SetActive(true);
                 acidPool.GetComponent<AcidPool>().

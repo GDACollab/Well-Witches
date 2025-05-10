@@ -42,29 +42,18 @@ public class Gatherer_FlashStun : GathererBaseAbilities
     }
     void Update()
     {
-        // if (cooldownCounter > 0)
-        // {
-        //     cooldownCounter -= Time.deltaTime;
-        //     return; // don't even think about charging up if on cooldown
-        // }
+        
+        if (cooldownCounter > 0)
+        {
+            cooldownCounter -= Time.deltaTime;
+            return; // don't even think about charging up if on cooldown
+        }
+
         if (!canCastSpellSFX)
         {
             canCastSpellSFX = true;
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.abilityReady, this.transform.position);
         }
-
-        // if (activateAbilityAction.IsPressed())
-        // {
-        //     chargeCounter -= Time.deltaTime;
-            //if (chargeCounter <= 0)
-            //{
-            //    chargeCounter = chargeDuration;
-            //    cooldownCounter = cooldownDuration;
-            //}
-        // }
-        // else chargeCounter = chargeDuration;
-
-        //print(chargeCounter);
     }
 
     void ExecuteAbility()
@@ -74,14 +63,23 @@ public class Gatherer_FlashStun : GathererBaseAbilities
 
         bool didHitEnemy = false;
 
+        // TODO: implement timer of length `lifetime` so the stun happens when the firework goes off
+
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, collisionLayersToCheck);
         foreach (Collider2D collider in colliders) if (collider.CompareTag("Enemy"))
             {
                 if (!didHitEnemy) { didHitEnemy = true; }
 
-                AIController aiControl = collider.GetComponentInParent<AIController>();
-                aiControl.getStunned();
-                // Debug.Log("stunned this guy: " + collider.GetComponentInParent<NavMeshAgent>());
+                BaseEnemyClass enemy = null;
+                if (collider.GetComponentInParent<MeleeEnemy>() != null) { enemy = collider.GetComponentInParent<MeleeEnemy>(); }
+                else if (collider.GetComponentInParent<RangedEnemy>() != null) { enemy = collider.GetComponentInParent<RangedEnemy>(); }
+                else if (collider.GetComponentInParent<TankEnemy>() != null) { enemy = collider.GetComponentInParent<TankEnemy>(); }
+
+                if (enemy != null)
+                {
+                    enemy.getStunned();
+                    Debug.Log("stunned this guy: " + enemy);
+                }
             }
 
         if (didHitEnemy) 
@@ -94,17 +92,12 @@ public class Gatherer_FlashStun : GathererBaseAbilities
 
     public override void useAbility()
     {
-        // if (chargeCounter <= 0)
-        // {
-        FlashStun flashStun = Instantiate(prefab, spawnPoint.position, Quaternion.identity).GetComponent<FlashStun>();
-        flashStun.Initialize(startingVelocity, flashDuration, lifetime);
-        ExecuteAbility();
-            // chargeCounter = chargeDuration;
-            // cooldownCounter = cooldownDuration;
-        // }
-        // else
-        // {
-        //     print("dud: " + chargeCounter);
-        // }
+        if (cooldownCounter <= 0)
+        {
+            FlashStun flashStun = Instantiate(prefab, spawnPoint.position, Quaternion.identity).GetComponent<FlashStun>();
+            flashStun.Initialize(startingVelocity, flashDuration, lifetime);
+            ExecuteAbility();
+            cooldownCounter = cooldownDuration;
+        }
     }
 }

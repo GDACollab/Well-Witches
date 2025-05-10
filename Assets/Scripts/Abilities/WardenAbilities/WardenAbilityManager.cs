@@ -4,12 +4,47 @@ using UnityEngine.SceneManagement;
 
 public class WardenAbilityManager : MonoBehaviour
 {
+    private enum Active
+    {
+        DevastationBeam,
+        GourdForge,
+        SpellBurst,
+    }
+
+    public enum Passive
+    {
+        ResurrectionRegalia,
+        SoulSiphon,
+        BoggyBullets,
+    }
+
     public WardenBaseAbilities equipedAbility;
-    [SerializeField] string equipedAbilityName;
+    [SerializeField] Active equipedAbilityName;
+    public PassiveAbilities passiveAbility;
+    public Passive passiveAbilityName;
     [SerializeField] private Controls controls;
 
+    //amount of times you kill an enemy for energy
+    public float siphonTimes;
+    //checks if waterlogging is active
+    public float waterDuration;
+    public float waterSpeed;
+
     public static WardenAbilityManager Instance { get; private set; }
+    public static Controls Controls {get => Instance.controls;}
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
+
+    //Public functions to get names of abilities in case its relevant
+    //For certain abilities
+    public string GetEquippedActiveName()
+    {
+        return equipedAbilityName.ToString();
+    }
+
+    public string GetEquippedPassiveName()
+    {
+        return passiveAbilityName.ToString();
+    }
     void Awake() 
     { 
         InitSingleton();
@@ -33,10 +68,12 @@ public class WardenAbilityManager : MonoBehaviour
 
     private void Start()
     {
-        equipedAbility = WardenDevastationBeam.Instance;
-        equipedAbilityName = equipedAbility.abilityName;
-        print("Ability is of type: " + equipedAbilityName);
-        //print("equip");
+        if (equipedAbility == null || equipedAbility == null)
+        {
+            equipedAbility = WardenDevastationBeam.Instance;
+            equipedAbilityName = Active.DevastationBeam;
+        }
+        EquipPassive("SiphonEnergy");
     }
     void OnActivateAbility(InputAction.CallbackContext context)
     {
@@ -47,25 +84,43 @@ public class WardenAbilityManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (passiveAbility != null)
+        {
+            passiveAbility.passiveUpdate();
+        }
+    }
+
     private void ChangedActiveScene(Scene current, Scene next)
     {
-        if (equipedAbilityName != null)
+        switch (equipedAbilityName)
         {
-            switch (equipedAbilityName)
-            {
-                case "DevastationBeam":
-                    equipedAbility = WardenDevastationBeam.Instance;
-                    break;
-                case "SpellBurst":
-                    equipedAbility = WardenSpellBurst.Instance;
-                    break;
-                case "GourdForge":
-                    equipedAbility = WardenGourdForge.Instance;
-                    break;
-                default:
-                    print("failed to swap to: " + equipedAbilityName);
-                    break;
-            }
+            case Active.DevastationBeam:
+                equipedAbility = WardenDevastationBeam.Instance;
+                break;
+            case Active.GourdForge:
+                equipedAbility = WardenGourdForge.Instance;
+                break;
+            case Active.SpellBurst:
+                equipedAbility = WardenSpellBurst.Instance;
+                break;
+            default:
+                print("failed to swap to: " + equipedAbilityName);
+                break;
+        }        
+
+        switch (passiveAbilityName)
+        {
+            case Passive.ResurrectionRegalia:
+                passiveAbility = AbilityDeathDefy.Instance;
+                break;
+            case Passive.SoulSiphon:
+                passiveAbility = SiphonEnergy.Instance;
+                break;
+            default:
+                print("failed to swap to: " + passiveAbilityName);
+                break;
         }
         
     }
@@ -78,15 +133,15 @@ public class WardenAbilityManager : MonoBehaviour
             {
                 case "DevastationBeam":
                     equipedAbility = WardenDevastationBeam.Instance;
-                    equipedAbilityName = abilityID;
-                    break;
-                case "SpellBurst":
-                    equipedAbility = WardenSpellBurst.Instance;
-                    equipedAbilityName = abilityID;
+                    equipedAbilityName = Active.DevastationBeam;
                     break;
                 case "GourdForge":
                     equipedAbility = WardenGourdForge.Instance;
-                    equipedAbilityName = abilityID;
+                    equipedAbilityName = Active.GourdForge;
+                    break;
+                case "SpellBurst":
+                    equipedAbility = WardenSpellBurst.Instance;
+                    equipedAbilityName = Active.SpellBurst;
                     break;
                 default:
                     print("failed to swap to: " + abilityID);
@@ -98,8 +153,32 @@ public class WardenAbilityManager : MonoBehaviour
             print("Failed to equip ability: Null ability");
         }
     }
-    //public void EquipActive(string abilityID)
-    //{
-        // the same as above, just for passives (look at gatherer manager)
-    //}
+
+    public void EquipPassive(string abilityID)
+    {
+        if (abilityID != null)
+        {
+            switch (abilityID)
+            {
+                case "DeathDefy":
+                    passiveAbility = AbilityDeathDefy.Instance;
+                    passiveAbilityName = Passive.ResurrectionRegalia;
+                    print("swap to: " + abilityID);
+                    break;
+                case "SiphonEnergy":
+                    passiveAbility = SiphonEnergy.Instance;
+                    passiveAbilityName = Passive.SoulSiphon;
+                    print("swap to: " + abilityID);
+                    break;
+                case "BoggyBullets": //Waterlogging script
+                    passiveAbility = WaterLogging.Instance; //Script was called WaterLogging, as it was made before the name change
+                    passiveAbilityName = Passive.BoggyBullets;
+                    print("swap to: " + abilityID);
+                    break;
+                default:
+                    print("failed to swap to: " + abilityID);
+                    break;
+            }
+        }
+    }
 }

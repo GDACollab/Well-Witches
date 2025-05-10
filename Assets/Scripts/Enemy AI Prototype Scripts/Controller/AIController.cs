@@ -20,12 +20,4 @@ public class AIController : MonoBehaviour
     {
         stateMachine.Update();  // Update the state machine each frame
     }
-
-    public void getStunned()    // not sure if this should be here tbh
-    {
-        StunnedState stunState = gameObject.GetComponent<StunnedState>();
-        stunState.Initialize(stateMachine, gameObject);
-        stateMachine.SetState(stunState);
-        // Debug.Log("got stunned from aicontrol");
-    }
 }

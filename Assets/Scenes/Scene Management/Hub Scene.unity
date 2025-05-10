@@ -3204,16 +3204,16 @@ MonoBehaviour:
   abilityImage: {fileID: 732063310}
   abilityButton: {fileID: 732063309}
   abilitySelectManager: {fileID: 45010631}
-  abilityID: 
+  abilityID: BoggyBullets
   normalSprite: {fileID: 21300000, guid: f0e27b584602e6640a2eff97fd6a1f74, type: 3}
   hoverSprite: {fileID: 21300000, guid: 6fe8e3bd580485147a5c03ac9233edb8, type: 3}
   selectSprite: {fileID: 21300000, guid: cfd2e26cea4ff784eaeb433ead54bc3e, type: 3}
   lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
-  abilityText: does nothin
-  abilityName: Boggy Bullets
+  abilityText: WATER BUCKET RELEASE - Slows down enemies on hit by 80%
+  abilityName: BoggyBullets
   isWarden: 1
   isActive: 0
-  isLocked: 1
+  isLocked: 0
 --- !u!114 &732063309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5911,16 +5911,16 @@ MonoBehaviour:
   abilityImage: {fileID: 1243710221}
   abilityButton: {fileID: 1243710220}
   abilitySelectManager: {fileID: 45010631}
-  abilityID: 
+  abilityID: DeathDefy
   normalSprite: {fileID: 21300000, guid: f0e27b584602e6640a2eff97fd6a1f74, type: 3}
   hoverSprite: {fileID: 21300000, guid: 6fe8e3bd580485147a5c03ac9233edb8, type: 3}
   selectSprite: {fileID: 21300000, guid: cfd2e26cea4ff784eaeb433ead54bc3e, type: 3}
   lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
-  abilityText: gives you 20/20 vison
+  abilityText: '"HEROES NEVER DIE"'
   abilityName: Resurrection Regalia
   isWarden: 1
   isActive: 0
-  isLocked: 1
+  isLocked: 0
 --- !u!114 &1243710220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7343,6 +7343,10 @@ PrefabInstance:
       propertyPath: gathererRadiusCircle
       value: 
       objectReference: {fileID: 1330570183}
+    - target: {fileID: 3046167562820563143, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: <NumHitsRequired>k__BackingField
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3424275855618714540, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: m_Name
       value: Warden
@@ -7402,6 +7406,10 @@ PrefabInstance:
     - target: {fileID: 7479631434780333628, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562616938753922885, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7834940100660095115, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: m_PresetInfoIsWorld
@@ -7511,16 +7519,16 @@ MonoBehaviour:
   abilityImage: {fileID: 1547412079}
   abilityButton: {fileID: 1547412078}
   abilitySelectManager: {fileID: 45010631}
-  abilityID: 
+  abilityID: SiphonEnergy
   normalSprite: {fileID: 21300000, guid: f0e27b584602e6640a2eff97fd6a1f74, type: 3}
   hoverSprite: {fileID: 21300000, guid: 6fe8e3bd580485147a5c03ac9233edb8, type: 3}
   selectSprite: {fileID: 21300000, guid: cfd2e26cea4ff784eaeb433ead54bc3e, type: 3}
   lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
   abilityText: gives you 20/99999999 vision
-  abilityName: Soul Siphon
+  abilityName: Siphon Energy
   isWarden: 1
   isActive: 0
-  isLocked: 1
+  isLocked: 0
 --- !u!114 &1547412078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8362,6 +8370,117 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1764498154}
   m_CullTransparentMesh: 1
+--- !u!1001 &1786982341
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1925395781}
+    m_Modifications:
+    - target: {fileID: 351931286895300582, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_Name
+      value: LoadingScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 351931286895300582, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+--- !u!224 &1786982342 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+  m_PrefabInstance: {fileID: 1786982341}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1786982343 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 351931286895300582, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
+  m_PrefabInstance: {fileID: 1786982341}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1817059210
 GameObject:
   m_ObjectHideFlags: 0
@@ -9206,7 +9325,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1925395778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9239,7 +9358,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -9282,6 +9401,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1786982342}
   - {fileID: 61295339}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9847,6 +9967,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6263869502043627533, guid: 3662ccf3678e8a946898d972d7d1a732, type: 3}
+      propertyPath: equipedAbilityName
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7019890448366990970, guid: 3662ccf3678e8a946898d972d7d1a732, type: 3}
       propertyPath: questDisplay
       value: 
@@ -9872,6 +9996,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneHandler
       objectReference: {fileID: 0}
+    - target: {fileID: 3914419326737314380, guid: dd278b5a4327e604a9badbfb5aedcf04, type: 3}
+      propertyPath: loadScreen
+      value: 
+      objectReference: {fileID: 1786982343}
     - target: {fileID: 5605567680116676561, guid: dd278b5a4327e604a9badbfb5aedcf04, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.9220638

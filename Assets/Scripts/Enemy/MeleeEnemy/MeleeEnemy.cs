@@ -9,48 +9,9 @@ public class MeleeEnemy : BaseEnemyClass
     public float attackAOE;
     [Tooltip("How fast the melee enemy moves while spinning")]
     public float speedWhileAttacking;
-
-    [Header("DEBUG")]
-    public float distanceToPlayer1;
-    public float distanceToPlayer2;
-    public float distanceToTarget;
-    public float timeToFire;
-    [SerializeField] private GameObject[] players;
-    public Transform currentTarget;
-
-    private Rigidbody2D rb2d;
-    private void Start()
-    {
-        players = GameObject.FindGameObjectsWithTag("Player");
-        rb2d = GetComponent<Rigidbody2D>();
-    }
-
-
-    private void Update()
-    {
-
-    }
-
-    // calculates and set target to the closest player to the enemy
-    public void TargetClosestPlayer()
-    {
-        distanceToPlayer1 = Vector2.Distance(players[0].transform.position, transform.position);
-        distanceToPlayer2 = Vector2.Distance(players[1].transform.position, transform.position);
-        if (distanceToPlayer1 < distanceToPlayer2)
-        {
-            currentTarget = players[0].transform;
-            distanceToTarget = distanceToPlayer1;
-        }
-        else
-        {
-            currentTarget = players[1].transform;
-            distanceToTarget = distanceToPlayer2;
-        }
-    }
-
     public void Attack()
     {
-        rb2d.velocity = (currentTarget.position - transform.position).normalized * speedWhileAttacking;
+        rb.velocity = (currentTarget.position - transform.position).normalized * speedWhileAttacking;
 
         // not very performantive, better if collider check but should be good enough
         if (Vector2.Distance(transform.position, currentTarget.position) < attackAOE)
