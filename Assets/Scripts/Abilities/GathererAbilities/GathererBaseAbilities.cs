@@ -38,4 +38,6 @@ public abstract class GathererBaseAbilities : MonoBehaviour
 
     public abstract string abilityName { get; }
     public abstract float duration { get; }
+    // public abstract float cooldown { get; }
+    // public abstract float currentCooldown { get; }
 }
