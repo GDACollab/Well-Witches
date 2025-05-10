@@ -1,21 +1,27 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class WardenAbilityManager : MonoBehaviour
 {
-    private enum Abilities
+    private enum Active
     {
         DevastationBeam,
         GourdForge,
         SpellBurst,
     }
 
+    public enum Passive
+    {
+        ResurrectionRegalia,
+        SoulSiphon,
+        BoggyBullets,
+    }
+
     public WardenBaseAbilities equipedAbility;
-    [SerializeField] Abilities equipedAbilityName;
+    [SerializeField] Active equipedAbilityName;
     public PassiveAbilities passiveAbility;
-    [SerializeField] public string passiveAbilityName;
+    public Passive passiveAbilityName;
     [SerializeField] private Controls controls;
 
     //amount of times you kill an enemy for energy
@@ -52,7 +58,7 @@ public class WardenAbilityManager : MonoBehaviour
         if (equipedAbility == null || equipedAbility == null)
         {
             equipedAbility = WardenDevastationBeam.Instance;
-            equipedAbilityName = Abilities.DevastationBeam;
+            equipedAbilityName = Active.DevastationBeam;
         }
         EquipPassive("SiphonEnergy");
     }
@@ -77,35 +83,33 @@ public class WardenAbilityManager : MonoBehaviour
     {
         switch (equipedAbilityName)
         {
-            case Abilities.DevastationBeam:
+            case Active.DevastationBeam:
                 equipedAbility = WardenDevastationBeam.Instance;
                 break;
-            case Abilities.GourdForge:
+            case Active.GourdForge:
                 equipedAbility = WardenGourdForge.Instance;
                 break;
-            case Abilities.SpellBurst:
+            case Active.SpellBurst:
                 equipedAbility = WardenSpellBurst.Instance;
                 break;
             default:
                 print("failed to swap to: " + equipedAbilityName);
                 break;
         }        
-        
-        if (passiveAbilityName != null)
+
+        switch (passiveAbilityName)
         {
-            switch (passiveAbilityName)
-            {
-                case "DeathDefy":
-                    passiveAbility = AbilityDeathDefy.Instance;
-                    break;
-                case "SiphonEnergy":
-                    passiveAbility = SiphonEnergy.Instance;
-                    break;
-                default:
-                    print("failed to swap to: " + passiveAbilityName);
-                    break;
-            }
+            case Passive.ResurrectionRegalia:
+                passiveAbility = AbilityDeathDefy.Instance;
+                break;
+            case Passive.SoulSiphon:
+                passiveAbility = SiphonEnergy.Instance;
+                break;
+            default:
+                print("failed to swap to: " + passiveAbilityName);
+                break;
         }
+        
     }
 
     public void EquipActive(string abilityID)
@@ -116,15 +120,15 @@ public class WardenAbilityManager : MonoBehaviour
             {
                 case "DevastationBeam":
                     equipedAbility = WardenDevastationBeam.Instance;
-                    equipedAbilityName = Abilities.DevastationBeam;
+                    equipedAbilityName = Active.DevastationBeam;
                     break;
                 case "GourdForge":
                     equipedAbility = WardenGourdForge.Instance;
-                    equipedAbilityName = Abilities.GourdForge;
+                    equipedAbilityName = Active.GourdForge;
                     break;
                 case "SpellBurst":
                     equipedAbility = WardenSpellBurst.Instance;
-                    equipedAbilityName = Abilities.SpellBurst;
+                    equipedAbilityName = Active.SpellBurst;
                     break;
                 default:
                     print("failed to swap to: " + abilityID);
@@ -145,12 +149,12 @@ public class WardenAbilityManager : MonoBehaviour
             {
                 case "DeathDefy":
                     passiveAbility = AbilityDeathDefy.Instance;
-                    passiveAbilityName = abilityID;
+                    passiveAbilityName = Passive.ResurrectionRegalia;
                     print("swap to: " + abilityID);
                     break;
                 case "SiphonEnergy":
                     passiveAbility = SiphonEnergy.Instance;
-                    passiveAbilityName = abilityID;
+                    passiveAbilityName = Passive.SoulSiphon;
                     print("swap to: " + abilityID);
                     break;
                 default:
