@@ -157,7 +157,7 @@ TilemapRenderer:
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
-  m_Mode: 0
+  m_Mode: 1
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
 --- !u!50 &8163551725786501793
@@ -4543,6 +4543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundTilemap: {fileID: 539427883899327864}
   hitboxesTileMap: {fileID: 5198666694009068120}
+  hitboxesSortedTileMap: {fileID: 7911522287563298095}
   middleTileMap: {fileID: 3155506391159274164}
   aboveTileMap: {fileID: 8907504043332819939}
   edgeTile: {fileID: 11400000, guid: 50057aa472e1b7442ba8f86c2320cdf4, type: 2}

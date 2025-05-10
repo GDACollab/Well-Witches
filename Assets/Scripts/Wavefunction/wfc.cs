@@ -202,7 +202,8 @@ public class wfc : MonoBehaviour
                 for (int i = 0; i < tileScriptableObjects.Length; i++)
                 {
                     if (tileScriptableObjects[i].tileGround == tileGetGround && 
-                        tileScriptableObjects[i].tileHitbox == tileGetHitbox && 
+                        tileScriptableObjects[i].tileHitbox == tileGetHitbox &&
+                        tileScriptableObjects[i].tileHitboxSorted == tileGetHitboxSorted && 
                         tileScriptableObjects[i].tileMiddle == tileGetMiddle &&
                         tileScriptableObjects[i].tileAbove == tileGetAbove)
                     {
