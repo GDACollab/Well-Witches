@@ -19,7 +19,6 @@ GameObject:
   - component: {fileID: 3565661079290760021}
   - component: {fileID: 1429451045759365386}
   - component: {fileID: 839195460071083963}
-  - component: {fileID: -3204566799026488004}
   m_Layer: 6
   m_Name: Melee Enemy
   m_TagString: Enemy
@@ -174,16 +173,19 @@ MonoBehaviour:
   range: 1.5
   agent: {fileID: 394531480031503680, guid: 842b350a5dbea204f9e240d00ade7c24, type: 3}
   rb: {fileID: -6155111817658422072}
-  damage: 2
-  timeBetweenAttack: 0.5
-  attackAOE: 1.1
-  speedWhileAttacking: 2
+  sr: {fileID: 0}
   distanceToPlayer1: 0
   distanceToPlayer2: 0
   distanceToTarget: 0
   timeToFire: 0
   players: []
   currentTarget: {fileID: 0}
+  isStunned: 0
+  stunDuration: 0
+  damage: 2
+  timeBetweenAttack: 0.5
+  attackAOE: 1.1
+  speedWhileAttacking: 2
 --- !u!114 &-4798716198282340914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,20 +271,6 @@ NavMeshAgent:
   m_BaseOffset: 0.62
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &-3204566799026488004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2942535793044935551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30827abc59f59b44b9fb6269c52eb39e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isStunned: 0
-  stunTime: 0
 --- !u!1 &6748060899719955704
 GameObject:
   m_ObjectHideFlags: 0

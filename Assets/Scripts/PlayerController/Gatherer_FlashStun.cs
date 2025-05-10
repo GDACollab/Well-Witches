@@ -6,7 +6,7 @@ public class Gatherer_FlashStun : GathererBaseAbilities
 {
     [SerializeField, Tooltip("Amount of time needed to get the ability off")] public float chargeDuration;
     [SerializeField, Tooltip("Radius of the circle that stuns enemies inside")] float radius = 16;  // 16 measured by me (Justin L) to go from left to right side of screen
-    [SerializeField] float stunDuration;
+    // [SerializeField] float stunDuration;
     [field: SerializeField] public float cooldownDuration { get; private set; }
     [SerializeField] LayerMask collisionLayersToCheck;
 

@@ -27,6 +27,7 @@ public class BaseEnemyClass : MonoBehaviour
     [SerializeField] private GameObject[] players;
     public Transform currentTarget;
     public bool isStunned;
+    [SerializeField] public float stunDuration;
     public void Spawn(Vector3 position)
     {
         Instantiate(gameObject, position, Quaternion.identity);
@@ -36,6 +37,7 @@ public class BaseEnemyClass : MonoBehaviour
     {
         players = GameObject.FindGameObjectsWithTag("Player");
         isStunned = false;
+        stunDuration = 5.0f;
     }
 
     public virtual void TakeDamage(float amount)
@@ -76,17 +78,20 @@ public class BaseEnemyClass : MonoBehaviour
     // calculates and set target to the closest player to the enemy
     public virtual void TargetClosestPlayer()
     {
-        distanceToPlayer1 = Vector2.Distance(players[0].transform.position, transform.position);
-        distanceToPlayer2 = Vector2.Distance(players[1].transform.position, transform.position);
-        if (distanceToPlayer1 < distanceToPlayer2)
+        if (!isStunned)
         {
-            currentTarget = players[0].transform;
-            distanceToTarget = distanceToPlayer1;
-        }
-        else
-        {
-            currentTarget = players[1].transform;
-            distanceToTarget = distanceToPlayer2;
+            distanceToPlayer1 = Vector2.Distance(players[0].transform.position, transform.position);
+            distanceToPlayer2 = Vector2.Distance(players[1].transform.position, transform.position);
+            if (distanceToPlayer1 < distanceToPlayer2)
+            {
+                currentTarget = players[0].transform;
+                distanceToTarget = distanceToPlayer1;
+            }
+            else
+            {
+                currentTarget = players[1].transform;
+                distanceToTarget = distanceToPlayer2;
+            }
         }
     }
 
@@ -95,7 +100,7 @@ public class BaseEnemyClass : MonoBehaviour
     {
         agent.enabled = false;
         rb.AddForce(force, ForceMode2D.Impulse);
-        StartCoroutine(EnableAgent());
+        if (!isStunned) { StartCoroutine(EnableAgent()); }
     }
     
     IEnumerator EnableAgent()
@@ -109,7 +114,22 @@ public class BaseEnemyClass : MonoBehaviour
     public virtual void getStunned()
     {
         isStunned = true;
-        
-    } 
+        agent.enabled = false;
+        stunDuration = 5.0f;
+    }
 
+    void Update()
+    {
+        if (isStunned)
+        {
+            stunDuration -= Time.deltaTime;
+
+            if (stunDuration <= 0.0f)
+            {
+                Debug.Log("timing out of stun");
+                isStunned = false;
+                StartCoroutine(EnableAgent());
+            }
+        }
+    }
 }

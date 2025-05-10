@@ -19,7 +19,6 @@ GameObject:
   - component: {fileID: 7223512689665479965}
   - component: {fileID: -3072643784058802820}
   - component: {fileID: -6817126600266020155}
-  - component: {fileID: -5082172844015657117}
   m_Layer: 6
   m_Name: TankEnemy
   m_TagString: Enemy
@@ -183,6 +182,15 @@ MonoBehaviour:
   range: 1.4
   agent: {fileID: -6817126600266020155}
   rb: {fileID: 4592253895432761633}
+  sr: {fileID: 0}
+  distanceToPlayer1: 0
+  distanceToPlayer2: 0
+  distanceToTarget: 0
+  timeToFire: 0
+  players: []
+  currentTarget: {fileID: 0}
+  isStunned: 0
+  stunDuration: 0
   timeBetweenAttack: 3
   bashStrength: 5
   bashTime: 2
@@ -193,12 +201,6 @@ MonoBehaviour:
   acidOffsetX: 0
   acidOffsetY: 0
   acidDamage: 0
-  distanceToPlayer1: 0
-  distanceToPlayer2: 0
-  distanceToTarget: 0
-  timeToFire: 0
-  players: []
-  currentTarget: {fileID: 0}
 --- !u!114 &921411808403508448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,17 +286,3 @@ NavMeshAgent:
   m_BaseOffset: 0.64
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &-5082172844015657117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6262689151968294506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30827abc59f59b44b9fb6269c52eb39e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isStunned: 0
-  stunTime: 0
