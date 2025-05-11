@@ -42,10 +42,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638824921545458463
+  lastModified: 638824928516769382
   FileSizes:
   - Name: Desktop
-    Value: 365600
+    Value: 371552
   Exists: 1
 --- !u!114 &-6791792283865248198
 MonoBehaviour:
@@ -372,10 +372,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638824921544899796
+  lastModified: 638824928516200466
   FileSizes:
   - Name: Desktop
-    Value: 2114
+    Value: 2166
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -422,12 +422,13 @@ MonoBehaviour:
   - {fileID: 2076235794714511685}
   - {fileID: 396385024923174352}
   - {fileID: 1250832709579566109}
+  - {fileID: 7240434842042219965}
   EditorParameters: []
   MasterBanks:
   - {fileID: 6504835935913131893}
   StringsBanks:
   - {fileID: -134346031005777530}
-  cacheTime: 638824921545458463
+  cacheTime: 638824928516769382
   cacheVersion: 131846
 --- !u!114 &340979720622404573
 MonoBehaviour:
@@ -768,11 +769,38 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638824921544889835
+  lastModified: 638824928516185439
   FileSizes:
   - Name: Desktop
     Value: 1074
   Exists: 1
+--- !u!114 &7240434842042219965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Talk Prompt
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Talk Prompt
+  Guid:
+    Data1: 1374417772
+    Data2: 1146163911
+    Data3: -1322399821
+    Data4: 720677884
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 484
 --- !u!114 &7445045133316025286
 MonoBehaviour:
   m_ObjectHideFlags: 0
