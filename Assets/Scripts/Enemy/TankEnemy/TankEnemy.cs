@@ -35,6 +35,7 @@ public class TankEnemy : BaseEnemyClass
     public void Attack()
     {
         rb.velocity = (currentTarget.position - transform.position).normalized * bashStrength;
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.tankAttackBash, this.transform.position);
         StartCoroutine(EndBash());
     }
 

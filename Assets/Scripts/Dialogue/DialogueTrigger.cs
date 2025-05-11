@@ -113,6 +113,9 @@ public class DialogueTrigger : MonoBehaviour
         //Debug.Log("hhh: "+questState);
         if (playerInRange && !DialogueManager.GetInstance().dialogueActive)
         {
+            if (!visualCue.activeSelf) {
+                AudioManager.Instance.PlayOneShot(FMODEvents.Instance.talkPrompt, this.transform.position);
+            }
             visualCue.SetActive(true);
         }
         else

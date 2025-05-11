@@ -15,6 +15,22 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference abilityReady { get; private set; }
     [field: SerializeField] public EventReference vampireTalk { get; private set; }
     [field: SerializeField] public EventReference dullahanTalk { get; private set; }
+    [field: SerializeField] public EventReference bubbleActivate { get; private set; }
+    [field: SerializeField] public EventReference bubbleDeactivate { get; private set; }
+    [field: SerializeField] public EventReference bubbleDeflect { get; private set; }
+    [field: SerializeField] public EventReference flamingPumpkinYank { get; private set; }
+    [field: SerializeField] public EventReference lazerFire { get; private set; }
+    [field: SerializeField] public EventReference gathererDown { get; private set; }
+    [field: SerializeField] public EventReference wardenDown { get; private set; }
+    [field: SerializeField] public EventReference tankAttackBash { get; private set; }
+    [field: SerializeField] public EventReference bruiserAttackSwipe  { get; private set; }
+    [field: SerializeField] public EventReference bossPhase1Attack1  { get; private set; }
+    [field: SerializeField] public EventReference itemPickUp  { get; private set; }
+    [field: SerializeField] public EventReference aloeTalk  { get; private set; }
+    [field: SerializeField] public EventReference diverTalk  { get; private set; }
+    [field: SerializeField] public EventReference ghostMailTalk  { get; private set; }
+    [field: SerializeField] public EventReference talkPrompt  { get; private set; }
+    [field: SerializeField] public EventReference healthTransfer  { get; private set; }
 
     [field: Header("BGM")]
     [field: SerializeField] public EventReference lobbyBGM { get; private set; }
