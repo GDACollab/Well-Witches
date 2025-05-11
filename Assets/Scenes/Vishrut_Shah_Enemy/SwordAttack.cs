@@ -103,6 +103,9 @@ public class SwordAttack : MonoBehaviour
             }
         }
 
+        // Start slash animation (currently not adjusted based on slash duration TODO)
+        bossEnemy.animator.SetTrigger("DoSlash");
+
         // Gradually increase the size of the attack indicator
         float elapsedTime = 0f;
         while (elapsedTime < warningDuration)
@@ -117,6 +120,7 @@ public class SwordAttack : MonoBehaviour
         if (attackIndicatorCapsule != null) attackIndicatorCapsule.size = 1f;
 
         // Play sword slash animation here
+        
 
         // Check if the player is within the hitbox
         if (playerInHitbox)

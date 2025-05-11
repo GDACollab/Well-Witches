@@ -19,13 +19,20 @@ public class Gatherer_FlashStun : GathererBaseAbilities
 
 
     InputAction activateAbilityAction;
-    float chargeCounter;
+    //float chargeCounter;
     public float cooldownCounter { get; private set; } = 0;
     private bool canCastSpellSFX = false;
     private NavMeshAgent navAgent;
 
     public override string abilityName => "FlashStun";
     public override float duration => chargeDuration;
+
+    [SerializeField] private float charge;
+    public override float Charge
+    {
+        get => charge;
+        set => charge = value;
+    }
 
     public static Gatherer_FlashStun Instance { get; private set; }
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
@@ -38,7 +45,7 @@ public class Gatherer_FlashStun : GathererBaseAbilities
     {
         InitSingleton();
         activateAbilityAction = GetComponent<PlayerInput>().actions["Activate Ability"];
-        chargeCounter = chargeDuration;
+        //chargeCounter = chargeDuration;
         // navAgent = GetComponent<NavMeshAgent>();
     }
     void Update()
@@ -47,6 +54,7 @@ public class Gatherer_FlashStun : GathererBaseAbilities
         if (cooldownCounter > 0)
         {
             cooldownCounter -= Time.deltaTime;
+            Charge = cooldownDuration - cooldownCounter;
             return; // don't even think about charging up if on cooldown
         }
 

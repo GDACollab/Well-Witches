@@ -22,6 +22,13 @@ public class GathererHealthTransfer : GathererBaseAbilities
     [SerializeField] private Transform gathererTransform;
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
 
+    [SerializeField] private float charge;
+    public override float Charge
+    {
+        get => charge;
+        set => charge = value;
+    }
+
     void Awake()
     {
         InitSingleton();

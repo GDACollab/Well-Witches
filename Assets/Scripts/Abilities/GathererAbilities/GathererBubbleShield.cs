@@ -16,25 +16,33 @@ public class GathererBubbleShield : GathererBaseAbilities
     public override float duration => 10;
     public override string abilityName => "BubbleShield";
     public static GathererBubbleShield Instance { get; private set; }
-	void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
+
+    [SerializeField] private float charge;
+    public override float Charge
+    {
+        get => charge;
+        set => charge = value;
+    }
+    void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
 
 	void Awake()
 	{
 		InitSingleton();
-        timer = 0f;
+        Charge = 0f;
     }
 
     private void Update()
     {
-        if (!canUse && timer < cooldownDuration)
+        if (!canUse && Charge < cooldownDuration)
         {
-            timer += Time.deltaTime;
+
+            Charge += Time.deltaTime;
             return;
         }
         else
         {
             canUse = true;
-            timer = 0f;
+            //Charge = 0f;
         }
     }
 
@@ -45,6 +53,7 @@ public class GathererBubbleShield : GathererBaseAbilities
             BubbleShield shield = Instantiate(bubbleShieldPrefab, spawnPoint).GetComponent<BubbleShield>();
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bubbleActivate, this.transform.position);
             shield.Activate(duration);
+            Charge = 0f;
             canUse = false;
         }
     }

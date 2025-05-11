@@ -20,6 +20,8 @@ public class SceneHandler : MonoBehaviour
     private int PauseSceneIndex = 3;
     [SerializeField]
     private int BossSceneIndex = 4;
+    [SerializeField]
+    private int OpenCutsceneIndex = 5;
 
     [Header("Transition Screen")]
     [Tooltip("Image for loading screen")]
@@ -84,8 +86,12 @@ public class SceneHandler : MonoBehaviour
         else if(index == PauseSceneIndex){
             
         }
+        // From Open Cutscene Scene
+        else if (index == OpenCutsceneIndex) {
+
+        }
         // Unsupported Scene
-        else{
+        else {
             Debug.Log("Transitions from the current scene, " + currentScene.name + " are not currently supported");
             return;
         }
@@ -114,6 +120,10 @@ public class SceneHandler : MonoBehaviour
         else if(index == PauseSceneIndex){
             
         }
+        // From Open Cutscene Scene
+        else if (index == OpenCutsceneIndex) {
+
+        } 
         else if(index == BossSceneIndex){
             
         }
@@ -192,7 +202,17 @@ public class SceneHandler : MonoBehaviour
         //SceneManager.LoadScene(PauseSceneIndex);
     }
 
+    public void ToOpenCutscene() {
 
+        Scene currentScene = SceneManager.GetActiveScene();
+        int index = currentScene.buildIndex;
+  
+        //SceneManager.LoadScene(HubSceneIndex);
+        StartCoroutine(LoadingScreen(OpenCutsceneIndex));
+
+        AudioManager.Instance.CleanUp();
+        AudioManager.Instance.PlayOST(FMODEvents.Instance.lobbyBGM);
+    }
     public void ToBossScene(){
         Scene currentScene = SceneManager.GetActiveScene();
         int index = currentScene.buildIndex;
