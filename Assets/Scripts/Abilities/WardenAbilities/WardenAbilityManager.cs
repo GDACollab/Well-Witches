@@ -13,6 +13,7 @@ public class WardenAbilityManager : MonoBehaviour
 
     public enum Passive
     {
+        None,
         ResurrectionRegalia,
         SoulSiphon,
         BoggyBullets,
@@ -24,8 +25,6 @@ public class WardenAbilityManager : MonoBehaviour
     public Passive passiveAbilityName;
     [SerializeField] private Controls controls;
 
-    //amount of times you kill an enemy for energy
-    public float siphonTimes;
     //checks if waterlogging is active
     public float waterDuration;
     public float waterSpeed;
@@ -68,12 +67,16 @@ public class WardenAbilityManager : MonoBehaviour
 
     private void Start()
     {
-        if (equipedAbility == null || equipedAbility == null)
+        if (equipedAbility == null)
         {
             equipedAbility = WardenDevastationBeam.Instance;
             equipedAbilityName = Active.DevastationBeam;
         }
-        EquipPassive("SiphonEnergy");
+        if (passiveAbility == null)
+        {
+            passiveAbility = null;
+            passiveAbilityName = Passive.None;
+        }
     }
     void OnActivateAbility(InputAction.CallbackContext context)
     {
@@ -106,7 +109,6 @@ public class WardenAbilityManager : MonoBehaviour
                 equipedAbility = WardenSpellBurst.Instance;
                 break;
             default:
-                print("failed to swap to: " + equipedAbilityName);
                 break;
         }        
 
@@ -118,8 +120,10 @@ public class WardenAbilityManager : MonoBehaviour
             case Passive.SoulSiphon:
                 passiveAbility = SiphonEnergy.Instance;
                 break;
+            case Passive.BoggyBullets:
+                passiveAbility = WaterLogging.Instance;
+                break;
             default:
-                print("failed to swap to: " + passiveAbilityName);
                 break;
         }
         
@@ -144,7 +148,6 @@ public class WardenAbilityManager : MonoBehaviour
                     equipedAbilityName = Active.SpellBurst;
                     break;
                 default:
-                    print("failed to swap to: " + abilityID);
                     break;
             }
         }

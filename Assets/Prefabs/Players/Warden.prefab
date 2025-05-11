@@ -418,7 +418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5becf096d7dc3724d854a0260287601c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <NumHitsRequired>k__BackingField: 1
+  <NumHitsRequired>k__BackingField: 50
   damagePerTick: 10
   damageTickDuration: 0.25
   knockbackForce: 5
@@ -459,7 +459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891a61dffccd18747b45509f3c8e5b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <NumHitsRequired>k__BackingField: 0
+  <NumHitsRequired>k__BackingField: 40
   projectileDamage: 5
   projectileSpeed: 8
   projectileRotationForce: 100
@@ -496,6 +496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ec81eba31dd9384eb685ddae8a0bf8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VFXPrefab: {fileID: 1695407132652539254, guid: e822e6d8daabc4a44ba54325e5d5eb18, type: 3}
   percent: 3
 --- !u!114 &636965182726830714
 MonoBehaviour:

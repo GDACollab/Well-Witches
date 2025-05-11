@@ -259,6 +259,7 @@ MonoBehaviour:
   maxSpeed_Adjusted: 0
   canMove: 1
   isMoving: 0
+  originalAcc: 0
 --- !u!114 &2686973554895526223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,7 +393,7 @@ MonoBehaviour:
   flamesSpawnedPerSecond: 5
   flameTicksPerSecond: 1
   startAbility: 0
-  fire: {fileID: 6194044856683223204, guid: 9ab1ab0254f60cd48bc873a50962bbcf, type: 3}
+  fire: {fileID: -6396332289483400692, guid: 3e613b81b15e54e42a6066b89aca1bb5, type: 3}
 --- !u!114 &-7641923896124788210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,7 +406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48dd1b19bd54e254d953346f9d8196bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
   multiplier: 1.0037
 --- !u!1 &6319885882415222397
 GameObject:
