@@ -35,7 +35,9 @@ public abstract class GathererBaseAbilities : MonoBehaviour
      * }
     */
     public abstract void useAbility();
-    public abstract float charge { get; }
+
+
+    public abstract float Charge { get; set; }
 
     public abstract string abilityName { get; }
     public abstract float duration { get; }
