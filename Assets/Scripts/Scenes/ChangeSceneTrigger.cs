@@ -19,6 +19,8 @@ public class ChangeSceneTrigger : MonoBehaviour
 
     private bool playerInTrigger;
 
+    private bool hasTriggered = false;
+
     private Controls controls;
     
     private void Awake()
@@ -54,8 +56,9 @@ public class ChangeSceneTrigger : MonoBehaviour
 
     private void OnGathererInteract(InputAction.CallbackContext context)
     {
-        if (playerInTrigger)
+        if (playerInTrigger && !hasTriggered)
         {
+            hasTriggered = true;
             if (sceneSelection == SceneSelection.GameplayScene)
             {
                 SceneHandler.Instance.ToGameplayScene();
