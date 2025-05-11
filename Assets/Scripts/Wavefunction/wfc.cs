@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 public class wfc : MonoBehaviour
 {
     [SerializeField] Tilemap groundTilemap;
+    [SerializeField] Tilemap decoratorTilemap;
     [SerializeField] Tilemap hitboxesTileMap;
+    [SerializeField] Tilemap hitboxesSortedTileMap;
     [SerializeField] Tilemap middleTileMap;
     [SerializeField] Tilemap aboveTileMap;
 
@@ -163,7 +165,9 @@ public class wfc : MonoBehaviour
     private void GetSeededTiles()
     {
         TileBase tileGetGround = null;
+        TileBase tileGetDecorator = null;
         TileBase tileGetHitbox = null;
+        TileBase tileGetHitboxSorted = null;
         TileBase tileGetMiddle = null;
         TileBase tileGetAbove = null;
         Stack<Tile> tileStack = new Stack<Tile>();
@@ -192,14 +196,18 @@ public class wfc : MonoBehaviour
                 }
 
                 tileGetGround = groundTilemap.GetTile(new Vector3Int(x, y, 0));
+                tileGetDecorator = decoratorTilemap.GetTile(new Vector3Int(x, y, 0));
                 tileGetHitbox = hitboxesTileMap.GetTile(new Vector3Int(x, y, 0));
+                tileGetHitboxSorted = hitboxesSortedTileMap.GetTile(new Vector3Int(x, y, 0));
                 tileGetMiddle = middleTileMap.GetTile(new Vector3Int(x, y, 0));
                 tileGetAbove = aboveTileMap.GetTile(new Vector3Int(x, y, 0));
 
                 for (int i = 0; i < tileScriptableObjects.Length; i++)
                 {
-                    if (tileScriptableObjects[i].tileGround == tileGetGround && 
-                        tileScriptableObjects[i].tileHitbox == tileGetHitbox && 
+                    if (tileScriptableObjects[i].tileGround == tileGetGround &&
+                        tileScriptableObjects[i].tileDecorator == tileGetDecorator && 
+                        tileScriptableObjects[i].tileHitbox == tileGetHitbox &&
+                        tileScriptableObjects[i].tileHitboxSorted == tileGetHitboxSorted && 
                         tileScriptableObjects[i].tileMiddle == tileGetMiddle &&
                         tileScriptableObjects[i].tileAbove == tileGetAbove)
                     {
@@ -242,7 +250,9 @@ public class wfc : MonoBehaviour
     {
         bool hasAHitBox = false;
         TileBase tileToPlaceGround = null;
+        TileBase tileToPlaceDecorator = null;
         TileBase tileToPlaceHitbox = null;
+        TileBase tileToPlaceHitboxSorted = null;
         TileBase tileToPlaceMiddle = null;
         TileBase tileToPlaceAbove = null;
 
@@ -253,7 +263,9 @@ public class wfc : MonoBehaviour
                 if (tiles[x, y].GetEntropy() <= 1)
                 {
                     tileToPlaceGround = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileGround;
+                    tileToPlaceDecorator = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileDecorator;
                     tileToPlaceHitbox = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileHitbox;
+                    tileToPlaceHitboxSorted = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileHitboxSorted;
                     tileToPlaceMiddle = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileMiddle;
                     tileToPlaceAbove = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileAbove;
 
@@ -261,9 +273,17 @@ public class wfc : MonoBehaviour
                     {
                         groundTilemap.SetTile(new Vector3Int(x, y, 0), tileToPlaceGround);
                     }
+                    if (tileToPlaceDecorator != null)
+                    {
+                        decoratorTilemap.SetTile(new Vector3Int(x, y, 0), tileToPlaceDecorator);
+                    }
                     if (tileToPlaceHitbox != null)
                     {
                         hitboxesTileMap.SetTile(new Vector3Int(x, y, 0), tileToPlaceHitbox);
+                    }
+                    if (tileToPlaceHitboxSorted != null)
+                    {
+                        hitboxesSortedTileMap.SetTile(new Vector3Int(x, y, 0), tileToPlaceHitboxSorted);
                     }
                     if (tileToPlaceMiddle != null)
                     {
