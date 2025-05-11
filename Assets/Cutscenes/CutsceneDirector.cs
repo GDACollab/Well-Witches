@@ -26,4 +26,8 @@ public class CutsceneDirector : MonoBehaviour
             currentDirector.Resume();
         }
     }
+
+    public void EndCutscene() {
+        SceneHandler.Instance.ToHubScene();
+    }
 }

@@ -591,12 +591,27 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: 05ffa93faac39ae4895cbdbadbef4a2e, type: 2}
+    - {fileID: 11400000, guid: 7ed462f249f7c0547a8ad185371e1429, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1570124034}
           m_TargetAssemblyTypeName: CutsceneDirector, Assembly-CSharp
           m_MethodName: WaitForInput
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1570124034}
+          m_TargetAssemblyTypeName: CutsceneDirector, Assembly-CSharp
+          m_MethodName: EndCutscene
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1503,11 +1518,11 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1071955059}
   - {fileID: 220248915}
   - {fileID: 102461792}
   - {fileID: 1171257589}
   - {fileID: 325142859}
+  - {fileID: 1071955059}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
