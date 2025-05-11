@@ -110,7 +110,7 @@ public class ItemDispenser : MonoBehaviour, IInteractable
             GameObject questItem = GameManager.instance.activeQuestPrefab;
             List<string> currentBuffs = StatsManager.Instance.getMyBuffs();
             bool questActive = false;
-            float totalQuestItemChance = 0.15f;
+            float totalQuestItemChance = 0.5f;
             if (questItem != null) {  //Checks if there are currently no active quest items
                 questActive = true;
                 prefabToSpawn = questItem;
@@ -158,11 +158,11 @@ public class ItemDispenser : MonoBehaviour, IInteractable
             // If yes, then we drop a questItem.
             // If not, we move on to apply a status.
             Debug.Log("qactive: " + questActive);
-            if (questActive && ROLL <= 0.25)
+            if (questActive && ROLL <= totalQuestItemChance)
             {
                 Debug.Log($"Now in Quest Items. Roll: {ROLL}");
 
-                if (ROLL - keyItemChance <= 0.25)
+                if (ROLL - keyItemChance <= totalQuestItemChance)
                 {
                     Debug.Log("Rolled to drop a quest item!");
                     Instantiate(prefabToSpawn, new Vector3(transform.position.x + spawnX,
@@ -170,7 +170,7 @@ public class ItemDispenser : MonoBehaviour, IInteractable
                     GameManager.instance.activeQuestItemCount--;
                     if (GameManager.instance.activeQuestItemCount <= 0)
                     {
-                        GameManager.instance.activeQuestPrefab = null;
+                        //GameManager.instance.activeQuestPrefab = null;
                         GameManager.instance.activeQuestItemCount = 0;
 
                     }
