@@ -41,4 +41,11 @@ public abstract class WardenBaseAbilities : MonoBehaviour
     public abstract float duration { get; }
     public abstract float Charge { get; set; }
 
+    protected IEnumerator CastSpell()
+    {
+        Animator animator = GetComponentInChildren<Animator>();
+        animator.SetBool("isCasting", true);
+        yield return new WaitForSeconds(duration);
+        animator.SetBool("isCasting", false);
+    }
 }

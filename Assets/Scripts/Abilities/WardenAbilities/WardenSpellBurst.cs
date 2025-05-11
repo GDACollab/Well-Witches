@@ -55,5 +55,6 @@ public class WardenSpellBurst : WardenBaseAbilities
         spellBurst.Activate(projectileDamage, projectileSpeed, projectileRotationForce, projectileLifetime, timeBetweenProjectile, projectilePerBurst, abilityDuration);
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.spectralShot, this.transform.position);
         Charge = 0f;
+        StartCoroutine(CastSpell());
     }
 }

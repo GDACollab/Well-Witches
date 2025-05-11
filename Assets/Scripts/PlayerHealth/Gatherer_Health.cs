@@ -27,6 +27,7 @@ public class Gatherer_Health : PlayerHealth
 
 	protected override void Die()
 	{
+		base.Die();
 		//send out signal
 		EventManager.instance.playerEvents.PlayerDeath();
 		SceneHandler.Instance.ToHubScene();
