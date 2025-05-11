@@ -72,8 +72,14 @@ public class BaseEnemyClass : MonoBehaviour
     }
 
     // calculates and set target to the closest player to the enemy
+    // unless warden is dead then targets just gatherer
     public virtual void TargetClosestPlayer()
     {
+        if (StatsManager.Instance.WardenCurrentHealth <= 0f)
+        {
+            currentTarget = (players[0].gameObject.name == "Gatherer") ? players[0].transform : players[1].transform;
+            return;
+        }
         distanceToPlayer1 = Vector2.Distance(players[0].transform.position, transform.position);
         distanceToPlayer2 = Vector2.Distance(players[1].transform.position, transform.position);
         if (distanceToPlayer1 < distanceToPlayer2)
