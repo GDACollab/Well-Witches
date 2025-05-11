@@ -182,6 +182,7 @@ MonoBehaviour:
   range: 4
   agent: {fileID: 394531480031503680}
   rb: {fileID: 6673968106200130034}
+  sr: {fileID: 0}
   distanceToPlayer1: 0
   distanceToPlayer2: 0
   distanceToTarget: 0
@@ -190,6 +191,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   currentTarget: {fileID: 0}
+  isStunned: 0
+  stunDuration: 0
   timeBetweenAttack: 2
   projectileCount: 3
   projectileSpread: 10
@@ -271,7 +274,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8877866808826064330}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: -1372625422
   m_Radius: 0.68
   m_Speed: 0
