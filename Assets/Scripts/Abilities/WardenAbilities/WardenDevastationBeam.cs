@@ -55,5 +55,6 @@ public class WardenDevastationBeam : WardenBaseAbilities
         db.Activate(damagePerTick, damageTickDuration, knockbackForce, knockbackTickDuration, abilityDuration);
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.lazerFire, this.transform.position);
         Charge = 0f;
+        StartCoroutine(CastSpell());
     }
 }

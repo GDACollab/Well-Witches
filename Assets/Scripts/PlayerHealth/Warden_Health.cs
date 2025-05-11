@@ -28,6 +28,7 @@ public class Warden_Health : PlayerHealth
 
 	protected override void Die()
 	{
+		base.Die();
 		//send out signal
 		EventManager.instance.playerEvents.PlayerDeath();
 		WardenAbilityManager.Controls.Gameplay_Warden.Disable();

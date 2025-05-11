@@ -14,6 +14,10 @@ public class Gatherer_Interact : MonoBehaviour
     IInteractable interactable = null;
     public float timeSpent = 0.0f; //time spent searching
     public float timer = 1f; //time it takes to search
+    
+    private Animator animator;
+    private CapsuleCollider2D playerCollider;
+    private Vector3 oldPos;
 
     void OnInteract(InputValue iv)   // called by the Player Input component
     {
@@ -36,6 +40,8 @@ public class Gatherer_Interact : MonoBehaviour
                     //begin harvesting
                     interactable = interactableObject;
                     timeSpent = 0;
+                    oldPos = transform.position;
+                    StartAnimation(collider.transform.position);
                     break;
                 }
             }
@@ -48,6 +54,7 @@ public class Gatherer_Interact : MonoBehaviour
                 myMovement.canMove = true;
                 //stop harvesting
                 interactable = null;
+                EndAnimation();
             }
         }
     }
@@ -62,6 +69,28 @@ public class Gatherer_Interact : MonoBehaviour
             //stop harvesting
             interactable.Interact();
             interactable = null;
+            EndAnimation();
         }
+    }
+
+    void Start()
+    {
+        animator = GetComponentInChildren<Animator>();
+        playerCollider = GetComponent<CapsuleCollider2D>();
+    }
+
+    void StartAnimation(Vector3 cPos)
+    {
+        animator.SetTrigger("Gather");
+        animator.SetBool("isGathering", true);
+        playerCollider.excludeLayers = 0;
+        transform.position = cPos;
+    }
+    
+    void EndAnimation()
+    {
+        animator.SetBool("isGathering", false);
+        playerCollider.excludeLayers = new LayerMask();
+        transform.position = oldPos;
     }
 }

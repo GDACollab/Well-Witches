@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using FMOD.Studio;
-//using UnityEditor.Tilemaps;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,73 +14,41 @@ public class PlayerMovement : MonoBehaviour
 	public bool isMoving = false;
 	public float originalAcc;
 
-	/*
 	public Animator animator;
 	public SpriteRenderer sprite;
-    void changeSpriteTo(string anim)
+	
+    protected virtual void changeSpriteTo()
     {
-		Debug.Log("HALPAS");
-		if (anim == "isIdle")
-		{
-			animator.SetBool("isIdle", true);
-            animator.SetBool("isRunning", false);
-            animator.SetBool("isGathering", false);
-        } 
-		else if(anim == "isRunning")
-		{
-            animator.SetBool("isIdle", false);
-            animator.SetBool("isRunning", true);
-            animator.SetBool("isGathering", false);
-        }
-		else if (anim == "isGathering")
-		{
-            animator.SetBool("isIdle", false);
-            animator.SetBool("isRunning", false);
-            animator.SetBool("isGathering", true);
-        }
-		else
-		{
-            animator.SetBool("isIdle", false);
-            animator.SetBool("isRunning", false);
-            animator.SetBool("isGathering", false);
-        }
-		
-    }*/
+		animator.SetBool("isRunning", isMoving);
+    }
+	
     void OnMove(InputValue iv)  // Called by the Player Input component
 	{
-		//print("blah");
-		/*
-		if (canMove)
-		{
-            changeSpriteTo("isGathering");
-        }
-		*/
-
         moveDirection = iv.Get<Vector2>() * (canMove ? 1 : 0);
-		isMoving = moveDirection != Vector2.zero;
+		isMoving = moveDirection.magnitude > 0;
 
-		/*
-		if (moveDirection == new Vector2(-1, 0))
+		if (moveDirection.x > 0)
 		{
             sprite.flipX = true;
 		}
-		else
+		else if (moveDirection.x < 0)
 		{
-			sprite.flipY = false;
+			sprite.flipX = false;
         }
-		*/
 	}
 
 	protected void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
+		sprite = GetComponentInChildren<SpriteRenderer>();
+		animator = GetComponentInChildren<Animator>();
+		animator.SetTrigger("Respawn");
         maxSpeed_Adjusted = movementData.maxSpeed;
 		originalAcc = movementData.acceleration;
 	}
 
     private void Start()
     {
-		//changeSpriteTo("isIdle");
         playerFootsteps = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.playerFootsteps);
     }
 
@@ -93,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 		}
 		// Get the direction we need to go in order to get to where we want to go (deltaVelocity)
 		Vector2 currentVelocity = rb.velocity;
-		Vector2 targetVelocity = moveDirection * maxSpeed_Adjusted;
+		Vector2 targetVelocity = moveDirection * maxSpeed_Adjusted * (canMove ? 1 : 0);
 		Vector2 deltaVelocity = targetVelocity - currentVelocity;
 
 		float acceleration;
@@ -103,6 +70,8 @@ public class PlayerMovement : MonoBehaviour
 
 		Vector2 accelerationVector = deltaVelocity * acceleration;
 		rb.AddForce(accelerationVector);
+		
+		changeSpriteTo();
 
 		UpdateSound();
     }

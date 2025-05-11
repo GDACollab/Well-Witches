@@ -53,5 +53,6 @@ public class WardenGourdForge : WardenBaseAbilities
         gourdForgeInstance.Activate(damagePerTick, damageTickDuration, size, abilityDuration);
 
         Charge = 0;
+        StartCoroutine(CastSpell());
     }
 }
