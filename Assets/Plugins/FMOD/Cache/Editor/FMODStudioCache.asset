@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7893212100119248651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Gatherer Downed
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Gatherer Downed
+  Guid:
+    Data1: 1180655497
+    Data2: 1292653022
+    Data3: -1296903777
+    Data4: 2094208291
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1880
 --- !u!114 &-7396572930722113715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,11 +42,65 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638796603533180607
+  lastModified: 638824945497245673
   FileSizes:
   - Name: Desktop
-    Value: 127968
+    Value: 440768
   Exists: 1
+--- !u!114 &-6791792283865248198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Lazer Fire
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Lazer Fire
+  Guid:
+    Data1: 1738204031
+    Data2: 1168545638
+    Data3: -81268582
+    Data4: 711187775
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4000
+--- !u!114 &-6120182827798186609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Bubble Shield Deactivate
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Bubble Shield Deactivate
+  Guid:
+    Data1: 276157048
+    Data2: 1300287701
+    Data3: 466402734
+    Data4: -1848293518
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 156
 --- !u!114 &-5314029719513498490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,11 +143,38 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/TEST_BANK.bank
   Name: TEST_BANK
   StudioPath: bank:/TEST_BANK
-  lastModified: 638796603533195659
+  lastModified: 638824815574308011
   FileSizes:
   - Name: Desktop
     Value: 22272
   Exists: 1
+--- !u!114 &-4740162215739381930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Warden Downed
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Warden Downed
+  Guid:
+    Data1: 1427209975
+    Data2: 1169598990
+    Data3: -543019115
+    Data4: 2025236832
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 862
 --- !u!114 &-4414053934114797484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +298,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638796603533118973
+  lastModified: 638824890299104261
   FileSizes:
   - Name: Desktop
     Value: 6849664
@@ -264,10 +372,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638796603533148977
+  lastModified: 638824945496795800
   FileSizes:
   - Name: Desktop
-    Value: 1444
+    Value: 2212
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -301,13 +409,136 @@ MonoBehaviour:
   - {fileID: -4414053934114797484}
   - {fileID: 4821367923675588727}
   - {fileID: -3460935904466853576}
+  - {fileID: 340979720622404573}
+  - {fileID: -6791792283865248198}
+  - {fileID: -7893212100119248651}
+  - {fileID: -4740162215739381930}
+  - {fileID: 5601257573116720907}
+  - {fileID: 1118003796294227531}
+  - {fileID: -6120182827798186609}
+  - {fileID: 2674811856414105439}
+  - {fileID: 4940274877757686286}
+  - {fileID: 8780735350202498826}
+  - {fileID: 2076235794714511685}
+  - {fileID: 396385024923174352}
+  - {fileID: 1250832709579566109}
+  - {fileID: 7240434842042219965}
+  - {fileID: 4095617678791441503}
   EditorParameters: []
   MasterBanks:
   - {fileID: 6504835935913131893}
   StringsBanks:
   - {fileID: -134346031005777530}
-  cacheTime: 638796603533195659
+  cacheTime: 638824945497245673
   cacheVersion: 131846
+--- !u!114 &340979720622404573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Flaming Pumpkin Yank
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Flaming Pumpkin Yank
+  Guid:
+    Data1: -362186082
+    Data2: 1147113462
+    Data3: -1528947822
+    Data4: 1882521148
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 313
+--- !u!114 &396385024923174352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Aloe Talk
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Aloe Talk
+  Guid:
+    Data1: -1788487653
+    Data2: 1241647647
+    Data3: -1476929655
+    Data4: -1683453773
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &1118003796294227531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Bruiser Attack Swipe
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Bruiser Attack Swipe
+  Guid:
+    Data1: -1875484817
+    Data2: 1102428442
+    Data3: 321158330
+    Data4: -1052513820
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 532
+--- !u!114 &1250832709579566109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Diver Talk
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Diver Talk
+  Guid:
+    Data1: -447830917
+    Data2: 1240806409
+    Data3: 925696150
+    Data4: -1400531657
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1500
 --- !u!114 &1801688853461794212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,6 +593,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 138352
+--- !u!114 &2076235794714511685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Item PickUp
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Item PickUp
+  Guid:
+    Data1: 998923154
+    Data2: 1224231440
+    Data3: -1264549497
+    Data4: 650290688
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 125
 --- !u!114 &2277774317637409470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,6 +647,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &2674811856414105439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Bubble Shield Activate
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Bubble Shield Activate
+  Guid:
+    Data1: 1865256081
+    Data2: 1272920007
+    Data3: 1774339472
+    Data4: -834225387
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3286
+--- !u!114 &4095617678791441503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Health Transfer
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Health Transfer
+  Guid:
+    Data1: 812664326
+    Data2: 1111747135
+    Data3: -1616387688
+    Data4: -1159023936
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2600
 --- !u!114 &4821367923675588727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,7 +727,61 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 4007
+--- !u!114 &4940274877757686286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Bubble Shield Deflect
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Bubble Shield Deflect
+  Guid:
+    Data1: 1241174713
+    Data2: 1123694533
+    Data3: 583750581
+    Data4: -1292184607
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 156
+--- !u!114 &5601257573116720907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Tank Attack Bash
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Tank Attack Bash
+  Guid:
+    Data1: 1734065560
+    Data2: 1312443412
+    Data3: 1128141742
+    Data4: -26845366
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 540
 --- !u!114 &6504835935913131893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,11 +797,38 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638796603533138966
+  lastModified: 638824945496785799
   FileSizes:
   - Name: Desktop
     Value: 1074
   Exists: 1
+--- !u!114 &7240434842042219965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Talk Prompt
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Talk Prompt
+  Guid:
+    Data1: 1374417772
+    Data2: 1146163911
+    Data3: -1322399821
+    Data4: 720677884
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 484
 --- !u!114 &7445045133316025286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,3 +883,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &8780735350202498826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Boss Phase 1 Attack 1
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Boss Phase 1 Attack 1
+  Guid:
+    Data1: -1942135787
+    Data2: 1119606534
+    Data3: -1535720790
+    Data4: -2010197340
+  Banks:
+  - {fileID: -7396572930722113715}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1567

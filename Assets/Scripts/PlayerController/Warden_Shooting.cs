@@ -33,7 +33,7 @@ public class Warden_Shooting : MonoBehaviour
 	{
 		PlayerProjectile projectile = Instantiate(prefab, spawn.position, Quaternion.identity).GetComponent<PlayerProjectile>();
 		projectile.InitializeProjectile(velocity, lifetime, statsManager.AttackPower, knockback);
-		AudioManager.Instance.PlayOneShot(FMODEvents.Instance.spectralShot, spawn.position);
+		// AudioManager.Instance.PlayOneShot(FMODEvents.Instance.spectralShot, spawn.position);
 		cooldownCounter = cooldown;
 	}
 }

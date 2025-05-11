@@ -51,6 +51,7 @@ public class WardenDevastationBeam : WardenBaseAbilities
         if (Charge < NumHitsRequired) return;
         DevastationBeam db = Instantiate(prefab, spawnPoint).GetComponent<DevastationBeam>();
         db.Activate(damagePerTick, damageTickDuration, knockbackForce, knockbackTickDuration, abilityDuration);
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.lazerFire, this.transform.position);
         Charge = 0f;
     }
 }

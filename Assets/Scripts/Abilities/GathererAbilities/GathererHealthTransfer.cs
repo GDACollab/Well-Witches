@@ -52,7 +52,7 @@ public class GathererHealthTransfer : GathererBaseAbilities
                StatsManager.Instance.WardenCurrentHealth = StatsManager.Instance.WardenMaxHealth;
             }
 
-
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.healthTransfer, this.transform.position);
 
             temp = 0f; //reset the health value stored (No longer needed health % can be different)
          }

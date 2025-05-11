@@ -17,7 +17,7 @@ public class Warden_Health : PlayerHealth
 		float newHealth = statsManager.WardenCurrentHealth - damage;
 
 		if (newHealth > 0) statsManager.WardenCurrentHealth = newHealth;
-		else
+		else if (newHealth <= 0 && statsManager.WardenCurrentHealth != 0) 
 		{
 			statsManager.WardenCurrentHealth = 0;
 			Die();
@@ -31,6 +31,7 @@ public class Warden_Health : PlayerHealth
 		//send out signal
 		EventManager.instance.playerEvents.PlayerDeath();
 		WardenAbilityManager.Controls.Gameplay_Warden.Disable();
+		AudioManager.Instance.PlayOneShot(FMODEvents.Instance.wardenDown, this.transform.position);
 		return;
 	}
 
