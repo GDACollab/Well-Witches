@@ -1,10 +1,17 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class BubbleShield : MonoBehaviour
 {
+    [SerializeField] private GameObject shieldModel;
+    private Renderer _renderer;
     public void Activate(float duration)
     {
+        if (shieldModel == null) { shieldModel = GetComponentInChildren<GameObject>(); };
+        _renderer = shieldModel.GetComponent<Renderer>();
+        shieldModel.transform.localScale = Vector3.one;
+        StartCoroutine(SpawnShield());
         Destroy(gameObject, duration);
     }
 
@@ -40,9 +47,31 @@ public class BubbleShield : MonoBehaviour
         
     }
 
+    IEnumerator SpawnShield()
+    {
+        _renderer.material.SetFloat("_AlphaClip", 0f);
+        float start = 1.2f;
+        float end = -0.2f;
+        float lerp = 0f;
+        while (lerp < 1)
+        {
+            _renderer.material.SetFloat("_Dissolve", Mathf.Lerp(start, end, lerp));
+            lerp += Time.deltaTime * 1.5f;
+            yield return null;
+        }
+    }
     IEnumerator PopShield()
     {
-        // idk yet
+        float start = 0f;
+        float end = 1f;
+        float lerp = 0f;
+        while (lerp < 1)
+        {
+            _renderer.material.SetFloat("_AlphaClip", Mathf.Lerp(start, end, lerp));
+            shieldModel.transform.localScale = Vector3.one * Mathf.Lerp(1f, 3f, lerp);
+            lerp += Time.deltaTime * 3f;
+            yield return null;
+        }
         Destroy(gameObject);
         yield return null;
     }
