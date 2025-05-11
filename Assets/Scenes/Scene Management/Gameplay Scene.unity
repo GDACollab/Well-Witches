@@ -3000,6 +3000,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gatherer
       objectReference: {fileID: 0}
+    - target: {fileID: 6218362828026916798, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
+      propertyPath: cooldownTime
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7117434340022138856, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -3062,11 +3066,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8282183718129652020, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
       propertyPath: chargeDuration
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8282183718129652020, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
       propertyPath: <cooldownDuration>k__BackingField
-      value: 45
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8621890603641936049, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
+      propertyPath: <cooldownDuration>k__BackingField
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8822904034371888986, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3125,7 +3133,7 @@ PrefabInstance:
       objectReference: {fileID: 842300910}
     - target: {fileID: 3046167562820563143, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: <NumHitsRequired>k__BackingField
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3424275855618714540, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: m_Name

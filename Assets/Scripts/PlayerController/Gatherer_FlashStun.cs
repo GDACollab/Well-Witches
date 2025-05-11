@@ -112,8 +112,8 @@ public class Gatherer_FlashStun : GathererBaseAbilities
 
     IEnumerator waitOutFireWork()
     {
+        cooldownCounter = cooldownDuration;
         yield return new WaitForSeconds(lifetime);
         ExecuteAbility();
-        cooldownCounter = cooldownDuration;
     }
 }

@@ -1664,6 +1664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1268579075}
   - component: {fileID: 1268579074}
+  - component: {fileID: 1268579076}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -1738,6 +1739,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1268579076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268579073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &1319929482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1806,6 +1823,10 @@ PrefabInstance:
       propertyPath: gathererRadiusCircle
       value: 
       objectReference: {fileID: 1088075898}
+    - target: {fileID: 3046167562820563143, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+      propertyPath: <NumHitsRequired>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3424275855618714540, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: m_Name
       value: Warden
@@ -1930,12 +1951,8 @@ MonoBehaviour:
   PauseSceneIndex: 3
   BossSceneIndex: 4
   OpenCutsceneIndex: 5
-  LoadingScreenIndex: 6
-  loadingScreen: {fileID: 0}
-  fadeUIImage: {fileID: 0}
+  loadScreen: {fileID: 0}
   waitTime: 2
-  fadeInTime: 1
-  fadeOutTime: 1
 --- !u!1001 &1426906303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2181,6 +2198,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 394917628713727083, guid: 5935ae11f5b8c784b999605299358255, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 394917628713727083, guid: 5935ae11f5b8c784b999605299358255, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2459290139699285188, guid: 5935ae11f5b8c784b999605299358255, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2459290139699285188, guid: 5935ae11f5b8c784b999605299358255, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3481618732558752432, guid: 5935ae11f5b8c784b999605299358255, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3481618732558752432, guid: 5935ae11f5b8c784b999605299358255, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 5213248895469507566, guid: 5935ae11f5b8c784b999605299358255, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -2188,6 +2229,14 @@ PrefabInstance:
     - target: {fileID: 5213248895469507566, guid: 5935ae11f5b8c784b999605299358255, type: 3}
       propertyPath: referencePoint
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5213248895469507566, guid: 5935ae11f5b8c784b999605299358255, type: 3}
+      propertyPath: spawnRadiusMax
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5213248895469507566, guid: 5935ae11f5b8c784b999605299358255, type: 3}
+      propertyPath: spawnRadiusMin
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5213248895469507566, guid: 5935ae11f5b8c784b999605299358255, type: 3}
       propertyPath: maxSpawnCoord.x
