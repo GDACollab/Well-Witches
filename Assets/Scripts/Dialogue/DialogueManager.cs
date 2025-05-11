@@ -111,7 +111,7 @@ public class DialogueManager : MonoBehaviour
 
     private void OnGathererInteract(InputAction.CallbackContext context)
     {
-        if (currentStory.currentChoices.Count == 0)
+        if (currentStory.currentChoices.Count == 0 && dialogueActive == true)
         {
             ContinueStory();
         }
