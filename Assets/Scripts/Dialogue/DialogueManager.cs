@@ -162,7 +162,8 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator EndDialogueMode()
     {
         yield return new WaitForSeconds(0.2f); //in place so that the player doesnt instantly talk to the NPC again on accident
-
+        StatsManager.Instance.players["Warden"].GetComponent<PlayerMovement>().canMove = true;
+        StatsManager.Instance.players["Gatherer"].GetComponent<PlayerMovement>().canMove = true;
         dialogueActive = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";

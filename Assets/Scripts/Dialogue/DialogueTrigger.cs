@@ -128,6 +128,8 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (playerInRange && !DialogueManager.GetInstance().dialogueActive && visualCue)
         {
+            StatsManager.Instance.players["Warden"].GetComponent<PlayerMovement>().canMove = false;
+            StatsManager.Instance.players["Gatherer"].GetComponent<PlayerMovement>().canMove = false;
             story = new Story(JSON.text);
             inkExternalFunctions = new InkExternalFunctions();
             inkDialogueVariables = new InkDialogueVariables(story);
