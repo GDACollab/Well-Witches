@@ -8,6 +8,7 @@ public class ItemDispenser : MonoBehaviour, IInteractable
 {
 
     [SerializeField]
+    bool isBossBush = false;
     private Item[] items;
 
     private SpriteRenderer spriteRenderer;
@@ -22,6 +23,25 @@ public class ItemDispenser : MonoBehaviour, IInteractable
     [SerializeField] private GameObject prefabToSpawn;
 
     private GameObject keyItemToSpawn;
+
+    private void OnEnable()
+    {
+        EventManager.instance.bossEvents.onBushReset += BossBushReset;
+    }
+    private void OnDisable()
+    {
+        EventManager.instance.bossEvents.onBushReset -= BossBushReset;
+    }
+
+    public void BossBushReset()
+    {
+        if(isBossBush)
+        {
+            spriteRenderer.color = Color.red;
+            particleSystem.Play();
+            interacted = false;
+        }
+    }
 
 
     // Pre-Made list of (name, timer) tuples for both buffs and debuffs. 
@@ -62,6 +82,12 @@ public class ItemDispenser : MonoBehaviour, IInteractable
 
     void Dispense()
     {
+        if (isBossBush)
+        {
+            EventManager.instance.bossEvents.BushCollected();
+            vacate();
+            return;
+        }
         if (!interacted){ //Checks if the bush hasn't been interacted with before.
 
             // Finds a spot to spawn the item next to the bush.
@@ -218,7 +244,10 @@ public class ItemDispenser : MonoBehaviour, IInteractable
         particleSystem.Stop();
         spriteRenderer.color = Color.grey;
         interacted = true;
-        StartCoroutine(TrackTime());
+        if (!isBossBush)
+        {
+            StartCoroutine(TrackTime());
+        }
     }
 
     Item ChooseItem()
