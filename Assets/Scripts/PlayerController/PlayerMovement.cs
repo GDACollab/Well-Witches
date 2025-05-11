@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using FMOD.Studio;
+using UnityEditor.Tilemaps;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,11 +14,58 @@ public class PlayerMovement : MonoBehaviour
 	public bool canMove = true; //boolean that enables/disables movement, used for when you harvest from bushes
 	public bool isMoving = false;
 	public float originalAcc;
-	void OnMove(InputValue iv)  // Called by the Player Input component
+
+	public Animator animator;
+	public SpriteRenderer sprite;
+    void changeSpriteTo(string anim)
+    {
+		Debug.Log("HALPAS");
+		if (anim == "isIdle")
+		{
+			animator.SetBool("isIdle", true);
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isGathering", false);
+        } 
+		else if(anim == "isRunning")
+		{
+            animator.SetBool("isIdle", false);
+            animator.SetBool("isRunning", true);
+            animator.SetBool("isGathering", false);
+        }
+		else if (anim == "isGathering")
+		{
+            animator.SetBool("isIdle", false);
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isGathering", true);
+        }
+		else
+		{
+            animator.SetBool("isIdle", false);
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isGathering", false);
+        }
+		
+    }
+    void OnMove(InputValue iv)  // Called by the Player Input component
 	{
 		//print("blah");
-		moveDirection = iv.Get<Vector2>() * (canMove ? 1 : 0);
+		if (canMove)
+		{
+            changeSpriteTo("isGathering");
+        }
+
+        moveDirection = iv.Get<Vector2>() * (canMove ? 1 : 0);
 		isMoving = moveDirection != Vector2.zero;
+
+		if (moveDirection == new Vector2(-1, 0))
+		{
+            sprite.flipX = true;
+		}
+		else
+		{
+			sprite.flipY = false;
+
+        }
 	}
 
 	protected void Awake()
@@ -29,7 +77,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-		playerFootsteps = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.playerFootsteps);
+		changeSpriteTo("isIdle");
+        playerFootsteps = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.playerFootsteps);
     }
 
     void FixedUpdate()
@@ -57,7 +106,6 @@ public class PlayerMovement : MonoBehaviour
 	private void UpdateSound()
 	{
 		//Debug.Log(rb.velocity);
-
 		if (Mathf.Abs(rb.velocity.x) > 2.5f || Mathf.Abs(rb.velocity.y) > 2.5f)
 		{
 			PLAYBACK_STATE playbackState;
@@ -66,10 +114,17 @@ public class PlayerMovement : MonoBehaviour
 			if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
 			{
 				playerFootsteps.start();
-			}
-		}
+
+                //Debug.Log("HALPAS");
+            }
+			//Changed animation here to run
+			changeSpriteTo("isRunning");
+
+        }
 		else
 		{
+			//Changing animation to idle here
+			changeSpriteTo("isIdle");
 			playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
 		}
 	}
