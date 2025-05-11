@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 		}
 		// Get the direction we need to go in order to get to where we want to go (deltaVelocity)
 		Vector2 currentVelocity = rb.velocity;
-		Vector2 targetVelocity = moveDirection * maxSpeed_Adjusted;
+		Vector2 targetVelocity = moveDirection * maxSpeed_Adjusted * (canMove ? 1 : 0);
 		Vector2 deltaVelocity = targetVelocity - currentVelocity;
 
 		float acceleration;
