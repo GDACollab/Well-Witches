@@ -20,7 +20,7 @@ public class HUD : MonoBehaviour
 	
 	void Update()
 	{
-		// gathererAbilityMeter.value = (GathererAbilityManager.Instance != null) ? (GathererAbility.cooldown - GathererAbility.currentCooldown) / Mathf.Max(1, GathererAbility.cooldown) : 1;
+		gathererAbilityMeter.value = (GathererAbilityManager.Instance != null) ? (GathererAbility.Charge) / Mathf.Max(1, GathererAbility.Charge) : 1;
 		wardenAbilityMeter.value = (WardenAbilityManager.Instance != null) ? WardenAbility.Charge / Mathf.Max(1, WardenAbility.numHitsRequired) : 1;
 	}
 
