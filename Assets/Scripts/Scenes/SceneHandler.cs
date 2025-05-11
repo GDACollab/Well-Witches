@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneHandler : MonoBehaviour
 {
@@ -22,12 +23,18 @@ public class SceneHandler : MonoBehaviour
     private int BossSceneIndex = 4;
     [SerializeField]
     private int OpenCutsceneIndex = 5;
+    [SerializeField]
+    private int LoadingScreenIndex = 6;
 
     [Header("Transition Screen")]
     [Tooltip("Image for loading screen")]
-    [SerializeField] private GameObject loadScreen;
+    [SerializeField] private GameObject loadingScreen;
+    [SerializeField] private Image fadeUIImage;
     [Tooltip("Image for loading screen")]
     [SerializeField] private float waitTime = 2f;
+    [SerializeField] float fadeInTime = 1f;
+    [SerializeField] float fadeOutTime = 1f;
+    
     
     private void Awake(){
         if(Instance != null && Instance != this){
@@ -35,7 +42,9 @@ public class SceneHandler : MonoBehaviour
         }
         else{
             Instance = this;
-            //DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(this.gameObject);
+            fadeUIImage.gameObject.SetActive(false);
+            loadingScreen.SetActive(false);
         }
     }
 
@@ -46,6 +55,52 @@ public class SceneHandler : MonoBehaviour
     private void OnEnable()
     {
         
+    }
+    
+    // Start is called before the first frame update
+    // void Start()
+    // {
+    //     SceneManager.sceneLoaded += (_,_) => fadeUIImage.gameObject.SetActive(false);
+    // }
+
+    public IEnumerator FadeFromBlack(float fadeInTime)
+    {
+        Time.timeScale = 0f;
+        fadeUIImage.gameObject.SetActive(true);
+
+        yield return new WaitForSecondsRealtime(0.1f);
+        Color objectColor = fadeUIImage.color; //Gets Object Color and Modifies values
+        objectColor.a = 1f;
+        fadeUIImage.color = objectColor;
+        float timer = fadeInTime;
+        while (fadeUIImage.color.a > 0)
+        {
+            timer -= Time.unscaledDeltaTime;
+            objectColor.a = Mathf.Lerp(-0.1f, 1, timer / fadeInTime);
+            fadeUIImage.color = objectColor;
+            yield return null;
+        }
+        fadeUIImage.gameObject.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    public IEnumerator FadeToBlack(float fadeOutTime)
+    {
+        Time.timeScale = 0f;
+        Color objectColor = fadeUIImage.color; //Gets Object Color and Modifies values
+        objectColor.a = 0;
+        fadeUIImage.color = objectColor;
+        fadeUIImage.gameObject.SetActive(true);
+        float timer = fadeOutTime;
+        while (fadeUIImage.color.a < 1)
+        {
+            timer -= Time.unscaledDeltaTime;
+            objectColor.a = Mathf.Lerp(1.1f, 0, timer / fadeOutTime);
+            fadeUIImage.color = objectColor;
+            yield return null;
+        }
+        Time.timeScale = 1f;
+        yield return new WaitForSecondsRealtime(0.1f);
     }
 
     // FOR TESTING PURPOSES ONLY DO NOT UNCOMMENT
@@ -227,25 +282,25 @@ public class SceneHandler : MonoBehaviour
     private IEnumerator LoadingScreen(int sceneName)
     {
         //show picture, backup incase some scene doesn't have it
-        if (loadScreen != null)
-        {
-            loadScreen.SetActive(true);
-        }else
-        {
-            Debug.Log("ERROR: MISSING LOADING SCREEN");
-        }
-
+        
+        yield return FadeToBlack(fadeInTime);
+        SceneManager.LoadScene(LoadingScreenIndex);
+        loadingScreen.SetActive(true);
+        yield return FadeFromBlack(fadeOutTime);
         //animation will be done via art
+        AsyncOperation newscene = SceneManager.LoadSceneAsync(sceneName);
+        newscene.allowSceneActivation = false;
 
-
-        yield return new WaitForSeconds(waitTime);
-
-        SceneManager.LoadSceneAsync(sceneName);
-
-        //loadScreen.SetActive(false);
-
-
-
+        yield return new WaitForSecondsRealtime(waitTime);
+        
+        while (newscene.progress < 0.9f)
+        {
+            yield return null;
+        }
+        yield return FadeToBlack(fadeInTime);
+        loadingScreen.SetActive(false);
+        newscene.allowSceneActivation = true;
+        yield return FadeFromBlack(fadeOutTime);
     }
 
 }
