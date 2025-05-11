@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
 	public bool isMoving = false;
 	public float originalAcc;
 
+	/*
 	public Animator animator;
 	public SpriteRenderer sprite;
     void changeSpriteTo(string anim)
@@ -45,18 +46,21 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isGathering", false);
         }
 		
-    }
+    }*/
     void OnMove(InputValue iv)  // Called by the Player Input component
 	{
 		//print("blah");
+		/*
 		if (canMove)
 		{
             changeSpriteTo("isGathering");
         }
+		*/
 
         moveDirection = iv.Get<Vector2>() * (canMove ? 1 : 0);
 		isMoving = moveDirection != Vector2.zero;
 
+		/*
 		if (moveDirection == new Vector2(-1, 0))
 		{
             sprite.flipX = true;
@@ -64,8 +68,8 @@ public class PlayerMovement : MonoBehaviour
 		else
 		{
 			sprite.flipY = false;
-
         }
+		*/
 	}
 
 	protected void Awake()
@@ -77,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-		changeSpriteTo("isIdle");
+		//changeSpriteTo("isIdle");
         playerFootsteps = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.playerFootsteps);
     }
 
@@ -118,13 +122,13 @@ public class PlayerMovement : MonoBehaviour
                 //Debug.Log("HALPAS");
             }
 			//Changed animation here to run
-			changeSpriteTo("isRunning");
+			//changeSpriteTo("isRunning");
 
         }
 		else
 		{
 			//Changing animation to idle here
-			changeSpriteTo("isIdle");
+			//changeSpriteTo("isIdle");
 			playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
 		}
 	}
