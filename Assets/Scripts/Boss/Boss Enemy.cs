@@ -11,6 +11,7 @@ public class BossEnemy : BaseEnemyClass
     public float attackCooldown;
     [Tooltip("Phase 1 to 2 HP")]
     public float phaseHP;
+    public Animator animator;
 
     [Header("DEBUG")]
     public float distanceToPlayer1;
@@ -21,6 +22,8 @@ public class BossEnemy : BaseEnemyClass
     public Transform currentTarget;
 
     public bool DPS_phase = false;
+
+    
 
     private void Start()
     {

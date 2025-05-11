@@ -104,6 +104,9 @@ public class BossShieldBash : MonoBehaviour
             }
         }
 
+        // Start shieldbash animation(currently not adjusted based on slash duration TODO)
+        bossEnemy.animator.SetTrigger("DoShieldbash");
+
         // Gradually increase the size of the attack indicator
         float elapsedTime = 0f;
         while (elapsedTime < warningDuration)
