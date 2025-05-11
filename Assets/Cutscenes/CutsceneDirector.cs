@@ -6,9 +6,13 @@ using UnityEngine.Playables;
 public class CutsceneDirector : MonoBehaviour
 {
     PlayableDirector currentDirector;
+    bool firstPause;
+    public GameObject HelperText;
 
     private void Start() {
         currentDirector = gameObject.GetComponent<PlayableDirector>();
+        firstPause = true;
+        HelperText.SetActive(false);
     }
 
     public void WaitForInput() {
@@ -16,6 +20,10 @@ public class CutsceneDirector : MonoBehaviour
             Debug.LogError("Using CutsceneDirector.cs without a timeline on the same object!");
         } else {
             currentDirector.Pause();
+            if (firstPause) {
+                HelperText.SetActive(true);
+                firstPause = false;
+            }
         }
     }
 
@@ -24,6 +32,7 @@ public class CutsceneDirector : MonoBehaviour
             Debug.LogError("Using CutsceneDirector.cs without a timeline on the same object!");
         } else {
             currentDirector.Resume();
+            HelperText.SetActive(false);
         }
     }
 
