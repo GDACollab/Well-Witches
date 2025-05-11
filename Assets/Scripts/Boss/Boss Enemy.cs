@@ -22,6 +22,7 @@ public class BossEnemy : BaseEnemyClass
     public Transform currentTarget;
 
     public bool DPS_phase = false;
+    public SpriteRenderer bubbleSprite;
 
     
 

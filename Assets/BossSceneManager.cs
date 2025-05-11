@@ -66,8 +66,10 @@ public class BossSceneManager : MonoBehaviour
 
         bushes_collected += 1;
         boss_script_component.DPS_phase = true;
+        boss_script_component.bubbleSprite.enabled = false;
         yield return new WaitForSeconds(shieldbreaker_duration);
         boss_script_component.DPS_phase = false;
+        boss_script_component.bubbleSprite.enabled = true;
     }
 
 
