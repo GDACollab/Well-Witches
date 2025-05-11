@@ -21,20 +21,21 @@ public class GathererBubbleShield : GathererBaseAbilities
 	void Awake()
 	{
 		InitSingleton();
-        timer = 0f;
+        charge = 0f;
     }
 
     private void Update()
     {
-        if (!canUse && timer < cooldownDuration)
+        if (!canUse && charge < cooldownDuration)
         {
-            timer += Time.deltaTime;
+            
+            charge += Time.deltaTime;
             return;
         }
         else
         {
             canUse = true;
-            timer = 0f;
+            charge = 0f;
         }
     }
 

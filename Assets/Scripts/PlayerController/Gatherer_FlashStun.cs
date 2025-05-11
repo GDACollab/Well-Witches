@@ -47,6 +47,7 @@ public class Gatherer_FlashStun : GathererBaseAbilities
         if (cooldownCounter > 0)
         {
             cooldownCounter -= Time.deltaTime;
+            charge += cooldownDuration - cooldownCounter;
             return; // don't even think about charging up if on cooldown
         }
 
