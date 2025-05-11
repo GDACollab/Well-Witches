@@ -30,6 +30,7 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference diverTalk  { get; private set; }
     [field: SerializeField] public EventReference ghostMailTalk  { get; private set; }
     [field: SerializeField] public EventReference talkPrompt  { get; private set; }
+    [field: SerializeField] public EventReference healthTransfer  { get; private set; }
 
     [field: Header("BGM")]
     [field: SerializeField] public EventReference lobbyBGM { get; private set; }
