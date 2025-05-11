@@ -110,7 +110,7 @@ public class ItemDispenser : MonoBehaviour, IInteractable
             GameObject questItem = GameManager.instance.activeQuestPrefab;
             List<string> currentBuffs = StatsManager.Instance.getMyBuffs();
             bool questActive = false;
-            float totalQuestItemChance = 0.75f;
+            float totalQuestItemChance = 0.5f;
             if (questItem != null) {  //Checks if there are currently no active quest items
                 questActive = true;
                 prefabToSpawn = questItem;
