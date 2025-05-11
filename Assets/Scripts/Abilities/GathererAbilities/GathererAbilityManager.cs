@@ -50,13 +50,11 @@ public class GathererAbilityManager : MonoBehaviour
     void OnEnable()
     {
         controls.Gameplay_Gatherer.ActivateAbility.performed += OnActivateAbility;
-        controls.Gameplay_Gatherer.ActivateAbilityAfterHold.performed += OnActivateAbilityAfterHold;
         SceneManager.activeSceneChanged += ChangedActiveScene;
     }
     void OnDisable()
     {
         controls.Gameplay_Gatherer.ActivateAbility.performed -= OnActivateAbility;
-        controls.Gameplay_Gatherer.ActivateAbilityAfterHold.performed -= OnActivateAbilityAfterHold;
         SceneManager.activeSceneChanged -= ChangedActiveScene;
     }
 
@@ -83,13 +81,6 @@ public class GathererAbilityManager : MonoBehaviour
         }
     }
 
-    void OnActivateAbilityAfterHold(InputAction.CallbackContext context)
-    {
-        if (equipedAbility.abilityName == "FlashStun")
-        {
-            equipedAbility.useAbility();
-        }
-    }
     private void Update()
     {
         if (passiveAbility != null)
