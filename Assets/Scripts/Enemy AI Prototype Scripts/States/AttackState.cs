@@ -33,7 +33,6 @@ public class AttackState : State
 
     public override void OnEnter()
     {
-        Debug.Log("Entering Attack State");
         attackTime = Time.time - (meleeEnemy != null ? meleeEnemy.timeBetweenAttack : (rangedEnemy != null ? rangedEnemy.timeBetweenAttack : tankEnemy.timeBetweenAttack));
         attackTime = 0f;
         isAttacking = false;
@@ -51,7 +50,7 @@ public class AttackState : State
     public override void OnUpdate()
     {
         // apparently Time.deltaTime doesn't work in OnUpdate. this makes me extremely uncomfortable :(
-        if (meleeEnemy != null)
+        if (meleeEnemy != null && !meleeEnemy.isStunned)
         {
             if (Time.time >= attackTime + meleeEnemy.timeBetweenAttack && !isAttacking)
             {
@@ -59,7 +58,7 @@ public class AttackState : State
                 attackTime = Time.time;
             }
         }
-        else if (rangedEnemy != null)
+        else if (rangedEnemy != null && !rangedEnemy.isStunned)
         {
             if (Time.time >= attackTime + rangedEnemy.timeBetweenAttack && !isAttacking)
             {
@@ -67,7 +66,7 @@ public class AttackState : State
                 attackTime = Time.time;
             }
         }
-        else if (tankEnemy != null)
+        else if (tankEnemy != null && !tankEnemy.isStunned)
         {
             if (Time.time >= attackTime + tankEnemy.timeBetweenAttack && !isAttacking)
             {

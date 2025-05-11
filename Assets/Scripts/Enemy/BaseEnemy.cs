@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,14 +14,30 @@ public class BaseEnemyClass : MonoBehaviour
     [Range(0, 20)]
     [Tooltip("How far away the enemy stops before attacking")]
     public float range;
-
     public NavMeshAgent agent;
-
     public Rigidbody2D rb;
     SiphonEnergy siphon;
+    public SpriteRenderer sr;
+
+    [Header("DEBUG")]
+    public float distanceToPlayer1;
+    public float distanceToPlayer2;
+    public float distanceToTarget;
+    public float timeToFire;
+    [SerializeField] private GameObject[] players;
+    public Transform currentTarget;
+    public bool isStunned;
+    [SerializeField] public float stunDuration;
     public void Spawn(Vector3 position)
     {
         Instantiate(gameObject, position, Quaternion.identity);
+    }
+
+    private void Start()
+    {
+        players = GameObject.FindGameObjectsWithTag("Player");
+        isStunned = false;
+        stunDuration = 5.0f;
     }
 
     public virtual void TakeDamage(float amount)
@@ -32,24 +47,66 @@ public class BaseEnemyClass : MonoBehaviour
         {
             Die();
         }
+        if (WardenAbilityManager.Instance.GetEquippedPassiveName() == "WaterLogging")
+        {
+            StartCoroutine(slow());
+        }
     }
 
     public virtual void Die()
     {
         EnemySpawner.currentEnemyCount--;
         //if siphon energy is equipped then add to siphone times
-        if (WardenAbilityManager.Instance.passiveAbilityName == "SiphonEnergy")
+        if (WardenAbilityManager.Instance.passiveAbilityName == WardenAbilityManager.Passive.SoulSiphon)
         {
-            WardenAbilityManager.Instance.siphonTimes++;
+            SiphonEnergy.Instance.AddEnergy();
         }
         Destroy(gameObject);
     }
+
+    IEnumerator slow()
+    {
+        Debug.Log("SLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOW");
+        sr = GetComponent<SpriteRenderer>();
+        sr.color = Color.blue;
+        moveSpeed = moveSpeed * WardenAbilityManager.Instance.waterSpeed;
+        yield return new WaitForSeconds(WardenAbilityManager.Instance.waterDuration);
+        moveSpeed = moveSpeed / WardenAbilityManager.Instance.waterSpeed;
+        sr.color = Color.white;
+    }
+
+    // calculates and set target to the closest player to the enemy
+    // unless warden is dead then targets just gatherer
+    public virtual void TargetClosestPlayer()
+    {
+        if (!isStunned)
+        {
+            if (StatsManager.Instance.WardenCurrentHealth <= 0f)
+            {
+                currentTarget = (players[0].gameObject.name == "Gatherer") ? players[0].transform : players[1].transform;
+                return;
+            }
+            distanceToPlayer1 = Vector2.Distance(players[0].transform.position, transform.position);
+            distanceToPlayer2 = Vector2.Distance(players[1].transform.position, transform.position);
+            if (distanceToPlayer1 < distanceToPlayer2)
+            {
+                currentTarget = players[0].transform;
+                distanceToTarget = distanceToPlayer1;
+            }
+            else
+            {
+                currentTarget = players[1].transform;
+                distanceToTarget = distanceToPlayer2;
+            }
+        }
+    }
+
 
     public virtual void ProjectileKnockback(Vector3 force)
     {
         agent.enabled = false;
         rb.AddForce(force, ForceMode2D.Impulse);
-        StartCoroutine(EnableAgent());
+        if (!isStunned) { StartCoroutine(EnableAgent()); }
     }
     
     IEnumerator EnableAgent()
@@ -60,4 +117,25 @@ public class BaseEnemyClass : MonoBehaviour
         rb.velocity = Vector3.zero;
     }
 
+    public virtual void getStunned()
+    {
+        isStunned = true;
+        agent.enabled = false;
+        stunDuration = 5.0f;
+    }
+
+    void Update()
+    {
+        if (isStunned)
+        {
+            stunDuration -= Time.deltaTime;
+
+            if (stunDuration <= 0.0f)
+            {
+                Debug.Log("timing out of stun");
+                isStunned = false;
+                StartCoroutine(EnableAgent());
+            }
+        }
+    }
 }

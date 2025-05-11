@@ -74,6 +74,7 @@ public class BossShieldBash : MonoBehaviour
         if (!isCasting)
         {
             StartCoroutine(ShieldBashRoutine());
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bossPhase1Attack1, this.transform.position);
         }
     }
 

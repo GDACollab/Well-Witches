@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 7937995718109404009}
   - component: {fileID: 7562616938753922885}
   - component: {fileID: 5354700902847656464}
+  - component: {fileID: 636965182726830714}
   m_Layer: 7
   m_Name: Warden
   m_TagString: Player
@@ -376,6 +377,8 @@ MonoBehaviour:
   movementData: {fileID: 11400000, guid: 0b9cd22267ec7cd489c76aefce0bd43b, type: 2}
   maxSpeed_Adjusted: 0
   canMove: 1
+  isMoving: 0
+  originalAcc: 0
   ropeDampening: 0.4
   ropeStiffness: 2
   joint: {fileID: 5266548998552274237}
@@ -415,7 +418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5becf096d7dc3724d854a0260287601c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <NumHitsRequired>k__BackingField: 1
+  <NumHitsRequired>k__BackingField: 50
   damagePerTick: 10
   damageTickDuration: 0.25
   knockbackForce: 5
@@ -456,7 +459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891a61dffccd18747b45509f3c8e5b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <NumHitsRequired>k__BackingField: 0
+  <NumHitsRequired>k__BackingField: 40
   projectileDamage: 5
   projectileSpeed: 8
   projectileRotationForce: 100
@@ -493,7 +496,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ec81eba31dd9384eb685ddae8a0bf8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  percent: 0
+  VFXPrefab: {fileID: 1695407132652539254, guid: e822e6d8daabc4a44ba54325e5d5eb18, type: 3}
+  percent: 3
+--- !u!114 &636965182726830714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3424275855618714540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb4c066a9187a8468bfdce9f79257d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 3
+  speed: 0.8
 --- !u!1 &8866154363906637985
 GameObject:
   m_ObjectHideFlags: 0
