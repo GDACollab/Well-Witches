@@ -56,6 +56,7 @@ public class KeyItem : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             AnnouncementManager.Instance.AddAnnouncementToQueue("You got an item for the cure!");
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.itemPickUp, this.transform.position);
             Destroy(this.gameObject);
         }
     }

@@ -26,6 +26,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
     {
         Debug.Log($"Picking up: {item}");
 
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.itemPickUp, this.transform.position);
         Destroy(gameObject);
     }
 

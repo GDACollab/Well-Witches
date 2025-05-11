@@ -28,6 +28,7 @@ public class BubbleShield : MonoBehaviour
                 Rigidbody2D proj = collision.GetComponent<Rigidbody2D>();
                 collision.transform.rotation = Quaternion.Euler(collision.transform.rotation.eulerAngles.x, collision.transform.rotation.eulerAngles.y, collision.transform.rotation.eulerAngles.z + 180f);
                 proj.velocity = collision.gameObject.transform.up * collision.GetComponent<EnemyProjectile>().speed;
+                AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bubbleDeflect, this.transform.position);
                 break;
             case "Warden":
                 StartCoroutine(PopShield());
@@ -72,6 +73,7 @@ public class BubbleShield : MonoBehaviour
             lerp += Time.deltaTime * 3f;
             yield return null;
         }
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bubbleDeactivate, this.transform.position);
         Destroy(gameObject);
         yield return null;
     }

@@ -12,6 +12,7 @@ public class MeleeEnemy : BaseEnemyClass
     public void Attack()
     {
         rb.velocity = (currentTarget.position - transform.position).normalized * speedWhileAttacking;
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bruiserAttackSwipe, this.transform.position);
 
         // not very performantive, better if collider check but should be good enough
         if (Vector2.Distance(transform.position, currentTarget.position) < attackAOE)
