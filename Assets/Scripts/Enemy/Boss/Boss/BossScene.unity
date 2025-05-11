@@ -1202,11 +1202,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &945188096 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 351931286895300582, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
-  m_PrefabInstance: {fileID: 49381590}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &945188097 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
@@ -1935,8 +1930,12 @@ MonoBehaviour:
   PauseSceneIndex: 3
   BossSceneIndex: 4
   OpenCutsceneIndex: 5
-  loadScreen: {fileID: 945188096}
+  LoadingScreenIndex: 6
+  loadingScreen: {fileID: 0}
+  fadeUIImage: {fileID: 0}
   waitTime: 2
+  fadeInTime: 1
+  fadeOutTime: 1
 --- !u!1001 &1426906303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2483,7 +2482,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -510}
+  m_AnchoredPosition: {x: 0, y: -341}
   m_SizeDelta: {x: 2000, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2052452172
