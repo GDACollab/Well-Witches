@@ -20,14 +20,16 @@ public class BossEnemy : BaseEnemyClass
     [SerializeField] private GameObject[] players;
     public Transform currentTarget;
 
+    public bool DPS_phase = false;
+
     private void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
     }
 
-    private void Update()
+    public override void ProjectileKnockback(Vector3 force)
     {
-
+        return;
     }
 
     public void TargetClosestPlayer()
@@ -60,9 +62,19 @@ public class BossEnemy : BaseEnemyClass
     }
 
     public override void TakeDamage(float amount)
-    {   //Reduces health by the amount entered in Unity
-        //Debug.Log("took damage");
-        health -= amount;
+    {
+
+        //Reduces health by the amount entered in Unity, or by 5% of that health outside of DPS phase
+
+        if (DPS_phase)
+        {
+            health -= amount;
+        }
+        else
+        {
+            health -= amount * 0.05f;
+        }
+
         if (health <= 0)
         {
             Die();
