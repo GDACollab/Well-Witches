@@ -25,8 +25,6 @@ public class WardenAbilityManager : MonoBehaviour
     public Passive passiveAbilityName;
     [SerializeField] private Controls controls;
 
-    //amount of times you kill an enemy for energy
-    public float siphonTimes;
     //checks if waterlogging is active
     public float waterDuration;
     public float waterSpeed;

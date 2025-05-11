@@ -55,7 +55,7 @@ public class BaseEnemyClass : MonoBehaviour
         //if siphon energy is equipped then add to siphone times
         if (WardenAbilityManager.Instance.passiveAbilityName == WardenAbilityManager.Passive.SoulSiphon)
         {
-            WardenAbilityManager.Instance.siphonTimes++;
+            SiphonEnergy.Instance.AddEnergy();
         }
         Destroy(gameObject);
     }
