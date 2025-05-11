@@ -7,7 +7,7 @@ public class MainMenuButtonManager : MonoBehaviour
 {
     public void OnMainMenuPlayButtonPress()
     {
-        SceneHandler.Instance.ToHubScene();
+        SceneHandler.Instance.ToOpenCutscene();
         Debug.Log("going to hub from start screen");
     }
 
