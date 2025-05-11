@@ -67,7 +67,6 @@ public class Gatherer_FlashStun : GathererBaseAbilities
 
     void ExecuteAbility()
     {
-        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.flashStun, this.transform.position);
         canCastSpellSFX = false;
 
         bool didHitEnemy = false;
@@ -113,6 +112,7 @@ public class Gatherer_FlashStun : GathererBaseAbilities
     IEnumerator waitOutFireWork()
     {
         cooldownCounter = cooldownDuration;
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.flashStun, this.transform.position);
         yield return new WaitForSeconds(lifetime);
         ExecuteAbility();
     }
