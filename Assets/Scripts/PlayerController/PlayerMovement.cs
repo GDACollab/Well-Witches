@@ -14,8 +14,10 @@ public class PlayerMovement : MonoBehaviour
 	public bool isMoving = false;
 	public float originalAcc;
 
-	public Animator animator;
+    public Animator animator;
 	public SpriteRenderer sprite;
+
+	//public SpriteRenderer sprite2;
 	
     protected virtual void changeSpriteTo()
     {

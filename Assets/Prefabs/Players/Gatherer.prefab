@@ -260,8 +260,8 @@ MonoBehaviour:
   canMove: 1
   isMoving: 0
   originalAcc: 0
-  animator: {fileID: 0}
-  sprite: {fileID: 0}
+  animator: {fileID: 1253589306448413575}
+  sprite: {fileID: 1038293068960941036}
 --- !u!114 &2686973554895526223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,7 +277,7 @@ MonoBehaviour:
   interactionRadius: {fileID: 2982385783056123225}
   myMovement: {fileID: 8323796786317442292}
   timeSpent: 0
-  timer: 1
+  timer: 3.5
 --- !u!114 &871047896541522312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,7 +308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chargeDuration: 5
   radius: 16
-  <cooldownDuration>k__BackingField: 1
+  <cooldownDuration>k__BackingField: 90
   collisionLayersToCheck:
     serializedVersion: 2
     m_Bits: 64
@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canUse: 1
-  <cooldownDuration>k__BackingField: 1
+  <cooldownDuration>k__BackingField: 50
   bubbleShieldPrefab: {fileID: 6411785581099938863, guid: 199c5c03508ddbf44856c87d364f3e59, type: 3}
   spawnPoint: {fileID: 8015346194276888610}
   charge: 0
@@ -393,9 +393,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 3
-  damage: 5
-  flamesSpawnedPerSecond: 5
-  flameTicksPerSecond: 1
+  damage: 2.5
+  flamesSpawnedPerSecond: 2
+  flameTicksPerSecond: 2.5
   startAbility: 0
   fire: {fileID: -6396332289483400692, guid: 3e613b81b15e54e42a6066b89aca1bb5, type: 3}
 --- !u!114 &-7641923896124788210

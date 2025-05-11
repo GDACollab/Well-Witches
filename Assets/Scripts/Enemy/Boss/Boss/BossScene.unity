@@ -285,7 +285,7 @@ MonoBehaviour:
   GathererCurrentHealth: 10
   GathererHealthRegen: 0
   AbilityPower: 0
-  AttackPower: 5
+  AttackPower: 15
   Mana: 0
   CriticalChance: 0
   CriticalDamage: 0
@@ -1825,7 +1825,7 @@ PrefabInstance:
       objectReference: {fileID: 1088075898}
     - target: {fileID: 3046167562820563143, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: <NumHitsRequired>k__BackingField
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3424275855618714540, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: m_Name
@@ -1951,8 +1951,12 @@ MonoBehaviour:
   PauseSceneIndex: 3
   BossSceneIndex: 4
   OpenCutsceneIndex: 5
-  loadScreen: {fileID: 0}
+  LoadingScreenIndex: 6
+  loadingScreen: {fileID: 0}
+  fadeUIImage: {fileID: 0}
   waitTime: 2
+  fadeInTime: 1
+  fadeOutTime: 1
 --- !u!1001 &1426906303
 PrefabInstance:
   m_ObjectHideFlags: 0

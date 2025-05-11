@@ -401,8 +401,8 @@ MonoBehaviour:
   canMove: 1
   isMoving: 0
   originalAcc: 0
-  animator: {fileID: 0}
-  sprite: {fileID: 0}
+  animator: {fileID: 4956731271629690812}
+  sprite: {fileID: 1294901850741618791}
   ropeDampening: 0.4
   ropeStiffness: 2
   joint: {fileID: 5266548998552274237}
@@ -447,7 +447,7 @@ MonoBehaviour:
   damageTickDuration: 0.25
   knockbackForce: 5
   knockbackTickDuration: 0.5
-  abilityDuration: 4
+  abilityDuration: 3
   spawnPoint: {fileID: 7347747762842868080}
   prefab: {fileID: 6910472829611805654, guid: 959fe09636fe21c4ab7db7263356823a, type: 3}
   charge: 0
@@ -464,10 +464,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <NumHitsRequired>k__BackingField: 25
-  damagePerTick: 15
+  damagePerTick: 10
   damageTickDuration: 0.25
   size: 0.5
-  abilityDuration: 20
+  abilityDuration: 2
   spawnPoint: {fileID: 7347747762842868080}
   prefab: {fileID: 5819169371919718163, guid: 02d4f21ea28faa44f96c08e532ce6824, type: 3}
   charge: 0
@@ -484,7 +484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <NumHitsRequired>k__BackingField: 40
-  projectileDamage: 5
+  projectileDamage: 10
   projectileSpeed: 8
   projectileRotationForce: 100
   projectileLifetime: 5
