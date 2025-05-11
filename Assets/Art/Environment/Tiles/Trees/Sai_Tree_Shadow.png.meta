@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: db17265d8fb8e684daf4d9521c13ffba
+guid: d91061d33d9bbd544940669220055a58
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,17 +43,17 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 142.5
+  alignment: 9
+  spritePivot: {x: 0.5, y: 0.1}
+  spritePixelsToUnits: 40
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: 0
+  spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -95,70 +95,9 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: fence_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 142.5
-        height: 285
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -30.25, y: -99.5}
-        - {x: -30.25, y: -48.5}
-        - {x: 71.25, y: -48.5}
-        - {x: 71.25, y: -99.5}
-      tessellationDetail: 0
-      bones: []
-      spriteID: c42dd2c197fc96d408130e47bdff4874
-      internalID: -662649930
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fence_1
-      rect:
-        serializedVersion: 2
-        x: 142
-        y: 0
-        width: 142.5
-        height: 285
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -71.25, y: -99.5}
-        - {x: -71.25, y: -48.5}
-        - {x: -26.25, y: -66.5}
-        - {x: 43.75, y: -54.5}
-        - {x: 18.75, y: -99.5}
-      tessellationDetail: 0
-      bones: []
-      spriteID: d4117ba32a680bc45972245ae1744a9b
-      internalID: 947598732
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
-    physicsShape:
-    - - {x: -14.5, y: -98.5}
-      - {x: -42.5, y: -73.5}
-      - {x: -62.5, y: -99.5}
-      - {x: -99.5, y: -99.5}
-      - {x: -100.5, y: -51.5}
-      - {x: 21.5, y: -49.5}
-      - {x: 45.5, y: -68.5}
-      - {x: 74.5, y: -60.5}
-      - {x: 114.5, y: -57.5}
-      - {x: 92.5, y: -94.5}
+    physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
     internalID: 1537655665
@@ -167,9 +106,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      fence_0: -662649930
-      fence_1: 947598732
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
