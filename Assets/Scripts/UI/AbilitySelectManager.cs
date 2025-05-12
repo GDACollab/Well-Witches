@@ -50,15 +50,35 @@ public class AbilitySelectManager : MonoBehaviour
 
     private void Start()
     {
+        wardenAbilityManager = WardenAbilityManager.Instance;
+        gathererAbilityManager = GathererAbilityManager.Instance;
+
+        int j = 0;
         for (int i = 0; i < abilitiesList.Length; i++)
         {
             abilitiesList[i].setID(i);
+
+            if (abilitiesList[i].getAbilityID() == gathererAbilityManager.GetEquippedPassiveName())
+            {
+                selectedPassiveAbilityGatherer = selectAbilityDoStuff(-1, false, false, i);
+            }
+            else if (abilitiesList[i].getAbilityID() == gathererAbilityManager.GetEquippedActiveName())
+            {
+                selectedActiveAbilityGatherer = selectAbilityDoStuff(-1, false, true, i);
+            }
+            else if (abilitiesList[i].getAbilityID() == wardenAbilityManager.GetEquippedPassiveName())
+            {
+                selectedPassiveAbilityWarden = selectAbilityDoStuff(-1, true, false, i);
+            }
+            else if (abilitiesList[i].getAbilityID() == wardenAbilityManager.GetEquippedActiveName())
+            {
+                selectedActiveAbilityWarden = selectAbilityDoStuff(-1, true, true, i);
+            }
         }
 
         updateHoveredAbility(-1);
 
-        wardenAbilityManager = WardenAbilityManager.Instance;
-        gathererAbilityManager = GathererAbilityManager.Instance;
+        abilityUIDisabler.SetActive(false);
     }
 
     public void clickedAbility(bool warden, bool active, int id)
