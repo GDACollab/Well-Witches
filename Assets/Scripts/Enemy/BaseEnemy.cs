@@ -16,7 +16,6 @@ public class BaseEnemyClass : MonoBehaviour
     public float range;
     public NavMeshAgent agent;
     public Rigidbody2D rb;
-    SiphonEnergy siphon;
     public SpriteRenderer sr;
 
     [Header("DEBUG")]
