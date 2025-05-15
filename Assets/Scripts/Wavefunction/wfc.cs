@@ -255,6 +255,7 @@ public class wfc : MonoBehaviour
         TileBase tileToPlaceHitboxSorted = null;
         TileBase tileToPlaceMiddle = null;
         TileBase tileToPlaceAbove = null;
+        GameObject prefabToPlace = null;
 
         for (int x = 0; x < sizeX; x++)
         {
@@ -268,6 +269,8 @@ public class wfc : MonoBehaviour
                     tileToPlaceHitboxSorted = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileHitboxSorted;
                     tileToPlaceMiddle = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileMiddle;
                     tileToPlaceAbove = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileAbove;
+
+                    prefabToPlace = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tilePrefab;
 
                     if (tileToPlaceGround != null)
                     {
@@ -292,6 +295,10 @@ public class wfc : MonoBehaviour
                     if (tileToPlaceAbove != null)
                     {
                         aboveTileMap.SetTile(new Vector3Int(x, y, 0), tileToPlaceAbove);
+                    }
+                    if (prefabToPlace != null)
+                    {
+                        Instantiate(prefabToPlace, new Vector3(x + 0.5f, y + 0.5f, 0f), Quaternion.identity);
                     }
                 }
             }
