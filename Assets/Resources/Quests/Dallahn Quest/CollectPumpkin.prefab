@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1105625469145762162}
   - component: {fileID: 4082356567428987259}
+  - component: {fileID: -7833654613895355399}
   m_Layer: 0
   m_Name: CollectPumpkin
   m_TagString: Untagged
@@ -47,3 +48,18 @@ MonoBehaviour:
   questDescription: {fileID: 0}
   pumpkinToCollect: 1
   questItem: {fileID: 3423278139367962229, guid: efeca546b23e87d449b02cc15b5e1f64, type: 3}
+--- !u!114 &-7833654613895355399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416129209834645041}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5136a24a00e2ed94797d9f877c3b1bd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questDescription: {fileID: 0}
+  timeToLive: 60
+  hitsToLive: 3

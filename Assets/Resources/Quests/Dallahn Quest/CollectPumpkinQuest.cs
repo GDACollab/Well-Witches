@@ -7,7 +7,7 @@ using UnityEngine;
 public class CollectPumpkinQuest : QuestStep
 {
     private int pumpkinCollected = 0;
-    [SerializeField] public int pumpkinToCollect = 5;
+    [SerializeField] public int pumpkinToCollect = 1;
     [SerializeField] public GameObject questItem;
 
 
