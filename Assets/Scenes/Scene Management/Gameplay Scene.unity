@@ -3118,6 +3118,7 @@ GameObject:
   - component: {fileID: 1753982956}
   - component: {fileID: 1753982955}
   - component: {fileID: 1753982954}
+  - component: {fileID: 1753982957}
   m_Layer: 0
   m_Name: Fireflies
   m_TagString: Untagged
@@ -3272,7 +3273,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -3282,8 +3283,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 15
-      minScalar: 10
+      scalar: 3
+      minScalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3770,7 +3771,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 1
-    maxNumParticles: 10000
+    maxNumParticles: 64
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -3838,7 +3839,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 160, y: 1, z: 160}
+    m_Scale: {x: 20, y: 1, z: 12}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -7931,12 +7932,25 @@ Transform:
   m_GameObject: {fileID: 1753982953}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 80, y: 80, z: -1.033095}
+  m_LocalPosition: {x: 93.95, y: 84, z: -1.033095}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &1753982957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753982953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2bea291f3d9f924ba1b5c5942555876, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gatherer: {fileID: 0}
 --- !u!1001 &1905635727
 PrefabInstance:
   m_ObjectHideFlags: 0
