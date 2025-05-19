@@ -23,35 +23,45 @@ public class CollectPumpkinTimer : QuestStep
         //GameManager.instance.activeQuestItemCount = garlicToCollect;
         questDescription.color = Color.white;
         questDescription.text = $"- Don't get hit (0/{hitsToLive}) times within the next (0/{timeToLive}) seconds";
+        PumpkinTimerQuest();
     }
 
-    private void PumpkinTimerQuest()
+    private void Update()
     {
-        time += Time.deltaTime; // increase the time
-        // pumpkin timer
-        if (time < timeToLive)
-        {
-            //check the time
-            questDescription.text = $"- Don't get hit ({hits}/{hitsToLive}) times within the next ({time}/{timeToLive}) seconds";
-        }
-        
-        if (playerHealth); // if player is hit
-        {
-            hits++; // increase the hits
-            questDescription.text = $"- Don't get hit ({hits}/{hitsToLive}) times within the next ({time}/{timeToLive}) seconds";
-        }
-        
-        if (hits >= hitsToLive) // if timer hits 0 wihtout fail
-        {
-            questDescription.color = Color.red;
-            // find the cancel function
-            return; // cancel the quest step
-        }
+        time += Time.deltaTime; // increment the timer
+        questDescription.text = $"- Don't get hit ({hits}/{hitsToLive}) times within the next ({time}/{timeToLive}) seconds";
         if (time >= timeToLive) // if timer hits 0 without fail
         {
+
             questDescription.color = Color.green;
+            questDescription.text = $"- Don't get hit ({hits}/{hitsToLive}) times within the next (60/60) seconds";
             FinishQuestStep();
+            
         }
+    }
+    private void PumpkinTimerQuest()
+    {
+        
+        if (playerHealth == null)
+        {
+            Debug.LogError("PlayerHealth component not found on Gatherer object.");
+            return;
+        }
+       
+        
+       
+        
+        
+        /*if (hits >= hitsToLive) // if timer hits 0 wihtout fail
+        {
+            questDescription.color = Color.red;
+             questDescription.text = $"- You failed to save the Pumpkin, you must start over and find a new one.";
+            // find the cancel function
+            CollectPumpkinQuest(); // cancel the quest step
+        }
+        //*/
+        
+       
         
     }
 }
