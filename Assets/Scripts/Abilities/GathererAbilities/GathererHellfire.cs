@@ -7,13 +7,13 @@ public class GathererHellfire : PassiveAbilities
     [Header("Stats")]
     public float duration;
     public float damage;
-    public float flamesSpawnedPerSecond;
     public float flameTicksPerSecond;
+    public float flameSpawnDistance;
     public bool startAbility = false;
     public HellfireBooties fire;
 
-    private float resetTimer;
-    private float currentTimer;
+    private float distanceMoved;
+    private Vector3 lastPos;
     private Rigidbody2D rb;
     public static GathererHellfire Instance { get; private set; }
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
@@ -26,18 +26,20 @@ public class GathererHellfire : PassiveAbilities
     //resetTimer is set so it creates n flames per second
     void Start()
     {
-        resetTimer = 1f/flamesSpawnedPerSecond;
-        currentTimer = resetTimer;
+        distanceMoved = 0;
+        lastPos = transform.position;
     }
     public override void passiveUpdate() 
     {
-        currentTimer -= Time.deltaTime;
-        if (currentTimer <= 0f)
+        distanceMoved += Vector3.Distance(lastPos, transform.position);
+        lastPos = transform.position;
+
+        if (distanceMoved > flameSpawnDistance)
         {
+            distanceMoved = 0;
             float angle = Mathf.Atan2(rb.velocity.x, rb.velocity.y) * Mathf.Rad2Deg;
             HellfireBooties shoes =  Instantiate(fire, transform.position, Quaternion.Euler(0, 0, -angle));
             shoes.Initialize(duration, damage, flameTicksPerSecond);
-            currentTimer = resetTimer;
         }
     }
 }
