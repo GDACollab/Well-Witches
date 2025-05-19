@@ -33,13 +33,13 @@ public class PlayerMovement : MonoBehaviour
 	{
 		// Get the direction we need to go in order to get to where we want to go (deltaVelocity)
 		Vector2 currentVelocity = rb.velocity;
-		Vector2 targetVelocity = moveDirection * maxSpeed_Adjusted;
+		Vector2 targetVelocity = moveDirection * maxSpeed_Adjusted * StatsManager.Instance.getSpeedMult();
 		Vector2 deltaVelocity = targetVelocity - currentVelocity;
 
 		float acceleration;
 		if (movementData.conserveMomentum && currentVelocity.magnitude > maxSpeed_Adjusted && Vector2.Dot(currentVelocity.normalized, targetVelocity.normalized) >= 0.5f) acceleration = 0;
-		else if (moveDirection != Vector2.zero) acceleration = movementData.acceleration;
-		else acceleration = movementData.deceleration;
+		else if (moveDirection != Vector2.zero) acceleration = movementData.acceleration * StatsManager.Instance.getSpeedMult();
+		else acceleration = movementData.deceleration * StatsManager.Instance.getSpeedMult();
 
 		Vector2 accelerationVector = deltaVelocity * acceleration;
 		rb.AddForce(accelerationVector);

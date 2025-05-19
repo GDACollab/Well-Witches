@@ -179,15 +179,17 @@ public class StatsManager : MonoBehaviour
     public float getYank()
     {
         float myMult = (myBuffs.Contains("YankUp") ? YankBuffStrength : 1) * (myBuffs.Contains("YankDown") ? YankCurseStrength : 1);
-        Debug.Log("Yanking at a rate of" + (float)(YankStrength * myMult) + " via x" + myMult);
+        //Debug.Log("Yanking at a strength of" + (float)(YankStrength * myMult) + " via x" + myMult);
         return YankStrength * myMult;
     }
 
     //NOT CURRENTLY USED
-    public float getSpeed()
+    public float getSpeedMult()
     {
         float myMult = (myBuffs.Contains("SpeedUp") ? SpeedBuffStrength : 1) * (myBuffs.Contains("SpeedDown") ? SpeedCurseStrength : 1);
-        return MaxSpeed * myMult;
+        Debug.Log("Moving at a speed of" + myMult);
+        return myMult;
+        //return MaxSpeed * myMult;
     }
 
     public float getAttackPower()
