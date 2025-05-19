@@ -163,12 +163,12 @@ public class WardenAbilityManager : MonoBehaviour
         {
             switch (abilityID)
             {
-                case "DeathDefy":
+                case "ResurrectionRegalia":
                     passiveAbility = AbilityDeathDefy.Instance;
                     passiveAbilityName = Passive.ResurrectionRegalia;
                     print("swap to: " + abilityID);
                     break;
-                case "SiphonEnergy":
+                case "SoulSiphon":
                     passiveAbility = SiphonEnergy.Instance;
                     passiveAbilityName = Passive.SoulSiphon;
                     print("swap to: " + abilityID);
