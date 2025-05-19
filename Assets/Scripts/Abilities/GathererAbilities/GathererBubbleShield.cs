@@ -33,7 +33,16 @@ public class GathererBubbleShield : GathererBaseAbilities
 
     private void Update()
     {
-        
+        if (!isActive && !canUse)
+        {
+            if (Charge < cooldownDuration)
+            {
+                Charge += Time.deltaTime;
+            } else
+            {
+                canUse = true;
+            }
+        }
     }
 
     public override void useAbility() // called by the GathererAbilityManager.cs
