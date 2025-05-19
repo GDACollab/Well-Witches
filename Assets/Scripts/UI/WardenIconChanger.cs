@@ -9,11 +9,7 @@ public class WardenIconChanger : MonoBehaviour
     [SerializeField] private List<Texture2D> Icons;
     [SerializeField] private GameObject ActiveIcon;
     [SerializeField] private GameObject PassiveIcon;
-    private void Start()
-    {
-        
-    }
-    // Update is called once per frame
+
     void Update()
     {
         string Active = WardenAbilityManager.Instance.GetEquippedActiveName();
