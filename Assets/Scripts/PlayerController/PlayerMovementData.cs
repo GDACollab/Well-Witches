@@ -2,7 +2,7 @@ using UnityEngine;
 /*
  *  To create an instance of this:
  *      Right click the folder you're in
- *      Create > Player > Player Movement Data
+ *      Create > ScriptableObjects > Player Movement Data
  *      Set values in the inspector
  *      Drag the created object onto Gatherer or Warden
  */

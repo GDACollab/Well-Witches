@@ -3,21 +3,40 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner instance;
+    private enum Difficulty
+    {
+        Easy,
+        Medium,
+        Hard,
+        Impossible
+    }
+
+    [Header("Enemy References")]
     public List<BaseEnemyClass> enemies;
     public List<GameObject> formationPrefabs;
+    public List<ScriptableObject> DifficultyStats;
 
-    public Transform referencePoint;    // Reference point for creatures to be spawned around
+    [Header("Difficulty")]
+    [SerializeField] private Difficulty currentDifficulty;
+    [SerializeField] private float mediumDifficultyTime;
+    [SerializeField] private float hardDifficultyTime;
+    [SerializeField] private float impossibleDifficultyTime;
+    [SerializeField] private float currentDifficultyTimer = 0.0f;
 
+
+    [Header("Spawn Distances")]
     [Tooltip("Minimum distance enemy will spawn from player.")]
     public float spawnRadiusMin;
     [Tooltip("Maximum distance enemy will spawn from player.")]
     public float spawnRadiusMax;
-    public float singleSpawnTime = 0.0f;
-    public float formationSpawnTime = 0.0f;
     [Tooltip("Maximum coordinate an enemy can spawn.")]
     [SerializeField] private Vector2 maxSpawnCoord;
     [Tooltip("Miniumm coordinate an enemy can spawn.")]
     [SerializeField] private Vector2 minSpawnCoord;
+    [Header("Spawn Timers")]
+    public float singleSpawnTime = 0.0f;
+    public float formationSpawnTime = 0.0f;
 
     public int maxEnemyCount;
     public static int currentEnemyCount;
@@ -25,17 +44,22 @@ public class EnemySpawner : MonoBehaviour
     [Header("Debug")]
     public float singleTimer;
     public float formationTimer;
-    // Start is called before the first frame update
+    public Transform referencePoint;    // Reference point for creatures to be spawned around
+
+    private void Awake()
+    {
+        if (instance == null) { instance = this; };
+        if (referencePoint == null) { referencePoint = GameObject.Find("Gatherer").transform; }
+    }
+
+
+
     void Start()
     {
         currentEnemyCount = 0;
-        if (referencePoint == null)
-        {
-            referencePoint = GameObject.Find("Gatherer").transform; // should be changed to tag if we decide to change names
-        }
+        currentDifficulty = Difficulty.Easy;
     }
 
-    // Update is called once per frame
     void Update()
     {
         singleTimer += Time.deltaTime;
