@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public static EnemySpawner instance;
+    public static EnemySpawner Instance { get; private set; }
 
     [HideInInspector]
     public enum Difficulty
@@ -20,13 +20,13 @@ public class EnemySpawner : MonoBehaviour
     public List<EnemyStatsSO> DifficultySO;
 
     [Header("Difficulty")]
-    public Difficulty currentDifficulty;
+    public Difficulty currentDifficulty = Difficulty.Easy;
     [SerializeField] private float mediumDifficultyTime;
     [SerializeField] private float hardDifficultyTime;
     [SerializeField] private float impossibleDifficultyTime;
     [SerializeField] private float currentDifficultyTimer = 0.0f;
 
-    public Dictionary <Difficulty, EnemyStatsSO> difficultyStats = new Dictionary<Difficulty, EnemyStatsSO>();
+    public Dictionary<Difficulty, EnemyStatsSO> difficultyStats = new Dictionary<Difficulty, EnemyStatsSO>();
 
     [Header("Spawn Distances")]
     [Tooltip("Minimum distance enemy will spawn from player.")]
@@ -51,13 +51,14 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null) { instance = this; };
+        if (Instance && Instance != this) Destroy(gameObject); else Instance = this;
         if (referencePoint == null) { referencePoint = GameObject.Find("Gatherer").transform; }
-        difficultyStats.Add(Difficulty.Easy, DifficultySO[0]);
+        
     }
 
     void Start()
     {
+        difficultyStats.Add(Difficulty.Easy, DifficultySO[0]);
         currentEnemyCount = 0;
         currentDifficulty = Difficulty.Easy;
     }

@@ -6,14 +6,12 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class BaseEnemyClass : MonoBehaviour
 {
-
+    public EnemyStatsSO stats;
 
     [Range(0, 20)]
     [Tooltip("How far away the enemy stops before attacking")]
     public float range;
         
-    
-
     [Header("DEBUG")]
     public float health;
     public float moveSpeed;
@@ -30,7 +28,12 @@ public class BaseEnemyClass : MonoBehaviour
     public Rigidbody2D rb;
     public SpriteRenderer sr;
 
-
+    private void Awake()
+    {
+        players = GameObject.FindGameObjectsWithTag("Player");
+        isStunned = false;
+        stunDuration = 5.0f;
+    }
 
     public void Spawn(Vector3 position)
     {

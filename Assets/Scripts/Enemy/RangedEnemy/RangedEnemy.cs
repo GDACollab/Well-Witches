@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class RangedEnemy : BaseEnemyClass
 {
+
     [Header("Projectile")]
     [Tooltip("Time between projectile firing in seconds")]
     public float timeBetweenAttack;
-    [Tooltip("Amount of projectiles to fire out")]
-    public float projectileCount;
     [Tooltip("Angle of the projectile's spread, the larger the wider the spread")]
     [Range(0, 90)]
     public float projectileSpread;
@@ -18,22 +17,31 @@ public class RangedEnemy : BaseEnemyClass
     public float projectileSize;
     [Tooltip("Time in seconds before the projectile explodes")]
     public float projectileLifetime;
-    public float projectileDamage;
 
-    [Header("AOE")]
-    [Tooltip("Size of the AOE when projectile lands")]
-    public float AOESize;
-    [Tooltip("How long the AOE lasts in seconds")]
-    public float AOELifetime;
-    public float AOEDamage;
+    private float projectileCount;
+    private float projectileDamage;
+    private float AOESize;
+    private float AOELifetime;
+    private float AOEDamage;
+
 
     [Header("Initialize")]
     [SerializeField] private GameObject projectilePrefab;
 
+    private void Start()
+    {
+        stats = EnemySpawner.Instance.difficultyStats[EnemySpawner.Instance.currentDifficulty];
+        health = stats.rangedHealth;
+        projectileCount = stats.projectileCount;
+        projectileDamage = stats.projectileDamage;
+        AOESize = stats.AOESize;
+        AOELifetime= stats.AOELifetime;
+        AOEDamage = stats.AOEDamage;
+    }
+
     // fires projectiles in a cone shape depending on the spread and projectile count
     public void Attack()
     {
-
         for (int i = 0; i < projectileCount; i++)
         {
             // spawns the projectile

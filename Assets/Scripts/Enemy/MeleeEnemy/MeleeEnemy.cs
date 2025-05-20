@@ -1,7 +1,6 @@
 using UnityEngine;
 public class MeleeEnemy : BaseEnemyClass
 {
-    private EnemyStatsSO stats = EnemySpawner.instance.difficultyStats[EnemySpawner.instance.currentDifficulty];
     private float damage;
 
     [Header("Attack")]
@@ -14,12 +13,10 @@ public class MeleeEnemy : BaseEnemyClass
 
     private void Start()
     {
+        stats = EnemySpawner.Instance.difficultyStats[EnemySpawner.Instance.currentDifficulty];
         health = stats.meleeHealth;
         moveSpeed = stats.meleeSpeed;
         damage = stats.meleeDamage;
-        players = GameObject.FindGameObjectsWithTag("Player");
-        isStunned = false;
-        stunDuration = 5.0f;
     }
 
     public void Attack()
