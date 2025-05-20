@@ -13,7 +13,9 @@ public class wfc : MonoBehaviour
     [SerializeField] Tilemap middleTileMap;
     [SerializeField] Tilemap aboveTileMap;
 
-    [SerializeField] tileScriptableObject edgeTile;
+    [SerializeField] private GameObject lightsParent;
+
+    [SerializeField] private tileScriptableObject edgeTile;
 
     [SerializeField] private tileScriptableObject[] tileScriptableObjects;
 
@@ -298,7 +300,7 @@ public class wfc : MonoBehaviour
                     }
                     if (prefabToPlace != null)
                     {
-                        Instantiate(prefabToPlace, new Vector3(x + 0.5f, y + 0.5f, 0f), Quaternion.identity);
+                        Instantiate(prefabToPlace, new Vector3(x + 0.5f, y + 0.5f, 0f), Quaternion.identity, lightsParent.transform);
                     }
                 }
             }
