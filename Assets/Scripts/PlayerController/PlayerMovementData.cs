@@ -6,7 +6,7 @@ using UnityEngine;
  *      Set values in the inspector
  *      Drag the created object onto Gatherer or Warden
  */
-[CreateAssetMenu(menuName = "Player/Player Movement Data")]
+[CreateAssetMenu(menuName = "ScriptableObjects/Player Movement Data")]
 
 public class PlayerMovementData : ScriptableObject
 {
