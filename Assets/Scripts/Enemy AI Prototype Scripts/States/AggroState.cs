@@ -60,6 +60,7 @@ public class AggroState : State
 
     public override void OnUpdate()
     {
+        if (!agent.isOnNavMesh) { Destroy(gameObject); };
         if (meleeEnemy != null && agent.enabled == true && !meleeEnemy.isStunned)
         {
             meleeEnemy.TargetClosestPlayer();

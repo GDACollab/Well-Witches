@@ -26,11 +26,16 @@ public class TankEnemy : BaseEnemyClass
     [Range(-5, 5)]
     [Tooltip("Move the spawn point of the acid pool up and down. [-5,5]")]
     public float acidOffsetY;
-    public float acidDamage;
-
-
 
     private float timeTillPool;
+    private float acidDamage;
+    private void Start()
+    {
+        stats = EnemySpawner.Instance.difficultyStats[EnemySpawner.Instance.currentDifficulty];
+        health = stats.tankHealth;
+        acidDamage = stats.acidDamage;
+        timeTillPool = 0f;
+    }
 
     public void Attack()
     {

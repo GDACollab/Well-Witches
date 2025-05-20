@@ -6,6 +6,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class BaseEnemyClass : MonoBehaviour
 {
+    [HideInInspector]
     public EnemyStatsSO stats;
 
     [Range(0, 20)]
