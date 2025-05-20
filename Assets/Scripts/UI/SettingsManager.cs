@@ -21,11 +21,11 @@ public class SettingsManager : MonoBehaviour
         masterSlider.value = temp;
         masterSlider.onValueChanged.AddListener((value) => MasterBus.setVolume(value));
         // UNCOMMENT EVERYTHING BELOW WHEN BUSES ARE CORRECT AND DELETE THIS LINE
-        // MusicBus.getVolume(out temp);
-        // musicSlider.value = temp;
-        // musicSlider.onValueChanged.AddListener((value) => MusicBus.setVolume(value));
-        // SFXBus.getVolume(out temp);
-        // sfxSlider.value = temp;
-        // sfxSlider.onValueChanged.AddListener((value) => SFXBus.setVolume(value));
+        MusicBus.getVolume(out temp);
+        musicSlider.value = temp;
+        musicSlider.onValueChanged.AddListener((value) => MusicBus.setVolume(value));
+        SFXBus.getVolume(out temp);
+        sfxSlider.value = temp;
+        sfxSlider.onValueChanged.AddListener((value) => SFXBus.setVolume(value));
     }
 }
