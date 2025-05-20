@@ -21,12 +21,14 @@ public class Gatherer_Interact : MonoBehaviour
 
     void OnInteract(InputValue iv)   // called by the Player Input component
     {
+        
         //iv's float = 1 means start pressing, 0 means stop
         //Debug.Log("Bluh A");
         //Debug.Log(iv.Get<float>()); //Don't worry about it, it just works
 
         if (iv.Get<float>() == 1) //just pressed
         {
+            timer = StatsManager.Instance.getHarvestTime(); //update timer to match current harvest time
             List<Collider2D> colliderList = new List<Collider2D>();
             ContactFilter2D contactFilter = new ContactFilter2D();
             interactionRadius.OverlapCollider(contactFilter.NoFilter(), colliderList);

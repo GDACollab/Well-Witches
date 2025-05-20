@@ -50,6 +50,7 @@ public class WardenAbilityManager : MonoBehaviour
 
         controls = new Controls();
         controls.Gameplay_Warden.Enable();
+        controls.Gameplay_Gatherer.Disable();
     }
 
     // Subscribe to the Warden controls input action asset "Activate Ability" action
