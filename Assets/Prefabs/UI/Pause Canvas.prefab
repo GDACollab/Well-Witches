@@ -166,8 +166,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 220.00775, y: 67.30179}
-  m_SizeDelta: {x: 256.3431, y: 227.2319}
+  m_AnchoredPosition: {x: 189, y: 27}
+  m_SizeDelta: {x: 262.5312, y: 258.1724}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7665385761556914364
 CanvasRenderer:
@@ -279,7 +279,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -195.52284, y: -101.59}
+  m_AnchoredPosition: {x: -195.52284, y: -122}
   m_SizeDelta: {x: 286.7902, y: 179.84}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2330220228246182258
@@ -557,11 +557,11 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Simple as they are, clovers are highly flexible and able to be used in
     any potions or brews. They thrive in meadows and wooded areas. Find a 3-leaf
-    clover for protection, a white clover to ward off malicious hexes, \nand the
-    famously rare 4-leaf \nclover to promote successful \nspellwork."
+    clover for protection, a white clover to ward off malicious hexes, and the \nfamously
+    rare 4-leaf clover to \npromote successful spellwork."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -694,8 +694,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Tear Grass, Job\u2019s Tears"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -726,7 +726,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -828,8 +828,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Paused
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1098,8 +1098,8 @@ MonoBehaviour:
     in potions to increase physical strength. Only a small amount is required to
     be effective.\r\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1162,7 +1162,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1743184003364121486
@@ -1307,8 +1307,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Lady\u2019s Thistle"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1371,7 +1371,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2030253367355163985
@@ -1408,8 +1408,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -9.2575, y: -43.992}
-  m_SizeDelta: {x: 388.7967, y: 283.5159}
+  m_AnchoredPosition: {x: -9.2575, y: -78.52106}
+  m_SizeDelta: {x: 388.7967, y: 324.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8082587707366463915
 CanvasRenderer:
@@ -1516,8 +1516,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Shamrock; Clover
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1580,7 +1580,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2404178774606216657
@@ -1650,8 +1650,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Main Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1751,7 +1751,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -2.5}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.3985, y: -63.147}
+  m_AnchoredPosition: {x: 6.3985, y: -67}
   m_SizeDelta: {x: 582.38, y: 302.1635}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7450418933953542541
@@ -1786,8 +1786,8 @@ MonoBehaviour:
     A resin extracted from the tap root is commonly used in exorcism rituals. However,
     the horrible smell does not make this easy to collect.\r"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1920,8 +1920,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Buckthorn, Hart\u2019s Horn"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1984,7 +1984,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2761813579568263609
@@ -2309,7 +2309,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 2.5}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000059605, y: -368}
+  m_AnchoredPosition: {x: -0.000059605, y: -440}
   m_SizeDelta: {x: 582.38, y: 302.1635}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4755446791721978127
@@ -2347,8 +2347,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2372,8 +2372,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2448,8 +2448,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 188.44, y: 89.459}
-  m_SizeDelta: {x: 218.29, y: 178.92}
+  m_AnchoredPosition: {x: 188.44, y: 77.81447}
+  m_SizeDelta: {x: 218.29, y: 202.209}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7456651326872744027
 CanvasRenderer:
@@ -2883,8 +2883,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Bloodroot
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2947,7 +2947,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &4061151256125568571
@@ -3022,7 +3022,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -2.5}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0014663, y: -346}
+  m_AnchoredPosition: {x: -0.0000014562, y: -408}
   m_SizeDelta: {x: 569.58, y: 334.496}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5444551340702029079
@@ -3058,8 +3058,8 @@ MonoBehaviour:
     be harvested when they have ripened to a black color. Be careful with them, as
     even the slightest crack could cause toxic gas to spread.\r\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3083,8 +3083,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3257,8 +3257,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Asafoetida, \nFood of the Gods"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3294,7 +3294,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -30
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -3523,8 +3523,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Resume
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4025,8 +4025,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 203.36572, y: -155.92833}
-  m_SizeDelta: {x: 301.4305, y: 195.8559}
+  m_AnchoredPosition: {x: 172.20984, y: -155.71475}
+  m_SizeDelta: {x: 325.8502, y: 198.4264}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5596646679018113564
 CanvasRenderer:
@@ -4132,11 +4132,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Aids in the removal of curses and hexes. Can be found near bodies of water,
-    but it likes to blend in, so look closely. Much of what is \ngathered can be
-    used, \neven the roots. Be warned, \nthese singing roots paralyze."
+    but it likes to blend in, so look closely. Much of what is gathered can be used,
+    \neven the roots. Be warned, \nthese singing roots paralyze."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4267,13 +4267,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Due to its near extinction,\nlocations of this rejuvenating \nplant have
-    now been classified, including how to harvest them. This highly-sought-after
+  m_text: "Due to its near extinction, locations \nof this rejuvenating plant have
+    now \nbeen classified, including how to harvest them. This highly-sought-after
     plant has strong valuable usage in healing spells and potions.  Speaking with
     the locals may lead you in the right direction.\r"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4406,8 +4406,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Amaranth, Princess Feather\r"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4470,7 +4470,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &6609860922000702033
@@ -4673,8 +4673,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Back To Hub '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4939,8 +4939,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Angelica; Masterword
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5003,7 +5003,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &6951561405061598622
@@ -5075,8 +5075,8 @@ MonoBehaviour:
     delicate buds, when carefully harvested, can be used to speed up the natural
     healing process. \nIt is considered a treasure, \nand guarded jealously.\r\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5139,7 +5139,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &7217442982572138503
@@ -5176,8 +5176,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 204.92072, y: -145}
-  m_SizeDelta: {x: 202.5559, y: 274.47}
+  m_AnchoredPosition: {x: 187.02399, y: -148.48438}
+  m_SizeDelta: {x: 233.4963, y: 273.4387}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3658273859288570870
 CanvasRenderer:
@@ -5284,8 +5284,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Rowan; Wild Ash
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5348,7 +5348,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &7827288324588001581
@@ -5454,13 +5454,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "This may be used to drive \naway or dispel enchantments \nor sorceries.
-    Thrives in \nthe sunlight, where it lays \nprey to monster\u2019s. Can only be
-    harvested by someone who is not afflicted by disease. Make sure to pick the red
-    ones! the other ones are duds \u2026\r\n"
+  m_text: "This may be used to drive away \nor dispel enchantments or sorceries.
+    \nThrives in the sunlight, where it \nlays prey to monster\u2019s. Can only be
+    \nharvested by someone who is not afflicted by disease. Make sure to pick the
+    red ones! \nThe other ones are duds \u2026\r\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5560,8 +5560,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000033379, y: -54.626}
-  m_SizeDelta: {x: 353.9177, y: 324.5851}
+  m_AnchoredPosition: {x: 0.000033379, y: -97.92593}
+  m_SizeDelta: {x: 487.5676, y: 381.98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &114314386068659240
 CanvasRenderer:
@@ -5671,8 +5671,8 @@ MonoBehaviour:
     high, moist areas for this scarce plant. While easy to harvest, the berries must
     be \nleft untouched before it has \nbeen cooked \u2013 they are highly \npoisonous.\r\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5735,7 +5735,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8785249112254201021
@@ -6033,8 +6033,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Life-Everlasting; \nWhite Balsam"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
+  m_sharedMaterial: {fileID: 836255651499175112, guid: 43856ffe561ccbc478bde4d2e8b74348, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6070,7 +6070,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -30
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
