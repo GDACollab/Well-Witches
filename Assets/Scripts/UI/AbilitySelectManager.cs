@@ -33,15 +33,6 @@ public class AbilitySelectManager : MonoBehaviour
         controls.Gameplay_Gatherer.Enable();
     }
 
-    private void OnEnable()
-    {
-        controls.Gameplay_Gatherer.AbilityMenu.performed += OnAbilityMenuOpen;
-    }
-    private void OnDisable()
-    {
-        controls.Gameplay_Gatherer.AbilityMenu.performed -= OnAbilityMenuOpen;
-    }
-
     //Toggles ui on gatherer interact
     private void OnAbilityMenuOpen(InputAction.CallbackContext context)
     {

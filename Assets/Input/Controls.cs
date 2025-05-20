@@ -71,15 +71,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Hold(duration=5)"",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Ability Menu"",
-                    ""type"": ""Button"",
-                    ""id"": ""5d075408-650f-45b1-9734-7a774ec53dc9"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -140,11 +131,44 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""55d4b259-7b18-460c-9a28-f9e59a936d04"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""963515da-1956-4c28-a964-703076e0c8f3"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""e87f8c3d-1462-445c-9c38-186ee22360d3"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mouse and Keyboard"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""72f705ab-6aef-4469-9b9e-bc7577dd04f8"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -162,11 +186,33 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""1096a1ed-3a6f-4999-9ec7-a137a636539e"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pull Warden"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""b6fa62a5-0d88-4251-a32a-71091502ad47"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Mouse and Keyboard"",
+                    ""action"": ""Activate Ability"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6f0294dd-328f-4c0e-8af2-0316b33d6007"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""Activate Ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -184,12 +230,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""72e7b915-d2dd-4a0b-a7ff-4164df59b701"",
-                    ""path"": ""<Keyboard>/tab"",
+                    ""id"": ""318bd81d-cad6-44e3-b191-7700739ba534"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Ability Menu"",
+                    ""action"": ""Activate Ability After Hold"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -319,6 +365,33 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""e43af6e5-ffa0-4dd9-9ce3-81f2a51815ed"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Page Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""d5a43f87-422f-497f-a4f1-c0f3c61651e6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Page Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""e14bf8c4-10b8-4532-b948-655eff1e5e17"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -343,6 +416,72 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Continue Cutscene"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b7a2e89-5c61-4cf0-b508-4dc502126a93"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fedde1b7-fe8b-4b56-bc87-1b1d84cb7b2a"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3e83c3a9-4d8d-4a13-aa21-1af5a5cdd142"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Page Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a9627ed-6fdb-4f70-8cac-c63b8666e2fc"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Page Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""81005635-ce2f-4c38-b91f-e9e7ee74669c"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Page Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""795ab1bc-5afd-4b9d-b913-69da586a3e29"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Page Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -356,7 +495,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Gameplay_Gatherer_PullWarden = m_Gameplay_Gatherer.FindAction("Pull Warden", throwIfNotFound: true);
         m_Gameplay_Gatherer_ActivateAbility = m_Gameplay_Gatherer.FindAction("Activate Ability", throwIfNotFound: true);
         m_Gameplay_Gatherer_ActivateAbilityAfterHold = m_Gameplay_Gatherer.FindAction("Activate Ability After Hold", throwIfNotFound: true);
-        m_Gameplay_Gatherer_AbilityMenu = m_Gameplay_Gatherer.FindAction("Ability Menu", throwIfNotFound: true);
         // Gameplay_Warden
         m_Gameplay_Warden = asset.FindActionMap("Gameplay_Warden", throwIfNotFound: true);
         m_Gameplay_Warden_Move = m_Gameplay_Warden.FindAction("Move", throwIfNotFound: true);
@@ -365,6 +503,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         // Ui_Navigate
         m_Ui_Navigate = asset.FindActionMap("Ui_Navigate", throwIfNotFound: true);
         m_Ui_Navigate_ContinueCutscene = m_Ui_Navigate.FindAction("Continue Cutscene", throwIfNotFound: true);
+        m_Ui_Navigate_Pause = m_Ui_Navigate.FindAction("Pause", throwIfNotFound: true);
+        m_Ui_Navigate_PageLeft = m_Ui_Navigate.FindAction("Page Left", throwIfNotFound: true);
+        m_Ui_Navigate_PageRight = m_Ui_Navigate.FindAction("Page Right", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -438,7 +579,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Gatherer_PullWarden;
     private readonly InputAction m_Gameplay_Gatherer_ActivateAbility;
     private readonly InputAction m_Gameplay_Gatherer_ActivateAbilityAfterHold;
-    private readonly InputAction m_Gameplay_Gatherer_AbilityMenu;
     public struct Gameplay_GathererActions
     {
         private @Controls m_Wrapper;
@@ -448,7 +588,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @PullWarden => m_Wrapper.m_Gameplay_Gatherer_PullWarden;
         public InputAction @ActivateAbility => m_Wrapper.m_Gameplay_Gatherer_ActivateAbility;
         public InputAction @ActivateAbilityAfterHold => m_Wrapper.m_Gameplay_Gatherer_ActivateAbilityAfterHold;
-        public InputAction @AbilityMenu => m_Wrapper.m_Gameplay_Gatherer_AbilityMenu;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay_Gatherer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -473,9 +612,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ActivateAbilityAfterHold.started += instance.OnActivateAbilityAfterHold;
             @ActivateAbilityAfterHold.performed += instance.OnActivateAbilityAfterHold;
             @ActivateAbilityAfterHold.canceled += instance.OnActivateAbilityAfterHold;
-            @AbilityMenu.started += instance.OnAbilityMenu;
-            @AbilityMenu.performed += instance.OnAbilityMenu;
-            @AbilityMenu.canceled += instance.OnAbilityMenu;
         }
 
         private void UnregisterCallbacks(IGameplay_GathererActions instance)
@@ -495,9 +631,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ActivateAbilityAfterHold.started -= instance.OnActivateAbilityAfterHold;
             @ActivateAbilityAfterHold.performed -= instance.OnActivateAbilityAfterHold;
             @ActivateAbilityAfterHold.canceled -= instance.OnActivateAbilityAfterHold;
-            @AbilityMenu.started -= instance.OnAbilityMenu;
-            @AbilityMenu.performed -= instance.OnAbilityMenu;
-            @AbilityMenu.canceled -= instance.OnAbilityMenu;
         }
 
         public void RemoveCallbacks(IGameplay_GathererActions instance)
@@ -582,11 +715,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Ui_Navigate;
     private List<IUi_NavigateActions> m_Ui_NavigateActionsCallbackInterfaces = new List<IUi_NavigateActions>();
     private readonly InputAction m_Ui_Navigate_ContinueCutscene;
+    private readonly InputAction m_Ui_Navigate_Pause;
+    private readonly InputAction m_Ui_Navigate_PageLeft;
+    private readonly InputAction m_Ui_Navigate_PageRight;
     public struct Ui_NavigateActions
     {
         private @Controls m_Wrapper;
         public Ui_NavigateActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @ContinueCutscene => m_Wrapper.m_Ui_Navigate_ContinueCutscene;
+        public InputAction @Pause => m_Wrapper.m_Ui_Navigate_Pause;
+        public InputAction @PageLeft => m_Wrapper.m_Ui_Navigate_PageLeft;
+        public InputAction @PageRight => m_Wrapper.m_Ui_Navigate_PageRight;
         public InputActionMap Get() { return m_Wrapper.m_Ui_Navigate; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -599,6 +738,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ContinueCutscene.started += instance.OnContinueCutscene;
             @ContinueCutscene.performed += instance.OnContinueCutscene;
             @ContinueCutscene.canceled += instance.OnContinueCutscene;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
+            @PageLeft.started += instance.OnPageLeft;
+            @PageLeft.performed += instance.OnPageLeft;
+            @PageLeft.canceled += instance.OnPageLeft;
+            @PageRight.started += instance.OnPageRight;
+            @PageRight.performed += instance.OnPageRight;
+            @PageRight.canceled += instance.OnPageRight;
         }
 
         private void UnregisterCallbacks(IUi_NavigateActions instance)
@@ -606,6 +754,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ContinueCutscene.started -= instance.OnContinueCutscene;
             @ContinueCutscene.performed -= instance.OnContinueCutscene;
             @ContinueCutscene.canceled -= instance.OnContinueCutscene;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
+            @PageLeft.started -= instance.OnPageLeft;
+            @PageLeft.performed -= instance.OnPageLeft;
+            @PageLeft.canceled -= instance.OnPageLeft;
+            @PageRight.started -= instance.OnPageRight;
+            @PageRight.performed -= instance.OnPageRight;
+            @PageRight.canceled -= instance.OnPageRight;
         }
 
         public void RemoveCallbacks(IUi_NavigateActions instance)
@@ -630,7 +787,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnPullWarden(InputAction.CallbackContext context);
         void OnActivateAbility(InputAction.CallbackContext context);
         void OnActivateAbilityAfterHold(InputAction.CallbackContext context);
-        void OnAbilityMenu(InputAction.CallbackContext context);
     }
     public interface IGameplay_WardenActions
     {
@@ -641,5 +797,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     public interface IUi_NavigateActions
     {
         void OnContinueCutscene(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+        void OnPageLeft(InputAction.CallbackContext context);
+        void OnPageRight(InputAction.CallbackContext context);
     }
 }
