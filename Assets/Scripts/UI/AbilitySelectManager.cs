@@ -19,24 +19,21 @@ public class AbilitySelectManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI abilityNameText;
 
     [SerializeField] private GameObject abilityUIDisabler;
-    [SerializeField] private Controls controls;
 
     [SerializeField] private string defaultAbilityText;
 
     private WardenAbilityManager wardenAbilityManager;
     private GathererAbilityManager gathererAbilityManager;
 
-    private void Awake()
+    void OnDestroy()
     {
-        controls = new Controls();
-
-        controls.Gameplay_Gatherer.Enable();
+        EventManager.instance.miscEvent.onShowAbilityUI -= OnAbilityMenuOpen;
     }
 
     //Toggles ui on gatherer interact
-    private void OnAbilityMenuOpen(InputAction.CallbackContext context)
+    public void OnAbilityMenuOpen()
     {
-        abilityUIDisabler.SetActive(!abilityUIDisabler.active);
+        abilityUIDisabler.SetActive(!abilityUIDisabler.activeSelf);
     }
 
     private void Start()
@@ -70,6 +67,8 @@ public class AbilitySelectManager : MonoBehaviour
         updateHoveredAbility(-1);
 
         abilityUIDisabler.SetActive(false);
+        
+        EventManager.instance.miscEvent.onShowAbilityUI += OnAbilityMenuOpen;
     }
 
     public void clickedAbility(bool warden, bool active, int id)
