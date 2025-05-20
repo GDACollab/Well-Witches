@@ -34,8 +34,8 @@ public class AudioManager : MonoBehaviour
         MasterBus = RuntimeManager.GetBus("bus:/");
         // UNCOMMENT EVERYTHING BELOW WHEN BUSES ARE CORRECT AND DELETE THIS LINE AND BELOW LINE
         // May need to change the "bus:/Music" and "bus:/SFX" to the correct bus paths
-        // MusicBus = RuntimeManager.GetBus("bus:/Music");
-        // SFXBus = RuntimeManager.GetBus("bus:/SFX");
+        MusicBus = RuntimeManager.GetBus("bus:/Music");
+        SFXBus = RuntimeManager.GetBus("bus:/SFX");
     }
 
     public void PlayOneShot(EventReference sound, Vector3 worldPos)
