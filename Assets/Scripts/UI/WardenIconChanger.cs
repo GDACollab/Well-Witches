@@ -19,15 +19,15 @@ public class WardenIconChanger : MonoBehaviour
         {
             case "DevastationBeam":
                 ActiveIcon.GetComponent<RawImage>().texture = Icons[3];
-                ActiveIcon.GetComponent<RectTransform>().sizeDelta = Icons[3].Size() / 3;
+                ActiveIcon.GetComponent<RectTransform>().sizeDelta = Icons[3].Size() / 2.7f;
                 break;
             case "GourdForge":
                 ActiveIcon.GetComponent<RawImage>().texture = Icons[4];
-                ActiveIcon.GetComponent<RectTransform>().sizeDelta = Icons[4].Size() / 3;
+                ActiveIcon.GetComponent<RectTransform>().sizeDelta = Icons[4].Size() / 2.7f;
                 break;
             case "SpellBurst":
                 ActiveIcon.GetComponent<RawImage>().texture = Icons[5];
-                ActiveIcon.GetComponent<RectTransform>().sizeDelta = Icons[5].Size() / 3;
+                ActiveIcon.GetComponent<RectTransform>().sizeDelta = Icons[5].Size() / 2.7f;
                 break;
         }
 
@@ -35,15 +35,15 @@ public class WardenIconChanger : MonoBehaviour
         {
             case "ResurrectionRegalia":
                 PassiveIcon.GetComponent<RawImage>().texture = Icons[0];
-                PassiveIcon.GetComponent<RectTransform>().sizeDelta = Icons[0].Size() / 3;
+                PassiveIcon.GetComponent<RectTransform>().sizeDelta = Icons[0].Size() / 2.7f;
                 break;
             case "SoulSiphon":
                 PassiveIcon.GetComponent<RawImage>().texture = Icons[1];
-                PassiveIcon.GetComponent<RectTransform>().sizeDelta = Icons[1].Size() / 3;
+                PassiveIcon.GetComponent<RectTransform>().sizeDelta = Icons[1].Size() / 2.7f;
                 break;
             case "BoggyBullets":
                 PassiveIcon.GetComponent<RawImage>().texture = Icons[2];
-                PassiveIcon.GetComponent<RectTransform>().sizeDelta = Icons[2].Size() / 3;
+                PassiveIcon.GetComponent<RectTransform>().sizeDelta = Icons[2].Size() / 2.7f;
                 break;
             default:
                 PassiveIcon.GetComponent<RawImage>().texture = Icons[6];
