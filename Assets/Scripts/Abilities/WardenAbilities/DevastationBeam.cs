@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class DevastationBeam : MonoBehaviour
 {
@@ -18,14 +20,15 @@ public class DevastationBeam : MonoBehaviour
     private Camera mainCam;
     private Vector3 mousePosition;
 
-	public float shakeAmplitdue;
-	public float shakeFrequency;
-    public GameObject spellCircle;
-    public GameObject laserBeam;
-    public GameObject volume;
-    public GameObject light2d;
+	[SerializeField] private float shakeAmplitdue;
+	[SerializeField] private float shakeFrequency;
+    [SerializeField] private GameObject spellCircle;
+    [SerializeField] private GameObject laserBeam;
+    [SerializeField] private GameObject volume;
+    [SerializeField] private GameObject impactLight;
+    [SerializeField] private Light2D light2d;
 
-	private CinemachineVirtualCamera cinemachineCam;
+    private CinemachineVirtualCamera cinemachineCam;
 	private CinemachineBasicMultiChannelPerlin shake;
 	private float lifespan;
 	private float shakeTimer;
@@ -57,6 +60,7 @@ public class DevastationBeam : MonoBehaviour
 
         spellCircle.SetActive(true);
 		laserBeam.SetActive(false);
+        light2d.enabled = false;
         StartCoroutine(ActivateLaser());
 	}
 
@@ -70,7 +74,8 @@ public class DevastationBeam : MonoBehaviour
 
         laserBeam.SetActive(true);
         volume.SetActive(true);
-        light2d.SetActive(true);
+        impactLight.SetActive(true);
+        light2d.enabled = true;
         StartCoroutine(DisableUltimate());
     }
 
@@ -78,7 +83,7 @@ public class DevastationBeam : MonoBehaviour
     {
         yield return new WaitForSeconds(0.15f);
 		volume.SetActive(false);
-		light2d.SetActive(false);
+        impactLight.SetActive(false);
 
         yield return new WaitForSeconds(lifespan-0.15f);
 
@@ -89,7 +94,8 @@ public class DevastationBeam : MonoBehaviour
 
         spellCircle.SetActive(false);
         laserBeam.SetActive(false);
-		Destroy(gameObject);
+        light2d.enabled = false;
+        Destroy(gameObject);
     }
 
     void Update()

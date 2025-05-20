@@ -13,7 +13,9 @@ public class wfc : MonoBehaviour
     [SerializeField] Tilemap middleTileMap;
     [SerializeField] Tilemap aboveTileMap;
 
-    [SerializeField] tileScriptableObject edgeTile;
+    [SerializeField] private GameObject lightsParent;
+
+    [SerializeField] private tileScriptableObject edgeTile;
 
     [SerializeField] private tileScriptableObject[] tileScriptableObjects;
 
@@ -109,16 +111,28 @@ public class wfc : MonoBehaviour
 
         GetSeededTiles();
 
+        StartCoroutine(WFCFunction());
+    }
+
+    IEnumerator WFCFunction()
+    {
         bool done = false;
+        float time = 0;
         while (done == false)
         {
             done = WaveFunctionCollapse();
+            time += Time.unscaledDeltaTime;
+            if (time > 10)
+            {
+                time = 0;
+                yield return null;
+            }
         }
-
         PlaceTiles();
         interactableGenerating.generateInteractables(); //Calls the other script (interactable spawning) to start
         //StartCoroutine(testWFCFastButOnlyIfISaySo()); //Do it fast
         //StartCoroutine(testWFCSlowly()); // Does the generation slowly, only have one uncommented
+        SceneHandler.Instance.GenerationEnded = true;
     }
 
     private IEnumerator testWFCSlowly()
@@ -298,7 +312,7 @@ public class wfc : MonoBehaviour
                     }
                     if (prefabToPlace != null)
                     {
-                        Instantiate(prefabToPlace, new Vector3(x + 0.5f, y + 0.5f, 0f), Quaternion.identity);
+                        Instantiate(prefabToPlace, new Vector3(x + 0.5f, y + 0.5f, 0f), Quaternion.identity, lightsParent.transform);
                     }
                 }
             }

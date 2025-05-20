@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class GathererBubbleShield : GathererBaseAbilities
 {
-    [Header("Stats")]
-    [SerializeField] private bool canUse = true;
     [field: SerializeField] public float cooldownDuration { get; private set; }
+    public float abilityDuration;
 
     [Header("References")]
     [SerializeField] BubbleShield bubbleShieldPrefab;
     [SerializeField] Transform spawnPoint;
 
-    private float timer;
+    [Header("Debug")]
+    [SerializeField] private bool canUse = true;
+    public bool isActive = false;
 
-
-    public override float duration => 10;
+    public override float duration => abilityDuration;
     public override string abilityName => "BubbleShield";
     public static GathererBubbleShield Instance { get; private set; }
 
@@ -33,16 +33,15 @@ public class GathererBubbleShield : GathererBaseAbilities
 
     private void Update()
     {
-        if (!canUse && Charge < cooldownDuration)
+        if (!isActive && !canUse)
         {
-
-            Charge += Time.deltaTime;
-            return;
-        }
-        else
-        {
-            canUse = true;
-            //Charge = 0f;
+            if (Charge < cooldownDuration)
+            {
+                Charge += Time.deltaTime;
+            } else
+            {
+                canUse = true;
+            }
         }
     }
 
@@ -55,6 +54,7 @@ public class GathererBubbleShield : GathererBaseAbilities
             shield.Activate(duration);
             Charge = 0f;
             canUse = false;
+            isActive = true;
         }
     }
 }

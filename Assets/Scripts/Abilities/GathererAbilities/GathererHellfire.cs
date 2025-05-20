@@ -10,11 +10,13 @@ public class GathererHellfire : PassiveAbilities
     public float flameTicksPerSecond;
     public float flameSpawnDistance;
     public bool startAbility = false;
+    public float offsetAmount;
     public HellfireBooties fire;
 
     private float distanceMoved;
     private Vector3 lastPos;
     private Rigidbody2D rb;
+    private bool right;
     public static GathererHellfire Instance { get; private set; }
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
 
@@ -39,7 +41,8 @@ public class GathererHellfire : PassiveAbilities
             distanceMoved = 0;
             float angle = Mathf.Atan2(rb.velocity.x, rb.velocity.y) * Mathf.Rad2Deg;
             HellfireBooties shoes =  Instantiate(fire, transform.position, Quaternion.Euler(0, 0, -angle));
-            shoes.Initialize(duration, damage, flameTicksPerSecond);
+            shoes.Initialize(duration, damage, flameTicksPerSecond, right, offsetAmount);
+            right = !right;
         }
     }
 }
