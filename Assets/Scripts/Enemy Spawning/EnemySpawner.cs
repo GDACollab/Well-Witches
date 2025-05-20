@@ -4,7 +4,9 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public static EnemySpawner instance;
-    private enum Difficulty
+
+    [HideInInspector]
+    public enum Difficulty
     {
         Easy,
         Medium,
@@ -15,15 +17,16 @@ public class EnemySpawner : MonoBehaviour
     [Header("Enemy References")]
     public List<BaseEnemyClass> enemies;
     public List<GameObject> formationPrefabs;
-    public List<ScriptableObject> DifficultyStats;
+    public List<EnemyStatsSO> DifficultySO;
 
     [Header("Difficulty")]
-    [SerializeField] private Difficulty currentDifficulty;
+    public Difficulty currentDifficulty;
     [SerializeField] private float mediumDifficultyTime;
     [SerializeField] private float hardDifficultyTime;
     [SerializeField] private float impossibleDifficultyTime;
     [SerializeField] private float currentDifficultyTimer = 0.0f;
 
+    public Dictionary <Difficulty, EnemyStatsSO> difficultyStats = new Dictionary<Difficulty, EnemyStatsSO>();
 
     [Header("Spawn Distances")]
     [Tooltip("Minimum distance enemy will spawn from player.")]
@@ -50,9 +53,8 @@ public class EnemySpawner : MonoBehaviour
     {
         if (instance == null) { instance = this; };
         if (referencePoint == null) { referencePoint = GameObject.Find("Gatherer").transform; }
+        difficultyStats.Add(Difficulty.Easy, DifficultySO[0]);
     }
-
-
 
     void Start()
     {
