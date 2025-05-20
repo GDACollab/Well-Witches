@@ -7,11 +7,15 @@ using UnityEngine.SceneManagement;
 public class wfc : MonoBehaviour
 {
     [SerializeField] Tilemap groundTilemap;
+    [SerializeField] Tilemap decoratorTilemap;
     [SerializeField] Tilemap hitboxesTileMap;
+    [SerializeField] Tilemap hitboxesSortedTileMap;
     [SerializeField] Tilemap middleTileMap;
     [SerializeField] Tilemap aboveTileMap;
 
-    [SerializeField] tileScriptableObject edgeTile;
+    [SerializeField] private GameObject lightsParent;
+
+    [SerializeField] private tileScriptableObject edgeTile;
 
     [SerializeField] private tileScriptableObject[] tileScriptableObjects;
 
@@ -107,16 +111,28 @@ public class wfc : MonoBehaviour
 
         GetSeededTiles();
 
+        StartCoroutine(WFCFunction());
+    }
+
+    IEnumerator WFCFunction()
+    {
         bool done = false;
+        float time = 0;
         while (done == false)
         {
             done = WaveFunctionCollapse();
+            time += Time.unscaledDeltaTime;
+            if (time > 10)
+            {
+                time = 0;
+                yield return null;
+            }
         }
-
         PlaceTiles();
         interactableGenerating.generateInteractables(); //Calls the other script (interactable spawning) to start
         //StartCoroutine(testWFCFastButOnlyIfISaySo()); //Do it fast
         //StartCoroutine(testWFCSlowly()); // Does the generation slowly, only have one uncommented
+        SceneHandler.Instance.GenerationEnded = true;
     }
 
     private IEnumerator testWFCSlowly()
@@ -163,7 +179,9 @@ public class wfc : MonoBehaviour
     private void GetSeededTiles()
     {
         TileBase tileGetGround = null;
+        TileBase tileGetDecorator = null;
         TileBase tileGetHitbox = null;
+        TileBase tileGetHitboxSorted = null;
         TileBase tileGetMiddle = null;
         TileBase tileGetAbove = null;
         Stack<Tile> tileStack = new Stack<Tile>();
@@ -192,14 +210,18 @@ public class wfc : MonoBehaviour
                 }
 
                 tileGetGround = groundTilemap.GetTile(new Vector3Int(x, y, 0));
+                tileGetDecorator = decoratorTilemap.GetTile(new Vector3Int(x, y, 0));
                 tileGetHitbox = hitboxesTileMap.GetTile(new Vector3Int(x, y, 0));
+                tileGetHitboxSorted = hitboxesSortedTileMap.GetTile(new Vector3Int(x, y, 0));
                 tileGetMiddle = middleTileMap.GetTile(new Vector3Int(x, y, 0));
                 tileGetAbove = aboveTileMap.GetTile(new Vector3Int(x, y, 0));
 
                 for (int i = 0; i < tileScriptableObjects.Length; i++)
                 {
-                    if (tileScriptableObjects[i].tileGround == tileGetGround && 
-                        tileScriptableObjects[i].tileHitbox == tileGetHitbox && 
+                    if (tileScriptableObjects[i].tileGround == tileGetGround &&
+                        tileScriptableObjects[i].tileDecorator == tileGetDecorator && 
+                        tileScriptableObjects[i].tileHitbox == tileGetHitbox &&
+                        tileScriptableObjects[i].tileHitboxSorted == tileGetHitboxSorted && 
                         tileScriptableObjects[i].tileMiddle == tileGetMiddle &&
                         tileScriptableObjects[i].tileAbove == tileGetAbove)
                     {
@@ -242,9 +264,12 @@ public class wfc : MonoBehaviour
     {
         bool hasAHitBox = false;
         TileBase tileToPlaceGround = null;
+        TileBase tileToPlaceDecorator = null;
         TileBase tileToPlaceHitbox = null;
+        TileBase tileToPlaceHitboxSorted = null;
         TileBase tileToPlaceMiddle = null;
         TileBase tileToPlaceAbove = null;
+        GameObject prefabToPlace = null;
 
         for (int x = 0; x < sizeX; x++)
         {
@@ -253,17 +278,29 @@ public class wfc : MonoBehaviour
                 if (tiles[x, y].GetEntropy() <= 1)
                 {
                     tileToPlaceGround = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileGround;
+                    tileToPlaceDecorator = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileDecorator;
                     tileToPlaceHitbox = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileHitbox;
+                    tileToPlaceHitboxSorted = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileHitboxSorted;
                     tileToPlaceMiddle = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileMiddle;
                     tileToPlaceAbove = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileAbove;
+
+                    prefabToPlace = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tilePrefab;
 
                     if (tileToPlaceGround != null)
                     {
                         groundTilemap.SetTile(new Vector3Int(x, y, 0), tileToPlaceGround);
                     }
+                    if (tileToPlaceDecorator != null)
+                    {
+                        decoratorTilemap.SetTile(new Vector3Int(x, y, 0), tileToPlaceDecorator);
+                    }
                     if (tileToPlaceHitbox != null)
                     {
                         hitboxesTileMap.SetTile(new Vector3Int(x, y, 0), tileToPlaceHitbox);
+                    }
+                    if (tileToPlaceHitboxSorted != null)
+                    {
+                        hitboxesSortedTileMap.SetTile(new Vector3Int(x, y, 0), tileToPlaceHitboxSorted);
                     }
                     if (tileToPlaceMiddle != null)
                     {
@@ -272,6 +309,10 @@ public class wfc : MonoBehaviour
                     if (tileToPlaceAbove != null)
                     {
                         aboveTileMap.SetTile(new Vector3Int(x, y, 0), tileToPlaceAbove);
+                    }
+                    if (prefabToPlace != null)
+                    {
+                        Instantiate(prefabToPlace, new Vector3(x + 0.5f, y + 0.5f, 0f), Quaternion.identity, lightsParent.transform);
                     }
                 }
             }

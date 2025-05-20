@@ -33,6 +33,7 @@ public class Gatherer_PullWarden : MonoBehaviour
 		float force = Mathf.Lerp(0f, StatsManager.Instance.getYank(), ratio);  // pull harder the further Warden is from Gatherer
 
 		rb_Warden.AddForce(direction * force, ForceMode2D.Impulse);
+		AudioManager.Instance.PlayOneShot(FMODEvents.Instance.flamingPumpkinYank, this.transform.position);
 
 		pullCounter = pullCooldown;
 	}

@@ -11,13 +11,22 @@ public class tileScriptableObject : ScriptableObject
     public TileBase tileGround = null;
 
     [Tooltip("A tile asset, will be placed in a tilemap")]
+    public TileBase tileDecorator = null;
+
+    [Tooltip("A tile asset, will be placed in a tilemap")]
     public TileBase tileHitbox = null;
+
+    [Tooltip("A tile asset, will be placed in a tilemap")]
+    public TileBase tileHitboxSorted = null;
 
     [Tooltip("A tile asset, will be placed in a tilemap")]
     public TileBase tileMiddle = null;
 
     [Tooltip("A tile asset, will be placed in a tilemap")]
     public TileBase tileAbove = null;
+
+    [Tooltip("A prefab, will be placed in a tilemap")]
+    public GameObject tilePrefab = null;
 
     [Space(10), Header("Tile Weight")]
     [Tooltip("Float, high values means its more common")]

@@ -5,9 +5,9 @@ public class HUD : MonoBehaviour
 {
 	[SerializeField] Slider gathererAbilityMeter;
 	[SerializeField] Slider wardenAbilityMeter;
-	StatsManager statsManager;
-	Gatherer_FlashStun flashStun;
-    WardenDevastationBeam bigBlast;
+	
+	WardenBaseAbilities WardenAbility => WardenAbilityManager.Instance.equipedAbility;
+	GathererBaseAbilities GathererAbility => GathererAbilityManager.Instance.equipedAbility;
 
 	void OnEnable()     // Subscribe to events here
 	{
@@ -17,16 +17,12 @@ public class HUD : MonoBehaviour
 	{
 		EventManager.instance.playerEvents.onPlayerDamage -= HudHealthUpdate;
 	}
-	void Awake()
-	{
-		statsManager = StatsManager.Instance;
-		flashStun = Gatherer_FlashStun.Instance;
-		bigBlast = WardenDevastationBeam.Instance;
-	}
+	
 	void Update()
 	{
-		gathererAbilityMeter.value = (flashStun.cooldownDuration - flashStun.cooldownCounter) / flashStun.cooldownDuration;
-		wardenAbilityMeter.value = (float)bigBlast.Charge / (float)bigBlast.NumHitsRequired;
+		// hardcoded 10 second
+		gathererAbilityMeter.value = (GathererAbilityManager.Instance != null) ? (GathererAbility.Charge) / Mathf.Max(10, GathererAbility.Charge) : 1;
+		wardenAbilityMeter.value = (WardenAbilityManager.Instance != null) ? WardenAbility.Charge / Mathf.Max(1, WardenAbility.numHitsRequired) : 1;
 	}
 
 	void HudHealthUpdate(float damage, string player)

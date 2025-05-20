@@ -22,6 +22,13 @@ public class GathererHealthTransfer : GathererBaseAbilities
     [SerializeField] private Transform gathererTransform;
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
 
+    [SerializeField] private float charge;
+    public override float Charge
+    {
+        get => charge;
+        set => charge = value;
+    }
+
     void Awake()
     {
         InitSingleton();
@@ -52,7 +59,7 @@ public class GathererHealthTransfer : GathererBaseAbilities
                StatsManager.Instance.WardenCurrentHealth = StatsManager.Instance.WardenMaxHealth;
             }
 
-
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.healthTransfer, this.transform.position);
 
             temp = 0f; //reset the health value stored (No longer needed health % can be different)
          }

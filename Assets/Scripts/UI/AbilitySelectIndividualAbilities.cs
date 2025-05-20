@@ -19,8 +19,8 @@ public class AbilitySelectIndividualAbilities : MonoBehaviour, IPointerEnterHand
     [SerializeField] private Sprite lockedSprite;
 
     [Header("Text")]
-    [SerializeField] private string abilityText;
-    [SerializeField] private string abilityName;
+    [SerializeField, TextArea] private string abilityText;
+    [SerializeField, TextArea] private string abilityName;
 
     [Header("Ability Info")]
     [SerializeField] private bool isWarden;

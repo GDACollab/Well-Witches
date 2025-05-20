@@ -26,5 +26,8 @@ public class PlayerHealth : MonoBehaviour
 	}
 
 	protected virtual void TakeDamage(float damage, string player) { }  // to be implemented by the child class
-	protected virtual void Die() { } // to be implemented by the child class
+	protected virtual void Die() 
+	{
+		GetComponentInChildren<Animator>().SetTrigger("Die");
+	} // to be implemented by the child class
 }

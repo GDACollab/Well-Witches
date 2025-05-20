@@ -306,6 +306,45 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Ui_Navigate"",
+            ""id"": ""661372ea-1224-43a4-bfcf-d24bff074171"",
+            ""actions"": [
+                {
+                    ""name"": ""Continue Cutscene"",
+                    ""type"": ""Button"",
+                    ""id"": ""0fa2304d-d4de-42b2-b247-bc458f8bc1c1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""249cf7db-3c2d-42ee-a04c-1f4a53578a6e"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Continue Cutscene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fd084756-20e7-4535-b89c-25404cf0ba5e"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Continue Cutscene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -323,12 +362,16 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Gameplay_Warden_Move = m_Gameplay_Warden.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_Warden_Shoot = m_Gameplay_Warden.FindAction("Shoot", throwIfNotFound: true);
         m_Gameplay_Warden_ActivateAbility = m_Gameplay_Warden.FindAction("Activate Ability", throwIfNotFound: true);
+        // Ui_Navigate
+        m_Ui_Navigate = asset.FindActionMap("Ui_Navigate", throwIfNotFound: true);
+        m_Ui_Navigate_ContinueCutscene = m_Ui_Navigate.FindAction("Continue Cutscene", throwIfNotFound: true);
     }
 
     ~@Controls()
     {
         UnityEngine.Debug.Assert(!m_Gameplay_Gatherer.enabled, "This will cause a leak and performance issues, Controls.Gameplay_Gatherer.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Gameplay_Warden.enabled, "This will cause a leak and performance issues, Controls.Gameplay_Warden.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Ui_Navigate.enabled, "This will cause a leak and performance issues, Controls.Ui_Navigate.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -534,6 +577,52 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         }
     }
     public Gameplay_WardenActions @Gameplay_Warden => new Gameplay_WardenActions(this);
+
+    // Ui_Navigate
+    private readonly InputActionMap m_Ui_Navigate;
+    private List<IUi_NavigateActions> m_Ui_NavigateActionsCallbackInterfaces = new List<IUi_NavigateActions>();
+    private readonly InputAction m_Ui_Navigate_ContinueCutscene;
+    public struct Ui_NavigateActions
+    {
+        private @Controls m_Wrapper;
+        public Ui_NavigateActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ContinueCutscene => m_Wrapper.m_Ui_Navigate_ContinueCutscene;
+        public InputActionMap Get() { return m_Wrapper.m_Ui_Navigate; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(Ui_NavigateActions set) { return set.Get(); }
+        public void AddCallbacks(IUi_NavigateActions instance)
+        {
+            if (instance == null || m_Wrapper.m_Ui_NavigateActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_Ui_NavigateActionsCallbackInterfaces.Add(instance);
+            @ContinueCutscene.started += instance.OnContinueCutscene;
+            @ContinueCutscene.performed += instance.OnContinueCutscene;
+            @ContinueCutscene.canceled += instance.OnContinueCutscene;
+        }
+
+        private void UnregisterCallbacks(IUi_NavigateActions instance)
+        {
+            @ContinueCutscene.started -= instance.OnContinueCutscene;
+            @ContinueCutscene.performed -= instance.OnContinueCutscene;
+            @ContinueCutscene.canceled -= instance.OnContinueCutscene;
+        }
+
+        public void RemoveCallbacks(IUi_NavigateActions instance)
+        {
+            if (m_Wrapper.m_Ui_NavigateActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUi_NavigateActions instance)
+        {
+            foreach (var item in m_Wrapper.m_Ui_NavigateActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_Ui_NavigateActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public Ui_NavigateActions @Ui_Navigate => new Ui_NavigateActions(this);
     public interface IGameplay_GathererActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -548,5 +637,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnActivateAbility(InputAction.CallbackContext context);
+    }
+    public interface IUi_NavigateActions
+    {
+        void OnContinueCutscene(InputAction.CallbackContext context);
     }
 }

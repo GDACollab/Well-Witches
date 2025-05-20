@@ -6,8 +6,12 @@ using Ink.Runtime;
 using System;
 using System.Linq;
 using UnityEngine.SceneManagement;
-using UnityEditor.ShaderGraph;
 using UnityEngine.InputSystem;
+
+#if UNITY_EDITOR
+using UnityEditor.ShaderGraph;
+// any other editor-only logic
+#endif
 
 public class DialogueManager : MonoBehaviour
 {
@@ -92,6 +96,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("here: "+ dialogueActive);
         //do nothing if there is no dialogue activly playing
         if (!dialogueActive)
         {
@@ -103,14 +108,20 @@ public class DialogueManager : MonoBehaviour
         //BUG: Currently can just press E to completely skip the choice
         //if we change this to a system where you have to use arrow keys and enter/interact to do choices than we can fix this in favor of a system-
         //-where we have a choice already selected and the player can navigate up or down to select another one before pressing enter
+        if(Input.GetKeyDown(KeyCode.Space)) {
+            if (currentStory.currentChoices.Count == 0)
+            {
+                ContinueStory();
+            }
+        }
     }
 
     private void OnGathererInteract(InputAction.CallbackContext context)
     {
-        if (currentStory.currentChoices.Count == 0)
+        /*if (currentStory.currentChoices.Count == 0)
         {
             ContinueStory();
-        }
+        }*/
     }
 
     public void StartDialogueMode(Story story, SpriteManager currChara, InkDialogueVariables inkDialogueVariables)
@@ -129,14 +140,30 @@ public class DialogueManager : MonoBehaviour
         currentCharacter.DisplaySprite();
         playerSpriteManager.DisplayPlayerSprite();
 
-        AudioManager.Instance.PlayCharacterTalk(currentCharacter.name);
+        if ((string)currentStory.variablesState["currentSpeaker"] != "Player") {
+            AudioManager.Instance.PlayCharacterTalk((string)currentStory.variablesState["currentSpeaker"]);
+        }
+        else {
+            foreach (string tag in currentStory.currentTags) {
+                string[] splitTag = tag.Split(':');
+                string tagValue = splitTag[1].Trim();
+
+                if (tagValue == "warden") {
+                    AudioManager.Instance.PlayCharacterTalk("Vervain");
+                }
+                else if (tagValue == "gatherer") {
+                    AudioManager.Instance.PlayCharacterTalk("Aloe");
+                }
+            }
+        }
         ContinueStory();
     }
 
     private IEnumerator EndDialogueMode()
     {
         yield return new WaitForSeconds(0.2f); //in place so that the player doesnt instantly talk to the NPC again on accident
-
+        StatsManager.Instance.players["Warden"].GetComponent<PlayerMovement>().canMove = true;
+        StatsManager.Instance.players["Gatherer"].GetComponent<PlayerMovement>().canMove = true;
         dialogueActive = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
@@ -166,7 +193,24 @@ public class DialogueManager : MonoBehaviour
                 HandleTagsNPC((string)currentStory.variablesState["currentSpeaker"], currentStory.currentTags);
             }
 
-            AudioManager.Instance.PlayCharacterTalk(currentCharacter.name);
+            print("current character name: " + (string)currentStory.variablesState["currentSpeaker"]);
+
+            if ((string)currentStory.variablesState["currentSpeaker"] != "Player") {
+                AudioManager.Instance.PlayCharacterTalk((string)currentStory.variablesState["currentSpeaker"]);
+            }
+            else {
+                foreach (string tag in currentStory.currentTags) {
+                    string[] splitTag = tag.Split(':');
+                    string tagValue = splitTag[1].Trim();
+
+                    if (tagValue == "warden") {
+                        AudioManager.Instance.PlayCharacterTalk("Vervain");
+                    }
+                    else if (tagValue == "gatherer") {
+                        AudioManager.Instance.PlayCharacterTalk("Aloe");
+                    }
+                }
+            }
         }
         else
         {

@@ -48,9 +48,13 @@ public class WardenDevastationBeam : WardenBaseAbilities
 
 	public override void useAbility()    // called by the Ability Manager
     {
+        Debug.Log("DevBeam HitsRequired: " + numHitsRequired);
+        Debug.Log("DevBeam Charge: " + Charge);
         if (Charge < NumHitsRequired) return;
         DevastationBeam db = Instantiate(prefab, spawnPoint).GetComponent<DevastationBeam>();
         db.Activate(damagePerTick, damageTickDuration, knockbackForce, knockbackTickDuration, abilityDuration);
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.lazerFire, this.transform.position);
         Charge = 0f;
+        StartCoroutine(CastSpell());
     }
 }

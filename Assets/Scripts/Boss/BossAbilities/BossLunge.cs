@@ -63,6 +63,9 @@ public class BossLunge : MonoBehaviour
 
     private IEnumerator LungeRoutine()
     {
+        // Start lunge animation(currently not adjusted based on slash duration/timing TODO)
+        bossEnemy.animator.SetTrigger("DoLunge");
+
         PhaseOne phaseOne = GetComponentInParent<PhaseOne>(); // Access PhaseOne to set the casting flag
         phaseOne.SetAbilityCasting(true); // Set casting flag to true
 

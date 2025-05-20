@@ -47,6 +47,7 @@ public class AbilityDeathDefy : PassiveAbilities
                 timerOn = false; // Sets the timer event to false
                 StatsManager.Instance.WardenCurrentHealth = StatsManager.Instance.WardenMaxHealth; // Guarantees Warden has their max HP
                 WardenAbilityManager.Controls.Gameplay_Warden.Enable();
+                GetComponentInChildren<Animator>().SetTrigger("Respawn");
             }
         }
     }

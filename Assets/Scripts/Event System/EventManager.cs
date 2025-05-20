@@ -9,6 +9,7 @@ public class EventManager : MonoBehaviour
     public MiscEvent miscEvent;
     public QuestEvents questEvents;
     public PlayerEvents playerEvents;
+    public BossEvents bossEvents;
 
     void Awake()
     {
@@ -19,5 +20,6 @@ public class EventManager : MonoBehaviour
         miscEvent = new MiscEvent();
         questEvents = new QuestEvents();
         playerEvents = new PlayerEvents();
+        bossEvents = new BossEvents();
     }
 }

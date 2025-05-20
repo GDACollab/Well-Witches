@@ -11,23 +11,12 @@ public class Gatherer_Health : PlayerHealth
 		* any damage gatherer takes should be the result of melee damage.
 		* When the shield hit the shield should break but no damage should be done.
 		*/
-		BubbleShield shield = GetComponent<BubbleShield>();
-		if (!shield)
-		{
-			Debug.LogError("Can't access Gatherer's Bubble Shield component!");
-		}
-		else if (shield.isShieldActive)
-		{
-			// Break shield
-			shield.DeactivateShield();
-			// Prevent damage
-			return;
-		}
+
 
 		float newHealth = statsManager.GathererCurrentHealth - damage;
 
 		if (newHealth > 0) statsManager.GathererCurrentHealth = newHealth;
-		else
+		else if (newHealth <= 0 && statsManager.GathererCurrentHealth != 0)
 		{
 			statsManager.GathererCurrentHealth = 0;
 			Die();
@@ -38,9 +27,11 @@ public class Gatherer_Health : PlayerHealth
 
 	protected override void Die()
 	{
+		base.Die();
 		//send out signal
 		EventManager.instance.playerEvents.PlayerDeath();
 		SceneHandler.Instance.ToHubScene();
+		AudioManager.Instance.PlayOneShot(FMODEvents.Instance.gathererDown, GameObject.Find("Gatherer").transform.position);
 		return;
 	}
 }

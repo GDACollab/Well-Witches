@@ -74,6 +74,7 @@ public class BossShieldBash : MonoBehaviour
         if (!isCasting)
         {
             StartCoroutine(ShieldBashRoutine());
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bossPhase1Attack1, this.transform.position);
         }
     }
 
@@ -102,6 +103,9 @@ public class BossShieldBash : MonoBehaviour
                 attackIndicatorSquare.transform.rotation = Quaternion.Euler(0, 0, angle);
             }
         }
+
+        // Start shieldbash animation(currently not adjusted based on slash duration TODO)
+        bossEnemy.animator.SetTrigger("DoShieldbash");
 
         // Gradually increase the size of the attack indicator
         float elapsedTime = 0f;

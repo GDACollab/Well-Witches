@@ -3,16 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class KeyItem : MonoBehaviour
 {
     public int keyItemID;
     public SpriteRenderer spriteRenderer;
     private Sprite keyItemSprite;
+    private Rigidbody2D rb;
+    private Transform gatherer;
+    private float time = 2;
+    private Collider2D col;
 
     private void Start()
     {
-        AnnouncementManager.Instance.AddAnnouncementToQueue("You got an item for the cure!");
+        rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
+        col.isTrigger = true;
+        col.enabled = false;
+        gatherer = StatsManager.Instance.players["Gatherer"].transform;
+        StartCoroutine(Fall());
     }
+    
+    IEnumerator Fall()
+    {
+        rb.AddForce(Vector2.down*Physics2D.gravity*0.5f, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(1f);
+        rb.gravityScale = 0;
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(0.5f);
+        col.enabled = true;
+    }
+    
     public void setSprite(int ID) {
         if (ID >= 1 && ID <= 9) {
             keyItemSprite = Resources.Load<Sprite>($"KeyItems/KeyItemSprite {ID}");
@@ -21,12 +42,22 @@ public class KeyItem : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void Update()
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (col.enabled)
         {
-            Destroy(this.gameObject);
+            time += time * Time.deltaTime;
+            rb.velocity = (gatherer.position-transform.position).normalized * time;
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            AnnouncementManager.Instance.AddAnnouncementToQueue("You got an item for the cure!");
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.itemPickUp, this.transform.position);
+            Destroy(this.gameObject);
+        }
+    }
 }
