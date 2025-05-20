@@ -636,7 +636,19 @@ MonoBehaviour:
   gathererHealth: {fileID: 0}
   myBuffs: []
   buffTimers: []
+  AttackPowerBuffStrength: 2
+  AttackPowerCurseStrength: 0.5
+  SpeedBuffStrength: 1.5
+  SpeedCurseStrength: 0.75
+  HarvestBuffStrength: 0.5
+  HarvestCurseStrength: 1.5
+  LuckBuffStrength: 2
+  LuckCurseStrength: 0.75
+  YankBuffStrength: 2
+  YankCurseStrength: 0.5
   keyItemChance: 0.05
+  HarvestTime: 1
+  YankStrength: 22.5
   healthTransferAmount: 0.25
   GathererResistance: 0
   MaxSpeed: 7.5
@@ -3441,6 +3453,10 @@ PrefabInstance:
       propertyPath: <cooldownDuration>k__BackingField
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8323796786317442292, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
+      propertyPath: movementData
+      value: 
+      objectReference: {fileID: 11400000, guid: f3ee9fd79406baf49867f478438dc2a9, type: 2}
     - target: {fileID: 8822904034371888986, guid: e1b2488d1af6e0249a8476a1da0258f0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
