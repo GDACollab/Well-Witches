@@ -413,10 +413,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bddd29bb145ba3147adee84ddda36053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canUse: 1
   <cooldownDuration>k__BackingField: 50
+  abilityDuration: 10
   bubbleShieldPrefab: {fileID: 6411785581099938863, guid: 199c5c03508ddbf44856c87d364f3e59, type: 3}
   spawnPoint: {fileID: 8015346194276888610}
+  canUse: 1
+  isActive: 0
   charge: 0
 --- !u!114 &346488403322498464
 MonoBehaviour:
@@ -480,6 +482,7 @@ MonoBehaviour:
   flameTicksPerSecond: 2.5
   flameSpawnDistance: 1
   startAbility: 0
+  offsetAmount: 0.1
   fire: {fileID: -6396332289483400692, guid: 3e613b81b15e54e42a6066b89aca1bb5, type: 3}
 --- !u!114 &-7641923896124788210
 MonoBehaviour:

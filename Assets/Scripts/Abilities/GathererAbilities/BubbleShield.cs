@@ -63,6 +63,7 @@ public class BubbleShield : MonoBehaviour
     }
     IEnumerator PopShield()
     {
+        GathererBubbleShield.Instance.isActive = false;
         float start = 0f;
         float end = 1f;
         float lerp = 0f;
