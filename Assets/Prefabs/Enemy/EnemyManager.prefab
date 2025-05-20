@@ -244,13 +244,16 @@ MonoBehaviour:
   formationPrefabs:
   - {fileID: 3663203546483103794, guid: d8bf0567f46e47d4b88ada500863f322, type: 3}
   - {fileID: 3663203546483103794, guid: db228e4e930cef94e96e1ee45d085544, type: 3}
-  DifficultySO:
-  - {fileID: 11400000, guid: cbad48ca294d6534cb360741369eb412, type: 2}
+  DifficultyScriptableObjectStats:
+  - {fileID: 11400000, guid: 0150a0ac317f9c742b0f944c0944966b, type: 2}
+  - {fileID: 11400000, guid: 1ee5826294e9e344fab4ea51d5d15df7, type: 2}
+  - {fileID: 11400000, guid: c11717030ab5af84abe6bacde4653aca, type: 2}
+  - {fileID: 11400000, guid: 3e4d63f137fbd1f44a5bf69b2683f6a1, type: 2}
   currentDifficulty: 0
   mediumDifficultyTime: 30
   hardDifficultyTime: 60
   impossibleDifficultyTime: 90
-  currentDifficultyTimer: 0
+  difficultyTimer: 0
   spawnRadiusMin: 12
   spawnRadiusMax: 18
   maxSpawnCoord: {x: 158, y: 158}

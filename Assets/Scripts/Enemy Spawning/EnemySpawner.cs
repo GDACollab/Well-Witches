@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,14 +18,13 @@ public class EnemySpawner : MonoBehaviour
     [Header("Enemy References")]
     public List<BaseEnemyClass> enemies;
     public List<GameObject> formationPrefabs;
-    public List<EnemyStatsSO> DifficultySO;
+    public List<EnemyStatsSO> DifficultyScriptableObjectStats;
 
     [Header("Difficulty")]
     public Difficulty currentDifficulty = Difficulty.Easy;
     [SerializeField] private float mediumDifficultyTime;
     [SerializeField] private float hardDifficultyTime;
     [SerializeField] private float impossibleDifficultyTime;
-    [SerializeField] private float currentDifficultyTimer = 0.0f;
 
     public Dictionary<Difficulty, EnemyStatsSO> difficultyStats = new Dictionary<Difficulty, EnemyStatsSO>();
 
@@ -58,9 +58,15 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        difficultyStats.Add(Difficulty.Easy, DifficultySO[0]);
+        difficultyStats.Add(Difficulty.Easy, DifficultyScriptableObjectStats[0]);
+        difficultyStats.Add(Difficulty.Medium, DifficultyScriptableObjectStats[1]);
+        difficultyStats.Add(Difficulty.Hard, DifficultyScriptableObjectStats[2]);
+        difficultyStats.Add(Difficulty.Impossible, DifficultyScriptableObjectStats[3]);
+
         currentEnemyCount = 0;
         currentDifficulty = Difficulty.Easy;
+
+        StartCoroutine(IncreaseDifficulty());
     }
 
     void Update()
@@ -136,6 +142,16 @@ public class EnemySpawner : MonoBehaviour
         }
 
         return new Vector3(x, y, 0);
+    }
+
+    IEnumerator IncreaseDifficulty()
+    {
+        yield return new WaitForSeconds(mediumDifficultyTime);
+        currentDifficulty = Difficulty.Medium;
+        yield return new WaitForSeconds(hardDifficultyTime - mediumDifficultyTime);
+        currentDifficulty = Difficulty.Hard;
+        yield return new WaitForSeconds(impossibleDifficultyTime - hardDifficultyTime);
+        currentDifficulty = Difficulty.Impossible;
     }
 
     // for debugging the spawn size
