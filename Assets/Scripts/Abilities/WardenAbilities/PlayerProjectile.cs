@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 using UnityEngine.AI;
-using System.Collections;
+using UnityEngine.Rendering.Universal;
 //using UnityEngine.InputSystem.Android; WHY WAS IT USING THIS
 
 public class PlayerProjectile : MonoBehaviour
@@ -13,6 +13,7 @@ public class PlayerProjectile : MonoBehaviour
 
     [SerializeField] private GameObject projectile;
     [SerializeField] private GameObject impact;
+    [SerializeField] private Light2D light2d;
 
     private float damage;
     private float knockback;
@@ -60,6 +61,7 @@ public class PlayerProjectile : MonoBehaviour
         rb.freezeRotation = true;
         projectile.SetActive(false);
         impact.SetActive(true);
+        light2d.enabled = false;
         collider.enabled = false;
         Destroy(gameObject, 0.5f);
     }
