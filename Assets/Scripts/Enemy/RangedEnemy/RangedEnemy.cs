@@ -4,19 +4,12 @@ using UnityEngine;
 
 public class RangedEnemy : BaseEnemyClass
 {
-
-    [Header("Projectile")]
-    [Tooltip("Time between projectile firing in seconds")]
+    [HideInInspector]
     public float timeBetweenAttack;
-    [Tooltip("Angle of the projectile's spread, the larger the wider the spread")]
-    [Range(0, 90)]
-    public float projectileSpread;
-    [Tooltip("Speed of the projectile")]
-    public float projectileSpeed;
-    [Tooltip("Size of the projectile")]
-    public float projectileSize;
-    [Tooltip("Time in seconds before the projectile explodes")]
-    public float projectileLifetime;
+    private float projectileSpread;
+    private float projectileSpeed;
+    private float projectileSize;
+    private float projectileLifetime;
 
     private float projectileCount;
     private float projectileDamage;
@@ -32,8 +25,18 @@ public class RangedEnemy : BaseEnemyClass
     {
         stats = EnemySpawner.Instance.difficultyStats[EnemySpawner.Instance.currentDifficulty];
         health = stats.rangedHealth;
+        moveSpeed = stats.rangedSpeed;
+        range = stats.rangedRange;
+        stunDuration = stats.stunDuration;
+
         projectileCount = stats.projectileCount;
         projectileDamage = stats.projectileDamage;
+        timeBetweenAttack = stats.rangedTimeBetweenAttacks;
+        projectileSpread = stats.projectileSpread;
+        projectileSize = stats.projectileSize;
+        projectileSpeed = stats.projectileSpeed;
+        projectileLifetime = stats.projectileLifetime;
+
         AOESize = stats.AOESize;
         AOELifetime= stats.AOELifetime;
         AOEDamage = stats.AOEDamage;

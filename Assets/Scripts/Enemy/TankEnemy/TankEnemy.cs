@@ -4,36 +4,38 @@ using UnityEngine;
 
 public class TankEnemy : BaseEnemyClass
 {
-    [Header("Bash Attack")]
-    [Tooltip("Time between shield bash in seconds")]
+    [HideInInspector]
     public float timeBetweenAttack;
-    [Tooltip("How strongly the tank enemy launches during shield bash")]
-    public float bashStrength;
-    [Tooltip("How long the bash lasts")]
-    public float bashTime;
-    public float bashDamage;
+    private float bashStrength;
+    private float bashTime;
+    private float bashDamage;
 
-    [Header("Acid Pool")]
-    [Tooltip("How many acid pools spawn per second. [0,25]")]
     public float spawnRate;
-    [Tooltip("Size of the acid pool. [0,10]")]
-    public float acidSize;
-    [Tooltip("Time in seconds before the acid pool disapears. [0,5]")]
-    public float acidLifetime;
-    [Range(-5, 5)]
-    [Tooltip("Move the spawn point of the acid pool left and right. [-5,5]")]
     public float acidOffsetX;
-    [Range(-5, 5)]
-    [Tooltip("Move the spawn point of the acid pool up and down. [-5,5]")]
     public float acidOffsetY;
 
-    private float timeTillPool;
+    private float acidLifetime;
+    private float acidSize;
     private float acidDamage;
+
+    private float timeTillPool;
+
     private void Start()
     {
         stats = EnemySpawner.Instance.difficultyStats[EnemySpawner.Instance.currentDifficulty];
         health = stats.tankHealth;
-        acidDamage = stats.acidDamage;
+        moveSpeed = stats.tankSpeed;
+        range = stats.tankRange;
+        stunDuration = stats.stunDuration;
+
+        timeBetweenAttack = stats.tankTimeBetweenBash;
+        bashStrength = stats.tankBashStrength;
+        bashTime = stats.tankBashTime;
+        bashDamage = stats.tankBashDamage;
+        
+        acidSize = stats.tankAcidSize;
+        acidLifetime = stats.tankAcidLifetime;
+        acidDamage = stats.tankAcidDamage;
         timeTillPool = 0f;
     }
 
