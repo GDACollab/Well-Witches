@@ -1,14 +1,27 @@
 using UnityEngine;
 public class MeleeEnemy : BaseEnemyClass
 {
-    [Header("Attack")]
-    public float damage;
-    [Tooltip("Amount of time in seconds between an instance of damage")]
+    [HideInInspector]
     public float timeBetweenAttack;
-    [Tooltip("The higher the value larger the AOE indicated by the red circle")]
-    public float attackAOE;
-    [Tooltip("How fast the melee enemy moves while spinning")]
-    public float speedWhileAttacking;
+
+    private float damage;
+    private float attackAOE;
+    private float speedWhileAttacking;
+
+    private void Start()
+    {
+        stats = EnemySpawner.Instance.difficultyStats[EnemySpawner.Instance.currentDifficulty];
+        health = stats.meleeHealth;
+        moveSpeed = stats.meleeSpeed;
+        range = stats.meleeRange;
+        stunDuration = stats.stunDuration;
+
+        damage = stats.meleeDamage;
+        timeBetweenAttack = stats.meleeTimeBetweeAttacks;
+        attackAOE = stats.meleeAttackAOE;
+        speedWhileAttacking = stats.meleeSpeedWhileAttacking;
+    }
+
     public void Attack()
     {
         rb.velocity = (currentTarget.position - transform.position).normalized * speedWhileAttacking;

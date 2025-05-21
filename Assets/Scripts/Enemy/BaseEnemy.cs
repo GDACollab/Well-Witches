@@ -6,37 +6,35 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class BaseEnemyClass : MonoBehaviour
 {
-    [Header("Enemy Stats")]
-    [Tooltip("The max health of an enemy.")]
-    public float health;
-    [Tooltip("How fast an enemy moves.")]
-    public float moveSpeed;
-    [Range(0, 20)]
-    [Tooltip("How far away the enemy stops before attacking")]
-    public float range;
-    public NavMeshAgent agent;
-    public Rigidbody2D rb;
-    public SpriteRenderer sr;
-
+    [HideInInspector]
+    public EnemyStatsSO stats;
+        
     [Header("DEBUG")]
+    public float health;
+    public float moveSpeed;
+    public float range;
+    public bool isStunned;
+    public float stunDuration;
+
     public float distanceToPlayer1;
     public float distanceToPlayer2;
     public float distanceToTarget;
     public float timeToFire;
-    [SerializeField] private GameObject[] players;
+    public GameObject[] players;
     public Transform currentTarget;
-    public bool isStunned;
-    [SerializeField] public float stunDuration;
-    public void Spawn(Vector3 position)
-    {
-        Instantiate(gameObject, position, Quaternion.identity);
-    }
+    public NavMeshAgent agent;
+    public Rigidbody2D rb;
+    public SpriteRenderer sr;
 
-    private void Start()
+    private void Awake()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
         isStunned = false;
-        stunDuration = 5.0f;
+    }
+
+    public void Spawn(Vector3 position)
+    {
+        Instantiate(gameObject, position, Quaternion.identity);
     }
 
     public virtual void TakeDamage(float amount)

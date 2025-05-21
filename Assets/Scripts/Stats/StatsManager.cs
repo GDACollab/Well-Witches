@@ -187,7 +187,7 @@ public class StatsManager : MonoBehaviour
     public float getSpeedMult()
     {
         float myMult = (myBuffs.Contains("SpeedUp") ? SpeedBuffStrength : 1) * (myBuffs.Contains("SpeedDown") ? SpeedCurseStrength : 1);
-        Debug.Log("Moving at a speed of" + myMult);
+        //Debug.Log("Moving at a speed of" + myMult);
         return myMult;
         //return MaxSpeed * myMult;
     }

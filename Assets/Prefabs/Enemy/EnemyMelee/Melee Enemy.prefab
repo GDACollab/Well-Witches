@@ -169,8 +169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac3acacfca5d60944bf378d7dd4c36e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 35
-  moveSpeed: 4
   range: 1.5
   agent: {fileID: 394531480031503680, guid: 842b350a5dbea204f9e240d00ade7c24, type: 3}
   rb: {fileID: -6155111817658422072}
@@ -181,9 +179,10 @@ MonoBehaviour:
   timeToFire: 0
   players: []
   currentTarget: {fileID: 0}
+  health: 0
+  moveSpeed: 0
   isStunned: 0
   stunDuration: 0
-  damage: 2.5
   timeBetweenAttack: 0.5
   attackAOE: 1.1
   speedWhileAttacking: 2

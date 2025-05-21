@@ -244,16 +244,25 @@ MonoBehaviour:
   formationPrefabs:
   - {fileID: 3663203546483103794, guid: d8bf0567f46e47d4b88ada500863f322, type: 3}
   - {fileID: 3663203546483103794, guid: db228e4e930cef94e96e1ee45d085544, type: 3}
-  referencePoint: {fileID: 0}
+  DifficultyScriptableObjectStats:
+  - {fileID: 11400000, guid: 0150a0ac317f9c742b0f944c0944966b, type: 2}
+  - {fileID: 11400000, guid: 1ee5826294e9e344fab4ea51d5d15df7, type: 2}
+  - {fileID: 11400000, guid: c11717030ab5af84abe6bacde4653aca, type: 2}
+  - {fileID: 11400000, guid: 3e4d63f137fbd1f44a5bf69b2683f6a1, type: 2}
+  currentDifficulty: 0
+  mediumDifficultyTime: 20
+  hardDifficultyTime: 45
+  impossibleDifficultyTime: 60
   spawnRadiusMin: 12
   spawnRadiusMax: 18
-  singleSpawnTime: 3
-  formationSpawnTime: 10
   maxSpawnCoord: {x: 158, y: 158}
   minSpawnCoord: {x: 2, y: 2}
-  maxEnemyCount: 30
+  singleSpawnTime: 3
+  formationSpawnTime: 10
+  maxEnemyCount: 9
   singleTimer: 0
   formationTimer: 0
+  referencePoint: {fileID: 0}
 --- !u!114 &3603494246620078635
 MonoBehaviour:
   m_ObjectHideFlags: 0

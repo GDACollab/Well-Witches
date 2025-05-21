@@ -1,23 +1,45 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner Instance { get; private set; }
+
+    [HideInInspector]
+    public enum Difficulty
+    {
+        Easy,
+        Medium,
+        Hard,
+        Impossible
+    }
+
+    [Header("Enemy References")]
     public List<BaseEnemyClass> enemies;
     public List<GameObject> formationPrefabs;
+    public List<EnemyStatsSO> DifficultyScriptableObjectStats;
 
-    public Transform referencePoint;    // Reference point for creatures to be spawned around
+    [Header("Difficulty")]
+    public Difficulty currentDifficulty = Difficulty.Easy;
+    [SerializeField] private float mediumDifficultyTime;
+    [SerializeField] private float hardDifficultyTime;
+    [SerializeField] private float impossibleDifficultyTime;
 
+    public Dictionary<Difficulty, EnemyStatsSO> difficultyStats = new Dictionary<Difficulty, EnemyStatsSO>();
+
+    [Header("Spawn Distances")]
     [Tooltip("Minimum distance enemy will spawn from player.")]
     public float spawnRadiusMin;
     [Tooltip("Maximum distance enemy will spawn from player.")]
     public float spawnRadiusMax;
-    public float singleSpawnTime = 0.0f;
-    public float formationSpawnTime = 0.0f;
     [Tooltip("Maximum coordinate an enemy can spawn.")]
     [SerializeField] private Vector2 maxSpawnCoord;
     [Tooltip("Miniumm coordinate an enemy can spawn.")]
     [SerializeField] private Vector2 minSpawnCoord;
+    [Header("Spawn Timers")]
+    public float singleSpawnTime = 0.0f;
+    public float formationSpawnTime = 0.0f;
 
     public int maxEnemyCount;
     public static int currentEnemyCount;
@@ -25,17 +47,28 @@ public class EnemySpawner : MonoBehaviour
     [Header("Debug")]
     public float singleTimer;
     public float formationTimer;
-    // Start is called before the first frame update
-    void Start()
+    public Transform referencePoint;    // Reference point for creatures to be spawned around
+
+    private void Awake()
     {
-        currentEnemyCount = 0;
-        if (referencePoint == null)
-        {
-            referencePoint = GameObject.Find("Gatherer").transform; // should be changed to tag if we decide to change names
-        }
+        if (Instance && Instance != this) Destroy(gameObject); else Instance = this;
+        if (referencePoint == null) { referencePoint = GameObject.Find("Gatherer").transform; }
+        
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        difficultyStats.Add(Difficulty.Easy, DifficultyScriptableObjectStats[0]);
+        difficultyStats.Add(Difficulty.Medium, DifficultyScriptableObjectStats[1]);
+        difficultyStats.Add(Difficulty.Hard, DifficultyScriptableObjectStats[2]);
+        difficultyStats.Add(Difficulty.Impossible, DifficultyScriptableObjectStats[3]);
+
+        currentEnemyCount = 0;
+        currentDifficulty = Difficulty.Easy;
+
+        StartCoroutine(IncreaseDifficulty());
+    }
+
     void Update()
     {
         singleTimer += Time.deltaTime;
@@ -109,6 +142,16 @@ public class EnemySpawner : MonoBehaviour
         }
 
         return new Vector3(x, y, 0);
+    }
+
+    IEnumerator IncreaseDifficulty()
+    {
+        yield return new WaitForSeconds(mediumDifficultyTime);
+        currentDifficulty = Difficulty.Medium;
+        yield return new WaitForSeconds(hardDifficultyTime - mediumDifficultyTime);
+        currentDifficulty = Difficulty.Hard;
+        yield return new WaitForSeconds(impossibleDifficultyTime - hardDifficultyTime);
+        currentDifficulty = Difficulty.Impossible;
     }
 
     // for debugging the spawn size
