@@ -14,7 +14,7 @@ public class MeleeEnemy : BaseEnemyClass
         health = stats.meleeHealth;
         moveSpeed = stats.meleeSpeed;
         range = stats.meleeRange;
-        stunDuration = stats.stunDuration
+        stunDuration = stats.stunDuration;
 
         damage = stats.meleeDamage;
         timeBetweenAttack = stats.meleeTimeBetweeAttacks;
