@@ -1433,6 +1433,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8806569061559330418, guid: e4cbe54899eef0e44942f2ce126f2dc2, type: 3}
+      propertyPath: tilemap
+      value: 
+      objectReference: {fileID: 1669696855}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2405,6 +2409,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 27224889}
     m_Modifications:
+    - target: {fileID: 1897764358974635107, guid: d3efe8dfeebfaad45903b500cc1c9674, type: 3}
+      propertyPath: m_TileModifiers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897764358974635107, guid: d3efe8dfeebfaad45903b500cc1c9674, type: 3}
+      propertyPath: m_TileModifiers.Array.data[0].tile
+      value: 
+      objectReference: {fileID: 11400000, guid: 97c0f57023a8f254e800dda872f43d95, type: 2}
     - target: {fileID: 2379456225859022087, guid: d3efe8dfeebfaad45903b500cc1c9674, type: 3}
       propertyPath: m_Tiles.Array.size
       value: 0
@@ -2760,7 +2772,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.05
+  m_Intensity: 0.25
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 7b8b7c0a00000000a5f111f0
@@ -3284,6 +3296,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
+--- !u!1839735485 &1669696855 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 5198666694009068120, guid: d3efe8dfeebfaad45903b500cc1c9674, type: 3}
+  m_PrefabInstance: {fileID: 1510515775}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1744974410
 PrefabInstance:
   m_ObjectHideFlags: 0
