@@ -110,14 +110,15 @@ public class BaseEnemyClass : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         agent.enabled = true;
-        yield return new WaitForSeconds(0.3f);
-        rb.velocity = Vector3.zero;
+        //yield return new WaitForSeconds(0.3f);
+        //rb.velocity = Vector3.zero;
     }
 
     public virtual void getStunned()
     {
         isStunned = true;
         agent.enabled = false;
+        rb.velocity = Vector3.zero;
         stunDuration = 5.0f;
     }
 

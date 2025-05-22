@@ -33,7 +33,7 @@ public class MeleeEnemy : BaseEnemyClass
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bruiserAttackSwipe, this.transform.position);
 
         // not very performantive, better if collider check but should be good enough
-        if (Vector2.Distance(transform.position, currentTarget.position) < attackAOE)
+        if (Vector2.Distance(transform.position, currentTarget.position) <= attackAOE)
         {
             if (currentTarget.gameObject.name == "Warden")
             {

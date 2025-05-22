@@ -63,18 +63,18 @@ public class AggroState : State
         if (meleeEnemy != null && agent.enabled == true && !meleeEnemy.isStunned)
         {
             meleeEnemy.TargetClosestPlayer();
-            agent.SetDestination(meleeEnemy.currentTarget.position);
+            try { agent.SetDestination(meleeEnemy.currentTarget.position); } catch { meleeEnemy.Die(); }
         }
         else if (rangedEnemy != null && agent.enabled == true && !rangedEnemy.isStunned)
         {
             rangedEnemy.TargetClosestPlayer();
-            agent.SetDestination(rangedEnemy.currentTarget.position);
+            try { agent.SetDestination(rangedEnemy.currentTarget.position); } catch { rangedEnemy.Die(); }
         }
         else if (tankEnemy != null && agent.enabled == true && !tankEnemy.isStunned)
         {
             tankEnemy.TargetClosestPlayer();
-            agent.SetDestination(tankEnemy.currentTarget.position);
             tankEnemy.SpawnPool();
+            try { agent.SetDestination(tankEnemy.currentTarget.position); } catch { tankEnemy.Die(); }
         }
     }
 
