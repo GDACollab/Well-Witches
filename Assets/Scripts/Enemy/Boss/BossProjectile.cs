@@ -7,7 +7,8 @@ public class BossProjectile : MonoBehaviour
 {
     [Header("Stats")]
     public float projectileSpawnDistance;
-    public float timeToHit;
+    public float indicatorTime;
+    public float projectileTime;
 
     private Vector2 originalPosition;
     [Header("References")]
@@ -29,17 +30,27 @@ public class BossProjectile : MonoBehaviour
     {
         float timeElapsed = 0f;
 
-        while (timeElapsed < timeToHit)
+        while (timeElapsed < indicatorTime)
         {
-            float t = timeElapsed / timeToHit;
-            bossProjectile.position = Vector2.Lerp(originalPosition, transform.position, t);
+            float t = timeElapsed / indicatorTime;
             indicator.size = Mathf.Lerp(0, 1, t);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
+
+        timeElapsed = 0f;
+
+        while (timeElapsed < projectileTime)
+        {
+            float t = timeElapsed / projectileTime;
+            bossProjectile.position = Vector2.Lerp(originalPosition, transform.position, t);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
         bossProjectile.localPosition = Vector2.zero;
         bossProjectile.gameObject.SetActive(false);
-        indicator.enabled = false;
+        indicator.gameObject.SetActive(false);
         bossProjectileImpact.SetActive(true);
         Destroy(gameObject, 0.5f);
     }
