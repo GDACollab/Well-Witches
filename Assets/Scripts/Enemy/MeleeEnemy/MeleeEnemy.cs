@@ -8,6 +8,9 @@ public class MeleeEnemy : BaseEnemyClass
     private float attackAOE;
     private float speedWhileAttacking;
 
+    //public Animator animator;
+    //public SpriteRenderer atkSprite;
+
     private void Start()
     {
         stats = EnemySpawner.Instance.difficultyStats[EnemySpawner.Instance.currentDifficulty];
@@ -20,10 +23,12 @@ public class MeleeEnemy : BaseEnemyClass
         timeBetweenAttack = stats.meleeTimeBetweeAttacks;
         attackAOE = stats.meleeAttackAOE;
         speedWhileAttacking = stats.meleeSpeedWhileAttacking;
+        //atkSprite.enabled = false;
     }
 
     public void Attack()
     {
+        //atkSprite.enabled = true;
         rb.velocity = (currentTarget.position - transform.position).normalized * speedWhileAttacking;
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bruiserAttackSwipe, this.transform.position);
 
@@ -39,6 +44,8 @@ public class MeleeEnemy : BaseEnemyClass
                 EventManager.instance.playerEvents.PlayerDamage(damage, "Gatherer");
             }
         }
+
+        //atkSprite.enabled = false;
     }
 
 #if UNITY_EDITOR

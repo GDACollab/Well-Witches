@@ -17,6 +17,8 @@ public class RangedEnemy : BaseEnemyClass
     private float AOELifetime;
     private float AOEDamage;
 
+    public Animator animator;
+    //public SpriteRenderer sprite;
 
     [Header("Initialize")]
     [SerializeField] private GameObject projectilePrefab;
@@ -45,6 +47,9 @@ public class RangedEnemy : BaseEnemyClass
     // fires projectiles in a cone shape depending on the spread and projectile count
     public void Attack()
     {
+        //Currently animation does not play out for the attack
+        //The atk swap between animation states is weird.
+        animator.SetTrigger("Attacking");
         for (int i = 0; i < projectileCount; i++)
         {
             // spawns the projectile
