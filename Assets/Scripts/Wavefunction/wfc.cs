@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
+using NavMeshPlus.Components;
+
 
 public class wfc : MonoBehaviour
 {
@@ -20,6 +22,11 @@ public class wfc : MonoBehaviour
     [SerializeField] private tileScriptableObject[] tileScriptableObjects;
 
     [SerializeField] InteractableGenerator interactableGenerating;
+
+    [SerializeField] private NavMeshSurface meleeNavMesh;
+    [SerializeField] private NavMeshSurface rangedNavMesh;
+    [SerializeField] private NavMeshSurface tankNavMesh;
+
 
     //If you change this, change the enemy spawn bounds in EnemySpawner.cs and the camera view bound in cameraScript.cs
     private static int sizeX = 160;
@@ -133,6 +140,11 @@ public class wfc : MonoBehaviour
         //StartCoroutine(testWFCFastButOnlyIfISaySo()); //Do it fast
         //StartCoroutine(testWFCSlowly()); // Does the generation slowly, only have one uncommented
         SceneHandler.Instance.GenerationEnded = true;
+
+        // generates navmesh after tileset done building
+        meleeNavMesh.BuildNavMesh();
+        rangedNavMesh.BuildNavMesh();
+        tankNavMesh.BuildNavMesh();
     }
 
     private IEnumerator testWFCSlowly()
