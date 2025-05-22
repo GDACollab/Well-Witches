@@ -19,9 +19,11 @@ public class TankEnemy : BaseEnemyClass
     private float acidDamage;
 
     private float timeTillPool;
+    public Animator animator; 
 
     private void Start()
     {
+        //animator = GetComponent<Animator>();
         stats = EnemySpawner.Instance.difficultyStats[EnemySpawner.Instance.currentDifficulty];
         health = stats.tankHealth;
         moveSpeed = stats.tankSpeed;
@@ -41,6 +43,9 @@ public class TankEnemy : BaseEnemyClass
 
     public void Attack()
     {
+        //Animation to attack
+        //print("Start animation");
+        animator.SetTrigger("Attack");
         rb.velocity = (currentTarget.position - transform.position).normalized * bashStrength;
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.tankAttackBash, this.transform.position);
         StartCoroutine(EndBash());
@@ -48,6 +53,10 @@ public class TankEnemy : BaseEnemyClass
 
     IEnumerator EndBash()
     {
+        //Animation to attack
+        //print("End animation");
+        //print(bashTime);
+        //animator.SetBool("isAttacking", false);
         yield return new WaitForSeconds(bashTime);
         rb.velocity = Vector2.zero;
     }
