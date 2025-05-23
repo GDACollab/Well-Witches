@@ -14,29 +14,29 @@ public class PlayerMovement : MonoBehaviour
 	public bool isMoving = false;
 	public float originalAcc;
 
-    public Animator animator;
+	public Animator animator;
 	public SpriteRenderer sprite;
 
 	//public SpriteRenderer sprite2;
-	
-    protected virtual void changeSpriteTo()
-    {
-		animator.SetBool("isRunning", isMoving);
-    }
-	
-    void OnMove(InputValue iv)  // Called by the Player Input component
+
+	protected virtual void changeSpriteTo()
 	{
-        moveDirection = iv.Get<Vector2>() * (canMove ? 1 : 0);
+		animator.SetBool("isRunning", isMoving);
+	}
+
+	void OnMove(InputValue iv)  // Called by the Player Input component
+	{
+		moveDirection = iv.Get<Vector2>() * (canMove ? 1 : 0);
 		isMoving = moveDirection.magnitude > 0;
 
 		if (moveDirection.x > 0)
 		{
-            sprite.flipX = true;
+			sprite.flipX = true;
 		}
 		else if (moveDirection.x < 0)
 		{
 			sprite.flipX = false;
-        }
+		}
 	}
 
 	protected void Awake()
@@ -45,18 +45,19 @@ public class PlayerMovement : MonoBehaviour
 		sprite = GetComponentInChildren<SpriteRenderer>();
 		animator = GetComponentInChildren<Animator>();
 		animator.SetTrigger("Respawn");
-        maxSpeed_Adjusted = movementData.maxSpeed;
+		maxSpeed_Adjusted = movementData.maxSpeed;
 		originalAcc = movementData.acceleration;
 	}
 
-    private void Start()
-    {
-        playerFootsteps = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.playerFootsteps);
-    }
-
-    void FixedUpdate()
+	private void Start()
 	{
-		if (GathererAbilityManager.Instance.GetEquippedPassiveName() != "ZoneMomentum") {
+		playerFootsteps = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.playerFootsteps);
+	}
+
+	void FixedUpdate()
+	{
+		if (GathererAbilityManager.Instance.GetEquippedPassiveName() != "ZoneMomentum")
+		{
 			movementData.acceleration = originalAcc;
 			maxSpeed_Adjusted = movementData.maxSpeed;
 		}
@@ -72,35 +73,47 @@ public class PlayerMovement : MonoBehaviour
 
 		Vector2 accelerationVector = deltaVelocity * acceleration;
 		rb.AddForce(accelerationVector);
-		
+
 		changeSpriteTo();
 
 		UpdateSound();
-    }
+	}
 
 	private void UpdateSound()
 	{
+		PLAYBACK_STATE playbackState;
+		playerFootsteps.getPlaybackState(out playbackState);
+
 		//Debug.Log(rb.velocity);
 		if (Mathf.Abs(rb.velocity.x) > 2.5f || Mathf.Abs(rb.velocity.y) > 2.5f)
 		{
-			PLAYBACK_STATE playbackState;
-			playerFootsteps.getPlaybackState(out playbackState);
-
-			if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+			if (playbackState.Equals(PLAYBACK_STATE.STOPPED) && canMove)
 			{
 				playerFootsteps.start();
 
-                //Debug.Log("HALPAS");
-            }
+				//print("on");
+			}
 			//Changed animation here to run
 			//changeSpriteTo("isRunning");
 
-        }
+		}
 		else
 		{
 			//Changing animation to idle here
 			//changeSpriteTo("isIdle");
 			playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
+		}
+	}
+	
+	private void Update() {
+		PLAYBACK_STATE playbackState;
+		playerFootsteps.getPlaybackState(out playbackState);
+
+		if (canMove == false && playbackState.Equals(PLAYBACK_STATE.PLAYING))
+		{
+			//print("off");
+			playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
+			return;
 		}
 	}
 }
