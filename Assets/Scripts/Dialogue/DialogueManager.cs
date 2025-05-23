@@ -99,7 +99,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("here: "+ dialogueActive);
+        //Debug.Log("here: "+ dialogueActive);
         //do nothing if there is no dialogue activly playing
         if (!dialogueActive)
         {

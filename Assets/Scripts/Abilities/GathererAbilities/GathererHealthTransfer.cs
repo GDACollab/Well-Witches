@@ -10,7 +10,7 @@ public class GathererHealthTransfer : GathererBaseAbilities
    private float lastUsedTime;
 
     public override string abilityName => "HealthTransfer";
-    public override float duration => 0;
+    public override float duration => cooldownTime;
 
     public static GathererHealthTransfer Instance { get; private set; }
 

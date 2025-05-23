@@ -1,6 +1,4 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using System.Collections;
 
 public class BossEnemy : BaseEnemyClass
 {
@@ -13,9 +11,12 @@ public class BossEnemy : BaseEnemyClass
     public bool DPS_phase = false;
     public SpriteRenderer bubbleSprite;
 
- 
+    private void Start()
+    {
+        currentTarget = GameObject.Find("Gatherer").transform;
+    }
 
-    public override void ProjectileKnockback(Vector3 force)
+    public override void Attack()
     {
         return;
     }
