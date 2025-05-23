@@ -155,7 +155,7 @@ public class SceneHandler : MonoBehaviour
             return;
         }
 
-        StartCoroutine(LoadingScreen(PauseSceneIndex));
+        StartCoroutine(LoadingScreen(MainMenuSceneIndex));
         //SceneManager.LoadScene(MainMenuSceneIndex);
     }
     public void ToHubScene(){
