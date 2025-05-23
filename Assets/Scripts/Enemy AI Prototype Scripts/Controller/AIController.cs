@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class AIController : MonoBehaviour
 {
@@ -9,14 +8,7 @@ public class AIController : MonoBehaviour
     {
         // Initialize the state machine
         stateMachine = gameObject.GetComponent<StateMachine>();
-
-        BaseEnemyClass meleeEnemy = GetComponentInParent<MeleeEnemy>();
-        BaseEnemyClass rangedEnemy = GetComponentInParent<RangedEnemy>();
-        BaseEnemyClass tankEnemy = GetComponentInParent<TankEnemy>();
-        enemy = null;
-        if (meleeEnemy != null) { enemy = meleeEnemy; }
-        else if (rangedEnemy != null) { enemy = rangedEnemy; }
-        else if (tankEnemy != null) { enemy = tankEnemy; }
+        BaseEnemyClass enemy = GetComponent<BaseEnemyClass>();  
 
         // Set the initial state (AggroState), passing the player
         if (enemy != null && !enemy.isStunned)
