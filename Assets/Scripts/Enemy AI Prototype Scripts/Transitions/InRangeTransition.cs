@@ -16,7 +16,7 @@ public class InRangeTransition : Transition
 
     public override bool ShouldTransition()
     {
-        if (enemy.currentTarget != null)
+        if (enemy.currentTarget != null && !enemy.isStunned)
         {
             float distance = Vector2.Distance(owner.transform.position, enemy.currentTarget.transform.position);
             return distance <= enemy.range;

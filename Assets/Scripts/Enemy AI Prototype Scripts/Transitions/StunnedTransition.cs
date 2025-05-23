@@ -3,13 +3,13 @@ using UnityEngine;
 public class StunnedTransition : Transition
 {
     private StateMachine stateMachine;
-    private AggroState aggroState;
+    private StunnedState stunnedState;
     private BaseEnemyClass enemy;
 
     public StunnedTransition(StateMachine stateMachine, GameObject owner) : base(owner)
     {
         this.stateMachine = stateMachine;
-        aggroState = owner.GetComponent<AggroState>();
+        stunnedState = owner.GetComponent<StunnedState>();
         enemy = owner.GetComponent<BaseEnemyClass>();
     }
 
@@ -19,8 +19,8 @@ public class StunnedTransition : Transition
     }
     public override State GetNextState()
     {
-        if (enemy != null) { aggroState.Initialize(stateMachine, owner); }
-        return aggroState;
+        if (enemy) { stunnedState.Initialize(stateMachine, owner); }
+        return stunnedState;
     }
 
    

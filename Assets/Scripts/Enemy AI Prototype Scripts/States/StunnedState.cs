@@ -29,10 +29,10 @@ public class StunnedState : State
 
     public override void OnUpdate()
     {
-        if (Time.time - timer < enemy.stunDuration)
+        if (Time.time - timer >= enemy.stunDuration)
         {
-            timer = Time.time;
-        }
+            enemy.isStunned = false;
+        } 
     }
 
     public override void OnExit()
@@ -45,7 +45,7 @@ public class StunnedState : State
     {
         return new List<Transition>
         {
-            new StunnedTransition(stateMachine, owner)
+            new OutotRangeTransition(stateMachine, owner)
         };
     }
 }

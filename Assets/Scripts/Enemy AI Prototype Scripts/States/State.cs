@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class State
+public abstract class State : MonoBehaviour
 {
     protected GameObject owner;
 

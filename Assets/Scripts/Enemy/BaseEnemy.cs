@@ -114,23 +114,22 @@ public abstract class BaseEnemyClass : MonoBehaviour
     {
         agent.speed = 0;
         rb.AddForce(force, ForceMode2D.Impulse);
-        if (!isStunned) { StartCoroutine(ExitKnockback()); }
+        StartCoroutine(ExitKnockback());
     }
     IEnumerator ExitKnockback()
     {
         yield return new WaitForSeconds(0.2f);
+
+        if (isStunned)
+        {
+            rb.velocity = Vector3.zero;
+            yield break;
+        }
+
         rb.velocity = Vector3.zero;
         agent.speed = moveSpeed;
     }
 
-
-    IEnumerator EnableAgent()
-    {
-        yield return new WaitForSeconds(0.2f);
-        agent.isStopped = false;
-        //yield return new WaitForSeconds(0.3f);
-        //rb.velocity = Vector3.zero;
-    }
 
     public virtual void getStunned()
     {
@@ -139,19 +138,7 @@ public abstract class BaseEnemyClass : MonoBehaviour
 
     void Update()
     {
-        //if (isStunned)
-        //{
-        //    stunDuration -= Time.deltaTime;
-
-        //    if (stunDuration <= 0.0f)
-        //    {
-        //        Debug.Log("timing out of stun");
-        //        isStunned = false;
-        //        StartCoroutine(EnableAgent());
-        //    }
-        //}
-
-        if (currentTarget)
+        if (currentTarget && !isStunned)
         {
             sr.flipX = transform.position.x > currentTarget.position.x ? false : true;
         }

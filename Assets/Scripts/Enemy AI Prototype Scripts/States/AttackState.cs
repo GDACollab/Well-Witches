@@ -28,7 +28,6 @@ public class AttackState : State
     public override void OnEnter()
     {
         attackTime = Time.time - enemy.timeBetweenAttack;
-        attackTime = 0f;
         agent.speed = 0f;
     }
 
@@ -53,6 +52,7 @@ public class AttackState : State
     {
         return new List<Transition>
         {
+            new StunnedTransition(stateMachine, owner),
             new OutotRangeTransition(stateMachine, owner),
         };
     }

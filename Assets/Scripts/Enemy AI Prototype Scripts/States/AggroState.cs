@@ -50,14 +50,15 @@ public class AggroState : State
 
     public override void OnExit()
     {
-        agent.isStopped = true;
+        agent.speed = 0f;
     }
 
     public override List<Transition> GetTransitions()
     {
         return new List<Transition>
         {
-            new InRangeTransition(stateMachine, owner)
+            new StunnedTransition(stateMachine, owner),
+            new InRangeTransition(stateMachine, owner),
         };
     }
 }
