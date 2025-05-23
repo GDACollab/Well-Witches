@@ -4,27 +4,33 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class BaseEnemyClass : MonoBehaviour
+public abstract class BaseEnemyClass : MonoBehaviour
 {
     [HideInInspector]
     public EnemyStatsSO stats;
-        
+    [HideInInspector]
+    public float timeBetweenAttack;
+    [HideInInspector]
+    public float range;
+    [HideInInspector]
+    public bool isStunned;
+    [HideInInspector]
+    public float moveSpeed;
+
+
     [Header("DEBUG")]
     public float health;
-    public float moveSpeed;
-    public float range;
-    public bool isStunned;
-    public float stunDuration;
+    protected float stunDuration;
 
-    public float distanceToPlayer1;
-    public float distanceToPlayer2;
-    public float distanceToTarget;
-    public float timeToFire;
-    public GameObject[] players;
+    protected float distanceToPlayer1;
+    protected float distanceToPlayer2;
+    protected float distanceToTarget;
+    protected float timeToFire;
+    protected GameObject[] players;
     public Transform currentTarget;
-    public NavMeshAgent agent;
-    public Rigidbody2D rb;
-    public SpriteRenderer sr;
+    protected NavMeshAgent agent;
+    protected Rigidbody2D rb;
+    protected SpriteRenderer sr;
 
     private void Awake()
     {
@@ -60,6 +66,8 @@ public class BaseEnemyClass : MonoBehaviour
         }
         Destroy(gameObject);
     }
+
+    public abstract void Attack();
 
     IEnumerator slow()
     {
@@ -117,8 +125,7 @@ public class BaseEnemyClass : MonoBehaviour
     public virtual void getStunned()
     {
         isStunned = true;
-        agent.enabled = false;
-        rb.velocity = Vector3.zero;
+        agent.isStopped = true;
         stunDuration = 5.0f;
     }
 

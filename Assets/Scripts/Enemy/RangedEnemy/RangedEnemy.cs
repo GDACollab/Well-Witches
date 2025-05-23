@@ -5,7 +5,6 @@ using UnityEngine;
 public class RangedEnemy : BaseEnemyClass
 {
     [HideInInspector]
-    public float timeBetweenAttack;
     private float projectileSpread;
     private float projectileSpeed;
     private float projectileSize;
@@ -45,7 +44,7 @@ public class RangedEnemy : BaseEnemyClass
     }
 
     // fires projectiles in a cone shape depending on the spread and projectile count
-    public void Attack()
+    public override void Attack()
     {
         //Currently animation does not play out for the attack
         //The atk swap between animation states is weird.

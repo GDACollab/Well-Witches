@@ -97,7 +97,6 @@ GameObject:
   - component: {fileID: 1314222603258456997}
   - component: {fileID: 921411808403508448}
   - component: {fileID: 2740582209234096425}
-  - component: {fileID: 1094066913076372462}
   - component: {fileID: 7223512689665479965}
   - component: {fileID: -3072643784058802820}
   - component: {fileID: -6817126600266020155}
@@ -262,21 +261,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
-  health: 35
-  moveSpeed: 2
+  timeBetweenAttack: 3
   range: 1.4
   isStunned: 0
-  stunDuration: 0
-  distanceToPlayer1: 0
-  distanceToPlayer2: 0
-  distanceToTarget: 0
-  timeToFire: 0
-  players: []
+  moveSpeed: 2
+  health: 35
   currentTarget: {fileID: 0}
-  agent: {fileID: -6817126600266020155}
-  rb: {fileID: 4592253895432761633}
-  sr: {fileID: 0}
-  timeBetweenAttack: 3
   spawnRate: 1
   acidOffsetX: 0
   acidOffsetY: 0
@@ -306,18 +296,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bfbdd0b530ca1348837608b24632757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1094066913076372462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6262689151968294506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fe660fd068c3264fa20861b37ee39d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7223512689665479965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,7 +308,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e76618940f28a4ca8063a56a971433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAttacking: 0
   attackTime: 0
 --- !u!114 &-3072643784058802820
 MonoBehaviour:
@@ -352,7 +329,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6262689151968294506}
   m_Enabled: 1
-  m_AgentTypeID: -334000983
+  m_AgentTypeID: 0
   m_Radius: 0.59
   m_Speed: 0
   m_Acceleration: 8

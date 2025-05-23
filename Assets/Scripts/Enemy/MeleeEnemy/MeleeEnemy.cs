@@ -1,9 +1,6 @@
 using UnityEngine;
 public class MeleeEnemy : BaseEnemyClass
 {
-    [HideInInspector]
-    public float timeBetweenAttack;
-
     private float damage;
     private float attackAOE;
     private float speedWhileAttacking;
@@ -26,7 +23,7 @@ public class MeleeEnemy : BaseEnemyClass
         //atkSprite.enabled = false;
     }
 
-    public void Attack()
+    public override void Attack()
     {
         //atkSprite.enabled = true;
         rb.velocity = (currentTarget.position - transform.position).normalized * speedWhileAttacking;

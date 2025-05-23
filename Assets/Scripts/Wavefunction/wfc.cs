@@ -23,9 +23,7 @@ public class wfc : MonoBehaviour
 
     [SerializeField] InteractableGenerator interactableGenerating;
 
-    [SerializeField] private NavMeshSurface meleeNavMesh;
-    [SerializeField] private NavMeshSurface rangedNavMesh;
-    [SerializeField] private NavMeshSurface tankNavMesh;
+    [SerializeField] private NavMeshSurface enemyNavMesh;
 
 
     //If you change this, change the enemy spawn bounds in EnemySpawner.cs and the camera view bound in cameraScript.cs
@@ -142,9 +140,7 @@ public class wfc : MonoBehaviour
         SceneHandler.Instance.GenerationEnded = true;
 
         // generates navmesh after tileset done building
-        meleeNavMesh.BuildNavMesh();
-        rangedNavMesh.BuildNavMesh();
-        tankNavMesh.BuildNavMesh();
+        enemyNavMesh.BuildNavMesh();
     }
 
     private IEnumerator testWFCSlowly()

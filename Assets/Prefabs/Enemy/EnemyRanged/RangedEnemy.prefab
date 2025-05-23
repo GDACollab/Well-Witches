@@ -368,23 +368,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
-  health: 15
-  moveSpeed: 8
+  timeBetweenAttack: 2
   range: 4
   isStunned: 0
-  stunDuration: 0
-  distanceToPlayer1: 0
-  distanceToPlayer2: 0
-  distanceToTarget: 0
-  timeToFire: 0
-  players:
-  - {fileID: 0}
-  - {fileID: 0}
+  moveSpeed: 8
+  health: 15
   currentTarget: {fileID: 0}
-  agent: {fileID: 394531480031503680}
-  rb: {fileID: 6673968106200130034}
-  sr: {fileID: 0}
-  timeBetweenAttack: 2
   animator: {fileID: 4400158945669773344}
   projectilePrefab: {fileID: 7461220634933650060, guid: 74dd0ca34ef572744b8b98a68d822920, type: 3}
 --- !u!114 &-2319001648079001521
@@ -436,7 +425,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e76618940f28a4ca8063a56a971433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAttacking: 0
   attackTime: 0
 --- !u!114 &-7702012812884302270
 MonoBehaviour:
@@ -457,8 +445,8 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8877866808826064330}
-  m_Enabled: 0
-  m_AgentTypeID: -1372625422
+  m_Enabled: 1
+  m_AgentTypeID: 0
   m_Radius: 0.68
   m_Speed: 0
   m_Acceleration: 8

@@ -331,17 +331,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 99381232}
   m_CullTransparentMesh: 1
---- !u!114 &142297473 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7484990930971190227, guid: 5935ae11f5b8c784b999605299358255, type: 3}
-  m_PrefabInstance: {fileID: 601684403}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e04976799df50f54ba128eff723155a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &273104803 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8806569061559330418, guid: e4cbe54899eef0e44942f2ce126f2dc2, type: 3}
@@ -763,6 +752,10 @@ PrefabInstance:
       propertyPath: referencePoint
       value: 
       objectReference: {fileID: 1744974412}
+    - target: {fileID: 5447374306906966772, guid: 5935ae11f5b8c784b999605299358255, type: 3}
+      propertyPath: m_Name
+      value: EnemyNavmesh
+      objectReference: {fileID: 0}
     - target: {fileID: 7057809440924223819, guid: 5935ae11f5b8c784b999605299358255, type: 3}
       propertyPath: m_Name
       value: EnemyManager
@@ -808,7 +801,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8392329641169910373, guid: 5935ae11f5b8c784b999605299358255, type: 3}
+    - {fileID: 2949248343544634909, guid: 5935ae11f5b8c784b999605299358255, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5935ae11f5b8c784b999605299358255, type: 3}
@@ -2595,7 +2590,11 @@ PrefabInstance:
     - target: {fileID: 6202931285313693948, guid: d3efe8dfeebfaad45903b500cc1c9674, type: 3}
       propertyPath: tankNavMesh
       value: 
-      objectReference: {fileID: 142297473}
+      objectReference: {fileID: 0}
+    - target: {fileID: 6202931285313693948, guid: d3efe8dfeebfaad45903b500cc1c9674, type: 3}
+      propertyPath: enemyNavMesh
+      value: 
+      objectReference: {fileID: 2016981178}
     - target: {fileID: 6202931285313693948, guid: d3efe8dfeebfaad45903b500cc1c9674, type: 3}
       propertyPath: lightsParent
       value: 
@@ -2603,7 +2602,7 @@ PrefabInstance:
     - target: {fileID: 6202931285313693948, guid: d3efe8dfeebfaad45903b500cc1c9674, type: 3}
       propertyPath: meleeNavMesh
       value: 
-      objectReference: {fileID: 1691328585}
+      objectReference: {fileID: 0}
     - target: {fileID: 6202931285313693948, guid: d3efe8dfeebfaad45903b500cc1c9674, type: 3}
       propertyPath: rangedNavMesh
       value: 
@@ -3307,17 +3306,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 635dd1974d2c43049a4c1514507d3f19, type: 3}
---- !u!114 &1691328585 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3676328846892761616, guid: 5935ae11f5b8c784b999605299358255, type: 3}
-  m_PrefabInstance: {fileID: 601684403}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e04976799df50f54ba128eff723155a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1744974410
 PrefabInstance:
   m_ObjectHideFlags: 0

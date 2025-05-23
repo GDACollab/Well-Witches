@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class TankEnemy : BaseEnemyClass
 {
-    [HideInInspector]
-    public float timeBetweenAttack;
+
     private float bashStrength;
     private float bashTime;
     private float bashDamage;
@@ -41,7 +40,7 @@ public class TankEnemy : BaseEnemyClass
         timeTillPool = 0f;
     }
 
-    public void Attack()
+    public override void Attack()
     {
         //Animation to attack
         //print("Start animation");

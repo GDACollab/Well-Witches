@@ -1,16 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine;
+using Unity.VisualScripting;
 
 public class AttackState : State
 {
 
     [Header("Attack Settings")]
     private StateMachine stateMachine;
-    public bool isAttacking;
-    private MeleeEnemy meleeEnemy;
-    private RangedEnemy rangedEnemy;
-    private TankEnemy tankEnemy;
+    private BaseEnemyClass enemy;
     private Rigidbody2D rb2d;
     private NavMeshAgent agent;
 
@@ -23,53 +21,33 @@ public class AttackState : State
     {
         this.stateMachine = stateMachine;
         this.owner = owner;
-        meleeEnemy = owner.GetComponent<MeleeEnemy>();
-        rangedEnemy = owner.GetComponent<RangedEnemy>();
-        tankEnemy = owner.GetComponent<TankEnemy>();
+        enemy = owner.GetComponent<BaseEnemyClass>();
         rb2d = owner.GetComponent<Rigidbody2D>();
         agent = owner.GetComponent<NavMeshAgent>();
     }
 
     public override void OnEnter()
     {
-        attackTime = Time.time - (meleeEnemy != null ? meleeEnemy.timeBetweenAttack : (rangedEnemy != null ? rangedEnemy.timeBetweenAttack : tankEnemy.timeBetweenAttack));
+        attackTime = Time.time - enemy.timeBetweenAttack;
         attackTime = 0f;
-        isAttacking = false;
-        agent.enabled = false;
+        agent.isStopped = true;
 
         if (rb2d != null)
         {
             {
                 rb2d.gravityScale = 0;
-                rb2d.velocity = Vector2.zero; // Stop any existing movement
+                agent.isStopped = true;
             }
         }
     }
 
     public override void OnUpdate()
     {
-        // apparently Time.deltaTime doesn't work in OnUpdate. this makes me extremely uncomfortable :(
-        if (meleeEnemy != null && !meleeEnemy.isStunned)
+        if (enemy != null && !enemy.isStunned)
         {
-            if (Time.time >= attackTime + meleeEnemy.timeBetweenAttack && !isAttacking)
+            if (Time.time >= attackTime + enemy.timeBetweenAttack)
             {
-                meleeEnemy.Attack();
-                attackTime = Time.time;
-            }
-        }
-        else if (rangedEnemy != null && !rangedEnemy.isStunned)
-        {
-            if (Time.time >= attackTime + rangedEnemy.timeBetweenAttack && !isAttacking)
-            {
-                rangedEnemy.Attack();
-                attackTime = Time.time;
-            }
-        }
-        else if (tankEnemy != null && !tankEnemy.isStunned)
-        {
-            if (Time.time >= attackTime + tankEnemy.timeBetweenAttack && !isAttacking)
-            {
-                tankEnemy.Attack();
+                enemy.Attack();
                 attackTime = Time.time;
             }
         }
@@ -77,7 +55,7 @@ public class AttackState : State
 
     public override void OnExit()
     {
-        agent.enabled = true;
+        agent.isStopped = false;
     }
 
     public override List<Transition> GetTransitions()
