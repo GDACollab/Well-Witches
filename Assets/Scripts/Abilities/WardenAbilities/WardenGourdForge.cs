@@ -37,9 +37,12 @@ public class WardenGourdForge : WardenBaseAbilities
     void OnDisable() { PlayerProjectile.OnHitEnemy -= GainCharge; }
     void GainCharge()
     {
-        Charge++;
-        if (Charge >= NumHitsRequired) { AudioManager.Instance.PlayOneShot(FMODEvents.Instance.abilityReady, this.transform.position); }
-        if (Charge > NumHitsRequired) Charge = NumHitsRequired;
+        if (WardenAbilityManager.Instance.equipedAbility == this) 
+        { 
+            Charge++;
+            if (Charge >= NumHitsRequired) { AudioManager.Instance.PlayOneShot(FMODEvents.Instance.abilityReady, this.transform.position); }
+            if (Charge > NumHitsRequired) Charge = NumHitsRequired;
+        }
     }
 
     public override void useAbility()    // called by the Player Input component
