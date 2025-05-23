@@ -13,7 +13,7 @@ public class GathererBubbleShield : GathererBaseAbilities
     [SerializeField] private bool canUse = true;
     public bool isActive = false;
 
-    public override float duration => abilityDuration;
+    public override float duration => cooldownDuration;
     public override string abilityName => "BubbleShield";
     public static GathererBubbleShield Instance { get; private set; }
 

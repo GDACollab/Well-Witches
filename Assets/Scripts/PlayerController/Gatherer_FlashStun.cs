@@ -25,7 +25,7 @@ public class Gatherer_FlashStun : GathererBaseAbilities
     private NavMeshAgent navAgent;
 
     public override string abilityName => "FlashStun";
-    public override float duration => chargeDuration;
+    public override float duration => cooldownDuration;
 
     [SerializeField] private float charge;
     public override float Charge
