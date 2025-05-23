@@ -7,6 +7,8 @@ using System;
 using System.Linq;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.U2D.Animation;
+
 
 #if UNITY_EDITOR
 using UnityEditor.ShaderGraph;
@@ -19,6 +21,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] public GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI speakerText;
+    [SerializeField] private SpriteLibraryAsset characterLibrary;
 
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices; 
@@ -258,15 +261,15 @@ public class DialogueManager : MonoBehaviour
                     {
                         if (activePlayer == PlayerState.WARDEN)
                         {
-                            playerSpriteManager.ChangeWardenSprite(tagValue);
+                            playerSpriteManager.ChangeWardenSprite(characterLibrary.GetSprite("Warden", tagValue));
                         }
                         else if (activePlayer == PlayerState.GATHERER)
                         {
-                            playerSpriteManager.ChangeGathererSprite(tagValue);
+                            playerSpriteManager.ChangeGathererSprite(characterLibrary.GetSprite("Gatherer", tagValue));
                         }
                     }
                     else{
-                        currentCharacter.ChangeSprite(tagValue);
+                        currentCharacter.ChangeSprite(characterLibrary.GetSprite(currentCharacter.NPC.ToString(), tagValue));
                     }
                     break;
                 default:
