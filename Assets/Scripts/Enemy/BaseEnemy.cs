@@ -16,11 +16,12 @@ public abstract class BaseEnemyClass : MonoBehaviour
     public bool isStunned;
     [HideInInspector]
     public float moveSpeed;
+    [HideInInspector]
+    public float stunDuration;
 
 
     [Header("DEBUG")]
     public float health;
-    protected float stunDuration;
 
     protected float distanceToPlayer1;
     protected float distanceToPlayer2;
@@ -30,11 +31,13 @@ public abstract class BaseEnemyClass : MonoBehaviour
     public Transform currentTarget;
     protected NavMeshAgent agent;
     protected Rigidbody2D rb;
-    protected SpriteRenderer sr;
+    [SerializeField] protected SpriteRenderer sr;
 
     private void Awake()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
+        agent = GetComponent<NavMeshAgent>();
+        rb = GetComponent<Rigidbody2D>();
         isStunned = false;
     }
 
@@ -109,15 +112,22 @@ public abstract class BaseEnemyClass : MonoBehaviour
 
     public virtual void ProjectileKnockback(Vector3 force)
     {
-        agent.enabled = false;
+        agent.speed = 0;
         rb.AddForce(force, ForceMode2D.Impulse);
-        if (!isStunned) { StartCoroutine(EnableAgent()); }
+        if (!isStunned) { StartCoroutine(ExitKnockback()); }
     }
-    
+    IEnumerator ExitKnockback()
+    {
+        yield return new WaitForSeconds(0.2f);
+        rb.velocity = Vector3.zero;
+        agent.speed = moveSpeed;
+    }
+
+
     IEnumerator EnableAgent()
     {
         yield return new WaitForSeconds(0.2f);
-        agent.enabled = true;
+        agent.isStopped = false;
         //yield return new WaitForSeconds(0.3f);
         //rb.velocity = Vector3.zero;
     }
@@ -125,22 +135,25 @@ public abstract class BaseEnemyClass : MonoBehaviour
     public virtual void getStunned()
     {
         isStunned = true;
-        agent.isStopped = true;
-        stunDuration = 5.0f;
     }
 
     void Update()
     {
-        if (isStunned)
-        {
-            stunDuration -= Time.deltaTime;
+        //if (isStunned)
+        //{
+        //    stunDuration -= Time.deltaTime;
 
-            if (stunDuration <= 0.0f)
-            {
-                Debug.Log("timing out of stun");
-                isStunned = false;
-                StartCoroutine(EnableAgent());
-            }
+        //    if (stunDuration <= 0.0f)
+        //    {
+        //        Debug.Log("timing out of stun");
+        //        isStunned = false;
+        //        StartCoroutine(EnableAgent());
+        //    }
+        //}
+
+        if (currentTarget)
+        {
+            sr.flipX = transform.position.x > currentTarget.position.x ? false : true;
         }
     }
 }

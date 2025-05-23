@@ -6,8 +6,6 @@ public class AggroState : State
 {
     private StateMachine stateMachine;
     private BaseEnemyClass enemy;
-
-
     private NavMeshAgent agent;
 
     private void Awake()
@@ -28,7 +26,7 @@ public class AggroState : State
         this.owner = owner;
         enemy = owner.GetComponent<BaseEnemyClass>();
 
-        if (enemy != null)
+        if (enemy)
         {
             agent.stoppingDistance = enemy.range;
             agent.speed = enemy.moveSpeed;
@@ -38,11 +36,12 @@ public class AggroState : State
     public override void OnEnter()
     {
         agent.isStopped = false;
+        agent.speed = enemy.moveSpeed;
     }
 
     public override void OnUpdate()
     {
-        if (enemy && !agent.isStopped && !enemy.isStunned)
+        if (enemy && !enemy.isStunned)
         {
             enemy.TargetClosestPlayer();
             try { agent.SetDestination(enemy.currentTarget.position); } catch { enemy.Die(); }

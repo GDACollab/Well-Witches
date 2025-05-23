@@ -26,7 +26,7 @@ public class MeleeEnemy : BaseEnemyClass
     public override void Attack()
     {
         //atkSprite.enabled = true;
-        rb.velocity = (currentTarget.position - transform.position).normalized * speedWhileAttacking;
+        agent.speed = speedWhileAttacking;
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bruiserAttackSwipe, this.transform.position);
 
         // not very performantive, better if collider check but should be good enough

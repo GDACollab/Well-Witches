@@ -5,7 +5,6 @@ using Unity.VisualScripting;
 
 public class AttackState : State
 {
-
     [Header("Attack Settings")]
     private StateMachine stateMachine;
     private BaseEnemyClass enemy;
@@ -30,20 +29,12 @@ public class AttackState : State
     {
         attackTime = Time.time - enemy.timeBetweenAttack;
         attackTime = 0f;
-        agent.isStopped = true;
-
-        if (rb2d != null)
-        {
-            {
-                rb2d.gravityScale = 0;
-                agent.isStopped = true;
-            }
-        }
+        agent.speed = 0f;
     }
 
     public override void OnUpdate()
     {
-        if (enemy != null && !enemy.isStunned)
+        if (enemy && !enemy.isStunned)
         {
             if (Time.time >= attackTime + enemy.timeBetweenAttack)
             {
@@ -55,7 +46,7 @@ public class AttackState : State
 
     public override void OnExit()
     {
-        agent.isStopped = false;
+        agent.speed = enemy.moveSpeed;
     }
 
     public override List<Transition> GetTransitions()
