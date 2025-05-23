@@ -718,13 +718,13 @@ MonoBehaviour:
   mediumDifficultyTime: 0
   hardDifficultyTime: 0
   impossibleDifficultyTime: 0
+  maxEnemyCount: 0
   spawnRadiusMin: 0
   spawnRadiusMax: 0
   maxSpawnCoord: {x: 0, y: 0}
   minSpawnCoord: {x: 0, y: 0}
   singleSpawnTime: 0
   formationSpawnTime: 0
-  maxEnemyCount: 0
   singleTimer: 0
   formationTimer: 0
   referencePoint: {fileID: 0}
@@ -1519,6 +1519,63 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 695015425266380828, guid: 93f2334f67353a344b14e959b2e9f1e3, type: 3}
   m_PrefabInstance: {fileID: 49381590}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &959355253
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6282839526191605045, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.139697
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282839526191605045, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.991204
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282839526191605045, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282839526191605045, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282839526191605045, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282839526191605045, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282839526191605045, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282839526191605045, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282839526191605045, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282839526191605045, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090864123439173665, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_Name
+      value: BossProjectile (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
 --- !u!1 &1013431560
 GameObject:
   m_ObjectHideFlags: 0
@@ -2067,13 +2124,13 @@ MonoBehaviour:
   mediumDifficultyTime: 0
   hardDifficultyTime: 0
   impossibleDifficultyTime: 0
+  maxEnemyCount: 0
   spawnRadiusMin: 12
   spawnRadiusMax: 18
   maxSpawnCoord: {x: 128, y: 128}
   minSpawnCoord: {x: 2, y: 2}
   singleSpawnTime: 3
   formationSpawnTime: 10
-  maxEnemyCount: 0
   singleTimer: 0
   formationTimer: 0
   referencePoint: {fileID: 0}
@@ -3080,6 +3137,63 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1001 &2072561992
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6282839526191605045, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.710634
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282839526191605045, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.0510325
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282839526191605045, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282839526191605045, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282839526191605045, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282839526191605045, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282839526191605045, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282839526191605045, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282839526191605045, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282839526191605045, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090864123439173665, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+      propertyPath: m_Name
+      value: BossProjectile
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
 --- !u!1 &2144116199
 GameObject:
   m_ObjectHideFlags: 0
@@ -3206,3 +3320,5 @@ SceneRoots:
   - {fileID: 647799882}
   - {fileID: 802086880}
   - {fileID: 213504635}
+  - {fileID: 2072561992}
+  - {fileID: 959355253}

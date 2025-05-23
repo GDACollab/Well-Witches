@@ -52,6 +52,6 @@ public class BossProjectile : MonoBehaviour
         bossProjectile.gameObject.SetActive(false);
         indicator.gameObject.SetActive(false);
         bossProjectileImpact.SetActive(true);
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject, 0.8f);
     }
 }
