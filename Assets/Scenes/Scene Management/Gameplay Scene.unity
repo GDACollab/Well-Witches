@@ -757,6 +757,10 @@ PrefabInstance:
       propertyPath: referencePoint
       value: 
       objectReference: {fileID: 1744974412}
+    - target: {fileID: 5447374306906966772, guid: 5935ae11f5b8c784b999605299358255, type: 3}
+      propertyPath: m_Name
+      value: EnemyNavmesh
+      objectReference: {fileID: 0}
     - target: {fileID: 7057809440924223819, guid: 5935ae11f5b8c784b999605299358255, type: 3}
       propertyPath: m_Name
       value: EnemyManager
@@ -802,7 +806,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8392329641169910373, guid: 5935ae11f5b8c784b999605299358255, type: 3}
+    - {fileID: 2949248343544634909, guid: 5935ae11f5b8c784b999605299358255, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5935ae11f5b8c784b999605299358255, type: 3}
@@ -2636,9 +2642,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6202931285313693948, guid: d3efe8dfeebfaad45903b500cc1c9674, type: 3}
+      propertyPath: tankNavMesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6202931285313693948, guid: d3efe8dfeebfaad45903b500cc1c9674, type: 3}
+      propertyPath: enemyNavMesh
+      value: 
+      objectReference: {fileID: 2016981178}
+    - target: {fileID: 6202931285313693948, guid: d3efe8dfeebfaad45903b500cc1c9674, type: 3}
       propertyPath: lightsParent
       value: 
       objectReference: {fileID: 870107301}
+    - target: {fileID: 6202931285313693948, guid: d3efe8dfeebfaad45903b500cc1c9674, type: 3}
+      propertyPath: meleeNavMesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6202931285313693948, guid: d3efe8dfeebfaad45903b500cc1c9674, type: 3}
+      propertyPath: rangedNavMesh
+      value: 
+      objectReference: {fileID: 2016981178}
     - target: {fileID: 6202931285313693948, guid: d3efe8dfeebfaad45903b500cc1c9674, type: 3}
       propertyPath: interactableGenerating
       value: 
@@ -8435,6 +8457,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
+--- !u!114 &2016981178 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2612588869152176618, guid: 5935ae11f5b8c784b999605299358255, type: 3}
+  m_PrefabInstance: {fileID: 601684403}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04976799df50f54ba128eff723155a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!213 &2025372855
 Sprite:
   m_ObjectHideFlags: 0

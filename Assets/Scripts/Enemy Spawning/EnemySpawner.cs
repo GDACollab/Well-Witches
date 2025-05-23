@@ -25,6 +25,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float mediumDifficultyTime;
     [SerializeField] private float hardDifficultyTime;
     [SerializeField] private float impossibleDifficultyTime;
+    public int maxEnemyCount;
 
     public Dictionary<Difficulty, EnemyStatsSO> difficultyStats = new Dictionary<Difficulty, EnemyStatsSO>();
 
@@ -41,7 +42,6 @@ public class EnemySpawner : MonoBehaviour
     public float singleSpawnTime = 0.0f;
     public float formationSpawnTime = 0.0f;
 
-    public int maxEnemyCount;
     public static int currentEnemyCount;
 
     [Header("Debug")]

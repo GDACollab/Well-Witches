@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class TankEnemy : BaseEnemyClass
 {
-    [HideInInspector]
-    public float timeBetweenAttack;
+
     private float bashStrength;
     private float bashTime;
     private float bashDamage;
@@ -41,12 +40,13 @@ public class TankEnemy : BaseEnemyClass
         timeTillPool = 0f;
     }
 
-    public void Attack()
+    public override void Attack()
     {
         //Animation to attack
         //print("Start animation");
         animator.SetTrigger("Attack");
-        rb.velocity = (currentTarget.position - transform.position).normalized * bashStrength;
+        rb.AddForce((currentTarget.position - transform.position).normalized * bashStrength);
+        agent.isStopped = true;
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.tankAttackBash, this.transform.position);
         StartCoroutine(EndBash());
     }
@@ -59,6 +59,8 @@ public class TankEnemy : BaseEnemyClass
         //animator.SetBool("isAttacking", false);
         yield return new WaitForSeconds(bashTime);
         rb.velocity = Vector2.zero;
+        agent.isStopped = false;
+        agent.ResetPath();
     }
 
     public void SpawnPool()

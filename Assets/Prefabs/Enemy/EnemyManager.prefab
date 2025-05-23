@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3481618732558752432}
   - component: {fileID: 3676328846892761616}
   - component: {fileID: 1006037924170458685}
-  - component: {fileID: 8709057982923298590}
   m_Layer: 0
   m_Name: MeleeEnemyNavmesh
   m_TagString: Untagged
@@ -81,19 +80,6 @@ MonoBehaviour:
   m_UseMeshPrefab: {fileID: 0}
   m_CompressBounds: 1
   m_OverrideVector: {x: 1, y: 1, z: 1}
---- !u!114 &8709057982923298590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2949248343544634909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b26e80c1f67117348852fc0076a6c567, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  navMesh: {fileID: 3676328846892761616}
 --- !u!1 &5447374306906966772
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +91,6 @@ GameObject:
   - component: {fileID: 2459290139699285188}
   - component: {fileID: 2612588869152176618}
   - component: {fileID: 3045723597856517977}
-  - component: {fileID: 294248046886937419}
   m_Layer: 0
   m_Name: RangedEnemyNavmesh
   m_TagString: Untagged
@@ -140,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04976799df50f54ba128eff723155a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AgentTypeID: -1372625422
+  m_AgentTypeID: 0
   m_CollectObjects: 0
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 2, z: 0}
@@ -175,19 +160,6 @@ MonoBehaviour:
   m_UseMeshPrefab: {fileID: 0}
   m_CompressBounds: 1
   m_OverrideVector: {x: 1, y: 1, z: 1}
---- !u!114 &294248046886937419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5447374306906966772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b26e80c1f67117348852fc0076a6c567, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  navMesh: {fileID: 2612588869152176618}
 --- !u!1 &7057809440924223819
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,9 +210,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 1314222603258456997, guid: f6ab2e98325a9bb4997d563ba9a67bc5, type: 3}
-  - {fileID: 5312650580151371039, guid: dee0b23d12da8944a8d4edfb322ee1a2, type: 3}
   - {fileID: 7724197375004876401, guid: 842b350a5dbea204f9e240d00ade7c24, type: 3}
+  - {fileID: 5312650580151371039, guid: dee0b23d12da8944a8d4edfb322ee1a2, type: 3}
+  - {fileID: 1314222603258456997, guid: f6ab2e98325a9bb4997d563ba9a67bc5, type: 3}
   formationPrefabs:
   - {fileID: 3663203546483103794, guid: d8bf0567f46e47d4b88ada500863f322, type: 3}
   - {fileID: 3663203546483103794, guid: db228e4e930cef94e96e1ee45d085544, type: 3}
@@ -253,13 +225,13 @@ MonoBehaviour:
   mediumDifficultyTime: 20
   hardDifficultyTime: 45
   impossibleDifficultyTime: 60
+  maxEnemyCount: 9
   spawnRadiusMin: 12
   spawnRadiusMax: 18
   maxSpawnCoord: {x: 158, y: 158}
   minSpawnCoord: {x: 2, y: 2}
   singleSpawnTime: 3
   formationSpawnTime: 10
-  maxEnemyCount: 9
   singleTimer: 0
   formationTimer: 0
   referencePoint: {fileID: 0}
@@ -304,7 +276,6 @@ GameObject:
   - component: {fileID: 394917628713727083}
   - component: {fileID: 7484990930971190227}
   - component: {fileID: 7931764940530113973}
-  - component: {fileID: 975816210104852917}
   m_Layer: 0
   m_Name: TankEnemyNavmesh
   m_TagString: Untagged
@@ -374,16 +345,3 @@ MonoBehaviour:
   m_UseMeshPrefab: {fileID: 0}
   m_CompressBounds: 1
   m_OverrideVector: {x: 1, y: 1, z: 1}
---- !u!114 &975816210104852917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8392329641169910373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b26e80c1f67117348852fc0076a6c567, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  navMesh: {fileID: 7484990930971190227}
