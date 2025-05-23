@@ -8,7 +8,6 @@ public class AttackState : State
     [Header("Attack Settings")]
     private StateMachine stateMachine;
     private BaseEnemyClass enemy;
-    private Rigidbody2D rb2d;
     private NavMeshAgent agent;
 
     [Header("Debug")]
@@ -21,7 +20,6 @@ public class AttackState : State
         this.stateMachine = stateMachine;
         this.owner = owner;
         enemy = owner.GetComponent<BaseEnemyClass>();
-        rb2d = owner.GetComponent<Rigidbody2D>();
         agent = owner.GetComponent<NavMeshAgent>();
     }
 

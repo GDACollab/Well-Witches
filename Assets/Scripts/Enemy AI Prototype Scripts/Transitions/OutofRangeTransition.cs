@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class OutotRangeTransition : Transition
 {
-    private GameObject owner;
     private StateMachine stateMachine;
     private AggroState aggroState;
     private BaseEnemyClass enemy;

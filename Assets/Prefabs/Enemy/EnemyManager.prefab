@@ -210,9 +210,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 1314222603258456997, guid: f6ab2e98325a9bb4997d563ba9a67bc5, type: 3}
-  - {fileID: 5312650580151371039, guid: dee0b23d12da8944a8d4edfb322ee1a2, type: 3}
   - {fileID: 7724197375004876401, guid: 842b350a5dbea204f9e240d00ade7c24, type: 3}
+  - {fileID: 5312650580151371039, guid: dee0b23d12da8944a8d4edfb322ee1a2, type: 3}
+  - {fileID: 1314222603258456997, guid: f6ab2e98325a9bb4997d563ba9a67bc5, type: 3}
   formationPrefabs:
   - {fileID: 3663203546483103794, guid: d8bf0567f46e47d4b88ada500863f322, type: 3}
   - {fileID: 3663203546483103794, guid: db228e4e930cef94e96e1ee45d085544, type: 3}
@@ -225,13 +225,13 @@ MonoBehaviour:
   mediumDifficultyTime: 20
   hardDifficultyTime: 45
   impossibleDifficultyTime: 60
+  maxEnemyCount: 9
   spawnRadiusMin: 12
   spawnRadiusMax: 18
   maxSpawnCoord: {x: 158, y: 158}
   minSpawnCoord: {x: 2, y: 2}
   singleSpawnTime: 3
   formationSpawnTime: 10
-  maxEnemyCount: 9
   singleTimer: 0
   formationTimer: 0
   referencePoint: {fileID: 0}

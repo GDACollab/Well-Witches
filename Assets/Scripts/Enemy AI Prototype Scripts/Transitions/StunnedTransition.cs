@@ -9,6 +9,7 @@ public class StunnedTransition : Transition
     public StunnedTransition(StateMachine stateMachine, GameObject owner) : base(owner)
     {
         this.stateMachine = stateMachine;
+        this.owner = owner;
         stunnedState = owner.GetComponent<StunnedState>();
         enemy = owner.GetComponent<BaseEnemyClass>();
     }
@@ -19,7 +20,7 @@ public class StunnedTransition : Transition
     }
     public override State GetNextState()
     {
-        if (enemy) { stunnedState.Initialize(stateMachine, owner); }
+        stunnedState.Initialize(stateMachine, owner);
         return stunnedState;
     }
 
