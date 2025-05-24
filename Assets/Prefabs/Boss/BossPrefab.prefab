@@ -726,30 +726,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdab6e6d6184cc144927fe3c2acc5523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  moveSpeed: 5
-  range: 1.59
-  agent: {fileID: 0}
-  rb: {fileID: 0}
-  sr: {fileID: 0}
-  distanceToPlayer1: 0
-  distanceToPlayer2: 0
-  distanceToTarget: 0
-  timeToFire: 0
-  players: []
-  currentTarget: {fileID: 0}
+  stats: {fileID: 0}
+  timeBetweenAttack: 0
+  range: 3
   isStunned: 0
+  moveSpeed: 7
   stunDuration: 0
-  range: 1.59
-  attackCooldown: 5
-  phaseHP: 50
-  animator: {fileID: 2327760030467745721}
-  distanceToPlayer1: 0
-  distanceToPlayer2: 0
-  distanceToTarget: 0
-  timeToFire: 0
-  players: []
+  health: 150
   currentTarget: {fileID: 0}
+  sr: {fileID: 2419640120546834368}
+  attackCooldown: 4
+  phaseHP: 0
+  animator: {fileID: 2327760030467745721}
   DPS_phase: 0
   bubbleSprite: {fileID: 8270984174624708408}
 --- !u!114 &-8890955783834646036

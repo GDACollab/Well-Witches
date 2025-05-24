@@ -809,26 +809,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 4640196686164595869, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
-      propertyPath: range
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640196686164595869, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
-      propertyPath: health
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640196686164595869, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
-      propertyPath: phaseHP
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640196686164595869, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
-      propertyPath: moveSpeed
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640196686164595869, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
-      propertyPath: attackCooldown
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4886292762916306601, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
       propertyPath: m_BodyType
       value: 1
@@ -1872,18 +1852,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1791682615061501781, guid: bc56070701fd4804c9a859287e083dcf, type: 3}
-      propertyPath: m_Color.b
-      value: 0.7688679
-      objectReference: {fileID: 0}
-    - target: {fileID: 1791682615061501781, guid: bc56070701fd4804c9a859287e083dcf, type: 3}
-      propertyPath: m_Color.g
-      value: 0.7688679
-      objectReference: {fileID: 0}
-    - target: {fileID: 1791682615061501781, guid: bc56070701fd4804c9a859287e083dcf, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6516317512291536905, guid: bc56070701fd4804c9a859287e083dcf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.06
@@ -2389,6 +2357,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1098098449533344349, guid: bc56070701fd4804c9a859287e083dcf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1791682615061501781, guid: bc56070701fd4804c9a859287e083dcf, type: 3}
       propertyPath: m_Color.b
       value: 0.7688679

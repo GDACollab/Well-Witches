@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
 		else if (moveDirection != Vector2.zero) acceleration = movementData.acceleration * StatsManager.Instance.getSpeedMult();
 		else acceleration = movementData.deceleration * StatsManager.Instance.getSpeedMult();
 
-		Debug.Log("deltaVelocity:" + deltaVelocity);
+		//Debug.Log("deltaVelocity:" + deltaVelocity);
 		Vector2 accelerationVector = deltaVelocity * acceleration;
 		if (canMove)
 			rb.AddForce(accelerationVector);
