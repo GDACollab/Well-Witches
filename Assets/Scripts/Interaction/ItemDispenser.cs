@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
-using System.Linq;
 using UnityEngine.Rendering.Universal;
-using Unity.VisualScripting;
+
 
 public class ItemDispenser : MonoBehaviour, IInteractable
 {
@@ -14,9 +12,12 @@ public class ItemDispenser : MonoBehaviour, IInteractable
     [SerializeField] private Sprite activeBushSprite;
     [SerializeField] private Sprite inactiveBushSprite;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    
 
     [Header("Bush Light")]
     [SerializeField] private Light2D light2D;
+    [SerializeField] private float lightPulseSpeed;
+    [SerializeField] private float lightMaxBrightness;
 
     private ParticleSystem particleSystem;
 
@@ -55,6 +56,15 @@ public class ItemDispenser : MonoBehaviour, IInteractable
         particleSystem = GetComponent<ParticleSystem>();
         keyItemToSpawn = Resources.Load<GameObject>("KeyItems/KeyItem");
         if (spriteRenderer == null) { spriteRenderer = GetComponentInChildren<SpriteRenderer>(); }
+        if (light2D == null) { light2D = GetComponentInChildren<Light2D>(); }
+    }
+
+    private void Update()
+    {
+        if (!interacted)
+        {
+            light2D.pointLightInnerRadius = Mathf.PingPong(Time.time * lightPulseSpeed, lightMaxBrightness);
+        }
     }
 
     void Dispense()
