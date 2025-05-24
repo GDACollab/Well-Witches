@@ -11,7 +11,10 @@ public class ItemDispenser : MonoBehaviour, IInteractable
     bool isBossBush = false;
     private Item[] items;
 
-    private SpriteRenderer spriteRenderer;
+    [SerializeField] private Sprite activeBushSprite;
+    [SerializeField] private Sprite inactiveBushSprite;
+
+    [SerializeField] private SpriteRenderer spriteRenderer;
     private ParticleSystem particleSystem;
 
     private bool interacted = false;
@@ -70,6 +73,14 @@ public class ItemDispenser : MonoBehaviour, IInteractable
         spriteRenderer = GetComponent<SpriteRenderer>();
         particleSystem = GetComponent<ParticleSystem>();
         keyItemToSpawn = Resources.Load<GameObject>("KeyItems/KeyItem");
+        if (spriteRenderer == null)
+        {
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        }
+        if (!isBossBush)
+        {
+            spriteRenderer.sprite = activeBushSprite;
+        }
     }
 
     /*
@@ -242,7 +253,7 @@ public class ItemDispenser : MonoBehaviour, IInteractable
 
     void vacate() {
         particleSystem.Stop();
-        spriteRenderer.color = Color.grey;
+        spriteRenderer.sprite = inactiveBushSprite;
         interacted = true;
         if (!isBossBush)
         {
