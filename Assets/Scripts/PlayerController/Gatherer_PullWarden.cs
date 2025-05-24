@@ -3,7 +3,7 @@ using UnityEngine;
 public class Gatherer_PullWarden : MonoBehaviour
 {
 	[Header("Pull")]
-	//[SerializeField, Tooltip("Amount of force when Warden is at max tether distance")] float maxPullForce; //Handled by StatsManager now
+	[SerializeField, Tooltip("Amount of force when Warden is at max tether distance")] float maxPullForce;
 	[SerializeField] float pullCooldown;
 	Rigidbody2D rb_Warden;
 	float pullCounter = 0f;
@@ -30,7 +30,7 @@ public class Gatherer_PullWarden : MonoBehaviour
 
 		Vector2 direction = (Vector2)(transform.position - warden.transform.position);
 		float ratio = direction.magnitude / ropeRadius.radius;
-		float force = Mathf.Lerp(0f, StatsManager.Instance.getYank(), ratio);  // pull harder the further Warden is from Gatherer
+		float force = Mathf.Lerp(0f, maxPullForce, ratio);  // pull harder the further Warden is from Gatherer
 
 		rb_Warden.AddForce(direction * force, ForceMode2D.Impulse);
 		AudioManager.Instance.PlayOneShot(FMODEvents.Instance.flamingPumpkinYank, this.transform.position);

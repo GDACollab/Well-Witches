@@ -10,7 +10,10 @@ public class StateMachine : MonoBehaviour
         BaseEnemyClass meleeEnemy = GetComponentInParent<MeleeEnemy>();
         BaseEnemyClass rangedEnemy = GetComponentInParent<RangedEnemy>();
         BaseEnemyClass tankEnemy = GetComponentInParent<TankEnemy>();
-        enemy = GetComponent<BaseEnemyClass>();
+        enemy = null;
+        if (meleeEnemy != null) { enemy = meleeEnemy; }
+        else if (rangedEnemy != null) { enemy = rangedEnemy; }
+        else if (tankEnemy != null) { enemy = tankEnemy; }
     }
 
     public void SetState(State newState)

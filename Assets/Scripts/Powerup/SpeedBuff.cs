@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/SpeedBuff")]
+[CreateAssetMenu(menuName = "Powerups/SpeedBuff")]
 public class SpeedBuff : PowerupEffect
 {
    public float amount;

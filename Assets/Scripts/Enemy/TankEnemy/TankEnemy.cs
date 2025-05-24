@@ -4,63 +4,45 @@ using UnityEngine;
 
 public class TankEnemy : BaseEnemyClass
 {
+    [Header("Bash Attack")]
+    [Tooltip("Time between shield bash in seconds")]
+    public float timeBetweenAttack;
+    [Tooltip("How strongly the tank enemy launches during shield bash")]
+    public float bashStrength;
+    [Tooltip("How long the bash lasts")]
+    public float bashTime;
+    public float bashDamage;
 
-    private float bashStrength;
-    private float bashTime;
-    private float bashDamage;
-
+    [Header("Acid Pool")]
+    [Tooltip("How many acid pools spawn per second. [0,25]")]
     public float spawnRate;
+    [Tooltip("Size of the acid pool. [0,10]")]
+    public float acidSize;
+    [Tooltip("Time in seconds before the acid pool disapears. [0,5]")]
+    public float acidLifetime;
+    [Range(-5, 5)]
+    [Tooltip("Move the spawn point of the acid pool left and right. [-5,5]")]
     public float acidOffsetX;
+    [Range(-5, 5)]
+    [Tooltip("Move the spawn point of the acid pool up and down. [-5,5]")]
     public float acidOffsetY;
+    public float acidDamage;
 
-    private float acidLifetime;
-    private float acidSize;
-    private float acidDamage;
+
 
     private float timeTillPool;
-    public Animator animator; 
 
-    private void Start()
+    public void Attack()
     {
-        //animator = GetComponent<Animator>();
-        stats = EnemySpawner.Instance.difficultyStats[EnemySpawner.Instance.currentDifficulty];
-        health = stats.tankHealth;
-        moveSpeed = stats.tankSpeed;
-        range = stats.tankRange;
-        stunDuration = stats.stunDuration;
-
-        timeBetweenAttack = stats.tankTimeBetweenBash;
-        bashStrength = stats.tankBashStrength;
-        bashTime = stats.tankBashTime;
-        bashDamage = stats.tankBashDamage;
-        
-        acidSize = stats.tankAcidSize;
-        acidLifetime = stats.tankAcidLifetime;
-        acidDamage = stats.tankAcidDamage;
-        timeTillPool = 0f;
-    }
-
-    public override void Attack()
-    {
-        //Animation to attack
-        //print("Start animation");
-        animator.SetTrigger("Attack");
-        rb.AddForce((currentTarget.position - transform.position).normalized * bashStrength);
-        agent.isStopped = true;
+        rb.velocity = (currentTarget.position - transform.position).normalized * bashStrength;
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.tankAttackBash, this.transform.position);
         StartCoroutine(EndBash());
     }
 
     IEnumerator EndBash()
     {
-        //Animation to attack
-        //print("End animation");
-        //print(bashTime);
-        //animator.SetBool("isAttacking", false);
         yield return new WaitForSeconds(bashTime);
         rb.velocity = Vector2.zero;
-        agent.isStopped = false;
-        agent.ResetPath();
     }
 
     public void SpawnPool()

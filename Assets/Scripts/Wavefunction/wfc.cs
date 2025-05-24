@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
-using NavMeshPlus.Components;
-
 
 public class wfc : MonoBehaviour
 {
@@ -15,16 +13,11 @@ public class wfc : MonoBehaviour
     [SerializeField] Tilemap middleTileMap;
     [SerializeField] Tilemap aboveTileMap;
 
-    [SerializeField] private GameObject lightsParent;
-
-    [SerializeField] private tileScriptableObject edgeTile;
+    [SerializeField] tileScriptableObject edgeTile;
 
     [SerializeField] private tileScriptableObject[] tileScriptableObjects;
 
     [SerializeField] InteractableGenerator interactableGenerating;
-
-    [SerializeField] private NavMeshSurface enemyNavMesh;
-
 
     //If you change this, change the enemy spawn bounds in EnemySpawner.cs and the camera view bound in cameraScript.cs
     private static int sizeX = 160;
@@ -116,31 +109,16 @@ public class wfc : MonoBehaviour
 
         GetSeededTiles();
 
-        StartCoroutine(WFCFunction());
-    }
-
-    IEnumerator WFCFunction()
-    {
         bool done = false;
-        float time = 0;
         while (done == false)
         {
             done = WaveFunctionCollapse();
-            time += Time.unscaledDeltaTime;
-            if (time > 10)
-            {
-                time = 0;
-                yield return null;
-            }
         }
+
         PlaceTiles();
         interactableGenerating.generateInteractables(); //Calls the other script (interactable spawning) to start
         //StartCoroutine(testWFCFastButOnlyIfISaySo()); //Do it fast
         //StartCoroutine(testWFCSlowly()); // Does the generation slowly, only have one uncommented
-        SceneHandler.Instance.GenerationEnded = true;
-
-        // generates navmesh after tileset done building
-        enemyNavMesh.BuildNavMesh();
     }
 
     private IEnumerator testWFCSlowly()
@@ -277,7 +255,6 @@ public class wfc : MonoBehaviour
         TileBase tileToPlaceHitboxSorted = null;
         TileBase tileToPlaceMiddle = null;
         TileBase tileToPlaceAbove = null;
-        GameObject prefabToPlace = null;
 
         for (int x = 0; x < sizeX; x++)
         {
@@ -291,8 +268,6 @@ public class wfc : MonoBehaviour
                     tileToPlaceHitboxSorted = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileHitboxSorted;
                     tileToPlaceMiddle = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileMiddle;
                     tileToPlaceAbove = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tileAbove;
-
-                    prefabToPlace = tileScriptableObjects[tiles[x, y].GetPossibilities()[0]].tilePrefab;
 
                     if (tileToPlaceGround != null)
                     {
@@ -317,10 +292,6 @@ public class wfc : MonoBehaviour
                     if (tileToPlaceAbove != null)
                     {
                         aboveTileMap.SetTile(new Vector3Int(x, y, 0), tileToPlaceAbove);
-                    }
-                    if (prefabToPlace != null)
-                    {
-                        Instantiate(prefabToPlace, new Vector3(x + 0.5f, y + 0.5f, 0f), Quaternion.identity, lightsParent.transform);
                     }
                 }
             }

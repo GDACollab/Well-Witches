@@ -4,46 +4,40 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public abstract class BaseEnemyClass : MonoBehaviour
+public class BaseEnemyClass : MonoBehaviour
 {
-    [HideInInspector]
-    public EnemyStatsSO stats;
-    [HideInInspector]
-    public float timeBetweenAttack;
-    [HideInInspector]
-    public float range;
-    [HideInInspector]
-    public bool isStunned;
-    [HideInInspector]
+    [Header("Enemy Stats")]
+    [Tooltip("The max health of an enemy.")]
+    public float health;
+    [Tooltip("How fast an enemy moves.")]
     public float moveSpeed;
-    [HideInInspector]
-    public float stunDuration;
-
+    [Range(0, 20)]
+    [Tooltip("How far away the enemy stops before attacking")]
+    public float range;
+    public NavMeshAgent agent;
+    public Rigidbody2D rb;
+    SiphonEnergy siphon;
+    public SpriteRenderer sr;
 
     [Header("DEBUG")]
-    public float health;
-
-    protected float distanceToPlayer1;
-    protected float distanceToPlayer2;
-    protected float distanceToTarget;
-    protected float timeToFire;
-    protected GameObject[] players;
+    public float distanceToPlayer1;
+    public float distanceToPlayer2;
+    public float distanceToTarget;
+    public float timeToFire;
+    [SerializeField] private GameObject[] players;
     public Transform currentTarget;
-    protected NavMeshAgent agent;
-    protected Rigidbody2D rb;
-    [SerializeField] protected SpriteRenderer sr;
-
-    private void Awake()
-    {
-        players = GameObject.FindGameObjectsWithTag("Player");
-        agent = GetComponent<NavMeshAgent>();
-        rb = GetComponent<Rigidbody2D>();
-        isStunned = false;
-    }
-
+    public bool isStunned;
+    [SerializeField] public float stunDuration;
     public void Spawn(Vector3 position)
     {
         Instantiate(gameObject, position, Quaternion.identity);
+    }
+
+    private void Start()
+    {
+        players = GameObject.FindGameObjectsWithTag("Player");
+        isStunned = false;
+        stunDuration = 5.0f;
     }
 
     public virtual void TakeDamage(float amount)
@@ -69,8 +63,6 @@ public abstract class BaseEnemyClass : MonoBehaviour
         }
         Destroy(gameObject);
     }
-
-    public abstract void Attack();
 
     IEnumerator slow()
     {
@@ -112,35 +104,38 @@ public abstract class BaseEnemyClass : MonoBehaviour
 
     public virtual void ProjectileKnockback(Vector3 force)
     {
-        agent.speed = 0;
+        agent.enabled = false;
         rb.AddForce(force, ForceMode2D.Impulse);
-        StartCoroutine(ExitKnockback());
+        if (!isStunned) { StartCoroutine(EnableAgent()); }
     }
-    IEnumerator ExitKnockback()
+    
+    IEnumerator EnableAgent()
     {
         yield return new WaitForSeconds(0.2f);
-
-        if (isStunned)
-        {
-            rb.velocity = Vector3.zero;
-            yield break;
-        }
-
+        agent.enabled = true;
+        yield return new WaitForSeconds(0.3f);
         rb.velocity = Vector3.zero;
-        agent.speed = moveSpeed;
     }
-
 
     public virtual void getStunned()
     {
         isStunned = true;
+        agent.enabled = false;
+        stunDuration = 5.0f;
     }
 
     void Update()
     {
-        if (currentTarget && !isStunned)
+        if (isStunned)
         {
-            sr.flipX = transform.position.x > currentTarget.position.x ? false : true;
+            stunDuration -= Time.deltaTime;
+
+            if (stunDuration <= 0.0f)
+            {
+                Debug.Log("timing out of stun");
+                isStunned = false;
+                StartCoroutine(EnableAgent());
+            }
         }
     }
 }

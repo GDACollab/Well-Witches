@@ -50,7 +50,6 @@ public class WardenAbilityManager : MonoBehaviour
 
         controls = new Controls();
         controls.Gameplay_Warden.Enable();
-        controls.Gameplay_Gatherer.Disable();
     }
 
     // Subscribe to the Warden controls input action asset "Activate Ability" action
@@ -164,12 +163,12 @@ public class WardenAbilityManager : MonoBehaviour
         {
             switch (abilityID)
             {
-                case "ResurrectionRegalia":
+                case "DeathDefy":
                     passiveAbility = AbilityDeathDefy.Instance;
                     passiveAbilityName = Passive.ResurrectionRegalia;
                     print("swap to: " + abilityID);
                     break;
-                case "SoulSiphon":
+                case "SiphonEnergy":
                     passiveAbility = SiphonEnergy.Instance;
                     passiveAbilityName = Passive.SoulSiphon;
                     print("swap to: " + abilityID);

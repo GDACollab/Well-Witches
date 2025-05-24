@@ -1,36 +1,21 @@
 using UnityEngine;
 public class MeleeEnemy : BaseEnemyClass
 {
-    private float damage;
-    private float attackAOE;
-    private float speedWhileAttacking;
-
-    //public Animator animator;
-    //public SpriteRenderer atkSprite;
-
-    private void Start()
+    [Header("Attack")]
+    public float damage;
+    [Tooltip("Amount of time in seconds between an instance of damage")]
+    public float timeBetweenAttack;
+    [Tooltip("The higher the value larger the AOE indicated by the red circle")]
+    public float attackAOE;
+    [Tooltip("How fast the melee enemy moves while spinning")]
+    public float speedWhileAttacking;
+    public void Attack()
     {
-        stats = EnemySpawner.Instance.difficultyStats[EnemySpawner.Instance.currentDifficulty];
-        health = stats.meleeHealth;
-        moveSpeed = stats.meleeSpeed;
-        range = stats.meleeRange;
-        stunDuration = stats.stunDuration;
-
-        damage = stats.meleeDamage;
-        timeBetweenAttack = stats.meleeTimeBetweeAttacks;
-        attackAOE = stats.meleeAttackAOE;
-        speedWhileAttacking = stats.meleeSpeedWhileAttacking;
-        //atkSprite.enabled = false;
-    }
-
-    public override void Attack()
-    {
-        //atkSprite.enabled = true;
-        agent.speed = speedWhileAttacking;
+        rb.velocity = (currentTarget.position - transform.position).normalized * speedWhileAttacking;
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bruiserAttackSwipe, this.transform.position);
 
         // not very performantive, better if collider check but should be good enough
-        if (Vector2.Distance(transform.position, currentTarget.position) <= attackAOE)
+        if (Vector2.Distance(transform.position, currentTarget.position) < attackAOE)
         {
             if (currentTarget.gameObject.name == "Warden")
             {
@@ -41,8 +26,6 @@ public class MeleeEnemy : BaseEnemyClass
                 EventManager.instance.playerEvents.PlayerDamage(damage, "Gatherer");
             }
         }
-
-        //atkSprite.enabled = false;
     }
 
 #if UNITY_EDITOR

@@ -3,7 +3,6 @@ public class MiscEvent
 {
     public event Action onGarlicCollected;
     public event Action onPumpkinCollected;
-    public event Action onShowAbilityUI;
 
     public void GarlicCollected()
     {
@@ -15,13 +14,6 @@ public class MiscEvent
     public void PumpkinCollected(){
         if (onPumpkinCollected != null){
             onPumpkinCollected();
-        }
-    }
-    
-    public void ShowAbilityUI()
-    {
-        if (onShowAbilityUI != null){
-            onShowAbilityUI();
         }
     }
 }

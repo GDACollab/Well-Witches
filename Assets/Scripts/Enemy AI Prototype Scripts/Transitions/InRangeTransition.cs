@@ -1,25 +1,40 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class InRangeTransition : Transition
 {
     private StateMachine stateMachine;
-    private BaseEnemyClass enemy;
+    private MeleeEnemy meleeEnemy;
+    private RangedEnemy rangedEnemy;
+    private TankEnemy tankEnemy;
     private AttackState attackState;
 
     public InRangeTransition(StateMachine stateMachine, GameObject owner) : base(owner)
     {
         this.owner = owner;
         this.stateMachine = stateMachine;
-        enemy = owner.GetComponent<BaseEnemyClass>();
+        meleeEnemy = owner.GetComponent<MeleeEnemy>();
+        rangedEnemy = owner.GetComponent<RangedEnemy>();
+        tankEnemy = owner.GetComponent<TankEnemy>();
         attackState = owner.GetComponent<AttackState>();
     }
 
     public override bool ShouldTransition()
     {
-        if (enemy.currentTarget != null && !enemy.isStunned)
+        if (meleeEnemy != null && meleeEnemy.currentTarget != null)
         {
-            float distance = Vector2.Distance(owner.transform.position, enemy.currentTarget.transform.position);
-            return distance <= enemy.range;
+            float distance = Vector2.Distance(owner.transform.position, meleeEnemy.currentTarget.transform.position);
+            return distance <= meleeEnemy.range;
+        }
+        else if (rangedEnemy != null && rangedEnemy.currentTarget != null)
+        {
+            float distance = Vector2.Distance(owner.transform.position, rangedEnemy.currentTarget.transform.position);
+            return distance <= rangedEnemy.range;
+        }
+        else if (tankEnemy != null && tankEnemy.currentTarget != null)
+        {
+            float distance = Vector2.Distance(owner.transform.position, tankEnemy.currentTarget.transform.position);
+            return distance <= tankEnemy.range;
         }
         return false;
     }
@@ -27,7 +42,18 @@ public class InRangeTransition : Transition
     public override State GetNextState()
     {
         // Transition to the AttackState and pass both owner and player
-        if (enemy != null) { attackState.Initialize(stateMachine, owner, enemy.currentTarget); }
+        if (meleeEnemy != null)
+        {
+            attackState.Initialize(stateMachine, owner, meleeEnemy.currentTarget);
+        }
+        else if (rangedEnemy != null)
+        {
+            attackState.Initialize(stateMachine, owner, rangedEnemy.currentTarget);
+        }
+        else if (tankEnemy != null)
+        {
+            attackState.Initialize(stateMachine, owner, tankEnemy.currentTarget);
+        }
         return attackState;
     }
 }

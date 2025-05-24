@@ -44,7 +44,7 @@ public class FlashStun : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.gravityScale = 0f;
         Light2D.gameObject.SetActive(true);
-        Light2D.intensity = 10f;
+        Light2D.intensity = 30f;
         float timeElapsed = 0f;
         while (timeElapsed < flashDuration && Light2D.intensity > 0f)
         {

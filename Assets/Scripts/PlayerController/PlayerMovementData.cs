@@ -2,11 +2,11 @@ using UnityEngine;
 /*
  *  To create an instance of this:
  *      Right click the folder you're in
- *      Create > ScriptableObjects > Player Movement Data
+ *      Create > Player > Player Movement Data
  *      Set values in the inspector
  *      Drag the created object onto Gatherer or Warden
  */
-[CreateAssetMenu(menuName = "ScriptableObjects/Player Movement Data")]
+[CreateAssetMenu(menuName = "Player/Player Movement Data")]
 
 public class PlayerMovementData : ScriptableObject
 {

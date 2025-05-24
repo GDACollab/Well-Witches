@@ -25,9 +25,6 @@ public class tileScriptableObject : ScriptableObject
     [Tooltip("A tile asset, will be placed in a tilemap")]
     public TileBase tileAbove = null;
 
-    [Tooltip("A prefab, will be placed in a tilemap")]
-    public GameObject tilePrefab = null;
-
     [Space(10), Header("Tile Weight")]
     [Tooltip("Float, high values means its more common")]
     public float weight;

@@ -10,9 +10,7 @@ using UnityEngine.UI;
 public class SceneHandler : MonoBehaviour
 {
     public static SceneHandler Instance { get; private set; }
-
-    public bool GenerationEnded = false;
-
+        
     [SerializeField]
     private int MainMenuSceneIndex = 0;
     [SerializeField]
@@ -58,8 +56,6 @@ public class SceneHandler : MonoBehaviour
     {
         
     }
-    
-    public int GetHubSceneIndex() => HubSceneIndex;
     
     // Start is called before the first frame update
     // void Start()
@@ -155,7 +151,7 @@ public class SceneHandler : MonoBehaviour
             return;
         }
 
-        StartCoroutine(LoadingScreen(MainMenuSceneIndex));
+        StartCoroutine(LoadingScreen(PauseSceneIndex));
         //SceneManager.LoadScene(MainMenuSceneIndex);
     }
     public void ToHubScene(){
@@ -225,7 +221,7 @@ public class SceneHandler : MonoBehaviour
         }
 
         //SceneManager.LoadScene(GameplaySceneIndex);
-        StartCoroutine(GameplayLoadingScreen(GameplaySceneIndex));
+        StartCoroutine(LoadingScreen(GameplaySceneIndex));
 
         AudioManager.Instance.CleanUp();
         AudioManager.Instance.PlayOST(FMODEvents.Instance.mainMapBGM);
@@ -306,28 +302,5 @@ public class SceneHandler : MonoBehaviour
         newscene.allowSceneActivation = true;
         yield return FadeFromBlack(fadeOutTime);
     }
-    
-    //show image, wait x seconds, load scene
-    private IEnumerator GameplayLoadingScreen(int sceneName)
-    {
-        //show picture, backup incase some scene doesn't have it
 
-        yield return FadeToBlack(fadeInTime);
-        loadingScreen.SetActive(true);
-        yield return FadeFromBlack(fadeOutTime);
-        //animation will be done via art
-        Time.timeScale = 0;
-        SceneManager.LoadScene(sceneName);
-
-        while (!GenerationEnded)
-        {
-            yield return null;
-        }
-        
-        yield return FadeToBlack(fadeInTime);
-        loadingScreen.SetActive(false);
-        yield return FadeFromBlack(fadeOutTime);
-        Time.timeScale = 1;
-        GenerationEnded = false;
-    }
 }

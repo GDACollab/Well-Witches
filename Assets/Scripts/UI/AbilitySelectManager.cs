@@ -19,56 +19,46 @@ public class AbilitySelectManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI abilityNameText;
 
     [SerializeField] private GameObject abilityUIDisabler;
+    [SerializeField] private Controls controls;
 
     [SerializeField] private string defaultAbilityText;
 
     private WardenAbilityManager wardenAbilityManager;
     private GathererAbilityManager gathererAbilityManager;
 
-    void OnDestroy()
+    private void Awake()
     {
-        EventManager.instance.miscEvent.onShowAbilityUI -= OnAbilityMenuOpen;
+        controls = new Controls();
+
+        controls.Gameplay_Gatherer.Enable();
+    }
+
+    private void OnEnable()
+    {
+        controls.Gameplay_Gatherer.AbilityMenu.performed += OnAbilityMenuOpen;
+    }
+    private void OnDisable()
+    {
+        controls.Gameplay_Gatherer.AbilityMenu.performed -= OnAbilityMenuOpen;
     }
 
     //Toggles ui on gatherer interact
-    public void OnAbilityMenuOpen()
+    private void OnAbilityMenuOpen(InputAction.CallbackContext context)
     {
-        abilityUIDisabler.SetActive(!abilityUIDisabler.activeSelf);
+        abilityUIDisabler.SetActive(!abilityUIDisabler.active);
     }
 
     private void Start()
     {
-        wardenAbilityManager = WardenAbilityManager.Instance;
-        gathererAbilityManager = GathererAbilityManager.Instance;
-
-        int j = 0;
         for (int i = 0; i < abilitiesList.Length; i++)
         {
             abilitiesList[i].setID(i);
-
-            if (abilitiesList[i].getAbilityID() == gathererAbilityManager.GetEquippedPassiveName())
-            {
-                selectedPassiveAbilityGatherer = selectAbilityDoStuff(-1, false, false, i);
-            }
-            else if (abilitiesList[i].getAbilityID() == gathererAbilityManager.GetEquippedActiveName())
-            {
-                selectedActiveAbilityGatherer = selectAbilityDoStuff(-1, false, true, i);
-            }
-            else if (abilitiesList[i].getAbilityID() == wardenAbilityManager.GetEquippedPassiveName())
-            {
-                selectedPassiveAbilityWarden = selectAbilityDoStuff(-1, true, false, i);
-            }
-            else if (abilitiesList[i].getAbilityID() == wardenAbilityManager.GetEquippedActiveName())
-            {
-                selectedActiveAbilityWarden = selectAbilityDoStuff(-1, true, true, i);
-            }
         }
 
         updateHoveredAbility(-1);
 
-        abilityUIDisabler.SetActive(false);
-        
-        EventManager.instance.miscEvent.onShowAbilityUI += OnAbilityMenuOpen;
+        wardenAbilityManager = WardenAbilityManager.Instance;
+        gathererAbilityManager = GathererAbilityManager.Instance;
     }
 
     public void clickedAbility(bool warden, bool active, int id)

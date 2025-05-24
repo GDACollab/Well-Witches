@@ -17,11 +17,7 @@ public class InteractableGenerator : MonoBehaviour
     [SerializeField] float spawnCutoff = 0.75f;
     //min distance from recent values nessecary for a new interactable to be spawned
     [SerializeField] int recentRange = 3;
-    [SerializeField] Tilemap tilemapGround;
-    [SerializeField] Tilemap tilemapHitbox;
-    [SerializeField] Tilemap tilemapHitboxSorted;
-    [SerializeField] Tilemap tilemapMiddle;
-
+    [SerializeField] Tilemap tilemap;
     //List containing all tile scriptable objects
     [SerializeField] List<tileScriptableObject> tileScriptableObjects;
     //Dictionary to map tile bases to tilescript objects
@@ -113,31 +109,27 @@ public class InteractableGenerator : MonoBehaviour
 
 
                     //Code for avoiding objects in tilemap. Currently we have no tilemap, so it's commented out to avoid crashes
-                    
+                    /*
                     Vector3 worldPosition = new Vector3(x, y, 0);
-                    Vector3Int gridPosition = tilemapGround.WorldToCell(worldPosition);
+                    Vector3Int gridPosition = tilemap.WorldToCell(worldPosition);
 
                     // Given x y coords, returns the tile gameobject at those coords
-                    TileBase foundGroundTile = tilemapGround.GetTile(gridPosition);
-
+                    TileBase foundTile = tilemap.GetTile(gridPosition);
+                    
                     //Debug.Log(foundTile);
                     //Debug.Log("size of dict: " + dataFromFiles.Count);
 
-                    //Dont spawn rock if theres hitboxes/middle tiles at the location
-                    if (tilemapHitbox.GetTile(gridPosition) == null && tilemapHitboxSorted.GetTile(gridPosition) == null && tilemapMiddle.GetTile(gridPosition) == null)
+                    // Use the dictionary to go to that tiles scriptable object and see if the "can place bush" bool is true
+                    if (foundTile != null && dataFromFiles[foundTile].canPlaceBush)
                     {
-                        // Use the dictionary to go to that tiles scriptable object and see if the "can place bush" bool is true
-                        if (foundGroundTile != null && dataFromFiles.ContainsKey(foundGroundTile) && dataFromFiles[foundGroundTile].canPlaceBush)
-                        {
-                            //Add new spot to recent Values
-                            pushToRecentValues(new Vector2Int(x, y));
-                            Debug.Log("Correctly spawned tile");
-                            Instantiate(interactable, new Vector3(x + offset.x, y + offset.y, -1), Quaternion.identity, transform); // Z layer of interactables is -1
-                        }
+                        //Add new spot to recent Values
+                        pushToRecentValues(new Vector2Int(x, y));
+                        Debug.Log("Correctly spawned tile");
+                        Instantiate(interactable, new Vector3(x + offset.x, y + offset.y, -1), Quaternion.identity, transform); // Z layer of interactables is -1
                     }
-
-                    //pushToRecentValues(new Vector2Int(x, y));
-                    //Instantiate(interactable, new Vector3(x + offset.x, y + offset.y, -1), Quaternion.identity, transform); // Z layer of interactables is -1
+                    */
+                    pushToRecentValues(new Vector2Int(x, y));
+                    Instantiate(interactable, new Vector3(x + offset.x, y + offset.y, -1), Quaternion.identity, transform); // Z layer of interactables is -1
                 }
             }
         }

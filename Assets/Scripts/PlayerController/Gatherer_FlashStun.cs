@@ -25,7 +25,7 @@ public class Gatherer_FlashStun : GathererBaseAbilities
     private NavMeshAgent navAgent;
 
     public override string abilityName => "FlashStun";
-    public override float duration => cooldownDuration;
+    public override float duration => chargeDuration;
 
     [SerializeField] private float charge;
     public override float Charge
@@ -78,10 +78,10 @@ public class Gatherer_FlashStun : GathererBaseAbilities
             {
                 if (!didHitEnemy) { didHitEnemy = true; }
 
-                BaseEnemyClass enemy = collider.GetComponent<BaseEnemyClass>();
-                //if (collider.GetComponentInParent<MeleeEnemy>() != null) { enemy = collider.GetComponentInParent<MeleeEnemy>(); }
-                //else if (collider.GetComponentInParent<RangedEnemy>() != null) { enemy = collider.GetComponentInParent<RangedEnemy>(); }
-                //else if (collider.GetComponentInParent<TankEnemy>() != null) { enemy = collider.GetComponentInParent<TankEnemy>(); }
+                BaseEnemyClass enemy = null;
+                if (collider.GetComponentInParent<MeleeEnemy>() != null) { enemy = collider.GetComponentInParent<MeleeEnemy>(); }
+                else if (collider.GetComponentInParent<RangedEnemy>() != null) { enemy = collider.GetComponentInParent<RangedEnemy>(); }
+                else if (collider.GetComponentInParent<TankEnemy>() != null) { enemy = collider.GetComponentInParent<TankEnemy>(); }
 
                 if (enemy != null)
                 {

@@ -43,12 +43,9 @@ public class WardenSpellBurst : WardenBaseAbilities
 
     void GainCharge()
     {
-        if (WardenAbilityManager.Instance.equipedAbility == this)
-        {
-            Charge++;
-            if (Charge >= NumHitsRequired) { AudioManager.Instance.PlayOneShot(FMODEvents.Instance.abilityReady, this.transform.position); }
-            if (Charge > NumHitsRequired) Charge = NumHitsRequired;
-        }
+        Charge++;
+        if (Charge >= NumHitsRequired) { AudioManager.Instance.PlayOneShot(FMODEvents.Instance.abilityReady, this.transform.position); }
+        if (Charge > NumHitsRequired) Charge = NumHitsRequired;
     }
 
     public override void useAbility()    // called by the Ability Manager

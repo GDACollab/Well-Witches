@@ -112,21 +112,12 @@ public class Warden_Movement : PlayerMovement
 	private void UpdateSound()
 	{
 		//Debug.Log(rb.velocity);
-		PLAYBACK_STATE playbackState;
-		playerFootsteps.getPlaybackState(out playbackState);
-
-		if (this.canMove == false)
-		{
-			if (canMove == false && playbackState.Equals(PLAYBACK_STATE.PLAYING))
-			{
-				//print("off");
-				playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
-				return;
-			}
-		}
 
 		if (Mathf.Abs(rb.velocity.x) > 1 || Mathf.Abs(rb.velocity.y) > 1)
 		{
+			PLAYBACK_STATE playbackState;
+			playerFootsteps.getPlaybackState(out playbackState);
+
 			if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
 			{
 				playerFootsteps.start();

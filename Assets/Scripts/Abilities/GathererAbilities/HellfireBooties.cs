@@ -8,21 +8,13 @@ public class HellfireBooties : MonoBehaviour
     private float duration;
     private float timeInBetweenTicks;
 
-    [SerializeField] LayerMask enemyMask;
-    public void Initialize(float duration, float damage, float flameTicksPerSecond, bool right, float offset)
+
+    public void Initialize(float duration, float damage, float flameTicksPerSecond)
     {
         this.damage = damage;
         this.duration = duration;
         timeInBetweenTicks = 1f / flameTicksPerSecond;
         Destroy(gameObject, this.duration);
-
-        if (right)
-        {
-            transform.position += transform.right * offset;
-        } else
-        {
-            transform.position -= transform.right * offset;
-        }
     }
 
 
@@ -30,7 +22,7 @@ public class HellfireBooties : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject hit = collision.gameObject;
-        if (hit.layer == enemyMask) {
+        if (hit.layer == 6) {
             StartCoroutine(DealDamage(collision.GetComponent<BaseEnemyClass>()));
         }
     }
@@ -38,7 +30,7 @@ public class HellfireBooties : MonoBehaviour
     public void OnTriggerExit2D(Collider2D collision)
     {
         GameObject hit = collision.gameObject;
-        if (hit.layer == enemyMask)
+        if (hit.layer == 6)
         {
             StopCoroutine(DealDamage(hit.GetComponent<BaseEnemyClass>()));
         }
@@ -46,7 +38,7 @@ public class HellfireBooties : MonoBehaviour
 
     //deals damage to enemy
     IEnumerator DealDamage(BaseEnemyClass enemy) {
-        //Debug.Log("taken damage from hellfire");
+        Debug.Log("taken damage from hellfire");
         enemy.TakeDamage(damage);
         yield return new WaitForSeconds(timeInBetweenTicks);
         yield return null;
