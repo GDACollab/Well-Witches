@@ -5,12 +5,7 @@ using UnityEngine;
 public class AggroState : State
 {
     private StateMachine stateMachine;
-    private float moveSpeed;
-    private MeleeEnemy meleeEnemy;
-    private RangedEnemy rangedEnemy;
-    private TankEnemy tankEnemy;
-
-
+    private BaseEnemyClass enemy;
     private NavMeshAgent agent;
 
     private void Awake()
@@ -29,65 +24,41 @@ public class AggroState : State
     {
         this.stateMachine = stateMachine;
         this.owner = owner;
-        meleeEnemy = owner.GetComponent<MeleeEnemy>();
-        rangedEnemy = owner.GetComponent<RangedEnemy>();
-        tankEnemy = owner.GetComponent<TankEnemy>();
-        if (meleeEnemy != null)
-        {
-            moveSpeed = meleeEnemy.moveSpeed;
-            agent.stoppingDistance = meleeEnemy.range;
-            agent.speed = moveSpeed;
-        }
-        else if (rangedEnemy != null)
-        {
-            moveSpeed = rangedEnemy.moveSpeed;
-            agent.speed = moveSpeed;
-            agent.stoppingDistance = rangedEnemy.range;
-        }
-        else if (tankEnemy != null)
-        {
-            moveSpeed = tankEnemy.moveSpeed;
-            agent.stoppingDistance = tankEnemy.range;
-            agent.speed = moveSpeed;
-        }
+        enemy = owner.GetComponent<BaseEnemyClass>();
 
+        if (enemy)
+        {
+            agent.stoppingDistance = enemy.range;
+            agent.speed = enemy.moveSpeed;
+        }
     }
 
     public override void OnEnter()
     {
-        agent.enabled = true;
+        agent.isStopped = false;
+        agent.speed = enemy.moveSpeed;
     }
 
     public override void OnUpdate()
     {
-        if (meleeEnemy != null && agent.enabled == true && !meleeEnemy.isStunned)
+        if (enemy && !enemy.isStunned)
         {
-            meleeEnemy.TargetClosestPlayer();
-            agent.SetDestination(meleeEnemy.currentTarget.position);
-        }
-        else if (rangedEnemy != null && agent.enabled == true && !rangedEnemy.isStunned)
-        {
-            rangedEnemy.TargetClosestPlayer();
-            agent.SetDestination(rangedEnemy.currentTarget.position);
-        }
-        else if (tankEnemy != null && agent.enabled == true && !tankEnemy.isStunned)
-        {
-            tankEnemy.TargetClosestPlayer();
-            agent.SetDestination(tankEnemy.currentTarget.position);
-            tankEnemy.SpawnPool();
+            enemy.TargetClosestPlayer();
+            try { agent.SetDestination(enemy.currentTarget.position); } catch { enemy.Die(); }
         }
     }
 
     public override void OnExit()
     {
-        agent.enabled = false;
+        agent.speed = 0f;
     }
 
     public override List<Transition> GetTransitions()
     {
         return new List<Transition>
         {
-            new InRangeTransition(stateMachine, owner)
+            new StunnedTransition(stateMachine, owner),
+            new InRangeTransition(stateMachine, owner),
         };
     }
 }

@@ -132,15 +132,15 @@ public class GathererAbilityManager : MonoBehaviour
         {
             switch (abilityID)
             {
-                case "FlashStun":
+                case "SolarFlare":
                     equipedAbility = Gatherer_FlashStun.Instance;
                     equipedAbilityName = Active.SolarFlare;
                     break;
-                case "HealthTransfer":
+                case "SharingIsCaring":
                     equipedAbility = GathererHealthTransfer.Instance;
                     equipedAbilityName = Active.SharingIsCaring;
                     break;
-                case "BubbleShield":
+                case "BubbleBarrier":
                     equipedAbility = GathererBubbleShield.Instance;
                     equipedAbilityName = Active.BubbleBarrier;
                     break;
@@ -161,18 +161,18 @@ public class GathererAbilityManager : MonoBehaviour
         {
             switch (abilityID)
             {
-                case "HealForce":
+                case "AloeVera":
                     passiveAbility = HealForcePassive.Instance;
                     passiveAbilityName = Passive.AloeVera;
                     print("swap to: " + abilityID);
                     break;
-                case "SolesOfTheDamned":
+                case "HellfireBooties":
                     passiveAbility = GathererHellfire.Instance;
                     passiveAbilityName = Passive.HellfireBooties;
                     print("swap to: " + abilityID);
                     break;
                 // this name is probably wrong but idk how to check the name
-                case "ZoneMomentum":
+                case "Espresso":
                     passiveAbility = ZoneMomentum.Instance;
                     passiveAbilityName = Passive.Espresso;
                     print("swap to: " + abilityID);

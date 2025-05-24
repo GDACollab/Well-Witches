@@ -15,6 +15,8 @@ public class AudioManager : MonoBehaviour
     private static AudioManager _instance;
     public static AudioManager Instance { get { return _instance; } }
 
+    public Bus MasterBus, MusicBus, SFXBus;
+
     private void Awake()
     {
         eventInstances = new List<EventInstance>();
@@ -28,6 +30,12 @@ public class AudioManager : MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+        
+        MasterBus = RuntimeManager.GetBus("bus:/");
+        // UNCOMMENT EVERYTHING BELOW WHEN BUSES ARE CORRECT AND DELETE THIS LINE AND BELOW LINE
+        // May need to change the "bus:/Music" and "bus:/SFX" to the correct bus paths
+        MusicBus = RuntimeManager.GetBus("bus:/Music");
+        SFXBus = RuntimeManager.GetBus("bus:/SFX");
     }
 
     public void PlayOneShot(EventReference sound, Vector3 worldPos)
