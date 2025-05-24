@@ -18,7 +18,7 @@ public class Gatherer_Interact : MonoBehaviour
     private Animator animator;
     private CapsuleCollider2D playerCollider;
     private Vector3 oldPos;
-
+    private ItemDispenser dispenser;
     void OnInteract(InputValue iv)   // called by the Player Input component
     {
         
@@ -37,14 +37,18 @@ public class Gatherer_Interact : MonoBehaviour
             {
                 if (collider.gameObject.TryGetComponent(out IInteractable interactableObject))
                 {
-                    //Freeze movement
-                    myMovement.canMove = false;
-                    //begin harvesting
-                    interactable = interactableObject;
-                    timeSpent = 0;
-                    oldPos = transform.position;
-                    StartAnimation(collider.transform.position);
-                    break;
+                    dispenser = collider.GetComponent<ItemDispenser>();
+                    if (dispenser != null && !dispenser.interacted)
+                    {
+                        //Freeze movement
+                        myMovement.canMove = false;
+                        //begin harvesting
+                        interactable = interactableObject;
+                        timeSpent = 0;
+                        oldPos = transform.position;
+                        StartAnimation(collider.transform.position);
+                        break;
+                    }
                 }
             }
         }

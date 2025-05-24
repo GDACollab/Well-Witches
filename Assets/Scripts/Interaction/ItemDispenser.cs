@@ -3,49 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.Linq;
+using UnityEngine.Rendering.Universal;
+using Unity.VisualScripting;
 
 public class ItemDispenser : MonoBehaviour, IInteractable
 {
-
-    [SerializeField]
-    bool isBossBush = false;
     private Item[] items;
 
+    [Header("Bush Visuals")]
     [SerializeField] private Sprite activeBushSprite;
     [SerializeField] private Sprite inactiveBushSprite;
-
     [SerializeField] private SpriteRenderer spriteRenderer;
+
+    [Header("Bush Light")]
+    [SerializeField] private Light2D light2D;
+
     private ParticleSystem particleSystem;
 
-    private bool interacted = false;
+    public bool interacted = false;
 
-    private float timer = 0f;
-
-    [SerializeField] private float respawnTime = 10f;
-
+    [Header("Bush Info")]
+    [SerializeField] private float respawnTime;
     [SerializeField] private GameObject prefabToSpawn;
 
     private GameObject keyItemToSpawn;
-
-    private void OnEnable()
-    {
-        EventManager.instance.bossEvents.onBushReset += BossBushReset;
-    }
-    private void OnDisable()
-    {
-        EventManager.instance.bossEvents.onBushReset -= BossBushReset;
-    }
-
-    public void BossBushReset()
-    {
-        if(isBossBush)
-        {
-            spriteRenderer.color = Color.red;
-            particleSystem.Play();
-            interacted = false;
-        }
-    }
-
 
     // Pre-Made list of (name, timer) tuples for both buffs and debuffs. 
     private List<(string, float)> possibleBuffs = new List<(string, float)> 
@@ -73,32 +54,11 @@ public class ItemDispenser : MonoBehaviour, IInteractable
         spriteRenderer = GetComponent<SpriteRenderer>();
         particleSystem = GetComponent<ParticleSystem>();
         keyItemToSpawn = Resources.Load<GameObject>("KeyItems/KeyItem");
-        if (spriteRenderer == null)
-        {
-            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        }
-        if (!isBossBush)
-        {
-            spriteRenderer.sprite = activeBushSprite;
-        }
+        if (spriteRenderer == null) { spriteRenderer = GetComponentInChildren<SpriteRenderer>(); }
     }
-
-    /*
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-    */
 
     void Dispense()
     {
-        if (isBossBush)
-        {
-            EventManager.instance.bossEvents.BushCollected();
-            vacate();
-            return;
-        }
         if (!interacted){ //Checks if the bush hasn't been interacted with before.
 
             // Finds a spot to spawn the item next to the bush.
@@ -239,26 +199,21 @@ public class ItemDispenser : MonoBehaviour, IInteractable
         Debug.Log("No available buffs/debuffs to pick from");
     }
 
-    IEnumerator TrackTime()
-    {
-        Debug.Log("BEFORE!!!!");
-        // Wait for respawnTime (Unity uses real-time seconds)
-        yield return new WaitForSeconds(respawnTime);
-
-        Debug.Log("HIIII!!!");
-        spriteRenderer.color = Color.green;
-        particleSystem.Play();
-        interacted = false;
-    }
-
     void vacate() {
         particleSystem.Stop();
         spriteRenderer.sprite = inactiveBushSprite;
         interacted = true;
-        if (!isBossBush)
-        {
-            StartCoroutine(TrackTime());
-        }
+        light2D.enabled = false;
+        StartCoroutine(RespawnBush());
+    }
+
+    IEnumerator RespawnBush()
+    {
+        yield return new WaitForSeconds(respawnTime);
+        spriteRenderer.sprite = activeBushSprite;
+        particleSystem.Play();
+        light2D.enabled = true;
+        interacted = false;
     }
 
     Item ChooseItem()

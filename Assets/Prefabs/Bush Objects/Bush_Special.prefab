@@ -131,9 +131,9 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.31
+  m_FalloffIntensity: 0.3
   m_Color: {r: 1, g: 0.82166106, b: 0.4764151, a: 1}
-  m_Intensity: 0.4
+  m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 7b8b7c0a00000000a5f111f0
@@ -154,8 +154,8 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0.3
-  m_PointLightOuterRadius: 0.79
+  m_PointLightInnerRadius: 0.5
+  m_PointLightOuterRadius: 1
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -332,10 +332,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aecfcbd3ab9c22f6ab4862e3a887141b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBossBush: 0
   activeBushSprite: {fileID: 21300000, guid: aaea0a7aa416a11448c2d0c5979d3e22, type: 3}
   inactiveBushSprite: {fileID: 21300000, guid: d3a94e7c1f5b7db42a80e00a75e65ea4, type: 3}
+  light2D: {fileID: 2931411363854800619}
   spriteRenderer: {fileID: 8120727772471169183}
+  interacted: 0
   respawnTime: 120
   prefabToSpawn: {fileID: 4926586859736898184, guid: 6fb847e4c2a67d54d978c3fce330ec01, type: 3}
 --- !u!199 &-6895085806437997794
