@@ -4,13 +4,12 @@ using Unity.Mathematics;
 public class GathererHealthTransfer : GathererBaseAbilities
 {
 
-   public float temp; //hold the % of health from Singleton that holds that %value ex 0.25
-   public float healthgate = 3; //temp to not let Gatherer Die from using this ability
-   public float cooldownTime = 5f; //creates a five second cooldown (for testing)
-   private float lastUsedTime;
+    public float temp; //hold the % of health from Singleton that holds that %value ex 0.25
+    public float healthgate = 3; //temp to not let Gatherer Die from using this ability
+    public float cooldownTime = 5f; //creates a five second cooldown (for testing)
+    private float lastUsedTime;
 
     public override string abilityName => "HealthTransfer";
-    public override float duration => cooldownTime;
 
     public static GathererHealthTransfer Instance { get; private set; }
 
@@ -22,18 +21,34 @@ public class GathererHealthTransfer : GathererBaseAbilities
     [SerializeField] private Transform gathererTransform;
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
 
+    public override float duration => cooldownTime;
+
     [SerializeField] private float charge;
     public override float Charge
     {
-        get => charge;
+        get => Time.time - lastUsedTime;
         set => charge = value;
     }
+    private bool canUseFlag = false;
 
     void Awake()
     {
         InitSingleton();
         gathererTransform = transform;
         if (wardenTransform != null) { wardenTransform = GameObject.Find("Warden").transform; }
+    }
+    private void Update()
+    {
+        if (GathererAbilityManager.Instance.equipedAbility == this)
+        {
+            if (Charge / duration > 1 && !canUseFlag)
+            {
+                canUseFlag = true;
+                AudioManager.Instance.PlayOneShot(FMODEvents.Instance.abilityReady, this.transform.position);
+            }
+     
+            print(Charge + " / " + duration);
+        }
     }
     public override void useAbility()
    {
@@ -62,10 +77,8 @@ public class GathererHealthTransfer : GathererBaseAbilities
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.healthTransfer, this.transform.position);
 
             temp = 0f; //reset the health value stored (No longer needed health % can be different)
+            canUseFlag = false;
          }
-
-
       }
    }
-
 }
