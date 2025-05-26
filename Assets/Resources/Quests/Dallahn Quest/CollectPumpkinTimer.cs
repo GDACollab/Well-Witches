@@ -41,7 +41,6 @@ public class CollectPumpkinTimer : QuestStep
 
     void Update()
     {
-        
 
         time += Time.deltaTime; // increment the timer
         iFramesTime += Time.deltaTime; // increment the timer
@@ -58,7 +57,7 @@ public class CollectPumpkinTimer : QuestStep
     private void PumpkinTimerChecker()
     {
         float check = statsManager.GathererCurrentHealth;
-        print(check);
+        
         if ((time > timeToLive)) // if timer hits without canceling the quest
         {
 
@@ -79,14 +78,14 @@ public class CollectPumpkinTimer : QuestStep
             {
                 SceneHandler.Instance.ToHubScene();
                 EventManager.instance.questEvents.CancelQuest();
-                EventManager.instance.questEvents.StartQuest("DullahnQuest");
+                EventManager.instance.questEvents.StartQuest("MultiStepGarlicQuest");
 
             }
            
         }
         // Want to check to see if the player is first the gatherer, then detect if the player was hit by an enemy by seeing if it had taken damage. 
-        if (gathererHealth != check) 
-      {
+        if (gathererHealth != check)
+        {
             if ((int)(iFramesTime) > 2)
             {
                 iFramesTime = 0f; // reset the timer
