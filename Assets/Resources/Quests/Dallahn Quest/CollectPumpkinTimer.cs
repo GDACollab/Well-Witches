@@ -11,6 +11,7 @@ public class CollectPumpkinTimer : QuestStep
     private int hits = 0;
 
     private float iFramesTime = 0f;
+    private float failedQuestTimer = 0f; 
     private StatsManager statsManager;
     private float gathererHealth = 0f;
 
@@ -29,6 +30,7 @@ public class CollectPumpkinTimer : QuestStep
         int hits = 0;
         float time = 0f;
         float iFramesTime = 0f; 
+        float failedQuestTimer = 0f;
         statsManager = StatsManager.Instance;
         var gathererHealth = statsManager.GathererCurrentHealth;
         print(gathererHealth);
@@ -42,6 +44,7 @@ public class CollectPumpkinTimer : QuestStep
 
         time += Time.deltaTime; // increment the timer
         iFramesTime += Time.deltaTime; // increment the timer
+        
         questDescription.text = $"- Don't get hit ({hits}/{hitsToLive}) times within the next ({(int)(time % 60)}/{timeToLive}) seconds";
         questDescription.color = Color.white;
         
@@ -68,6 +71,18 @@ public class CollectPumpkinTimer : QuestStep
         
         if (hits >= hitsToLive) // if player gets hit
         {
+            if (failedQuestTimer < 5f)
+            {
+                failedQuestTimer += Time.deltaTime; // increment the timer
+                questDescription.text = $"You failed, now you must restart the quest";
+                questDescription.color = Color.red;
+            }
+            else
+            {
+
+                SceneHandler.Instance.ToHubScene();
+                CancelQuestStep();
+            }
 
             questDescription.text = $"You failed, now you must restart the quest";
             questDescription.color = Color.red;
