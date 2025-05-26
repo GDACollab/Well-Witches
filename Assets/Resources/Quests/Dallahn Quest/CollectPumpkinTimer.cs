@@ -41,6 +41,7 @@ public class CollectPumpkinTimer : QuestStep
 
     void Update()
     {
+        
 
         time += Time.deltaTime; // increment the timer
         iFramesTime += Time.deltaTime; // increment the timer
@@ -71,23 +72,17 @@ public class CollectPumpkinTimer : QuestStep
         
         if (hits >= hitsToLive) // if player gets hit
         {
-            if (failedQuestTimer < 5f)
-            {
-                failedQuestTimer += Time.deltaTime; // increment the timer
-                questDescription.text = $"You failed, now you must restart the quest";
-                questDescription.color = Color.red;
-            }
-            else
-            {
-
-                SceneHandler.Instance.ToHubScene();
-                CancelQuestStep();
-            }
-
+            failedQuestTimer += Time.deltaTime; // increment the timer
             questDescription.text = $"You failed, now you must restart the quest";
             questDescription.color = Color.red;
-            CancelQuestStep();
-            SceneHandler.Instance.ToHubScene();
+            if (failedQuestTimer > 5f)
+            {
+                SceneHandler.Instance.ToHubScene();
+                EventManager.instance.questEvents.CancelQuest();
+                EventManager.instance.questEvents.StartQuest("DullahnQuest");
+
+            }
+           
         }
         // Want to check to see if the player is first the gatherer, then detect if the player was hit by an enemy by seeing if it had taken damage. 
         if (gathererHealth != check) 
