@@ -55,4 +55,22 @@ public class BossProjectile : MonoBehaviour
         bossProjectileImpact.SetActive(true);
         Destroy(gameObject, 0.8f);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            switch (collision.gameObject.name)
+            {
+                case "Warden":
+                    EventManager.instance.playerEvents.PlayerDamage(damage, "Warden");
+                    break;
+                case "Gatherer":
+                    EventManager.instance.playerEvents.PlayerDamage(damage, "Gatherer");
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }

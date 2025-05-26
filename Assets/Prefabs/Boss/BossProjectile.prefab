@@ -14750,9 +14750,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: cf3368940391c72478406126c1fbc8a9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -29368,8 +29368,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2441091307457971046}
   - component: {fileID: 9164466565483290801}
-  - component: {fileID: 2656067483840467276}
-  - component: {fileID: 7669652537994376426}
   m_Layer: 0
   m_Name: BossProjectileImpact
   m_TagString: Untagged
@@ -29455,46 +29453,6 @@ PolygonCollider2D:
       - {x: 1.2652206, y: 0.07511997}
       - {x: 1.0437946, y: 0.33430952}
   m_UseDelaunayMesh: 0
---- !u!50 &2656067483840467276
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6973158199240745854}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 0.0001
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &7669652537994376426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6973158199240745854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 450aa42d240392e46be163b5f66366ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 8008430084159498022}
 --- !u!1 &7406364553650420071
 GameObject:
   m_ObjectHideFlags: 0
@@ -34398,7 +34356,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: cf3368940391c72478406126c1fbc8a9, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -34471,6 +34429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6282839526191605045}
   - component: {fileID: 8008430084159498022}
+  - component: {fileID: 1097160222219934422}
   m_Layer: 0
   m_Name: BossProjectile
   m_TagString: Untagged
@@ -34511,10 +34470,37 @@ MonoBehaviour:
   projectileSpawnDistance: 20
   indicatorTime: 3
   projectileTime: 0.5
-  damage: 5
+  damage: 1
   bossProjectile: {fileID: 2951301028299746121}
   bossProjectileImpact: {fileID: 6973158199240745854}
   indicator: {fileID: 5076357301242697083}
+--- !u!50 &1097160222219934422
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090864123439173665}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8160738873468893051
 GameObject:
   m_ObjectHideFlags: 0
@@ -44337,8 +44323,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2951301028299746121}
   - component: {fileID: 4697156379129539397}
-  - component: {fileID: 2588142944457045399}
-  - component: {fileID: 4008834241779469222}
   m_Layer: 0
   m_Name: BossProjectile
   m_TagString: Untagged
@@ -44418,46 +44402,6 @@ PolygonCollider2D:
       - {x: 0.16429354, y: 0.071053475}
       - {x: 0.37757713, y: 0.7655952}
   m_UseDelaunayMesh: 0
---- !u!50 &2588142944457045399
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8684604234737462561}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 0.0001
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &4008834241779469222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8684604234737462561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 450aa42d240392e46be163b5f66366ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 8008430084159498022}
 --- !u!1 &8908345522793266497
 GameObject:
   m_ObjectHideFlags: 0
