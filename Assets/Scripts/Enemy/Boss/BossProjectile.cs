@@ -9,6 +9,7 @@ public class BossProjectile : MonoBehaviour
     public float projectileSpawnDistance;
     public float indicatorTime;
     public float projectileTime;
+    public float damage;
 
     private Vector2 originalPosition;
     [Header("References")]
