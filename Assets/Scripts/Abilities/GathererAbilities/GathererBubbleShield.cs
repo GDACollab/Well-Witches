@@ -41,6 +41,7 @@ public class GathererBubbleShield : GathererBaseAbilities
             } else
             {
                 canUse = true;
+                AudioManager.Instance.PlayOneShot(FMODEvents.Instance.abilityReady, this.transform.position);
             }
         }
     }
