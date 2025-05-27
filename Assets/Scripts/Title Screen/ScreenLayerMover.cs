@@ -22,7 +22,7 @@ public class ScreenLayerMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("mousePos:" + MouseBasedOnCenter());
+        //Debug.Log("mousePos:" + Input.mousePosition);
         Vector3 mouseInfo = MouseBasedOnCenter();
         layer1.transform.position = layer1BasePosition - mouseInfo * layer1MoveStrength;
         layer2.transform.position = layer2BasePosition - mouseInfo * layer2MoveStrength;
@@ -32,7 +32,10 @@ public class ScreenLayerMover : MonoBehaviour
     //NOTE TO SELF; correct when I have the chance! Should Ideally autocorrect based on the camera and/or image size
     Vector3 MouseBasedOnCenter()
     {
-        // based on 1920,1080 (divided by 4)
-        return Input.mousePosition - new Vector3(layer1.rectTransform.rect.width / 4, layer1.rectTransform.rect.height / 4);
+        Vector3 myMousePos = new Vector3(Mathf.Clamp(Input.mousePosition.x, 0, layer1.rectTransform.rect.width / 2),
+            Mathf.Clamp(Input.mousePosition.y, 0, layer1.rectTransform.rect.height / 2));
+        Vector3 myInfo = myMousePos - new Vector3(layer1.rectTransform.rect.width / 4, layer1.rectTransform.rect.height / 4);
+        //myInfo = new Vector3(clamp)
+        return myInfo;
     }
 }
