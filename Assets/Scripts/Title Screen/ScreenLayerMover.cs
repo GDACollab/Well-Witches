@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class ScreenLayerMover : MonoBehaviour
 {
-
     [SerializeField] Image layer1;
     [SerializeField] float layer1MoveStrength;
     Vector3 layer1BasePosition;
@@ -23,7 +22,7 @@ public class ScreenLayerMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("mousePos:" + MouseBasedOnCenter());
+        //Debug.Log("mousePos:" + MouseBasedOnCenter());
         Vector3 mouseInfo = MouseBasedOnCenter();
         layer1.transform.position = layer1BasePosition - mouseInfo * layer1MoveStrength;
         layer2.transform.position = layer2BasePosition - mouseInfo * layer2MoveStrength;
@@ -34,6 +33,6 @@ public class ScreenLayerMover : MonoBehaviour
     Vector3 MouseBasedOnCenter()
     {
         // based on 1920,1080 (divided by 4)
-        return Input.mousePosition - new Vector3(480, 270, 0);
+        return Input.mousePosition - new Vector3(layer1.rectTransform.rect.width / 4, layer1.rectTransform.rect.height / 4);
     }
 }
