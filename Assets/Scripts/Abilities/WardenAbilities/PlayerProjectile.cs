@@ -50,7 +50,7 @@ public class PlayerProjectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<BaseEnemyClass>().TakeDamage(damage);
+            collision.gameObject.GetComponent<BaseEnemyClass>().TakeDamage(damage, true);
             if (collision != null)
             {
                 collision.gameObject.GetComponent<BaseEnemyClass>().ProjectileKnockback(direction.normalized * knockback);

@@ -34,7 +34,7 @@ public class BossEnemy : BaseEnemyClass
         Debug.Log("Spawn Enemies");
     }
 
-    public override void TakeDamage(float amount)
+    public override void TakeDamage(float amount, bool fromWardenProjectile = false)
     {
 
         //Reduces health by the amount entered in Unity, or by 5% of that health outside of DPS phase
@@ -53,7 +53,7 @@ public class BossEnemy : BaseEnemyClass
             Die();
         }
     }
-    public override void Die()
+    public override void Die(bool fromWardenProjectile = false)
     {
         Destroy(gameObject);
         Debug.Log("Boss dead yippee"); //Make boss drop quest item here.
