@@ -9,7 +9,7 @@ public class BossEnemy : BaseEnemyClass
     public Animator animator;
 
     public bool DPS_phase = false;
-    public SpriteRenderer bubbleSprite;
+    public GameObject bossShield;
 
     private void Start()
     {

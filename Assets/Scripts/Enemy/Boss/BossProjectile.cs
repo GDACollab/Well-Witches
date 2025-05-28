@@ -9,6 +9,7 @@ public class BossProjectile : MonoBehaviour
     public float projectileSpawnDistance;
     public float indicatorTime;
     public float projectileTime;
+    public float damage;
 
     private Vector2 originalPosition;
     [Header("References")]
@@ -52,6 +53,24 @@ public class BossProjectile : MonoBehaviour
         bossProjectile.gameObject.SetActive(false);
         indicator.gameObject.SetActive(false);
         bossProjectileImpact.SetActive(true);
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject, 0.8f);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            switch (collision.gameObject.name)
+            {
+                case "Warden":
+                    EventManager.instance.playerEvents.PlayerDamage(damage, "Warden");
+                    break;
+                case "Gatherer":
+                    EventManager.instance.playerEvents.PlayerDamage(damage, "Gatherer");
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
