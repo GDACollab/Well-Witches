@@ -26,7 +26,7 @@ public class SiphonEnergy : PassiveAbilities
 
     //add energy method
     public void AddEnergy() {
-        WardenAbilityManager.Instance.equipedAbility.Charge = WardenAbilityManager.Instance.equipedAbility.Charge + (percent * WardenAbilityManager.Instance.equipedAbility.numHitsRequired);
+        WardenAbilityManager.Instance.equipedAbility.Charge = WardenAbilityManager.Instance.equipedAbility.Charge + ((percent/100) * WardenAbilityManager.Instance.equipedAbility.numHitsRequired);
         if (WardenAbilityManager.Instance.equipedAbility.Charge > WardenAbilityManager.Instance.equipedAbility.numHitsRequired) {
             WardenAbilityManager.Instance.equipedAbility.Charge = WardenAbilityManager.Instance.equipedAbility.numHitsRequired;
         }
