@@ -78,7 +78,7 @@ public class CollectPumpkinTimer : QuestStep
             {
                 SceneHandler.Instance.ToHubScene();
                 EventManager.instance.questEvents.CancelQuest();
-                EventManager.instance.questEvents.StartQuest("MultiStepGarlicQuest");
+                EventManager.instance.questEvents.StartQuest("DullahnMultiStepQuest");
 
             }
            
