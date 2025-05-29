@@ -1,6 +1,8 @@
+using Ink.Runtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -20,12 +22,29 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         EventManager.instance.questEvents.onQuestStateChange += QuestStateChange;
+        EventManager.instance.playerEvents.onPlayerDeath += PlayerDeath;
+        SceneManager.activeSceneChanged += SceneChange;
     }
 
     private void OnDisable()
     {
-        EventManager.instance.questEvents.onQuestStateChange += QuestStateChange;
+        EventManager.instance.questEvents.onQuestStateChange -= QuestStateChange;
+        EventManager.instance.playerEvents.onPlayerDeath -= PlayerDeath;
+        SceneManager.activeSceneChanged -= SceneChange;
     }
+
+    public void PlayerDeath()
+    {
+        diedOnLastRun = true;
+    }
+
+    public void SceneChange(Scene before, Scene after)
+    {
+        if (after.buildIndex == 2) // ID for GAMEPLAY scene/ Forest Scene
+        {
+            diedOnLastRun = false;
+        }
+    } 
 
     public void QuestStateChange(Quest quest)
     {
