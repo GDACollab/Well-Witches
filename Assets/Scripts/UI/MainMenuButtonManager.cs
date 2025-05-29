@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class MainMenuButtonManager : MonoBehaviour
 {
     public GameObject journal;
-    public GameObject otherButtons;
+    public GameObject buttonGroupA;
+    public GameObject buttonGroupB; //two seperate groups because they need to scale with screen properly
     public void OnMainMenuPlayButtonPress()
     {
         SceneHandler.Instance.ToOpenCutscene();
@@ -27,12 +28,14 @@ public class MainMenuButtonManager : MonoBehaviour
         //print(journal.activeSelf);
         if (!journal.activeSelf)
         {
-            otherButtons.SetActive(false);
+            buttonGroupA.SetActive(false);
+            buttonGroupB.SetActive(false);
             journal.SetActive(true);
         }
         else
         {
-            otherButtons.SetActive(true);
+            buttonGroupA.SetActive(true);
+            buttonGroupB.SetActive(true);
             journal.SetActive(false);
         }
         
