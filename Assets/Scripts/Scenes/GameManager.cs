@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     public GameObject activeQuestPrefab;
     public int activeQuestItemCount = 0;
 
+    // used for parcella and quest complete logic
+    public bool diedOnLastRun = false;
+
     public int currentKeyItem = 1;
 
     private void OnEnable()
