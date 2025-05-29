@@ -178,7 +178,7 @@ public class StatsManager : MonoBehaviour
     //NOT CURRENTLY USED
     public float getYank()
     {
-        float myMult = (myBuffs.Contains("YankUp") ? YankBuffStrength : 1) * (myBuffs.Contains("YankDown") ? YankCurseStrength : 1);
+        float myMult = (myBuffs.Contains("Yank Up") ? YankBuffStrength : 1) * (myBuffs.Contains("Yank Down") ? YankCurseStrength : 1);
         //Debug.Log("Yanking at a strength of" + (float)(YankStrength * myMult) + " via x" + myMult);
         return YankStrength * myMult;
     }
@@ -186,7 +186,7 @@ public class StatsManager : MonoBehaviour
     //NOT CURRENTLY USED
     public float getSpeedMult()
     {
-        float myMult = (myBuffs.Contains("SpeedUp") ? SpeedBuffStrength : 1) * (myBuffs.Contains("SpeedDown") ? SpeedCurseStrength : 1);
+        float myMult = (myBuffs.Contains("Speed Up") ? SpeedBuffStrength : 1) * (myBuffs.Contains("Speed Down") ? SpeedCurseStrength : 1);
         //Debug.Log("Moving at a speed of" + myMult);
         return myMult;
         //return MaxSpeed * myMult;
@@ -194,19 +194,19 @@ public class StatsManager : MonoBehaviour
 
     public float getAttackPower()
     {
-        float myMult = (myBuffs.Contains("AttackUp") ? AttackPowerBuffStrength : 1) * (myBuffs.Contains("AttackDown") ? AttackPowerCurseStrength : 1);
+        float myMult = (myBuffs.Contains("Attack Up") ? AttackPowerBuffStrength : 1) * (myBuffs.Contains("Attack Down") ? AttackPowerCurseStrength : 1);
         return AttackPower * myMult;
     }
 
     public float getHarvestTime()
     {
-        float myMult = (myBuffs.Contains("HarvestUp") ? HarvestBuffStrength : 1) * (myBuffs.Contains("HarvestDown") ? HarvestCurseStrength : 1);
+        float myMult = (myBuffs.Contains("Harvest Up") ? HarvestBuffStrength : 1) * (myBuffs.Contains("Harvest Down") ? HarvestCurseStrength : 1);
         return HarvestTime * myMult;
     }
 
     public float getKeyItemChance()
     {
-        float myMult = (myBuffs.Contains("LuckUp") ? LuckBuffStrength : 1) * (myBuffs.Contains("LuckDown") ? LuckCurseStrength : 1);
+        float myMult = (myBuffs.Contains("Luck Up") ? LuckBuffStrength : 1) * (myBuffs.Contains("Luck Down") ? LuckCurseStrength : 1);
         return keyItemChance * myMult;
     }
 
