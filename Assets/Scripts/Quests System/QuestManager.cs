@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,17 +15,14 @@ public class QuestManager : MonoBehaviour
     // Quest UI TMP Objects
     // NOTE: MUST DRAG THIS IN FOR THIS TO WORK
     [Header("Quest UI Text")]
-    public TextMeshProUGUI questDisplay; // this is set by this script
-    public TextMeshProUGUI questDescription; // this is passed onto the instantiated step object
+    [SerializeField] public TextMeshProUGUI questDisplay; // this is set by this script
+    [SerializeField] public TextMeshProUGUI questDescription; // this is passed onto the instantiated step object
 
     private bool isQuestAlreadyActive = false;
     private List<string> UnlockedAbilities = new List<string>();
 
-    public static QuestManager Instance { get; private set; }
-
     private void Awake()
     {
-        if (!Instance) Instance = this;
         questMap = CreateQuestMap();
     }
 
@@ -277,11 +273,5 @@ public class QuestManager : MonoBehaviour
                 }
             }
         }
-    }
-    
-    public static List<Quest> GetQuests() 
-    {
-        if (Instance == null) return new();
-        return Instance.questMap.Values.ToList();
     }
 }

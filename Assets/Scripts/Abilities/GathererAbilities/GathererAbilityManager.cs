@@ -37,17 +37,13 @@ public class GathererAbilityManager : MonoBehaviour
     }
 
     public static GathererAbilityManager Instance { get; private set; }
-    public static Controls Controls {get => Instance.controls;}
     void InitSingleton() { if (Instance && Instance != this) Destroy(gameObject); else Instance = this; }
     void Awake()
     {
         InitSingleton();
 
-        if (Instance && Instance != this) return;
-
         controls = new Controls();
         controls.Gameplay_Gatherer.Enable();
-        controls.Gameplay_Warden.Disable();
     }
 
     // Subscribe to the Gatherer controls input action asset "Activate Ability" action
@@ -58,10 +54,8 @@ public class GathererAbilityManager : MonoBehaviour
     }
     void OnDisable()
     {
-        SceneManager.activeSceneChanged -= ChangedActiveScene;
-        if (controls == null) return;
         controls.Gameplay_Gatherer.ActivateAbility.performed -= OnActivateAbility;
-        controls.Gameplay_Gatherer.Disable();
+        SceneManager.activeSceneChanged -= ChangedActiveScene;
     }
 
 

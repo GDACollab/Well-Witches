@@ -40,7 +40,7 @@ public class DialogueManager : MonoBehaviour
     private const string SPRITE_TAG = "sprite";
     private const string SPEAKER_TAG = "speaker";
 
-    private Controls controls => GathererAbilityManager.Controls;
+    private Controls controls;
 
     private void Awake()
     {
@@ -49,20 +49,22 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("More than one instance of Dialogue Manager detected... :(");
         }
         instance = this;
+
+        controls = new Controls();
+
+        controls.Gameplay_Gatherer.Enable();
     }
 
     private void OnEnable()
     {
         SceneManager.activeSceneChanged += OnSceneChange;
-        controls.Ui_Navigate.Enable();
-        controls.Ui_Navigate.Submit.performed += OnGathererInteract;
+        controls.Gameplay_Gatherer.Interact.performed += OnGathererInteract;
     }
 
     private void OnDisable()
     {
         SceneManager.activeSceneChanged -= OnSceneChange;
-        controls.Ui_Navigate.Submit.performed -= OnGathererInteract;
-        controls.Ui_Navigate.Disable();
+        controls.Gameplay_Gatherer.Interact.performed -= OnGathererInteract;
     }
 
     public void OnSceneChange(Scene before, Scene current)
@@ -127,9 +129,6 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogueMode(Story story, SpriteManager currChara, InkDialogueVariables inkDialogueVariables)
     {
-        WardenAbilityManager.Controls.Gameplay_Warden.Disable();
-        controls.Gameplay_Gatherer.Disable();
-        
         currentStory = story;
         inkDialogueVariables.SyncVariablesAndStartListening(currentStory);
         currentVars = inkDialogueVariables;
@@ -174,8 +173,6 @@ public class DialogueManager : MonoBehaviour
         currentCharacter.HideSprite();
         playerSpriteManager.HidePlayerSprite();
         currentVars.StopListening(currentStory);
-        WardenAbilityManager.Controls.Gameplay_Warden.Enable();
-        controls.Gameplay_Gatherer.Enable();
     }
 
     private void ContinueStory()

@@ -51,9 +51,6 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Start()
 	{
-		PlayerInput input = GetComponent<PlayerInput>();
-		input.actions = GathererAbilityManager.Controls.asset;
-		input.defaultActionMap = "Gameplay_Gatherer";
 		playerFootsteps = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.playerFootsteps);
 	}
 

@@ -48,8 +48,6 @@ public class WardenAbilityManager : MonoBehaviour
     { 
         InitSingleton();
 
-        if (Instance && Instance != this) return;
-
         controls = new Controls();
         controls.Gameplay_Warden.Enable();
         controls.Gameplay_Gatherer.Disable();
@@ -63,10 +61,8 @@ public class WardenAbilityManager : MonoBehaviour
     }
     void OnDisable() 
     { 
-        SceneManager.activeSceneChanged -= ChangedActiveScene;
-        if (controls == null) return;
         controls.Gameplay_Warden.ActivateAbility.performed -= OnActivateAbility;
-        controls.Gameplay_Warden.Disable();
+        SceneManager.activeSceneChanged -= ChangedActiveScene;
     }
 
 
