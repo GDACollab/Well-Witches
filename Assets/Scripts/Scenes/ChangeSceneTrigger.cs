@@ -21,15 +21,12 @@ public class ChangeSceneTrigger : MonoBehaviour
 
     private bool hasTriggered = false;
 
-    private Controls controls;
+    private Controls controls => GathererAbilityManager.Controls;
     
     private void Awake()
     {
         playerInTrigger = false;
         visualCue.SetActive(false);
-
-        controls = new Controls();
-        controls.Gameplay_Gatherer.Enable();
     }
 
     private void OnEnable()

@@ -32,20 +32,20 @@ public class ItemDispenser : MonoBehaviour, IInteractable
     // Pre-Made list of (name, timer) tuples for both buffs and debuffs. 
     private List<(string, float)> possibleBuffs = new List<(string, float)> 
     {
-        ("SpeedUp", 10f),
-        ("AttackUp", 8f), 
-        ("HarvestUp", 12f),
-        ("YankUp", 10f), 
-        ("LuckUp", 30f), 
+        ("Speed Up", 10f),
+        ("Attack Up", 8f), 
+        ("Harvest Up", 12f),
+        ("Yank Up", 10f), 
+        ("Luck Up", 30f), 
     };
 
     private List<(string, float)> possibleDebuffs = new List<(string, float)> 
     {
-        ("SpeedDown", 10f), 
-        ("AttackDown", 8f), 
-        ("HarvestDown", 12f),
-        ("YankDown", 10f), 
-        ("LuckDown", 30f),
+        ("Speed Down", 10f), 
+        ("Attack Down", 8f), 
+        ("Harvest Down", 12f),
+        ("Yank Down", 10f), 
+        ("Luck Down", 30f),
     };
 
 
