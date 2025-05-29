@@ -71,6 +71,8 @@ public abstract class BaseEnemyClass : MonoBehaviour
     }
 
     public abstract void Attack();
+    
+    public virtual void OnUpdate() {}
 
     IEnumerator slow()
     {

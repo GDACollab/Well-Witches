@@ -63,7 +63,7 @@ public class TankEnemy : BaseEnemyClass
         agent.ResetPath();
     }
 
-    public void SpawnPool()
+    public override void OnUpdate()
     {
         if (timeTillPool <= 0)
         {

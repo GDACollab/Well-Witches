@@ -46,6 +46,7 @@ public class AggroState : State
             enemy.TargetClosestPlayer();
             try { agent.SetDestination(enemy.currentTarget.position); } catch { enemy.Die(); }
         }
+        enemy.OnUpdate();
     }
 
     public override void OnExit()
