@@ -50,6 +50,7 @@ public class PauseManager : MonoBehaviour
     void OnDisable()
     {
         Controls.Gameplay_Gatherer.Disable();
+        Controls.Gameplay_Warden.Disable();
         Controls.Ui_Navigate.Pause.performed -= TogglePause;
     }
     #endregion
@@ -67,15 +68,17 @@ public class PauseManager : MonoBehaviour
         if (paused) 
         {
             Controls.Gameplay_Warden.Disable();
+            GathererAbilityManager.Controls.Gameplay_Gatherer.Disable();
             MoveTo(PauseState.Settings);
-            Controls.Ui_Navigate.PageLeft.performed += (_) => Move(false);
-            Controls.Ui_Navigate.PageRight.performed += (_) => Move(true);
+            Controls.Ui_Navigate.PageLeft.performed += MoveLeft;
+            Controls.Ui_Navigate.PageRight.performed += MoveRight;
         }
         else 
         {
             Controls.Gameplay_Warden.Enable();
-            Controls.Ui_Navigate.PageLeft.performed -= (_) => Move(false);
-            Controls.Ui_Navigate.PageRight.performed -= (_) => Move(true);
+            GathererAbilityManager.Controls.Gameplay_Gatherer.Enable();
+            Controls.Ui_Navigate.PageLeft.performed -= MoveLeft;
+            Controls.Ui_Navigate.PageRight.performed -= MoveRight;
         }
         
         UpdateEntries(GameManager.instance.currentKeyItem);
@@ -153,6 +156,9 @@ public class PauseManager : MonoBehaviour
         rightArrow.SetActive(!(_currentState == PauseState.Journal3 || _currentState == _pageUnlocked));
         leftArrow.SetActive(!(_currentState == PauseState.Settings));
     }
+    
+    private void MoveLeft(InputAction.CallbackContext context) => Move(false);
+    private void MoveRight(InputAction.CallbackContext context) => Move(true);
     #endregion
     
     #region Buttons

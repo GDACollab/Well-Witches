@@ -175,6 +175,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""007d9529-2d29-4198-b50c-e21bd3a2c110"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""444b2ff5-94d1-4d01-977a-49b73f0fc128"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
@@ -210,6 +221,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""6f0294dd-328f-4c0e-8af2-0316b33d6007"",
                     ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Activate Ability"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e2a0d636-5f92-4e30-b747-72d30dc026b8"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -392,6 +414,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Submit"",
+                    ""type"": ""Button"",
+                    ""id"": ""a2c0c44d-0eca-4fbe-9ca9-b97042ea4ff9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -410,6 +441,50 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""fd084756-20e7-4535-b89c-25404cf0ba5e"",
                     ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Continue Cutscene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d07e26a8-8506-4fff-9501-f711811f6c4b"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Continue Cutscene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5687dfe3-c593-4e8e-a7b5-c9276d50bd5e"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Continue Cutscene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2bb3d94-3114-4a27-983c-9e7a95a77566"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Continue Cutscene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94e6271c-4fcf-4a9c-abd1-c8f03536e803"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -482,6 +557,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Page Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""42aaf46b-9190-42fb-8617-c71ab70e409b"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d6775acb-836c-43fc-b53e-65e3429c037a"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -506,6 +603,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Ui_Navigate_Pause = m_Ui_Navigate.FindAction("Pause", throwIfNotFound: true);
         m_Ui_Navigate_PageLeft = m_Ui_Navigate.FindAction("Page Left", throwIfNotFound: true);
         m_Ui_Navigate_PageRight = m_Ui_Navigate.FindAction("Page Right", throwIfNotFound: true);
+        m_Ui_Navigate_Submit = m_Ui_Navigate.FindAction("Submit", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -718,6 +816,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Ui_Navigate_Pause;
     private readonly InputAction m_Ui_Navigate_PageLeft;
     private readonly InputAction m_Ui_Navigate_PageRight;
+    private readonly InputAction m_Ui_Navigate_Submit;
     public struct Ui_NavigateActions
     {
         private @Controls m_Wrapper;
@@ -726,6 +825,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_Ui_Navigate_Pause;
         public InputAction @PageLeft => m_Wrapper.m_Ui_Navigate_PageLeft;
         public InputAction @PageRight => m_Wrapper.m_Ui_Navigate_PageRight;
+        public InputAction @Submit => m_Wrapper.m_Ui_Navigate_Submit;
         public InputActionMap Get() { return m_Wrapper.m_Ui_Navigate; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -747,6 +847,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @PageRight.started += instance.OnPageRight;
             @PageRight.performed += instance.OnPageRight;
             @PageRight.canceled += instance.OnPageRight;
+            @Submit.started += instance.OnSubmit;
+            @Submit.performed += instance.OnSubmit;
+            @Submit.canceled += instance.OnSubmit;
         }
 
         private void UnregisterCallbacks(IUi_NavigateActions instance)
@@ -763,6 +866,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @PageRight.started -= instance.OnPageRight;
             @PageRight.performed -= instance.OnPageRight;
             @PageRight.canceled -= instance.OnPageRight;
+            @Submit.started -= instance.OnSubmit;
+            @Submit.performed -= instance.OnSubmit;
+            @Submit.canceled -= instance.OnSubmit;
         }
 
         public void RemoveCallbacks(IUi_NavigateActions instance)
@@ -800,5 +906,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnPageLeft(InputAction.CallbackContext context);
         void OnPageRight(InputAction.CallbackContext context);
+        void OnSubmit(InputAction.CallbackContext context);
     }
 }
