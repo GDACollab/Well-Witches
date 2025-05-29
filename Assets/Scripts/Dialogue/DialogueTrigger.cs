@@ -30,7 +30,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private bool playerInRange;
 
-    private Controls controls;
+    private Controls controls => GathererAbilityManager.Controls;
 
 
     private void OnEnable()
@@ -102,10 +102,6 @@ public class DialogueTrigger : MonoBehaviour
     {
         playerInRange = false;
         visualCue.SetActive(false);
-
-        controls = new Controls();
-
-        controls.Gameplay_Gatherer.Enable();
     }
 
     private void Update()
