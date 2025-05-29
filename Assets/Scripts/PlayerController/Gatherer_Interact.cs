@@ -19,6 +19,8 @@ public class Gatherer_Interact : MonoBehaviour
     private CapsuleCollider2D playerCollider;
     private Vector3 oldPos;
 
+    private ItemDispenser specialBush;
+    private BossBush bossBush;
     void OnInteract(InputValue iv)   // called by the Player Input component
     {
         
@@ -37,14 +39,19 @@ public class Gatherer_Interact : MonoBehaviour
             {
                 if (collider.gameObject.TryGetComponent(out IInteractable interactableObject))
                 {
-                    //Freeze movement
-                    myMovement.canMove = false;
-                    //begin harvesting
-                    interactable = interactableObject;
-                    timeSpent = 0;
-                    oldPos = transform.position;
-                    StartAnimation(collider.transform.position);
-                    break;
+                    specialBush = collider.GetComponent<ItemDispenser>();
+                    bossBush = collider.GetComponent<BossBush>();
+                    if ((specialBush && !specialBush.interacted) || (bossBush && !bossBush.interacted))
+                    {
+                        //Freeze movement
+                        myMovement.canMove = false;
+                        //begin harvesting
+                        interactable = interactableObject;
+                        timeSpent = 0;
+                        oldPos = transform.position;
+                        StartAnimation(collider.transform.position);
+                        break;
+                    }
                 }
             }
         }

@@ -3,10 +3,16 @@ using UnityEngine;
 
 public class PlayerEvents
 {
+    private bool disableDamage = false;
     public event Action<float,string> onPlayerDamage;
     
     public void PlayerDamage(float damage, string player)
     {
+        if (disableDamage)
+        {
+            return;
+        }
+
         if (onPlayerDamage != null)
         {
             onPlayerDamage(damage, player);
@@ -20,6 +26,17 @@ public class PlayerEvents
         if (onPlayerDeath != null)
         {
             onPlayerDeath();
+        }
+    }
+
+    public void DisableDamage(bool on)
+    {
+        if (on)
+        {
+            disableDamage = true;
+        }else
+        {
+            disableDamage = false;
         }
     }
 }
