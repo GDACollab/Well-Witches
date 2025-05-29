@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 9
   spritePivot: {x: 0.5, y: 0.6}
-  spritePixelsToUnits: 789.4737
+  spritePixelsToUnits: 400
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -108,7 +108,65 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: roots_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 250
+        width: 500
+        height: 750
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 178, y: -235}
+        - {x: 70, y: -232}
+        - {x: -13, y: -211}
+        - {x: 27, y: -116}
+        - {x: 177, y: -93}
+        - {x: 250, y: -112}
+        - {x: 250, y: -207}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33eb67d39c4a18845887d1edd8858467
+      internalID: 813535210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roots_1
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 250
+        width: 500
+        height: 750
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -250, y: -207}
+        - {x: -250, y: -112}
+        - {x: -195, y: -130}
+        - {x: -49, y: -179}
+        - {x: -17, y: -200}
+        - {x: -8, y: -237}
+        - {x: -52, y: -256}
+        - {x: -142, y: -253}
+        - {x: -189, y: -223}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44a2520c073bd1f4c8f2eb7fdbde4843
+      internalID: 121976805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +177,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      roots_0: 813535210
+      roots_1: 121976805
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
