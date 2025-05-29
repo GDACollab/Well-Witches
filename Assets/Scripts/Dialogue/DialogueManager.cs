@@ -103,26 +103,14 @@ public class DialogueManager : MonoBehaviour
         {
             return;
         }
-
-        //manage going to the next line when player clicks to continue
-        //TODO: CHANGE THIS TO THE PLAYER INTERACT KEY
-        //BUG: Currently can just press E to completely skip the choice
-        //if we change this to a system where you have to use arrow keys and enter/interact to do choices than we can fix this in favor of a system-
-        //-where we have a choice already selected and the player can navigate up or down to select another one before pressing enter
-        if(Input.GetKeyDown(KeyCode.Space)) {
-            if (currentStory.currentChoices.Count == 0)
-            {
-                ContinueStory();
-            }
-        }
     }
 
     private void OnGathererInteract(InputAction.CallbackContext context)
     {
-        /*if (currentStory.currentChoices.Count == 0)
+        if (dialogueActive && currentStory.currentChoices.Count == 0)
         {
             ContinueStory();
-        }*/
+        }
     }
 
     public void StartDialogueMode(Story story, SpriteManager currChara, InkDialogueVariables inkDialogueVariables)

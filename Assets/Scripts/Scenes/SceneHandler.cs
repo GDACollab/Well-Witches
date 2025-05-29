@@ -267,7 +267,7 @@ public class SceneHandler : MonoBehaviour
         int index = currentScene.buildIndex;
   
         //SceneManager.LoadScene(HubSceneIndex);
-        StartCoroutine(LoadingScreen(OpenCutsceneIndex));
+        StartCoroutine(CutsceneLoadingScreen(OpenCutsceneIndex));
 
         AudioManager.Instance.CleanUp();
         AudioManager.Instance.PlayOST(FMODEvents.Instance.lobbyBGM);
@@ -305,6 +305,23 @@ public class SceneHandler : MonoBehaviour
         loadingScreen.SetActive(false);
         newscene.allowSceneActivation = true;
         yield return FadeFromBlack(fadeOutTime);
+    }
+    
+    private IEnumerator CutsceneLoadingScreen(int sceneName)
+    {
+        Time.timeScale = 0;
+        yield return FadeToBlack(fadeInTime);
+        SceneManager.LoadScene(LoadingScreenIndex);
+        AsyncOperation newscene = SceneManager.LoadSceneAsync(sceneName);
+        newscene.allowSceneActivation = false;
+
+        while (newscene.progress < 0.9f)
+        {
+            yield return null;
+        }
+        newscene.allowSceneActivation = true;
+        yield return FadeFromBlack(fadeOutTime);
+        Time.timeScale = 1;
     }
     
     //show image, wait x seconds, load scene
