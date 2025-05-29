@@ -237,13 +237,13 @@ public class DialogueManager : MonoBehaviour
                         {
                             activePlayer = PlayerState.WARDEN;
                             playerSpriteManager.SwitchToWarden();
-                            speakerText.text = char.ToUpper(tagValue.First()) + tagValue.Substring(1);
+                            speakerText.text = "Vervain";
                         }
                         else if (tagValue == "gatherer")
                         {
                             activePlayer = PlayerState.GATHERER;
                             playerSpriteManager.SwitchToGatherer();
-                            speakerText.text = char.ToUpper(tagValue.First()) + tagValue.Substring(1);
+                            speakerText.text = "Aloe";
                         }
                     }
                     break;
