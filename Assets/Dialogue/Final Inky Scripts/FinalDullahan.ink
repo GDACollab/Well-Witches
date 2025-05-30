@@ -7,7 +7,7 @@ EXTERNAL FinishQuest(questID)
 VAR currentSpeaker = "Dullahan"
 // (quest id + "ID" for variable name)
 // this should be the quest ID as in the "ID" field of the quest's scriptable object
-VAR CollectHeadQuestID = "CollectHeadQuest"
+VAR CollectHeadQuestID = "DullahanMultiStepQuest"
 
 // quest states (quest id + "State" for variable name)
 VAR CollectHeadQuestState = "REQUIREMENTS_NOT_MET"
