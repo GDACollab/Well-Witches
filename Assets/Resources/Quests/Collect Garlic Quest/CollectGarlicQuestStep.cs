@@ -57,6 +57,7 @@ public class CollectGarlicQuestStep : QuestStep
                 questDescription.text = $"- ({garlicCollected}/{garlicToCollect}) Garlic Collected";
 
                 // tell parcella how many items to return
+                EventManager.instance.questEvents.LoadItemsOnDeath(questItem,collectedThisRun);
 
             }
         }

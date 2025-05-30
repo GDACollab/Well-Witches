@@ -30,8 +30,13 @@ public class ParcellaTrigger : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.activeSceneChanged += SceneChange;
+        EventManager.instance.questEvents.onLoadItemsOnDeath += LoadItems;
     }
 
+    private void LoadItems(GameObject questItem, int amount)
+    {
+        ItemsToReturn.Add((questItem,amount));
+    }
     private void SceneChange(Scene before, Scene after)
     {
         if(after.buildIndex == 2)
@@ -46,7 +51,6 @@ public class ParcellaTrigger : MonoBehaviour
 
     private void Awake()
     {
-        ItemsToReturn.Add((TEST, 4));
         playerInRange = false;
         visualCue.SetActive(false);
     }
