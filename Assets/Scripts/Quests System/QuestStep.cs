@@ -17,7 +17,7 @@ public abstract class QuestStep : MonoBehaviour
     }
     protected void FinishQuestStep()
     {
-        if(!isFinished)
+        if (!isFinished)
         {
             isFinished = true;
             EventManager.instance.questEvents.AdvanceQuest(questID);
