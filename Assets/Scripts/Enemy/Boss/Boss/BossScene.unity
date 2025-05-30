@@ -718,13 +718,13 @@ MonoBehaviour:
   mediumDifficultyTime: 0
   hardDifficultyTime: 0
   impossibleDifficultyTime: 0
+  maxEnemyCount: 0
   spawnRadiusMin: 0
   spawnRadiusMax: 0
   maxSpawnCoord: {x: 0, y: 0}
   minSpawnCoord: {x: 0, y: 0}
   singleSpawnTime: 0
   formationSpawnTime: 0
-  maxEnemyCount: 0
   singleTimer: 0
   formationTimer: 0
   referencePoint: {fileID: 0}
@@ -781,6 +781,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 962280634740332046, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
+      propertyPath: m_Name
+      value: BossBubble
+      objectReference: {fileID: 0}
     - target: {fileID: 1275831431557215407, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
       propertyPath: damage
       value: 8
@@ -808,26 +812,6 @@ PrefabInstance:
     - target: {fileID: 4510760633449180580, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
       propertyPath: m_TagString
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640196686164595869, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
-      propertyPath: range
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640196686164595869, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
-      propertyPath: health
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640196686164595869, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
-      propertyPath: phaseHP
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640196686164595869, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
-      propertyPath: moveSpeed
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640196686164595869, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
-      propertyPath: attackCooldown
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4886292762916306601, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
       propertyPath: m_BodyType
@@ -891,6 +875,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6589887343824488861, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8000214353600292512, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1872,18 +1860,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1791682615061501781, guid: bc56070701fd4804c9a859287e083dcf, type: 3}
-      propertyPath: m_Color.b
-      value: 0.7688679
-      objectReference: {fileID: 0}
-    - target: {fileID: 1791682615061501781, guid: bc56070701fd4804c9a859287e083dcf, type: 3}
-      propertyPath: m_Color.g
-      value: 0.7688679
-      objectReference: {fileID: 0}
-    - target: {fileID: 1791682615061501781, guid: bc56070701fd4804c9a859287e083dcf, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6516317512291536905, guid: bc56070701fd4804c9a859287e083dcf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.06
@@ -2067,13 +2043,13 @@ MonoBehaviour:
   mediumDifficultyTime: 0
   hardDifficultyTime: 0
   impossibleDifficultyTime: 0
+  maxEnemyCount: 0
   spawnRadiusMin: 12
   spawnRadiusMax: 18
   maxSpawnCoord: {x: 128, y: 128}
   minSpawnCoord: {x: 2, y: 2}
   singleSpawnTime: 3
   formationSpawnTime: 10
-  maxEnemyCount: 0
   singleTimer: 0
   formationTimer: 0
   referencePoint: {fileID: 0}
@@ -2389,6 +2365,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1098098449533344349, guid: bc56070701fd4804c9a859287e083dcf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1791682615061501781, guid: bc56070701fd4804c9a859287e083dcf, type: 3}
       propertyPath: m_Color.b
       value: 0.7688679
@@ -2469,6 +2449,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 429068623}
     m_Modifications:
+    - target: {fileID: 127962007676573821, guid: 94a0ced677a3c324eacfa276aec2f2b9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 155198246184551664, guid: 94a0ced677a3c324eacfa276aec2f2b9, type: 3}
       propertyPath: m_Name
       value: HUD
@@ -2596,6 +2580,10 @@ PrefabInstance:
     - target: {fileID: 8115989650227151311, guid: 94a0ced677a3c324eacfa276aec2f2b9, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8346812357810713577, guid: 94a0ced677a3c324eacfa276aec2f2b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9020791422605731502, guid: 94a0ced677a3c324eacfa276aec2f2b9, type: 3}
       propertyPath: m_IsActive

@@ -137,4 +137,9 @@ public class Warden_Movement : PlayerMovement
 			playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
 		}
 	}
+
+    void OnDisable()
+    {
+        GetComponent<PlayerInput>().actions.actionMaps[1].Disable();
+    }
 }

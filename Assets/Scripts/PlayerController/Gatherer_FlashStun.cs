@@ -47,6 +47,7 @@ public class Gatherer_FlashStun : GathererBaseAbilities
         activateAbilityAction = GetComponent<PlayerInput>().actions["Activate Ability"];
         //chargeCounter = chargeDuration;
         // navAgent = GetComponent<NavMeshAgent>();
+        cooldownCounter = cooldownDuration;
     }
     void Update()
     {
@@ -58,7 +59,7 @@ public class Gatherer_FlashStun : GathererBaseAbilities
             return; // don't even think about charging up if on cooldown
         }
 
-        if (!canCastSpellSFX)
+        if (!canCastSpellSFX && GathererAbilityManager.Instance.passiveAbility == this)
         {
             canCastSpellSFX = true;
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.abilityReady, this.transform.position);

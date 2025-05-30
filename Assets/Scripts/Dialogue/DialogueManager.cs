@@ -40,7 +40,7 @@ public class DialogueManager : MonoBehaviour
     private const string SPRITE_TAG = "sprite";
     private const string SPEAKER_TAG = "speaker";
 
-    private Controls controls;
+    private Controls controls => GathererAbilityManager.Controls;
 
     private void Awake()
     {
@@ -49,22 +49,20 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("More than one instance of Dialogue Manager detected... :(");
         }
         instance = this;
-
-        controls = new Controls();
-
-        controls.Gameplay_Gatherer.Enable();
     }
 
     private void OnEnable()
     {
         SceneManager.activeSceneChanged += OnSceneChange;
-        controls.Gameplay_Gatherer.Interact.performed += OnGathererInteract;
+        controls.Ui_Navigate.Enable();
+        controls.Ui_Navigate.Submit.performed += OnGathererInteract;
     }
 
     private void OnDisable()
     {
         SceneManager.activeSceneChanged -= OnSceneChange;
-        controls.Gameplay_Gatherer.Interact.performed -= OnGathererInteract;
+        controls.Ui_Navigate.Submit.performed -= OnGathererInteract;
+        controls.Ui_Navigate.Disable();
     }
 
     public void OnSceneChange(Scene before, Scene current)
@@ -105,30 +103,21 @@ public class DialogueManager : MonoBehaviour
         {
             return;
         }
-
-        //manage going to the next line when player clicks to continue
-        //TODO: CHANGE THIS TO THE PLAYER INTERACT KEY
-        //BUG: Currently can just press E to completely skip the choice
-        //if we change this to a system where you have to use arrow keys and enter/interact to do choices than we can fix this in favor of a system-
-        //-where we have a choice already selected and the player can navigate up or down to select another one before pressing enter
-        if(Input.GetKeyDown(KeyCode.Space)) {
-            if (currentStory.currentChoices.Count == 0)
-            {
-                ContinueStory();
-            }
-        }
     }
 
     private void OnGathererInteract(InputAction.CallbackContext context)
     {
-        /*if (currentStory.currentChoices.Count == 0)
+        if (dialogueActive && currentStory.currentChoices.Count == 0)
         {
             ContinueStory();
-        }*/
+        }
     }
 
     public void StartDialogueMode(Story story, SpriteManager currChara, InkDialogueVariables inkDialogueVariables)
     {
+        WardenAbilityManager.Controls.Gameplay_Warden.Disable();
+        controls.Gameplay_Gatherer.Disable();
+        
         currentStory = story;
         inkDialogueVariables.SyncVariablesAndStartListening(currentStory);
         currentVars = inkDialogueVariables;
@@ -173,6 +162,8 @@ public class DialogueManager : MonoBehaviour
         currentCharacter.HideSprite();
         playerSpriteManager.HidePlayerSprite();
         currentVars.StopListening(currentStory);
+        WardenAbilityManager.Controls.Gameplay_Warden.Enable();
+        controls.Gameplay_Gatherer.Enable();
     }
 
     private void ContinueStory()
@@ -246,13 +237,13 @@ public class DialogueManager : MonoBehaviour
                         {
                             activePlayer = PlayerState.WARDEN;
                             playerSpriteManager.SwitchToWarden();
-                            speakerText.text = char.ToUpper(tagValue.First()) + tagValue.Substring(1);
+                            speakerText.text = "Vervain";
                         }
                         else if (tagValue == "gatherer")
                         {
                             activePlayer = PlayerState.GATHERER;
                             playerSpriteManager.SwitchToGatherer();
-                            speakerText.text = char.ToUpper(tagValue.First()) + tagValue.Substring(1);
+                            speakerText.text = "Aloe";
                         }
                     }
                     break;

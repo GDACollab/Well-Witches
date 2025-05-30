@@ -1,66 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
-using System.Linq;
+using UnityEngine.Rendering.Universal;
+
 
 public class ItemDispenser : MonoBehaviour, IInteractable
 {
-
-    [SerializeField]
-    bool isBossBush = false;
     private Item[] items;
 
-    private SpriteRenderer spriteRenderer;
+    [Header("Bush Visuals")]
+    [SerializeField] private Sprite activeBushSprite;
+    [SerializeField] private Sprite inactiveBushSprite;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    
+
+    [Header("Bush Light")]
+    [SerializeField] private Light2D light2D;
+    [SerializeField] private float lightPulseSpeed;
+    [SerializeField] private float lightMaxBrightness;
+
     private ParticleSystem particleSystem;
 
-    private bool interacted = false;
+    public bool interacted = false;
 
-    private float timer = 0f;
-
-    [SerializeField] private float respawnTime = 10f;
-
+    [Header("Bush Info")]
+    [SerializeField] private float respawnTime;
     [SerializeField] private GameObject prefabToSpawn;
 
     private GameObject keyItemToSpawn;
 
-    private void OnEnable()
-    {
-        EventManager.instance.bossEvents.onBushReset += BossBushReset;
-    }
-    private void OnDisable()
-    {
-        EventManager.instance.bossEvents.onBushReset -= BossBushReset;
-    }
-
-    public void BossBushReset()
-    {
-        if(isBossBush)
-        {
-            spriteRenderer.color = Color.red;
-            particleSystem.Play();
-            interacted = false;
-        }
-    }
-
-
     // Pre-Made list of (name, timer) tuples for both buffs and debuffs. 
     private List<(string, float)> possibleBuffs = new List<(string, float)> 
     {
-        ("SpeedUp", 10f),
-        ("AttackUp", 8f), 
-        ("HarvestUp", 12f),
-        ("YankUp", 10f), 
-        ("LuckUp", 30f), 
+        ("Speed Up", 10f),
+        ("Attack Up", 8f), 
+        ("Harvest Up", 12f),
+        ("Yank Up", 10f), 
+        ("Luck Up", 30f), 
     };
 
     private List<(string, float)> possibleDebuffs = new List<(string, float)> 
     {
-        ("SpeedDown", 10f), 
-        ("AttackDown", 8f), 
-        ("HarvestDown", 12f),
-        ("YankDown", 10f), 
-        ("LuckDown", 30f),
+        ("Speed Down", 10f), 
+        ("Attack Down", 8f), 
+        ("Harvest Down", 12f),
+        ("Yank Down", 10f), 
+        ("Luck Down", 30f),
     };
 
 
@@ -70,24 +55,20 @@ public class ItemDispenser : MonoBehaviour, IInteractable
         spriteRenderer = GetComponent<SpriteRenderer>();
         particleSystem = GetComponent<ParticleSystem>();
         keyItemToSpawn = Resources.Load<GameObject>("KeyItems/KeyItem");
+        if (spriteRenderer == null) { spriteRenderer = GetComponentInChildren<SpriteRenderer>(); }
+        if (light2D == null) { light2D = GetComponentInChildren<Light2D>(); }
     }
 
-    /*
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
+        if (!interacted)
+        {
+            light2D.pointLightInnerRadius = Mathf.PingPong(Time.time * lightPulseSpeed, lightMaxBrightness);
+        }
     }
-    */
 
     void Dispense()
     {
-        if (isBossBush)
-        {
-            EventManager.instance.bossEvents.BushCollected();
-            vacate();
-            return;
-        }
         if (!interacted){ //Checks if the bush hasn't been interacted with before.
 
             // Finds a spot to spawn the item next to the bush.
@@ -228,26 +209,21 @@ public class ItemDispenser : MonoBehaviour, IInteractable
         Debug.Log("No available buffs/debuffs to pick from");
     }
 
-    IEnumerator TrackTime()
-    {
-        Debug.Log("BEFORE!!!!");
-        // Wait for respawnTime (Unity uses real-time seconds)
-        yield return new WaitForSeconds(respawnTime);
-
-        Debug.Log("HIIII!!!");
-        spriteRenderer.color = Color.green;
-        particleSystem.Play();
-        interacted = false;
-    }
-
     void vacate() {
         particleSystem.Stop();
-        spriteRenderer.color = Color.grey;
+        spriteRenderer.sprite = inactiveBushSprite;
         interacted = true;
-        if (!isBossBush)
-        {
-            StartCoroutine(TrackTime());
-        }
+        light2D.enabled = false;
+        StartCoroutine(RespawnBush());
+    }
+
+    IEnumerator RespawnBush()
+    {
+        yield return new WaitForSeconds(respawnTime);
+        spriteRenderer.sprite = activeBushSprite;
+        particleSystem.Play();
+        light2D.enabled = true;
+        interacted = false;
     }
 
     Item ChooseItem()

@@ -46,12 +46,12 @@ public abstract class BaseEnemyClass : MonoBehaviour
         Instantiate(gameObject, position, Quaternion.identity);
     }
 
-    public virtual void TakeDamage(float amount)
+    public virtual void TakeDamage(float amount, bool fromWardenProjectile = false)
     {
         health -= amount;
         if (health <= 0)
         {
-            Die();
+            Die(fromWardenProjectile);
         }
         if (WardenAbilityManager.Instance.GetEquippedPassiveName() == "WaterLogging")
         {
@@ -59,11 +59,11 @@ public abstract class BaseEnemyClass : MonoBehaviour
         }
     }
 
-    public virtual void Die()
+    public virtual void Die(bool fromWardenProjectile = false)
     {
         EnemySpawner.currentEnemyCount--;
-        //if siphon energy is equipped then add to siphone times
-        if (WardenAbilityManager.Instance.passiveAbilityName == WardenAbilityManager.Passive.SoulSiphon)
+        //if siphon energy is equipped and enemy is killed from warden's projectile, then siphon energy
+        if (fromWardenProjectile && WardenAbilityManager.Instance.passiveAbilityName == WardenAbilityManager.Passive.SoulSiphon)
         {
             SiphonEnergy.Instance.AddEnergy();
         }

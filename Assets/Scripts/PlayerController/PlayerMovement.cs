@@ -51,6 +51,9 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Start()
 	{
+		PlayerInput input = GetComponent<PlayerInput>();
+		input.actions = GathererAbilityManager.Controls.asset;
+		input.defaultActionMap = "Gameplay_Gatherer";
 		playerFootsteps = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.playerFootsteps);
 	}
 
@@ -71,8 +74,12 @@ public class PlayerMovement : MonoBehaviour
 		else if (moveDirection != Vector2.zero) acceleration = movementData.acceleration * StatsManager.Instance.getSpeedMult();
 		else acceleration = movementData.deceleration * StatsManager.Instance.getSpeedMult();
 
+		//Debug.Log("deltaVelocity:" + deltaVelocity);
 		Vector2 accelerationVector = deltaVelocity * acceleration;
-		rb.AddForce(accelerationVector);
+		if (canMove)
+			rb.AddForce(accelerationVector);
+		else
+			rb.velocity *= 0;
 
 		changeSpriteTo();
 
