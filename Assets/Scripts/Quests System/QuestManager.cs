@@ -143,6 +143,7 @@ public class QuestManager : MonoBehaviour
         else
         {
             ChangeQuestState(quest.info.id, QuestState.CAN_FINISH);
+            GameManager.instance.activeQuestState = QuestState.CAN_FINISH;
         }
     }
 

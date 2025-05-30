@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class QuestEvents
 {
@@ -45,6 +46,15 @@ public class QuestEvents
         if (onCancelQuest != null)
         {
             onCancelQuest();
+        }
+    }
+
+    public event Action<GameObject,int> onLoadItemsOnDeath;
+    public void LoadItemsOnDeath(GameObject questItem, int amount)
+    {
+        if (onLoadItemsOnDeath != null)
+        {
+            onLoadItemsOnDeath(questItem,amount);
         }
     }
 }
