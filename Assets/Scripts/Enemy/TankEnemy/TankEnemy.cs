@@ -13,9 +13,7 @@ public class TankEnemy : BaseEnemyClass
     public float acidOffsetX;
     public float acidOffsetY;
 
-    private float acidLifetime;
     private float acidSize;
-    private float acidDamage;
 
     private float timeTillPool;
     public Animator animator; 
@@ -35,8 +33,6 @@ public class TankEnemy : BaseEnemyClass
         bashDamage = stats.tankBashDamage;
         
         acidSize = stats.tankAcidSize;
-        acidLifetime = stats.tankAcidLifetime;
-        acidDamage = stats.tankAcidDamage;
         timeTillPool = 0f;
     }
 
@@ -80,7 +76,7 @@ public class TankEnemy : BaseEnemyClass
                 acidPool.transform.localScale = Vector3.one * acidSize;
                 acidPool.SetActive(true);
                 acidPool.GetComponent<AcidPool>().
-                    InitializeAcid(acidLifetime, acidDamage);
+                    InitializeAcid();
             }
             timeTillPool = 1 / spawnRate;
         }

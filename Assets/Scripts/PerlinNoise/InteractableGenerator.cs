@@ -131,7 +131,7 @@ public class InteractableGenerator : MonoBehaviour
                         {
                             //Add new spot to recent Values
                             pushToRecentValues(new Vector2Int(x, y));
-                            Debug.Log("Correctly spawned tile");
+                            //Debug.Log("Correctly spawned tile");
                             Instantiate(interactable, new Vector3(x + offset.x, y + offset.y, -1), Quaternion.identity, transform); // Z layer of interactables is -1
                         }
                     }
