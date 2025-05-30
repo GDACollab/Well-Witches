@@ -106,7 +106,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log("hhh: "+questState);
+        Debug.Log("I will be dying soon: " + GameManager.instance.activeQuestState);
         if (playerInRange && !DialogueManager.GetInstance().dialogueActive)
         {
             if (!visualCue.activeSelf) {
