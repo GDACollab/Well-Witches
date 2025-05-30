@@ -6,17 +6,17 @@ public class EnemyStatsSO : ScriptableObject
     [Header("General Stats")]
     public float stunDuration;
 
-    [Header("Melee Enemy Stats")]
+    [Header("----------Melee Enemy Stats----------")]
     public float meleeHealth;
     public float meleeSpeed;
     public float meleeRange;
-    [Header("Ranged Attack Stats")]
+    [Header("Melee Attack Stats")]
     public float meleeDamage;
     public float meleeTimeBetweeAttacks;
     public float meleeAttackAOE;
     public float meleeSpeedWhileAttacking;
 
-    [Header("Ranged Enemy Stats")]
+    [Header("----------Ranged Enemy Stats----------")]
     public float rangedHealth;
     public float rangedSpeed;
     public float rangedRange;
@@ -33,7 +33,7 @@ public class EnemyStatsSO : ScriptableObject
     public float AOELifetime;
     public float AOEDamage;
 
-    [Header("Tank Enemy Stats")]
+    [Header("----------Tank Enemy Stats----------")]
     public float tankHealth;
     public float tankSpeed;
     public float tankRange;
@@ -46,4 +46,5 @@ public class EnemyStatsSO : ScriptableObject
     public float tankAcidSize;
     public float tankAcidLifetime; 
     public float tankAcidDamage;
+    public float tankAcidTick;
 }

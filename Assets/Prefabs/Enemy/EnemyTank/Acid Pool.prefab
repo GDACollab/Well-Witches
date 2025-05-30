@@ -9680,6 +9680,7 @@ GameObject:
   - component: {fileID: 5962675244586906004}
   - component: {fileID: 6594783247173875737}
   - component: {fileID: 6248052183249849632}
+  - component: {fileID: 8368993309095280884}
   m_Layer: 0
   m_Name: Acid Pool
   m_TagString: EnemyProjectile
@@ -9744,3 +9745,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 8804477145564356613}
+--- !u!60 &8368993309095280884
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8986336780949027244}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.5605936, y: 0.36004257}
+      - {x: -0.019722939, y: 0.43196845}
+      - {x: -0.5321207, y: 0.35824394}
+      - {x: -0.7932692, y: 0.16700915}
+      - {x: -0.8905754, y: -0.091278434}
+      - {x: -0.61934227, y: -0.31593406}
+      - {x: 0.007253647, y: -0.43625164}
+      - {x: 0.62723124, y: -0.31198955}
+      - {x: 0.8406067, y: 0.060503304}
+  m_UseDelaunayMesh: 0
