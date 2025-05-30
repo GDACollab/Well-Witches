@@ -40,6 +40,11 @@ public class TankEnemy : BaseEnemyClass
         timeTillPool = 0f;
     }
 
+    private void Update()
+    {
+        SpawnPool();
+    }
+
     public override void Attack()
     {
         //Animation to attack
