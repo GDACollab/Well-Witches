@@ -39,16 +39,12 @@ public class RangedEnemy : BaseEnemyClass
         projectileLifetime = stats.projectileLifetime;
 
         AOESize = stats.AOESize;
-        AOELifetime= stats.AOELifetime;
+        AOELifetime = stats.AOELifetime;
         AOEDamage = stats.AOEDamage;
     }
 
-    // fires projectiles in a cone shape depending on the spread and projectile count
-    public override void Attack()
+    public void Fire()
     {
-        //Currently animation does not play out for the attack
-        //The atk swap between animation states is weird.
-        animator.SetTrigger("Attacking");
         for (int i = 0; i < projectileCount; i++)
         {
             // spawns the projectile
@@ -65,8 +61,16 @@ public class RangedEnemy : BaseEnemyClass
                     InitializeProjectile(currentTarget.transform.position, offset, projectileSpeed, projectileLifetime, projectileDamage, AOESize, AOELifetime, AOEDamage);
             }
         }
-
     }
+
+    // fires projectiles in a cone shape depending on the spread and projectile count
+    public override void Attack()
+    {
+        //Currently animation does not play out for the attack
+        //The atk swap between animation states is weird.
+        animator.SetTrigger("Attacking");
+    }
+
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
