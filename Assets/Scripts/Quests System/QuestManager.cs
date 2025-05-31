@@ -83,10 +83,11 @@ public class QuestManager : MonoBehaviour
     private void Update()
     {
         // check ALL quests
-        foreach(Quest quest in questMap.Values)
+        Debug.Log(questMap);
+        foreach (Quest quest in questMap.Values)
         {
             // if requirements are met, update state
-            if(quest.state == QuestState.REQUIREMENTS_NOT_MET && CheckRequirementsMet(quest))
+            if (quest.state == QuestState.REQUIREMENTS_NOT_MET && CheckRequirementsMet(quest))
             {
                 ChangeQuestState(quest.info.id, QuestState.CAN_START);
             }

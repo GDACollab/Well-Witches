@@ -111,10 +111,11 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("I will be dying soon: " + GameManager.instance.activeQuestState);
+        Debug.Log(quest.name + ": " + questState.ToString());
         if (playerInRange && !DialogueManager.GetInstance().dialogueActive)
         {
-            if (!visualCue.activeSelf) {
+            if (!visualCue.activeSelf)
+            {
                 AudioManager.Instance.PlayOneShot(FMODEvents.Instance.talkPrompt, this.transform.position);
             }
             visualCue.SetActive(true);
