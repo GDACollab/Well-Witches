@@ -23,6 +23,10 @@ public class GourdForge : MonoBehaviour
         transform.localScale = Vector3.one * size;
         wardenRef = GetComponentInParent<Warden_Movement>();
         GetComponentInParent<Warden_Health>().gourdForgeInvulnerability = true;
+        
+        // TODO: To enable yanking, I had to add some checks in Gatherer_PullWarden.cs
+        // that enables canMove for half a second since canMove sets all velocity to 0 in FixedUpdate (PlayerMovement.cs)
+        // There should be a better way to fix this so if you have the time give a go. 
         wardenRef.canMove = false;
         Destroy(gameObject, lifespan);
     }

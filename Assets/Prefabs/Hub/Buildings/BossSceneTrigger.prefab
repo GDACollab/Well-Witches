@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1873760923175063536}
   - component: {fileID: 3344453113159439544}
   - component: {fileID: 2031632250470299325}
+  - component: {fileID: 3099876161606237618}
   m_Layer: 0
   m_Name: BossSceneTrigger
   m_TagString: Untagged
@@ -147,6 +148,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneSelection: 1
   visualCue: {fileID: 8203310739105778348}
+  bossWell: {fileID: 3099876161606237618}
+--- !u!114 &3099876161606237618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802326793844537832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad588246f02bce429ac66b539e249df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeWell: {fileID: 21300000, guid: 4958f3c165f618c4094075c7c1d023d7, type: 3}
+  inactiveWell: {fileID: 21300000, guid: 0f880182a4fdbfb4ca2e07168ec85e1f, type: 3}
+  canEnter: 1
 --- !u!1 &7681424989054442027
 GameObject:
   m_ObjectHideFlags: 0
