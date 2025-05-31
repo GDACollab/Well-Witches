@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638842946639335396
+  lastModified: 638842986566611417
   FileSizes:
   - Name: Desktop
-    Value: 578624
+    Value: 603872
   Exists: 1
 --- !u!114 &-8521761290097603890
 MonoBehaviour:
@@ -35,10 +35,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638842936262909771
+  lastModified: 638842986566564192
   FileSizes:
   - Name: Desktop
-    Value: 2674
+    Value: 2672
   Exists: 1
 --- !u!114 &-8251773359720588267
 MonoBehaviour:
@@ -174,7 +174,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2000
+  Length: 1144
 --- !u!114 &-5753626238476554844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,33 +202,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2600
---- !u!114 &-5724495490756653115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Bruiser Attack Swipe
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Bruiser Attack Swipe
-  Guid:
-    Data1: -1875484817
-    Data2: 1102428442
-    Data3: 321158330
-    Data4: -1052513820
-  Banks:
-  - {fileID: -9102702579352606222}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 532
 --- !u!114 &-5393162974460439652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +228,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 521
+  Length: 337
 --- !u!114 &-5277086564842164750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,7 +532,6 @@ MonoBehaviour:
   - {fileID: 174403083517312095}
   - {fileID: -3487458387678478468}
   - {fileID: -6947759576588890159}
-  - {fileID: -5724495490756653115}
   - {fileID: -146883036971603902}
   - {fileID: -4977863506004572559}
   - {fileID: 1839785999799936517}
@@ -581,12 +553,13 @@ MonoBehaviour:
   - {fileID: -6944459432451384658}
   - {fileID: 184527009268416163}
   - {fileID: 1851620195313161761}
+  - {fileID: 2315590678485178784}
   EditorParameters: []
   MasterBanks:
   - {fileID: 5263434110076588545}
   StringsBanks:
   - {fileID: -8521761290097603890}
-  cacheTime: 638842946639335396
+  cacheTime: 638842986566611417
   cacheVersion: 131846
 --- !u!114 &174403083517312095
 MonoBehaviour:
@@ -750,6 +723,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1000
+--- !u!114 &2315590678485178784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Bruiser Attack AOE
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Bruiser Attack AOE
+  Guid:
+    Data1: -1875484817
+    Data2: 1102428442
+    Data3: 321158330
+    Data4: -1052513820
+  Banks:
+  - {fileID: -9102702579352606222}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 562
 --- !u!114 &2994134125136313322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -900,7 +900,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638842866944626339
+  lastModified: 638842985475097271
   FileSizes:
   - Name: Desktop
     Value: 6849664
