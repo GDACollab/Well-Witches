@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+
 public class MeleeEnemy : BaseEnemyClass
 {
     private float damage;
@@ -6,7 +8,10 @@ public class MeleeEnemy : BaseEnemyClass
     private float speedWhileAttacking;
 
     //public Animator animator;
-    //public SpriteRenderer atkSprite;
+    public SpriteRenderer atkSprite;
+    public Transform atkSpritePos;
+    public float atkSpeed = 10;     // Speed of animation
+    public float atkDuration = 1;   // Length of animation
 
     private void Start()
     {
@@ -20,12 +25,11 @@ public class MeleeEnemy : BaseEnemyClass
         timeBetweenAttack = stats.meleeTimeBetweeAttacks;
         attackAOE = stats.meleeAttackAOE;
         speedWhileAttacking = stats.meleeSpeedWhileAttacking;
-        //atkSprite.enabled = false;
+        atkSprite.enabled = false;
     }
 
     public override void Attack()
     {
-        //atkSprite.enabled = true;
         agent.speed = speedWhileAttacking;
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bruiserAttackSwipe, this.transform.position);
 
@@ -42,7 +46,27 @@ public class MeleeEnemy : BaseEnemyClass
             }
         }
 
-        //atkSprite.enabled = false;
+        StartCoroutine(AttackAnimation());
+
+    }
+
+    IEnumerator AttackAnimation()
+    {
+        float timeElapsed = 0;
+        atkSprite.enabled = true;
+
+
+        while (timeElapsed < atkDuration)
+        {
+            atkSpritePos.Rotate(new Vector3(0, 0, atkSpeed) * Time.deltaTime);
+            timeElapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        atkSpritePos.rotation = Quaternion.Euler(0f, 0f, 0f);
+        atkSprite.enabled = false;
+
     }
 
 #if UNITY_EDITOR
