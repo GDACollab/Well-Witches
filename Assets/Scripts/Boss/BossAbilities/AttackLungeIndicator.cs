@@ -5,7 +5,7 @@ public class AttackLungeIndicator : MonoBehaviour
 {
     public Transform growEffect;
     public Collider2D collider;
-    [Range(0, 1)] public float size;
+    [Range(0, 2.5f)] public float size;
 
 
 

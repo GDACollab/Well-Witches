@@ -99,12 +99,12 @@ public class BossLunge : MonoBehaviour
         {
             if (attackIndicatorLunge != null)
             {
-                attackIndicatorLunge.size = Mathf.Lerp(0, 1, elapsedTime / warningDuration);
+                attackIndicatorLunge.size = Mathf.Lerp(0, 2.5f, elapsedTime / warningDuration);
             }
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        if (attackIndicatorLunge != null) attackIndicatorLunge.size = 1f;
+        if (attackIndicatorLunge != null) attackIndicatorLunge.size = 2.5f;
 
         // Stop following the player and dash towards the target position
         Vector3 dashDirection = (targetPosition - transform.position).normalized;
