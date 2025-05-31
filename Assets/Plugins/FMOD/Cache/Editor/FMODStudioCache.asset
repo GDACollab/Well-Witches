@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638834318810986307
+  lastModified: 638842866843400291
   FileSizes:
   - Name: Desktop
-    Value: 440768
+    Value: 472256
   Exists: 1
 --- !u!114 &-8521761290097603890
 MonoBehaviour:
@@ -35,10 +35,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638834318810946114
+  lastModified: 638842866842667032
   FileSizes:
   - Name: Desktop
-    Value: 2282
+    Value: 2330
   Exists: 1
 --- !u!114 &-8251773359720588267
 MonoBehaviour:
@@ -471,7 +471,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 156
+  Length: 2052
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,12 +519,13 @@ MonoBehaviour:
   - {fileID: -5277086564842164750}
   - {fileID: 3673406597657316061}
   - {fileID: -8251773359720588267}
+  - {fileID: 2994134125136313322}
   EditorParameters: []
   MasterBanks:
   - {fileID: 5263434110076588545}
   StringsBanks:
   - {fileID: -8521761290097603890}
-  cacheTime: 638834318810996319
+  cacheTime: 638842866944626339
   cacheVersion: 131846
 --- !u!114 &174403083517312095
 MonoBehaviour:
@@ -607,6 +608,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4000
+--- !u!114 &2994134125136313322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Gatherer Hurt
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Gatherer Hurt
+  Guid:
+    Data1: -985502953
+    Data2: 1105511985
+    Data3: -1317175391
+    Data4: 1665418200
+  Banks:
+  - {fileID: -9102702579352606222}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 638
 --- !u!114 &3660074126217822653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -703,7 +731,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638834318810922326
+  lastModified: 638842866944626339
   FileSizes:
   - Name: Desktop
     Value: 6849664
@@ -777,7 +805,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/TEST_BANK.bank
   Name: TEST_BANK
   StudioPath: bank:/TEST_BANK
-  lastModified: 638834318810996319
+  lastModified: 638833341114859332
   FileSizes:
   - Name: Desktop
     Value: 22272
@@ -797,7 +825,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638834318810932423
+  lastModified: 638842866842656958
   FileSizes:
   - Name: Desktop
     Value: 1378

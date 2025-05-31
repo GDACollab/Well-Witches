@@ -21,6 +21,7 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference flamingPumpkinYank { get; private set; }
     [field: SerializeField] public EventReference lazerFire { get; private set; }
     [field: SerializeField] public EventReference gathererDown { get; private set; }
+    [field: SerializeField] public EventReference gathererHurt{ get; private set; }
     [field: SerializeField] public EventReference wardenDown { get; private set; }
     [field: SerializeField] public EventReference tankAttackBash { get; private set; }
     [field: SerializeField] public EventReference bruiserAttackSwipe  { get; private set; }
