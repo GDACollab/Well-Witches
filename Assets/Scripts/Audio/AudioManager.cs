@@ -94,6 +94,14 @@ public class AudioManager : MonoBehaviour
             case "Hex":
                 currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.hexTalk);
                 break;
+            case "Parcella":
+                currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.ghostMailTalk);
+                break;
+            case "VampireKnight":
+                currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.bossTalk);
+                break;
+            default:
+                break;
         }
 
         currentCharacterTalk.start();
