@@ -19,7 +19,10 @@ public class Gatherer_Health : PlayerHealth
 		{
 			statsManager.GathererCurrentHealth = newHealth;
 			AudioManager.Instance.PlayPlayerHurt(player);
-			//print("gatherer took " + newHealth + " damage");
+			if (damage > 0)
+			{
+				print("gatherer took " + newHealth + " damage");
+			}
 		}
 		else if (newHealth <= 0 && statsManager.GathererCurrentHealth != 0)
 		{

@@ -76,7 +76,7 @@ public class AudioManager : MonoBehaviour
             currentCharacterTalk.release();
         }
 
-        //print("current mf talking: " + characterName);
+        print("current mf talking: " + characterName);
         switch(characterName)
         {
             case "Wysteria":
@@ -89,8 +89,10 @@ public class AudioManager : MonoBehaviour
                 currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.aloeTalk);
                 break;
             case "Vervain":
-                // TODO: swap to vervainTalk when its added
-                // currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.aloeTalk);
+                currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.vervainTalk);
+                break;
+            case "Hex":
+                currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.hexTalk);
                 break;
         }
 
