@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638842866843400291
+  lastModified: 638842936263586223
   FileSizes:
   - Name: Desktop
-    Value: 472256
+    Value: 578624
   Exists: 1
 --- !u!114 &-8521761290097603890
 MonoBehaviour:
@@ -35,10 +35,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638842866842667032
+  lastModified: 638842936262909771
   FileSizes:
   - Name: Desktop
-    Value: 2330
+    Value: 2674
   Exists: 1
 --- !u!114 &-8251773359720588267
 MonoBehaviour:
@@ -121,6 +121,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-6944459432451384658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Hex Talk
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Hex Talk
+  Guid:
+    Data1: 816498524
+    Data2: 1335714748
+    Data3: -752922983
+    Data4: 92409811
+  Banks:
+  - {fileID: -9102702579352606222}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &-5986695955604788538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +229,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 532
+--- !u!114 &-5393162974460439652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Warden Hurt
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Warden Hurt
+  Guid:
+    Data1: -1517853306
+    Data2: 1074874432
+    Data3: -1282667647
+    Data4: -1652523123
+  Banks:
+  - {fileID: -9102702579352606222}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 521
 --- !u!114 &-5277086564842164750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,10 +324,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Aloe Talk
   Guid:
-    Data1: -1788487653
-    Data2: 1241647647
-    Data3: -1476929655
-    Data4: -1683453773
+    Data1: 967525420
+    Data2: 1118526579
+    Data3: -2000900177
+    Data4: 900736119
   Banks:
   - {fileID: -9102702579352606222}
   IsStream: 0
@@ -309,7 +363,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1567
+  Length: 920
 --- !u!114 &-3875590088045855532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,12 +574,19 @@ MonoBehaviour:
   - {fileID: 3673406597657316061}
   - {fileID: -8251773359720588267}
   - {fileID: 2994134125136313322}
+  - {fileID: -5393162974460439652}
+  - {fileID: 6445523833551851702}
+  - {fileID: 1924488797328868120}
+  - {fileID: 3001477592855147115}
+  - {fileID: -6944459432451384658}
+  - {fileID: 184527009268416163}
+  - {fileID: 1851620195313161761}
   EditorParameters: []
   MasterBanks:
   - {fileID: 5263434110076588545}
   StringsBanks:
   - {fileID: -8521761290097603890}
-  cacheTime: 638842866944626339
+  cacheTime: 638842936263586223
   cacheVersion: 131846
 --- !u!114 &174403083517312095
 MonoBehaviour:
@@ -554,6 +615,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
+--- !u!114 &184527009268416163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Boss Talk
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Boss Talk
+  Guid:
+    Data1: 1209672628
+    Data2: 1138869326
+    Data3: -1230087750
+    Data4: 166090874
+  Banks:
+  - {fileID: -9102702579352606222}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2768
 --- !u!114 &285325028363470321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -608,6 +696,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4000
+--- !u!114 &1851620195313161761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Vervain Talk
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Vervain Talk
+  Guid:
+    Data1: -1165564210
+    Data2: 1187827039
+    Data3: 559233967
+    Data4: 1619154844
+  Banks:
+  - {fileID: -9102702579352606222}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &1924488797328868120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Ranged Attack Hit
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Ranged Attack Hit
+  Guid:
+    Data1: 1194708929
+    Data2: 1223680147
+    Data3: 1341046459
+    Data4: -1292977667
+  Banks:
+  - {fileID: -9102702579352606222}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
 --- !u!114 &2994134125136313322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -635,6 +777,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 638
+--- !u!114 &3001477592855147115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Tank Traversal
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Tank Traversal
+  Guid:
+    Data1: 227258838
+    Data2: 1312019937
+    Data3: -1334799943
+    Data4: -1598426000
+  Banks:
+  - {fileID: -9102702579352606222}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3052
 --- !u!114 &3660074126217822653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -825,7 +994,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638842866842656958
+  lastModified: 638842936262899710
   FileSizes:
   - Name: Desktop
     Value: 1378
@@ -857,6 +1026,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1880
+--- !u!114 &6445523833551851702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Ranged Attack Fire
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Ranged Attack Fire
+  Guid:
+    Data1: -660106293
+    Data2: 1085827768
+    Data3: -1644108666
+    Data4: -425065384
+  Banks:
+  - {fileID: -9102702579352606222}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
 --- !u!114 &6585464358640477673
 MonoBehaviour:
   m_ObjectHideFlags: 0

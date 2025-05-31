@@ -59,6 +59,8 @@ public class RangedEnemy : BaseEnemyClass
                 projectile.SetActive(true);
                 projectile.GetComponent<EnemyProjectile>().
                     InitializeProjectile(currentTarget.transform.position, offset, projectileSpeed, projectileLifetime, projectileDamage, AOESize, AOELifetime, AOEDamage);
+
+                AudioManager.Instance.PlayOneShot(FMODEvents.Instance.rangedAttackFire, this.transform.position);
             }
         }
     }

@@ -64,9 +64,11 @@ public class EnemyProjectile : MonoBehaviour
 			{
                 case "Warden":
                     EventManager.instance.playerEvents.PlayerDamage(_damage, "Warden");
+					AudioManager.Instance.PlayOneShot(FMODEvents.Instance.rangedAttackHit, this.transform.position);
                     break;
                 case "Gatherer":
                     EventManager.instance.playerEvents.PlayerDamage(_damage, "Gatherer");
+                    AudioManager.Instance.PlayOneShot(FMODEvents.Instance.rangedAttackHit, this.transform.position);
                     break;
 				default:
 					break;

@@ -11,6 +11,8 @@ public class AudioManager : MonoBehaviour
     private List<EventInstance> eventInstances;
     private EventInstance currentBGM;
     private EventInstance currentCharacterTalk;
+    private EventInstance gathererHurt;
+    private EventInstance wardenHurt;
 
     private static AudioManager _instance;
     public static AudioManager Instance { get { return _instance; } }
@@ -93,6 +95,41 @@ public class AudioManager : MonoBehaviour
         }
 
         currentCharacterTalk.start();
+    }
+
+    public void PlayPlayerHurt(string player)
+    {
+        if (!gathererHurt.isValid())
+        {
+            gathererHurt = CreateEventInstance(FMODEvents.Instance.gathererHurt);
+        }
+        if (!wardenHurt.isValid())
+        {
+            wardenHurt = CreateEventInstance(FMODEvents.Instance.wardenHurt);
+        }
+        if (player != null) 
+        { 
+            if (player.ToLower() == "gatherer")
+            {
+                PLAYBACK_STATE playbackState;
+                gathererHurt.getPlaybackState(out playbackState);
+
+                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    gathererHurt.start();
+                }
+            } 
+            else
+            {
+                PLAYBACK_STATE playbackState;
+                wardenHurt.getPlaybackState(out playbackState);
+
+                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    wardenHurt.start();
+                }
+            }
+        }
     }
 
     public void CleanUp()

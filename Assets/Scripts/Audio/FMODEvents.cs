@@ -23,13 +23,20 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference gathererDown { get; private set; }
     [field: SerializeField] public EventReference gathererHurt{ get; private set; }
     [field: SerializeField] public EventReference wardenDown { get; private set; }
+    [field: SerializeField] public EventReference wardenHurt{ get; private set; }
     [field: SerializeField] public EventReference tankAttackBash { get; private set; }
+    [field: SerializeField] public EventReference tankTraverse { get; private set; }
     [field: SerializeField] public EventReference bruiserAttackSwipe  { get; private set; }
+    [field: SerializeField] public EventReference rangedAttackFire  { get; private set; }
+    [field: SerializeField] public EventReference rangedAttackHit  { get; private set; }
     [field: SerializeField] public EventReference bossPhase1Attack1  { get; private set; }
     [field: SerializeField] public EventReference itemPickUp  { get; private set; }
     [field: SerializeField] public EventReference aloeTalk  { get; private set; }
+    [field: SerializeField] public EventReference vervainTalk  { get; private set; }
     [field: SerializeField] public EventReference diverTalk  { get; private set; }
     [field: SerializeField] public EventReference ghostMailTalk  { get; private set; }
+    [field: SerializeField] public EventReference bossTalk  { get; private set; }
+    [field: SerializeField] public EventReference hexTalk  { get; private set; }
     [field: SerializeField] public EventReference talkPrompt  { get; private set; }
     [field: SerializeField] public EventReference healthTransfer  { get; private set; }
 
