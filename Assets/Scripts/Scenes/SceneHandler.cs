@@ -2,6 +2,7 @@ using FMOD.Studio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -36,6 +37,9 @@ public class SceneHandler : MonoBehaviour
     [SerializeField] private float waitTime = 2f;
     [SerializeField] float fadeInTime = 1f;
     [SerializeField] float fadeOutTime = 1f;
+    [Header("Helper Text")]
+    [SerializeField] private LoadingScreenTextSO loadingScreenTextSO;
+    [SerializeField] private TextMeshProUGUI helpText;
     
     
     private void Awake(){
@@ -331,6 +335,8 @@ public class SceneHandler : MonoBehaviour
 
         yield return FadeToBlack(fadeInTime);
         loadingScreen.SetActive(true);
+        int randomTextNum = UnityEngine.Random.Range(0, loadingScreenTextSO.loadingTexts.Length);
+        helpText.text = loadingScreenTextSO.loadingTexts[randomTextNum];
         yield return FadeFromBlack(fadeOutTime);
         //animation will be done via art
         Time.timeScale = 0;
