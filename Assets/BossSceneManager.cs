@@ -12,9 +12,13 @@ public class BossSceneManager : MonoBehaviour
     public GameObject projectile_prefab;
     private bool boss_half_health = false;
     private float num_phase2_projectiles = 3f;
-    private float time_between_projectiles = 0.3f;
     public Slider progress;
     public GameObject boss;
+
+    public float time_between_rain = 5f;
+    public float time_between_raindrops = 0.3f;
+    public float final_stand_threshold = 0.15f;
+    public float projectile_exponent_scalar = 2f;
 
     private BossEnemy boss_script_component;
     private float boss_max_hp;
@@ -22,7 +26,7 @@ public class BossSceneManager : MonoBehaviour
 
     private int[] attack_range_x = {-16, 16};
     private int[] attack_range_y= {-7, 7};
-
+    private bool can_launch_p2_attacks = true;
 
 
     private int bushes_collected = 0;
@@ -128,18 +132,22 @@ public class BossSceneManager : MonoBehaviour
                 int randx = Random.Range(attack_range_x[0], attack_range_x[1]); 
                 int randy = Random.Range(attack_range_y[0], attack_range_y[1]); 
                 instance_projectiles(randx, randy);
-                yield return new WaitForSeconds(time_between_projectiles);
+                yield return new WaitForSeconds(time_between_raindrops);
 
             }
         }
-        yield return new WaitForSeconds(5f);
+
+
         // during final stand (15% health, projectiles exponentially increase drop rate on screen)
-        if (boss_current_hp <= boss_max_hp * 0.15){
-            num_phase2_projectiles *= 1.5f;
-            if (time_between_projectiles > 0.05f){
-                time_between_projectiles -= 0.05f;
+        if (boss_current_hp <= boss_max_hp * final_stand_threshold){
+            num_phase2_projectiles *= projectile_exponent_scalar;
+            if (time_between_raindrops > 0.05f){
+                time_between_raindrops -= 0.05f;
+
             }
         }
+        // Wait 5 seconds and call the function again
+        yield return new WaitForSeconds(time_between_rain);
         StartCoroutine(spawn_projectiles_at_half_health());
     }
 
