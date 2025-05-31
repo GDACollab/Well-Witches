@@ -10,7 +10,7 @@ VAR currentSpeaker = "Dullahan"
 VAR CollectHeadQuestID = "DullahanMultiStepQuest"
 
 // quest states (quest id + "State" for variable name)
-VAR CollectHeadQuestState = "REQUIREMENTS_NOT_MET"
+VAR CollectHeadQuestState = "CAN_START"
 -> Dialogue
 === Dialogue ===
 { CollectHeadQuestState :
