@@ -37,8 +37,13 @@ public class DialogueTrigger : MonoBehaviour
     {
         EventManager.instance.questEvents.onQuestStateChange += QuestStateChange;
         SceneManager.activeSceneChanged += OnSceneChange;
-        controls.Gameplay_Gatherer.Interact.performed += OnGathererInteract;
     }
+
+    private void Start()
+    {
+        controls.Gameplay_Gatherer.Interact.performed += OnGathererInteract; 
+    }
+
 
     private void OnSceneChange(Scene before, Scene current)
     {
