@@ -10,6 +10,7 @@ public class CollectPumpkinQuest : QuestStep
     [SerializeField] public int pumpkinToCollect = 5;
     [SerializeField] public GameObject questItem;
 
+    private void SetQuestString() => SetQuestString($"Collect <color=#76FEC0>[{pumpkinCollected}/{pumpkinToCollect}] Pumpkins</color> for <color=#53141F>Dullhan</color>");
 
     private void OnEnable()
     {
@@ -25,8 +26,7 @@ public class CollectPumpkinQuest : QuestStep
     {
         GameManager.instance.activeQuestPrefab = questItem;
         GameManager.instance.activeQuestItemCount = pumpkinToCollect;
-        questDescription.color = Color.white;
-        questDescription.text = $"- (0/{pumpkinToCollect}) Pumpkin Collected";
+        SetQuestString();
     }
 
     private void PumpkinCollected()
@@ -34,12 +34,12 @@ public class CollectPumpkinQuest : QuestStep
         if (pumpkinCollected < pumpkinToCollect)
         {
             pumpkinCollected++;
-            questDescription.text = $"- ({pumpkinCollected}/{pumpkinToCollect}) Pumpkin Collected";
+            SetQuestString();
         }
 
         if (pumpkinCollected >= pumpkinToCollect)
         {
-            questDescription.color = Color.green;
+            SetQuestString("<color=green>Success!<color> Report back to <color=#53141F>Dullhan</color>");
             FinishQuestStep();
         }
     }
