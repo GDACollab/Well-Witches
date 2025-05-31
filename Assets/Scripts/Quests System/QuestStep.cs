@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public abstract class QuestStep : MonoBehaviour
 {
     private bool isFinished = false;
     private string questID;
-    // Refrence to the GameObject that contains the textmeshpro for the UI
-    public TextMeshProUGUI questDescription;
-
-    public void InitializeQuestStep(string questID, TextMeshProUGUI questDescription)
+    
+    protected void SetQuestString(string description)
     {
-        this.questDescription = questDescription;
+        QuestManager.Instance.questDisplay = $"<size=120%><color=#FEE17A>Quest:</color></size> {description}";
+    }
+
+    public void InitializeQuestStep(string questID)
+    {
         this.questID = questID; 
     }
     protected void FinishQuestStep()
