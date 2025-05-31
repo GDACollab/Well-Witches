@@ -69,7 +69,6 @@ public class SceneHandler : MonoBehaviour
 
     public IEnumerator FadeFromBlack(float fadeInTime)
     {
-        Time.timeScale = 0f;
         fadeUIImage.gameObject.SetActive(true);
 
         yield return new WaitForSecondsRealtime(0.1f);
@@ -85,12 +84,10 @@ public class SceneHandler : MonoBehaviour
             yield return null;
         }
         fadeUIImage.gameObject.SetActive(false);
-        Time.timeScale = 1f;
     }
 
     public IEnumerator FadeToBlack(float fadeOutTime)
     {
-        Time.timeScale = 0f;
         Color objectColor = fadeUIImage.color; //Gets Object Color and Modifies values
         objectColor.a = 0;
         fadeUIImage.color = objectColor;
@@ -103,7 +100,6 @@ public class SceneHandler : MonoBehaviour
             fadeUIImage.color = objectColor;
             yield return null;
         }
-        Time.timeScale = 1f;
         yield return new WaitForSecondsRealtime(0.1f);
     }
 
@@ -285,8 +281,7 @@ public class SceneHandler : MonoBehaviour
     //show image, wait x seconds, load scene
     private IEnumerator LoadingScreen(int sceneName)
     {
-        //show picture, backup incase some scene doesn't have it
-        
+        Time.timeScale = 0;
         yield return FadeToBlack(fadeInTime);
         SceneManager.LoadScene(LoadingScreenIndex);
         loadingScreen.SetActive(true);
@@ -305,6 +300,7 @@ public class SceneHandler : MonoBehaviour
         loadingScreen.SetActive(false);
         newscene.allowSceneActivation = true;
         yield return FadeFromBlack(fadeOutTime);
+        Time.timeScale = 1;
     }
     
     private IEnumerator CutsceneLoadingScreen(int sceneName)
@@ -327,14 +323,12 @@ public class SceneHandler : MonoBehaviour
     //show image, wait x seconds, load scene
     private IEnumerator GameplayLoadingScreen(int sceneName)
     {
-        //show picture, backup incase some scene doesn't have it
-
+        Time.timeScale = 0;
         yield return FadeToBlack(fadeInTime);
         loadingScreen.SetActive(true);
         yield return FadeFromBlack(fadeOutTime);
-        //animation will be done via art
-        Time.timeScale = 0;
         SceneManager.LoadScene(sceneName);
+        WardenAbilityManager.Controls.Ui_Navigate.Disable();
 
         while (!GenerationEnded)
         {
@@ -344,6 +338,7 @@ public class SceneHandler : MonoBehaviour
         yield return FadeToBlack(fadeInTime);
         loadingScreen.SetActive(false);
         yield return FadeFromBlack(fadeOutTime);
+        WardenAbilityManager.Controls.Ui_Navigate.Enable();
         Time.timeScale = 1;
         GenerationEnded = false;
     }

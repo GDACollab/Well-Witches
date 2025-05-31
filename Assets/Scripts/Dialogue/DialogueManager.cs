@@ -54,8 +54,6 @@ public class DialogueManager : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.activeSceneChanged += OnSceneChange;
-        controls.Ui_Navigate.Enable();
-        controls.Ui_Navigate.Submit.performed += OnGathererInteract;
     }
 
     private void OnDisable()
@@ -77,6 +75,8 @@ public class DialogueManager : MonoBehaviour
     private void Start()
     {
         init();
+        controls.Ui_Navigate.Enable();
+        controls.Ui_Navigate.Submit.performed += OnGathererInteract;
     }
 
     private void init()
