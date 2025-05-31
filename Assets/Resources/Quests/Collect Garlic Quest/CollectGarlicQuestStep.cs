@@ -14,6 +14,7 @@ public class CollectGarlicQuestStep : QuestStep
 
     private int collectedThisRun = 0;
     
+    private void SetQuestString() => SetQuestString($"Collect <color=#76FEC0>[{garlicCollected}/{garlicToCollect}] Garlic</color> for <color=#B894D3>Wisteria</color>");
 
     private void OnEnable()
     {
@@ -31,8 +32,7 @@ public class CollectGarlicQuestStep : QuestStep
     {
         GameManager.instance.activeQuestPrefab = questItem;
         GameManager.instance.activeQuestItemCount = garlicToCollect;
-        questDescription.color = Color.white;
-        questDescription.text = $"- (0/{garlicToCollect}) Garlic Collected";
+        SetQuestString();
     }
 
 
@@ -46,7 +46,7 @@ public class CollectGarlicQuestStep : QuestStep
                 // this should just be your code for checking whether the quest items were all done collecting/just move the actual finish code/check here
                 if (garlicCollected >= garlicToCollect)
                 {
-                    questDescription.color = Color.green;
+                    SetQuestString("<color=green>Success!<color> Report back to <color=#B894D3>Wisteria</color>");
                     FinishQuestStep();
                 }
             }
@@ -54,7 +54,7 @@ public class CollectGarlicQuestStep : QuestStep
             {
                 // subtract neccesary garlic
                 garlicCollected -= collectedThisRun;
-                questDescription.text = $"- ({garlicCollected}/{garlicToCollect}) Garlic Collected";
+                SetQuestString();
 
                 // tell parcella how many items to return
                 EventManager.instance.questEvents.LoadItemsOnDeath(questItem,collectedThisRun);
@@ -75,7 +75,7 @@ public class CollectGarlicQuestStep : QuestStep
         {
             garlicCollected++;
             collectedThisRun++;
-            questDescription.text = $"- ({garlicCollected}/{garlicToCollect}) Garlic Collected";
+            SetQuestString();
         }
 
         //if (garlicCollected >= garlicToCollect)
