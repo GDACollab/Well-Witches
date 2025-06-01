@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{90365f6f-b91a-41b5-ba7c-2413e4e943c1}">
 		<property name="name">
-			<value>Bruiser Attack AOE</value>
+			<value>Bruiser Attack Swipe</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -39,7 +39,7 @@
 	</object>
 	<object class="MasterTrack" id="{7b5f2a8d-5243-4763-bc17-6245e3395a63}">
 		<relationship name="modules">
-			<destination>{48a836ee-545e-465b-8e75-4ef38fdf0179}</destination>
+			<destination>{1ed88a60-eba3-4d86-87d3-0e970c2ba1f5}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{38c5bd04-dcb4-4207-8b4b-f4b46ffec068}</destination>
@@ -60,12 +60,12 @@
 	<object class="MarkerTrack" id="{d15cb613-59e8-4efb-aa8d-a07fb6bb63b1}" />
 	<object class="Timeline" id="{894d68c0-3a46-4ba5-bde2-0dcb29f64873}">
 		<relationship name="modules">
-			<destination>{48a836ee-545e-465b-8e75-4ef38fdf0179}</destination>
+			<destination>{1ed88a60-eba3-4d86-87d3-0e970c2ba1f5}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{38c5bd04-dcb4-4207-8b4b-f4b46ffec068}">
 		<property name="volume">
-			<value>2</value>
+			<value>10</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{15f1c3c9-b1d3-454a-a02d-72f26bac336a}</destination>
@@ -77,12 +77,12 @@
 			<destination>{16d4444b-3f69-45a2-97a6-7c676445fb03}</destination>
 		</relationship>
 	</object>
-	<object class="SingleSound" id="{48a836ee-545e-465b-8e75-4ef38fdf0179}">
+	<object class="SingleSound" id="{1ed88a60-eba3-4d86-87d3-0e970c2ba1f5}">
 		<property name="length">
-			<value>0.5625</value>
+			<value>1.9663492063492063</value>
 		</property>
 		<relationship name="audioFile">
-			<destination>{5048f8bf-8174-45f1-b391-e83f4b59dcfe}</destination>
+			<destination>{5d418b3c-4ca2-431c-ab9e-9ce3e6704329}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{2a82a0cf-c3ca-4c9e-a3f9-f582baba4ccd}">
