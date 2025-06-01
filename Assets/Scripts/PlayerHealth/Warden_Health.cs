@@ -16,7 +16,11 @@ public class Warden_Health : PlayerHealth
 
 		float newHealth = statsManager.WardenCurrentHealth - damage;
 
-		if (newHealth > 0) statsManager.WardenCurrentHealth = newHealth;
+		if (newHealth > 0)
+		{
+			statsManager.WardenCurrentHealth = newHealth;
+            AudioManager.Instance.PlayPlayerHurt(player);
+        }
 		else if (newHealth <= 0 && statsManager.WardenCurrentHealth != 0) 
 		{
 			statsManager.WardenCurrentHealth = 0;
