@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638843378355182436
+  lastModified: 638843388980155756
   FileSizes:
   - Name: Desktop
-    Value: 594272
+    Value: 660928
   Exists: 1
 --- !u!114 &-8521761290097603890
 MonoBehaviour:
@@ -35,10 +35,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638843376726976423
+  lastModified: 638843388978893875
   FileSizes:
   - Name: Desktop
-    Value: 2672
+    Value: 2710
   Exists: 1
 --- !u!114 &-8251773359720588267
 MonoBehaviour:
@@ -174,7 +174,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2000
+  Length: 1144
 --- !u!114 &-5753626238476554844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -628,19 +628,20 @@ MonoBehaviour:
   - {fileID: -8251773359720588267}
   - {fileID: -1968615318661074367}
   - {fileID: 1088783457550188222}
-  - {fileID: 821178018293777735}
   - {fileID: 2007617523160905476}
   - {fileID: -1962208275288690756}
   - {fileID: 949535924798526835}
   - {fileID: -4472916292138326515}
   - {fileID: 6385256328012515842}
   - {fileID: 6731584607286090005}
+  - {fileID: 8867014780024736117}
+  - {fileID: 6905920477921729735}
   EditorParameters: []
   MasterBanks:
   - {fileID: 5263434110076588545}
   StringsBanks:
   - {fileID: -8521761290097603890}
-  cacheTime: 638843378355182436
+  cacheTime: 638843388980155756
   cacheVersion: 131846
 --- !u!114 &174403083517312095
 MonoBehaviour:
@@ -723,33 +724,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 138352
---- !u!114 &821178018293777735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Bruiser Attack AOE
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Bruiser Attack AOE
-  Guid:
-    Data1: -1875484817
-    Data2: 1102428442
-    Data3: 321158330
-    Data4: -1052513820
-  Banks:
-  - {fileID: -9102702579352606222}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1966
 --- !u!114 &949535924798526835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -911,7 +885,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 521
+  Length: 337
 --- !u!114 &2315590678485178784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1183,7 +1157,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638842936262899710
+  lastModified: 638843388978883894
   FileSizes:
   - Name: Desktop
     Value: 1378
@@ -1323,6 +1297,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3052
+--- !u!114 &6905920477921729735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Boss Lunge
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Boss Lunge
+  Guid:
+    Data1: 1805053354
+    Data2: 1235627849
+    Data3: 2147475380
+    Data4: -483066726
+  Banks:
+  - {fileID: -9102702579352606222}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4677
 --- !u!114 &8002587195082537429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1377,3 +1378,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 277113
+--- !u!114 &8867014780024736117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Bruiser Attack Swipe
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Bruiser Attack Swipe
+  Guid:
+    Data1: -1875484817
+    Data2: 1102428442
+    Data3: 321158330
+    Data4: -1052513820
+  Banks:
+  - {fileID: -9102702579352606222}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1966
