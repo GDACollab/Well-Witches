@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine;
+using UnityEditor;
 
 public class AggroState : State
 {
@@ -35,6 +36,7 @@ public class AggroState : State
 
     public override void OnEnter()
     {
+        if (!agent.isOnNavMesh) { enemy.Die(); return; }
         agent.isStopped = false;
         agent.speed = enemy.moveSpeed;
     }
@@ -44,8 +46,8 @@ public class AggroState : State
         if (enemy && !enemy.isStunned)
         {
             enemy.TargetClosestPlayer();
-            try { agent.SetDestination(enemy.currentTarget.position); } catch { enemy.Die(); }
         }
+        agent.SetDestination(enemy.currentTarget.position);
     }
 
     public override void OnExit()
