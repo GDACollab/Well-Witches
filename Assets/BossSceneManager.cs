@@ -152,7 +152,7 @@ public class BossSceneManager : MonoBehaviour
             num_phase2_projectiles *= projectile_exponent_scalar;
             if (time_between_raindrops > 0.05f){
                 time_between_raindrops -= 0.05f;
-
+            time_between_rain = 2.5f;
             }
         }
         // Wait 5 seconds and call the function again
