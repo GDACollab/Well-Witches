@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,8 +19,7 @@ public class ChangeSceneTrigger : MonoBehaviour
 
     private bool playerInTrigger;
 
-
-    [SerializeField] private BossWell bossWell;
+    private bool hasTriggered = false;
 
     private Controls controls => GathererAbilityManager.Controls;
     
@@ -52,13 +53,14 @@ public class ChangeSceneTrigger : MonoBehaviour
 
     private void OnGathererInteract(InputAction.CallbackContext context)
     {
-        if (playerInTrigger)
+        if (playerInTrigger && !hasTriggered)
         {
+            hasTriggered = true;
             if (sceneSelection == SceneSelection.GameplayScene)
             {
                 SceneHandler.Instance.ToGameplayScene();
             }
-            else if (sceneSelection == SceneSelection.BossScene && bossWell.canEnter)
+            else if (sceneSelection == SceneSelection.BossScene)
             {
                 SceneHandler.Instance.ToBossScene();
             }
