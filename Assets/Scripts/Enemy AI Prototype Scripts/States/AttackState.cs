@@ -9,6 +9,7 @@ public class AttackState : State
     private StateMachine stateMachine;
     private BaseEnemyClass enemy;
     private NavMeshAgent agent;
+    public Animator animator;
 
     [Header("Debug")]
     [SerializeField] private float attackTime;
@@ -27,6 +28,10 @@ public class AttackState : State
     {
         attackTime = Time.time - enemy.timeBetweenAttack;
         agent.speed = 0f;
+        if (animator != null)
+        {
+            animator.SetBool("Attacking", true);
+        }
     }
 
     public override void OnUpdate()
@@ -44,6 +49,10 @@ public class AttackState : State
     public override void OnExit()
     {
         agent.speed = enemy.moveSpeed;
+        if (animator != null)
+        {
+            animator.SetBool("Attacking", false);
+        }
     }
 
     public override List<Transition> GetTransitions()
