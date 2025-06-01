@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638843388980155756
+  lastModified: 638843394621660194
   FileSizes:
   - Name: Desktop
-    Value: 660928
+    Value: 741440
   Exists: 1
 --- !u!114 &-8521761290097603890
 MonoBehaviour:
@@ -35,11 +35,38 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638843388978893875
+  lastModified: 638843394620128794
   FileSizes:
   - Name: Desktop
-    Value: 2710
+    Value: 2754
   Exists: 1
+--- !u!114 &-8467722182167742480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Boss Phase 1 Attack 2
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Boss Phase 1 Attack 2
+  Guid:
+    Data1: 192894201
+    Data2: 1325228571
+    Data3: -891893611
+    Data4: 428191987
+  Banks:
+  - {fileID: -9102702579352606222}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6740
 --- !u!114 &-8251773359720588267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -636,12 +663,13 @@ MonoBehaviour:
   - {fileID: 6731584607286090005}
   - {fileID: 8867014780024736117}
   - {fileID: 6905920477921729735}
+  - {fileID: -8467722182167742480}
   EditorParameters: []
   MasterBanks:
   - {fileID: 5263434110076588545}
   StringsBanks:
   - {fileID: -8521761290097603890}
-  cacheTime: 638843388980155756
+  cacheTime: 638843394621660194
   cacheVersion: 131846
 --- !u!114 &174403083517312095
 MonoBehaviour:
@@ -1157,7 +1185,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638843388978883894
+  lastModified: 638843394620113684
   FileSizes:
   - Name: Desktop
     Value: 1378
