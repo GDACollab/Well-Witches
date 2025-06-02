@@ -31,8 +31,22 @@ public class AbilitySelectManager : MonoBehaviour
     }
 
     //Toggles ui on gatherer interact
-    public void OnAbilityMenuOpen()
+    public void OnAbilityMenuOpen() => StartCoroutine(OnAbilityMenuToggle());
+    public IEnumerator OnAbilityMenuToggle()
     {
+        yield return new WaitForSeconds(0.21f); // Dialogue manager enables controls after 0.2 seconds so we wait slightly longer
+        if (abilityUIDisabler.activeSelf)
+        {
+            GathererAbilityManager.Controls.Gameplay_Gatherer.Enable();
+            WardenAbilityManager.Controls.Gameplay_Warden.Enable();
+            WardenAbilityManager.Controls.Ui_Navigate.Enable();
+        }
+        else
+        {
+            GathererAbilityManager.Controls.Gameplay_Gatherer.Disable();
+            WardenAbilityManager.Controls.Gameplay_Warden.Disable();
+            WardenAbilityManager.Controls.Ui_Navigate.Disable();
+        }
         abilityUIDisabler.SetActive(!abilityUIDisabler.activeSelf);
     }
 

@@ -39,7 +39,7 @@ public class CollectPumpkinQuest : QuestStep
 
         if (pumpkinCollected >= pumpkinToCollect)
         {
-            SetQuestString("<color=green>Success!<color> Report back to <color=#53141F>Dullhan</color>");
+            SetQuestString("<color=green>Success!</color> Report back to <color=#53141F>Dullhan</color>");
             FinishQuestStep();
         }
     }
