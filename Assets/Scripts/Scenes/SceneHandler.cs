@@ -151,6 +151,11 @@ public class SceneHandler : MonoBehaviour
         else if (index == OpenCutsceneIndex) {
 
         }
+        //From Ending Cutscene Scene
+        else if (index == EndingCutsceneIndex)
+        {
+
+        }
         // Unsupported Scene
         else {
             Debug.Log("Transitions from the current scene, " + currentScene.name + " are not currently supported");
@@ -185,7 +190,12 @@ public class SceneHandler : MonoBehaviour
         // From Open Cutscene Scene
         else if (index == OpenCutsceneIndex) {
 
-        } 
+        }
+        //From Ending Cutscene Scene
+        else if (index == EndingCutsceneIndex)
+        {
+
+        }
         else if(index == BossSceneIndex){
             
         }

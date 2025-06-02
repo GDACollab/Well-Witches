@@ -38,10 +38,11 @@ public class CutsceneDirector : MonoBehaviour
     }
 
     public void EndCutscene() {
+        //Debug.Log(endingCutscene + " ending cutscene ");
         if (endingCutscene)
         {
-            Debug.Log("Should transition to start menu!");
-            SceneHandler.Instance.ToHubScene();
+            //Debug.Log("Should transition to start menu!");
+            SceneHandler.Instance.ToMainMenuScene();
         }
         else
         {
