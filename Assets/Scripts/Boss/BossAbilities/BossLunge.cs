@@ -111,6 +111,8 @@ public class BossLunge : MonoBehaviour
         float dashDistance = Vector3.Distance(transform.position, targetPosition);
         float dashSpeed = LungeSpeed;
 
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bossLunge, this.transform.position);
+
         float dashTime = dashDistance / dashSpeed;
         float dashElapsedTime = 0f;
 

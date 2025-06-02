@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using FMODUnity;
+using FMOD.Studio;
 
 public class Gatherer_Interact : MonoBehaviour
 {
@@ -21,6 +23,7 @@ public class Gatherer_Interact : MonoBehaviour
 
     private ItemDispenser specialBush;
     private BossBush bossBush;
+    private EventInstance bushInteractSFX;
     void OnInteract(InputValue iv)   // called by the Player Input component
     {
         
@@ -91,6 +94,8 @@ public class Gatherer_Interact : MonoBehaviour
     void StartAnimation(Vector3 cPos)
     {
         animator.SetTrigger("Gather");
+        bushInteractSFX = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.interactBush);
+        bushInteractSFX.start();
         animator.SetBool("isGathering", true);
         playerCollider.excludeLayers = 0;
         transform.position = cPos;
@@ -99,6 +104,8 @@ public class Gatherer_Interact : MonoBehaviour
     void EndAnimation()
     {
         animator.SetBool("isGathering", false);
+        bushInteractSFX.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        bushInteractSFX.release();
         playerCollider.excludeLayers = new LayerMask();
         transform.position = oldPos;
     }

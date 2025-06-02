@@ -2280,10 +2280,6 @@ PrefabInstance:
       propertyPath: gathererRadiusCircle
       value: 
       objectReference: {fileID: 1088075898}
-    - target: {fileID: 3046167562820563143, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
-      propertyPath: <NumHitsRequired>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3424275855618714540, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: m_Name
       value: Warden
@@ -2415,6 +2411,8 @@ MonoBehaviour:
   waitTime: 2
   fadeInTime: 1
   fadeOutTime: 1
+  loadingScreenTextSO: {fileID: 0}
+  helpText: {fileID: 0}
 --- !u!1001 &1426906303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2907,8 +2905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8a838599c0e7a4b8f1731f0628484f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questDisplay: {fileID: 0}
-  questDescription: {fileID: 0}
+  questDisplay: 
 --- !u!1 &1766624479
 GameObject:
   m_ObjectHideFlags: 0
