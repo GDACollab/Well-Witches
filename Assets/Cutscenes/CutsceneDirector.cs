@@ -41,6 +41,7 @@ public class CutsceneDirector : MonoBehaviour
         if (endingCutscene)
         {
             Debug.Log("Should transition to start menu!");
+            SceneHandler.Instance.ToHubScene();
         }
         else
         {

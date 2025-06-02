@@ -1979,7 +1979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
-  m_Time: 51.833333333333286
+  m_Time: 51.85
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 7ed462f249f7c0547a8ad185371e1429, type: 2}
@@ -15128,6 +15128,22 @@ MonoBehaviour:
   m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_ApplyOffsets: 0
+--- !u!114 &-4109548957855501042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  m_Time: 51.81666666666667
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 05ffa93faac39ae4895cbdbadbef4a2e, type: 2}
 --- !u!114 &-4082075051254093043
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26751,7 +26767,7 @@ MonoBehaviour:
     m_Start: 51.383333333333276
     m_ClipIn: 0
     m_Asset: {fileID: 7322568489043668924}
-    m_Duration: 0.46666666666666856
+    m_Duration: 0.45000000000000995
     m_TimeScale: 1
     m_ParentTrack: {fileID: 1513699154047151399}
     m_EaseInDuration: 0
@@ -26783,6 +26799,7 @@ MonoBehaviour:
   m_Markers:
     m_Objects:
     - {fileID: -8095890124686756970}
+    - {fileID: -4109548957855501042}
   m_InfiniteClipPreExtrapolation: 0
   m_InfiniteClipPostExtrapolation: 0
   m_InfiniteClipOffsetPosition: {x: 0, y: 0, z: 0}
@@ -38015,14 +38032,14 @@ MonoBehaviour:
     m_Recordable: 0
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 0
-    m_PostExtrapolationTime: 1.9999999999999964
+    m_PostExtrapolationTime: 2.466666666666665
     m_PreExtrapolationTime: 29.583333333333332
     m_DisplayName: CleanUp
   - m_Version: 1
-    m_Start: 32.08333333333333
+    m_Start: 32.55
     m_ClipIn: 0
-    m_Asset: {fileID: 542931033519592678}
-    m_Duration: 0.46666666666666856
+    m_Asset: {fileID: -5239232760509378940}
+    m_Duration: 1
     m_TimeScale: 1
     m_ParentTrack: {fileID: 6357963753636368748}
     m_EaseInDuration: 0
@@ -38037,7 +38054,25 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -38050,7 +38085,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: Infinity
     m_PreExtrapolationTime: 0
-    m_DisplayName: text 2
+    m_DisplayName: image 3
   m_Markers:
     m_Objects:
     - {fileID: -2094227466062644487}
@@ -41830,14 +41865,14 @@ MonoBehaviour:
     m_Recordable: 0
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 0
-    m_PostExtrapolationTime: 2.466666666666665
+    m_PostExtrapolationTime: 1.9999999999999964
     m_PreExtrapolationTime: 29.583333333333332
     m_DisplayName: CleanUp
   - m_Version: 1
-    m_Start: 32.55
+    m_Start: 32.08333333333333
     m_ClipIn: 0
-    m_Asset: {fileID: -5239232760509378940}
-    m_Duration: 1
+    m_Asset: {fileID: 542931033519592678}
+    m_Duration: 0.46666666666666856
     m_TimeScale: 1
     m_ParentTrack: {fileID: 8178235553810841398}
     m_EaseInDuration: 0
@@ -41852,25 +41887,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -41883,7 +41900,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: Infinity
     m_PreExtrapolationTime: 0
-    m_DisplayName: image 3
+    m_DisplayName: text 2
   m_Markers:
     m_Objects: []
   m_InfiniteClipPreExtrapolation: 0
