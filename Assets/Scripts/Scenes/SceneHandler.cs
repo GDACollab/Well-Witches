@@ -28,6 +28,8 @@ public class SceneHandler : MonoBehaviour
     private int OpenCutsceneIndex = 5;
     [SerializeField]
     private int LoadingScreenIndex = 6;
+    [SerializeField]
+    private int EndingCutsceneIndex = 6;
 
     [Header("Transition Screen")]
     [Tooltip("Image for loading screen")]
@@ -272,6 +274,20 @@ public class SceneHandler : MonoBehaviour
         AudioManager.Instance.CleanUp();
         AudioManager.Instance.PlayOST(FMODEvents.Instance.lobbyBGM);
     }
+
+    public void ToEndingCutscene()
+    {
+
+        Scene currentScene = SceneManager.GetActiveScene();
+        int index = currentScene.buildIndex;
+
+        //SceneManager.LoadScene(HubSceneIndex);
+        StartCoroutine(CutsceneLoadingScreen(EndingCutsceneIndex));
+
+        AudioManager.Instance.CleanUp();
+        AudioManager.Instance.PlayOST(FMODEvents.Instance.lobbyBGM);
+    }
+
     public void ToBossScene(){
         Scene currentScene = SceneManager.GetActiveScene();
         int index = currentScene.buildIndex;
