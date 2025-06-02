@@ -11,7 +11,6 @@ public class StateMachine : MonoBehaviour
         BaseEnemyClass rangedEnemy = GetComponentInParent<RangedEnemy>();
         BaseEnemyClass tankEnemy = GetComponentInParent<TankEnemy>();
         enemy = GetComponent<BaseEnemyClass>();
-        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.wellArrive, this.transform.position);
     }
 
     public void SetState(State newState)
