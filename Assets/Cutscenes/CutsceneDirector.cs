@@ -11,6 +11,7 @@ public class CutsceneDirector : MonoBehaviour
     public bool endingCutscene;
 
     private void Start() {
+        Time.timeScale = 1; //This line is needed as somehow sceneHandler doesnt change time back to 1 when from boss scene?
         currentDirector = gameObject.GetComponent<PlayableDirector>();
         firstPause = true;
         HelperText.SetActive(false);
