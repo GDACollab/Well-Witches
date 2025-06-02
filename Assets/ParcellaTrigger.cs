@@ -18,8 +18,6 @@ public class ParcellaTrigger : MonoBehaviour
     [Range(0.01f,1f)]
     [SerializeField] private float itemSpawnDelay = 0.2f;
 
-    [SerializeField] public GameObject TEST;
-
     [Header("Item Spawn Offset")]
     [SerializeField] private Vector2 ItemSpawnOffset = new Vector2(0,-2);
 
@@ -99,7 +97,6 @@ public class ParcellaTrigger : MonoBehaviour
 
     private void OnGathererInteract(InputAction.CallbackContext context)
     {
-        // NOTE NEED TO FIX THIS SO IT WORKS???
         if (playerInRange)
         {
             StartCoroutine(ReturnItems());
