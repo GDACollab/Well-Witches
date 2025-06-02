@@ -1897,8 +1897,8 @@ MonoBehaviour:
     me right round.</i>\r"
   abilityName: Spell Storm
   isWarden: 1
-  isActive: 1
-  isLocked: 0
+  isActive: 0
+  isLocked: 1
 --- !u!1 &3281976989101824284
 GameObject:
   m_ObjectHideFlags: 0
@@ -1988,7 +1988,7 @@ GameObject:
   - component: {fileID: 3841185925527241932}
   m_Layer: 5
   m_Name: UICanvas
-  m_TagString: Untagged
+  m_TagString: UICanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2009,6 +2009,7 @@ RectTransform:
   - {fileID: 3250379761572643316}
   - {fileID: 6493760835647504029}
   - {fileID: 3916666947963654306}
+  - {fileID: 4911402550897015446}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4782,7 +4783,7 @@ MonoBehaviour:
   abilityText: "Vervain turns into a pumpkin, bursting with firepower. <i>Bibbidi-Bobbidi-Boom!</i>\r"
   abilityName: Smashing Pumpkin
   isWarden: 1
-  isActive: 1
+  isActive: 0
   isLocked: 0
 --- !u!1 &8508298406656555560
 GameObject:
@@ -5645,6 +5646,68 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1001 &3139753136822900112
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2439115481604426262}
+    m_Modifications:
+    - target: {fileID: 266161676867694212, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_Name
+      value: AnnouncementManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+--- !u!4 &4911402550897015446 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+  m_PrefabInstance: {fileID: 3139753136822900112}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3392502515042367678
 PrefabInstance:
   m_ObjectHideFlags: 0
