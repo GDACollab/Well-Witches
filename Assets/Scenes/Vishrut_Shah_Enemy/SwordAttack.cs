@@ -119,8 +119,9 @@ public class SwordAttack : MonoBehaviour
         }
         if (attackIndicatorCapsule != null) attackIndicatorCapsule.size = 1f;
 
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bossPhase1Attack2, this.transform.position);
         // Play sword slash animation here
-        
+
 
         // Check if the player is within the hitbox
         if (playerInHitbox)

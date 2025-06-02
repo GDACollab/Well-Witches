@@ -31,7 +31,7 @@ public class MeleeEnemy : BaseEnemyClass
     public override void Attack()
     {
         agent.speed = speedWhileAttacking;
-        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bruiserAttackSwipe, this.transform.position);
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bruiserAttackDash, this.transform.position);
 
         // not very performantive, better if collider check but should be good enough
         if (Vector2.Distance(transform.position, currentTarget.position) <= attackAOE)
@@ -55,6 +55,7 @@ public class MeleeEnemy : BaseEnemyClass
         float timeElapsed = 0;
         atkSprite.enabled = true;
 
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bruiserAttackSwipe, this.transform.position);
 
         while (timeElapsed < atkDuration)
         {
