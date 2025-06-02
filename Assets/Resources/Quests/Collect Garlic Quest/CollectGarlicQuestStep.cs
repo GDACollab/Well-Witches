@@ -46,7 +46,7 @@ public class CollectGarlicQuestStep : QuestStep
                 // this should just be your code for checking whether the quest items were all done collecting/just move the actual finish code/check here
                 if (garlicCollected >= garlicToCollect)
                 {
-                    SetQuestString("<color=green>Success!<color> Report back to <color=#B894D3>Wisteria</color>");
+                    SetQuestString("<color=green>Success!</color> Report back to <color=#B894D3>Wisteria</color>");
                     FinishQuestStep();
                 }
             }

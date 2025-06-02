@@ -48,7 +48,7 @@ public class CollectPumpkinTimer : QuestStep
         }
         if (time >= timeToLive) // if timer hits 0 without fail
         {
-            SetQuestString("<color=green>Success!<color> Report back to <color=#5D5D9F>Phillip</color>");
+            SetQuestString("<color=green>Success!</color> Report back to <color=#5D5D9F>Phillip</color>");
             FinishQuestStep();
         }
         
