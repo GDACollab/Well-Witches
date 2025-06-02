@@ -10,7 +10,7 @@ public class BossSceneManager : MonoBehaviour
 
     public int number_of_projectiles = 15;
     public GameObject projectile_prefab;
-    private bool boss_half_health = false;
+    private bool boss_half_health = true;
     private float num_phase2_projectiles = 3f;
     public Slider progress;
     public GameObject boss;
@@ -24,6 +24,8 @@ public class BossSceneManager : MonoBehaviour
     private float boss_max_hp;
     private float boss_current_hp;
     private bool final_stand = false;
+
+    private bool can_rain_projectiles_p2 = true;
 
     private int[] attack_range_x = {-16, 16};
     private int[] attack_range_y= {-7, 7};
@@ -106,17 +108,33 @@ public class BossSceneManager : MonoBehaviour
     void launch_screen_attack(){
         // Launches screen attack
         // choose random screen attack here, call coroutine
+        if (boss_half_health){
+                int choice = Random.Range(0, 3);
 
-        int choice = Random.Range(0, 3);
+            if (choice == 0){
+                StartCoroutine(p2_thirds_attack());
+            }
+            else if (choice == 1){
+                StartCoroutine(p2_thirds_attack());
+            }
+            else if (choice == 2){
+                StartCoroutine(p2_x_attack());
+            }
+        }
+        else{
 
-        if (choice == 0){
-            StartCoroutine(spawn_grid_attack());
-        }
-        else if (choice == 1){
-            StartCoroutine(spawn_third_attack());
-        }
-        else if (choice == 2){
-            StartCoroutine(spawn_x_attack());
+        
+            int choice = Random.Range(0, 3);
+
+            if (choice == 0){
+                StartCoroutine(spawn_grid_attack());
+            }
+            else if (choice == 1){
+                StartCoroutine(spawn_third_attack());
+            }
+            else if (choice == 2){
+                StartCoroutine(spawn_x_attack());
+            }
         }
 
     }
@@ -133,7 +151,7 @@ public class BossSceneManager : MonoBehaviour
             boss_half_health = true;
         }
         
-        if (boss_half_health){
+        if (boss_half_health && can_rain_projectiles_p2){
 
             for (int i = 0; i < (int) num_phase2_projectiles; i++) 
             {   
@@ -174,30 +192,7 @@ public class BossSceneManager : MonoBehaviour
         line_num += 9;
         yield return new WaitForSeconds(0.3f);
         }
-    //yield return new WaitForSeconds(0.3f);
-    
-    //horizontal lines
-    /*line_num = 7;
-    for (int l = 0; l < 3; l++){
-        int in_line_iterator = -12;
-        int width_variation = 12;
-        
-        if (line_num == 0){
-            in_line_iterator = -18;
-            width_variation = 18;
 
-        }
-
-        
-        for (int k = 0; k < width_variation ; k++) 
-        {   
-            instance_projectiles(in_line_iterator, line_num);
-            in_line_iterator += 2;
-        }
-        line_num -= 7;
-        yield return new WaitForSeconds(0.3f);
-        }
-    */
     }
     IEnumerator spawn_third_attack(){
     //vertical lines
@@ -294,6 +289,142 @@ public class BossSceneManager : MonoBehaviour
                 yield return new WaitForSeconds(0.05f);
             }
         }
+    }
+
+
+
+    IEnumerator p2_x_attack(){
+        int in_line_iterator_x = -12; //Default : 10
+        int in_line_iterator_y = 6;   //Default : 8
+        can_rain_projectiles_p2 = false;
+            for (int i = 0; i < 13; i++){
+                 Debug.Log(in_line_iterator_x.ToString());
+                instance_projectiles(in_line_iterator_x, in_line_iterator_y);
+                in_line_iterator_x += 2;
+                in_line_iterator_y -= 1;
+                yield return new WaitForSeconds(0.05f);
+            }
+            in_line_iterator_x = -12; //Default : 10
+            in_line_iterator_y = -6;  // Default : 8
+
+            for (int i = 0; i < 13; i++){
+                instance_projectiles(in_line_iterator_x, in_line_iterator_y);
+                in_line_iterator_x += 2;
+                in_line_iterator_y += 1;
+                yield return new WaitForSeconds(0.05f);
+            }
+
+
+         yield return new WaitForSeconds(1.5f); // 1.5 seconds in between patterns
+
+
+            in_line_iterator_x = -8; //Default : 10
+            in_line_iterator_y = 8;   //Default : 8
+
+            for (int i = 0; i < 9; i++){
+                instance_projectiles(in_line_iterator_x, in_line_iterator_y);
+                in_line_iterator_x += 2;
+                in_line_iterator_y -= 2;
+                yield return new WaitForSeconds(0.05f);
+            }
+            in_line_iterator_x = -8; //Default : 10
+            in_line_iterator_y = -8;  // Default : 8
+
+            for (int i = 0; i < 9; i++){
+                Debug.Log(in_line_iterator_x.ToString());
+                instance_projectiles(in_line_iterator_x, in_line_iterator_y);
+                in_line_iterator_x += 2;
+                in_line_iterator_y += 2;
+                yield return new WaitForSeconds(0.05f);
+            }
+
+
+            yield return new WaitForSeconds(1.0f); // 1.0 seconds in between patterns
+
+
+            int in_line_iterator = -10;
+            for (int i = 0; i < 10; i++) 
+            {   
+                instance_projectiles(0, in_line_iterator);
+                in_line_iterator += 2;
+                yield return new WaitForSeconds(0.05f);
+            }
+        can_rain_projectiles_p2 = true;
+
+    }
+
+    IEnumerator p2_thirds_attack(){
+    can_rain_projectiles_p2 = false;
+    int line_num = -18;
+    int num_in_wave = 6; 
+    int num_waves = 5;
+
+    for (int j = 0; j < num_waves; j++){
+        int in_line_iterator = - num_in_wave;
+        for (int i = 0; i < num_in_wave; i++) 
+        {   
+            instance_projectiles(line_num, in_line_iterator);
+            in_line_iterator += 2;
+        }
+        line_num += 3;
+            num_in_wave += 1;
+        
+        
+        yield return new WaitForSeconds(0.3f);
+        }
+
+
+    yield return new WaitForSeconds(4.75f); // pause between waves for 4.5 seconds
+    
+    line_num = -6;
+    num_in_wave = 10; 
+
+    for (int j = 0; j < num_waves; j++){
+    int in_line_iterator = - num_in_wave;
+        for (int i = 0; i < num_in_wave; i++) 
+        {   
+            instance_projectiles(line_num, in_line_iterator);
+            in_line_iterator += 2;
+        }
+        line_num += 3;
+        yield return new WaitForSeconds(0.3f);
+       
+        }
+        
+        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(4.75f); // pause between waves for 4.5 seconds
+    
+    line_num = 6;
+    num_in_wave = 10; 
+
+    for (int j = 0; j < num_waves; j++){
+    int in_line_iterator = - num_in_wave;
+        for (int i = 0; i < num_in_wave; i++) 
+        {   
+            instance_projectiles(line_num, in_line_iterator);
+            in_line_iterator += 2;
+        }
+        line_num += 3;
+        num_in_wave -= 1;
+        yield return new WaitForSeconds(0.3f);
+       
+        }
+        
+        yield return new WaitForSeconds(0.3f);
+        can_rain_projectiles_p2 = true;
+        }
+        
+
+
+
+
+
+
+    
+    
+
+    IEnumerator p2_grid_attack(){
+        yield return new WaitForSeconds(0.05f);
     }
 
 }
