@@ -8,6 +8,7 @@ public class CutsceneDirector : MonoBehaviour
     PlayableDirector currentDirector;
     bool firstPause;
     public GameObject HelperText;
+    public bool endingCutscene;
 
     private void Start() {
         currentDirector = gameObject.GetComponent<PlayableDirector>();
@@ -37,6 +38,14 @@ public class CutsceneDirector : MonoBehaviour
     }
 
     public void EndCutscene() {
-        SceneHandler.Instance.ToHubScene();
+        if (endingCutscene)
+        {
+            Debug.Log("Should transition to start menu!");
+        }
+        else
+        {
+            SceneHandler.Instance.ToHubScene();
+        }
+        
     }
 }
