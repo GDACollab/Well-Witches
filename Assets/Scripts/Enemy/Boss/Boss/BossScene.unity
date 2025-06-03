@@ -1370,6 +1370,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 692076551}
   m_CullTransparentMesh: 1
+--- !u!114 &693598714 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5089148086965064269, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
+  m_PrefabInstance: {fileID: 472871590}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff1d09204d54c042b4a3dca25950ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &714318786 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3768020103086965562, guid: 94a0ced677a3c324eacfa276aec2f2b9, type: 3}
@@ -2940,6 +2951,7 @@ MonoBehaviour:
   bush_respawn_duration: 10
   number_of_projectiles: 25
   projectile_prefab: {fileID: 8090864123439173665, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+  bossShield: {fileID: 693598714}
   progress: {fileID: 2052452172}
   boss: {fileID: 340847527}
 --- !u!4 &1766624481
