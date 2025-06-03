@@ -31,7 +31,7 @@ public class BossShield : MonoBehaviour
 
     public IEnumerator PopShield()
     {
-        shieldActive = true;
+        shieldActive = false;
         GathererBubbleShield.Instance.isActive = false;
         float start = 0f;
         float end = 1f;
