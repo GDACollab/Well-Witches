@@ -29,6 +29,7 @@ public class ParcellaTrigger : MonoBehaviour
     {
         SceneManager.activeSceneChanged += SceneChange;
         EventManager.instance.questEvents.onLoadItemsOnDeath += LoadItems;
+        EventManager.instance.questEvents.onParcellaFinishedDialogue += FinishedSpeaking;
     }
 
     private void LoadItems(GameObject questItem, int amount)
@@ -45,6 +46,7 @@ public class ParcellaTrigger : MonoBehaviour
     private void OnDisable()
     {
         controls.Gameplay_Gatherer.Interact.performed -= OnGathererInteract;
+        EventManager.instance.questEvents.onParcellaFinishedDialogue -= FinishedSpeaking;
     }
 
     private void Awake()
@@ -58,6 +60,10 @@ public class ParcellaTrigger : MonoBehaviour
         controls.Gameplay_Gatherer.Interact.performed += OnGathererInteract;
     }
 
+    private void FinishedSpeaking()
+    {
+        StartCoroutine(ReturnItems());
+    }
 
 
     IEnumerator ReturnItems()
@@ -97,9 +103,9 @@ public class ParcellaTrigger : MonoBehaviour
 
     private void OnGathererInteract(InputAction.CallbackContext context)
     {
-        if (playerInRange)
-        {
-            StartCoroutine(ReturnItems());
-        }
+        //if (playerInRange)
+        //{
+           // StartCoroutine(ReturnItems());
+        //}
     }
 }

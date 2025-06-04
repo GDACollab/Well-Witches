@@ -15,9 +15,11 @@ public class NonQuestDialogueTrigger : MonoBehaviour
 
     private string storyVarName = "death_count";
 
-    private int interactionCount = 0;
+    static private int interactionCount = 0;
 
     private InkDialogueVariables inkDialogueVariables;
+
+    private InkExternalFunctions inkExternalFunctions;
 
     private bool playerInRange;
 
@@ -53,6 +55,7 @@ public class NonQuestDialogueTrigger : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(interactionCount);
         if (playerInRange && !DialogueManager.GetInstance().dialogueActive)
         {
             if (!visualCue.activeSelf)
@@ -75,13 +78,23 @@ public class NonQuestDialogueTrigger : MonoBehaviour
             StatsManager.Instance.players["Gatherer"].GetComponent<PlayerMovement>().canMove = false;
             story = new Story(JSON.text);
             inkDialogueVariables = new InkDialogueVariables(story);
-            if(!hasInteracted)
+            inkExternalFunctions = new InkExternalFunctions();
+            inkExternalFunctions.Bind(story);
+            if (!hasInteracted)
             {
                 interactionCount++;
                 hasInteracted = true;
             }
-            inkDialogueVariables.UpdateVariableState(storyVarName, new StringValue(interactionCount.ToString()));
+            inkDialogueVariables.UpdateVariableState(storyVarName, new IntValue(interactionCount));
             DialogueManager.GetInstance().StartDialogueMode(story, GetComponentInParent<SpriteManager>(), inkDialogueVariables);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (inkExternalFunctions != null)
+        {
+            inkExternalFunctions.Unbind(story);
         }
     }
 

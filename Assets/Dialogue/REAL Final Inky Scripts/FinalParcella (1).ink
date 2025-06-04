@@ -1,7 +1,7 @@
 // <b>Well Witches: Ghostly Mailperson (Parcella) </b>
 
 //Feel free to contact Brendan (Naeggi on the Well Witches discord) if you have any questions or concerns!
-
+EXTERNAL FinishedSpeaking()
 -> Start
 
 == Start ==
@@ -84,6 +84,7 @@ Uh-huh! When ya both fainted I found both of your belongings on the ground! I fi
  Good luck out there!
  
  #<i> They both felt hesitant about this ghost at first, but she doesn't seem to be an enemy.</i>
+ ~ FinishedSpeaking()
  --> END
  
  
@@ -127,6 +128,7 @@ Oh Parcella! I’m sorry about that... #speaker:gatherer #sprite: confused
   //Used when Warden and Gatherer's death count is >2. Different lines spoken by Parcella that can be randomized.
   ~currentSpeaker = "Parcella"
   {~Lucky for you respawn shipping is free|Special express revive! Try dodging next time!|Back already? It seems the afterlife is ghosting you!|Saved you again! No need to thank me!} #sprite:pleased
+  ~ FinishedSpeaking()
  - -> END
  
 
