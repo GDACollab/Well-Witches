@@ -79,7 +79,7 @@ public class AudioManager : MonoBehaviour
         print("current mf talking: " + characterName);
         switch(characterName)
         {
-            case "Wysteria":
+            case "Wisteria":
                 currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.vampireTalk);
                 break;
             case "Dullahan":
