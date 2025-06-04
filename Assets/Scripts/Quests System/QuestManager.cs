@@ -230,7 +230,7 @@ public class QuestManager : MonoBehaviour
                     switch (Q.info.id)
                     {
                             case "CollectGarlicQuest":
-                                AbilityToUnlock = "HealthTransfer";
+                                AbilityToUnlock = "SharingIsCaring";
                             UnlockedAbilities.Add(AbilityToUnlock);
                             break;
                         default:
