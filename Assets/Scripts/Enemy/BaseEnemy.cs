@@ -28,7 +28,7 @@ public abstract class BaseEnemyClass : MonoBehaviour
     protected float timeToFire;
     protected GameObject[] players;
     public Transform currentTarget;
-    public NavMeshAgent agent;
+    protected NavMeshAgent agent;
     protected Rigidbody2D rb;
     [SerializeField] protected SpriteRenderer sr;
 

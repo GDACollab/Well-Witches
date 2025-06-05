@@ -658,6 +658,8 @@ GameObject:
   - component: {fileID: 4886292762916306601}
   - component: {fileID: 4640196686164595869}
   - component: {fileID: 9014724367387819605}
+  - component: {fileID: 4979627998584016869}
+  - component: {fileID: 574793365530881989}
   m_Layer: 0
   m_Name: BossPrefab
   m_TagString: Untagged
@@ -733,12 +735,12 @@ MonoBehaviour:
   stunDuration: 0
   health: 150
   currentTarget: {fileID: 0}
-  agent: {fileID: 9014724367387819605}
   sr: {fileID: 2419640120546834368}
   attackCooldown: 4
   DPS_phase: 0
   animator: {fileID: 2327760030467745721}
   bossShield: {fileID: 962280634740332046}
+  bossShieldBash: {fileID: 574793365530881989}
 --- !u!195 &9014724367387819605
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -753,7 +755,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -761,6 +763,56 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!70 &4979627998584016869
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4510760633449180580}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.11488383, y: -0.09756656}
+  m_Size: {x: 0.9442205, y: 2.3815248}
+  m_Direction: 0
+--- !u!114 &574793365530881989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4510760633449180580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab7ca9ddce9e354199a19f21c9245e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  warningDuration: 1.5
+  attackDuration: 0.3
+  damage: 0
 --- !u!1 &4527314849454086779
 GameObject:
   m_ObjectHideFlags: 0

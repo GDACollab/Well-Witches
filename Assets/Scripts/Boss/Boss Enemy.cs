@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.InputSystem.Android;
 
 public class BossEnemy : BaseEnemyClass
 {
@@ -16,12 +18,17 @@ public class BossEnemy : BaseEnemyClass
     public BossAttackState BossAttackState { get; set; }
     #endregion
 
+    public BossShieldBash bossShieldBash;
+
     private void Awake()
     {
         StateMachine = new BossStateMachine();
 
         BossChaseState = new BossChaseState(this, StateMachine);
         BossAttackState = new BossAttackState(this, StateMachine);
+
+        agent = GetComponent<NavMeshAgent>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
@@ -50,13 +57,17 @@ public class BossEnemy : BaseEnemyClass
 
 
 
-
+    public NavMeshAgent GetAgent()
+    {
+        return agent;
+    }
 
 
     public override void Attack()
     {
         return;
     }
+
     public override void TakeDamage(float amount, bool fromWardenProjectile = false)
     {
 
