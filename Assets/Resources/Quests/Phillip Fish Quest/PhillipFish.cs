@@ -138,11 +138,6 @@ public class PhillipFish : MonoBehaviour
             // this is just here so the coroutine call above only gets called once
             HoldFish();
         }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            state = FishState.RETURNING;
-            DropFish();
-        }
 
     }
 

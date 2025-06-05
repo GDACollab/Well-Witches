@@ -44,7 +44,7 @@ Oh no that’s so sad! #speaker:gatherer #sprite:surprised
 ~currentSpeaker = "Player"
 What happened to them? #speaker:warden #sprite:confused
 ~currentSpeaker = "Philip"
-That stupid knight took her somewhere far away. 
+That stupid knight took her somewhere far away. #sprite:angry
 I’d beat him up myself if I could #sprite:angry
 ~currentSpeaker = "Player"
 We'll help you reunite with them! #speaker:gatherer #sprite:excited2
