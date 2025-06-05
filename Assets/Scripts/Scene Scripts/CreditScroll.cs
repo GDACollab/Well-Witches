@@ -14,17 +14,17 @@ using UnityEngine.UI;
 // Ported by Ivy Dudzik
 public class CreditScroll : MonoBehaviour
 {
-    [Serializable]
-    private class CreditSong
-    {
-        public float duration;
-        public UnityEvent<AudioManager> song;
-    }
+    //[Serializable]
+    //private class CreditSong
+    //{
+    //    public float duration;
+    //    public UnityEvent<AudioManager> song;
+    //}
 
     [SerializeField] TextAsset creditsText;
     [Header("Scroll Control")]
     [SerializeField] List<Sprite> imageObjects = new List<Sprite>();
-    [SerializeField] List<CreditSong> songs = new List<CreditSong>();
+    //[SerializeField] List<CreditSong> songs = new List<CreditSong>();
     [SerializeField] float scrollSpeed = 1f;
     [SerializeField] int maxLines = 35;
     bool startImage = true;
@@ -61,7 +61,7 @@ public class CreditScroll : MonoBehaviour
     bool skipHint2 = true;
 
     // GlobalTeapot globalTeapot;
-    AudioManager audioManager;
+    //AudioManager audioManager;
     PlayerInput input;
     Action destroyObjects;
 
