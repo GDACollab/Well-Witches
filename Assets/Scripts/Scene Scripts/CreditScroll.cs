@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.UI;
@@ -14,19 +13,24 @@ using UnityEngine.UI;
 // Ported by Ivy Dudzik
 public class CreditScroll : MonoBehaviour
 {
-    //[Serializable]
-    //private class CreditSong
-    //{
-    //    public float duration;
-    //    public UnityEvent<AudioManager> song;
-    //}
+    public enum SongType {MainMenu, Map1, Map2, Boss};
+    
+    [Serializable]
+    private class CreditSong
+    {
+       public float duration;
+       public SongType song;
+    }
 
     [SerializeField] TextAsset creditsText;
     [Header("Scroll Control")]
     [SerializeField] List<Sprite> imageObjects = new List<Sprite>();
-    //[SerializeField] List<CreditSong> songs = new List<CreditSong>();
+    [SerializeField] List<CreditSong> songs = new List<CreditSong>();
     [SerializeField] float scrollSpeed = 1f;
+    [SerializeField] float scrollMultiplier = 2f;
     [SerializeField] int maxLines = 35;
+    int numLines = 35;
+    float scrollSpeedAdjusted = 1f;
     bool startImage = true;
     List<float> textScrollLanes = new List<float> { -270, 0, 270 };
     List<float> objectScrollLanes = new List<float> { -720, -480, 480, 720 };
@@ -54,25 +58,25 @@ public class CreditScroll : MonoBehaviour
     bool creditsEnd = false;
     bool creditsTrueEnd = false;
 
-    // int currSong = 0;
+    int currSong = 0;
 
     float hintTimer;
     bool skipHint => hintTimer > 0;
     bool skipHint2 = true;
 
-    // GlobalTeapot globalTeapot;
-    //AudioManager audioManager;
     PlayerInput input;
     Action destroyObjects;
 
     // Start is called before the first frame update
     void Start()
     {
-        // globalTeapot = GameObject.FindWithTag("Global Teapot").GetComponent<GlobalTeapot>();
-        // audioManager = globalTeapot.audioManager;
         input = GetComponent<PlayerInput>();
         input.currentActionMap.actionTriggered += ShowSkipHint;
+        input.actions["Submit"].started += FastForward;
+        input.actions["Submit"].canceled += FastForward;
         hintTimer = 0;
+
+        scrollSpeedAdjusted = scrollSpeed;
 
         parsedCredits = creditsText.text.Split("\n").ToList();
 
@@ -83,13 +87,11 @@ public class CreditScroll : MonoBehaviour
         currLine++;
         Canvas.ForceUpdateCanvases();
 
-        for (int i = 1; i < maxLines; i++)
+        for (int i = 1; i < numLines; i++)
         {
             SetText();
             Canvas.ForceUpdateCanvases();
         }
-
-        // lastText = creditsDisplay.Last();
 
         imageDisplay = Instantiate(creditsImageTemplate, transform).GetComponent<RectTransform>();
         imageDisplay.GetComponent<Image>().sprite = imageObjects[currImage];
@@ -97,10 +99,8 @@ public class CreditScroll : MonoBehaviour
         imageDisplay.anchoredPosition = new Vector2((currImage % 2 == 0) ? objectScrollLanes[0] : objectScrollLanes[3], imageDisplay.anchoredPosition.y);
         currImage++;
 
-        // Fade from Black
-        // StartCoroutine(globalTeapot.fader.FadeFromBlack(fadeInTime));
         // Wait to call song
-        // StartCoroutine(WaitToCall(songs[currSong]));
+        if (songs.Count > 0) StartCoroutine(WaitToCall(songs[currSong]));
     }
 
     // Update is called once per frame
@@ -123,7 +123,7 @@ public class CreditScroll : MonoBehaviour
                     Destroy(disp.gameObject);
                 };
             }
-            disp.transform.Translate(Vector3.up * Time.deltaTime * scrollSpeed);
+            disp.transform.Translate(Vector3.up * Time.deltaTime * scrollSpeedAdjusted);
         }
 
         if (destroyObjects != null)
@@ -134,11 +134,11 @@ public class CreditScroll : MonoBehaviour
 
         if (currLine < parsedCredits.Count)
         {
-            if (creditsDisplay.Count < maxLines)
+            if (creditsDisplay.Count < numLines)
             {
-                if (maxLines > creditsDisplay.Count + 1)
+                if (numLines > creditsDisplay.Count + 1 && numLines > maxLines)
                 {
-                    maxLines--;
+                    numLines--;
                 }
                 SetText();
             }
@@ -163,8 +163,7 @@ public class CreditScroll : MonoBehaviour
         else if (creditsEnd && creditsDisplay.Count <= 1 && !creditsTrueEnd)
         {
             creditsTrueEnd = true;
-            // Fade to Black
-            // StartCoroutine(globalTeapot.fader.FadeToBlack(() => Loader.Load(Loader.Scene.MainMenu, true), longFadeOutTime));
+            SceneHandler.Instance.ToMainMenuScene();
         }
     }
 
@@ -207,7 +206,7 @@ public class CreditScroll : MonoBehaviour
                 temper.anchoredPosition = new Vector2(textScrollLanes[2], lastText.anchoredPosition.y);
             }
             lastRightText = temper;
-            maxLines++;
+            numLines++;
         }
         else
         {
@@ -232,68 +231,43 @@ public class CreditScroll : MonoBehaviour
         currImage = Mathf.Clamp(currImage + 1, 0, imageObjects.Count - 1);
     }
 
-    IEnumerator WaitToCall(Action act, float waitTime)
-    {
-        yield return new WaitForSeconds(waitTime);
-        act();
-    }
-
-    /*
     IEnumerator WaitToCall(CreditSong song)
     {
         yield return new WaitForSeconds(1f);
-        // audioManager.PlayEndingOST();
+        PlaySong(song.song);
         Debug.Log(songs[currSong].duration);
         yield return new WaitForSeconds(song.duration);
         currSong++;
+        
         if (currSong < songs.Count)
         {
-            // audioManager.StopCurrentSong();
-            yield return new WaitForSeconds(1f);
-            // audioManager.PlayVillageOST();
-            Debug.Log(songs[currSong].duration);
-            yield return new WaitForSeconds(songs[currSong].duration);
-            currSong++;
-        }
-        if (currSong < songs.Count)
-        {
-            // audioManager.StopCurrentSong();
-            yield return new WaitForSeconds(1f);
-            // audioManager.PlayDungeonOST();
-            Debug.Log(songs[currSong].duration);
-            yield return new WaitForSeconds(songs[currSong].duration);
-            currSong++;
-        }
-        if (currSong < songs.Count)
-        {
-            // audioManager.StopCurrentSong();
-            yield return new WaitForSeconds(1f);
-            // audioManager.PlayChaseOST();
-            Debug.Log(songs[currSong].duration);
-            yield return new WaitForSeconds(songs[currSong].duration);
-            currSong++;
-        }
-        if (currSong < songs.Count)
-        {
-            // audioManager.StopCurrentSong();
-            yield return new WaitForSeconds(1f);
-            // audioManager.PlayVillageOST();
-            // audioManager.PlayShopOST();
-            Debug.Log(songs[currSong].duration);
-            yield return new WaitForSeconds(songs[currSong].duration);
-            currSong++;
-        }
-        if (currSong < songs.Count)
-        {
-            // audioManager.StopCurrentSong();
-            yield return new WaitForSeconds(1f);
-            // audioManager.PlayCryptKeeperOST();
-            yield return new WaitForSeconds(songs[currSong].duration);
-            Debug.Log(songs[currSong].duration);
-            currSong++;
+            StartCoroutine(WaitToCall(songs[currSong]));
         }
     }
-    */
+
+    void PlaySong(SongType type)
+    {
+        AudioManager.Instance.CleanUp();
+        switch (type)
+        {
+            case SongType.MainMenu:
+                AudioManager.Instance.PlayOST(FMODEvents.Instance.lobbyBGM);
+                break;
+            case SongType.Map1:
+                AudioManager.Instance.PlayOST(FMODEvents.Instance.mainMapBGM);
+                break;
+            case SongType.Map2:
+                // If someone has time add the second map song to be played here.
+                AudioManager.Instance.PlayOST(FMODEvents.Instance.mainMapBGM);
+                break;
+            case SongType.Boss:
+                AudioManager.Instance.PlayOST(FMODEvents.Instance.bossBGM);
+                break;
+            default:
+                AudioManager.Instance.PlayOST(FMODEvents.Instance.mainMapBGM);
+                break;
+        }
+    }
 
     void OnPause()
     {
@@ -301,9 +275,13 @@ public class CreditScroll : MonoBehaviour
         {
             skipHint2 = false;
             SceneHandler.Instance.ToMainMenuScene();
-            // Fade to Black
-            // StartCoroutine(globalTeapot.fader.FadeToBlack(() => Loader.Load(Loader.Scene.MainMenu, true), longFadeOutTime));
         }
+    }
+    
+    void FastForward(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started) scrollSpeedAdjusted = scrollSpeed*scrollMultiplier;
+        else if (ctx.canceled) scrollSpeedAdjusted = scrollSpeed;
     }
 
     void ShowSkipHint(InputAction.CallbackContext ctx)
@@ -325,6 +303,9 @@ public class CreditScroll : MonoBehaviour
     private void OnDisable()
     {
         StopAllCoroutines();
-        // audioManager.StopCurrentSong();
+        AudioManager.Instance.CleanUp();
+        input.currentActionMap.actionTriggered -= ShowSkipHint;
+        input.actions["Submit"].started -= FastForward;
+        input.actions["Submit"].canceled -= FastForward;
     }
 }
