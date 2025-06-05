@@ -45,6 +45,10 @@ public class TankEnemy : BaseEnemyClass
     private void Update()
     {
         SpawnPool();
+        if (currentTarget && !isStunned)
+        {
+            sr.flipX = transform.position.x > currentTarget.position.x ? false : true;
+        }
     }
 
     public override void Attack()
