@@ -743,6 +743,8 @@ MonoBehaviour:
   animator: {fileID: 2327760030467745721}
   bossShield: {fileID: 962280634740332046}
   bossShieldBash: {fileID: 574793365530881989}
+  bossSwordAttack: {fileID: 6896637805450966079}
+  bossLunge: {fileID: 2116235306869629605}
 --- !u!195 &9014724367387819605
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -812,9 +814,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab7ca9ddce9e354199a19f21c9245e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  warningDuration: 1.5
-  attackDuration: 0.3
-  damage: 0
+  warningDuration: 2
+  attackDuration: 0.5
+  damage: 8
 --- !u!114 &6896637805450966079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -827,9 +829,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdb15b7b0b2fe4c539a4e0428273c842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  warningDuration: 2
-  attackDuration: 1
-  damage: 0
+  warningDuration: 0.5
+  attackDuration: 0.3
+  damage: 2
 --- !u!114 &2116235306869629605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -842,13 +844,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82a2c2124064229468bba52622b56dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  warningDuration: 1.5
+  warningDuration: 0.8
   attackDuration: 0.3
-  stunDuration: 2
-  LungeDistance: 0
-  LungeSpeed: 0
-  damage: 0
-  bossCollider: {fileID: 0}
+  stunDuration: 3
+  LungeDistance: 10
+  LungeSpeed: 25
+  damage: 3
+  bossCollider: {fileID: 6132580732242787082}
 --- !u!1 &4527314849454086779
 GameObject:
   m_ObjectHideFlags: 0

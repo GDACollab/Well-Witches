@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BossAttackState : BossState
 {
-    private float timer = 2f;
+    private float timer;
     
     public BossAttackState(BossEnemy bossEnemy, BossStateMachine bossStateMachine) : base(bossEnemy, bossStateMachine)
     {
@@ -14,7 +14,9 @@ public class BossAttackState : BossState
         base.EnterState();
         bossEnemy.GetAgent().isStopped = true;
         timer = 2f;
-        bossEnemy.bossShieldBash.PerformShieldBash();
+        //bossEnemy.bossShieldBash.PerformShieldBash();
+        bossEnemy.bossLunge.PerformLunge();
+        //bossEnemy.bossSwordAttack.PerformSwordAttack();
     }
 
     public override void OnUpdate() 

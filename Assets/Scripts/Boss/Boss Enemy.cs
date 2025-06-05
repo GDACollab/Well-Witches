@@ -1,4 +1,4 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -18,7 +18,10 @@ public class BossEnemy : BaseEnemyClass
     public BossAttackState BossAttackState { get; set; }
     #endregion
 
+
     public BossShieldBash bossShieldBash;
+    public SwordAttack bossSwordAttack;
+    public BossLunge bossLunge;
 
     private void Awake()
     {

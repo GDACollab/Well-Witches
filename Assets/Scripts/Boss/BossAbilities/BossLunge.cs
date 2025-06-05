@@ -64,110 +64,109 @@ public class BossLunge : MonoBehaviour
     private IEnumerator LungeRoutine()
     {
         yield return null;
-        //// Start lunge animation(currently not adjusted based on slash duration/timing TODO)
-        //bossEnemy.animator.SetTrigger("DoLunge");
+        // Start lunge animation(currently not adjusted based on slash duration/timing TODO)
+        bossEnemy.animator.SetTrigger("DoLunge");
+        // Set the flag for casting
+        isCasting = true;
 
-        //PhaseOne phaseOne = GetComponentInParent<PhaseOne>(); // Access PhaseOne to set the casting flag
-        //phaseOne.SetAbilityCasting(true); // Set casting flag to true
+        // Enable visibility of the warning renderer and InnerGrow
+        if (warningRenderer != null) warningRenderer.enabled = true;
+        if (InnerGrow != null) InnerGrow.enabled = true;
 
-        //// Set the flag for casting
-        //isCasting = true;
+        // Calculate the direction to the player
+        Vector3 targetPosition = Vector3.zero;
+        if (bossEnemy != null && bossEnemy.currentTarget != null)
+        {
+            Vector3 directionToPlayer = (bossEnemy.currentTarget.position - transform.position).normalized;
+            float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
 
-        //// Enable visibility of the warning renderer and InnerGrow
-        //if (warningRenderer != null) warningRenderer.enabled = true;
-        //if (InnerGrow != null) InnerGrow.enabled = true;
+            // Set the position and rotation of the attack indicator
+            if (attackIndicatorLunge != null)
+            {
+                attackIndicatorLunge.transform.position = transform.position + directionToPlayer * 6;
+                attackIndicatorLunge.transform.rotation = Quaternion.Euler(0, 0, angle - 90);
+            }
 
-        //// Calculate the direction to the player
-        //Vector3 targetPosition = Vector3.zero;
-        //if (bossEnemy != null && bossEnemy.currentTarget != null)
-        //{
-        //    Vector3 directionToPlayer = (bossEnemy.currentTarget.position - transform.position).normalized;
-        //    float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
+            targetPosition = bossEnemy.currentTarget.position;
+        }
 
-        //    // Set the position and rotation of the attack indicator
-        //    if (attackIndicatorLunge != null)
-        //    {
-        //        attackIndicatorLunge.transform.position = transform.position + directionToPlayer * 6;
-        //        attackIndicatorLunge.transform.rotation = Quaternion.Euler(0, 0, angle - 90);
-        //    }
+        // Gradually increase the size of the attack indicator
+        float elapsedTime = 0f;
+        while (elapsedTime < warningDuration)
+        {
+            if (attackIndicatorLunge != null)
+            {
+                attackIndicatorLunge.size = Mathf.Lerp(0, 2.5f, elapsedTime / warningDuration);
+            }
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        if (attackIndicatorLunge != null) attackIndicatorLunge.size = 2.5f;
 
-        //    targetPosition = bossEnemy.currentTarget.position;
-        //}
+        // Stop following the player and dash towards the target position
+        Vector3 dashDirection = (targetPosition - transform.position).normalized;
+        float dashDistance = Vector3.Distance(transform.position, targetPosition);
+        float dashSpeed = LungeSpeed;
 
-        //// Gradually increase the size of the attack indicator
-        //float elapsedTime = 0f;
-        //while (elapsedTime < warningDuration)
-        //{
-        //    if (attackIndicatorLunge != null)
-        //    {
-        //        attackIndicatorLunge.size = Mathf.Lerp(0, 2.5f, elapsedTime / warningDuration);
-        //    }
-        //    elapsedTime += Time.deltaTime;
-        //    yield return null;
-        //}
-        //if (attackIndicatorLunge != null) attackIndicatorLunge.size = 2.5f;
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bossLunge, this.transform.position);
 
-        //// Stop following the player and dash towards the target position
-        //Vector3 dashDirection = (targetPosition - transform.position).normalized;
-        //float dashDistance = Vector3.Distance(transform.position, targetPosition);
-        //float dashSpeed = LungeSpeed;
+        float dashTime = dashDistance / dashSpeed;
+        float dashElapsedTime = 0f;
 
-        //AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bossLunge, this.transform.position);
+        // Disable visibility of the warning renderer and InnerGrow
+        if (warningRenderer != null) warningRenderer.enabled = false;
+        if (InnerGrow != null) InnerGrow.enabled = false;
 
-        //float dashTime = dashDistance / dashSpeed;
-        //float dashElapsedTime = 0f;
+        bool hasHitWarden = false;
+        bool hasHitGatherer = false;
 
-        //// Disable visibility of the warning renderer and InnerGrow
-        //if (warningRenderer != null) warningRenderer.enabled = false;
-        //if (InnerGrow != null) InnerGrow.enabled = false;
+        while (dashElapsedTime < dashTime)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, dashSpeed * Time.deltaTime);
+            dashElapsedTime += Time.deltaTime;
 
-        //while (dashElapsedTime < dashTime)
-        //{
-        //    transform.position = Vector3.MoveTowards(transform.position, targetPosition, dashSpeed * Time.deltaTime);
-        //    dashElapsedTime += Time.deltaTime;
+            // Check for collision with the player during the dash
+            Collider2D[] hits = Physics2D.OverlapBoxAll(bossCollider.bounds.center, bossCollider.bounds.size, 0);
+            foreach (Collider2D hit in hits)
+            {
+                if (hit.CompareTag("Player"))
+                {
+                    playerInHitbox = true;
+                    if (hit.gameObject.name == "Gatherer" && !hasHitGatherer)
+                    {
+                        //Debug.Log("Gatherher is hit");
+                        EventManager.instance.playerEvents.PlayerDamage(damage, "Gatherer");
+                        hasHitGatherer = true;
+                    }
+                    else if (hit.gameObject.name == "Warden" && !hasHitWarden)
+                    {
+                        EventManager.instance.playerEvents.PlayerDamage(damage, "Warden");
+                        hasHitWarden = true;
+                    }
+                    break;
+                }
+            }
 
-        //    // Check for collision with the player during the dash
-        //    Collider2D[] hits = Physics2D.OverlapBoxAll(bossCollider.bounds.center, bossCollider.bounds.size, 0);
-        //    foreach (Collider2D hit in hits)
-        //    {
-        //        if (hit.CompareTag("Player"))
-        //        {
-        //            playerInHitbox = true;
-        //            if (hit.gameObject.name == "Gatherer")
-        //            {
-        //                //Debug.Log("Gatherher is hit");
-        //                EventManager.instance.playerEvents.PlayerDamage(damage, "Gatherer");
-        //            }
-        //            else if (hit.gameObject.name == "Warden")
-        //            {
-        //                EventManager.instance.playerEvents.PlayerDamage(damage, "Warden");
+            yield return null;
+        }
 
-        //            }
-        //            break;
-        //        }
-        //    }
+        // Check if the player is within the hitbox
+        if (playerInHitbox)
+        {
+            Debug.Log("Player hit by lunge attack!");
 
-        //    yield return null;
-        //}
+        }
+        else
+        {
+            Debug.Log("Player not hit by lunge attack. Boss stunned.");
+            yield return new WaitForSeconds(stunDuration);
+        }
 
-        //// Check if the player is within the hitbox
-        //if (playerInHitbox)
-        //{
-        //    Debug.Log("Player hit by lunge attack!");
+        // Wait for the attack duration
+        yield return new WaitForSeconds(attackDuration);
 
-        //}
-        //else
-        //{
-        //    Debug.Log("Player not hit by lunge attack. Boss stunned.");
-        //    yield return new WaitForSeconds(stunDuration);
-        //}
+        // Reset casting state
+        isCasting = false;
 
-        //// Wait for the attack duration
-        //yield return new WaitForSeconds(attackDuration);
-
-        //// Reset casting state
-        //isCasting = false;
-
-        //phaseOne.SetAbilityCasting(false); // Reset casting flag to false
     }
 }
