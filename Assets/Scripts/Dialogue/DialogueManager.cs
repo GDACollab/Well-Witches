@@ -252,14 +252,18 @@ public class DialogueManager : MonoBehaviour
                     {
                         if (activePlayer == PlayerState.WARDEN)
                         {
+                            // Debug.LogWarning("Warden Sprite received for " + tagValue + "is: " + characterLibrary.GetSprite("Warden", tagValue));
                             playerSpriteManager.ChangeWardenSprite(characterLibrary.GetSprite("Warden", tagValue));
                         }
                         else if (activePlayer == PlayerState.GATHERER)
                         {
+                            // Debug.LogWarning("Gatherer Sprite received for " + tagValue + "is: " + characterLibrary.GetSprite("Gatherer", tagValue));
                             playerSpriteManager.ChangeGathererSprite(characterLibrary.GetSprite("Gatherer", tagValue));
                         }
                     }
-                    else{
+                    else
+                    {
+                        // Debug.LogWarning("NPC Sprite received for " + tagValue + "is: " + characterLibrary.GetSprite(currentCharacter.NPC.ToString(), tagValue));
                         currentCharacter.ChangeSprite(characterLibrary.GetSprite(currentCharacter.NPC.ToString(), tagValue));
                     }
                     break;
