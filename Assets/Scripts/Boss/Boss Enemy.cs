@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class BossEnemy : BaseEnemyClass
 {
-    [Tooltip("Time Between Attacks")]
+    [Header("BOSS INFO")]
     public float attackCooldown;
-    [Tooltip("Phase 1 to 2 HP")]
-    public float phaseHP;
-    public Animator animator;
-
     public bool DPS_phase = false;
+
+    [Header("BOSS References")]
+    public Animator animator;
     public GameObject bossShield;
 
     private void Start()
@@ -19,19 +18,6 @@ public class BossEnemy : BaseEnemyClass
     public override void Attack()
     {
         return;
-    }
-
-    public void Claw_attack()
-    {
-        Debug.Log("Claw Attack");
-    }
-    public void Cape_Swipe()
-    {
-        Debug.Log("Cape Swipe");
-    }
-    public void Spawn_Enemies()
-    {
-        Debug.Log("Spawn Enemies");
     }
 
     public override void TakeDamage(float amount, bool fromWardenProjectile = false)

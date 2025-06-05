@@ -79,79 +79,80 @@ public class SwordAttack : MonoBehaviour
 
     private IEnumerator SwordAttackRoutine()
     {
-        PhaseOne phaseOne = GetComponentInParent<PhaseOne>(); // Access PhaseOne to set the casting flag
-        phaseOne.SetAbilityCasting(true); // Set casting flag to true
+        yield return null;
+        //PhaseOne phaseOne = GetComponentInParent<PhaseOne>(); // Access PhaseOne to set the casting flag
+        //phaseOne.SetAbilityCasting(true); // Set casting flag to true
 
-        // Set the flag for casting
-        isCasting = true;
+        //// Set the flag for casting
+        //isCasting = true;
 
-        // Enable visibility of the warning renderer and InnerGrow
-        if (warningRenderer != null) warningRenderer.enabled = true;
-        if (InnerGrow != null) InnerGrow.enabled = true;
+        //// Enable visibility of the warning renderer and InnerGrow
+        //if (warningRenderer != null) warningRenderer.enabled = true;
+        //if (InnerGrow != null) InnerGrow.enabled = true;
 
-        // Calculate the direction to the player
-        if (bossEnemy != null && bossEnemy.currentTarget != null)
-        {
-            Vector3 directionToPlayer = (bossEnemy.currentTarget.position - transform.position).normalized;
-            float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
+        //// Calculate the direction to the player
+        //if (bossEnemy != null && bossEnemy.currentTarget != null)
+        //{
+        //    Vector3 directionToPlayer = (bossEnemy.currentTarget.position - transform.position).normalized;
+        //    float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
 
-            // Set the position and rotation of the attack indicator
-            if (attackIndicatorCapsule != null)
-            {
-                attackIndicatorCapsule.transform.position = transform.position + directionToPlayer * 2;
-                attackIndicatorCapsule.transform.rotation = Quaternion.Euler(0, 0, angle);
-            }
-        }
+        //    // Set the position and rotation of the attack indicator
+        //    if (attackIndicatorCapsule != null)
+        //    {
+        //        attackIndicatorCapsule.transform.position = transform.position + directionToPlayer * 2;
+        //        attackIndicatorCapsule.transform.rotation = Quaternion.Euler(0, 0, angle);
+        //    }
+        //}
 
-        // Start slash animation (currently not adjusted based on slash duration TODO)
-        bossEnemy.animator.SetTrigger("DoSlash");
+        //// Start slash animation (currently not adjusted based on slash duration TODO)
+        //bossEnemy.animator.SetTrigger("DoSlash");
 
-        // Gradually increase the size of the attack indicator
-        float elapsedTime = 0f;
-        while (elapsedTime < warningDuration)
-        {
-            if (attackIndicatorCapsule != null)
-            {
-                attackIndicatorCapsule.size = Mathf.Lerp(0, 1, elapsedTime / warningDuration);
-            }
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-        if (attackIndicatorCapsule != null) attackIndicatorCapsule.size = 1f;
+        //// Gradually increase the size of the attack indicator
+        //float elapsedTime = 0f;
+        //while (elapsedTime < warningDuration)
+        //{
+        //    if (attackIndicatorCapsule != null)
+        //    {
+        //        attackIndicatorCapsule.size = Mathf.Lerp(0, 1, elapsedTime / warningDuration);
+        //    }
+        //    elapsedTime += Time.deltaTime;
+        //    yield return null;
+        //}
+        //if (attackIndicatorCapsule != null) attackIndicatorCapsule.size = 1f;
 
-        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bossPhase1Attack2, this.transform.position);
-        // Play sword slash animation here
+        //AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bossPhase1Attack2, this.transform.position);
+        //// Play sword slash animation here
 
 
-        // Check if the player is within the hitbox
-        if (playerInHitbox)
-        {
-            if (gathererInRange)
-            {
-                EventManager.instance.playerEvents.PlayerDamage(damage, "Gatherer");
-            }
-            if (wardenInRange)
-            {
-                EventManager.instance.playerEvents.PlayerDamage(damage, "Warden");
+        //// Check if the player is within the hitbox
+        //if (playerInHitbox)
+        //{
+        //    if (gathererInRange)
+        //    {
+        //        EventManager.instance.playerEvents.PlayerDamage(damage, "Gatherer");
+        //    }
+        //    if (wardenInRange)
+        //    {
+        //        EventManager.instance.playerEvents.PlayerDamage(damage, "Warden");
 
-            }
-            Debug.Log("Player hit by sword attack!");
-        }
-        else
-        {
-            Debug.Log("Player not hit by sword attack.");
-        }
+        //    }
+        //    Debug.Log("Player hit by sword attack!");
+        //}
+        //else
+        //{
+        //    Debug.Log("Player not hit by sword attack.");
+        //}
 
-        // Wait for the attack duration
-        yield return new WaitForSeconds(attackDuration);
+        //// Wait for the attack duration
+        //yield return new WaitForSeconds(attackDuration);
 
-        // Disable visibility of the warning renderer and InnerGrow
-        if (warningRenderer != null) warningRenderer.enabled = false;
-        if (InnerGrow != null) InnerGrow.enabled = false;
+        //// Disable visibility of the warning renderer and InnerGrow
+        //if (warningRenderer != null) warningRenderer.enabled = false;
+        //if (InnerGrow != null) InnerGrow.enabled = false;
 
-        // Reset casting state
-        isCasting = false;
+        //// Reset casting state
+        //isCasting = false;
 
-        phaseOne.SetAbilityCasting(false); // Reset casting flag to false
+        //phaseOne.SetAbilityCasting(false); // Reset casting flag to false
     }
 }
