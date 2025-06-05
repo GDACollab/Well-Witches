@@ -660,6 +660,8 @@ GameObject:
   - component: {fileID: 9014724367387819605}
   - component: {fileID: 4979627998584016869}
   - component: {fileID: 574793365530881989}
+  - component: {fileID: 6896637805450966079}
+  - component: {fileID: 2116235306869629605}
   m_Layer: 0
   m_Name: BossPrefab
   m_TagString: Untagged
@@ -813,6 +815,40 @@ MonoBehaviour:
   warningDuration: 1.5
   attackDuration: 0.3
   damage: 0
+--- !u!114 &6896637805450966079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4510760633449180580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdb15b7b0b2fe4c539a4e0428273c842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  warningDuration: 2
+  attackDuration: 1
+  damage: 0
+--- !u!114 &2116235306869629605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4510760633449180580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82a2c2124064229468bba52622b56dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  warningDuration: 1.5
+  attackDuration: 0.3
+  stunDuration: 2
+  LungeDistance: 0
+  LungeSpeed: 0
+  damage: 0
+  bossCollider: {fileID: 0}
 --- !u!1 &4527314849454086779
 GameObject:
   m_ObjectHideFlags: 0

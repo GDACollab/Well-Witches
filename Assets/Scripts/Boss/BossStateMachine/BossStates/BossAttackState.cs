@@ -1,7 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 public class BossAttackState : BossState
 {
+    private float timer = 2f;
+    
     public BossAttackState(BossEnemy bossEnemy, BossStateMachine bossStateMachine) : base(bossEnemy, bossStateMachine)
     {
     }
@@ -10,13 +13,15 @@ public class BossAttackState : BossState
     {
         base.EnterState();
         bossEnemy.GetAgent().isStopped = true;
+        timer = 2f;
         bossEnemy.bossShieldBash.PerformShieldBash();
     }
 
     public override void OnUpdate() 
     {
         base.OnUpdate();
-        if (bossEnemy.bossShieldBash.isCasting == false)
+        timer -= Time.deltaTime;
+        if (timer <= 0)
         {
             bossEnemy.StateMachine.ChangeState(bossEnemy.BossChaseState);
         }
@@ -33,4 +38,6 @@ public class BossAttackState : BossState
 
         bossEnemy.GetAgent().isStopped = false;
     }
+
+
 }
