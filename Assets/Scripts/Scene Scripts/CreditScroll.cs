@@ -300,6 +300,7 @@ public class CreditScroll : MonoBehaviour
         if (skipHint && skipHint2)
         {
             skipHint2 = false;
+            SceneHandler.Instance.ToMainMenuScene();
             // Fade to Black
             // StartCoroutine(globalTeapot.fader.FadeToBlack(() => Loader.Load(Loader.Scene.MainMenu, true), longFadeOutTime));
         }

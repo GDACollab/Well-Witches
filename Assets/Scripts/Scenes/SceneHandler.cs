@@ -30,6 +30,8 @@ public class SceneHandler : MonoBehaviour
     private int LoadingScreenIndex = 6;
     [SerializeField]
     private int EndingCutsceneIndex = 7;
+    [SerializeField]
+    private int CreditsCutsceneIndex = 8;
 
     [Header("Transition Screen")]
     [Tooltip("Image for loading screen")]
@@ -153,6 +155,11 @@ public class SceneHandler : MonoBehaviour
         }
         //From Ending Cutscene Scene
         else if (index == EndingCutsceneIndex)
+        {
+
+        }
+        //From Credits Cutscene Scene
+        else if (index == CreditsCutsceneIndex)
         {
 
         }
