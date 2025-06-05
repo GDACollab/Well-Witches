@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 //using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -77,6 +78,13 @@ public class ParcellaTrigger : MonoBehaviour
         new Vector3(transform.position.x + ItemSpawnOffset.x, transform.position.y + ItemSpawnOffset.y, 0f),
         Quaternion.identity
         );
+                Debug.Log("whyb name: " + itemDrop.name);
+                Debug.Log("whyb: " + itemDrop.GetComponent<PhillipFish>());
+                if (itemDrop.GetComponent<PhillipFish>() != null)
+                {
+                    Debug.Log("whyb in loop: " + itemDrop.GetComponent<PhillipFish>());
+                    itemDrop.GetComponent<PhillipFish>().KillFish();
+                }
                 yield return new WaitForSeconds(itemSpawnDelay);
             }
         }

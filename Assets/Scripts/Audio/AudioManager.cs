@@ -100,6 +100,9 @@ public class AudioManager : MonoBehaviour
             case "VampireKnight":
                 currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.bossTalk);
                 break;
+            case "Philip":
+                currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.diverTalk);
+                break;
             default:
                 break;
         }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StatsManager : MonoBehaviour
 {
@@ -105,8 +106,23 @@ public class StatsManager : MonoBehaviour
    
    public float WardenHealthRegen;
 
+    private void OnEnable()
+    {
+        SceneManager.activeSceneChanged += SceneChange;
+    }
 
-   private void Awake()
+    private void OnDisable()
+    {
+        SceneManager.activeSceneChanged -= SceneChange; 
+    }
+    private void SceneChange(Scene before, Scene after)
+    {
+        if(after.buildIndex == 2 || after.buildIndex == 1 || after.buildIndex == 4)
+        {
+            players = GetPlayers();
+        }
+    }
+    private void Awake()
    {
         players = GetPlayers();
         if (players.Count == 2) {
