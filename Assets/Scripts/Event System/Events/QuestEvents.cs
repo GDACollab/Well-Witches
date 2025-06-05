@@ -75,4 +75,13 @@ public class QuestEvents
             onPhillipFishReturn();
         }
     }
+
+    public event Action onFishCollected;
+    public void FishCollected()
+    {
+        if (onFishCollected != null)
+        {
+            onFishCollected();
+        }
+    }
 }
