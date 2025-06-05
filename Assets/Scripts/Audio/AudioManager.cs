@@ -11,6 +11,8 @@ public class AudioManager : MonoBehaviour
     private List<EventInstance> eventInstances;
     private EventInstance currentBGM;
     private EventInstance currentCharacterTalk;
+    private EventInstance gathererHurt;
+    private EventInstance wardenHurt;
 
     private static AudioManager _instance;
     public static AudioManager Instance { get { return _instance; } }
@@ -74,10 +76,10 @@ public class AudioManager : MonoBehaviour
             currentCharacterTalk.release();
         }
 
-        //print("current mf talking: " + characterName);
+        print("current mf talking: " + characterName);
         switch(characterName)
         {
-            case "Wysteria":
+            case "Wisteria":
                 currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.vampireTalk);
                 break;
             case "Dullahan":
@@ -87,12 +89,57 @@ public class AudioManager : MonoBehaviour
                 currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.aloeTalk);
                 break;
             case "Vervain":
-                // TODO: swap to vervainTalk when its added
-                // currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.aloeTalk);
+                currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.vervainTalk);
+                break;
+            case "Hex":
+                currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.hexTalk);
+                break;
+            case "Parcella":
+                currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.ghostMailTalk);
+                break;
+            case "VampireKnight":
+                currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.bossTalk);
+                break;
+            default:
                 break;
         }
 
         currentCharacterTalk.start();
+    }
+
+    public void PlayPlayerHurt(string player)
+    {
+        if (!gathererHurt.isValid())
+        {
+            gathererHurt = CreateEventInstance(FMODEvents.Instance.gathererHurt);
+        }
+        if (!wardenHurt.isValid())
+        {
+            wardenHurt = CreateEventInstance(FMODEvents.Instance.wardenHurt);
+        }
+        if (player != null) 
+        { 
+            if (player.ToLower() == "gatherer")
+            {
+                PLAYBACK_STATE playbackState;
+                gathererHurt.getPlaybackState(out playbackState);
+
+                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    gathererHurt.start();
+                }
+            } 
+            else
+            {
+                PLAYBACK_STATE playbackState;
+                wardenHurt.getPlaybackState(out playbackState);
+
+                if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    wardenHurt.start();
+                }
+            }
+        }
     }
 
     public void CleanUp()

@@ -9,6 +9,7 @@ public class InkExternalFunctions
         story.BindExternalFunction("AdvanceQuest", (string questID) => AdvanceQuest(questID));
         story.BindExternalFunction("FinishQuest", (string questID) => FinishQuest(questID));
         story.BindExternalFunction("ShowAbilityUI", () => ShowAbilityUI());
+        story.BindExternalFunction("FinishedSpeaking", ()=> FinishedSpeaking());
     }
 
     public void Unbind(Story story)
@@ -17,6 +18,7 @@ public class InkExternalFunctions
         story.UnbindExternalFunction("AdvanceQuest");
         story.UnbindExternalFunction("FinishQuest");
         story.UnbindExternalFunction("ShowAbilityUI");
+        story.UnbindExternalFunction("FinishedSpeaking");
     }
     private void StartQuest(string questID)
     {
@@ -35,5 +37,10 @@ public class InkExternalFunctions
     private void ShowAbilityUI()
     {
         EventManager.instance.miscEvent.ShowAbilityUI();
+    }
+
+    private void FinishedSpeaking()
+    {
+        EventManager.instance.questEvents.ParcellaFinishedDialogue();
     }
 }

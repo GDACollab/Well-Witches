@@ -813,8 +813,32 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 4539568004679959182, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
+      propertyPath: size
+      value: 0.685
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539568004679959182, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
+      propertyPath: growEffect
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4886292762916306601, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
       propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186575704486357942, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186575704486357942, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186575704486357942, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186575704486357942, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
+      propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5486428829022045910, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
@@ -836,6 +860,34 @@ PrefabInstance:
     - target: {fileID: 5486428829022045910, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
       propertyPath: warningDuration
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174051656239216337, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.7719339
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174051656239216337, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174051656239216337, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174051656239216337, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174051656239216337, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.713
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174051656239216337, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174051656239216337, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6589887343824488861, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
       propertyPath: m_LocalPosition.x
@@ -881,8 +933,13 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8125167524964777799, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 381166677470477189, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4510760633449180580, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
@@ -1313,6 +1370,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 692076551}
   m_CullTransparentMesh: 1
+--- !u!114 &693598714 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5089148086965064269, guid: e0290e6c8395d3c4cbc70595a7bd4325, type: 3}
+  m_PrefabInstance: {fileID: 472871590}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff1d09204d54c042b4a3dca25950ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &714318786 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3768020103086965562, guid: 94a0ced677a3c324eacfa276aec2f2b9, type: 3}
@@ -1555,6 +1623,7 @@ MonoBehaviour:
   activeQuestID: 
   activeQuestPrefab: {fileID: 0}
   activeQuestItemCount: 0
+  diedOnLastRun: 0
   currentKeyItem: 1
 --- !u!1001 &1088075896
 PrefabInstance:
@@ -2222,10 +2291,6 @@ PrefabInstance:
       propertyPath: gathererRadiusCircle
       value: 
       objectReference: {fileID: 1088075898}
-    - target: {fileID: 3046167562820563143, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
-      propertyPath: <NumHitsRequired>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3424275855618714540, guid: 9d03b969a4374bd4f84e8fbabded0f21, type: 3}
       propertyPath: m_Name
       value: Warden
@@ -2352,11 +2417,14 @@ MonoBehaviour:
   BossSceneIndex: 4
   OpenCutsceneIndex: 5
   LoadingScreenIndex: 6
+  EndingCutsceneIndex: 7
   loadingScreen: {fileID: 51576857}
   fadeUIImage: {fileID: 1462868586}
   waitTime: 2
   fadeInTime: 1
   fadeOutTime: 1
+  loadingScreenTextSO: {fileID: 0}
+  helpText: {fileID: 0}
 --- !u!1001 &1426906303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2849,8 +2917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8a838599c0e7a4b8f1731f0628484f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questDisplay: {fileID: 0}
-  questDescription: {fileID: 0}
+  questDisplay: 
 --- !u!1 &1766624479
 GameObject:
   m_ObjectHideFlags: 0
@@ -2884,6 +2951,7 @@ MonoBehaviour:
   bush_respawn_duration: 10
   number_of_projectiles: 25
   projectile_prefab: {fileID: 8090864123439173665, guid: 71a9a4017a5f1db4381a726a5b3e29c8, type: 3}
+  bossShield: {fileID: 693598714}
   progress: {fileID: 2052452172}
   boss: {fileID: 340847527}
 --- !u!4 &1766624481

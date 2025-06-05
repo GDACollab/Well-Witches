@@ -15,7 +15,15 @@ public class Gatherer_Health : PlayerHealth
 
 		float newHealth = statsManager.GathererCurrentHealth - damage;
 
-		if (newHealth > 0) statsManager.GathererCurrentHealth = newHealth;
+		if (newHealth > 0)
+		{
+			statsManager.GathererCurrentHealth = newHealth;
+			
+			if (damage > 0)
+			{
+				AudioManager.Instance.PlayPlayerHurt(player);
+			}
+		}
 		else if (newHealth <= 0 && statsManager.GathererCurrentHealth != 0)
 		{
 			statsManager.GathererCurrentHealth = 0;

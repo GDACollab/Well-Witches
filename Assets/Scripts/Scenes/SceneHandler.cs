@@ -2,6 +2,7 @@ using FMOD.Studio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -27,6 +28,8 @@ public class SceneHandler : MonoBehaviour
     private int OpenCutsceneIndex = 5;
     [SerializeField]
     private int LoadingScreenIndex = 6;
+    [SerializeField]
+    private int EndingCutsceneIndex = 7;
 
     [Header("Transition Screen")]
     [Tooltip("Image for loading screen")]
@@ -36,6 +39,9 @@ public class SceneHandler : MonoBehaviour
     [SerializeField] private float waitTime = 2f;
     [SerializeField] float fadeInTime = 1f;
     [SerializeField] float fadeOutTime = 1f;
+    [Header("Helper Text")]
+    [SerializeField] private LoadingScreenTextSO loadingScreenTextSO;
+    [SerializeField] private TextMeshProUGUI helpText;
     
     
     private void Awake(){
@@ -69,7 +75,6 @@ public class SceneHandler : MonoBehaviour
 
     public IEnumerator FadeFromBlack(float fadeInTime)
     {
-        Time.timeScale = 0f;
         fadeUIImage.gameObject.SetActive(true);
 
         yield return new WaitForSecondsRealtime(0.1f);
@@ -85,12 +90,10 @@ public class SceneHandler : MonoBehaviour
             yield return null;
         }
         fadeUIImage.gameObject.SetActive(false);
-        Time.timeScale = 1f;
     }
 
     public IEnumerator FadeToBlack(float fadeOutTime)
     {
-        Time.timeScale = 0f;
         Color objectColor = fadeUIImage.color; //Gets Object Color and Modifies values
         objectColor.a = 0;
         fadeUIImage.color = objectColor;
@@ -103,7 +106,6 @@ public class SceneHandler : MonoBehaviour
             fadeUIImage.color = objectColor;
             yield return null;
         }
-        Time.timeScale = 1f;
         yield return new WaitForSecondsRealtime(0.1f);
     }
 
@@ -149,6 +151,11 @@ public class SceneHandler : MonoBehaviour
         else if (index == OpenCutsceneIndex) {
 
         }
+        //From Ending Cutscene Scene
+        else if (index == EndingCutsceneIndex)
+        {
+
+        }
         // Unsupported Scene
         else {
             Debug.Log("Transitions from the current scene, " + currentScene.name + " are not currently supported");
@@ -157,6 +164,7 @@ public class SceneHandler : MonoBehaviour
 
         StartCoroutine(LoadingScreen(MainMenuSceneIndex));
         //SceneManager.LoadScene(MainMenuSceneIndex);
+        Debug.Log("Passed");
     }
     public void ToHubScene(){
 
@@ -182,7 +190,12 @@ public class SceneHandler : MonoBehaviour
         // From Open Cutscene Scene
         else if (index == OpenCutsceneIndex) {
 
-        } 
+        }
+        //From Ending Cutscene Scene
+        else if (index == EndingCutsceneIndex)
+        {
+
+        }
         else if(index == BossSceneIndex){
             
         }
@@ -193,7 +206,8 @@ public class SceneHandler : MonoBehaviour
         }
 
         //SceneManager.LoadScene(HubSceneIndex);
-        StartCoroutine(LoadingScreen(HubSceneIndex)); 
+        StartCoroutine(LoadingScreen(HubSceneIndex));
+        Debug.Log("Passed");
 
         AudioManager.Instance.CleanUp();
         AudioManager.Instance.PlayOST(FMODEvents.Instance.lobbyBGM);
@@ -258,6 +272,7 @@ public class SceneHandler : MonoBehaviour
 
         StartCoroutine(LoadingScreen(PauseSceneIndex));
 
+        Debug.Log("Passed");
         //SceneManager.LoadScene(PauseSceneIndex);
     }
 
@@ -272,6 +287,20 @@ public class SceneHandler : MonoBehaviour
         AudioManager.Instance.CleanUp();
         AudioManager.Instance.PlayOST(FMODEvents.Instance.lobbyBGM);
     }
+
+    public void ToEndingCutscene()
+    {
+
+        Scene currentScene = SceneManager.GetActiveScene();
+        int index = currentScene.buildIndex;
+
+        //SceneManager.LoadScene(HubSceneIndex);
+        StartCoroutine(CutsceneLoadingScreen(EndingCutsceneIndex));
+
+        AudioManager.Instance.CleanUp();
+        AudioManager.Instance.PlayOST(FMODEvents.Instance.lobbyBGM);
+    }
+
     public void ToBossScene(){
         Scene currentScene = SceneManager.GetActiveScene();
         int index = currentScene.buildIndex;
@@ -285,8 +314,7 @@ public class SceneHandler : MonoBehaviour
     //show image, wait x seconds, load scene
     private IEnumerator LoadingScreen(int sceneName)
     {
-        //show picture, backup incase some scene doesn't have it
-        
+        Time.timeScale = 0;
         yield return FadeToBlack(fadeInTime);
         SceneManager.LoadScene(LoadingScreenIndex);
         loadingScreen.SetActive(true);
@@ -305,6 +333,7 @@ public class SceneHandler : MonoBehaviour
         loadingScreen.SetActive(false);
         newscene.allowSceneActivation = true;
         yield return FadeFromBlack(fadeOutTime);
+        Time.timeScale = 1;
     }
     
     private IEnumerator CutsceneLoadingScreen(int sceneName)
@@ -327,14 +356,14 @@ public class SceneHandler : MonoBehaviour
     //show image, wait x seconds, load scene
     private IEnumerator GameplayLoadingScreen(int sceneName)
     {
-        //show picture, backup incase some scene doesn't have it
-
+        Time.timeScale = 0;
         yield return FadeToBlack(fadeInTime);
         loadingScreen.SetActive(true);
+        int randomTextNum = UnityEngine.Random.Range(0, loadingScreenTextSO.loadingTexts.Length);
+        helpText.text = loadingScreenTextSO.loadingTexts[randomTextNum];
         yield return FadeFromBlack(fadeOutTime);
-        //animation will be done via art
-        Time.timeScale = 0;
         SceneManager.LoadScene(sceneName);
+        WardenAbilityManager.Controls.Ui_Navigate.Disable();
 
         while (!GenerationEnded)
         {
@@ -344,6 +373,7 @@ public class SceneHandler : MonoBehaviour
         yield return FadeToBlack(fadeInTime);
         loadingScreen.SetActive(false);
         yield return FadeFromBlack(fadeOutTime);
+        WardenAbilityManager.Controls.Ui_Navigate.Enable();
         Time.timeScale = 1;
         GenerationEnded = false;
     }

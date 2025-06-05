@@ -152,8 +152,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 8bda46540788c544c9862621cdc16f5a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -183,8 +183,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.76862746, g: 0.21176471, b: 0.21176471, a: 0.2}
-    m_HighlightedColor: {r: 0.8443683, g: 1, b: 0.83423173, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.83137256, b: 0.70980394, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.703504, g: 0.703504, b: 0.703504, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -233,7 +233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8618184457255493494
 RectTransform:
   m_ObjectHideFlags: 0
@@ -252,6 +252,8 @@ RectTransform:
   - {fileID: 8052177392651102075}
   - {fileID: 5653091152595716925}
   - {fileID: 6852841894677237620}
+  - {fileID: 5493942072827257188}
+  - {fileID: 2475305275648789859}
   m_Father: {fileID: 3916666947963654306}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -288,15 +290,15 @@ RectTransform:
   m_GameObject: {fileID: 745995434520706135}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.59, y: 7.949999, z: 1.59}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5533750865177224492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -222, y: 147}
-  m_SizeDelta: {x: 80, y: 15}
+  m_AnchoredPosition: {x: -222, y: 139.6}
+  m_SizeDelta: {x: 156, y: 164}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5310814042050222494
 CanvasRenderer:
@@ -326,7 +328,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c7d19bddef2e2964e9dfafe8141a5e2a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 57c98e327cbe368418917a30c04bd053, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -396,10 +398,10 @@ MonoBehaviour:
   abilityButton: {fileID: 6515685411101715494}
   abilitySelectManager: {fileID: 6131504580542249183}
   abilityID: AloeVera
-  normalSprite: {fileID: 21300000, guid: c7d19bddef2e2964e9dfafe8141a5e2a, type: 3}
-  hoverSprite: {fileID: 21300000, guid: c66cfd7dd6bae674d8d49a1e63b2a2a1, type: 3}
-  selectSprite: {fileID: 21300000, guid: c66cfd7dd6bae674d8d49a1e63b2a2a1, type: 3}
-  lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
+  normalSprite: {fileID: 21300000, guid: 57c98e327cbe368418917a30c04bd053, type: 3}
+  hoverSprite: {fileID: 21300000, guid: 57c98e327cbe368418917a30c04bd053, type: 3}
+  selectSprite: {fileID: 21300000, guid: 496a80ad2226c684f9be8a7963c5567e, type: 3}
+  lockedSprite: {fileID: 21300000, guid: 9d633822191500f41b107a427ff11e1c, type: 3}
   abilityText: Passively heals Aloe over time. <i>Apply generously over the affected
     area.</i>
   abilityName: Aloe Vera
@@ -478,10 +480,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8618184457255493494}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 546.7, y: 494.39392}
-  m_SizeDelta: {x: 107.891, y: 80.1877}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 7.3997, y: -120}
+  m_SizeDelta: {x: 14.7994, y: 42.7104}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1462155090234219868
 CanvasRenderer:
@@ -511,7 +513,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b12a7908c43afc548a41793f5c5840be, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3b1a9dc39d3c01841b467623d62501d9, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1029,7 +1031,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -6}
   m_SizeDelta: {x: -2, y: -2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7044741964866348229
@@ -1062,7 +1064,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Button
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b4834448db279a241a8fc63691844ecd, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1194,7 +1196,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b46d461443a212541a676e2d656708ba, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0badded2fb5fdf44798a37b90ff30bf8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1238,7 +1240,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -9}
   m_SizeDelta: {x: -2, y: -2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7536550462740218991
@@ -1271,7 +1273,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Button
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b4834448db279a241a8fc63691844ecd, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1367,15 +1369,15 @@ RectTransform:
   m_GameObject: {fileID: 2657846154888483791}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.59, y: 7.949999, z: 1.59}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5533750865177224492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 416, y: 155}
-  m_SizeDelta: {x: 80, y: 15}
+  m_AnchoredPosition: {x: 414.8, y: 137.6}
+  m_SizeDelta: {x: 165.5957, y: 165.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2914299648433887420
 CanvasRenderer:
@@ -1405,7 +1407,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 78042f2dbac0c2148932262f64acf9c2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7fe35fe1b9b68784db6c860d21c8634a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1475,16 +1477,91 @@ MonoBehaviour:
   abilityButton: {fileID: 7435632951232229348}
   abilitySelectManager: {fileID: 6131504580542249183}
   abilityID: ResurrectionRegalia
-  normalSprite: {fileID: 21300000, guid: 78042f2dbac0c2148932262f64acf9c2, type: 3}
-  hoverSprite: {fileID: 21300000, guid: c66cfd7dd6bae674d8d49a1e63b2a2a1, type: 3}
-  selectSprite: {fileID: 21300000, guid: c66cfd7dd6bae674d8d49a1e63b2a2a1, type: 3}
-  lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
+  normalSprite: {fileID: 21300000, guid: 7fe35fe1b9b68784db6c860d21c8634a, type: 3}
+  hoverSprite: {fileID: 21300000, guid: 7fe35fe1b9b68784db6c860d21c8634a, type: 3}
+  selectSprite: {fileID: 21300000, guid: 79f1743acb423624eb3f5acf932d86ef, type: 3}
+  lockedSprite: {fileID: 21300000, guid: f3f62a81359073744ac1347539b9b388, type: 3}
   abilityText: Slowly revive to full health once after dying. <i>The miracle of imperfect
     necromancy.</i>
   abilityName: Resurrection Regalia
   isWarden: 1
   isActive: 0
   isLocked: 0
+--- !u!1 &2705646410008237181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5493942072827257188}
+  - component: {fileID: 4981912346196595655}
+  - component: {fileID: 1051200289516222383}
+  m_Layer: 5
+  m_Name: Polaroid 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5493942072827257188
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2705646410008237181}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8618184457255493494}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 80, y: 39}
+  m_SizeDelta: {x: 160, y: 519}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4981912346196595655
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2705646410008237181}
+  m_CullTransparentMesh: 1
+--- !u!114 &1051200289516222383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2705646410008237181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 3bd30968836dd3545bdd4243f8e0fde2, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3135845836287874177
 GameObject:
   m_ObjectHideFlags: 0
@@ -1552,8 +1629,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 8bda46540788c544c9862621cdc16f5a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1583,8 +1660,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.76819396, g: 0.21016617, b: 0.21120685, a: 0.20392157}
-    m_HighlightedColor: {r: 0.8443683, g: 1, b: 0.83423173, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.829311, b: 0.70754707, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.703504, g: 0.703504, b: 0.703504, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -1652,7 +1729,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 47.3, y: -41}
+  m_AnchoredPosition: {x: 47.3, y: -36.2}
   m_SizeDelta: {x: 721.8691, y: 127.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7501532681936634344
@@ -1685,8 +1762,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b4834448db279a241a8fc63691844ecd, type: 2}
+  m_sharedMaterial: {fileID: -4928588143787406334, guid: b4834448db279a241a8fc63691844ecd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1781,15 +1858,15 @@ RectTransform:
   m_GameObject: {fileID: 3278138087981290319}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7100002, y: 8.549999, z: 1.7100002}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5533750865177224492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 241, y: -14}
-  m_SizeDelta: {x: 80, y: 15}
+  m_AnchoredPosition: {x: 251.96, y: -34.4}
+  m_SizeDelta: {x: 149.64, y: 160.33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4728214574378277517
 CanvasRenderer:
@@ -1819,7 +1896,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4d49d9f7cbdde3a4590f718848c57a74, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d46c0a00731880f41bab193f602187fe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1889,16 +1966,16 @@ MonoBehaviour:
   abilityButton: {fileID: 7350867875734669597}
   abilitySelectManager: {fileID: 6131504580542249183}
   abilityID: SpellBurst
-  normalSprite: {fileID: 21300000, guid: 4d49d9f7cbdde3a4590f718848c57a74, type: 3}
-  hoverSprite: {fileID: 21300000, guid: 4bb06c725b680ce4fa8d5936f5224d87, type: 3}
-  selectSprite: {fileID: 21300000, guid: 4bb06c725b680ce4fa8d5936f5224d87, type: 3}
-  lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
+  normalSprite: {fileID: 21300000, guid: d46c0a00731880f41bab193f602187fe, type: 3}
+  hoverSprite: {fileID: 21300000, guid: d46c0a00731880f41bab193f602187fe, type: 3}
+  selectSprite: {fileID: 21300000, guid: 8fc35c59b6efd3e41ba63ec40e7a52c4, type: 3}
+  lockedSprite: {fileID: 21300000, guid: b06effcb0d03ec14aa7305f51ecdb60e, type: 3}
   abilityText: "Vervain summons projectiles that orbit around herself.  <i>You spin
     me right round.</i>\r"
   abilityName: Spell Storm
   isWarden: 1
   isActive: 1
-  isLocked: 0
+  isLocked: 1
 --- !u!1 &3281976989101824284
 GameObject:
   m_ObjectHideFlags: 0
@@ -1934,7 +2011,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 607, y: -385.69}
-  m_SizeDelta: {x: 400, y: 1099}
+  m_SizeDelta: {x: 400, y: 354.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4846839827802930473
 CanvasRenderer:
@@ -1988,7 +2065,7 @@ GameObject:
   - component: {fileID: 3841185925527241932}
   m_Layer: 5
   m_Name: UICanvas
-  m_TagString: Untagged
+  m_TagString: UICanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2009,6 +2086,7 @@ RectTransform:
   - {fileID: 3250379761572643316}
   - {fileID: 6493760835647504029}
   - {fileID: 3916666947963654306}
+  - {fileID: 4911402550897015446}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2108,15 +2186,15 @@ RectTransform:
   m_GameObject: {fileID: 3523509142841901266}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.59, y: 7.949999, z: 1.59}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5533750865177224492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 423, y: -11}
-  m_SizeDelta: {x: 80, y: 15}
+  m_AnchoredPosition: {x: 414.3849, y: -34.4}
+  m_SizeDelta: {x: 145.7698, y: 178.8586}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4225610778601835851
 CanvasRenderer:
@@ -2146,7 +2224,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da76e73e53c00a44fb1bfdd116771c83, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3af26d3d45e7a8d439164003d56df0d7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2216,10 +2294,10 @@ MonoBehaviour:
   abilityButton: {fileID: 4357766401559859749}
   abilitySelectManager: {fileID: 6131504580542249183}
   abilityID: SoulSiphon
-  normalSprite: {fileID: 21300000, guid: da76e73e53c00a44fb1bfdd116771c83, type: 3}
-  hoverSprite: {fileID: 21300000, guid: 5454551009e1e4a47839d1a79a2eb359, type: 3}
-  selectSprite: {fileID: 21300000, guid: 5454551009e1e4a47839d1a79a2eb359, type: 3}
-  lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
+  normalSprite: {fileID: 21300000, guid: 3af26d3d45e7a8d439164003d56df0d7, type: 3}
+  hoverSprite: {fileID: 21300000, guid: 3af26d3d45e7a8d439164003d56df0d7, type: 3}
+  selectSprite: {fileID: 21300000, guid: 872fcfba6a8e88145bf22f0d10d6dbcf, type: 3}
+  lockedSprite: {fileID: 21300000, guid: 1c8cd7a6ff5c6b04ea0116538e456812, type: 3}
   abilityText: "Partially recharge your ability meter with every kill. <i>Don\u2019t
     worry, I\u2019ll give your soul purpose.</i>\r\n"
   abilityName: Siphon Energy
@@ -2466,7 +2544,7 @@ RectTransform:
   m_GameObject: {fileID: 3930799849284515440}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.59, y: 7.949999, z: 1.59}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5533750865177224492}
@@ -2474,7 +2552,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -230, y: -208}
-  m_SizeDelta: {x: 80, y: 15}
+  m_SizeDelta: {x: 155.9849, y: 164.6082}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8316524228437926418
 CanvasRenderer:
@@ -2504,7 +2582,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f01d2dce8b53caa4bad8595fc5243700, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e5268bf8c894d6e4aa8882e87e45c31a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2574,10 +2652,10 @@ MonoBehaviour:
   abilityButton: {fileID: 9002357706330229086}
   abilitySelectManager: {fileID: 6131504580542249183}
   abilityID: Espresso
-  normalSprite: {fileID: 21300000, guid: f01d2dce8b53caa4bad8595fc5243700, type: 3}
-  hoverSprite: {fileID: 21300000, guid: 516f14642ff1e6a448dd052248b77960, type: 3}
-  selectSprite: {fileID: 21300000, guid: 516f14642ff1e6a448dd052248b77960, type: 3}
-  lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
+  normalSprite: {fileID: 21300000, guid: e5268bf8c894d6e4aa8882e87e45c31a, type: 3}
+  hoverSprite: {fileID: 21300000, guid: e5268bf8c894d6e4aa8882e87e45c31a, type: 3}
+  selectSprite: {fileID: 21300000, guid: 2259cb73746f2384fac611a9d3f18841, type: 3}
+  lockedSprite: {fileID: 21300000, guid: b3191bfae9201f64a8091fb412d1d3b6, type: 3}
   abilityText: "A drink that accelerates Aloe infinitely. <i>What have you done\u2026</i>\r"
   abilityName: 12oz Espresso
   isWarden: 0
@@ -2617,7 +2695,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1088, y: 170}
+  m_AnchoredPosition: {x: 1088, y: 168}
   m_SizeDelta: {x: 721.8691, y: 127.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3819858136183670947
@@ -2650,8 +2728,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Passive
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b4834448db279a241a8fc63691844ecd, type: 2}
+  m_sharedMaterial: {fileID: -4928588143787406334, guid: b4834448db279a241a8fc63691844ecd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2675,8 +2753,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2898,15 +2976,15 @@ RectTransform:
   m_GameObject: {fileID: 4184455961773813630}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.59, y: 7.949999, z: 1.59}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5533750865177224492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -231, y: -28}
-  m_SizeDelta: {x: 80, y: 15}
+  m_AnchoredPosition: {x: -231, y: -34.4}
+  m_SizeDelta: {x: 172.7052, y: 166.54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3565562483466376638
 CanvasRenderer:
@@ -2936,7 +3014,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7f96e05e73d7c1749b5d64549541e437, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3514126f74ea4ed4fa84fd34eb8fdd2d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3006,10 +3084,10 @@ MonoBehaviour:
   abilityButton: {fileID: 3983747246194047665}
   abilitySelectManager: {fileID: 6131504580542249183}
   abilityID: HellfireBooties
-  normalSprite: {fileID: 21300000, guid: 7f96e05e73d7c1749b5d64549541e437, type: 3}
-  hoverSprite: {fileID: 21300000, guid: 6d5af48875080934393a26a3e8564e3f, type: 3}
-  selectSprite: {fileID: 21300000, guid: 6d5af48875080934393a26a3e8564e3f, type: 3}
-  lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
+  normalSprite: {fileID: 21300000, guid: 3514126f74ea4ed4fa84fd34eb8fdd2d, type: 3}
+  hoverSprite: {fileID: 21300000, guid: 3514126f74ea4ed4fa84fd34eb8fdd2d, type: 3}
+  selectSprite: {fileID: 21300000, guid: b2f04ad85986622498611de1cfe68244, type: 3}
+  lockedSprite: {fileID: 21300000, guid: 829f6fd8e1fef074c88f91aa8d6c7218, type: 3}
   abilityText: "Aloe\u2019s shoes leave behind a trail of fire. <i>This is fine.</i>\r"
   abilityName: Soles of the Damned
   isWarden: 0
@@ -3109,7 +3187,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 65.3, y: -130}
+  m_AnchoredPosition: {x: 65.3, y: -140}
   m_SizeDelta: {x: 721.8691, y: 127.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3460809295285070330
@@ -3142,8 +3220,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Info
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b4834448db279a241a8fc63691844ecd, type: 2}
+  m_sharedMaterial: {fileID: -4928588143787406334, guid: b4834448db279a241a8fc63691844ecd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3167,8 +3245,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27
-  m_fontSizeBase: 27
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3238,15 +3316,15 @@ RectTransform:
   m_GameObject: {fileID: 5777805664448963662}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.59, y: 7.949999, z: 1.59}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5533750865177224492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -441, y: -28}
-  m_SizeDelta: {x: 80, y: 15}
+  m_AnchoredPosition: {x: -436.5, y: -43.6}
+  m_SizeDelta: {x: 184.0679, y: 167.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5374735054864736774
 CanvasRenderer:
@@ -3276,7 +3354,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 29f79fcb605a3c848b7add479c046f41, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 83dcb5b519022944ba44bbf6b553f367, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3346,10 +3424,10 @@ MonoBehaviour:
   abilityButton: {fileID: 1161144188090215211}
   abilitySelectManager: {fileID: 6131504580542249183}
   abilityID: SharingIsCaring
-  normalSprite: {fileID: 21300000, guid: 29f79fcb605a3c848b7add479c046f41, type: 3}
-  hoverSprite: {fileID: 21300000, guid: 7c13133502acbe14f84b76d3fa5627d6, type: 3}
-  selectSprite: {fileID: 21300000, guid: 7c13133502acbe14f84b76d3fa5627d6, type: 3}
-  lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
+  normalSprite: {fileID: 21300000, guid: 83dcb5b519022944ba44bbf6b553f367, type: 3}
+  hoverSprite: {fileID: 21300000, guid: 83dcb5b519022944ba44bbf6b553f367, type: 3}
+  selectSprite: {fileID: 21300000, guid: e5c3aa072f3c0e342b25dcb88c9aa7a5, type: 3}
+  lockedSprite: {fileID: 21300000, guid: a9a3e4b905fe0424c8bbb35f301c70ec, type: 3}
   abilityText: Aloe can transfer health to Vervain. <i>Give that sour face a smile!</i>
   abilityName: Sharing is Caring
   isWarden: 0
@@ -3384,15 +3462,15 @@ RectTransform:
   m_GameObject: {fileID: 6150211907940047633}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7499999, y: 8.749998, z: 1.7499999}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5533750865177224492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 426, y: -182}
-  m_SizeDelta: {x: 80, y: 15}
+  m_AnchoredPosition: {x: 426.1, y: -199.94}
+  m_SizeDelta: {x: 160, y: 167.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8351791325441373387
 CanvasRenderer:
@@ -3422,7 +3500,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d42f294d40a914346a34ff723bfc1996, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f149a4cfffac2ff43b6da1cf9ddb4c73, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3492,10 +3570,10 @@ MonoBehaviour:
   abilityButton: {fileID: 2821226217709032207}
   abilitySelectManager: {fileID: 6131504580542249183}
   abilityID: BoggyBullets
-  normalSprite: {fileID: 21300000, guid: d42f294d40a914346a34ff723bfc1996, type: 3}
-  hoverSprite: {fileID: 21300000, guid: 43eea9a0706d4f948ba104e997853701, type: 3}
-  selectSprite: {fileID: 21300000, guid: 43eea9a0706d4f948ba104e997853701, type: 3}
-  lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
+  normalSprite: {fileID: 21300000, guid: f149a4cfffac2ff43b6da1cf9ddb4c73, type: 3}
+  hoverSprite: {fileID: 21300000, guid: f149a4cfffac2ff43b6da1cf9ddb4c73, type: 3}
+  selectSprite: {fileID: 21300000, guid: 8965d972ac326e5478d51aef3333c1fb, type: 3}
+  lockedSprite: {fileID: 21300000, guid: 32f5cfc04e2fea241b279ebd643dfd9d, type: 3}
   abilityText: "Slow struck enemies to a crawl. <i>Drenched clothing will bog down
     anyone\u2019s day.</i>\r"
   abilityName: Boggy Bullets
@@ -3670,7 +3748,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 287, y: 168}
+  m_AnchoredPosition: {x: 275, y: 168}
   m_SizeDelta: {x: 721.8691, y: 127.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4663520980008523607
@@ -3705,8 +3783,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b4834448db279a241a8fc63691844ecd, type: 2}
+  m_sharedMaterial: {fileID: -4928588143787406334, guid: b4834448db279a241a8fc63691844ecd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3806,7 +3884,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 449, y: 169}
+  m_AnchoredPosition: {x: 445, y: 165}
   m_SizeDelta: {x: 721.8691, y: 127.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2109764782212353396
@@ -3839,8 +3917,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Passive
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b4834448db279a241a8fc63691844ecd, type: 2}
+  m_sharedMaterial: {fileID: -4928588143787406334, guid: b4834448db279a241a8fc63691844ecd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3864,8 +3942,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3906,6 +3984,81 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &6624229488825613646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2475305275648789859}
+  - component: {fileID: 2668202250141886060}
+  - component: {fileID: 4529091504836189015}
+  m_Layer: 5
+  m_Name: Polaroid 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2475305275648789859
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6624229488825613646}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8618184457255493494}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -43, y: 280}
+  m_SizeDelta: {x: 160, y: 519}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2668202250141886060
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6624229488825613646}
+  m_CullTransparentMesh: 1
+--- !u!114 &4529091504836189015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6624229488825613646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 7f4d98d02962819489ad6e700d38d642, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &6864412132565739528
 GameObject:
   m_ObjectHideFlags: 0
@@ -4010,15 +4163,15 @@ RectTransform:
   m_GameObject: {fileID: 6949431045200767326}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.59, y: 7.949999, z: 1.59}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5533750865177224492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 249, y: 154}
-  m_SizeDelta: {x: 80, y: 15}
+  m_AnchoredPosition: {x: 249, y: 139.42}
+  m_SizeDelta: {x: 148.0491, y: 159.17}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7215789886378946280
 CanvasRenderer:
@@ -4048,7 +4201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 522ec1a62c7370845993badb330c5b36, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5d0175e9946953d47a62ca61b8fb61b4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4118,10 +4271,10 @@ MonoBehaviour:
   abilityButton: {fileID: 6156695234236421018}
   abilitySelectManager: {fileID: 6131504580542249183}
   abilityID: DevastationBeam
-  normalSprite: {fileID: 21300000, guid: 522ec1a62c7370845993badb330c5b36, type: 3}
-  hoverSprite: {fileID: 21300000, guid: 4ab88c65604e232459f568a7e472297c, type: 3}
-  selectSprite: {fileID: 21300000, guid: 4ab88c65604e232459f568a7e472297c, type: 3}
-  lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
+  normalSprite: {fileID: 21300000, guid: 5d0175e9946953d47a62ca61b8fb61b4, type: 3}
+  hoverSprite: {fileID: 21300000, guid: 5d0175e9946953d47a62ca61b8fb61b4, type: 3}
+  selectSprite: {fileID: 21300000, guid: 5c5f668d9aaad084caddad08376c067b, type: 3}
+  lockedSprite: {fileID: 21300000, guid: 46fb36389be24574c88a402310580a2c, type: 3}
   abilityText: "Vervain fires a slow, yet deadly laser. <i>There are no limits to
     my power.</i>\r"
   abilityName: Devastation Beam
@@ -4204,7 +4357,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -4}
   m_SizeDelta: {x: -2, y: -2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1042652334887041533
@@ -4237,7 +4390,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Button
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b4834448db279a241a8fc63691844ecd, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4497,8 +4650,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 0de36ae03c30e1545a0d0aa1575d0051, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4528,8 +4681,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.76862746, g: 0.21176471, b: 0.21176471, a: 0.2}
-    m_HighlightedColor: {r: 0.8443683, g: 1, b: 0.83423173, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.83137256, b: 0.70980394, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.703504, g: 0.703504, b: 0.703504, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -4667,15 +4820,15 @@ RectTransform:
   m_GameObject: {fileID: 8472612844037164531}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.59, y: 8.87, z: 1.59}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5533750865177224492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 240, y: -179}
-  m_SizeDelta: {x: 80, y: 15}
+  m_AnchoredPosition: {x: 248, y: -195.9}
+  m_SizeDelta: {x: 134.8383, y: 173.1149}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6173157253809039939
 CanvasRenderer:
@@ -4705,7 +4858,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5fdb94dfba6b70b4ba9004740448040b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f8bbf6b4954282f4a91f92c1c63d5ac2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4775,10 +4928,10 @@ MonoBehaviour:
   abilityButton: {fileID: 4210489812733261009}
   abilitySelectManager: {fileID: 6131504580542249183}
   abilityID: GourdForge
-  normalSprite: {fileID: 21300000, guid: 5fdb94dfba6b70b4ba9004740448040b, type: 3}
-  hoverSprite: {fileID: 21300000, guid: 25fd391a53368da47890afc52dc92bc2, type: 3}
-  selectSprite: {fileID: 21300000, guid: 25fd391a53368da47890afc52dc92bc2, type: 3}
-  lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
+  normalSprite: {fileID: 21300000, guid: f8bbf6b4954282f4a91f92c1c63d5ac2, type: 3}
+  hoverSprite: {fileID: 21300000, guid: f8bbf6b4954282f4a91f92c1c63d5ac2, type: 3}
+  selectSprite: {fileID: 21300000, guid: 34deff0de68dd114c94a27dd5ec6ba18, type: 3}
+  lockedSprite: {fileID: 21300000, guid: bbce13fe377f2564caacd177b615f466, type: 3}
   abilityText: "Vervain turns into a pumpkin, bursting with firepower. <i>Bibbidi-Bobbidi-Boom!</i>\r"
   abilityName: Smashing Pumpkin
   isWarden: 1
@@ -4818,7 +4971,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 925, y: 171}
+  m_AnchoredPosition: {x: 920, y: 171}
   m_SizeDelta: {x: 721.8691, y: 127.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3302525279727950550
@@ -4851,8 +5004,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Active
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b4834448db279a241a8fc63691844ecd, type: 2}
+  m_sharedMaterial: {fileID: -4928588143787406334, guid: b4834448db279a241a8fc63691844ecd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4935,7 +5088,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6624154388814020631
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5022,15 +5175,15 @@ RectTransform:
   m_GameObject: {fileID: 8719204624156496720}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.81, y: 7.949999, z: 1.59}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5533750865177224492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -452, y: -205}
-  m_SizeDelta: {x: 80, y: 15}
+  m_AnchoredPosition: {x: -452, y: -213.9}
+  m_SizeDelta: {x: 178.291, y: 140.7139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2678456598097399283
 CanvasRenderer:
@@ -5060,7 +5213,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4d8ced9ca17697d4a93d1afd6dc54f68, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 090268f30f3d3d04388ca0e605a2d99f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5130,10 +5283,10 @@ MonoBehaviour:
   abilityButton: {fileID: 1961478845226098207}
   abilitySelectManager: {fileID: 6131504580542249183}
   abilityID: BubbleBarrier
-  normalSprite: {fileID: 21300000, guid: 4d8ced9ca17697d4a93d1afd6dc54f68, type: 3}
-  hoverSprite: {fileID: 21300000, guid: 4ab88c65604e232459f568a7e472297c, type: 3}
-  selectSprite: {fileID: 21300000, guid: b866273dd6c2ca440a8f06ce20e9b3c6, type: 3}
-  lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
+  normalSprite: {fileID: 21300000, guid: 090268f30f3d3d04388ca0e605a2d99f, type: 3}
+  hoverSprite: {fileID: 21300000, guid: 090268f30f3d3d04388ca0e605a2d99f, type: 3}
+  selectSprite: {fileID: 21300000, guid: c8f73ac4007d0af4f91d42b7031ff920, type: 3}
+  lockedSprite: {fileID: 21300000, guid: 256a638a2f6d8f9418831de68396c918, type: 3}
   abilityText: A shield that lets Aloe recklessly reflect projectiles. <i>A good
     use for her bubbly personality.</i>
   abilityName: Bubble Barrier
@@ -5244,15 +5397,15 @@ RectTransform:
   m_GameObject: {fileID: 8918311943590494430}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.59, y: 7.949999, z: 1.59}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5533750865177224492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -408, y: 148}
-  m_SizeDelta: {x: 80, y: 15}
+  m_AnchoredPosition: {x: -408, y: 130.42}
+  m_SizeDelta: {x: 191.5697, y: 168.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1922250286998607048
 CanvasRenderer:
@@ -5282,7 +5435,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4c1af56615a7c4543ae92efb6edf3f4a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ee8c3b2d1963b384fa8b7fab8989d298, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5352,10 +5505,10 @@ MonoBehaviour:
   abilityButton: {fileID: 8449699124891058529}
   abilitySelectManager: {fileID: 6131504580542249183}
   abilityID: SolarFlare
-  normalSprite: {fileID: 21300000, guid: 4c1af56615a7c4543ae92efb6edf3f4a, type: 3}
-  hoverSprite: {fileID: 21300000, guid: fc2ef1dab30f929469f8c895ffee9f41, type: 3}
-  selectSprite: {fileID: 21300000, guid: fc2ef1dab30f929469f8c895ffee9f41, type: 3}
-  lockedSprite: {fileID: 21300000, guid: 2acf2361e3accc648be09de2d38ca0da, type: 3}
+  normalSprite: {fileID: 21300000, guid: ee8c3b2d1963b384fa8b7fab8989d298, type: 3}
+  hoverSprite: {fileID: 21300000, guid: ee8c3b2d1963b384fa8b7fab8989d298, type: 3}
+  selectSprite: {fileID: 21300000, guid: b46a6125d1558824da364e8896f864aa, type: 3}
+  lockedSprite: {fileID: 21300000, guid: c5c3eef26958f5b40bbce296263b5926, type: 3}
   abilityText: Aloe summons a powerful light, stunning enemies. <i>Watch the birdie!</i>
   abilityName: Solar Flare
   isWarden: 0
@@ -5645,6 +5798,68 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1001 &3139753136822900112
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2439115481604426262}
+    m_Modifications:
+    - target: {fileID: 266161676867694212, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_Name
+      value: AnnouncementManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+--- !u!4 &4911402550897015446 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8050864171037142790, guid: afb2945d90852a64ab3369f037851d7b, type: 3}
+  m_PrefabInstance: {fileID: 3139753136822900112}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3392502515042367678
 PrefabInstance:
   m_ObjectHideFlags: 0

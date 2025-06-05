@@ -10,6 +10,10 @@ public class PlayerEvents
     {
         if (disableDamage)
         {
+            if (player == "Gatherer" && onPlayerDamage != null)
+            {
+                onPlayerDamage(damage, player);
+            }
             return;
         }
 
