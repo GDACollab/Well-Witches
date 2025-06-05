@@ -40,12 +40,14 @@ public class AbilitySelectManager : MonoBehaviour
             GathererAbilityManager.Controls.Gameplay_Gatherer.Enable();
             WardenAbilityManager.Controls.Gameplay_Warden.Enable();
             WardenAbilityManager.Controls.Ui_Navigate.Enable();
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.abilityMenuClose, this.transform.position);
         }
         else
         {
             GathererAbilityManager.Controls.Gameplay_Gatherer.Disable();
             WardenAbilityManager.Controls.Gameplay_Warden.Disable();
             WardenAbilityManager.Controls.Ui_Navigate.Disable();
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.abilityMenuOpen, this.transform.position);
         }
         abilityUIDisabler.SetActive(!abilityUIDisabler.activeSelf);
     }
