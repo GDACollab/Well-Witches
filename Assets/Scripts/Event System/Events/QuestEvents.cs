@@ -66,4 +66,22 @@ public class QuestEvents
             onParcellaFinishedDialogue();
         }
     }
+
+    public event Action onPhillipFishReturn;
+    public void PhillipFishReturn()
+    {
+        if (onPhillipFishReturn != null)
+        {
+            onPhillipFishReturn();
+        }
+    }
+
+    public event Action onFishCollected;
+    public void FishCollected()
+    {
+        if (onFishCollected != null)
+        {
+            onFishCollected();
+        }
+    }
 }
