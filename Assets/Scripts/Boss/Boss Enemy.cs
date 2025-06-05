@@ -10,16 +10,53 @@ public class BossEnemy : BaseEnemyClass
     public Animator animator;
     public GameObject bossShield;
 
+    #region StateMachineVariables
+    public BossStateMachine StateMachine { get; set; }
+    public BossChaseState BossChaseState { get; set; }
+    public BossAttackState BossAttackState { get; set; }
+    #endregion
+
+    private void Awake()
+    {
+        StateMachine = new BossStateMachine();
+
+        BossChaseState = new BossChaseState(this, StateMachine);
+        BossAttackState = new BossAttackState(this, StateMachine);
+    }
+
     private void Start()
     {
         currentTarget = GameObject.Find("Gatherer").transform;
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+
+        StateMachine.Initialize(BossChaseState);
     }
+
+    private void Update()
+    {
+        StateMachine.CurrentBossState.OnUpdate();
+
+        if (currentTarget && !isStunned)
+        {
+            sr.flipX = transform.position.x > currentTarget.position.x ? false : true;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        StateMachine.CurrentBossState.OnPhysicsUpdate();
+    }
+
+
+
+
+
 
     public override void Attack()
     {
         return;
     }
-
     public override void TakeDamage(float amount, bool fromWardenProjectile = false)
     {
 

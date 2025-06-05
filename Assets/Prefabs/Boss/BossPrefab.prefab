@@ -694,7 +694,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4510760633449180580}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -712,7 +712,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &4640196686164595869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -733,11 +733,11 @@ MonoBehaviour:
   stunDuration: 0
   health: 150
   currentTarget: {fileID: 0}
+  agent: {fileID: 9014724367387819605}
   sr: {fileID: 2419640120546834368}
   attackCooldown: 4
-  phaseHP: 0
-  animator: {fileID: 2327760030467745721}
   DPS_phase: 0
+  animator: {fileID: 2327760030467745721}
   bossShield: {fileID: 962280634740332046}
 --- !u!195 &9014724367387819605
 NavMeshAgent:

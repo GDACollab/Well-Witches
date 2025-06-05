@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -29,7 +28,7 @@ public abstract class BaseEnemyClass : MonoBehaviour
     protected float timeToFire;
     protected GameObject[] players;
     public Transform currentTarget;
-    protected NavMeshAgent agent;
+    public NavMeshAgent agent;
     protected Rigidbody2D rb;
     [SerializeField] protected SpriteRenderer sr;
 
