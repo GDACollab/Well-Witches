@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Ink.Runtime;
 using System;
 using System.Linq;
@@ -22,6 +23,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI speakerText;
     [SerializeField] private SpriteLibraryAsset characterLibrary;
+    private Dictionary<string, string[]> hexColors;
+    private Image speakerBox;
+    private Image speakerBoxHighlight;
 
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices; 
@@ -82,6 +86,9 @@ public class DialogueManager : MonoBehaviour
     private void init()
     {
         dialogueActive = false;
+
+        speakerBox = dialoguePanel.transform.Find("DialougeBoxBackground/SpeakerBox").GetComponent<Image>();
+        speakerBoxHighlight = dialoguePanel.transform.Find("DialougeBoxBackground/SpeakerBoxHighlight").GetComponent<Image>();
         dialoguePanel.SetActive(false);
 
         choicesText = new TextMeshProUGUI[choices.Length];
@@ -93,6 +100,35 @@ public class DialogueManager : MonoBehaviour
         }
 
         playerSpriteManager = gameObject.GetComponent<PlayerSpriteManager>();
+
+        hexColors = new Dictionary<string, string[]>
+        {
+            { "Aloe", new string[] { "#FF777B", "#FFA0A3" } },
+            { "Vervain", new string[] { "#2BDCB9", "#59FFDD" } },
+            { "Phillip", new string[] { "#5D5D9B", "#6E83C1" } },
+            { "Wisteria", new string[] { "#B295CF", "#C0B1E1" } },
+            { "Dullahan", new string[] { "#4C1920", "#8A4557" } },
+            { "Parcella", new string[] { "#8CC8D0", "#9CEDE7" } },
+            { "Hex", new string[] { "#442C58", "#813776" } }
+        };
+    }
+
+    private void changeSpeakerTag(string name)
+    {   
+        if (hexColors.ContainsKey(name))
+        {
+            Color speakerColor;
+            Color speakerHighlight;
+            ColorUtility.TryParseHtmlString(hexColors[name][0], out speakerColor);
+            ColorUtility.TryParseHtmlString(hexColors[name][1], out speakerHighlight);
+            speakerBox.color = speakerColor;
+            speakerBoxHighlight.color = speakerHighlight;
+        }
+        else
+        {
+            speakerBox.color = Color.black;
+            speakerBoxHighlight.color = Color.black;
+        }
     }
 
     private void Update()
@@ -212,23 +248,24 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-     private void HandleTagsNPC(string speakerName, List<string> currentTags)
+    private void HandleTagsNPC(string speakerName, List<string> currentTags)
     {
         speakerText.text = speakerName;
+        changeSpeakerTag(speakerName);
         // loop through each tag and handle it accordingly
-        foreach (string tag in currentTags) 
+        foreach (string tag in currentTags)
         {
             // parse the tag
             string[] splitTag = tag.Split(':');
-            if (splitTag.Length != 2) 
+            if (splitTag.Length != 2)
             {
                 Debug.LogError("Tag could not be appropriately parsed: " + tag);
             }
             string tagKey = splitTag[0].Trim();
             string tagValue = splitTag[1].Trim();
-            
+
             // handle the tag
-            switch (tagKey) 
+            switch (tagKey)
             {
                 case SPEAKER_TAG:
                     if (speakerName == "Player")
@@ -238,12 +275,14 @@ public class DialogueManager : MonoBehaviour
                             activePlayer = PlayerState.WARDEN;
                             playerSpriteManager.SwitchToWarden();
                             speakerText.text = "Vervain";
+                            changeSpeakerTag("Vervain");
                         }
                         else if (tagValue == "gatherer")
                         {
                             activePlayer = PlayerState.GATHERER;
                             playerSpriteManager.SwitchToGatherer();
                             speakerText.text = "Aloe";
+                            changeSpeakerTag("Aloe");
                         }
                     }
                     break;
@@ -259,7 +298,8 @@ public class DialogueManager : MonoBehaviour
                             playerSpriteManager.ChangeGathererSprite(characterLibrary.GetSprite("Gatherer", tagValue));
                         }
                     }
-                    else{
+                    else
+                    {
                         currentCharacter.ChangeSprite(characterLibrary.GetSprite(currentCharacter.NPC.ToString(), tagValue));
                     }
                     break;
