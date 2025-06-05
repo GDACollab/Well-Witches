@@ -57,4 +57,13 @@ public class QuestEvents
             onLoadItemsOnDeath(questItem,amount);
         }
     }
+
+    public event Action onParcellaFinishedDialogue;
+    public void ParcellaFinishedDialogue()
+    {
+        if (onParcellaFinishedDialogue != null)
+        {
+            onParcellaFinishedDialogue();
+        }
+    }
 }

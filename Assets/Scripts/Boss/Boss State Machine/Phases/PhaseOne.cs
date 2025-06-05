@@ -16,6 +16,10 @@ public class PhaseOne : State
 
     private bool isAnyAbilityCasting = false; 
     public PhaseOne(GameObject owner) : base(owner) { }
+    private void Start()
+    {
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.wellArrive, this.transform.position);
+    }
 
     public void Initialize(StateMachine stateMachine, GameObject owner)
     {

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +9,7 @@ public class BossSceneManager : MonoBehaviour
 
     public int number_of_projectiles = 15;
     public GameObject projectile_prefab;
+    public BossShield bossShield;
     private bool boss_half_health = false;
     private float num_phase2_projectiles = 3f;
     private float time_between_projectiles = 0.3f;
@@ -72,13 +72,12 @@ public class BossSceneManager : MonoBehaviour
 
         /// swaps boss to DPS mode, waits (shieldbreaker_duration) seconds, swaps back
         /// --- IMPORTANT: USE StartCoroutine() TO CALL ---
-
         bushes_collected += 1;
         boss_script_component.DPS_phase = true;
-        boss_script_component.bossShield.SetActive(false);
+        if (bossShield.shieldActive) { StartCoroutine(bossShield.PopShield()); }
         yield return new WaitForSeconds(shieldbreaker_duration);
         boss_script_component.DPS_phase = false;
-        boss_script_component.bossShield.SetActive(false);
+        StartCoroutine(bossShield.SpawnShield());   
         launch_screen_attack();
         //TODO SPAWN ENEMY WAVE
     }

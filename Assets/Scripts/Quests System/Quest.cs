@@ -33,13 +33,13 @@ public class Quest
         return (currentQuestStepIndex < info.questStepPrefabs.Length);
     }
 
-    public void InstantiateCurrentQuestStep(Transform parentTransform, TextMeshProUGUI questDescription)
+    public void InstantiateCurrentQuestStep(Transform parentTransform)
     {
         GameObject questStepPrefab = getCurrentQuestStepPrefab();
         if (questStepPrefab != null)
         {
             QuestStep questStep = Object.Instantiate(questStepPrefab, parentTransform).GetComponent<QuestStep>();
-            questStep.InitializeQuestStep(info.id, questDescription);
+            questStep.InitializeQuestStep(info.id);
         }
     }
 

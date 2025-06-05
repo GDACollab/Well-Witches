@@ -16,8 +16,7 @@ public class QuestManager : MonoBehaviour
     // Quest UI TMP Objects
     // NOTE: MUST DRAG THIS IN FOR THIS TO WORK
     [Header("Quest UI Text")]
-    public TextMeshProUGUI questDisplay; // this is set by this script
-    public TextMeshProUGUI questDescription; // this is passed onto the instantiated step object
+    public string questDisplay; // this is set by this script
 
     private bool isQuestAlreadyActive = false;
     private List<string> UnlockedAbilities = new List<string>();
@@ -121,8 +120,7 @@ public class QuestManager : MonoBehaviour
         GameManager.instance.activeQuestState = QuestState.IN_PROGRESS;
         GameManager.instance.activeQuestID = GetQuestByID(id).info.id;
         Quest quest = GetQuestByID(id);
-        questDisplay.text = "Quest: " + quest.info.displayName;
-        quest.InstantiateCurrentQuestStep(this.transform, questDescription);
+        quest.InstantiateCurrentQuestStep(this.transform);
         ChangeQuestState(quest.info.id, QuestState.IN_PROGRESS);
         isQuestAlreadyActive = true;
         DisableOtherQuests(quest);
@@ -138,7 +136,7 @@ public class QuestManager : MonoBehaviour
         // if there are more steps, instantiate the next one
         if (quest.CurrentStepExists())
         {
-            quest.InstantiateCurrentQuestStep(this.transform, questDescription);
+            quest.InstantiateCurrentQuestStep(this.transform);
         }
         // if no more steps, the quest is done!
         else
@@ -185,8 +183,7 @@ public class QuestManager : MonoBehaviour
 
     private void ResetQuestText()
     {
-        questDescription.text = "";
-        questDisplay.text = "Quest: ";
+        questDisplay = "";
     }
 
     private Dictionary<string, Quest> CreateQuestMap()
@@ -234,7 +231,7 @@ public class QuestManager : MonoBehaviour
                     switch (Q.info.id)
                     {
                             case "CollectGarlicQuest":
-                                AbilityToUnlock = "HealthTransfer";
+                                AbilityToUnlock = "SharingIsCaring";
                             UnlockedAbilities.Add(AbilityToUnlock);
                             break;
                         default:

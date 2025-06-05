@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -70,6 +71,8 @@ public class ItemDispenser : MonoBehaviour, IInteractable
     void Dispense()
     {
         if (!interacted){ //Checks if the bush hasn't been interacted with before.
+
+
 
             // Finds a spot to spawn the item next to the bush.
 
@@ -181,8 +184,6 @@ public class ItemDispenser : MonoBehaviour, IInteractable
             }
             Debug.Log("Vacating");
             vacate();
-
-            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.interactBush, this.transform.position);
         }
     }
 

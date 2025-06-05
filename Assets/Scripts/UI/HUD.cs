@@ -5,6 +5,8 @@ public class HUD : MonoBehaviour
 {
 	[SerializeField] Slider gathererAbilityMeter;
 	[SerializeField] Slider wardenAbilityMeter;
+	[SerializeField] GameObject wardenAbilityMeterBackground;
+	[SerializeField] GameObject gathererAbilityMeterBackground;
 	
 	WardenBaseAbilities WardenAbility => WardenAbilityManager.Instance.equipedAbility;
 	GathererBaseAbilities GathererAbility => GathererAbilityManager.Instance.equipedAbility;
@@ -20,10 +22,26 @@ public class HUD : MonoBehaviour
 	
 	void Update()
 	{
-		// hardcoded 10 second
 		gathererAbilityMeter.value = (GathererAbilityManager.Instance != null) ? GathererAbility.Charge / Mathf.Max(1, GathererAbility.duration) : 1;
 		wardenAbilityMeter.value = (WardenAbilityManager.Instance != null) ? WardenAbility.Charge / Mathf.Max(1, WardenAbility.numHitsRequired) : 1;
-	}
+
+		if (wardenAbilityMeter.value == 1)
+		{
+			wardenAbilityMeterBackground.SetActive(true);
+		} else if (wardenAbilityMeterBackground.activeSelf)
+		{
+			wardenAbilityMeterBackground.SetActive(false);
+		}
+
+        if (gathererAbilityMeter.value == 1)
+        {
+            gathererAbilityMeterBackground.SetActive(true);
+        }
+        else if (gathererAbilityMeterBackground.activeSelf)
+        {
+            gathererAbilityMeterBackground.SetActive(false);
+        }
+    }
 
 	void HudHealthUpdate(float damage, string player)
 	{

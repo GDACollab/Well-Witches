@@ -15,7 +15,6 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private GameObject leftArrow;
     [SerializeField] private GameObject rightArrow;
     [SerializeField] private TextMeshProUGUI questDisplay;
-    [SerializeField] private TextMeshProUGUI questDescription;
     [SerializeField] private GameObject questCancelButton;
     
     [Header("UI Groups")]
@@ -24,7 +23,9 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private List<TextMeshProUGUI> questNames = new List<TextMeshProUGUI>();
     [SerializeField] private List<TextMeshProUGUI> questStatuses = new List<TextMeshProUGUI>();
     
-    bool _isPaused = false;
+    private bool _isPaused = false;
+    
+    private Dictionary<string, bool> _oldStates = new Dictionary<string, bool>();
     
     private PauseState _currentState = PauseState.Settings;
     private PauseState _pageUnlocked = PauseState.Journal1;
@@ -40,8 +41,7 @@ public class PauseManager : MonoBehaviour
         Controls.Ui_Navigate.Enable();
         Controls.Ui_Navigate.Pause.performed += TogglePause;
         
-        QuestManager.Instance.questDisplay = questDisplay;
-        QuestManager.Instance.questDescription = questDescription;
+        _oldStates["Init"] = false;
         
         _warden = StatsManager.Instance.players["Warden"].GetComponent<PlayerMovement>();
         _gatherer = StatsManager.Instance.players["Gatherer"].GetComponent<PlayerMovement>();
@@ -60,23 +60,45 @@ public class PauseManager : MonoBehaviour
     {
         _isPaused = paused;
         Time.timeScale = paused ? 0 : 1;
-        
         pauseScreen.SetActive(paused);
-        _gatherer.canMove = !paused;
-        _warden.canMove = !paused;
         foreach (GameObject window in pauseWindows) window.SetActive(false);
         if (paused) 
         {
+            _oldStates["Init"] = true;
+            _oldStates["gathererMove"] = _gatherer.canMove;
+            _oldStates["wardenMove"] = _warden.canMove;
+            _oldStates["gathererControl"] = GathererAbilityManager.Controls.Gameplay_Gatherer.enabled;
+            _oldStates["wardenControl"] = Controls.Gameplay_Warden.enabled;
+            
+            _gatherer.canMove = false;
+            _warden.canMove = false;
             Controls.Gameplay_Warden.Disable();
             GathererAbilityManager.Controls.Gameplay_Gatherer.Disable();
+            GathererAbilityManager.Controls.Ui_Navigate.Submit.Disable();
+            
             MoveTo(PauseState.Settings);
             Controls.Ui_Navigate.PageLeft.performed += MoveLeft;
             Controls.Ui_Navigate.PageRight.performed += MoveRight;
         }
         else 
         {
-            Controls.Gameplay_Warden.Enable();
-            GathererAbilityManager.Controls.Gameplay_Gatherer.Enable();
+            if (_oldStates["Init"])
+            {
+                _oldStates["Init"] = false;
+                _gatherer.canMove = _oldStates["gathererMove"];
+                _warden.canMove = _oldStates["wardenMove"];
+                if (_oldStates["gathererControl"]) GathererAbilityManager.Controls.Gameplay_Gatherer.Enable();
+                if (_oldStates["wardenControl"]) Controls.Gameplay_Warden.Enable();
+            }
+            else 
+            {
+                _gatherer.canMove = true;
+                _warden.canMove = true;
+                Controls.Gameplay_Warden.Enable();
+                GathererAbilityManager.Controls.Gameplay_Gatherer.Enable();
+            }
+            
+            GathererAbilityManager.Controls.Ui_Navigate.Submit.Enable();
             Controls.Ui_Navigate.PageLeft.performed -= MoveLeft;
             Controls.Ui_Navigate.PageRight.performed -= MoveRight;
         }
@@ -106,6 +128,8 @@ public class PauseManager : MonoBehaviour
     
     private void UpdateQuests()
     {
+        questDisplay.text = QuestManager.Instance.questDisplay;
+        
         List<Quest> quests = QuestManager.GetQuests();
         
         for (int i = 0; i < quests.Count; i++)
