@@ -82,8 +82,9 @@ public class PhillipFish : MonoBehaviour
 
     private void playerHit(float damage, string player)
     {
-        if (player.Equals("Gatherer") && liveFishSprite.activeSelf == true && state == FishState.HELD)
+        if (damage > 0 && player.Equals("Gatherer") && liveFishSprite.activeSelf == true && state == FishState.HELD)
         {
+            Debug.LogWarning("damage is: " + damage);
             state = FishState.RETURNING;
             DropFish();
         }
