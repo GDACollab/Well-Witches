@@ -570,6 +570,78 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Cheat Code",
+            "id": "c03ae563-fbdb-4796-9832-761c1198690f",
+            "actions": [
+                {
+                    "name": "Key Combination",
+                    "type": "Button",
+                    "id": "b492765a-105d-40ea-93d9-5a0146361580",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f18dfd86-7e31-4af1-bab7-2bb28c33c771",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Key Combination",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Two Modifiers",
+                    "id": "c23012f4-b014-4b06-a84f-5c52c062f2f2",
+                    "path": "TwoModifiers",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Key Combination",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier1",
+                    "id": "6debde89-9072-4de8-9d4d-c7ab0610cc86",
+                    "path": "<Keyboard>/#(A)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Key Combination",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "modifier2",
+                    "id": "1ef4c7a0-29b8-43c6-8cc0-d647e319b3ae",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Key Combination",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "856ec25d-a828-49fd-b9bd-b15d98773566",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Key Combination",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
         }
     ],
     "controlSchemes": []

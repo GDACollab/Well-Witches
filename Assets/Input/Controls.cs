@@ -592,6 +592,78 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Cheat Code"",
+            ""id"": ""c03ae563-fbdb-4796-9832-761c1198690f"",
+            ""actions"": [
+                {
+                    ""name"": ""Key Combination"",
+                    ""type"": ""Button"",
+                    ""id"": ""b492765a-105d-40ea-93d9-5a0146361580"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f18dfd86-7e31-4af1-bab7-2bb28c33c771"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Key Combination"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Two Modifiers"",
+                    ""id"": ""c23012f4-b014-4b06-a84f-5c52c062f2f2"",
+                    ""path"": ""TwoModifiers"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Key Combination"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier1"",
+                    ""id"": ""6debde89-9072-4de8-9d4d-c7ab0610cc86"",
+                    ""path"": ""<Keyboard>/#(A)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Key Combination"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""modifier2"",
+                    ""id"": ""1ef4c7a0-29b8-43c6-8cc0-d647e319b3ae"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Key Combination"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""856ec25d-a828-49fd-b9bd-b15d98773566"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Key Combination"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -615,6 +687,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Ui_Navigate_PageLeft = m_Ui_Navigate.FindAction("Page Left", throwIfNotFound: true);
         m_Ui_Navigate_PageRight = m_Ui_Navigate.FindAction("Page Right", throwIfNotFound: true);
         m_Ui_Navigate_Submit = m_Ui_Navigate.FindAction("Submit", throwIfNotFound: true);
+        // Cheat Code
+        m_CheatCode = asset.FindActionMap("Cheat Code", throwIfNotFound: true);
+        m_CheatCode_KeyCombination = m_CheatCode.FindAction("Key Combination", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -622,6 +697,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Gameplay_Gatherer.enabled, "This will cause a leak and performance issues, Controls.Gameplay_Gatherer.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Gameplay_Warden.enabled, "This will cause a leak and performance issues, Controls.Gameplay_Warden.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Ui_Navigate.enabled, "This will cause a leak and performance issues, Controls.Ui_Navigate.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_CheatCode.enabled, "This will cause a leak and performance issues, Controls.CheatCode.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -897,6 +973,52 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         }
     }
     public Ui_NavigateActions @Ui_Navigate => new Ui_NavigateActions(this);
+
+    // Cheat Code
+    private readonly InputActionMap m_CheatCode;
+    private List<ICheatCodeActions> m_CheatCodeActionsCallbackInterfaces = new List<ICheatCodeActions>();
+    private readonly InputAction m_CheatCode_KeyCombination;
+    public struct CheatCodeActions
+    {
+        private @Controls m_Wrapper;
+        public CheatCodeActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @KeyCombination => m_Wrapper.m_CheatCode_KeyCombination;
+        public InputActionMap Get() { return m_Wrapper.m_CheatCode; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CheatCodeActions set) { return set.Get(); }
+        public void AddCallbacks(ICheatCodeActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CheatCodeActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CheatCodeActionsCallbackInterfaces.Add(instance);
+            @KeyCombination.started += instance.OnKeyCombination;
+            @KeyCombination.performed += instance.OnKeyCombination;
+            @KeyCombination.canceled += instance.OnKeyCombination;
+        }
+
+        private void UnregisterCallbacks(ICheatCodeActions instance)
+        {
+            @KeyCombination.started -= instance.OnKeyCombination;
+            @KeyCombination.performed -= instance.OnKeyCombination;
+            @KeyCombination.canceled -= instance.OnKeyCombination;
+        }
+
+        public void RemoveCallbacks(ICheatCodeActions instance)
+        {
+            if (m_Wrapper.m_CheatCodeActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ICheatCodeActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CheatCodeActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CheatCodeActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public CheatCodeActions @CheatCode => new CheatCodeActions(this);
     public interface IGameplay_GathererActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -918,5 +1040,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnPageLeft(InputAction.CallbackContext context);
         void OnPageRight(InputAction.CallbackContext context);
         void OnSubmit(InputAction.CallbackContext context);
+    }
+    public interface ICheatCodeActions
+    {
+        void OnKeyCombination(InputAction.CallbackContext context);
     }
 }
