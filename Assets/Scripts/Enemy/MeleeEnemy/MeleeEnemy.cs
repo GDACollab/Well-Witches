@@ -1,4 +1,7 @@
 using UnityEngine;
+using System.Collections;
+using FMOD.Studio;
+
 public class MeleeEnemy : BaseEnemyClass
 {
     private float damage;
@@ -6,7 +9,11 @@ public class MeleeEnemy : BaseEnemyClass
     private float speedWhileAttacking;
 
     //public Animator animator;
-    //public SpriteRenderer atkSprite;
+    public SpriteRenderer atkSprite;
+    public Transform atkSpritePos;
+    public float atkSpeed = 10;     // Speed of animation
+    public float atkDuration = 1;   // Length of animation
+    private EventInstance dashSFX;
 
     private void Start()
     {
@@ -20,14 +27,22 @@ public class MeleeEnemy : BaseEnemyClass
         timeBetweenAttack = stats.meleeTimeBetweeAttacks;
         attackAOE = stats.meleeAttackAOE;
         speedWhileAttacking = stats.meleeSpeedWhileAttacking;
-        //atkSprite.enabled = false;
+        atkSprite.enabled = false;
+        dashSFX = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.rangedTraversal);
     }
 
     public override void Attack()
     {
-        //atkSprite.enabled = true;
         agent.speed = speedWhileAttacking;
-        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bruiserAttackSwipe, this.transform.position);
+        print("Playing attack dash sound");
+
+        PLAYBACK_STATE playbackState;
+        dashSFX.getPlaybackState(out playbackState);
+
+        if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+        {
+            dashSFX.start();
+        }
 
         // not very performantive, better if collider check but should be good enough
         if (Vector2.Distance(transform.position, currentTarget.position) <= attackAOE)
@@ -40,9 +55,31 @@ public class MeleeEnemy : BaseEnemyClass
             {
                 EventManager.instance.playerEvents.PlayerDamage(damage, "Gatherer");
             }
+
         }
 
-        //atkSprite.enabled = false;
+        StartCoroutine(AttackAnimation());
+
+    }
+
+    IEnumerator AttackAnimation()
+    {
+        float timeElapsed = 0;
+        atkSprite.enabled = true;
+
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bruiserAttackSwipe, this.transform.position);
+
+        while (timeElapsed < atkDuration)
+        {
+            atkSpritePos.Rotate(new Vector3(0, 0, atkSpeed) * Time.deltaTime);
+            timeElapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        atkSpritePos.rotation = Quaternion.Euler(0f, 0f, 0f);
+        atkSprite.enabled = false;
+
     }
 
 #if UNITY_EDITOR

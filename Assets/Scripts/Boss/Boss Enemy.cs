@@ -59,5 +59,6 @@ public class BossEnemy : BaseEnemyClass
     {
         Destroy(gameObject);
         Debug.Log("Boss dead yippee"); //Make boss drop quest item here.
+        SceneHandler.Instance.ToEndingCutscene();
     }
 }

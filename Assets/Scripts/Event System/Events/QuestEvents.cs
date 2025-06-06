@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class QuestEvents
 {
@@ -45,6 +46,42 @@ public class QuestEvents
         if (onCancelQuest != null)
         {
             onCancelQuest();
+        }
+    }
+
+    public event Action<GameObject,int> onLoadItemsOnDeath;
+    public void LoadItemsOnDeath(GameObject questItem, int amount)
+    {
+        if (onLoadItemsOnDeath != null)
+        {
+            onLoadItemsOnDeath(questItem,amount);
+        }
+    }
+
+    public event Action onParcellaFinishedDialogue;
+    public void ParcellaFinishedDialogue()
+    {
+        if (onParcellaFinishedDialogue != null)
+        {
+            onParcellaFinishedDialogue();
+        }
+    }
+
+    public event Action onPhillipFishReturn;
+    public void PhillipFishReturn()
+    {
+        if (onPhillipFishReturn != null)
+        {
+            onPhillipFishReturn();
+        }
+    }
+
+    public event Action onFishCollected;
+    public void FishCollected()
+    {
+        if (onFishCollected != null)
+        {
+            onFishCollected();
         }
     }
 }

@@ -7,6 +7,13 @@ public class FMODEvents : MonoBehaviour
 {
     [field: Header("SFX")]
     [field: SerializeField] public EventReference testAudio { get; private set; }
+    [field: SerializeField] public EventReference wellArrive { get; private set; }
+    [field: SerializeField] public EventReference forestArrive { get; private set; }
+    [field: SerializeField] public EventReference abilityMenuOpen { get; private set; }
+    [field: SerializeField] public EventReference abilityMenuClose { get; private set; }
+    [field: SerializeField] public EventReference pauseMenuOpen { get; private set; }
+    [field: SerializeField] public EventReference pauseMenuClose { get; private set; }
+    [field: SerializeField] public EventReference ravenAnnounce { get; private set; }
     [field: SerializeField] public EventReference playerFootsteps { get; private set; }
     [field: SerializeField] public EventReference spectralShot { get; private set; }
     [field: SerializeField] public EventReference interactBush { get; private set; }
@@ -21,14 +28,26 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference flamingPumpkinYank { get; private set; }
     [field: SerializeField] public EventReference lazerFire { get; private set; }
     [field: SerializeField] public EventReference gathererDown { get; private set; }
+    [field: SerializeField] public EventReference gathererHurt{ get; private set; }
     [field: SerializeField] public EventReference wardenDown { get; private set; }
+    [field: SerializeField] public EventReference wardenHurt{ get; private set; }
     [field: SerializeField] public EventReference tankAttackBash { get; private set; }
+    [field: SerializeField] public EventReference tankTraverse { get; private set; }
     [field: SerializeField] public EventReference bruiserAttackSwipe  { get; private set; }
+    [field: SerializeField] public EventReference bruiserAttackDash  { get; private set; }
+    [field: SerializeField] public EventReference rangedAttackFire  { get; private set; }
+    [field: SerializeField] public EventReference rangedTraversal  { get; private set; }
+    [field: SerializeField] public EventReference rangedAttackHit  { get; private set; }
+    [field: SerializeField] public EventReference bossLunge { get; private set; }
     [field: SerializeField] public EventReference bossPhase1Attack1  { get; private set; }
+    [field: SerializeField] public EventReference bossPhase1Attack2  { get; private set; }
     [field: SerializeField] public EventReference itemPickUp  { get; private set; }
     [field: SerializeField] public EventReference aloeTalk  { get; private set; }
+    [field: SerializeField] public EventReference vervainTalk  { get; private set; }
     [field: SerializeField] public EventReference diverTalk  { get; private set; }
     [field: SerializeField] public EventReference ghostMailTalk  { get; private set; }
+    [field: SerializeField] public EventReference bossTalk  { get; private set; }
+    [field: SerializeField] public EventReference hexTalk  { get; private set; }
     [field: SerializeField] public EventReference talkPrompt  { get; private set; }
     [field: SerializeField] public EventReference healthTransfer  { get; private set; }
 

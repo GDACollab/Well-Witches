@@ -7,7 +7,9 @@ public class Gatherer_PullWarden : MonoBehaviour
 	//[SerializeField, Tooltip("Amount of force when Warden is at max tether distance")] float maxPullForce; //Handled by StatsManager now
 	[SerializeField] float pullCooldown;
 	Rigidbody2D rb_Warden;
-	float pullCounter = 0f;
+    Warden_Movement wardenMovement;
+	Warden_Health wardenHealth;
+    float pullCounter = 0f;
 
 	[Header("References")]
 	[SerializeField] GameObject warden;
@@ -31,7 +33,7 @@ public class Gatherer_PullWarden : MonoBehaviour
 	void OnPullWarden() // called by the Player Input component
 	{
 		if (pullCounter > 0) return;    // on cooldown
-
+		wardenMovement.canMove = true;
 		rb_Warden.velocity = Vector2.zero;
 		wardenCollider.isTrigger = true;
         //Debug.Log("I AM DISABLING COLLSION " + wardenCollider.enabled);

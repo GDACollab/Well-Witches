@@ -51,6 +51,55 @@ MonoBehaviour:
       Data3: -515466600
       Data4: -941029537
     Path: event:/TEST_EVENT
+  <wellArrive>k__BackingField:
+    Guid:
+      Data1: 1449856607
+      Data2: 1268737469
+      Data3: -1301830253
+      Data4: -343167773
+    Path: event:/SFX/Well Arrive
+  <forestArrive>k__BackingField:
+    Guid:
+      Data1: 161248933
+      Data2: 1325846423
+      Data3: -1792264532
+      Data4: -546283521
+    Path: event:/SFX/Forest Arrive
+  <abilityMenuOpen>k__BackingField:
+    Guid:
+      Data1: 780045973
+      Data2: 1217798242
+      Data3: 1780499894
+      Data4: 928533536
+    Path: event:/SFX/Menu Abilities Open
+  <abilityMenuClose>k__BackingField:
+    Guid:
+      Data1: 1938149273
+      Data2: 1230624459
+      Data3: 1120421041
+      Data4: -651440465
+    Path: event:/SFX/Menu Abilities Close
+  <pauseMenuOpen>k__BackingField:
+    Guid:
+      Data1: 1251085312
+      Data2: 1312780494
+      Data3: -594081617
+      Data4: 1902032842
+    Path: event:/SFX/Menu Pause Open
+  <pauseMenuClose>k__BackingField:
+    Guid:
+      Data1: 1581131127
+      Data2: 1084688993
+      Data3: -463063114
+      Data4: -1623422526
+    Path: event:/SFX/Menu Pause Close
+  <ravenAnnounce>k__BackingField:
+    Guid:
+      Data1: -1502130539
+      Data2: 1153028375
+      Data3: -905995628
+      Data4: 344361305
+    Path: event:/SFX/Raven State Change
   <playerFootsteps>k__BackingField:
     Guid:
       Data1: 1622725694
@@ -149,6 +198,13 @@ MonoBehaviour:
       Data3: -1296903777
       Data4: 2094208291
     Path: event:/SFX/Gatherer Downed
+  <gathererHurt>k__BackingField:
+    Guid:
+      Data1: -985502953
+      Data2: 1105511985
+      Data3: -1317175391
+      Data4: 1665418200
+    Path: event:/SFX/Gatherer Hurt
   <wardenDown>k__BackingField:
     Guid:
       Data1: 1427209975
@@ -156,6 +212,13 @@ MonoBehaviour:
       Data3: -543019115
       Data4: 2025236832
     Path: event:/SFX/Warden Downed
+  <wardenHurt>k__BackingField:
+    Guid:
+      Data1: -1517853306
+      Data2: 1074874432
+      Data3: -1282667647
+      Data4: -1652523123
+    Path: event:/SFX/Warden Hurt
   <tankAttackBash>k__BackingField:
     Guid:
       Data1: 1734065560
@@ -163,6 +226,13 @@ MonoBehaviour:
       Data3: 1128141742
       Data4: -26845366
     Path: event:/SFX/Tank Attack Bash
+  <tankTraverse>k__BackingField:
+    Guid:
+      Data1: 227258838
+      Data2: 1312019937
+      Data3: -1334799943
+      Data4: -1598426000
+    Path: event:/SFX/Tank Traversal
   <bruiserAttackSwipe>k__BackingField:
     Guid:
       Data1: -1875484817
@@ -170,6 +240,41 @@ MonoBehaviour:
       Data3: 321158330
       Data4: -1052513820
     Path: event:/SFX/Bruiser Attack Swipe
+  <bruiserAttackDash>k__BackingField:
+    Guid:
+      Data1: -991264036
+      Data2: 1313906814
+      Data3: 379665031
+      Data4: 176692
+    Path: event:/SFX/Bruiser Attack Dash
+  <rangedAttackFire>k__BackingField:
+    Guid:
+      Data1: -660106293
+      Data2: 1085827768
+      Data3: -1644108666
+      Data4: -425065384
+    Path: event:/SFX/Ranged Attack Fire
+  <rangedTraversal>k__BackingField:
+    Guid:
+      Data1: 1410325889
+      Data2: 1127078652
+      Data3: -1110171751
+      Data4: 794942501
+    Path: event:/SFX/Ranged Traversal
+  <rangedAttackHit>k__BackingField:
+    Guid:
+      Data1: 1194708929
+      Data2: 1223680147
+      Data3: 1341046459
+      Data4: -1292977667
+    Path: event:/SFX/Ranged Attack Hit
+  <bossLunge>k__BackingField:
+    Guid:
+      Data1: 1805053354
+      Data2: 1235627849
+      Data3: 2147475380
+      Data4: -483066726
+    Path: event:/SFX/Boss Lunge
   <bossPhase1Attack1>k__BackingField:
     Guid:
       Data1: -1942135787
@@ -177,6 +282,13 @@ MonoBehaviour:
       Data3: -1535720790
       Data4: -2010197340
     Path: event:/SFX/Boss Phase 1 Attack 1
+  <bossPhase1Attack2>k__BackingField:
+    Guid:
+      Data1: 192894201
+      Data2: 1325228571
+      Data3: -891893611
+      Data4: 428191987
+    Path: event:/SFX/Boss Phase 1 Attack 2
   <itemPickUp>k__BackingField:
     Guid:
       Data1: 998923154
@@ -186,11 +298,18 @@ MonoBehaviour:
     Path: event:/SFX/Item PickUp
   <aloeTalk>k__BackingField:
     Guid:
-      Data1: -1788487653
-      Data2: 1241647647
-      Data3: -1476929655
-      Data4: -1683453773
+      Data1: 967525420
+      Data2: 1118526579
+      Data3: -2000900177
+      Data4: 900736119
     Path: event:/SFX/Aloe Talk
+  <vervainTalk>k__BackingField:
+    Guid:
+      Data1: -1165564210
+      Data2: 1187827039
+      Data3: 559233967
+      Data4: 1619154844
+    Path: event:/SFX/Vervain Talk
   <diverTalk>k__BackingField:
     Guid:
       Data1: -447830917
@@ -205,6 +324,20 @@ MonoBehaviour:
       Data3: -1269731966
       Data4: -835659534
     Path: event:/SFX/GhostMail Talk
+  <bossTalk>k__BackingField:
+    Guid:
+      Data1: 1209672628
+      Data2: 1138869326
+      Data3: -1230087750
+      Data4: 166090874
+    Path: event:/SFX/Boss Talk
+  <hexTalk>k__BackingField:
+    Guid:
+      Data1: 816498524
+      Data2: 1335714748
+      Data3: -752922983
+      Data4: 92409811
+    Path: event:/SFX/Hex Talk
   <talkPrompt>k__BackingField:
     Guid:
       Data1: 1374417772

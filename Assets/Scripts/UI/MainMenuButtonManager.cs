@@ -8,10 +8,19 @@ public class MainMenuButtonManager : MonoBehaviour
     public GameObject journal;
     public GameObject buttonGroupA;
     public GameObject buttonGroupB; //two seperate groups because they need to scale with screen properly
+    private bool playButtonPressed;
     public void OnMainMenuPlayButtonPress()
     {
-        SceneHandler.Instance.ToOpenCutscene();
-        Debug.Log("going to hub from start screen");
+        if (playButtonPressed)
+        {
+            Debug.Log("Already pressed!");
+        }
+        else
+        {
+            playButtonPressed = true;
+            SceneHandler.Instance.ToOpenCutscene();
+            Debug.Log("going to hub from start screen");
+        }
     }
 
     public void OnMainMenuQuitButtonPress()

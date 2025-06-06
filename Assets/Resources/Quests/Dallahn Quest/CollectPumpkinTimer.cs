@@ -14,15 +14,14 @@ public class CollectPumpkinTimer : QuestStep
     [SerializeField] public int hitsToLive = 3;
     //[SerializeField] public GameObject questItem;
     
-   
+   private void SetQuestString() => SetQuestString($"Avoid damage <color=#76FEC0>[{hits}/{hitsToLive}]</color> times within <color=#76FEC0>[{time}/{timeToLive}]</color> seconds. <color=#5D5D9F>-Phillip</color>");
    
     
     private void Start()
     {
         //GameManager.instance.activeQuestPrefab = questItem;
         //GameManager.instance.activeQuestItemCount = garlicToCollect;
-        questDescription.color = Color.white;
-        questDescription.text = $"- Don't get hit (0/{hitsToLive}) times within the next (0/{timeToLive}) seconds";
+        SetQuestString();
     }
 
     private void PumpkinTimerQuest()
@@ -32,24 +31,24 @@ public class CollectPumpkinTimer : QuestStep
         if (time < timeToLive)
         {
             //check the time
-            questDescription.text = $"- Don't get hit ({hits}/{hitsToLive}) times within the next ({time}/{timeToLive}) seconds";
+            SetQuestString();
         }
         
         if (playerHealth); // if player is hit
         {
             hits++; // increase the hits
-            questDescription.text = $"- Don't get hit ({hits}/{hitsToLive}) times within the next ({time}/{timeToLive}) seconds";
+            SetQuestString();
         }
         
         if (hits >= hitsToLive) // if timer hits 0 wihtout fail
         {
-            questDescription.color = Color.red;
+            SetQuestString("<color=red>FAILED</color>");
             // find the cancel function
             return; // cancel the quest step
         }
         if (time >= timeToLive) // if timer hits 0 without fail
         {
-            questDescription.color = Color.green;
+            SetQuestString("<color=green>Success!</color> Report back to <color=#5D5D9F>Phillip</color>");
             FinishQuestStep();
         }
         

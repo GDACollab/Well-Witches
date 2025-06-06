@@ -141,6 +141,7 @@ public class wfc : MonoBehaviour
 
         // generates navmesh after tileset done building
         enemyNavMesh.BuildNavMesh();
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.forestArrive, this.transform.position);
     }
 
     private IEnumerator testWFCSlowly()

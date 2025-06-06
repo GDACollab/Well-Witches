@@ -1,5 +1,7 @@
+using FMOD.Studio;
 using System.Collections;
 using UnityEngine;
+using FMODUnity;
 
 
 public class TankEnemy : BaseEnemyClass
@@ -16,7 +18,8 @@ public class TankEnemy : BaseEnemyClass
     private float acidSize;
 
     private float timeTillPool;
-    public Animator animator; 
+    public Animator animator;
+    private EventInstance tankTraverseSFX;
 
     private void Start()
     {
@@ -34,11 +37,18 @@ public class TankEnemy : BaseEnemyClass
         
         acidSize = stats.tankAcidSize;
         timeTillPool = 0f;
+
+        tankTraverseSFX = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.tankTraverse);
+        tankTraverseSFX.start();
     }
 
     private void Update()
     {
         SpawnPool();
+        if (currentTarget && !isStunned)
+        {
+            sr.flipX = transform.position.x > currentTarget.position.x ? false : true;
+        }
     }
 
     public override void Attack()
@@ -99,6 +109,19 @@ public class TankEnemy : BaseEnemyClass
                 EventManager.instance.playerEvents.PlayerDamage(bashDamage, "Gatherer");
             }
         }
+    }
+    override public void Die(bool fromWardenProjectile = false)
+    {
+        EnemySpawner.currentEnemyCount--;
+        //if siphon energy is equipped and enemy is killed from warden's projectile, then siphon energy
+        if (fromWardenProjectile && WardenAbilityManager.Instance.passiveAbilityName == WardenAbilityManager.Passive.SoulSiphon)
+        {
+            SiphonEnergy.Instance.AddEnergy();
+        }
+        tankTraverseSFX.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        tankTraverseSFX.release();
+
+        Destroy(gameObject);
     }
 #if UNITY_EDITOR
     private void OnDrawGizmos()
