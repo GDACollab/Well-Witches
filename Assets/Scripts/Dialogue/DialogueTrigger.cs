@@ -55,17 +55,14 @@ public class DialogueTrigger : MonoBehaviour
         if(wisteriaDone && this.quest.id == "CollectGarlicQuest")
         {
             questState = QuestState.FINISHED;
-            return;
         }
         else if(phillipDone && this.quest.id == "CollectFishQuest")
         {
             questState = QuestState.FINISHED;
-            return;
         }
         else if (dullahanDone && this.quest.id == "CollectPumpkinQuest")
         {
             questState = QuestState.FINISHED;
-            return;
         }
         if (current.name.Equals("Hub Scene"))
         {
@@ -129,7 +126,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             if (child.gameObject.name.Equals("rewardPoint"))
             {
-                Instantiate(reward, child.transform);
+                // Instantiate(reward, child.transform);
                 break;
             }
         }
@@ -158,8 +155,20 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnGathererInteract(InputAction.CallbackContext context)
     {
-        if (playerInRange && !DialogueManager.GetInstance().dialogueActive && visualCue)
-        {
+            if (playerInRange && !DialogueManager.GetInstance().dialogueActive && visualCue)
+            {
+                if(wisteriaDone && this.quest.id == "CollectGarlicQuest")
+            {
+                questState = QuestState.FINISHED;
+            }
+            else if(phillipDone && this.quest.id == "CollectFishQuest")
+            {
+                questState = QuestState.FINISHED;
+            }
+            else if (dullahanDone && this.quest.id == "CollectPumpkinQuest")
+            {
+                questState = QuestState.FINISHED;
+            }
             StatsManager.Instance.players["Warden"].GetComponent<PlayerMovement>().canMove = false;
             StatsManager.Instance.players["Gatherer"].GetComponent<PlayerMovement>().canMove = false;
             story = new Story(JSON.text);

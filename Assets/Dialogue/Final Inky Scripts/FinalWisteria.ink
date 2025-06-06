@@ -66,8 +66,8 @@ Could you tell us what these ingredients are for? #speaker:warden #sprite:confus
 ~currentSpeaker = "Wisteria"
 My tea, of course. What else would I use them for? #sprite:excited
 ~currentSpeaker = "Player"
-(She sips her tea. The steam forms a skull shape. You have to ask.) 
-Aren’t vampires allergic to garlic? #speaker:gatherer #sprite:thinking
+(She sips her tea. The steam forms a skull shape. You have to ask.) #speaker:gatherer #sprite:thinking
+Aren’t vampires allergic to garlic? 
 ~currentSpeaker = "Wisteria"
 Huh? Mmm, maybe some. It makes me feel sleepy. Or maybe that’s the
 belladonna… 
