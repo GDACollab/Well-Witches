@@ -34,6 +34,8 @@ public class BossEnemy : BaseEnemyClass
         Debug.Log("Spawn Enemies");
     }
 
+    public float shield_damage_scalar = 0.05f;
+
     public override void TakeDamage(float amount, bool fromWardenProjectile = false)
     {
 
@@ -45,7 +47,7 @@ public class BossEnemy : BaseEnemyClass
         }
         else
         {
-            health -= amount * 0.05f;
+            health -= amount * shield_damage_scalar;
         }
 
         if (health <= 0)

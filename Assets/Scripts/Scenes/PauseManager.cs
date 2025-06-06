@@ -79,6 +79,7 @@ public class PauseManager : MonoBehaviour
             MoveTo(PauseState.Settings);
             Controls.Ui_Navigate.PageLeft.performed += MoveLeft;
             Controls.Ui_Navigate.PageRight.performed += MoveRight;
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.pauseMenuOpen, GameObject.Find("Gatherer").transform.position);
         }
         else 
         {
@@ -101,6 +102,7 @@ public class PauseManager : MonoBehaviour
             GathererAbilityManager.Controls.Ui_Navigate.Submit.Enable();
             Controls.Ui_Navigate.PageLeft.performed -= MoveLeft;
             Controls.Ui_Navigate.PageRight.performed -= MoveRight;
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.pauseMenuClose, GameObject.Find("Gatherer").transform.position);
         }
         
         UpdateEntries(GameManager.instance.currentKeyItem);

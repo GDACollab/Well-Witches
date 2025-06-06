@@ -8,6 +8,12 @@ public class FMODEvents : MonoBehaviour
     [field: Header("SFX")]
     [field: SerializeField] public EventReference testAudio { get; private set; }
     [field: SerializeField] public EventReference wellArrive { get; private set; }
+    [field: SerializeField] public EventReference forestArrive { get; private set; }
+    [field: SerializeField] public EventReference abilityMenuOpen { get; private set; }
+    [field: SerializeField] public EventReference abilityMenuClose { get; private set; }
+    [field: SerializeField] public EventReference pauseMenuOpen { get; private set; }
+    [field: SerializeField] public EventReference pauseMenuClose { get; private set; }
+    [field: SerializeField] public EventReference ravenAnnounce { get; private set; }
     [field: SerializeField] public EventReference playerFootsteps { get; private set; }
     [field: SerializeField] public EventReference spectralShot { get; private set; }
     [field: SerializeField] public EventReference interactBush { get; private set; }

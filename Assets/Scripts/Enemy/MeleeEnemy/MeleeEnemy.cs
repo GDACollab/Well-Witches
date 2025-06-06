@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using FMOD.Studio;
 
 public class MeleeEnemy : BaseEnemyClass
 {
@@ -12,6 +13,7 @@ public class MeleeEnemy : BaseEnemyClass
     public Transform atkSpritePos;
     public float atkSpeed = 10;     // Speed of animation
     public float atkDuration = 1;   // Length of animation
+    private EventInstance dashSFX;
 
     private void Start()
     {
@@ -26,12 +28,21 @@ public class MeleeEnemy : BaseEnemyClass
         attackAOE = stats.meleeAttackAOE;
         speedWhileAttacking = stats.meleeSpeedWhileAttacking;
         atkSprite.enabled = false;
+        dashSFX = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.rangedTraversal);
     }
 
     public override void Attack()
     {
         agent.speed = speedWhileAttacking;
-        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.bruiserAttackDash, this.transform.position);
+        print("Playing attack dash sound");
+
+        PLAYBACK_STATE playbackState;
+        dashSFX.getPlaybackState(out playbackState);
+
+        if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+        {
+            dashSFX.start();
+        }
 
         // not very performantive, better if collider check but should be good enough
         if (Vector2.Distance(transform.position, currentTarget.position) <= attackAOE)
@@ -44,6 +55,7 @@ public class MeleeEnemy : BaseEnemyClass
             {
                 EventManager.instance.playerEvents.PlayerDamage(damage, "Gatherer");
             }
+
         }
 
         StartCoroutine(AttackAnimation());
