@@ -24,7 +24,7 @@ public class BossWell : MonoBehaviour
         canEnter = false;
         sr.sprite = inactiveWell;
 
-        if (GameManager.instance.currentKeyItem == 9)
+        if (GameManager.instance.currentKeyItem >= 9)
         {
             ActivateWell();
         }

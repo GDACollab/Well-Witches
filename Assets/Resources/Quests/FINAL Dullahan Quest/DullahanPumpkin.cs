@@ -77,7 +77,7 @@ public class DullahanPumpkin : MonoBehaviour
 
     private void playerHit(float damage, string player)
     {
-        if (player.Equals("Gatherer") && unLitPumpkinSprite.activeSelf == true && state == PumpkinState.HELD)
+        if (damage > 0 && player.Equals("Gatherer") && unLitPumpkinSprite.activeSelf == true && state == PumpkinState.HELD)
         {
             hits++;
             if(hits>allowedHits)

@@ -113,8 +113,6 @@ Oh Parcella! I’m sorry about that... #speaker:gatherer #sprite: confused
 	~currentSpeaker = "Player"
  (You both laugh nervously. Parcella just smiles, ear to ear. You should probably not overthink it...) #speaker:warden
  
- #<u> Repeated Death Dialogues </u>
- 
  -> repeated_deaths
  
  = repeated_deaths
