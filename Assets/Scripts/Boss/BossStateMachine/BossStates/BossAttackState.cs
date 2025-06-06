@@ -1,6 +1,4 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class BossAttackState : BossState
 {
@@ -21,6 +19,11 @@ public class BossAttackState : BossState
     {
         base.OnUpdate();
         timer -= Time.deltaTime;
+        if (bossEnemy.isStunned)
+        {
+            bossEnemy.StateMachine.ChangeState(bossEnemy.BossStunState);
+            return;
+        }
         if (timer <= 0)
         {
             bossEnemy.StateMachine.ChangeState(bossEnemy.BossChaseState);
@@ -42,21 +45,24 @@ public class BossAttackState : BossState
     private void ChooseAttack()
     {
         int choice = Random.Range(1, 3);
-        Debug.Log(choice);
 
         if (Vector2.Distance(bossEnemy.transform.position, bossEnemy.currentTarget.position) <= 5)
         {
             switch (choice)
             {
                 case 1:
+                    Debug.Log("ShieldBash");
+
                     bossEnemy.bossShieldBash.PerformShieldBash();
                     timer = bossEnemy.bossShieldBash.attackDuration + bossEnemy.bossShieldBash.warningDuration + 1f;
                     break;
                 case 2:
+                    Debug.Log("SwordAttack");
                     bossEnemy.bossSwordAttack.PerformSwordAttack();
                     timer = bossEnemy.bossSwordAttack.attackDuration + bossEnemy.bossSwordAttack.warningDuration + 1f;
                     break;
                 default:
+                    Debug.Log("SwordAttackDefault");
                     bossEnemy.bossSwordAttack.PerformSwordAttack();
                     timer = bossEnemy.bossSwordAttack.attackDuration + bossEnemy.bossSwordAttack.warningDuration + 1f;
                     break;

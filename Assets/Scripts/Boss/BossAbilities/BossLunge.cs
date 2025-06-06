@@ -1,4 +1,5 @@
 using System.Collections;
+using System.IO.IsolatedStorage;
 using UnityEngine;
 
 public class BossLunge : MonoBehaviour
@@ -161,6 +162,7 @@ public class BossLunge : MonoBehaviour
         else
         {
             Debug.Log("Player not hit by lunge attack. Boss stunned.");
+            bossEnemy.isStunned = true;
             yield return new WaitForSeconds(stunDuration);
         }
 

@@ -16,6 +16,7 @@ public class BossEnemy : BaseEnemyClass
     public BossStateMachine StateMachine { get; set; }
     public BossChaseState BossChaseState { get; set; }
     public BossAttackState BossAttackState { get; set; }
+    public BossStunState BossStunState { get; set; }
     #endregion
 
 
@@ -23,12 +24,14 @@ public class BossEnemy : BaseEnemyClass
     public SwordAttack bossSwordAttack;
     public BossLunge bossLunge;
 
+
     private void Awake()
     {
         StateMachine = new BossStateMachine();
 
         BossChaseState = new BossChaseState(this, StateMachine);
         BossAttackState = new BossAttackState(this, StateMachine);
+        BossStunState = new BossStunState(this, StateMachine);
 
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody2D>();
@@ -99,10 +102,15 @@ public class BossEnemy : BaseEnemyClass
         SceneHandler.Instance.ToEndingCutscene();
     }
 
-    void OnDrawGizmos()
+    public override void ProjectileKnockback(Vector3 force)
     {
-        // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, 5);
+        return;
     }
+
+    //void OnDrawGizmos()
+    //{
+    //    // Draw a yellow sphere at the transform's position
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawWireSphere(transform.position, 5);
+    //}
 }
