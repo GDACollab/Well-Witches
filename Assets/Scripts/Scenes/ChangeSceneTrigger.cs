@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,8 +17,7 @@ public class ChangeSceneTrigger : MonoBehaviour
 
     private bool playerInTrigger;
 
-    private bool hasTriggered = false;
-
+    private bool hasTriggered;
     private Controls controls => GathererAbilityManager.Controls;
     
     private void Awake()
@@ -55,17 +52,17 @@ public class ChangeSceneTrigger : MonoBehaviour
     {
         if (playerInTrigger && !hasTriggered)
         {
-            hasTriggered = true;
             if (sceneSelection == SceneSelection.GameplayScene)
             {
+                hasTriggered = true;
                 SceneHandler.Instance.ToGameplayScene();
             }
-            else if (sceneSelection == SceneSelection.BossScene)
+            else if (sceneSelection == SceneSelection.BossScene && BossWell.instance.canEnter)
             {
+                hasTriggered = true;
                 SceneHandler.Instance.ToBossScene();
             }
         }
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

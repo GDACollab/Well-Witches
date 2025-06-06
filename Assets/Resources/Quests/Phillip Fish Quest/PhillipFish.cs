@@ -36,7 +36,6 @@ public class PhillipFish : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && liveFishSprite.activeSelf && state != FishState.RETURNING)
         {
-            EventManager.instance.miscEvent.GarlicCollected();
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.itemPickUp, this.transform.position);
             col.enabled = false;
             holdTimer = holdTime;
@@ -74,6 +73,12 @@ public class PhillipFish : MonoBehaviour
     {
         EventManager.instance.playerEvents.onPlayerDamage += playerHit;
     }
+
+    private void OnDisable()
+    {
+        EventManager.instance.playerEvents.onPlayerDamage -= playerHit;
+    }
+
 
     private void playerHit(float damage, string player)
     {
