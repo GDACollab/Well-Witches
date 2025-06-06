@@ -30,6 +30,8 @@ public class SceneHandler : MonoBehaviour
     private int LoadingScreenIndex = 6;
     [SerializeField]
     private int EndingCutsceneIndex = 7;
+    [SerializeField]
+    private int CreditsIndex = 8;
 
     [Header("Transition Screen")]
     [Tooltip("Image for loading screen")]
@@ -155,6 +157,12 @@ public class SceneHandler : MonoBehaviour
         else if (index == EndingCutsceneIndex)
         {
 
+        }
+        //From Credits Scene
+        else if (index == CreditsIndex)
+        {
+            StartCoroutine(CutsceneLoadingScreen(MainMenuSceneIndex));
+            return;
         }
         // Unsupported Scene
         else {
@@ -318,6 +326,11 @@ public class SceneHandler : MonoBehaviour
 
         AudioManager.Instance.CleanUp();
         AudioManager.Instance.PlayOST(FMODEvents.Instance.bossBGM);
+    }
+    
+    public void ToCreditsScene(){
+        StartCoroutine(CutsceneLoadingScreen(CreditsIndex));
+        AudioManager.Instance.CleanUp();
     }
 
     //show image, wait x seconds, load scene
