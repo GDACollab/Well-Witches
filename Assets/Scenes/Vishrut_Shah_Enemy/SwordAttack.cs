@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SwordAttack : MonoBehaviour
@@ -79,8 +78,7 @@ public class SwordAttack : MonoBehaviour
 
     private IEnumerator SwordAttackRoutine()
     {
-        PhaseOne phaseOne = GetComponentInParent<PhaseOne>(); // Access PhaseOne to set the casting flag
-        phaseOne.SetAbilityCasting(true); // Set casting flag to true
+        yield return null;
 
         // Set the flag for casting
         isCasting = true;
@@ -151,7 +149,5 @@ public class SwordAttack : MonoBehaviour
 
         // Reset casting state
         isCasting = false;
-
-        phaseOne.SetAbilityCasting(false); // Reset casting flag to false
     }
 }

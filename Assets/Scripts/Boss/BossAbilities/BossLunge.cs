@@ -1,4 +1,5 @@
 using System.Collections;
+using System.IO.IsolatedStorage;
 using UnityEngine;
 
 public class BossLunge : MonoBehaviour
@@ -63,12 +64,9 @@ public class BossLunge : MonoBehaviour
 
     private IEnumerator LungeRoutine()
     {
+        yield return null;
         // Start lunge animation(currently not adjusted based on slash duration/timing TODO)
         bossEnemy.animator.SetTrigger("DoLunge");
-
-        PhaseOne phaseOne = GetComponentInParent<PhaseOne>(); // Access PhaseOne to set the casting flag
-        phaseOne.SetAbilityCasting(true); // Set casting flag to true
-
         // Set the flag for casting
         isCasting = true;
 
@@ -164,6 +162,7 @@ public class BossLunge : MonoBehaviour
         else
         {
             Debug.Log("Player not hit by lunge attack. Boss stunned.");
+            bossEnemy.isStunned = true;
             yield return new WaitForSeconds(stunDuration);
         }
 
@@ -173,6 +172,5 @@ public class BossLunge : MonoBehaviour
         // Reset casting state
         isCasting = false;
 
-        phaseOne.SetAbilityCasting(false); // Reset casting flag to false
     }
 }
