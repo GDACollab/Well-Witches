@@ -50,6 +50,8 @@ public class QuestManager : MonoBehaviour
             if (ability.getAbilityID() == "AloeVera" || ability.getAbilityID() == "ResurrectionRegalia")
             {
                 ability.setLocked(false);
+                UnlockedAbilities.Add("AloeVera");
+                UnlockedAbilities.Add("ResurrectionRegalia");
                 print("set " + ability + "to unlocked");
             }
         }
@@ -248,9 +250,9 @@ public class QuestManager : MonoBehaviour
                     {
                             case "CollectGarlicQuest":
                                 AbilityToUnlock.Add("SharingIsCaring");
-                            UnlockedAbilities.Add("SharingIsCaring");
-                            AbilityToUnlock.Add("SoulSiphon");
-                            UnlockedAbilities.Add("SoulSiphon");
+                                UnlockedAbilities.Add("SharingIsCaring");
+                                AbilityToUnlock.Add("SoulSiphon");
+                                UnlockedAbilities.Add("SoulSiphon");
                             break;
                             case "CollectPumpkinQuest":
                                 AbilityToUnlock.Add("HellfireBooties");
