@@ -2,6 +2,7 @@
 
 //Feel free to contact Brendan (Naeggi on the Well Witches discord) if you have any questions or concerns!
 EXTERNAL FinishedSpeaking()
+EXTERNAL AbilityUnlock()
 -> Start
 
 == Start ==
@@ -81,6 +82,7 @@ Anytime you lose your belongings I’ll be sure to return them to you! Here’s 
 	~currentSpeaker = "Player"
  (You both feel hesitant about this ghost at first, but she doesn't seem to be an enemy.) #speaker:warden
  ~ FinishedSpeaking()
+ ~ AbilityUnlock()
  --> END
  
  

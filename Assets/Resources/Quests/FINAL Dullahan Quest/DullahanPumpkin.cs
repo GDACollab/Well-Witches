@@ -35,7 +35,7 @@ public class DullahanPumpkin : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && state == PumpkinState.DROPPED)
+        if (collision.gameObject.CompareTag("Player") && state == PumpkinState.DROPPED && !litPumpkinSprite.activeSelf)
         {
             AudioManager.Instance.PlayOneShot(FMODEvents.Instance.itemPickUp, this.transform.position);
             col.enabled = false;

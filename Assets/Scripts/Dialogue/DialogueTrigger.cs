@@ -62,7 +62,12 @@ public class DialogueTrigger : MonoBehaviour
             questState = QuestState.FINISHED;
             return;
         }
-        if(current.name.Equals("Hub Scene"))
+        else if (dullahanDone && this.quest.id == "CollectPumpkinQuest")
+        {
+            questState = QuestState.FINISHED;
+            return;
+        }
+        if (current.name.Equals("Hub Scene"))
         {
             if (GameManager.instance.activeQuestID != null && GameManager.instance.activeQuestID == quest.id)
             {
@@ -75,7 +80,7 @@ public class DialogueTrigger : MonoBehaviour
                     questState = QuestState.IN_PROGRESS;
                 }
             }
-            else if (GameManager.instance.activeQuestID == "")
+            else if (GameManager.instance.activeQuestID == null)
             {
                 Debug.Log("RAHH");
                 questState = QuestState.CAN_START;
@@ -107,6 +112,10 @@ public class DialogueTrigger : MonoBehaviour
                     else if(this.quest.id == "CollectFishQuest")
                     {
                         phillipDone = true;
+                    }
+                    else if(this.quest.id == "CollectPumpkinQuest")
+                    {
+                        dullahanDone = true;
                     }
                 }
             }

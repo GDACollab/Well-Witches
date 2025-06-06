@@ -47,7 +47,7 @@ public class QuestManager : MonoBehaviour
         AbilitySelectIndividualAbilities[] abilityList = AbilityUI.GetComponent<AbilitySelectManager>().abilitiesList;
         foreach (var ability in abilityList)
         {
-            if (ability.getAbilityID() == "parcella ability name here" || ability.getAbilityID() == "other parcella ability name here")
+            if (ability.getAbilityID() == "AloeVera" || ability.getAbilityID() == "ResurrectionRegalia")
             {
                 ability.setLocked(false);
                 print("set " + ability + "to unlocked");
@@ -241,38 +241,39 @@ public class QuestManager : MonoBehaviour
             {
                 if (Q.state == QuestState.FINISHED)
                 {
-                    string AbilityToUnlock = "";
+                    List<string> AbilityToUnlock = new List<string>();
                     print("quest: " + Q.info.id);
 
                     switch (Q.info.id)
                     {
                             case "CollectGarlicQuest":
-                                AbilityToUnlock = "SharingIsCaring";
-                            UnlockedAbilities.Add(AbilityToUnlock);
-                            AbilityToUnlock = "SoulSiphon";
-                            UnlockedAbilities.Add(AbilityToUnlock);
+                                AbilityToUnlock.Add("SharingIsCaring");
+                            UnlockedAbilities.Add("SharingIsCaring");
+                            AbilityToUnlock.Add("SoulSiphon");
+                            UnlockedAbilities.Add("SoulSiphon");
                             break;
                             case "CollectPumpkinQuest":
-                                AbilityToUnlock = "HellfireBooties";
-                            UnlockedAbilities.Add(AbilityToUnlock);
-                            AbilityToUnlock = "GourdForge";
-                            UnlockedAbilities.Add(AbilityToUnlock);
+                                AbilityToUnlock.Add("HellfireBooties");
+                                UnlockedAbilities.Add("HellfireBooties");
+                                AbilityToUnlock.Add("GourdForge");
+                                UnlockedAbilities.Add("GourdForge");
                             break;
                         case "CollectFishQuest":
-                            AbilityToUnlock = "BubbleBarrier";
-                            UnlockedAbilities.Add(AbilityToUnlock);
-                            AbilityToUnlock = "BoggyBullets";
-                            UnlockedAbilities.Add(AbilityToUnlock);
+                            AbilityToUnlock.Add("BubbleBarrier");
+                            UnlockedAbilities.Add("BubbleBarrier");
+                            AbilityToUnlock.Add("BoggyBullets");
+                            UnlockedAbilities.Add("BoggyBullets");
                             break;
                         default:
                             print("Quest ID not recognized: " + Q.info.id);
                             break;
                     }
+                    Debug.Log("Help: " + UnlockedAbilities);
 
                     AbilitySelectIndividualAbilities[] abilityList = AbilityUI.GetComponent<AbilitySelectManager>().abilitiesList;
                     foreach (var ability in abilityList)
                     {
-                        if (ability.getAbilityID() == AbilityToUnlock)
+                        if (AbilityToUnlock.Contains(ability.getAbilityID()))
                         {
                             ability.setLocked(false);
                             print("set " + ability + "to unlocked");
