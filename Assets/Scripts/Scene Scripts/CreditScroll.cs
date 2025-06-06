@@ -267,17 +267,17 @@ public class CreditScroll : MonoBehaviour
                 AudioManager.Instance.PlayOST(FMODEvents.Instance.lobbyBGM);
                 break;
             case SongType.Map1:
-                AudioManager.Instance.PlayOST(FMODEvents.Instance.mainMapBGM);
+                AudioManager.Instance.PlayOST(FMODEvents.Instance.mainMapBGM1);
                 break;
             case SongType.Map2:
                 // If someone has time add the second map song to be played here.
-                AudioManager.Instance.PlayOST(FMODEvents.Instance.mainMapBGM);
+                AudioManager.Instance.PlayOST(FMODEvents.Instance.mainMapBGM2);
                 break;
             case SongType.Boss:
                 AudioManager.Instance.PlayOST(FMODEvents.Instance.bossBGM);
                 break;
             default:
-                AudioManager.Instance.PlayOST(FMODEvents.Instance.mainMapBGM);
+                AudioManager.Instance.PlayOST(FMODEvents.Instance.mainMapBGM1);
                 break;
         }
     }

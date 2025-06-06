@@ -43,7 +43,7 @@ public class CutsceneDirector : MonoBehaviour
         if (endingCutscene)
         {
             //Debug.Log("Should transition to start menu!");
-            SceneHandler.Instance.ToMainMenuScene();
+            SceneHandler.Instance.ToCreditsScene();
         }
         else
         {
