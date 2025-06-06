@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1723946899113903691}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.11, y: -0.9, z: 0}
+  m_LocalPosition: {x: 0.95, y: -1.39, z: 0}
   m_LocalScale: {x: 7.6185427, y: 7.6185427, z: 7.6185427}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -257,7 +257,7 @@ Transform:
   m_GameObject: {fileID: 5514453322828858242}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 0.03, z: 0}
+  m_LocalPosition: {x: -3.92, y: 0.03, z: 0}
   m_LocalScale: {x: 7.6185427, y: 7.6185427, z: 7.6185427}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -370,8 +370,8 @@ Transform:
   m_GameObject: {fileID: 5599957770926139245}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3375, y: 2.44, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.23}
+  m_LocalPosition: {x: -1.02, y: 1.83, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.23}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7956740437480730099}
@@ -420,7 +420,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ae02b1ccd833fe747b40f3d7777c0768, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 72f4c771755cb1c4499db985a50ef0c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -441,6 +441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2311273276821429424}
   - component: {fileID: 839204120784107122}
+  - component: {fileID: 1319760527135540577}
   m_Layer: 0
   m_Name: Dullahan
   m_TagString: Untagged
@@ -481,6 +482,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NPC: 2
   spriteHolder: {fileID: 0}
+--- !u!114 &1319760527135540577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7704048820413360871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39165aff7688fd249b45da4f70f0e51f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dullahanObj: {fileID: 450230898280449016}
+  spriteToChangeTo: {fileID: 21300000, guid: 49b52d538ffacf2468a4ab1684000627, type: 3}
+  isQuestActive: 0
 --- !u!1 &8612974085418061349
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +523,7 @@ Transform:
   m_GameObject: {fileID: 8612974085418061349}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.83, y: 1.48, z: 0}
+  m_LocalPosition: {x: 2.06, y: 3.49, z: 0}
   m_LocalScale: {x: 7.6185427, y: 7.6185427, z: 7.6185427}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -530,7 +546,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.46
   m_Color: {r: 1, g: 0.63066036, b: 0.5330188, a: 1}
-  m_Intensity: 1.2
+  m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 7b8b7c0a00000000a5f111f0
@@ -552,7 +568,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.68
-  m_PointLightOuterRadius: 1.1351998
+  m_PointLightOuterRadius: 1.43
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
