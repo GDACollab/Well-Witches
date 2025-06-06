@@ -66,4 +66,49 @@ public class QuestEvents
             onParcellaFinishedDialogue();
         }
     }
+
+    public event Action onPhillipFishReturn;
+    public void PhillipFishReturn()
+    {
+        if (onPhillipFishReturn != null)
+        {
+            onPhillipFishReturn();
+        }
+    }
+
+    public event Action onFishCollected;
+    public void FishCollected()
+    {
+        if (onFishCollected != null)
+        {
+            onFishCollected();
+        }
+    }
+
+    public event Action onPumpkinCollected;
+    public void PumpkinCollected()
+    {
+        if (onPumpkinCollected != null)
+        {
+            onPumpkinCollected();
+        }
+    }
+
+    public event Action onPumpkinFail;
+    public void PumpkinFail()
+    {
+        if (onPumpkinFail != null)
+        {
+            onPumpkinFail();
+        }
+    }
+
+    public event Action onParcellaAbilityUnlock;
+    public void ParcellaAbilityUnlock()
+    {
+        if (onParcellaAbilityUnlock != null)
+        {
+            onParcellaAbilityUnlock();
+        }
+    }
 }

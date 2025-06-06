@@ -1,38 +1,80 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BossEnemy : BaseEnemyClass
 {
-    [Tooltip("Time Between Attacks")]
+    [Header("BOSS INFO")]
     public float attackCooldown;
-    [Tooltip("Phase 1 to 2 HP")]
-    public float phaseHP;
-    public Animator animator;
-
     public bool DPS_phase = false;
+
+    [Header("BOSS References")]
+    public Animator animator;
     public GameObject bossShield;
+
+    #region StateMachineVariables
+    public BossStateMachine StateMachine { get; set; }
+    public BossChaseState BossChaseState { get; set; }
+    public BossAttackState BossAttackState { get; set; }
+    public BossStunState BossStunState { get; set; }
+    #endregion
+
+
+    public BossShieldBash bossShieldBash;
+    public SwordAttack bossSwordAttack;
+    public BossLunge bossLunge;
+
+
+    private void Awake()
+    {
+        StateMachine = new BossStateMachine();
+
+        BossChaseState = new BossChaseState(this, StateMachine);
+        BossAttackState = new BossAttackState(this, StateMachine);
+        BossStunState = new BossStunState(this, StateMachine);
+
+        agent = GetComponent<NavMeshAgent>();
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     private void Start()
     {
         currentTarget = GameObject.Find("Gatherer").transform;
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+
+        StateMachine.Initialize(BossChaseState);
     }
+
+    private void Update()
+    {
+        StateMachine.CurrentBossState.OnUpdate();
+
+        if (currentTarget && !isStunned)
+        {
+            sr.flipX = transform.position.x > currentTarget.position.x ? false : true;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        StateMachine.CurrentBossState.OnPhysicsUpdate();
+    }
+
+
+
+    public NavMeshAgent GetAgent()
+    {
+        return agent;
+    }
+
 
     public override void Attack()
     {
         return;
     }
 
-    public void Claw_attack()
-    {
-        Debug.Log("Claw Attack");
-    }
-    public void Cape_Swipe()
-    {
-        Debug.Log("Cape Swipe");
-    }
-    public void Spawn_Enemies()
-    {
-        Debug.Log("Spawn Enemies");
-    }
+    public float shield_damage_scalar = 0.05f;
 
     public override void TakeDamage(float amount, bool fromWardenProjectile = false)
     {
@@ -45,7 +87,7 @@ public class BossEnemy : BaseEnemyClass
         }
         else
         {
-            health -= amount * 0.05f;
+            health -= amount * shield_damage_scalar;
         }
 
         if (health <= 0)
@@ -59,4 +101,18 @@ public class BossEnemy : BaseEnemyClass
         Debug.Log("Boss dead yippee"); //Make boss drop quest item here.
         SceneHandler.Instance.ToEndingCutscene();
     }
+
+    public override void ProjectileKnockback(Vector3 force)
+    {
+        return;
+    }
+
+    //void OnDrawGizmos()
+    //{
+    //    // Draw a yellow sphere at the transform's position
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawWireSphere(transform.position, 5);
+    //    Gizmos.DrawWireSphere(transform.position, 3);
+
+    //}
 }

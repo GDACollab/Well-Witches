@@ -93,7 +93,7 @@ Dullahan!! We found it! #speaker:gatherer #sprite:excited2
 ~currentSpeaker = "Dullahan"
 Woah, woah! Be careful with that! #sprite:headlessExcited
 ~currentSpeaker = "Player"
-You could thank us, you know. #speaker:warden #sprite:angry
+You could thank us, you know. #speaker:warden #sprite:anger1
 ~currentSpeaker = "Dullahan"
 I was getting to that part. #sprite:headAnger
 I didn’t believe you in the slightest. But, you did it. Thank you. #sprite:headExcited
@@ -106,9 +106,24 @@ I bestow upon you, tiny witch, this powerful and ancient relic... #sprite:head
 The Soles of the Damned! #sprite:headShocked
 ~currentSpeaker = "Player"
 Yippee!!! Thank you, Dullahan! #speaker:gatherer
-How generous of you? #speaker:warden #sprite:neutral
+How generous of you? #speaker:warden #sprite:confused
 ~currentSpeaker = "Dullahan"
-You're both welcome. #sprite:headExcited
+Ah ah ah, I'm not done yet! #sprite:headShocked
+You, my fearsome friend, have earned something as well. #sprite:headExcited
+Behold! I bestow upon you the curse of "Smashing Pumpkin"! #sprite:headShocked
+~currentSpeaker = "Player"
+Wait, wait, wait, CURSE?! #speaker:warden #sprite:surprised
+GET AWAY FROM ME YOU FOUR-LEGGED F- #speaker:warden #sprite:anger2
+~currentSpeaker = "Dullahan"
+It's done. #sprite:head
+~currentSpeaker = "Player"
+Huh? #speaker:warden #sprite:surprised
+~currentSpeaker = "Dullahan"
+You have it now. "Smashing Pumpkin" is yours to wield freely. #sprite:headThinking
+~currentSpeaker = "Player"
+That's it? #speaker:warden #sprite:confused
+~currentSpeaker = "Dullahan"
+Yep, you're both welcome. #sprite:headExcited
 Don't expect this kindness from me again, though. #sprite:head
 ~ FinishQuest("CollectHeadQuest")
 
@@ -117,7 +132,7 @@ Don't expect this kindness from me again, though. #sprite:head
 = finished
 // put dialogue here that will play after the player has finished the quest
 ~currentSpeaker = "Dullahan"
-Didn't I already give you those booties? Why are you still here? #sprite:headThinking
+Didn't I already give you your rewards? Why are you still here? #sprite:headThinking
 -> END
 
 

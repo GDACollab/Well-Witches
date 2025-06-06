@@ -1,4 +1,5 @@
 using System.Collections;
+using System.IO.IsolatedStorage;
 using UnityEngine;
 
 public class BossLunge : MonoBehaviour
@@ -63,12 +64,9 @@ public class BossLunge : MonoBehaviour
 
     private IEnumerator LungeRoutine()
     {
+        yield return null;
         // Start lunge animation(currently not adjusted based on slash duration/timing TODO)
         bossEnemy.animator.SetTrigger("DoLunge");
-
-        PhaseOne phaseOne = GetComponentInParent<PhaseOne>(); // Access PhaseOne to set the casting flag
-        phaseOne.SetAbilityCasting(true); // Set casting flag to true
-
         // Set the flag for casting
         isCasting = true;
 
@@ -120,6 +118,10 @@ public class BossLunge : MonoBehaviour
         if (warningRenderer != null) warningRenderer.enabled = false;
         if (InnerGrow != null) InnerGrow.enabled = false;
 
+        // Only hit each player once
+        bool wardenHit = false;
+        bool gathererHit = false;
+
         while (dashElapsedTime < dashTime)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, dashSpeed * Time.deltaTime);
@@ -132,14 +134,16 @@ public class BossLunge : MonoBehaviour
                 if (hit.CompareTag("Player"))
                 {
                     playerInHitbox = true;
-                    if (hit.gameObject.name == "Gatherer")
+                    if (!gathererHit && hit.gameObject.name == "Gatherer")
                     {
                         //Debug.Log("Gatherher is hit");
                         EventManager.instance.playerEvents.PlayerDamage(damage, "Gatherer");
+                        gathererHit=true;
                     }
-                    else if (hit.gameObject.name == "Warden")
+                    else if (!wardenHit && hit.gameObject.name == "Warden")
                     {
                         EventManager.instance.playerEvents.PlayerDamage(damage, "Warden");
+                        wardenHit=true;
 
                     }
                     break;
@@ -158,6 +162,7 @@ public class BossLunge : MonoBehaviour
         else
         {
             Debug.Log("Player not hit by lunge attack. Boss stunned.");
+            bossEnemy.isStunned = true;
             yield return new WaitForSeconds(stunDuration);
         }
 
@@ -167,6 +172,5 @@ public class BossLunge : MonoBehaviour
         // Reset casting state
         isCasting = false;
 
-        phaseOne.SetAbilityCasting(false); // Reset casting flag to false
     }
 }

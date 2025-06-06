@@ -26,6 +26,11 @@ public class DialogueTrigger : MonoBehaviour
 
     private InkExternalFunctions inkExternalFunctions;
 
+    //bandage fix :(
+    static private bool wisteriaDone = false;
+    static private bool dullahanDone = false;
+    static private bool phillipDone = false;
+
     [SerializeField] private QuestInfo quest;
 
     private bool playerInRange;
@@ -46,9 +51,23 @@ public class DialogueTrigger : MonoBehaviour
 
 
     private void OnSceneChange(Scene before, Scene current)
-    {
-        
-        if(current.name.Equals("Hub Scene"))
+    {   
+        if(wisteriaDone && this.quest.id == "CollectGarlicQuest")
+        {
+            questState = QuestState.FINISHED;
+            return;
+        }
+        else if(phillipDone && this.quest.id == "CollectFishQuest")
+        {
+            questState = QuestState.FINISHED;
+            return;
+        }
+        else if (dullahanDone && this.quest.id == "CollectPumpkinQuest")
+        {
+            questState = QuestState.FINISHED;
+            return;
+        }
+        if (current.name.Equals("Hub Scene"))
         {
             if (GameManager.instance.activeQuestID != null && GameManager.instance.activeQuestID == quest.id)
             {
@@ -61,7 +80,7 @@ public class DialogueTrigger : MonoBehaviour
                     questState = QuestState.IN_PROGRESS;
                 }
             }
-            else if (GameManager.instance.activeQuestID == "")
+            else if (GameManager.instance.activeQuestID == null)
             {
                 Debug.Log("RAHH");
                 questState = QuestState.CAN_START;
@@ -86,6 +105,18 @@ public class DialogueTrigger : MonoBehaviour
                 if (quest.state == QuestState.FINISHED)
                 {
                     SpawnQuestReward();
+                    if(this.quest.id == "CollectGarlicQuest")
+                    {
+                        wisteriaDone = true;
+                    }
+                    else if(this.quest.id == "CollectFishQuest")
+                    {
+                        phillipDone = true;
+                    }
+                    else if(this.quest.id == "CollectPumpkinQuest")
+                    {
+                        dullahanDone = true;
+                    }
                 }
             }
         }

@@ -56,6 +56,7 @@ public class AnnouncementManager : MonoBehaviour
         AnnouncementTextBox.text = AnnouncementQueue.Peek();
         AnnouncementTextBox.alpha = 255;
         Backdrop.gameObject.SetActive(true);
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.ravenAnnounce, GameObject.Find("Gatherer").transform.position);
         if (!playingAnnouncement)
         {
             TransitionAnimation.Play("announcementTransition");

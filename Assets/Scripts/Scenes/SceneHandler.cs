@@ -217,6 +217,8 @@ public class SceneHandler : MonoBehaviour
         StartCoroutine(LoadingScreen(HubSceneIndex));
         Debug.Log("Passed");
 
+
+
         AudioManager.Instance.CleanUp();
         AudioManager.Instance.PlayOST(FMODEvents.Instance.lobbyBGM);
     }
@@ -250,7 +252,14 @@ public class SceneHandler : MonoBehaviour
         StartCoroutine(GameplayLoadingScreen(GameplaySceneIndex));
 
         AudioManager.Instance.CleanUp();
-        AudioManager.Instance.PlayOST(FMODEvents.Instance.mainMapBGM);
+        if (UnityEngine.Random.value < 0.5)
+        {
+            AudioManager.Instance.PlayOST(FMODEvents.Instance.mainMapBGM1);
+        }
+        else
+        {
+            AudioManager.Instance.PlayOST(FMODEvents.Instance.mainMapBGM2);
+        }
     }
     public void ToPauseScene(){
         Scene currentScene = SceneManager.GetActiveScene();

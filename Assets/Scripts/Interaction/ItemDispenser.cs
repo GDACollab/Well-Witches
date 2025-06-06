@@ -154,7 +154,6 @@ public class ItemDispenser : MonoBehaviour, IInteractable
                     GameManager.instance.activeQuestItemCount--;
                     if (GameManager.instance.activeQuestItemCount <= 0)
                     {
-                        //GameManager.instance.activeQuestPrefab = null;
                         GameManager.instance.activeQuestItemCount = 0;
 
                     }
