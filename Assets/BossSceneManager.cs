@@ -84,11 +84,10 @@ public class BossSceneManager : MonoBehaviour
         if (bossShield.shieldActive) { StartCoroutine(bossShield.PopShield()); }
         yield return new WaitForSeconds(shieldbreaker_duration);
         boss_script_component.DPS_phase = false;
-        boss_script_component.bossShield.SetActive(false);
+        StartCoroutine(bossShield.SpawnShield());
         if (final_stand != true){
             StartCoroutine(launch_screen_attack());
         }
-        //TODO SPAWN ENEMY WAVE
     }
 
 

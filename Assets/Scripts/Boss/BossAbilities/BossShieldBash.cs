@@ -80,8 +80,7 @@ public class BossShieldBash : MonoBehaviour
 
     private IEnumerator ShieldBashRoutine()
     {
-        PhaseOne phaseOne = GetComponentInParent<PhaseOne>(); // Access PhaseOne to set the casting flag
-        phaseOne.SetAbilityCasting(true); // Set casting flag to true
+        yield return null;
 
         // Set the flag for casting
         isCasting = true;
@@ -149,10 +148,6 @@ public class BossShieldBash : MonoBehaviour
         // Disable visibility of the warning renderer and InnerGrow
         if (warningRenderer != null) warningRenderer.enabled = false;
         if (InnerGrow != null) InnerGrow.enabled = false;
-
-        // Reset casting state
         isCasting = false;
-
-        phaseOne.SetAbilityCasting(false); // Reset casting flag to false
     }
 }
