@@ -5,7 +5,7 @@ public class BossShieldBash : MonoBehaviour
 {
     public float warningDuration = 1.5f; // Time before attack
     public float attackDuration = 0.3f; // How long hitbox is active
-    public bool isCasting { get; private set; }
+    private bool isCasting = false;
     private bool playerInHitbox = false; // Flag to track if the player is in the hitbox
     private SpriteRenderer warningRenderer; // Reference to warning area
     private BoxCollider2D hitboxCollider; // Collider for damage

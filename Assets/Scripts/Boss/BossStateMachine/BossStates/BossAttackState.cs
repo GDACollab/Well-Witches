@@ -50,22 +50,22 @@ public class BossAttackState : BossState
             {
                 case 1:
                     bossEnemy.bossShieldBash.PerformShieldBash();
-                    timer = bossEnemy.bossShieldBash.attackDuration + bossEnemy.bossShieldBash.warningDuration;
+                    timer = bossEnemy.bossShieldBash.attackDuration + bossEnemy.bossShieldBash.warningDuration + 1f;
                     break;
                 case 2:
                     bossEnemy.bossSwordAttack.PerformSwordAttack();
-                    timer = bossEnemy.bossSwordAttack.attackDuration + bossEnemy.bossSwordAttack.warningDuration;
+                    timer = bossEnemy.bossSwordAttack.attackDuration + bossEnemy.bossSwordAttack.warningDuration + 1f;
                     break;
                 default:
                     bossEnemy.bossSwordAttack.PerformSwordAttack();
-                    timer = bossEnemy.bossSwordAttack.attackDuration + bossEnemy.bossSwordAttack.warningDuration;
+                    timer = bossEnemy.bossSwordAttack.attackDuration + bossEnemy.bossSwordAttack.warningDuration + 1f;
                     break;
             }
         }
         else
         {
             bossEnemy.bossLunge.PerformLunge();
-            timer = bossEnemy.bossLunge.attackDuration + bossEnemy.bossLunge.warningDuration;
+            timer = bossEnemy.bossLunge.attackDuration + bossEnemy.bossLunge.warningDuration + 1f;
         }
     }
 
