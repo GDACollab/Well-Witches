@@ -52,6 +52,8 @@ public class CreditScroll : MonoBehaviour
     RectTransform lastText;
     RectTransform lastRightText;
 
+    float creditsTextHeight;
+
     List<string> parsedCredits;
     int currLine = 0;
     int currImage = 0;
@@ -86,6 +88,7 @@ public class CreditScroll : MonoBehaviour
         lastText = temp;
         currLine++;
         Canvas.ForceUpdateCanvases();
+        creditsTextHeight = creditsTextTemplate.GetComponent<RectTransform>().rect.height;
 
         for (int i = 1; i < numLines; i++)
         {
@@ -171,18 +174,18 @@ public class CreditScroll : MonoBehaviour
     {
         string[] tempText = parsedCredits[currLine].Split("|||");
         RectTransform temper;
+        lastText = (lastRightText && lastRightText.anchoredPosition.y - lastRightText.rect.height < lastText.anchoredPosition.y - lastText.rect.height) ? lastRightText : lastText;
+        if (tempText[0].Trim() != "")
+        {
+            temper = Instantiate(creditsTextTemplate, transform).GetComponent<RectTransform>();
+            creditsDisplay.Add(temper);
+            temper.GetComponent<TMP_Text>().text = "<size=50%> </size>";
+            temper.anchoredPosition = new Vector2(textScrollLanes[1], lastText.anchoredPosition.y - lastText.rect.height);
+            lastText = temper;
+            Canvas.ForceUpdateCanvases();
+        }
         if (tempText.Length > 1)
         {
-            if (tempText[0].Contains("size"))
-            {
-                lastText = (lastRightText && lastRightText.anchoredPosition.y < lastText.anchoredPosition.y) ? lastRightText : lastText;
-                lastRightText = lastText;
-            }
-            else
-            {
-                lastRightText ??= lastText;
-            }
-
             temper = Instantiate(creditsTextTemplate, transform).GetComponent<RectTransform>();
             creditsDisplay.Add(temper);
             temper.sizeDelta /= 1.8f;
@@ -196,21 +199,31 @@ public class CreditScroll : MonoBehaviour
             temper.GetComponent<TMP_Text>().text = tempText[1];
             temper.GetComponent<TMP_Text>().alignment = TextAlignmentOptions.CaplineLeft;
             Canvas.ForceUpdateCanvases();
-            if (lastText.rect.height != temper.rect.height)
+            if (lastText.rect.height > temper.rect.height)
             {
                 lastText.GetComponent<TMP_Text>().alignment = TextAlignmentOptions.MidlineRight;
                 temper.anchoredPosition = new Vector2(textScrollLanes[2], lastText.anchoredPosition.y - lastText.rect.height / 2 + temper.rect.height / 2);
             }
+            else if (lastText.rect.height < temper.rect.height)
+            {
+                temper.anchoredPosition = new Vector2(textScrollLanes[2], lastText.anchoredPosition.y);
+                temper.GetComponent<TMP_Text>().alignment = TextAlignmentOptions.MidlineLeft;
+                lastText.anchoredPosition = new Vector2(textScrollLanes[0], temper.anchoredPosition.y - temper.rect.height / 2 + lastText.rect.height / 2);
+            }
             else
             {
                 temper.anchoredPosition = new Vector2(textScrollLanes[2], lastText.anchoredPosition.y);
+                if (lastText.rect.height > creditsTextHeight)
+                {
+                    lastText.GetComponent<TMP_Text>().alignment = TextAlignmentOptions.MidlineRight;
+                    temper.GetComponent<TMP_Text>().alignment = TextAlignmentOptions.MidlineLeft;
+                }
             }
             lastRightText = temper;
             numLines++;
         }
         else
         {
-            lastText = (lastRightText && lastRightText.anchoredPosition.y < lastText.anchoredPosition.y) ? lastRightText : lastText;
             lastRightText = null;
             temper = Instantiate(creditsTextTemplate, transform).GetComponent<RectTransform>();
             creditsDisplay.Add(temper);
