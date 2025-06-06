@@ -76,7 +76,7 @@ belladonna…
 
 = canFinish
 ~currentSpeaker = "Player"
-Is this enough?
+Is this enough? #speaker:warden #sprite:confused
 (You hand her the garlic.) #speaker:warden #sprite:confused
 ~currentSpeaker = "Wisteria"
 Hmmmmm… enough? For now, perhaps. Thank you, you two
