@@ -46,7 +46,7 @@ Oh…oh! Uhm, sorry, I really couldn’t tell. #speaker:gatherer #sprite:confuse
 ~currentSpeaker = "Dullahan"
 It’s fine. It’s not like I was expecting much from a bunch of strangers. #sprite:headlessAnger
 ~currentSpeaker = "Player"
-That’s it, we’re leaving. We don’t need to help this guy Aloe. #speaker:Warden #sprite:anger2
+That’s it, we’re leaving. We don’t need to help this guy Aloe. #speaker:warden #sprite:anger2
 He’s probably just upset about his head. We could find it, couldn't we? #speaker:gatherer #sprite:neutral
 (Sighs) #speaker:warden #sprite:neutral
 ~currentSpeaker = "Dullahan"
