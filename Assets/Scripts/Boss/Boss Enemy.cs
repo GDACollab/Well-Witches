@@ -107,12 +107,12 @@ public class BossEnemy : BaseEnemyClass
         return;
     }
 
-    void OnDrawGizmos()
-    {
-        // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, 5);
-        Gizmos.DrawWireSphere(transform.position, 3);
+    //void OnDrawGizmos()
+    //{
+    //    // Draw a yellow sphere at the transform's position
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawWireSphere(transform.position, 5);
+    //    Gizmos.DrawWireSphere(transform.position, 3);
 
-    }
+    //}
 }
