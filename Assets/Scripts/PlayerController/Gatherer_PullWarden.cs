@@ -21,6 +21,7 @@ public class Gatherer_PullWarden : MonoBehaviour
     void Awake()
 	{
 		rb_Warden = warden.GetComponent<Rigidbody2D>();
+		wardenMovement = warden.GetComponent<Warden_Movement>();
 		wardenCollider = warden.GetComponent<Collider2D>();
         Debug.Log(wardenCollider);
 	}

@@ -30,6 +30,7 @@ public class BossBush : MonoBehaviour, IInteractable
     {
         ps.Play();
         interacted = false;
+        light2d.enabled = true;
     }
 
     private void DisableBush()

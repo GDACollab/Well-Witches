@@ -7,7 +7,7 @@ public class CapeAttack : MonoBehaviour
 
     const float ATTACK_COOLDOWN = 10;
     const float ATTACK_TIME = 10;
-    const int CAPE_DAMAGE = 10;
+    //const int CAPE_DAMAGE = 10;
     private float timeSinceAttack;
     private bool isAttacking;
     private float attackStartTime;
