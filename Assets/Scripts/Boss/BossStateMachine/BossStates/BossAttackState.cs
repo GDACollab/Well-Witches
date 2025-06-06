@@ -1,25 +1,21 @@
-using System.Collections;
 using UnityEngine;
 
 public class BossAttackState : BossState
 {
     private float timer;
-    
+
     public BossAttackState(BossEnemy bossEnemy, BossStateMachine bossStateMachine) : base(bossEnemy, bossStateMachine)
     {
     }
 
-    public override void EnterState() 
+    public override void EnterState()
     {
         base.EnterState();
         bossEnemy.GetAgent().isStopped = true;
-        timer = 2f;
-        //bossEnemy.bossShieldBash.PerformShieldBash();
-        bossEnemy.bossLunge.PerformLunge();
-        //bossEnemy.bossSwordAttack.PerformSwordAttack();
+        ChooseAttack();
     }
 
-    public override void OnUpdate() 
+    public override void OnUpdate()
     {
         base.OnUpdate();
         timer -= Time.deltaTime;
@@ -29,17 +25,39 @@ public class BossAttackState : BossState
         }
     }
 
-    public override void OnPhysicsUpdate() 
+    public override void OnPhysicsUpdate()
     {
         base.OnPhysicsUpdate();
     }
 
-    public override void ExitState() 
+    public override void ExitState()
     {
         base.ExitState();
 
         bossEnemy.GetAgent().isStopped = false;
     }
 
+    private void ChooseAttack()
+    {
+        int choice = Random.Range(1, 4);
+        switch (choice)
+        {
+            case 1:
+                bossEnemy.bossShieldBash.PerformShieldBash();
+                timer = bossEnemy.bossShieldBash.attackDuration + bossEnemy.bossShieldBash.warningDuration;
+                break;
+            case 2:
+                bossEnemy.bossSwordAttack.PerformSwordAttack();
+                timer = bossEnemy.bossSwordAttack.attackDuration + bossEnemy.bossSwordAttack.warningDuration;
+                break;
+            case 3:
+                bossEnemy.bossLunge.PerformLunge();
+                timer = bossEnemy.bossLunge.attackDuration + bossEnemy.bossLunge.warningDuration;
+                break;
+            default:
+                timer = 2f;
+                break;
 
+        }
+    }
 }

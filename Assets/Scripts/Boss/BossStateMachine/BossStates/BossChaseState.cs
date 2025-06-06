@@ -17,7 +17,6 @@ public class BossChaseState : BossState
         bossEnemy.GetAgent().isStopped = false;
         target = bossEnemy.currentTarget;
         timer = bossEnemy.attackCooldown;
-        Debug.Log("Entering Chase State");
     }
 
     public override void OnUpdate() 
