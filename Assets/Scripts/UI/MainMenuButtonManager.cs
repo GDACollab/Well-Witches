@@ -52,6 +52,6 @@ public class MainMenuButtonManager : MonoBehaviour
 
     public void onCredits()
     {
-        print("LOL its not done yet");
+        SceneHandler.Instance.ToCreditsScene();
     }
 }
