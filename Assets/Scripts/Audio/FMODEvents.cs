@@ -48,6 +48,7 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference ghostMailTalk  { get; private set; }
     [field: SerializeField] public EventReference bossTalk  { get; private set; }
     [field: SerializeField] public EventReference hexTalk  { get; private set; }
+    [field: SerializeField] public EventReference hexTalk2  { get; private set; }
     [field: SerializeField] public EventReference talkPrompt  { get; private set; }
     [field: SerializeField] public EventReference healthTransfer  { get; private set; }
 

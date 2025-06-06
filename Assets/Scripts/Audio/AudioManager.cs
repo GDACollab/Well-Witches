@@ -92,7 +92,14 @@ public class AudioManager : MonoBehaviour
                 currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.vervainTalk);
                 break;
             case "Hex":
+                if (UnityEngine.Random.value < 0.1)
+                {
+                    currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.hexTalk2);
+                }
+                else
+                {
                 currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.hexTalk);
+                }
                 break;
             case "Parcella":
                 currentCharacterTalk = RuntimeManager.CreateInstance(FMODEvents.Instance.ghostMailTalk);
