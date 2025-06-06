@@ -53,7 +53,8 @@ public class FMODEvents : MonoBehaviour
 
     [field: Header("BGM")]
     [field: SerializeField] public EventReference lobbyBGM { get; private set; }
-    [field: SerializeField] public EventReference mainMapBGM { get; private set; }
+    [field: SerializeField] public EventReference mainMapBGM1 { get; private set; }
+    [field: SerializeField] public EventReference mainMapBGM2 { get; private set; }
     [field: SerializeField] public EventReference bossBGM { get; private set; }
 
     private static FMODEvents _instance;
