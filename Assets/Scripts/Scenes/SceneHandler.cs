@@ -209,6 +209,8 @@ public class SceneHandler : MonoBehaviour
         StartCoroutine(LoadingScreen(HubSceneIndex));
         Debug.Log("Passed");
 
+
+
         AudioManager.Instance.CleanUp();
         AudioManager.Instance.PlayOST(FMODEvents.Instance.lobbyBGM);
     }
