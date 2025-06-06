@@ -17,6 +17,7 @@ public class BossChaseState : BossState
         bossEnemy.GetAgent().isStopped = false;
         target = bossEnemy.currentTarget;
         timer = bossEnemy.attackCooldown;
+        bossEnemy.attackCooldown = Random.Range(1, 3);
     }
 
     public override void OnUpdate() 

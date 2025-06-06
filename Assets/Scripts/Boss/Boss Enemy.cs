@@ -96,4 +96,11 @@ public class BossEnemy : BaseEnemyClass
         Debug.Log("Boss dead yippee"); //Make boss drop quest item here.
         SceneHandler.Instance.ToEndingCutscene();
     }
+
+    void OnDrawGizmos()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, 5);
+    }
 }

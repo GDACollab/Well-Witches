@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class BossAttackState : BossState
 {
@@ -39,25 +41,32 @@ public class BossAttackState : BossState
 
     private void ChooseAttack()
     {
-        int choice = Random.Range(1, 4);
-        switch (choice)
-        {
-            case 1:
-                bossEnemy.bossShieldBash.PerformShieldBash();
-                timer = bossEnemy.bossShieldBash.attackDuration + bossEnemy.bossShieldBash.warningDuration;
-                break;
-            case 2:
-                bossEnemy.bossSwordAttack.PerformSwordAttack();
-                timer = bossEnemy.bossSwordAttack.attackDuration + bossEnemy.bossSwordAttack.warningDuration;
-                break;
-            case 3:
-                bossEnemy.bossLunge.PerformLunge();
-                timer = bossEnemy.bossLunge.attackDuration + bossEnemy.bossLunge.warningDuration;
-                break;
-            default:
-                timer = 2f;
-                break;
+        int choice = Random.Range(1, 3);
+        Debug.Log(choice);
 
+        if (Vector2.Distance(bossEnemy.transform.position, bossEnemy.currentTarget.position) <= 5)
+        {
+            switch (choice)
+            {
+                case 1:
+                    bossEnemy.bossShieldBash.PerformShieldBash();
+                    timer = bossEnemy.bossShieldBash.attackDuration + bossEnemy.bossShieldBash.warningDuration;
+                    break;
+                case 2:
+                    bossEnemy.bossSwordAttack.PerformSwordAttack();
+                    timer = bossEnemy.bossSwordAttack.attackDuration + bossEnemy.bossSwordAttack.warningDuration;
+                    break;
+                default:
+                    bossEnemy.bossSwordAttack.PerformSwordAttack();
+                    timer = bossEnemy.bossSwordAttack.attackDuration + bossEnemy.bossSwordAttack.warningDuration;
+                    break;
+            }
+        }
+        else
+        {
+            bossEnemy.bossLunge.PerformLunge();
+            timer = bossEnemy.bossLunge.attackDuration + bossEnemy.bossLunge.warningDuration;
         }
     }
+
 }
