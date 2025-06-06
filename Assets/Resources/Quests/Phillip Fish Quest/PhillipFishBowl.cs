@@ -1,11 +1,11 @@
 using Ink.Runtime;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph;
+//using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Progress;
+//using static UnityEditor.Progress;
 
 public class PhillipFishBowl : MonoBehaviour
 {
