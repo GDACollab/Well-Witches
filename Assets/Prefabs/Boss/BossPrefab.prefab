@@ -745,6 +745,7 @@ MonoBehaviour:
   bossShieldBash: {fileID: 574793365530881989}
   bossSwordAttack: {fileID: 6896637805450966079}
   bossLunge: {fileID: 2116235306869629605}
+  shield_damage_scalar: 0.05
 --- !u!195 &9014724367387819605
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -755,8 +756,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
-  m_Acceleration: 8
+  m_Speed: 8
+  m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 1

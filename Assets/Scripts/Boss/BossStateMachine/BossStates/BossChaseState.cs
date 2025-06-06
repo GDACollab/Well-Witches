@@ -26,6 +26,13 @@ public class BossChaseState : BossState
         bossEnemy.GetAgent().SetDestination(target.position);
 
         timer -= Time.deltaTime;
+
+        if (Vector2.Distance(bossEnemy.transform.position, bossEnemy.currentTarget.position) <= 2)
+        {
+            bossEnemy.StateMachine.ChangeState(bossEnemy.BossAttackState);
+            return;
+        }
+
         if (timer <= 0f)
         {
             bossEnemy.StateMachine.ChangeState(bossEnemy.BossAttackState);
