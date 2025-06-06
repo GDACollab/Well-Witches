@@ -120,6 +120,10 @@ public class BossLunge : MonoBehaviour
         if (warningRenderer != null) warningRenderer.enabled = false;
         if (InnerGrow != null) InnerGrow.enabled = false;
 
+        // Only hit each player once
+        bool wardenHit = false;
+        bool gathererHit = false;
+
         while (dashElapsedTime < dashTime)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, dashSpeed * Time.deltaTime);
@@ -132,14 +136,16 @@ public class BossLunge : MonoBehaviour
                 if (hit.CompareTag("Player"))
                 {
                     playerInHitbox = true;
-                    if (hit.gameObject.name == "Gatherer")
+                    if (!gathererHit && hit.gameObject.name == "Gatherer")
                     {
                         //Debug.Log("Gatherher is hit");
                         EventManager.instance.playerEvents.PlayerDamage(damage, "Gatherer");
+                        gathererHit=true;
                     }
-                    else if (hit.gameObject.name == "Warden")
+                    else if (!wardenHit && hit.gameObject.name == "Warden")
                     {
                         EventManager.instance.playerEvents.PlayerDamage(damage, "Warden");
+                        wardenHit=true;
 
                     }
                     break;
