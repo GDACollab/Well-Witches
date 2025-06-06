@@ -78,12 +78,13 @@ public class ParcellaTrigger : MonoBehaviour
         new Vector3(transform.position.x + ItemSpawnOffset.x, transform.position.y + ItemSpawnOffset.y, 0f),
         Quaternion.identity
         );
-                Debug.Log("whyb name: " + itemDrop.name);
-                Debug.Log("whyb: " + itemDrop.GetComponent<PhillipFish>());
                 if (itemDrop.GetComponent<PhillipFish>() != null)
                 {
-                    Debug.Log("whyb in loop: " + itemDrop.GetComponent<PhillipFish>());
                     itemDrop.GetComponent<PhillipFish>().KillFish();
+                }
+                else if(itemDrop.GetComponent<DullahanPumpkin>() != null)
+                {
+                    itemDrop.GetComponent<DullahanPumpkin>().LightPumpkin();
                 }
                 yield return new WaitForSeconds(itemSpawnDelay);
             }

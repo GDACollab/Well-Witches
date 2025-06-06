@@ -84,4 +84,31 @@ public class QuestEvents
             onFishCollected();
         }
     }
+
+    public event Action onPumpkinCollected;
+    public void PumpkinCollected()
+    {
+        if (onPumpkinCollected != null)
+        {
+            onPumpkinCollected();
+        }
+    }
+
+    public event Action onPumpkinFail;
+    public void PumpkinFail()
+    {
+        if (onPumpkinFail != null)
+        {
+            onPumpkinFail();
+        }
+    }
+
+    public event Action onParcellaAbilityUnlock;
+    public void ParcellaAbilityUnlock()
+    {
+        if (onParcellaAbilityUnlock != null)
+        {
+            onParcellaAbilityUnlock();
+        }
+    }
 }

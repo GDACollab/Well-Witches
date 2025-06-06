@@ -15,11 +15,15 @@ public class Gatherer_PullWarden : MonoBehaviour
 	[SerializeField] GameObject warden;
 	[SerializeField] CircleCollider2D ropeRadius;
 
-	void Awake()
+    [Header("unStucker")]
+    [SerializeField] private Collider2D wardenCollider;
+
+    void Awake()
 	{
 		rb_Warden = warden.GetComponent<Rigidbody2D>();
 		wardenMovement = warden.GetComponent<Warden_Movement>();
-		wardenHealth = warden.GetComponent<Warden_Health>();
+		wardenCollider = warden.GetComponent<Collider2D>();
+        Debug.Log(wardenCollider);
 	}
 
 	void Update()
@@ -32,21 +36,25 @@ public class Gatherer_PullWarden : MonoBehaviour
 		if (pullCounter > 0) return;    // on cooldown
 		wardenMovement.canMove = true;
 		rb_Warden.velocity = Vector2.zero;
+		wardenCollider.isTrigger = true;
+        //Debug.Log("I AM DISABLING COLLSION " + wardenCollider.enabled);
+        //Debug.Log("Disabling collider of type: " + wardenCollider.GetType());
 
-		Vector2 direction = (Vector2)(transform.position - warden.transform.position);
+        Vector2 direction = (Vector2)(transform.position - warden.transform.position);
 		float ratio = direction.magnitude / ropeRadius.radius;
 		float force = Mathf.Lerp(0f, StatsManager.Instance.getYank(), ratio);  // pull harder the further Warden is from Gatherer
 
 		rb_Warden.AddForce(direction * force, ForceMode2D.Impulse);
 		AudioManager.Instance.PlayOneShot(FMODEvents.Instance.flamingPumpkinYank, this.transform.position);
-
-		pullCounter = pullCooldown;
-        if (wardenHealth.gourdForgeInvulnerability) StartCoroutine(IfForge());
-    }
-
-	IEnumerator IfForge()
-	{
-		yield return new WaitForSeconds(0.5f);
-		wardenMovement.canMove = false;
+        StartCoroutine(noCollision());
+        pullCounter = pullCooldown;
 	}
+
+	private IEnumerator noCollision()
+	{
+		//Debug.Log("Started coroutine");
+        yield return new WaitForSeconds(.25f);
+        //Debug.Log("I AM ENABLING COLLSION " + wardenCollider.enabled);
+        wardenCollider.isTrigger = false;
+    }
 }
