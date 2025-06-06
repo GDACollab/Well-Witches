@@ -105,7 +105,7 @@ public class DialogueManager : MonoBehaviour
         {
             { "Aloe", new string[] { "#FF777B", "#FFA0A3" } },
             { "Vervain", new string[] { "#2BDCB9", "#59FFDD" } },
-            { "Phillip", new string[] { "#5D5D9B", "#6E83C1" } },
+            { "Philip", new string[] { "#5D5D9B", "#6E83C1" } },
             { "Wisteria", new string[] { "#B295CF", "#C0B1E1" } },
             { "Dullahan", new string[] { "#4C1920", "#8A4557" } },
             { "Parcella", new string[] { "#8CC8D0", "#9CEDE7" } },
