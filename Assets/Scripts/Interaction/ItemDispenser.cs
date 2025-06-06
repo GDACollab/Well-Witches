@@ -152,9 +152,12 @@ public class ItemDispenser : MonoBehaviour, IInteractable
                     Instantiate(prefabToSpawn, new Vector3(transform.position.x + spawnX,
                                         transform.position.y + spawnY, 0), Quaternion.identity);
                     GameManager.instance.activeQuestItemCount--;
+                    if(questItem.GetComponent<DullahanPumpkin>() != null)
+                    {
+                        GameManager.instance.activeQuestPrefab = null;
+                    }
                     if (GameManager.instance.activeQuestItemCount <= 0)
                     {
-                        //GameManager.instance.activeQuestPrefab = null;
                         GameManager.instance.activeQuestItemCount = 0;
 
                     }

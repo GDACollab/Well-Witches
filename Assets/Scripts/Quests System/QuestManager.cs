@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor.Playables;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -37,6 +38,21 @@ public class QuestManager : MonoBehaviour
         EventManager.instance.questEvents.onCancelQuest += CancelQuest;
         EventManager.instance.questEvents.onQuestStateChange += UpdateAbilityUnlocks;
         SceneManager.activeSceneChanged += ChangedActiveScene;
+        EventManager.instance.questEvents.onParcellaAbilityUnlock += ParcellaAbilityUnlock;
+    }
+
+    private void ParcellaAbilityUnlock()
+    {
+        GameObject AbilityUI = GameObject.Find("AbilitySelectionUI");
+        AbilitySelectIndividualAbilities[] abilityList = AbilityUI.GetComponent<AbilitySelectManager>().abilitiesList;
+        foreach (var ability in abilityList)
+        {
+            if (ability.getAbilityID() == "parcella ability name here" || ability.getAbilityID() == "other parcella ability name here")
+            {
+                ability.setLocked(false);
+                print("set " + ability + "to unlocked");
+            }
+        }
     }
 
     private void OnDisable()
@@ -47,6 +63,7 @@ public class QuestManager : MonoBehaviour
         EventManager.instance.questEvents.onCancelQuest -= CancelQuest;
         EventManager.instance.questEvents.onQuestStateChange -= UpdateAbilityUnlocks;
         SceneManager.activeSceneChanged -= ChangedActiveScene;
+        EventManager.instance.questEvents.onParcellaAbilityUnlock -= ParcellaAbilityUnlock;
     }
 
     private void Start()
@@ -231,6 +248,20 @@ public class QuestManager : MonoBehaviour
                     {
                             case "CollectGarlicQuest":
                                 AbilityToUnlock = "SharingIsCaring";
+                            UnlockedAbilities.Add(AbilityToUnlock);
+                            AbilityToUnlock = "SoulSiphon";
+                            UnlockedAbilities.Add(AbilityToUnlock);
+                            break;
+                            case "CollectPumpkinQuest":
+                                AbilityToUnlock = "HellfireBooties";
+                            UnlockedAbilities.Add(AbilityToUnlock);
+                            AbilityToUnlock = "GourdForge";
+                            UnlockedAbilities.Add(AbilityToUnlock);
+                            break;
+                        case "CollectFishQuest":
+                            AbilityToUnlock = "BubbleBarrier";
+                            UnlockedAbilities.Add(AbilityToUnlock);
+                            AbilityToUnlock = "BoggyBullets";
                             UnlockedAbilities.Add(AbilityToUnlock);
                             break;
                         default:
