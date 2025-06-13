@@ -46,7 +46,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Start()
     {
-        controls.Gameplay_Gatherer.Interact.performed += OnGathererInteract; 
+        controls.Gameplay_Gatherer.Interact.performed += OnGathererInteract;
     }
 
 
@@ -77,7 +77,7 @@ public class DialogueTrigger : MonoBehaviour
                     questState = QuestState.IN_PROGRESS;
                 }
             }
-            else if (GameManager.instance.activeQuestID == null)
+            else if (GameManager.instance.activeQuestID == null || GameManager.instance.activeQuestID == "")
             {
                 Debug.Log("RAHH");
                 questState = QuestState.CAN_START;

@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
 
     public void SceneChange(Scene before, Scene after)
     {
+        Camera.main.clearFlags = CameraClearFlags.SolidColor;
+        Camera.main.backgroundColor = Color.black;
         if (after.buildIndex == 2) // ID for GAMEPLAY scene/ Forest Scene
         {
             diedOnLastRun = false;
@@ -52,6 +54,11 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        Camera.main.clearFlags = CameraClearFlags.SolidColor;
+        Camera.main.backgroundColor = Color.black;
+#if UNITY_WEBGL
+        Cursor.SetCursor(Resources.Load<Texture2D>("Cursor_Sai"), Vector2.zero, CursorMode.ForceSoftware);
+#endif
         if (instance != null) Debug.LogWarning("Found more than one GameManager in the scene. Please make sure there is only one");
         else instance = this;
     }
